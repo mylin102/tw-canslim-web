@@ -18,14 +18,25 @@ const app = createApp({
 
         const currentStock = computed(() => {
             if (!stockData.value || !searchQuery.value) return null;
-            const query = searchQuery.value.trim();
-            const found = stockData.value.stocks[query];
-            if (!found && query.length >= 4) {
-                lastUpdated.value = `查無此代號 (${query})，請確認是否在掃描清單中`;
-            } else if (found) {
+            const query = searchQuery.value.trim().toLowerCase();
+            
+            // 1. Ticker exact match
+            if (stockData.value.stocks[query]) {
+                lastUpdated.value = stockData.value.last_updated;
+                return stockData.value.stocks[query];
+            }
+
+            // 2. Name fuzzy match
+            const foundByTitle = Object.values(stockData.value.stocks).find(s => 
+                s.name.toLowerCase().includes(query) || s.symbol.includes(query)
+            );
+
+            if (!foundByTitle && query.length >= 2) {
+                lastUpdated.value = `查無資料 (${query})`;
+            } else if (foundByTitle) {
                 lastUpdated.value = stockData.value.last_updated;
             }
-            return found || null;
+            return foundByTitle || null;
         });
 
         const fetchData = async () => {
