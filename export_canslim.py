@@ -37,6 +37,12 @@ S_VOLUME_THRESHOLD = 1.5  # 150% of average volume
 L_OUTPERFORM_THRESHOLD = 1.2  # Outperform market by 20%
 I_CONSECUTIVE_DAYS = 3  # Consecutive days of net buying
 
+# Fallback stock names for stocks not in official TWSE/TPEx lists
+KNOWN_STOCK_NAMES = {
+    "3565": "山太士",
+    "6770": "力智",
+}
+
 def get_all_tw_tickers():
     """Fetch both TWSE and TPEx tickers with correct metadata."""
     logger.info("Fetching full TWSE and TPEx ticker lists...")
@@ -63,6 +69,12 @@ def get_all_tw_tickers():
         logger.info(f"Fetched {len(ticker_map)} total tickers")
     except Exception as e:
         logger.error(f"Failed to fetch TPEx tickers: {e}")
+    
+    # Add known stocks that might be missing
+    for code, name in KNOWN_STOCK_NAMES.items():
+        if code not in ticker_map:
+            ticker_map[code] = {"name": name, "suffix": ".TWO"}
+            logger.info(f"Added fallback name for {code}: {name}")
     
     return ticker_map
 
