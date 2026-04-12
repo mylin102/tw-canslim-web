@@ -290,6 +290,12 @@ class CanslimEngine:
         except:
             return False
 
+    def check_s_smr_rating(self, smr_rating: Optional[str]) -> bool:
+        """S - Supply/Demand via SMR Rating (A or A+ = strong)."""
+        if not smr_rating:
+            return False
+        return smr_rating in ['A+', 'A']
+    
     def check_n_new_high(self, current_price: float, high_52w: float) -> bool:
         """N - New high or near new high (within 90% of 52-week high)."""
         if not current_price or not high_52w:
