@@ -1,0 +1,1165 @@
+{
+  "last_updated": "2026-04-12 21:26:57",
+  "stocks": {
+    "2330": {
+      "symbol": "2330",
+      "name": "TAIWAN SEMICONDUCTOR MANUFACTUR",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 8159,
+          "trust_net": -176,
+          "dealer_net": 374
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 721,
+          "trust_net": -104,
+          "dealer_net": -498
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 18393,
+          "trust_net": 451,
+          "dealer_net": 1711
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 6181,
+          "trust_net": 633,
+          "dealer_net": 2462
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 6181,
+          "trust_net": 633,
+          "dealer_net": 2462
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -20438,
+          "trust_net": 1420,
+          "dealer_net": 2731
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -15960,
+          "trust_net": 557,
+          "dealer_net": -439
+        }
+      ]
+    },
+    "2317": {
+      "symbol": "2317",
+      "name": "HON HAI PRECISION INDUSTRY",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 40
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -4482,
+          "trust_net": -416,
+          "dealer_net": 594
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -5433,
+          "trust_net": -526,
+          "dealer_net": -246
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 11610,
+          "trust_net": -85,
+          "dealer_net": 4648
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 10467,
+          "trust_net": 59,
+          "dealer_net": 2463
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 10467,
+          "trust_net": 59,
+          "dealer_net": 2463
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -21640,
+          "trust_net": -225,
+          "dealer_net": 2682
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -13625,
+          "trust_net": 237,
+          "dealer_net": -388
+        }
+      ]
+    },
+    "2454": {
+      "symbol": "2454",
+      "name": "MEDIATEK INC",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 55
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -1442,
+          "trust_net": -277,
+          "dealer_net": 1
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -728,
+          "trust_net": -178,
+          "dealer_net": -80
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -81,
+          "trust_net": -56,
+          "dealer_net": 198
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -3538,
+          "trust_net": -63,
+          "dealer_net": 135
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -3538,
+          "trust_net": -63,
+          "dealer_net": 135
+        },
+        {
+          "date": "20260331",
+          "foreign_net": 313,
+          "trust_net": -856,
+          "dealer_net": 365
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -1260,
+          "trust_net": 96,
+          "dealer_net": -3
+        }
+      ]
+    },
+    "2308": {
+      "symbol": "2308",
+      "name": "DELTA ELECTRONIC",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 581,
+          "trust_net": 25,
+          "dealer_net": 250
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 1053,
+          "trust_net": -98,
+          "dealer_net": 871
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 3910,
+          "trust_net": -33,
+          "dealer_net": 448
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 440,
+          "trust_net": 483,
+          "dealer_net": 526
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 440,
+          "trust_net": 483,
+          "dealer_net": 526
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5628,
+          "trust_net": 262,
+          "dealer_net": 375
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -843,
+          "trust_net": 88,
+          "dealer_net": 84
+        }
+      ]
+    },
+    "2382": {
+      "symbol": "2382",
+      "name": "QUANTA COMPUTER",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 100
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 11030,
+          "trust_net": 1344,
+          "dealer_net": 585
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 14888,
+          "trust_net": 419,
+          "dealer_net": -437
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 33610,
+          "trust_net": 218,
+          "dealer_net": 2354
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 4859,
+          "trust_net": 1127,
+          "dealer_net": 672
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 4859,
+          "trust_net": 1127,
+          "dealer_net": 672
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2001,
+          "trust_net": 270,
+          "dealer_net": 1157
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -5285,
+          "trust_net": 172,
+          "dealer_net": 523
+        }
+      ]
+    },
+    "3711": {
+      "symbol": "3711",
+      "name": "ASE TECHNOLOGY HOLDING CO LTD",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -1807,
+          "trust_net": -589,
+          "dealer_net": 522
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 2799,
+          "trust_net": -235,
+          "dealer_net": -232
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 8881,
+          "trust_net": -330,
+          "dealer_net": 634
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 6386,
+          "trust_net": 218,
+          "dealer_net": 760
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 6386,
+          "trust_net": 218,
+          "dealer_net": 760
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5952,
+          "trust_net": -615,
+          "dealer_net": 665
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -301,
+          "trust_net": 225,
+          "dealer_net": 445
+        }
+      ]
+    },
+    "2412": {
+      "symbol": "2412",
+      "name": "CHUNGHWA TELECOM",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 508,
+          "trust_net": 178,
+          "dealer_net": -95
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -393,
+          "trust_net": 682,
+          "dealer_net": -250
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -480,
+          "trust_net": 612,
+          "dealer_net": 356
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 1755,
+          "trust_net": -3034,
+          "dealer_net": 643
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 1755,
+          "trust_net": -3034,
+          "dealer_net": 643
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2093,
+          "trust_net": -3361,
+          "dealer_net": 886
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -1317,
+          "trust_net": 109,
+          "dealer_net": -64
+        }
+      ]
+    },
+    "2881": {
+      "symbol": "2881",
+      "name": "FUBON FINANCIAL HLDG CO LTD",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -10072,
+          "trust_net": 95,
+          "dealer_net": 204
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -7630,
+          "trust_net": 1352,
+          "dealer_net": -113
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -1313,
+          "trust_net": 1384,
+          "dealer_net": 245
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -1006,
+          "trust_net": 1948,
+          "dealer_net": 757
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -1006,
+          "trust_net": 1948,
+          "dealer_net": 757
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2765,
+          "trust_net": 1041,
+          "dealer_net": 1687
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -4675,
+          "trust_net": 2381,
+          "dealer_net": -213
+        }
+      ]
+    },
+    "2882": {
+      "symbol": "2882",
+      "name": "CATHAY FINANCIAL HLDG CO",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -6757,
+          "trust_net": 1214,
+          "dealer_net": 126
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -1653,
+          "trust_net": 2320,
+          "dealer_net": 61
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 4848,
+          "trust_net": 2575,
+          "dealer_net": 757
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -865,
+          "trust_net": 3977,
+          "dealer_net": 661
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -865,
+          "trust_net": 3977,
+          "dealer_net": 661
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2189,
+          "trust_net": 1911,
+          "dealer_net": 2049
+        },
+        {
+          "date": "20260330",
+          "foreign_net": 1087,
+          "trust_net": 2675,
+          "dealer_net": -95
+        }
+      ]
+    },
+    "2303": {
+      "symbol": "2303",
+      "name": "UNITED MICRO ELECTRONICS",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 23681,
+          "trust_net": -117,
+          "dealer_net": 4669
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -3337,
+          "trust_net": 2932,
+          "dealer_net": 166
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -3931,
+          "trust_net": 23958,
+          "dealer_net": 317
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -11626,
+          "trust_net": -4123,
+          "dealer_net": 1251
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -11626,
+          "trust_net": -4123,
+          "dealer_net": 1251
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -943,
+          "trust_net": -6914,
+          "dealer_net": 4880
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -20126,
+          "trust_net": 8973,
+          "dealer_net": 963
+        }
+      ]
+    },
+    "3034": {
+      "symbol": "3034",
+      "name": "NOVATEK MICROELECTRONICS",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 40
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -479,
+          "trust_net": -76,
+          "dealer_net": -59
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 936,
+          "trust_net": -89,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 445,
+          "trust_net": -45,
+          "dealer_net": -4
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 861,
+          "trust_net": 53,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 861,
+          "trust_net": 53,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -1071,
+          "trust_net": 0,
+          "dealer_net": 251
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -174,
+          "trust_net": 1,
+          "dealer_net": 113
+        }
+      ]
+    },
+    "2357": {
+      "symbol": "2357",
+      "name": "ASUSTEK COMPUTER INC",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 55
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -325,
+          "trust_net": -135,
+          "dealer_net": 4
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -104,
+          "trust_net": 13,
+          "dealer_net": 12
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 330,
+          "trust_net": 4,
+          "dealer_net": 6
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -266,
+          "trust_net": 370,
+          "dealer_net": 5
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -266,
+          "trust_net": 370,
+          "dealer_net": 5
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -302,
+          "trust_net": 138,
+          "dealer_net": 420
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -733,
+          "trust_net": 311,
+          "dealer_net": 212
+        }
+      ]
+    },
+    "2603": {
+      "symbol": "2603",
+      "name": "EVERGREEN MARINE CORP(TAIWAN)",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 574,
+          "trust_net": -172,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 1823,
+          "trust_net": -575,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -5292,
+          "trust_net": -259,
+          "dealer_net": 196
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 1668,
+          "trust_net": 1000,
+          "dealer_net": 263
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 1668,
+          "trust_net": 1000,
+          "dealer_net": 263
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -3693,
+          "trust_net": 659,
+          "dealer_net": 782
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -854,
+          "trust_net": 70,
+          "dealer_net": 878
+        }
+      ]
+    },
+    "3231": {
+      "symbol": "3231",
+      "name": "WISTRON CORPORATION",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 9922,
+          "trust_net": -326,
+          "dealer_net": 909
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 15340,
+          "trust_net": -30,
+          "dealer_net": -688
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 22480,
+          "trust_net": 536,
+          "dealer_net": -818
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 3030,
+          "trust_net": 1020,
+          "dealer_net": 1147
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 3030,
+          "trust_net": 1020,
+          "dealer_net": 1147
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5501,
+          "trust_net": -134,
+          "dealer_net": 2867
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -1888,
+          "trust_net": 78,
+          "dealer_net": 948
+        }
+      ]
+    },
+    "2301": {
+      "symbol": "2301",
+      "name": "LITE-ON TECHNOLOGY CORP",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 189,
+          "trust_net": 57,
+          "dealer_net": 1116
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 3782,
+          "trust_net": -20,
+          "dealer_net": -73
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 6563,
+          "trust_net": 1,
+          "dealer_net": 672
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 3327,
+          "trust_net": -327,
+          "dealer_net": 231
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 3327,
+          "trust_net": -327,
+          "dealer_net": 231
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -1906,
+          "trust_net": -10,
+          "dealer_net": 974
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -441,
+          "trust_net": 53,
+          "dealer_net": 301
+        }
+      ]
+    },
+    "2408": {
+      "symbol": "2408",
+      "name": "NANYA TECHNOLOGY CORPORATION",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": false,
+        "S": false,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 55
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 18152,
+          "trust_net": -263,
+          "dealer_net": 1101
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -33226,
+          "trust_net": -790,
+          "dealer_net": -991
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 4348,
+          "trust_net": 241,
+          "dealer_net": 915
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 1340,
+          "trust_net": -2141,
+          "dealer_net": 1127
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 1340,
+          "trust_net": -2141,
+          "dealer_net": 1127
+        },
+        {
+          "date": "20260331",
+          "foreign_net": 265,
+          "trust_net": -10230,
+          "dealer_net": -681
+        },
+        {
+          "date": "20260330",
+          "foreign_net": 4169,
+          "trust_net": -173,
+          "dealer_net": -1145
+        }
+      ]
+    },
+    "2886": {
+      "symbol": "2886",
+      "name": "MEGA FINANCIAL HOLDING CO",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -915,
+          "trust_net": -139,
+          "dealer_net": -57
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 18563,
+          "trust_net": 2866,
+          "dealer_net": -331
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 1725,
+          "trust_net": 2360,
+          "dealer_net": 426
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 7451,
+          "trust_net": 771,
+          "dealer_net": 923
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 7451,
+          "trust_net": 771,
+          "dealer_net": 923
+        },
+        {
+          "date": "20260331",
+          "foreign_net": 11762,
+          "trust_net": 154,
+          "dealer_net": 4738
+        },
+        {
+          "date": "20260330",
+          "foreign_net": 5809,
+          "trust_net": 281,
+          "dealer_net": 1804
+        }
+      ]
+    },
+    "2891": {
+      "symbol": "2891",
+      "name": "CTBC FINANCIAL HOLDINGS COMPANY",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 85
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -21139,
+          "trust_net": 720,
+          "dealer_net": -230
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -19147,
+          "trust_net": -511,
+          "dealer_net": -1182
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 14406,
+          "trust_net": 2540,
+          "dealer_net": 64
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 10894,
+          "trust_net": 4600,
+          "dealer_net": 140
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 10894,
+          "trust_net": 4600,
+          "dealer_net": 140
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5970,
+          "trust_net": 4278,
+          "dealer_net": 6813
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -6930,
+          "trust_net": 5063,
+          "dealer_net": 2354
+        }
+      ]
+    },
+    "2884": {
+      "symbol": "2884",
+      "name": "E SUN FINANCIAL HOLDINGS",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 55
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": -5777,
+          "trust_net": -156,
+          "dealer_net": -165
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 4369,
+          "trust_net": -361,
+          "dealer_net": -326
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -2085,
+          "trust_net": -166,
+          "dealer_net": 958
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 3184,
+          "trust_net": 94,
+          "dealer_net": 709
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 3184,
+          "trust_net": 94,
+          "dealer_net": 709
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5756,
+          "trust_net": 190,
+          "dealer_net": 4905
+        },
+        {
+          "date": "20260330",
+          "foreign_net": 4276,
+          "trust_net": 16,
+          "dealer_net": 2033
+        }
+      ]
+    },
+    "5880": {
+      "symbol": "5880",
+      "name": "TAIWAN COOPERATIVE FINANCIAL HL",
+      "canslim": {
+        "C": true,
+        "A": true,
+        "N": true,
+        "S": false,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 70
+      },
+      "institutional": [
+        {
+          "date": "20260410",
+          "foreign_net": 371,
+          "trust_net": -47,
+          "dealer_net": 2
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 10560,
+          "trust_net": -14,
+          "dealer_net": -180
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 4188,
+          "trust_net": -7,
+          "dealer_net": 966
+        },
+        {
+          "date": "20260402",
+          "foreign_net": 7968,
+          "trust_net": 66,
+          "dealer_net": 1218
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 7968,
+          "trust_net": 66,
+          "dealer_net": 1218
+        },
+        {
+          "date": "20260331",
+          "foreign_net": 7303,
+          "trust_net": 142,
+          "dealer_net": 1162
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -2308,
+          "trust_net": 260,
+          "dealer_net": -338
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+name: Update CANSLIM Data
+
+on:
+  schedule:
+    - cron: '30 8 * * 1-5' # 16:30 Taiwan time (UTC 8:30)
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas yfinance requests
+
+      - name: Run Export Script
+        run: |
+          python tw-canslim-web/export_canslim.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add tw-canslim-web/docs/data.json
+          git commit -m "Auto-update CANSLIM data: $(date)" || echo "No changes to commit"
+          git push
