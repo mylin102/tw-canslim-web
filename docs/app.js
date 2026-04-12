@@ -211,6 +211,7 @@ const app = createApp({
         });
 
         onMounted(() => {
+            console.log("🚀 CANSLIM App v2.0 mounted");
             fetchData();
         });
 
