@@ -12,15 +12,24 @@ const app = createApp({
         const loginError = ref(false);
 
         const checkPassword = () => {
+            console.log("Checking password...");
             if (passwordInput.value === '5888') {
+                console.log("Password correct!");
                 isAuthorized.value = true;
                 localStorage.setItem('canslim_auth', 'true');
                 loginError.value = false;
-                fetchData(); // 登入成功後開始抓資料
+                fetchData(); 
             } else {
+                console.log("Password incorrect.");
                 loginError.value = true;
                 passwordInput.value = '';
             }
+        };
+
+        const logout = () => {
+            isAuthorized.value = false;
+            localStorage.removeItem('canslim_auth');
+            location.reload();
         };
         // -------------------
 
@@ -39,33 +48,24 @@ const app = createApp({
             if (!stockData.value || !searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
             
-            // 1. Ticker exact match
             if (stockData.value.stocks[query]) {
-                lastUpdated.value = stockData.value.last_updated;
                 return stockData.value.stocks[query];
             }
 
-            // 2. Name fuzzy match
-            const foundByTitle = Object.values(stockData.value.stocks).find(s => 
+            return Object.values(stockData.value.stocks).find(s => 
                 s.name.toLowerCase().includes(query) || s.symbol.includes(query)
-            );
-
-            if (!foundByTitle && query.length >= 2) {
-                lastUpdated.value = `查無資料 (${query})`;
-            } else if (foundByTitle) {
-                lastUpdated.value = stockData.value.last_updated;
-            }
-            return foundByTitle || null;
+            ) || null;
         });
 
         const fetchData = async () => {
             try {
-                const response = await fetch('data.json');
+                console.log("Fetching data.json...");
+                const response = await fetch('data.json?t=' + Date.now()); // 防止快取
                 if (!response.ok) throw new Error('Data file not found');
                 const data = await response.json();
                 stockData.value = data;
                 lastUpdated.value = data.last_updated;
-                console.log("Data loaded successfully");
+                console.log("Data loaded successfully:", Object.keys(data.stocks).length, "stocks");
             } catch (error) {
                 console.error('Failed to load data:', error);
                 lastUpdated.value = '載入失敗 (請確認已生成 data.json)';
@@ -83,16 +83,14 @@ const app = createApp({
             if (!canvas || !currentStock.value) return;
 
             const ctx = canvas.getContext('2d');
-            if (chartInstance) {
-                chartInstance.destroy();
-            }
+            if (chartInstance) chartInstance.destroy();
 
             const data = [...currentStock.value.institutional].sort((a, b) => a.date.localeCompare(b.date));
             
             chartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: data.map(d => d.date.substring(4)), // MM/DD
+                    labels: data.map(d => d.date.substring(4)),
                     datasets: [
                         { label: '外資', data: data.map(d => d.foreign_net), backgroundColor: 'rgba(59, 130, 246, 0.6)' },
                         { label: '投信', data: data.map(d => d.trust_net), backgroundColor: 'rgba(16, 185, 129, 0.6)' },
@@ -108,15 +106,11 @@ const app = createApp({
         };
 
         watch(currentStock, (newVal) => {
-            if (newVal) {
-                renderChart();
-            }
+            if (newVal) renderChart();
         });
 
         onMounted(() => {
-            if (isAuthorized.value) {
-                fetchData();
-            }
+            if (isAuthorized.value) fetchData();
         });
 
         return {
@@ -128,10 +122,8 @@ const app = createApp({
             isAuthorized,
             passwordInput,
             loginError,
-            checkPassword
+            checkPassword,
+            logout
         };
     }
-});
-
-// 安全掛載
-app.mount('#app');
+}).mount('#app');

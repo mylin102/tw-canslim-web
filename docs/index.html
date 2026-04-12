@@ -37,11 +37,14 @@
         <!-- Main Content (only visible if authorized) -->
         <div v-if="isAuthorized" class="max-w-4xl mx-auto">
             <!-- Header -->
-            <header class="mb-8 text-center">
+            <header class="mb-8 text-center relative">
                 <h1 class="text-3xl font-bold text-slate-800 mb-2">
                     <i class="fas fa-chart-line mr-2"></i>台股 CANSLIM 戰情室
                 </h1>
                 <p class="text-slate-500">最後更新: {{ lastUpdated }}</p>
+                <button @click="logout" class="absolute right-0 top-0 text-slate-300 hover:text-slate-500 text-xs">
+                    <i class="fas fa-sign-out-alt"></i> 登出
+                </button>
             </header>
 
             <!-- Search Area -->
