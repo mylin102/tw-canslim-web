@@ -56,6 +56,44 @@
                 </div>
             </div>
 
+            <!-- Top 10 CANSLIM Ranking (Homepage Hero Section) -->
+            <div v-if="!isLoading && !errorState && stockData" class="mb-8 animate-fade-in">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl shadow-lg p-6 text-white">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold"><i class="fas fa-fire mr-2"></i>CANSLIM 熱門前十</h2>
+                            <p class="text-blue-200 text-sm mt-1">綜合評分最高的股票，點擊可查看詳情</p>
+                        </div>
+                        <button @click="activeTab = 'ranking'" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition">
+                            查看完整排行 <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                        <div v-for="(stock, idx) in allStocksSorted.slice(0, 10)" :key="stock.symbol"
+                             @click="searchQuery = stock.symbol; activeTab = 'search'"
+                             class="bg-white/10 hover:bg-white/20 rounded-lg p-3 cursor-pointer transition group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span :class="['text-lg font-bold', idx < 3 ? 'text-yellow-300' : 'text-white']">
+                                    #{{ idx + 1 }}
+                                </span>
+                                <span :class="['px-2 py-0.5 rounded text-xs font-bold',
+                                    stock.canslim.score >= 90 ? 'bg-green-500 text-white' :
+                                    stock.canslim.score >= 70 ? 'bg-blue-400 text-white' :
+                                    'bg-slate-500 text-white']">
+                                    {{ stock.canslim.score }}分
+                                </span>
+                            </div>
+                            <div class="text-sm font-mono font-bold group-hover:text-yellow-300 transition">
+                                {{ stock.symbol }}
+                            </div>
+                            <div class="text-xs text-blue-200 truncate">
+                                {{ stock.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Search Area -->
             <div v-if="!isLoading && !errorState" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
                 <!-- Tabs -->
