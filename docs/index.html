@@ -273,13 +273,13 @@
                 </div>
             </div>
 
-            <!-- Debug Info (will remove after testing) -->
+            <!-- Debug Info -->
             <div v-if="!isLoading && stockData" class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs">
                 <strong>Debug:</strong>
-                stockData: ✅ ({{ Object.keys(stockData.stocks).length }} stocks) |
-                activeTab: {{ activeTab }} |
-                allStocksSorted: {{ allStocksSorted.length }} items |
-                filteredStocks: {{ filteredStocks.length }} items
+                stocks: {{ Object.keys(stockData.stocks).length }} |
+                tab: {{ activeTab }} |
+                sorted: {{ allStocksSorted.length }} |
+                filtered: {{ filteredStocks.length }}
             </div>
 
             <!-- Ranking Tab -->
