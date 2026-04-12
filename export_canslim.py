@@ -12,32 +12,30 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "docs")
 DATA_FILE = os.path.join(OUTPUT_DIR, "data.json")
 
 def get_all_tw_tickers():
-    """Fetch both TWSE (Listed) and TPEx (OTC) tickers and names."""
+    """Fetch both TWSE (Listed) and TPEx (OTC) with correct suffixes."""
     print("Fetching full TWSE and TPEx ticker lists...")
     ticker_map = {}
     
-    # 1. Listed (上市)
+    # 1. Listed (上市) -> .TW
     try:
         url_l = 'https://mopsfin.twse.com.tw/opendata/t187ap03_L.csv'
         df_l = pd.read_csv(url_l, encoding='utf-8')
         df_l = df_l[df_l['公司代號'].astype(str).str.len() == 4]
         for _, row in df_l.iterrows():
-            ticker_map[str(row['公司代號'])] = str(row['公司簡稱'])
+            ticker_map[str(row['公司代號'])] = {"name": str(row['公司簡稱']), "suffix": ".TW"}
     except Exception as e:
         print(f"Error fetching Listed tickers: {e}")
 
-    # 2. OTC (上櫃)
+    # 2. OTC (上櫃) -> .TWO
     try:
         url_o = 'https://mopsfin.twse.com.tw/opendata/t187ap03_O.csv'
         df_o = pd.read_csv(url_o, encoding='utf-8')
         df_o = df_o[df_o['公司代號'].astype(str).str.len() == 4]
         for _, row in df_o.iterrows():
-            ticker_map[str(row['公司代號'])] = str(row['公司簡稱'])
+            ticker_map[str(row['公司代號'])] = {"name": str(row['公司簡稱']), "suffix": ".TWO"}
     except Exception as e:
         print(f"Error fetching OTC tickers: {e}")
 
-    if not ticker_map:
-        return {"2330": "台積電", "2317": "鴻海", "6770": "力積電"}
     return ticker_map
 
 class CanslimEngine:
@@ -46,7 +44,7 @@ class CanslimEngine:
             "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "stocks": {}
         }
-        self.ticker_map = get_all_tw_tickers()
+        self.ticker_info = get_all_tw_tickers()
 
     def fetch_institutional_trades(self, days=5):
         """Fetch TWSE institutional trades."""
@@ -64,7 +62,7 @@ class CanslimEngine:
                 
                 for row in data["data"]:
                     ticker = row[0].strip()
-                    if ticker not in self.ticker_map: continue
+                    if ticker not in self.ticker_info: continue
                     
                     if ticker not in history: history[ticker] = []
                     history[ticker].append({
@@ -79,38 +77,42 @@ class CanslimEngine:
             except: continue
         return history
 
-    def analyze_stock(self, ticker, inst_history):
-        """Perform CANSLIM analysis for a single stock."""
+    def analyze_stock(self, ticker, info, inst_history):
+        """Perform CANSLIM analysis using the correct suffix."""
         try:
-            # TPEx stocks usually end with .TWO, TWSE with .TW
-            # But yfinance often works with .TW for many major ones, let's try .TW then .TWO
-            full_ticker = f"{ticker}.TW"
+            full_ticker = f"{ticker}{info['suffix']}"
             stock = yf.Ticker(full_ticker)
-            hist = stock.history(period="1mo") # Use 1 month for faster sweep in full list
+            # Use a slightly longer period to ensure we have enough data for 50MA/200MA
+            hist = stock.history(period="1y") 
             
-            if hist.empty:
-                full_ticker = f"{ticker}.TWO"
-                stock = yf.Ticker(full_ticker)
-                hist = stock.history(period="1mo")
-                if hist.empty: return None
+            if hist.empty: return None
 
             price = hist['Close'].iloc[-1]
             
-            # Simplified Logic for mass sweep
+            # [I] Institutional - Pass if Trust net buy in last 3 days > 0
             trust_recent = sum([day['trust_net'] for day in inst_history[:3]]) if inst_history else 0
             is_i_pass = trust_recent > 0
             
-            # Score calculation
-            score = 60 # Base score
-            if is_i_pass: score += 20
-            if price > hist['Close'].mean(): score += 10
+            # [N] New Highs - within 15% of 52w high
+            high_52w = hist['Close'].max()
+            is_n_pass = (price / high_52w) >= 0.85
+            
+            # [S] Supply/Demand
+            avg_vol_50d = hist['Volume'].rolling(window=50).mean().iloc[-1]
+            is_s_pass = (hist['Volume'].iloc[-1] / avg_vol_50d) > 1.2 if avg_vol_50d > 0 else False
+
+            # [L] Leader
+            ma_200 = hist['Close'].rolling(window=200).mean().iloc[-1]
+            is_l_pass = price > ma_200 if not pd.isna(ma_200) else False
+
+            score = sum([True, True, is_n_pass, is_s_pass, is_l_pass, is_i_pass]) * 15 + 10
 
             return {
                 "symbol": ticker,
-                "name": self.ticker_map.get(ticker, ticker),
+                "name": info["name"],
                 "canslim": {
-                    "C": True, "A": True, "N": True, 
-                    "S": True, "L": True, "I": is_i_pass,
+                    "C": True, "A": True, "N": bool(is_n_pass), 
+                    "S": bool(is_s_pass), "L": bool(is_l_pass), "I": bool(is_i_pass),
                     "M": True, "score": int(score)
                 },
                 "institutional": inst_history
@@ -121,17 +123,23 @@ class CanslimEngine:
         print("Fetching Institutional Data...")
         all_inst_history = self.fetch_institutional_trades(days=5)
         
-        tickers = list(self.ticker_map.keys())
-        print(f"Analyzing all {len(tickers)} stocks... (This may take a while)")
+        tickers = list(self.ticker_info.keys())
+        print(f"Analyzing all {len(tickers)} stocks...")
         
-        # In a real full sweep, we'd use a faster method, but for now we process all
+        # Performance trick: yfinance is slow. For this dashboard, we skip small/dead stocks if needed.
+        # But let's try to process as many as possible.
         for i, ticker in enumerate(tickers):
-            if i % 100 == 0: print(f"  Progress: {i}/{len(tickers)}")
-            result = self.analyze_stock(ticker, all_inst_history.get(ticker, []))
+            if i % 100 == 0: 
+                print(f"  Progress: {i}/{len(tickers)}")
+                # Periodically save to prevent total data loss if interrupted
+                with open(DATA_FILE, "w", encoding="utf-8") as f:
+                    json.dump(self.output_data, f, ensure_ascii=False, indent=2)
+
+            info = self.ticker_info[ticker]
+            result = self.analyze_stock(ticker, info, all_inst_history.get(ticker, []))
             if result:
                 self.output_data["stocks"][ticker] = result
         
-        if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(self.output_data, f, ensure_ascii=False, indent=2)
         print(f"Exported {len(self.output_data['stocks'])} stocks to {DATA_FILE}")
