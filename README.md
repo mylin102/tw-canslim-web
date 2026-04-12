@@ -4,8 +4,9 @@
 
 ## 🚀 核心功能
 *   **CANSLIM 自動評分**：自動分析 (C)季成長、(A)年成長、(N)新高、(S)供需、(L)強勢股、(I)法人認同度。
-*   **法人籌碼圖表**：使用 Chart.js 展示外資、投信、自營商最近 10 個交易日的買賣超趨勢。
-*   **反應式搜尋**：使用 Vue 3 實作，輸入台股代號（如 2330）即時顯示分析結果。
+*   **Excel 數據整合**：支援讀取「股票健診」與「股票基本面數據」Excel 檔案，整合 Composite Rating、EPS Rating、RS Rating、SMR Rating 等專業指標。
+*   **法人籌碼圖表**：使用 Chart.js 展示外資、投信、自營商最近 20 個交易日的買賣超趨勢。
+*   **反應式搜尋**：使用 Vue 3 實作，輸入台股代號（如 2330）即時顯示分析結果，支援搜尋建議。
 *   **零成本部署**：採用靜態生成 (SSG) 架構，部署於 GitHub Pages。
 
 ## 🛠 技術架構
@@ -26,13 +27,24 @@ tw-canslim-web/
 
 ## 💻 本地運行 (Local Development)
 
-### 1. 生成資料
-確保已安裝依賴：`pip install yfinance pandas requests`
+### 1. 安裝依賴
+```bash
+pip install -r requirements.txt
+```
+
+### 2. 準備 Excel 數據 (選用)
+將以下 Excel 檔案放置於專案根目錄，系統會自動讀取：
+*   `股票健診60313.xlsm` - 包含 CANSLIM 評分 (Composite, EPS, RS, SMR Rating)
+*   `股票基本面數據60313.xlsm` - 包含歷史 EPS 與營收數據
+
+> **注意**: Excel 檔案已加入 `.gitignore`，不會被提交至 Git，僅供本地使用。
+
+### 3. 生成資料
 ```bash
 python3 export_canslim.py
 ```
 
-### 2. 啟動網頁
+### 4. 啟動網頁
 ```bash
 cd docs
 python3 -m http.server 8000

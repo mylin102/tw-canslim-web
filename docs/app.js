@@ -5,33 +5,11 @@ const app = createApp({
         const stockData = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('載入中...');
-        
-        // --- Auth States ---
-        const isAuthorized = ref(localStorage.getItem('canslim_auth') === 'true');
-        const passwordInput = ref('');
-        const loginError = ref(false);
-
-        const checkPassword = () => {
-            console.log("Checking password...");
-            if (passwordInput.value === '5888') {
-                console.log("Password correct!");
-                isAuthorized.value = true;
-                localStorage.setItem('canslim_auth', 'true');
-                loginError.value = false;
-                fetchData(); 
-            } else {
-                console.log("Password incorrect.");
-                loginError.value = true;
-                passwordInput.value = '';
-            }
-        };
-
-        const logout = () => {
-            isAuthorized.value = false;
-            localStorage.removeItem('canslim_auth');
-            location.reload();
-        };
-        // -------------------
+        const isLoading = ref(true);
+        const loadingProgress = ref(0);
+        const errorState = ref(null);
+        const searchSuggestions = ref([]);
+        const searchTimeout = ref(null);
 
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
@@ -43,6 +21,43 @@ const app = createApp({
         };
 
         let chartInstance = null;
+
+        const onSearchInput = () => {
+            // Debounce search to avoid excessive filtering
+            if (searchTimeout.value) {
+                clearTimeout(searchTimeout.value);
+            }
+            searchTimeout.value = setTimeout(() => {
+                updateSuggestions();
+            }, 200);
+        };
+
+        const updateSuggestions = () => {
+            if (!stockData.value || searchQuery.value.length < 2) {
+                searchSuggestions.value = [];
+                return;
+            }
+
+            const query = searchQuery.value.trim().toLowerCase();
+            const allStocks = Object.values(stockData.value.stocks);
+            
+            searchSuggestions.value = allStocks
+                .filter(s => 
+                    s.symbol.includes(query) || 
+                    s.name.toLowerCase().includes(query)
+                )
+                .slice(0, 10); // Limit to 10 suggestions
+        };
+
+        const clearSearch = () => {
+            searchQuery.value = '';
+            searchSuggestions.value = [];
+        };
+
+        const selectStock = (symbol) => {
+            searchQuery.value = symbol;
+            searchSuggestions.value = [];
+        };
 
         const currentStock = computed(() => {
             if (!stockData.value || !searchQuery.value) return null;
@@ -59,16 +74,48 @@ const app = createApp({
 
         const fetchData = async () => {
             try {
+                isLoading.value = true;
+                errorState.value = null;
+                loadingProgress.value = 30;
+                
                 console.log("Fetching data.json...");
-                const response = await fetch('data.json?t=' + Date.now()); // 防止快取
-                if (!response.ok) throw new Error('Data file not found');
-                const data = await response.json();
+                
+                // Try compressed first, fallback to JSON
+                let data;
+                try {
+                    const response = await fetch('data.json.gz');
+                    if (response.ok) {
+                        loadingProgress.value = 60;
+                        const arrayBuffer = await response.arrayBuffer();
+                        const decompressed = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
+                        data = JSON.parse(decompressed);
+                        console.log("✅ Loaded compressed data");
+                    } else {
+                        throw new Error('No compressed data');
+                    }
+                } catch {
+                    loadingProgress.value = 50;
+                    console.log("Loading uncompressed JSON...");
+                    const response = await fetch('data.json?t=' + Date.now());
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: Data file not found`);
+                    }
+                    loadingProgress.value = 80;
+                    data = await response.json();
+                }
+                
+                loadingProgress.value = 100;
                 stockData.value = data;
                 lastUpdated.value = data.last_updated;
-                console.log("Data loaded successfully:", Object.keys(data.stocks).length, "stocks");
+                console.log("✅ Data loaded:", Object.keys(data.stocks).length, "stocks");
             } catch (error) {
                 console.error('Failed to load data:', error);
-                lastUpdated.value = '載入失敗 (請確認已生成 data.json)';
+                errorState.value = `資料載入失敗: ${error.message}`;
+                lastUpdated.value = '載入失敗';
+            } finally {
+                setTimeout(() => {
+                    isLoading.value = false;
+                }, 300);
             }
         };
 
@@ -83,10 +130,13 @@ const app = createApp({
             if (!canvas || !currentStock.value) return;
 
             const ctx = canvas.getContext('2d');
-            if (chartInstance) chartInstance.destroy();
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
 
             const data = [...currentStock.value.institutional].sort((a, b) => a.date.localeCompare(b.date));
-            
+
             chartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -105,12 +155,16 @@ const app = createApp({
             });
         };
 
-        watch(currentStock, (newVal) => {
-            if (newVal) renderChart();
+        watch(currentStock, async (newVal) => {
+            if (chartInstance) {
+                chartInstance.destroy();
+                chartInstance = null;
+            }
+            if (newVal) await renderChart();
         });
 
         onMounted(() => {
-            if (isAuthorized.value) fetchData();
+            fetchData();
         });
 
         return {
@@ -119,11 +173,13 @@ const app = createApp({
             currentStock,
             metricsMap,
             sortedInstitutional,
-            isAuthorized,
-            passwordInput,
-            loginError,
-            checkPassword,
-            logout
+            isLoading,
+            loadingProgress,
+            errorState,
+            searchSuggestions,
+            onSearchInput,
+            clearSearch,
+            selectStock
         };
     }
 }).mount('#app');

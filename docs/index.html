@@ -10,54 +10,85 @@
         .pass { color: #10b981; }
         .fail { color: #ef4444; }
         body { background-color: #f8fafc; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
     </style>
 </head>
 <body class="p-4 md:p-8 bg-slate-50">
     <!-- Vue Mount Point -->
     <div id="app" v-cloak>
-        <!-- Login Overlay -->
-        <div v-if="!isAuthorized" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-opacity-95 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm text-center">
-                <div class="mb-6">
-                    <i class="fas fa-lock text-4xl text-blue-600 mb-4"></i>
-                    <h2 class="text-2xl font-bold text-slate-800">戰情室驗證</h2>
-                    <p class="text-slate-500 text-sm">請輸入存取密碼以繼續</p>
-                </div>
-                <input type="password" v-model="passwordInput" @keyup.enter="checkPassword"
-                    placeholder="請輸入密碼..." 
-                    class="w-full px-4 py-3 rounded-lg border border-slate-300 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
-                <button @click="checkPassword" 
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors">
-                    進入系統
-                </button>
-                <p v-if="loginError" class="text-red-500 text-xs mt-4">密碼錯誤，請重試</p>
-            </div>
-        </div>
-
-        <!-- Main Content (only visible if authorized) -->
-        <div v-if="isAuthorized" class="max-w-4xl mx-auto">
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto">
             <!-- Header -->
             <header class="mb-8 text-center relative">
                 <h1 class="text-3xl font-bold text-slate-800 mb-2">
                     <i class="fas fa-chart-line mr-2"></i>台股 CANSLIM 戰情室
                 </h1>
                 <p class="text-slate-500">最後更新: {{ lastUpdated }}</p>
-                <button @click="logout" class="absolute right-0 top-0 text-slate-300 hover:text-slate-500 text-xs">
-                    <i class="fas fa-sign-out-alt"></i> 登出
-                </button>
             </header>
 
+            <!-- Error State -->
+            <div v-if="errorState" class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8 text-center">
+                <i class="fas fa-exclamation-triangle text-3xl text-red-500 mb-3"></i>
+                <p class="text-red-700">{{ errorState }}</p>
+                <button @click="fetchData" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
+                    <i class="fas fa-redo mr-2"></i>重新載入
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div v-if="isLoading" class="text-center py-20">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-slate-500 mt-4">載入資料中...</p>
+                <div class="max-w-xs mx-auto mt-6">
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                             :style="{ width: loadingProgress + '%' }"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">{{ loadingProgress }}%</p>
+                </div>
+            </div>
+
             <!-- Search Area -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
+            <div v-if="!isLoading && !errorState" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
                 <div class="relative">
-                    <input type="text" v-model="searchQuery" placeholder="輸入台股代號 (如: 2330)..." 
-                        class="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                    <input type="text" 
+                           v-model="searchQuery" 
+                           @input="onSearchInput"
+                           placeholder="輸入台股代號 (如: 2330) 或股票名稱..." 
+                           class="w-full pl-12 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
                     <i class="fas fa-search absolute left-4 top-4 text-slate-400"></i>
+                    <button v-if="searchQuery" 
+                            @click="clearSearch" 
+                            class="absolute right-4 top-3 text-slate-400 hover:text-slate-600 transition-colors">
+                        <i class="fas fa-times-circle text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Search suggestions -->
+                <div v-if="searchQuery.length >= 2 && searchSuggestions.length > 0" 
+                     class="mt-2 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    <div v-for="stock in searchSuggestions" 
+                         :key="stock.symbol"
+                         @click="selectStock(stock.symbol)"
+                         class="px-4 py-3 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0 transition-colors">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-slate-800">{{ stock.symbol }}</span>
+                            <span class="text-slate-600">{{ stock.name }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Result Area -->
-            <div v-if="currentStock" class="animate-fade-in">
+            <div v-if="currentStock && !isLoading" class="animate-fade-in">
                 <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
                     <!-- Stock Header -->
                     <div class="bg-slate-800 text-white p-6 flex justify-between items-center">
@@ -80,6 +111,10 @@
                                 {{ currentStock.canslim[key] ? 'PASS' : 'FAIL' }}
                             </div>
                         </div>
+                        <div class="text-center p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
+                            <div class="text-xs text-blue-600 font-bold mb-1">總分</div>
+                            <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.score }}</div>
+                        </div>
                     </div>
 
                     <!-- Institutional Details -->
@@ -87,7 +122,74 @@
                         <h3 class="font-bold text-slate-700 mb-4 flex items-center">
                             <i class="fas fa-building mr-2 text-blue-500"></i> 機構持股明細 (三大法人買賣超)
                         </h3>
-                        
+
+                        <!-- Excel Ratings Section -->
+                        <div v-if="currentStock.canslim.excel_ratings" class="mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
+                            <h4 class="font-bold text-purple-800 mb-3 flex items-center">
+                                <i class="fas fa-file-excel mr-2"></i> Excel 分析評分
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div class="text-center p-2 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-purple-600 font-bold">Composite</div>
+                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.composite_rating || 'N/A' }}</div>
+                                </div>
+                                <div class="text-center p-2 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-purple-600 font-bold">EPS</div>
+                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.eps_rating || 'N/A' }}</div>
+                                </div>
+                                <div class="text-center p-2 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-purple-600 font-bold">RS</div>
+                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.rs_rating || 'N/A' }}</div>
+                                </div>
+                                <div class="text-center p-2 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-purple-600 font-bold">SMR</div>
+                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.smr_rating || 'N/A' }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fund Holdings Section -->
+                        <div v-if="currentStock.canslim.fund_holdings" class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-chart-pie mr-2"></i> 投信基金持股趨勢 (機構認同度)
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">本月</div>
+                                    <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.fund_holdings.current_month || '0' }}</div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">上月</div>
+                                    <div class="text-2xl font-bold text-slate-600">{{ currentStock.canslim.fund_holdings.previous_month || '0' }}</div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">增減</div>
+                                    <div :class="['text-2xl font-bold', currentStock.canslim.fund_holdings.change >= 0 ? 'text-green-600' : 'text-red-600']">
+                                        <i :class="currentStock.canslim.fund_holdings.change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'" class="mr-1"></i>
+                                        {{ Math.abs(currentStock.canslim.fund_holdings.change || 0) }}
+                                    </div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">變化</div>
+                                    <div :class="['text-2xl font-bold', currentStock.canslim.fund_holdings.change_pct >= 0 ? 'text-green-600' : 'text-red-600']">
+                                        {{ currentStock.canslim.fund_holdings.change_pct >= 0 ? '+' : '' }}{{ currentStock.canslim.fund_holdings.change_pct || 0 }}%
+                                    </div>
+                                    <div class="text-xs text-slate-400">月增率</div>
+                                </div>
+                            </div>
+                            <div v-if="currentStock.canslim.fund_holdings.change > 0" class="mt-3 p-2 bg-green-50 rounded text-sm text-green-700">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                投信基金持股增加 <strong>{{ currentStock.canslim.fund_holdings.change }}</strong> 檔，顯示機構認同度提升
+                            </div>
+                            <div v-else-if="currentStock.canslim.fund_holdings.change < 0" class="mt-3 p-2 bg-red-50 rounded text-sm text-red-700">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                投信基金持股減少 <strong>{{ Math.abs(currentStock.canslim.fund_holdings.change) }}</strong> 檔，注意機構撤出風險
+                            </div>
+                        </div>
+
                         <div class="mb-6 h-64 w-full">
                             <canvas id="inst-chart"></canvas>
                         </div>
@@ -117,7 +219,7 @@
             </div>
 
             <!-- Placeholder -->
-            <div v-else class="text-center py-20 opacity-50">
+            <div v-if="!currentStock && !isLoading && !errorState" class="text-center py-20 opacity-50">
                 <i class="fas fa-search-dollar text-6xl text-slate-200 mb-4"></i>
                 <p class="text-slate-400">請輸入股票代號 (如 2330) 開始查詢</p>
             </div>
@@ -127,6 +229,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
     <style>
         [v-cloak] { display: none !important; }
     </style>

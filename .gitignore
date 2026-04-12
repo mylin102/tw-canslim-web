@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Excel files (financial data and stock analysis)
+*.xlsm
+*.xlsx
+*.xls
+
+# Qwen
+.qwen/
+
+# Data files (generated)
+docs/data.json
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
