@@ -5,6 +5,25 @@ const app = createApp({
         const stockData = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('載入中...');
+        
+        // --- Auth States ---
+        const isAuthorized = ref(localStorage.getItem('canslim_auth') === 'true');
+        const passwordInput = ref('');
+        const loginError = ref(false);
+
+        const checkPassword = () => {
+            if (passwordInput.value === '5888') {
+                isAuthorized.value = true;
+                localStorage.setItem('canslim_auth', 'true');
+                loginError.value = false;
+                fetchData(); // 登入成功後開始抓資料
+            } else {
+                loginError.value = true;
+                passwordInput.value = '';
+            }
+        };
+        // -------------------
+
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
             'A': { label: 'A - 年度成長' },
@@ -94,14 +113,22 @@ const app = createApp({
             }
         });
 
-        onMounted(fetchData);
+        onMounted(() => {
+            if (isAuthorized.value) {
+                fetchData();
+            }
+        });
 
         return {
             searchQuery,
             lastUpdated,
             currentStock,
             metricsMap,
-            sortedInstitutional
+            sortedInstitutional,
+            isAuthorized,
+            passwordInput,
+            loginError,
+            checkPassword
         };
     }
 });

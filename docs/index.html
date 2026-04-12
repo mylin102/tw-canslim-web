@@ -15,7 +15,27 @@
 <body class="p-4 md:p-8 bg-slate-50">
     <!-- Vue Mount Point -->
     <div id="app" v-cloak>
-        <div class="max-w-4xl mx-auto">
+        <!-- Login Overlay -->
+        <div v-if="!isAuthorized" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-opacity-95 backdrop-blur-sm">
+            <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm text-center">
+                <div class="mb-6">
+                    <i class="fas fa-lock text-4xl text-blue-600 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-slate-800">戰情室驗證</h2>
+                    <p class="text-slate-500 text-sm">請輸入存取密碼以繼續</p>
+                </div>
+                <input type="password" v-model="passwordInput" @keyup.enter="checkPassword"
+                    placeholder="請輸入密碼..." 
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+                <button @click="checkPassword" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors">
+                    進入系統
+                </button>
+                <p v-if="loginError" class="text-red-500 text-xs mt-4">密碼錯誤，請重試</p>
+            </div>
+        </div>
+
+        <!-- Main Content (only visible if authorized) -->
+        <div v-if="isAuthorized" class="max-w-4xl mx-auto">
             <!-- Header -->
             <header class="mb-8 text-center">
                 <h1 class="text-3xl font-bold text-slate-800 mb-2">
