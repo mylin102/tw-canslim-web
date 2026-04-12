@@ -83,44 +83,27 @@ const app = createApp({
                 errorState.value = null;
                 loadingProgress.value = 30;
                 
-                console.log("Fetching data.json...");
+                console.log("🔄 Fetching data...");
                 
-                // Try compressed first, fallback to JSON
-                let data;
-                try {
-                    const response = await fetch('data.json.gz');
-                    if (response.ok) {
-                        loadingProgress.value = 60;
-                        const arrayBuffer = await response.arrayBuffer();
-                        const decompressed = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
-                        data = JSON.parse(decompressed);
-                        console.log("✅ Loaded compressed data");
-                    } else {
-                        throw new Error('No compressed data');
-                    }
-                } catch {
-                    loadingProgress.value = 50;
-                    console.log("Loading uncompressed JSON...");
-                    const response = await fetch('data.json?t=' + Date.now());
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: Data file not found`);
-                    }
-                    loadingProgress.value = 80;
-                    data = await response.json();
+                // Load uncompressed JSON directly
+                const response = await fetch('data.json?t=' + Date.now());
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: 找不到資料檔`);
                 }
+                loadingProgress.value = 80;
+                
+                const data = await response.json();
                 
                 loadingProgress.value = 100;
                 stockData.value = data;
                 lastUpdated.value = data.last_updated;
-                console.log("✅ Data loaded:", Object.keys(data.stocks).length, "stocks");
+                console.log("✅ 資料載入成功:", Object.keys(data.stocks).length, "檔股票");
             } catch (error) {
-                console.error('Failed to load data:', error);
+                console.error('❌ 資料載入失敗:', error);
                 errorState.value = `資料載入失敗: ${error.message}`;
                 lastUpdated.value = '載入失敗';
             } finally {
-                setTimeout(() => {
-                    isLoading.value = false;
-                }, 300);
+                isLoading.value = false;
             }
         };
 
