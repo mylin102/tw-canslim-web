@@ -229,6 +229,49 @@ class CanslimEngine:
             logger.error(f"Failed to fetch financial data for {ticker}: {e}")
             return None
 
+    def fetch_quarterly_eps(self, ticker: str) -> Optional[List[Dict]]:
+        """Fetch quarterly EPS data from TWSE MOPS API."""
+        try:
+            # Use TWSE historical EPS API
+            url = f"https://mops.twse.com.tw/mops/web/ajax_t163sb04"
+            params = {
+                "encodeURIComponent": 1,
+                "step": 1,
+                "firstin": 1,
+                "off": 1,
+                "companyid": ticker,
+            }
+            
+            response = requests.post(url, data=params, timeout=10)
+            if response.status_code == 200:
+                # Parse HTML table response
+                from bs4 import BeautifulSoup
+                soup = BeautifulSoup(response.text, 'html.parser')
+                
+                eps_data = []
+                table = soup.find('table')
+                if table:
+                    rows = table.find_all('tr')
+                    for row in rows[1:]:  # Skip header
+                        cols = row.find_all('td')
+                        if len(cols) >= 4:
+                            try:
+                                year = cols[0].get_text(strip=True)
+                                quarter = cols[1].get_text(strip=True)
+                                eps = float(cols[3].get_text(strip=True).replace(',', ''))
+                                eps_data.append({
+                                    'year': year,
+                                    'quarter': quarter,
+                                    'eps': eps
+                                })
+                            except:
+                                pass
+                
+                return eps_data if eps_data else None
+        except Exception as e:
+            logger.debug(f"Failed to fetch quarterly EPS for {ticker}: {e}")
+        return None
+
     def check_c_quarterly_growth(self, current_eps: float, previous_eps: float) -> bool:
         """C - Current quarterly earnings growth (>= 25%)."""
         if not current_eps or not previous_eps or previous_eps <= 0:
@@ -278,7 +321,14 @@ class CanslimEngine:
         # Check if there's net buying over the period
         return net_buy > 0
     
-    def get_excel_canlim_ratings(self, ticker: str) -> Optional[Dict]:
+    def check_m_market_trend(self, taiex_prices: List[float]) -> bool:
+        """M - Market direction (price above 200-day MA)."""
+        if len(taiex_prices) < 200:
+            return True  # Default to True if insufficient data
+        ma200 = sum(taiex_prices[-200:]) / 200
+        return taiex_prices[-1] > ma200
+    
+    def get_excel_canslim_ratings(self, ticker: str) -> Optional[Dict]:
         """Get CANSLIM ratings from Excel data if available."""
         if not self.excel_ratings or ticker not in self.excel_ratings:
             return None
@@ -304,35 +354,25 @@ class CanslimEngine:
         
         # If we have Excel ratings, use them to adjust the score
         if excel_ratings:
-            # Composite Rating can provide additional weighting
             comp_rating = excel_ratings.get('composite_rating')
             if comp_rating and comp_rating > 80:
-                base_score = min(base_score + 5, 100)  # Bonus for high composite rating
+                base_score = min(base_score + 5, 100)
             elif comp_rating and comp_rating < 50:
-                base_score = max(base_score - 5, 0)  # Penalty for low composite rating
+                base_score = max(base_score - 5, 0)
             
-            # EPS Rating can validate C and A scores
             eps_rating = excel_ratings.get('eps_rating')
             if eps_rating and eps_rating > 80 and (c or a):
-                base_score = min(base_score + 3, 100)  # Bonus for high EPS rating
+                base_score = min(base_score + 3, 100)
             
-            # RS Rating can validate N and L scores
             rs_rating = excel_ratings.get('rs_rating')
             if rs_rating and rs_rating > 80 and (n or l):
-                base_score = min(base_score + 3, 100)  # Bonus for high RS rating
+                base_score = min(base_score + 3, 100)
         
         return min(base_score, 100)
 
-    def check_m_market_trend(self, taiex_prices: List[float]) -> bool:
-        """M - Market direction (price above 200-day MA)."""
-        if len(taiex_prices) < 200:
-            return True  # Default to True if insufficient data
-        ma200 = sum(taiex_prices[-200:]) / 200
-        return taiex_prices[-1] > ma200
-
     def calculate_canslim_score(self, c: bool, a: bool, n: bool, s: bool, l: bool, i: bool, m: bool) -> int:
         """Calculate CANSLIM score (0-100)."""
-        metrics = [c, a, n, s, l, i, m]
+        return self.calculate_enhanced_canslim_score(c, a, n, s, l, i, m)
         base_score = sum([1 for metric in metrics if metric]) * 14
         
         # Bonus: C and A are more important

@@ -10,6 +10,11 @@ const app = createApp({
         const errorState = ref(null);
         const searchSuggestions = ref([]);
         const searchTimeout = ref(null);
+        
+        // Tab state
+        const activeTab = ref('search');
+        const screenerMinScore = ref(70);
+        const screenerInstBuy = ref('any');
 
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
@@ -124,6 +129,48 @@ const app = createApp({
             return [...currentStock.value.institutional].sort((a, b) => b.date.localeCompare(a.date));
         });
 
+        // All stocks sorted by score
+        const allStocksSorted = computed(() => {
+            if (!stockData.value) return [];
+            return Object.values(stockData.value.stocks)
+                .sort((a, b) => b.canslim.score - a.canslim.score);
+        });
+
+        // Filtered stocks for screener
+        const filteredStocks = computed(() => {
+            if (!stockData.value) return [];
+            
+            let result = Object.values(stockData.value.stocks)
+                .filter(s => s.canslim.score >= screenerMinScore.value);
+            
+            // Filter by institutional buying
+            if (screenerInstBuy.value !== 'any') {
+                result = result.filter(s => {
+                    if (!s.institutional) return false;
+                    const days = screenerInstBuy.value === '3d' ? 3 : 5;
+                    const recent = s.institutional.slice(0, days);
+                    const net = recent.reduce((sum, d) => 
+                        sum + d.foreign_net + d.trust_net + d.dealer_net, 0);
+                    return net > 0;
+                });
+            }
+            
+            return result.sort((a, b) => b.canslim.score - a.canslim.score);
+        });
+
+        // Helper functions
+        const inst3dNet = (stock) => {
+            if (!stock.institutional || stock.institutional.length < 3) return 0;
+            const recent = stock.institutional.slice(0, 3);
+            return recent.reduce((sum, d) => 
+                sum + d.foreign_net + d.trust_net + d.dealer_net, 0);
+        };
+
+        const fundChange = (stock) => {
+            if (!stock.canslim.fund_holdings) return null;
+            return stock.canslim.fund_holdings.change;
+        };
+
         const renderChart = async () => {
             await nextTick();
             const canvas = document.getElementById('inst-chart');
@@ -179,7 +226,14 @@ const app = createApp({
             searchSuggestions,
             onSearchInput,
             clearSearch,
-            selectStock
+            selectStock,
+            activeTab,
+            screenerMinScore,
+            screenerInstBuy,
+            allStocksSorted,
+            filteredStocks,
+            inst3dNet,
+            fundChange
         };
     }
 }).mount('#app');

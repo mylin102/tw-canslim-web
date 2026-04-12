@@ -37,12 +37,13 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           python export_canslim.py
+          python compress_data.py
 
       - name: Commit and Push
         if: github.event_name != 'pull_request'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data.json
+          git add docs/data.json docs/data.json.gz
           git commit -m "Auto-update CANSLIM data: $(date)" || echo "No changes to commit"
           git push
