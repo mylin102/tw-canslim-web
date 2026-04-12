@@ -273,6 +273,15 @@
                 </div>
             </div>
 
+            <!-- Debug Info (will remove after testing) -->
+            <div v-if="!isLoading && stockData" class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs">
+                <strong>Debug:</strong>
+                stockData: ✅ ({{ Object.keys(stockData.stocks).length }} stocks) |
+                activeTab: {{ activeTab }} |
+                allStocksSorted: {{ allStocksSorted.length }} items |
+                filteredStocks: {{ filteredStocks.length }} items
+            </div>
+
             <!-- Ranking Tab -->
             <div v-if="activeTab === 'ranking' && !isLoading && stockData" class="animate-fade-in">
                 <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
