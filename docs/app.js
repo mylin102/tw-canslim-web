@@ -31,6 +31,7 @@ const app = createApp({
         const activeTab = ref('search');
         const screenerMinScore = ref(60);
         const screenerInstBuy = ref('any');
+        const screenerIndustry = ref('all');
 
         console.log("activeTab created:", activeTab.value);
 
@@ -78,10 +79,25 @@ const app = createApp({
         });
 
         // SCREENER TAB DATA
+        const availableIndustries = computed(() => {
+            if (!stockData.value) return [];
+            const industries = new Set();
+            Object.values(stockData.value.stocks).forEach(s => {
+                if (s.industry) industries.add(s.industry);
+            });
+            return ['all', ...Array.from(industries).sort()];
+        });
+
         const filteredStocks = computed(() => {
             if (!stockData.value) return [];
             let result = Object.values(stockData.value.stocks)
                 .filter(s => s.canslim.score >= screenerMinScore.value);
+            
+            // Filter by industry
+            if (screenerIndustry.value !== 'all') {
+                result = result.filter(s => s.industry === screenerIndustry.value);
+            }
+            
             return result.sort((a, b) => b.canslim.score - a.canslim.score);
         });
 
@@ -152,8 +168,8 @@ const app = createApp({
 
         return {
             stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState,
-            searchSuggestions, activeTab, screenerMinScore, screenerInstBuy,
-            metricsMap, currentStock, allStocksSorted, filteredStocks,
+            searchSuggestions, activeTab, screenerMinScore, screenerInstBuy, screenerIndustry,
+            metricsMap, currentStock, allStocksSorted, availableIndustries, filteredStocks,
             onSearchInput: updateSuggestions, clearSearch, selectStock, inst3dNet
         };
     }

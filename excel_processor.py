@@ -425,3 +425,94 @@ class ExcelDataProcessor:
         except Exception as e:
             logger.error(f"Failed to load fund holdings data: {e}")
             return None
+    
+    def load_industry_data(self) -> Optional[Dict[str, Dict]]:
+        """
+        Load industry classification data.
+        Returns dict with stock symbols as keys and industry info as values.
+        """
+        if not self.health_check_file or not os.path.exists(self.health_check_file):
+            return None
+        
+        try:
+            result = {}
+            
+            if '上市櫃產業名單' not in pd.ExcelFile(self.health_check_file).sheet_names:
+                return None
+            
+            df = pd.read_excel(
+                self.health_check_file,
+                sheet_name='上市櫃產業名單',
+                header=None
+            )
+            
+            # First row: alternating rating (A+, B, C...) and industry name (上市水泥, 上市食品...)
+            # Industry names are at odd indices (1, 3, 5, 7...)
+            industry_names = {}
+            for col_idx in range(0, len(df.iloc[0]), 2):
+                if col_idx + 1 < len(df.iloc[0]) and pd.notna(df.iloc[0].iloc[col_idx + 1]):
+                    industry_names[col_idx] = str(df.iloc[0].iloc[col_idx + 1]).strip()
+            
+            # Process stock rows
+            for row_idx in range(1, len(df)):
+                row = df.iloc[row_idx]
+                for col_idx in range(0, len(row), 2):
+                    if col_idx < len(row) and pd.notna(row.iloc[col_idx]):
+                        stock_code = str(int(row.iloc[col_idx])).strip()
+                        stock_name = str(row.iloc[col_idx + 1]).strip() if col_idx + 1 < len(row) and pd.notna(row.iloc[col_idx + 1]) else ''
+                        industry = industry_names.get(col_idx, '未知')
+                        
+                        result[stock_code] = {
+                            'name': stock_name,
+                            'industry': industry
+                        }
+            
+            if result:
+                logger.info(f"Loaded industry data for {len(result)} stocks")
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Failed to load industry data: {e}")
+            return None
+    
+    def get_industry_strength(self) -> Optional[List[Dict]]:
+        """
+        Get industry strength ranking.
+        Returns list of top 30 industries sorted by rank.
+        """
+        if not self.health_check_file or not os.path.exists(self.health_check_file):
+            return None
+        
+        try:
+            if 'Group Rank' not in pd.ExcelFile(self.health_check_file).sheet_names:
+                return None
+            
+            df = pd.read_excel(
+                self.health_check_file,
+                sheet_name='Group Rank',
+                header=None
+            )
+            
+            result = []
+            for _, row in df.iterrows():
+                if pd.notna(row.iloc[0]) and pd.notna(row.iloc[1]):
+                    try:
+                        rank = int(row.iloc[0])
+                        industry = str(row.iloc[1]).strip()
+                        strength = float(row.iloc[2]) if pd.notna(row.iloc[2]) else 0
+                        
+                        result.append({
+                            'rank': rank,
+                            'industry': industry,
+                            'strength': strength
+                        })
+                    except:
+                        pass
+            
+            result.sort(key=lambda x: x['rank'])
+            return result[:30]
+            
+        except Exception as e:
+            logger.error(f"Failed to load industry strength: {e}")
+            return None

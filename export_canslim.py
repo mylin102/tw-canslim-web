@@ -86,8 +86,10 @@ class CanslimEngine:
         self.finmind_processor = FinMindProcessor()
         self.excel_ratings = None
         self.fund_holdings = None
+        self.industry_data = None
+        self.industry_strength = None
         self._load_excel_data()
-    
+
     def _load_excel_data(self):
         """Load Excel data if available."""
         try:
@@ -98,10 +100,22 @@ class CanslimEngine:
             self.fund_holdings = self.excel_processor.load_fund_holdings_data()
             if self.fund_holdings:
                 logger.info(f"Loaded fund holdings for {len(self.fund_holdings)} stocks")
+            
+            # Load industry classification
+            self.industry_data = self.excel_processor.load_industry_data()
+            if self.industry_data:
+                logger.info(f"Loaded industry data for {len(self.industry_data)} stocks")
+            
+            # Load industry strength ranking
+            self.industry_strength = self.excel_processor.get_industry_strength()
+            if self.industry_strength:
+                logger.info(f"Loaded industry strength for {len(self.industry_strength)} industries")
         except Exception as e:
             logger.warning(f"Failed to load Excel data: {e}")
             self.excel_ratings = None
             self.fund_holdings = None
+            self.industry_data = None
+            self.industry_strength = None
     
     def fetch_institutional_data_finmind(self, ticker: str, days: int = 20) -> Optional[List[Dict]]:
         """
@@ -481,15 +495,21 @@ class CanslimEngine:
             if self.fund_holdings and t in self.fund_holdings:
                 fund_data = self.fund_holdings[t]
             
+            # Get industry classification if available
+            industry_info = None
+            if self.industry_data and t in self.industry_data:
+                industry_info = self.industry_data[t]
+
             # Calculate enhanced score with Excel integration
             score = self.calculate_enhanced_canslim_score(
                 c_score, a_score, n_score, s_score, l_score, i_score, m_score,
                 excel_ratings
             )
-            
+
             stock_data = {
                 "symbol": t,
                 "name": info["name"],
+                "industry": industry_info.get('industry') if industry_info else None,
                 "canslim": {
                     "C": c_score,
                     "A": a_score,
@@ -511,13 +531,19 @@ class CanslimEngine:
 
         self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
+        # Add industry strength ranking to output
+        if self.industry_strength:
+            self.output_data["industry_strength"] = self.industry_strength
+
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
-        
+
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(self.output_data, f, ensure_ascii=False, indent=2)
-        
+
         logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
+        if self.industry_strength:
+            logger.info(f"Exported {len(self.industry_strength)} industry strength rankings.")
 
 if __name__ == "__main__":
     CanslimEngine().run()
