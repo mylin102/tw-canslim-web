@@ -476,7 +476,7 @@ class CanslimEngine:
             logger.warning("Could not fetch market return, RS calculation will use defaults")
 
         # Priority list + extended scan
-        priority = ["1101", "2330", "3565", "6770", "2303", "8069"]
+        priority = ["1101", "2330", "3565", "6770", "2303", "8069", "6805"]
         all_t = sorted(list(self.ticker_info.keys()))
         scan_list = priority + [t for t in all_t if t not in priority][:2000]
 

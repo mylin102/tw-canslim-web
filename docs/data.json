@@ -55031,6 +55031,37 @@
         }
       ],
       "industry": "上櫃電機機械"
+    },
+    "6805": {
+      "symbol": "6805",
+      "name": "富世達",
+      "industry": null,
+      "canslim": {
+        "C": false,
+        "A": true,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 74,
+        "rs_ratio": null,
+        "excel_ratings": null,
+        "fund_holdings": {
+          "current_month": 43,
+          "previous_month": 106,
+          "change": -63,
+          "change_pct": -59.43
+        }
+      },
+      "institutional": [
+        {
+          "date": "20260413",
+          "foreign_net": 0,
+          "trust_net": 0,
+          "dealer_net": 0
+        }
+      ]
     }
   },
   "industry_strength": [
