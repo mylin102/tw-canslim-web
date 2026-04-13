@@ -1,29 +1,24 @@
-const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
-
+// Simplified CANSLIM app - v2
 // Global error handler
 window.onerror = function(msg, url, line, col, error) {
-    console.error("❌ GLOBAL ERROR:", msg, "at line", line);
-    const errDiv = document.createElement('div');
-    errDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:99999;font-family:monospace';
-    errDiv.textContent = 'ERROR: ' + msg + ' (line ' + line + ')';
-    document.body.prepend(errDiv);
+    console.error("GLOBAL ERROR:", msg, "at line", line);
     return false;
 };
 
-// Check if Vue loaded
+console.log("App loading...");
+
 if (typeof Vue === 'undefined') {
-    console.error("❌ Vue CDN failed to load!");
-    const errDiv = document.createElement('div');
-    errDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:99999;font-family:monospace';
-    errDiv.textContent = 'ERROR: Vue CDN 載入失敗，請檢查網路連線';
-    document.body.prepend(errDiv);
+    alert("Vue CDN failed to load! Check network connection.");
 } else {
-    console.log("✅ Vue loaded, version:", Vue.version);
+    console.log("Vue loaded, version:", Vue.version);
 }
+
+const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
 
 const app = createApp({
     setup() {
-        console.log("✅ setup() called");
+        console.log("setup() called");
+
         const stockData = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('載入中...');
@@ -31,14 +26,13 @@ const app = createApp({
         const loadingProgress = ref(0);
         const errorState = ref(null);
         const searchSuggestions = ref([]);
-        const searchTimeout = ref(null);
 
         // Tab state
         const activeTab = ref('search');
-        console.log("✅ activeTab created, value:", activeTab.value);
-        
-        const screenerMinScore = ref(70);
+        const screenerMinScore = ref(60);
         const screenerInstBuy = ref('any');
+
+        console.log("activeTab created:", activeTab.value);
 
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
@@ -51,147 +45,87 @@ const app = createApp({
 
         let chartInstance = null;
 
-        const onSearchInput = () => {
-            // Debounce search to avoid excessive filtering
-            if (searchTimeout.value) {
-                clearTimeout(searchTimeout.value);
-            }
-            searchTimeout.value = setTimeout(() => {
-                updateSuggestions();
-            }, 200);
-        };
-
+        // Search helpers
         const updateSuggestions = () => {
             if (!stockData.value || searchQuery.value.length < 2) {
                 searchSuggestions.value = [];
                 return;
             }
-
             const query = searchQuery.value.trim().toLowerCase();
-            const allStocks = Object.values(stockData.value.stocks);
-            
-            searchSuggestions.value = allStocks
-                .filter(s => 
-                    s.symbol.includes(query) || 
-                    s.name.toLowerCase().includes(query)
-                )
-                .slice(0, 10); // Limit to 10 suggestions
+            searchSuggestions.value = Object.values(stockData.value.stocks)
+                .filter(s => s.symbol.includes(query) || s.name.toLowerCase().includes(query))
+                .slice(0, 10);
         };
 
-        const clearSearch = () => {
-            searchQuery.value = '';
-            searchSuggestions.value = [];
-        };
+        const clearSearch = () => { searchQuery.value = ''; searchSuggestions.value = []; };
+        const selectStock = (symbol) => { searchQuery.value = symbol; searchSuggestions.value = []; };
 
-        const selectStock = (symbol) => {
-            searchQuery.value = symbol;
-            searchSuggestions.value = [];
-        };
-
+        // Main computed: current stock
         const currentStock = computed(() => {
             if (!stockData.value || !searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
-            
-            if (stockData.value.stocks[query]) {
-                return stockData.value.stocks[query];
-            }
-
-            return Object.values(stockData.value.stocks).find(s => 
+            if (stockData.value.stocks[query]) return stockData.value.stocks[query];
+            return Object.values(stockData.value.stocks).find(s =>
                 s.name.toLowerCase().includes(query) || s.symbol.includes(query)
             ) || null;
         });
 
-        const fetchData = async () => {
-            try {
-                isLoading.value = true;
-                errorState.value = null;
-                loadingProgress.value = 30;
-                
-                console.log("🔄 Fetching data...");
-                
-                // Load uncompressed JSON directly with cache bust
-                const response = await fetch('data.json?v=99999&t=' + Date.now());
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: 找不到資料檔`);
-                }
-                loadingProgress.value = 80;
-
-                const data = await response.json();
-
-                loadingProgress.value = 100;
-                stockData.value = data;
-                lastUpdated.value = data.last_updated;
-                console.log("✅ 資料載入成功:", Object.keys(data.stocks).length, "檔股票");
-                console.log("📊 activeTab is now:", activeTab.value);
-            } catch (error) {
-                console.error('❌ 資料載入失敗:', error);
-                errorState.value = `資料載入失敗: ${error.message}`;
-                lastUpdated.value = '載入失敗';
-            } finally {
-                isLoading.value = false;
-            }
-        };
-
-        const sortedInstitutional = computed(() => {
-            if (!currentStock.value || !currentStock.value.institutional) return [];
-            return [...currentStock.value.institutional].sort((a, b) => b.date.localeCompare(a.date));
-        });
-
-        // All stocks sorted by score
+        // RANKING TAB DATA
         const allStocksSorted = computed(() => {
             if (!stockData.value) return [];
             return Object.values(stockData.value.stocks)
                 .sort((a, b) => b.canslim.score - a.canslim.score);
         });
 
-        // Filtered stocks for screener
+        // SCREENER TAB DATA
         const filteredStocks = computed(() => {
             if (!stockData.value) return [];
-            
             let result = Object.values(stockData.value.stocks)
                 .filter(s => s.canslim.score >= screenerMinScore.value);
-            
-            // Filter by institutional buying
-            if (screenerInstBuy.value !== 'any') {
-                result = result.filter(s => {
-                    if (!s.institutional) return false;
-                    const days = screenerInstBuy.value === '3d' ? 3 : 5;
-                    const recent = s.institutional.slice(0, days);
-                    const net = recent.reduce((sum, d) => 
-                        sum + d.foreign_net + d.trust_net + d.dealer_net, 0);
-                    return net > 0;
-                });
-            }
-            
             return result.sort((a, b) => b.canslim.score - a.canslim.score);
         });
 
-        // Helper functions
+        // Helpers
         const inst3dNet = (stock) => {
             if (!stock.institutional || stock.institutional.length < 3) return 0;
-            const recent = stock.institutional.slice(0, 3);
-            return recent.reduce((sum, d) => 
-                sum + d.foreign_net + d.trust_net + d.dealer_net, 0);
+            return stock.institutional.slice(0, 3).reduce((s, d) =>
+                s + d.foreign_net + d.trust_net + d.dealer_net, 0);
         };
 
-        const fundChange = (stock) => {
-            if (!stock.canslim.fund_holdings) return null;
-            return stock.canslim.fund_holdings.change;
+        // Load data
+        const fetchData = async () => {
+            try {
+                isLoading.value = true;
+                errorState.value = null;
+                loadingProgress.value = 30;
+                console.log("Fetching data.json...");
+
+                const response = await fetch('data.json?v=99999&t=' + Date.now());
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                loadingProgress.value = 80;
+
+                const data = await response.json();
+                loadingProgress.value = 100;
+                stockData.value = data;
+                lastUpdated.value = data.last_updated;
+                console.log("Data loaded:", Object.keys(data.stocks).length, "stocks");
+            } catch (error) {
+                console.error('Failed:', error);
+                errorState.value = '資料載入失敗: ' + error.message;
+                lastUpdated.value = '載入失敗';
+            } finally {
+                isLoading.value = false;
+            }
         };
 
-        const renderChart = async () => {
+        // Chart
+        const renderChart = async (stock) => {
             await nextTick();
             const canvas = document.getElementById('inst-chart');
-            if (!canvas || !currentStock.value) return;
-
+            if (!canvas || !stock || typeof Chart === 'undefined') return;
             const ctx = canvas.getContext('2d');
-            if (chartInstance) {
-                chartInstance.destroy();
-                chartInstance = null;
-            }
-
-            const data = [...currentStock.value.institutional].sort((a, b) => a.date.localeCompare(b.date));
-
+            if (chartInstance) chartInstance.destroy();
+            const data = [...stock.institutional].sort((a, b) => a.date.localeCompare(b.date));
             chartInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -202,47 +136,29 @@ const app = createApp({
                         { label: '自營商', data: data.map(d => d.dealer_net), backgroundColor: 'rgba(245, 158, 11, 0.6)' }
                     ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom' } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
             });
         };
 
-        watch(currentStock, async (newVal) => {
-            if (chartInstance) {
-                chartInstance.destroy();
-                chartInstance = null;
-            }
-            if (newVal) await renderChart();
+        watch(currentStock, async (val) => {
+            if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+            if (val) await renderChart(val);
         });
 
         onMounted(() => {
-            console.log("🚀 CANSLIM App v2.0 mounted");
+            console.log("App mounted, loading data...");
             fetchData();
         });
 
         return {
-            searchQuery,
-            lastUpdated,
-            currentStock,
-            metricsMap,
-            sortedInstitutional,
-            isLoading,
-            loadingProgress,
-            errorState,
-            searchSuggestions,
-            onSearchInput,
-            clearSearch,
-            selectStock,
-            activeTab,
-            screenerMinScore,
-            screenerInstBuy,
-            allStocksSorted,
-            filteredStocks,
-            inst3dNet,
-            fundChange
+            stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState,
+            searchSuggestions, activeTab, screenerMinScore, screenerInstBuy,
+            metricsMap, currentStock, allStocksSorted, filteredStocks,
+            onSearchInput: updateSuggestions, clearSearch, selectStock, inst3dNet
         };
     }
-}).mount('#app');
+});
+
+console.log("App created, mounting...");
+app.mount('#app');
+console.log("App mounted successfully!");
