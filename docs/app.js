@@ -28,7 +28,7 @@ const app = createApp({
         };
 
         // CANSLIM definitions (from William J. O'Neil's "How to Make Money in Stocks")
-        const showCanslimDefs = ref(false);
+        const showCanslimDefs = ref(true);
         const canslimDefinitions = {
             'C': {
                 title: 'Current Quarterly Earnings — 當季每股盈餘',
