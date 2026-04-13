@@ -5,6 +5,7 @@ Reads financial data from Excel files and integrates with CANSLIM engine.
 
 import os
 import logging
+import json
 import pandas as pd
 from typing import Dict, List, Optional
 from datetime import datetime
@@ -431,6 +432,30 @@ class ExcelDataProcessor:
         Load industry classification data.
         Returns dict with stock symbols as keys and industry info as values.
         """
+        # 首先嘗試從Excel檔案加載
+        excel_result = self._load_industry_from_excel()
+        if excel_result:
+            logger.info(f"Loaded industry data from Excel for {len(excel_result)} stocks")
+            return excel_result
+        
+        # 如果Excel檔案不存在，嘗試從本地快取加載
+        cache_result = self._load_industry_from_cache()
+        if cache_result:
+            logger.info(f"Loaded industry data from cache for {len(cache_result)} stocks")
+            return cache_result
+        
+        # 如果本地快取也不存在，從FinMind API獲取並保存到快取
+        api_result = self._load_industry_from_finmind()
+        if api_result:
+            self._save_industry_to_cache(api_result)
+            logger.info(f"Loaded industry data from FinMind API for {len(api_result)} stocks")
+            return api_result
+        
+        logger.warning("Failed to load industry data from any source")
+        return None
+    
+    def _load_industry_from_excel(self) -> Optional[Dict[str, Dict]]:
+        """Load industry data from Excel file."""
         if not self.health_check_file or not os.path.exists(self.health_check_file):
             return None
         
@@ -467,13 +492,144 @@ class ExcelDataProcessor:
                             'industry': industry
                         }
             
-            if result:
-                logger.info(f"Loaded industry data for {len(result)} stocks")
-            
-            return result
+            return result if result else None
             
         except Exception as e:
-            logger.error(f"Failed to load industry data: {e}")
+            logger.debug(f"Failed to load industry data from Excel: {e}")
+            return None
+    
+    def _load_industry_from_cache(self) -> Optional[Dict[str, Dict]]:
+        """Load industry data from local cache file."""
+        # 嘗試加載簡化快取檔案
+        simplified_cache_file = os.path.join(self.base_dir, 'industry_cache_simplified.json')
+        if os.path.exists(simplified_cache_file):
+            try:
+                with open(simplified_cache_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                
+                # 檢查快取是否過期（超過30天）
+                if 'timestamp' in data:
+                    cache_time = datetime.fromisoformat(data['timestamp'])
+                    if (datetime.now() - cache_time).days > 30:
+                        logger.info("Industry cache is older than 30 days, will refresh")
+                        return None
+                
+                # 轉換簡化格式為完整格式
+                industry_mapping = data.get('industry_mapping', {})
+                result = {}
+                for stock_code, industry in industry_mapping.items():
+                    result[stock_code] = {
+                        'name': '',  # 簡化版本不包含股票名稱
+                        'industry': industry
+                    }
+                
+                logger.info(f"Loaded industry data from simplified cache: {len(result)} stocks")
+                return result
+            except Exception as e:
+                logger.debug(f"Failed to load simplified cache: {e}")
+        
+        # 如果簡化快取不存在，嘗試加載完整快取
+        cache_file = os.path.join(self.base_dir, 'industry_cache.json')
+        if not os.path.exists(cache_file):
+            return None
+        
+        try:
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # 檢查快取是否過期（超過30天）
+            if 'timestamp' in data:
+                cache_time = datetime.fromisoformat(data['timestamp'])
+                if (datetime.now() - cache_time).days > 30:
+                    logger.info("Industry cache is older than 30 days, will refresh")
+                    return None
+            
+            return data.get('industry_data', {})
+        except Exception as e:
+            logger.debug(f"Failed to load industry cache: {e}")
+            return None
+    
+    def _save_industry_to_cache(self, industry_data: Dict[str, Dict]) -> None:
+        """Save industry data to local cache file."""
+        cache_file = os.path.join(self.base_dir, 'industry_cache.json')
+        try:
+            data = {
+                'timestamp': datetime.now().isoformat(),
+                'industry_data': industry_data
+            }
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            logger.info(f"Saved industry data to cache: {cache_file}")
+        except Exception as e:
+            logger.error(f"Failed to save industry cache: {e}")
+    
+    def _load_industry_from_finmind(self) -> Optional[Dict[str, Dict]]:
+        """Load industry data from FinMind API."""
+        try:
+            # 從環境變數讀取FinMind token
+            import os
+            from dotenv import load_dotenv
+            
+            load_dotenv()
+            finmind_token = os.getenv('FINMIND_TOKEN')
+            
+            if not finmind_token:
+                logger.warning("FINMIND_TOKEN not found in environment variables")
+                return None
+            
+            # 呼叫FinMind API
+            import requests
+            
+            url = "https://api.finmindtrade.com/api/v4/data"
+            headers = {"Authorization": f"Bearer {finmind_token}"}
+            params = {
+                "dataset": "TaiwanStockInfo",
+            }
+            
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            
+            if response.status_code != 200:
+                logger.error(f"FinMind API error: {response.status_code} - {response.text[:200]}")
+                return None
+            
+            data = response.json()
+            if data.get('status') != 200:
+                logger.error(f"FinMind API returned error: {data}")
+                return None
+            
+            stocks = data.get('data', [])
+            if not stocks:
+                logger.warning("FinMind API returned empty data")
+                return None
+            
+            # 處理API數據
+            result = {}
+            for stock in stocks:
+                stock_id = stock.get('stock_id', '').strip()
+                if not stock_id or len(stock_id) != 4:
+                    continue
+                
+                stock_name = stock.get('stock_name', '').strip()
+                industry_category = stock.get('industry_category', '').strip()
+                
+                # 簡化產業分類名稱
+                if industry_category:
+                    # 移除冗長的後綴
+                    if '指數股票型基金' in industry_category:
+                        industry_category = 'ETF'
+                    elif '受益證券' in industry_category:
+                        industry_category = 'REITs'
+                
+                result[stock_id] = {
+                    'name': stock_name,
+                    'industry': industry_category or '未知'
+                }
+            
+            logger.info(f"Retrieved {len(result)} stocks from FinMind API")
+            return result if result else None
+            
+        except Exception as e:
+            logger.error(f"Failed to load industry data from FinMind: {e}")
             return None
     
     def get_industry_strength(self) -> Optional[List[Dict]]:
