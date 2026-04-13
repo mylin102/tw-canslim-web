@@ -17,6 +17,22 @@ const app = createApp({
         const screenerMinRs = ref(0);
         const screenerFundOnly = ref(false);
         const screenerIndustry = ref('all');
+        const screenerInstBuy = ref('any');
+
+        const availableIndustries = computed(() => {
+            if (!stockData.value) return [];
+            const industries = new Set();
+            Object.values(stockData.value.stocks).forEach(s => {
+                if (s.industry && s.industry !== '未知') industries.add(s.industry);
+            });
+            return ['all', ...Array.from(industries).sort()];
+        });
+
+        const inst3dNet = (stock) => {
+            if (!stock.institutional || stock.institutional.length < 3) return 0;
+            return stock.institutional.slice(0, 3).reduce((sum, d) =>
+                sum + (d.foreign_net || 0) + (d.trust_net || 0) + (d.dealer_net || 0), 0);
+        };
 
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
@@ -147,7 +163,8 @@ const app = createApp({
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly,
             currentStock, allStocksSorted, filteredStocks, metricsMap,
             updateSuggestions, selectStock, fetchData,
-            showCanslimDefs, canslimDefinitions
+            showCanslimDefs, canslimDefinitions,
+            availableIndustries, screenerInstBuy, inst3dNet
         };
     }
 });
