@@ -240,8 +240,8 @@ const app = createApp({
         };
 
         return {
-            stockData, searchQuery, lastUpdated, isLoading, errorState, searchSuggestions,
-            activeTab, screenerMinScore, screenerMinRs, screenerFundOnly,
+            stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
+            activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
             currentStock, allStocksSorted, filteredStocks, metricsMap,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
