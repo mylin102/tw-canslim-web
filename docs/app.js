@@ -29,10 +29,17 @@ const app = createApp({
         });
 
         const inst3dNet = (stock) => {
-            if (!stock.institutional || stock.institutional.length < 3) return 0;
-            return stock.institutional.slice(0, 3).reduce((sum, d) =>
+            if (!stock.institutional || stock.institutional.length < 1) return 0;
+            const n = Math.min(3, stock.institutional.length);
+            return stock.institutional.slice(0, n).reduce((sum, d) =>
                 sum + (d.foreign_net || 0) + (d.trust_net || 0) + (d.dealer_net || 0), 0);
         };
+
+        const sortedInstitutional = computed(() => {
+            if (!currentStock.value || !currentStock.value.institutional) return [];
+            return [...currentStock.value.institutional].sort((a, b) =>
+                String(b.date).localeCompare(String(a.date)));
+        });
 
         const metricsMap = {
             'C': { label: 'C - 當季盈餘' },
@@ -110,7 +117,20 @@ const app = createApp({
                 .slice(0, 10);
         };
 
-        const selectStock = (symbol) => { searchQuery.value = symbol; searchSuggestions.value = []; activeTab.value = 'search'; };
+        const onSearchInput = () => {
+            updateSuggestions();
+        };
+
+        const clearSearch = () => {
+            searchQuery.value = '';
+            searchSuggestions.value = [];
+        };
+
+        const selectStock = (symbol) => {
+            searchQuery.value = symbol;
+            searchSuggestions.value = [];
+            activeTab.value = 'search';
+        };
 
         const currentStock = computed(() => {
             if (!stockData.value || !searchQuery.value) return null;
@@ -130,14 +150,22 @@ const app = createApp({
             if (!stockData.value) return [];
             let result = Object.values(stockData.value.stocks)
                 .filter(s => s.canslim.score >= screenerMinScore.value);
-            
+
+            if (screenerIndustry.value !== 'all') {
+                result = result.filter(s => (s.industry || '未知') === screenerIndustry.value);
+            }
+
+            if (screenerInstBuy.value === '3d') {
+                result = result.filter(s => inst3dNet(s) > 0);
+            }
+
             if (screenerMinRs.value > 0) {
                 result = result.filter(s => (s.canslim.rs_rating || 0) >= screenerMinRs.value);
             }
             if (screenerFundOnly.value) {
                 result = result.filter(s => (s.canslim.fund_change || 0) > 0);
             }
-            
+
             return result.sort((a, b) => b.canslim.score - a.canslim.score);
         });
 
@@ -158,13 +186,66 @@ const app = createApp({
 
         onMounted(fetchData);
 
+        // Watch for tab changes to render chart when needed
+        watch(activeTab, async (newTab) => {
+            if (newTab === 'search' && currentStock.value) {
+                await nextTick();
+                renderChart();
+            }
+        });
+
+        watch(currentStock, async () => {
+            if (activeTab.value === 'search' && currentStock.value) {
+                await nextTick();
+                renderChart();
+            }
+        });
+
+        const renderChart = () => {
+            const canvas = document.getElementById('inst-chart');
+            if (!canvas || !currentStock.value) return;
+            if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+            const data = currentStock.value.institutional || [];
+            if (data.length === 0) return;
+
+            const labels = data.map(d => String(d.date));
+            const foreignData = data.map(d => d.foreign_net || 0);
+            const trustData = data.map(d => d.trust_net || 0);
+            const dealerData = data.map(d => d.dealer_net || 0);
+
+            chartInstance = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: '外資', data: foreignData, backgroundColor: 'rgba(59, 130, 246, 0.7)' },
+                        { label: '投信', data: trustData, backgroundColor: 'rgba(16, 185, 129, 0.7)' },
+                        { label: '自營商', data: dealerData, backgroundColor: 'rgba(245, 158, 11, 0.7)' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' } },
+                    scales: {
+                        y: {
+                            stacked: true,
+                            ticks: { callback: v => v.toLocaleString() + ' 張' }
+                        },
+                        x: { stacked: true }
+                    }
+                }
+            });
+        };
+
         return {
             stockData, searchQuery, lastUpdated, isLoading, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly,
             currentStock, allStocksSorted, filteredStocks, metricsMap,
-            updateSuggestions, selectStock, fetchData,
+            updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
-            availableIndustries, screenerInstBuy, inst3dNet
+            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional
         };
     }
 });
