@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
+from tej_processor import TEJProcessor
 
 # TAIEX via yfinance
 TAIEX_SYMBOL = "^TWII"
@@ -88,6 +89,7 @@ class CanslimEngine:
         self.ticker_info = get_all_tw_tickers()
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
+        self.tej_processor = TEJProcessor()
         self.excel_ratings = None
         self.fund_holdings = None
         self.industry_data = None
@@ -510,11 +512,19 @@ class CanslimEngine:
                 continue
             
             # Calculate CANSLIM metrics
-            eps_val = financial_data.get("eps", 0) or 0
-            c_score = self.check_c_quarterly_growth(
-                eps_val,
-                eps_val * 0.8 if eps_val > 0 else 0
-            )
+            # Try TEJ for C and A metrics first
+            tej_ca = {}
+            if self.tej_processor.initialized:
+                tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
+            
+            # Use TEJ C/A if available, otherwise fallback to defaults
+            c_score = tej_ca.get('C', False)
+            a_score = tej_ca.get('A', False)
+            
+            # Store TEJ financial data if available
+            tej_financials = None
+            if self.tej_processor.initialized:
+                tej_financials = self.tej_processor.get_quarterly_financials(t)
 
             n_score = self.check_n_new_high(
                 financial_data.get("price", 0),
@@ -585,7 +595,8 @@ class CanslimEngine:
                     "fund_holdings": fund_data
                 },
                 "institutional": history[:20],  # Last 20 days
-                "financials": financial_data
+                "financials": financial_data,
+                "tej_quarterly": tej_financials
             }
             
             if self.validate_stock_data(stock_data):
