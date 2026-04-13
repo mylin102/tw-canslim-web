@@ -46,21 +46,29 @@ def fetch_inst_all(date_str: str) -> Dict:
     """Fetch combined TWSE+TPEx institutional data for a date."""
     result = {}
     try:
-        # TWSE
+        # TWSE - exact field indices from API
         r = requests.get(TWSE_INST_URL, params={"response": "json", "date": date_str, "selectType": "ALL"}, timeout=15)
         if r.status_code == 200:
             data = r.json()
             if data.get("stat") == "OK":
                 fields = data.get("fields", [])
-                idx_f = next((i for i, f in enumerate(fields) if "外資" in f and "買賣超" in f), 4)
-                idx_t = next((i for i, f in enumerate(fields) if "投信" in f and "買賣超" in f), 10)
-                idx_d = next((i for i, f in enumerate(fields) if "自營商" in f and "買賣超" in f), 11)
+                # Exact indices from TWSE T86 API:
+                # [4] 外陸資買賣超股數(不含外資自營商)
+                # [10] 投信買賣超股數
+                # [11] 自營商買賣超股數
+                idx_f = next((i for i, f in enumerate(fields) if f == "外陸資買賣超股數(不含外資自營商)"), 4)
+                idx_t = next((i for i, f in enumerate(fields) if f == "投信買賣超股數"), 10)
+                idx_d = next((i for i, f in enumerate(fields) if f == "自營商買賣超股數"), 11)
                 for row in data["data"]:
                     t = row[0].strip()
                     def si(s):
-                        try: return int(str(s).replace(",", "").replace("-", "0") or "0")
+                        try: return int(str(s).replace(",", ""))
                         except: return 0
-                    result[t] = {"foreign_net": si(row[idx_f]) // 1000, "trust_net": si(row[idx_t]) // 1000, "dealer_net": si(row[idx_d]) // 1000}
+                    result[t] = {
+                        "foreign_net": round(si(row[idx_f]) / 1000),
+                        "trust_net": round(si(row[idx_t]) / 1000),
+                        "dealer_net": round(si(row[idx_d]) / 1000)
+                    }
     except: pass
     
     try:
@@ -72,9 +80,13 @@ def fetch_inst_all(date_str: str) -> Dict:
             for row in data.get("aaData", []):
                 t = row[0].strip()
                 def si(s):
-                    try: return int(str(s).replace(",", "").replace("-", "0") or "0")
+                    try: return int(str(s).replace(",", ""))
                     except: return 0
-                result[t] = {"foreign_net": si(row[7]) // 1000, "trust_net": si(row[8]) // 1000, "dealer_net": si(row[9]) // 1000}
+                result[t] = {
+                    "foreign_net": round(si(row[7]) / 1000),
+                    "trust_net": round(si(row[8]) / 1000),
+                    "dealer_net": round(si(row[9]) / 1000)
+                }
     except: pass
     
     return result
@@ -95,35 +107,77 @@ class FastDataGenerator:
     def run(self):
         logger.info("="*60 + "\nFast Data Generator\n" + "="*60)
         
-        # Market return
+        # Market return - use TWSE TAIEX data instead of yfinance
+        market_ret = None
         try:
-            twii = yf.Ticker("^TWII")
-            hist = twii.history(start=(datetime.now()-timedelta(days=180)).strftime("%Y-%m-%d"))
-            market_ret = (hist['Close'].iloc[-1] - hist['Close'].iloc[0]) / hist['Close'].iloc[0] if not hist.empty else None
-        except: market_ret = None
+            # Fetch TAIEX from TWSE (free API)
+            twii_url = "https://www.twse.com.tw/rwd/zh/TAIEXChart/BasicIndex"
+            end_dt = datetime.now()
+            start_dt = end_dt - timedelta(days=180)
+            params = {"response": "json", "dateRange": "1", "frequency": "D", 
+                     "startDate": start_dt.strftime("%Y/%m/%d"), "endDate": end_dt.strftime("%Y/%m/%d")}
+            r = requests.get(twii_url, params=params, timeout=15)
+            if r.status_code == 200:
+                data = r.json()
+                if data:
+                    close_prices = [float(row[8]) for row in data if row[8]]
+                    if len(close_prices) >= 2:
+                        market_ret = (close_prices[-1] - close_prices[0]) / close_prices[0]
+                        logger.info(f"Market return (6mo): {market_ret*100:.2f}% ({close_prices[0]:.0f} → {close_prices[-1]:.0f})")
+        except Exception as e:
+            logger.warning(f"Failed to fetch TAIEX: {e}")
         
-        # Institutional data (bulk, 20 dates)
+        if market_ret is None:
+            logger.warning("Using default market return of 0.3 (30%)")
+            market_ret = 0.3
+        
+        # Institutional data (bulk, 20 dates) - get recent trading dates
         trading_dates = []
         try:
-            twii = yf.Ticker("^TWII")
-            hist = twii.history(start=(datetime.now()-timedelta(days=60)).strftime("%Y-%m-%d"))
-            trading_dates = [d.strftime("%Y%m%d") for d in hist.index][-20:]
+            # Fetch TAIEX from TWSE to get actual trading dates
+            twii_url = "https://www.twse.com.tw/rwd/zh/TAIEX/TAIEXChart"
+            end_dt = datetime.now()
+            start_dt = end_dt - timedelta(days=60)
+            params = {"response": "json", "startDate": start_dt.strftime("%Y%m%d"), "endDate": end_dt.strftime("%Y%m%d")}
+            r = requests.get(twii_url, params=params, timeout=15)
+            if r.status_code == 200:
+                data = r.json()
+                if data:
+                    trading_dates = [row[0].replace("-", "") for row in data if row[0]][-20:]
         except: pass
+        
+        # Fallback: generate recent weekdays (skip weekends)
+        if not trading_dates:
+            trading_dates = []
+            d = datetime.now() - timedelta(days=1)  # Start from yesterday
+            while len(trading_dates) < 10:  # Reduced to 10 for speed
+                if d.weekday() < 5:  # Mon-Fri
+                    trading_dates.append(d.strftime("%Y%m%d"))
+                d -= timedelta(days=1)
+            trading_dates = list(reversed(trading_dates))
         
         logger.info(f"Fetching {len(trading_dates)} institutional dates...")
         inst_by_date = {}
+        valid_dates = []
         for i, d in enumerate(trading_dates):
             if i % 5 == 0: logger.info(f"Inst: {i}/{len(trading_dates)}")
-            inst_by_date[d] = fetch_inst_all(d)
-            time.sleep(1)
+            data = fetch_inst_all(d)
+            if data:  # Only keep dates with actual data
+                inst_by_date[d] = data
+                valid_dates.append(d)
+            time.sleep(0.5)  # Reduced delay
         
-        # Batch download all prices via yfinance
-        logger.info(f"Downloading prices for {len(self.ticker_info)} stocks...")
+        trading_dates = valid_dates
+        logger.info(f"Got institutional data for {len(trading_dates)} valid trading dates")
+        
+        # Fetch price data via yfinance (batch download with rate limit handling)
+        logger.info(f"Fetching price data for {len(self.ticker_info)} stocks...")
+        price_data = {}  # ticker -> {'price': float, 'high_52w': float, 'low_52w': float}
+        
         ticker_symbols = {t: f"{t}{info['suffix']}" for t, info in self.ticker_info.items()}
-        
-        # Download in chunks of 100 to avoid rate limits
-        price_data = {}
         symbols_list = list(ticker_symbols.items())
+        
+        # Download in chunks of 100
         for i in range(0, len(symbols_list), 100):
             chunk = symbols_list[i:i+100]
             tickers_str = ' '.join([s[1] for s in chunk])
@@ -131,67 +185,87 @@ class FastDataGenerator:
                 df = yf.download(tickers_str, start=(datetime.now()-timedelta(days=365)).strftime("%Y-%m-%d"), 
                                 end=datetime.now().strftime("%Y-%m-%d"), group_by='ticker', progress=False, threads=True)
                 if df is not None and not df.empty:
-                    if len(chunk) == 1:
-                        # Single stock returns different structure
-                        ticker = chunk[0][0]
-                        if 'Close' in df.columns:
-                            price_data[ticker] = df['Close'].dropna()
-                    else:
-                        for ticker, sym in chunk:
-                            if sym in df.columns:
-                                close = df[sym]['Close'].dropna() if 'Close' in df[sym].columns else df[sym].dropna()
-                                if not close.empty:
-                                    price_data[ticker] = close
+                    for ticker, sym in chunk:
+                        close_col = (sym, 'Close')
+                        if close_col in df.columns:
+                            prices = df[close_col].dropna()
+                            if not prices.empty:
+                                price_data[ticker] = {
+                                    "price": prices.iloc[-1],
+                                    "high_52w": prices.max(),
+                                    "low_52w": prices.min()
+                                }
             except Exception as e:
+                if "Rate limit" in str(e) or "404" in str(e):
+                    logger.warning(f"yfinance rate limited at chunk {i}, skipping remaining")
+                    break
                 logger.warning(f"Download chunk {i} failed: {e}")
             if i % 500 == 0: logger.info(f"Price: {min(i+100, len(symbols_list))}/{len(symbols_list)}")
-            time.sleep(0.5)
+            time.sleep(1)  # Rate limit delay
         
         logger.info(f"Got price data for {len(price_data)} stocks")
         
         # Build output
         output = {"last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "stocks": {}}
         
-        for t, prices in price_data.items():
-            if prices.empty: continue
+        for t, pd_info in price_data.items():
+            info = self.ticker_info.get(t)
+            if not info: continue
             
-            info = self.ticker_info[t]
-            price = prices.iloc[-1]
-            high_52w = prices.max()
-            low_52w = prices.min()
+            price = pd_info['price']
+            high_52w = pd_info['high_52w']
+            low_52w = pd_info['low_52w']
             
             # Volume (if available)
             vol = None
             avg_vol = None
             
-            # CANSLIM
+            # S score: volume spike (need volume data from yfinance)
+            s_score = False  # Default - volume data not always reliable from batch download
+
+            # N score: near 52-week high
             n_score = bool(price >= high_52w * 0.90)
-            
+
             # I score
             history = []
             for d in reversed(trading_dates):
                 if d in inst_by_date and t in inst_by_date[d]:
                     inst = inst_by_date[d][t]
                     history.append({"date": d, "foreign_net": inst["foreign_net"], "trust_net": inst["trust_net"], "dealer_net": inst["dealer_net"]})
-            
+
             i_score = False
             if len(history) >= 3:
                 net_3d = sum(h["foreign_net"] + h["trust_net"] + h["dealer_net"] for h in history[:3])
                 i_score = net_3d > 0
             elif history:
                 i_score = history[0]["foreign_net"] + history[0]["trust_net"] + history[0]["dealer_net"] > 0
-            
-            # RS
+
+            # RS ratio and L score
             rs_ratio = None
-            l_score = True
+            l_score = False
             if high_52w > low_52w and market_ret is not None and abs(market_ret) > 0.01:
                 pos = (price - low_52w) / (high_52w - low_52w)
                 ret_approx = pos * 0.8 - 0.2
                 rs_ratio = round(ret_approx / market_ret, 2)
                 l_score = (ret_approx / market_ret) >= 1.2
-            
-            # Score
-            c_score = a_score = m_score = s_score = True
+
+            # C score: use Excel EPS rating if available, else False
+            c_score = False
+            if self.excel_ratings and t in self.excel_ratings:
+                eps_rating = self.excel_ratings[t].get('eps_rating')
+                if eps_rating:
+                    c_score = eps_rating >= 60  # Top 40% EPS
+
+            # A score: use RS position as proxy (stocks near 52w high likely have good earnings)
+            a_score = False
+            if high_52w > low_52w:
+                pos = (price - low_52w) / (high_52w - low_52w)
+                a_score = pos >= 0.5  # Above midpoint of 52w range
+
+            # M score: market trend (positive market return = bullish)
+            m_score = market_ret is not None and market_ret > 0
+
+            # Score: weighted CANSLIM
             score = sum([1 for x in [c_score, a_score, n_score, s_score, l_score, i_score, m_score] if x]) * 14
             if c_score and a_score: score += 2
             score = min(score, 100)
