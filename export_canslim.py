@@ -474,7 +474,7 @@ class CanslimEngine:
             m_score = True
             
             # Get Excel ratings if available
-            excel_ratings = self.get_excel_canlim_ratings(t)
+            excel_ratings = self.get_excel_canslim_ratings(t)
             
             # Get fund holdings data if available
             fund_data = None
