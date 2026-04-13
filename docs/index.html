@@ -188,6 +188,35 @@
                             <i class="fas fa-building mr-2 text-blue-500"></i> 機構持股明細 (三大法人買賣超)
                         </h3>
 
+                        <!-- TEJ Quarterly Financials -->
+                        <div v-if="currentStock.tej_quarterly && currentStock.tej_quarterly.quarters && currentStock.tej_quarterly.quarters.length > 0" 
+                             class="mb-6 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-200">
+                            <h4 class="font-bold text-emerald-800 mb-3 flex items-center">
+                                <i class="fas fa-chart-line mr-2"></i> 季財報數據 (TEJ)
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div v-for="(q, idx) in currentStock.tej_quarterly.quarters" :key="idx" 
+                                     class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">{{ q.date.substring(0, 7) }}</div>
+                                    <div class="text-lg font-bold text-emerald-700">{{ q.eps || 'N/A' }}</div>
+                                    <div class="text-xs text-slate-400">EPS (元)</div>
+                                    <div class="text-xs text-slate-500 mt-1" v-if="q.net_margin">
+                                        淨利率 {{ q.net_margin }}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 p-2 bg-emerald-50 rounded text-sm text-emerald-700">
+                                <strong>C 指標 (季 EPS 成長):</strong> 
+                                <span :class="currentStock.canslim.C ? 'text-green-600' : 'text-red-600'">
+                                    {{ currentStock.canslim.C ? 'PASS' : 'FAIL' }}
+                                </span>
+                                <span class="ml-4"><strong>A 指標 (年 EPS 成長):</strong> 
+                                <span :class="currentStock.canslim.A ? 'text-green-600' : 'text-red-600'">
+                                    {{ currentStock.canslim.A ? 'PASS' : 'FAIL' }}
+                                </span>
+                            </div>
+                        </div>
+
                         <!-- Excel Ratings Section -->
                         <div v-if="currentStock.canslim.excel_ratings" class="mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
                             <h4 class="font-bold text-purple-800 mb-3 flex items-center">
