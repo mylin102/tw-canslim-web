@@ -1,7 +1,29 @@
 const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
 
+// Global error handler
+window.onerror = function(msg, url, line, col, error) {
+    console.error("❌ GLOBAL ERROR:", msg, "at line", line);
+    const errDiv = document.createElement('div');
+    errDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:99999;font-family:monospace';
+    errDiv.textContent = 'ERROR: ' + msg + ' (line ' + line + ')';
+    document.body.prepend(errDiv);
+    return false;
+};
+
+// Check if Vue loaded
+if (typeof Vue === 'undefined') {
+    console.error("❌ Vue CDN failed to load!");
+    const errDiv = document.createElement('div');
+    errDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:99999;font-family:monospace';
+    errDiv.textContent = 'ERROR: Vue CDN 載入失敗，請檢查網路連線';
+    document.body.prepend(errDiv);
+} else {
+    console.log("✅ Vue loaded, version:", Vue.version);
+}
+
 const app = createApp({
     setup() {
+        console.log("✅ setup() called");
         const stockData = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('載入中...');
@@ -10,9 +32,11 @@ const app = createApp({
         const errorState = ref(null);
         const searchSuggestions = ref([]);
         const searchTimeout = ref(null);
-        
+
         // Tab state
         const activeTab = ref('search');
+        console.log("✅ activeTab created, value:", activeTab.value);
+        
         const screenerMinScore = ref(70);
         const screenerInstBuy = ref('any');
 

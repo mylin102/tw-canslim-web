@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>[v-cloak] { display: none !important; }</style>
+</head>
+<body class="p-8">
+<div id="app" v-cloak>
+  <h1 class="text-xl mb-4">Tab 測試</h1>
+  
+  <div class="flex gap-2 mb-4">
+    <button @click="tab = 'a'" :class="tab==='a' ? 'bg-blue-500 text-white' : 'bg-gray-200'" class="px-4 py-2 rounded">A</button>
+    <button @click="tab = 'b'" :class="tab==='b' ? 'bg-blue-500 text-white' : 'bg-gray-200'" class="px-4 py-2 rounded">B</button>
+  </div>
+  
+  <p>目前 tab = <strong>{{ tab }}</strong></p>
+  
+  <div v-if="tab === 'a'" class="p-4 bg-blue-50 rounded mt-2">A 的內容</div>
+  <div v-if="tab === 'b'" class="p-4 bg-green-50 rounded mt-2">B 的內容</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+<script>
+Vue.createApp({
+  setup() {
+    const tab = Vue.ref('a');
+    return { tab };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    [v-cloak] { display: none !important; }
+    .tab-active { background: #3b82f6; color: white; }
+</style>
+</head>
+<body class="p-8 bg-slate-50">
+    <div id="app" v-cloak>
+        <h1 class="text-2xl mb-4">Vue Tab Test</h1>
+        
+        <div class="bg-white p-6 rounded-xl mb-4">
+            <div class="flex space-x-2 mb-4">
+                <button @click="activeTab = 'search'"
+                        :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'search' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                    個股查詢
+                </button>
+                <button @click="activeTab = 'ranking'"
+                        :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'ranking' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                    排名篩選
+                </button>
+                <button @click="activeTab = 'screener'"
+                        :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'screener' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                    條件選股
+                </button>
+            </div>
+            
+            <p class="text-sm text-slate-500">activeTab = {{ activeTab }}</p>
+        </div>
+        
+        <div v-if="activeTab === 'search'" class="p-4 bg-white rounded-xl">
+            SEARCH CONTENT
+        </div>
+        <div v-if="activeTab === 'ranking'" class="p-4 bg-white rounded-xl">
+            RANKING CONTENT
+        </div>
+        <div v-if="activeTab === 'screener'" class="p-4 bg-white rounded-xl">
+            SCREENER CONTENT
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup() {
+                const activeTab = ref('search');
+                return { activeTab };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
