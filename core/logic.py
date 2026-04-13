@@ -10,16 +10,25 @@ from typing import List, Optional
 def calculate_c_factor(eps_series: pd.Series, threshold: float = 0.25) -> bool:
     """
     C - Current Quarterly Earnings.
-    Check if the most recent quarterly EPS growth is >= threshold (default 25%).
+    Check if the most recent quarterly EPS growth is >= threshold (同比增長).
+    Note: To avoid seasonality, compare with the same quarter of last year.
     """
-    if len(eps_series) < 2:
+    if len(eps_series) < 5: # Need at least 4 quarters back for YoY
         return False
-    # Use the last two available data points
     curr = eps_series.iloc[-1]
-    prev = eps_series.iloc[-2]
-    if prev <= 0: return curr > 0 # Handle negative to positive turnaround
-    growth = (curr - prev) / abs(prev)
+    last_year = eps_series.iloc[-5]
+    if last_year <= 0: return curr > 0
+    growth = (curr - last_year) / abs(last_year)
     return growth >= threshold
+
+def calculate_rs_score(stock_returns: pd.Series, market_returns: pd.Series) -> float:
+    """
+    L - Leader or Laggard (Relative Strength).
+    Calculates a simple Relative Strength value. 
+    In practice, this should be a percentile rank across the whole market.
+    """
+    if len(stock_returns) < 250: return 0.0
+    return stock_returns.iloc[-1] / market_returns.iloc[-1]
 
 def calculate_a_factor(annual_eps: List[float], threshold: float = 0.25) -> bool:
     """

@@ -29,68 +29,84 @@ class HistoricalGenerator:
         if token: self.dl.login_by_token(token)
         
     def fetch_raw_data(self, stock_id: str, start_date: str, end_date: str):
-        """Fetch EPS and Institutional Trades, utilizing local cache."""
+        """Fetch EPS, Institutional Trades, and OHLCV data."""
         eps_path = os.path.join(CACHE_DIR, f"{stock_id}_eps.parquet")
         chip_path = os.path.join(CACHE_DIR, f"{stock_id}_chip.parquet")
+        price_path = os.path.join(CACHE_DIR, f"{stock_id}_price.parquet")
         
-        # 1. Fetch EPS (Quarterly)
+        # 1. Fetch EPS
         if not os.path.exists(eps_path):
             logger.info(f"Downloading EPS for {stock_id}...")
-            df_eps = self.dl.taiwan_stock_financial_statement(
-                stock_id=stock_id, start_date="2020-01-01"
-            )
-            df_eps = df_eps[df_eps['type'] == 'EPS']
-            df_eps = df_eps.rename(columns={'value': 'eps'})
+            df_eps = self.dl.taiwan_stock_financial_statement(stock_id=stock_id, start_date="2019-01-01")
+            df_eps = df_eps[df_eps['type'] == 'EPS'].rename(columns={'value': 'eps'})
             df_eps.to_parquet(eps_path)
-            time.sleep(1) # Rate limit protection
+            time.sleep(0.5)
         
-        # 2. Fetch Institutional Trades (Daily)
+        # 2. Fetch Institutional Trades
         if not os.path.exists(chip_path):
             logger.info(f"Downloading Chip Flow for {stock_id}...")
-            df_chip = self.dl.taiwan_stock_institutional_investors(
-                stock_id=stock_id, start_date=start_date, end_date=end_date
-            )
+            df_chip = self.dl.taiwan_stock_institutional_investors(stock_id=stock_id, start_date=start_date, end_date=end_date)
             df_chip.to_parquet(chip_path)
-            time.sleep(1)
+            time.sleep(0.5)
+
+        # 3. Fetch OHLCV (Price)
+        if not os.path.exists(price_path):
+            logger.info(f"Downloading Price for {stock_id}...")
+            df_price = self.dl.taiwan_stock_daily(stock_id=stock_id, start_date="2023-01-01", end_date=end_date)
+            df_price.to_parquet(price_path)
+            time.sleep(0.5)
             
-        return pd.read_parquet(eps_path), pd.read_parquet(chip_path)
+        return pd.read_parquet(eps_path), pd.read_parquet(chip_path), pd.read_parquet(price_path)
 
     def process_ticker(self, stock_id: str, start_date: str, end_date: str) -> pd.DataFrame:
-        """Computes daily CANSLIM scores for a single ticker."""
+        """Computes daily CANSLIM scores with real technical and fundamental data."""
         try:
-            df_eps_raw, df_chip_raw = self.fetch_raw_data(stock_id, start_date, end_date)
+            df_eps_raw, df_chip_raw, df_price_raw = self.fetch_raw_data(stock_id, start_date, end_date)
             
-            # Apply Lag to EPS
+            # 1. Pre-process Price Data
+            df_price = df_price_raw.copy()
+            df_price['date'] = pd.to_datetime(df_price['date'])
+            df_price = df_price.sort_values('date')
+            
+            # N - New High (within 10% of 250-day high)
+            df_price['high_250d'] = df_price['max'].rolling(window=250, min_periods=1).max()
+            df_price['N'] = df_price['close'] >= (df_price['high_250d'] * 0.9)
+            
+            # S - Volume (Current > 1.5x 50-day avg)
+            df_price['vol_avg_50d'] = df_price['Trading_Volume'].rolling(window=50, min_periods=1).mean()
+            df_price['S'] = df_price['Trading_Volume'] >= (df_price['vol_avg_50d'] * 1.5)
+
+            # 2. Pre-process Financials with Lag
             df_eps_lagged = apply_announcement_lag(df_eps_raw)
-            
-            # Resample both to daily timeline
             df_eps_daily = resample_to_daily(df_eps_lagged, start_date, end_date)
-            
-            # Aggregate Chips (Pivot FinMind structure)
-            df_chip_daily = self._aggregate_chips(df_chip_raw)
-            
-            # Ensure date types match for merge
             df_eps_daily['date'] = pd.to_datetime(df_eps_daily['date'])
+
+            # 3. Pre-process Chips
+            df_chip_daily = self._aggregate_chips(df_chip_raw)
             df_chip_daily['date'] = pd.to_datetime(df_chip_daily['date'])
             
-            # Merge
-            df_combined = pd.merge(df_eps_daily, df_chip_daily, on=['stock_id', 'date'], how='left').fillna(0)
+            # Merge All
+            df_combined = pd.merge(df_price, df_eps_daily, on=['stock_id', 'date'], how='left').fillna(method='ffill').fillna(0)
+            df_combined = pd.merge(df_combined, df_chip_daily, on=['stock_id', 'date'], how='left').fillna(0)
             
-            # Rolling Score Calculation (Optimized for speed)
-            df_combined['C'] = df_combined['eps'].rolling(window=2).apply(
-                lambda x: calculate_c_factor(pd.Series(x))
+            # C - Quarterly Growth (YoY)
+            # We need to shift EPS calculation to use the resampled series
+            df_combined['C'] = df_combined['eps'].rolling(window=250).apply(
+                lambda x: calculate_c_factor(pd.Series(x[::60])) # Sample quarterly
             ).fillna(0).astype(bool)
             
-            # Simplified I factor (3-day institutional buying)
+            # I - Institutional Buying (3-day net)
             df_combined['I'] = (df_combined['foreign_net'] + df_combined['trust_net']).rolling(window=3).sum() > 0
             
-            # Compute Final Score (Assuming other factors True for now as placeholders)
+            # Score Calculation
             df_combined['score'] = df_combined.apply(
-                lambda x: compute_canslim_score({'C': x['C'], 'I': x['I'], 'A': True, 'N': True, 'S': True, 'L': True, 'M': True}),
-                axis=1
+                lambda x: compute_canslim_score({
+                    'C': x['C'], 'I': x['I'], 'N': x['N'], 'S': x['S'],
+                    'A': True, 'L': True, 'M': True # Placeholders for now
+                }), axis=1
             )
             
-            return df_combined[['stock_id', 'date', 'score', 'C', 'I']]
+            return df_combined[['stock_id', 'date', 'score', 'C', 'I', 'N', 'S']]
             
         except Exception as e:
             logger.error(f"Failed to process {stock_id}: {e}")
