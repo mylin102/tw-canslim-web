@@ -10,6 +10,10 @@ from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 
+# TAIEX via yfinance
+TAIEX_SYMBOL = "^TWII"
+RS_LOOKBACK_DAYS = 180  # ~6 months
+
 # --- Configuration ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "docs")
@@ -334,10 +338,44 @@ class CanslimEngine:
             return False
         return current_vol >= avg_vol * S_VOLUME_THRESHOLD
 
+    def get_market_return_6m(self) -> Optional[float]:
+        """Get TAIEX 6-month return using yfinance."""
+        try:
+            twii = yf.Ticker(TAIEX_SYMBOL)
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=RS_LOOKBACK_DAYS + 30)  # Buffer
+            
+            hist = twii.history(
+                start=start_date.strftime('%Y-%m-%d'),
+                end=end_date.strftime('%Y-%m-%d')
+            )
+            
+            if hist is None or len(hist) < 30:
+                logger.warning(f"Insufficient TAIEX data ({len(hist) if hist is not None else 0} rows)")
+                return None
+            
+            # Get prices from ~180 trading days ago and latest
+            start_price = hist['Close'].iloc[0]
+            end_price = hist['Close'].iloc[-1]
+            
+            market_return = (end_price - start_price) / start_price
+            logger.info(f"TAIEX 6mo return: {market_return*100:.2f}% ({start_price:.0f} → {end_price:.0f})")
+            return market_return
+            
+        except Exception as e:
+            logger.error(f"Failed to fetch TAIEX return: {e}")
+            return None
+
     def check_l_relative_strength(self, stock_return: float, market_return: float) -> bool:
         """L - Leader or laggard (outperform market by 20%)."""
-        if not market_return or market_return == 0:
-            return False
+        if market_return is None:
+            return False  # Can't calculate without market data
+        
+        # Handle near-zero market return (flat market)
+        if abs(market_return) < 0.01:
+            # Market is flat: use absolute return threshold
+            return stock_return >= 0.05  # Stock up 5%+ in flat market
+        
         rs_ratio = stock_return / market_return
         return rs_ratio >= L_OUTPERFORM_THRESHOLD
 
@@ -430,6 +468,13 @@ class CanslimEngine:
         logger.info("Starting CANSLIM Analysis with FinMind API + Excel Integration")
         logger.info("="*80)
         
+        # Fetch market return first (used for RS calculation)
+        market_return = self.get_market_return_6m()
+        if market_return is not None:
+            logger.info(f"Market return (6mo): {market_return*100:.2f}%")
+        else:
+            logger.warning("Could not fetch market return, RS calculation will use defaults")
+
         # Priority list + extended scan
         priority = ["1101", "2330", "3565", "6770", "2303", "8069"]
         all_t = sorted(list(self.ticker_info.keys()))
@@ -467,24 +512,39 @@ class CanslimEngine:
             eps_val = financial_data.get("eps", 0) or 0
             c_score = self.check_c_quarterly_growth(
                 eps_val,
-                eps_val * 0.8 if eps_val > 0 else 0  # Assume 20% growth as placeholder
+                eps_val * 0.8 if eps_val > 0 else 0
             )
-            
+
             n_score = self.check_n_new_high(
                 financial_data.get("price", 0),
                 financial_data.get("high_52w", 0)
             )
-            
+
             s_score = self.check_s_volume(
                 financial_data.get("volume", 0),
                 financial_data.get("avg_volume", 0)
             )
-            
+
             i_score = self.check_i_institutional(history)
             
-            # Default True for metrics we can't easily calculate
+            # Calculate RS (Relative Strength) using 52-week range
+            # RS = position in 52-week range (0-1), scaled to vs market
+            price = financial_data.get("price", 0) or 0
+            high_52w = financial_data.get("high_52w", 0) or 0
+            low_52w = financial_data.get("low_52w", 0) or 0
+            
+            rs_ratio = None
+            if high_52w and low_52w and high_52w > low_52w and market_return is not None:
+                # Stock return approximation: position in 52-week range
+                stock_range_position = (price - low_52w) / (high_52w - low_52w)
+                # Annualize: if at 80% of range, roughly +60% from low
+                stock_return_approx = stock_range_position * 0.8 - 0.2  # -20% to +60%
+                rs_ratio = stock_return_approx / market_return if abs(market_return) > 0.01 else 1.0
+                l_score = self.check_l_relative_strength(stock_return_approx, market_return)
+            else:
+                l_score = True  # Default if can't calculate
+
             a_score = True
-            l_score = True
             m_score = True
             
             # Get Excel ratings if available
@@ -519,6 +579,7 @@ class CanslimEngine:
                     "I": i_score,
                     "M": m_score,
                     "score": score,
+                    "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
                     "excel_ratings": excel_ratings,
                     "fund_holdings": fund_data
                 },
@@ -530,10 +591,57 @@ class CanslimEngine:
                 self.output_data["stocks"][t] = stock_data
 
         self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        # Add industry strength ranking to output
-        if self.industry_strength:
-            self.output_data["industry_strength"] = self.industry_strength
+
+        # Calculate industry strength using CANSLIM data
+        if self.industry_data:
+            industry_stats = {}
+
+            for t, stock in self.output_data["stocks"].items():
+                ind = stock.get('industry')
+                if not ind or ind == '未知':
+                    continue
+
+                if ind not in industry_stats:
+                    industry_stats[ind] = {
+                        'industry': ind,
+                        'scores': [],
+                        'inst_nets': [],
+                        'high_score_count': 0,
+                        'stock_count': 0
+                    }
+
+                industry_stats[ind]['scores'].append(stock['canslim']['score'])
+                industry_stats[ind]['stock_count'] += 1
+
+                if stock['canslim']['score'] >= 80:
+                    industry_stats[ind]['high_score_count'] += 1
+
+                # 3-day institutional net buying
+                if stock.get('institutional') and len(stock['institutional']) >= 3:
+                    net_3d = sum([
+                        d.get('foreign_net', 0) + d.get('trust_net', 0) + d.get('dealer_net', 0)
+                        for d in stock['institutional'][:3]
+                    ])
+                    industry_stats[ind]['inst_nets'].append(net_3d)
+
+            # Build final industry strength ranking
+            industry_strength = []
+            for ind, stats in industry_stats.items():
+                avg_score = sum(stats['scores']) / len(stats['scores']) if stats['scores'] else 0
+                total_inst_net = sum(stats['inst_nets']) if stats['inst_nets'] else 0
+
+                industry_strength.append({
+                    'industry': ind,
+                    'avg_score': round(avg_score, 1),
+                    'total_inst_net_3d': int(total_inst_net),
+                    'high_score_count': stats['high_score_count'],
+                    'stock_count': stats['stock_count']
+                })
+
+            # Sort by average score (descending)
+            industry_strength.sort(key=lambda x: x['avg_score'], reverse=True)
+            self.output_data["industry_strength"] = industry_strength[:30]  # Top 30
+            logger.info(f"Calculated industry strength for {len(industry_strength)} industries using CANSLIM data.")
 
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
@@ -542,8 +650,6 @@ class CanslimEngine:
             json.dump(self.output_data, f, ensure_ascii=False, indent=2)
 
         logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
-        if self.industry_strength:
-            logger.info(f"Exported {len(self.industry_strength)} industry strength rankings.")
 
 if __name__ == "__main__":
     CanslimEngine().run()
