@@ -286,6 +286,42 @@ class FastDataGenerator:
                 "institutional": history[:20]
             }
         
+        # Calculate Industry Strength
+        industry_map = {} # industry -> [scores, inst_3d_nets, high_score_count, stock_count]
+        for s in output["stocks"].values():
+            ind = s["industry"] or "未知"
+            if ind not in industry_map:
+                industry_map[ind] = {"scores": [], "inst_3d_net": 0, "high_score_count": 0, "stock_count": 0}
+            
+            # Scores
+            score = s["canslim"]["score"]
+            industry_map[ind]["scores"].append(score)
+            industry_map[ind]["stock_count"] += 1
+            if score >= 80:
+                industry_map[ind]["high_score_count"] += 1
+            
+            # Institutional 3d net
+            if s["institutional"] and len(s["institutional"]) >= 1:
+                n = min(3, len(s["institutional"]))
+                net_3d = sum((d.get("foreign_net", 0) + d.get("trust_net", 0) + d.get("dealer_net", 0)) 
+                            for d in s["institutional"][:n])
+                industry_map[ind]["inst_3d_net"] += net_3d
+
+        industry_strength = []
+        for ind, data in industry_map.items():
+            if ind == "未知": continue
+            avg_score = round(sum(data["scores"]) / len(data["scores"]), 1) if data["scores"] else 0
+            industry_strength.append({
+                "industry": ind,
+                "avg_score": avg_score,
+                "total_inst_net_3d": int(data["inst_3d_net"]),
+                "high_score_count": data["high_score_count"],
+                "stock_count": data["stock_count"]
+            })
+        
+        # Sort by avg_score
+        output["industry_strength"] = sorted(industry_strength, key=lambda x: x["avg_score"], reverse=True)
+        
         # Save
         out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs", "data.json")
         os.makedirs(os.path.dirname(out_path), exist_ok=True)

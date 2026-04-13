@@ -30,19 +30,30 @@ def calculate_rs_score(stock_returns: pd.Series, market_returns: pd.Series) -> f
     if len(stock_returns) < 250: return 0.0
     return stock_returns.iloc[-1] / market_returns.iloc[-1]
 
-def calculate_a_factor(annual_eps: List[float], threshold: float = 0.25) -> bool:
+def calculate_a_factor(eps_years: pd.Series, threshold: float = 0.25) -> bool:
     """
     A - Annual Earnings Increases.
-    Check if 3-year CAGR is >= threshold.
+    Check if the latest annual EPS shows consistent growth.
     """
-    if len(annual_eps) < 2:
-        return False
-    try:
-        years = len(annual_eps) - 1
-        cagr = (annual_eps[-1] / annual_eps[0]) ** (1 / years) - 1
-        return cagr >= threshold
-    except:
-        return False
+    if len(eps_years) < 2: return False
+    latest = eps_years.iloc[-1]
+    prev = eps_years.iloc[-2]
+    if prev <= 0: return latest > 0
+    return (latest - prev) / abs(prev) >= threshold
+
+def calculate_l_factor(rs_rank: float, threshold: float = 80) -> bool:
+    """
+    L - Leader or Laggard.
+    Check if the stock's Relative Strength Rank is >= threshold (default 80).
+    """
+    return rs_rank >= threshold
+
+def calculate_m_factor(market_price: float, market_ma200: float) -> bool:
+    """
+    M - Market Direction.
+    Only trade when the market (TAIEX) is above its 200-day moving average.
+    """
+    return market_price > market_ma200
 
 def calculate_n_factor(current_price: float, high_52w: float, threshold: float = 0.90) -> bool:
     """
