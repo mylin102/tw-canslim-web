@@ -432,24 +432,38 @@ class ExcelDataProcessor:
         Load industry classification data.
         Returns dict with stock symbols as keys and industry info as values.
         """
+        result = {}
+        
         # 首先嘗試從Excel檔案加載
         excel_result = self._load_industry_from_excel()
         if excel_result:
+            result.update(excel_result)
             logger.info(f"Loaded industry data from Excel for {len(excel_result)} stocks")
-            return excel_result
         
-        # 如果Excel檔案不存在，嘗試從本地快取加載
+        # 然後嘗試從本地快取加載，補充Excel中沒有的股票
         cache_result = self._load_industry_from_cache()
         if cache_result:
-            logger.info(f"Loaded industry data from cache for {len(cache_result)} stocks")
-            return cache_result
+            # 只添加Excel中沒有的股票
+            added_count = 0
+            for stock_code, data in cache_result.items():
+                if stock_code not in result:
+                    result[stock_code] = data
+                    added_count += 1
+            
+            if added_count > 0:
+                logger.info(f"Added {added_count} stocks from cache (total: {len(result)})")
         
-        # 如果本地快取也不存在，從FinMind API獲取並保存到快取
-        api_result = self._load_industry_from_finmind()
-        if api_result:
-            self._save_industry_to_cache(api_result)
-            logger.info(f"Loaded industry data from FinMind API for {len(api_result)} stocks")
-            return api_result
+        # 如果仍然沒有數據，從FinMind API獲取
+        if not result:
+            api_result = self._load_industry_from_finmind()
+            if api_result:
+                result.update(api_result)
+                self._save_industry_to_cache(api_result)
+                logger.info(f"Loaded industry data from FinMind API for {len(api_result)} stocks")
+        
+        if result:
+            logger.info(f"Total industry data: {len(result)} stocks")
+            return result
         
         logger.warning("Failed to load industry data from any source")
         return None
