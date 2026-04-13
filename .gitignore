@@ -35,6 +35,13 @@ Thumbs.db
 # Data files (generated)
 docs/data.json
 
+# Raw cache from historical generator
+.raw_cache/
+
+# Large parquet files (regenerate as needed)
+master_canslim_signals.parquet
+master_canslim_signals_fused.parquet
+
 # Logs
 *.log
 
