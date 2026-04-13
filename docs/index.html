@@ -174,6 +174,12 @@
                             <div class="text-xs text-blue-600 font-bold mb-1">總分</div>
                             <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.score }}</div>
                         </div>
+                        <div class="text-center p-3 rounded-lg bg-slate-50">
+                            <div class="text-xs text-slate-400 font-bold mb-1">RS 相對強度</div>
+                            <div :class="['text-xl font-bold', currentStock.canslim.rs_ratio >= 1.2 ? 'pass' : currentStock.canslim.rs_ratio >= 1.0 ? 'text-yellow-600' : 'fail']">
+                                {{ currentStock.canslim.rs_ratio ? currentStock.canslim.rs_ratio.toFixed(2) : 'N/A' }}
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Institutional Details -->
@@ -342,31 +348,44 @@
                 <div v-if="stockData.industry_strength && stockData.industry_strength.length > 0" class="mt-8 bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
                     <div class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-6">
                         <h2 class="text-2xl font-bold"><i class="fas fa-layer-group mr-2"></i>強勢產業排名</h2>
-                        <p class="text-teal-100 text-sm mt-1">產業強度前 15 名，挑選強勢族群參考</p>
+                        <p class="text-teal-100 text-sm mt-1">依 CANSLIM 平均分數排序，找出資金集中的強勢族群</p>
                     </div>
-                    <div class="p-6">
-                        <table class="w-full text-left">
+                    <div class="p-6 overflow-x-auto">
+                        <table class="w-full text-left min-w-[600px]">
                             <thead>
                                 <tr class="border-b border-slate-200">
                                     <th class="pb-3 text-slate-500 font-medium">排名</th>
                                     <th class="pb-3 text-slate-500 font-medium">產業名稱</th>
-                                    <th class="pb-3 text-slate-500 font-medium text-center">強度分數</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">CANSLIM<br>平均分</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">3日法人<br>淨買超(張)</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">高分股<br>檔數</th>
                                     <th class="pb-3 text-slate-500 font-medium text-center">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(ind, idx) in stockData.industry_strength.slice(0, 15)" :key="ind.industry"
+                                <tr v-for="(ind, idx) in stockData.industry_strength" :key="ind.industry"
                                     class="border-b border-slate-100 hover:bg-teal-50 cursor-pointer transition">
                                     <td class="py-3">
                                         <span :class="['inline-flex items-center justify-center w-8 h-8 rounded-full font-bold',
                                             idx < 3 ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-600']">
-                                            {{ ind.rank }}
+                                            {{ idx + 1 }}
                                         </span>
                                     </td>
                                     <td class="py-3 font-medium">{{ ind.industry }}</td>
                                     <td class="py-3 text-center">
-                                        <span class="px-2 py-1 rounded font-bold text-sm bg-teal-100 text-teal-800">
-                                            {{ ind.strength || 'N/A' }}
+                                        <span :class="['px-2 py-1 rounded font-bold text-sm',
+                                            ind.avg_score >= 70 ? 'bg-green-100 text-green-800' :
+                                            ind.avg_score >= 65 ? 'bg-blue-100 text-blue-800' :
+                                            'bg-slate-100 text-slate-600']">
+                                            {{ ind.avg_score }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 text-center" :class="ind.total_inst_net_3d >= 0 ? 'text-green-600' : 'text-red-600'">
+                                        {{ ind.total_inst_net_3d >= 0 ? '+' : '' }}{{ ind.total_inst_net_3d.toLocaleString() }}
+                                    </td>
+                                    <td class="py-3 text-center">
+                                        <span class="px-2 py-1 rounded font-bold text-sm bg-purple-100 text-purple-800">
+                                            {{ ind.high_score_count }} / {{ ind.stock_count }}
                                         </span>
                                     </td>
                                     <td class="py-3 text-center">
@@ -378,6 +397,12 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="mt-4 p-3 bg-slate-50 rounded text-xs text-slate-500">
+                            <strong>計算方式：</strong>
+                            1. CANSLIM 平均分：該產業所有股票的平均評分（越高代表整體質量越好）
+                            2. 3 日法人淨買超：該產業所有股票的三大法人近 3 日買超總和（資金流向指標）
+                            3. 高分股檔數：該產業中 CANSLIM 分數 ≥ 80 的股票數量（強勢股密度）
+                        </div>
                     </div>
                 </div>
             </div>
