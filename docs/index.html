@@ -59,6 +59,41 @@
                 </div>
             </div>
 
+            <!-- CANSLIM 定義解釋 (Homepage Info Section) -->
+            <div v-if="!isLoading && !errorState && stockData" class="mb-8 animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div @click="showCanslimDefs = !showCanslimDefs"
+                         class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition">
+                        <h2 class="text-xl font-bold text-slate-800">
+                            <i class="fas fa-book-open mr-2 text-blue-600"></i>CANSLIM 投資法則 — William J. O'Neil
+                        </h2>
+                        <i :class="['fas text-slate-400 transition-transform', showCanslimDefs ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
+                    </div>
+                    <div v-if="showCanslimDefs" class="px-6 pb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div v-for="(item, key) in canslimDefinitions" :key="key"
+                                 class="p-4 rounded-lg border transition hover:shadow-md"
+                                 :class="item.bgColor">
+                                <div class="flex items-start gap-3">
+                                    <span :class="['text-2xl font-bold w-10 h-10 flex items-center justify-center rounded-full shrink-0',
+                                        item.textColor, item.badgeColor]">
+                                        {{ key }}
+                                    </span>
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 mb-1">{{ item.title }}</h3>
+                                        <p class="text-sm text-slate-600">{{ item.desc }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 bg-slate-50 rounded-lg text-sm text-slate-600">
+                            <p class="mb-2"><strong>出處：</strong>William J. O'Neil 所著《How to Make Money in Stocks》（譯：如何在股票市場賺錢）</p>
+                            <p>O'Neil 研究歷史上最強勢股後發現，所有大漲股在起漲前都有這 7 項共同特徵。CANSLIM 是將這些特徵量化為可操作的選股系統，幫投資人找出「漲幅最大的股票」。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Top 10 CANSLIM Ranking (Homepage Hero Section) -->
             <div v-if="!isLoading && !errorState && stockData" class="mb-8 animate-fade-in">
                 <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl shadow-lg p-6 text-white">
