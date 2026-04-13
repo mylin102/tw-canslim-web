@@ -498,7 +498,8 @@ class CanslimEngine:
                     "date": datetime.now().strftime("%Y%m%d"),
                     "foreign_net": 0,
                     "trust_net": 0,
-                    "dealer_net": 0
+                    "dealer_net": 0,
+                    "no_data": True
                 }]
             
             # Fetch financial data

@@ -113,7 +113,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -229,7 +230,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -669,7 +671,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上市食品"
@@ -1397,7 +1400,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -1467,7 +1471,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -1490,7 +1495,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -1513,7 +1519,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -1536,7 +1543,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -1558,7 +1566,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -2467,7 +2476,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子零組件"
@@ -6506,7 +6516,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -6576,7 +6587,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -6599,7 +6611,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -6622,7 +6635,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -6739,7 +6753,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -6762,7 +6777,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -6902,7 +6918,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -6925,7 +6942,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -6948,7 +6966,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -7065,7 +7084,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -8967,7 +8987,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -9225,7 +9246,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9248,7 +9270,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9318,7 +9341,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9341,7 +9365,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -9411,7 +9436,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9528,7 +9554,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -9551,7 +9578,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9856,7 +9884,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -9879,7 +9908,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -11359,7 +11389,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -11523,7 +11554,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -11593,7 +11625,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -11616,7 +11649,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -11639,7 +11673,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -11662,7 +11697,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -11685,7 +11721,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -11755,7 +11792,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -11824,7 +11862,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -12645,7 +12684,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -12756,7 +12796,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -12873,7 +12914,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -13733,7 +13775,8 @@
           "foreign_net": 0,
           "trust_net": 0,
           "dealer_net": 0,
-          "date": "20260409"
+          "date": "20260409",
+          "no_data": true
         }
       ],
       "industry": "上市電子"
@@ -20840,7 +20883,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -21897,7 +21941,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -21920,7 +21965,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃航運"
@@ -21990,7 +22036,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃航運"
@@ -22434,7 +22481,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22457,7 +22505,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22574,7 +22623,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22597,7 +22647,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22667,7 +22718,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22737,7 +22789,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22760,7 +22813,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22783,7 +22837,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22853,7 +22908,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22876,7 +22932,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22899,7 +22956,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -22969,7 +23027,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -22991,7 +23050,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -23061,7 +23121,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -23084,7 +23145,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -23107,7 +23169,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -25002,7 +25065,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -25072,7 +25136,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -25095,7 +25160,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -25165,7 +25231,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -25235,7 +25302,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -25304,7 +25372,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -25327,7 +25396,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -25349,7 +25419,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -27885,7 +27956,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -27908,7 +27980,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -27931,7 +28004,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -27954,7 +28028,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -27977,7 +28052,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28000,7 +28076,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28023,7 +28100,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28046,7 +28124,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -28069,7 +28148,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -28092,7 +28172,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -28115,7 +28196,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28232,7 +28314,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28302,7 +28385,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28325,7 +28409,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28348,7 +28433,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28371,7 +28457,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28394,7 +28481,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -28417,7 +28505,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28440,7 +28529,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28510,7 +28600,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28626,7 +28717,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28649,7 +28741,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28765,7 +28858,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28788,7 +28882,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -28810,7 +28905,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -28833,7 +28929,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -28996,7 +29093,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29019,7 +29117,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -29042,7 +29141,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -29065,7 +29165,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -29088,7 +29189,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -29158,7 +29260,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29181,7 +29284,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -29204,7 +29308,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29227,7 +29332,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29297,7 +29403,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29320,7 +29427,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29343,7 +29451,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29366,7 +29475,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -29389,7 +29499,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29412,7 +29523,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29435,7 +29547,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29458,7 +29571,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -29481,7 +29595,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29504,7 +29619,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29574,7 +29690,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29644,7 +29761,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29667,7 +29785,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29690,7 +29809,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29713,7 +29833,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -29783,7 +29904,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29806,7 +29928,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29829,7 +29952,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29852,7 +29976,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29922,7 +30047,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29945,7 +30071,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29968,7 +30095,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -29991,7 +30119,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -30014,7 +30143,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30037,7 +30167,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30060,7 +30191,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30083,7 +30215,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30106,7 +30239,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30129,7 +30263,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -30152,7 +30287,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30222,7 +30358,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30245,7 +30382,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30315,7 +30453,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30385,7 +30524,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30502,7 +30642,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -30525,7 +30666,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30595,7 +30737,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30618,7 +30761,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30641,7 +30785,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30664,7 +30809,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30687,7 +30833,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30757,7 +30904,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30827,7 +30975,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -30849,7 +30998,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30919,7 +31069,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30942,7 +31093,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30965,7 +31117,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -30988,7 +31141,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31011,7 +31165,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31034,7 +31189,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31057,7 +31213,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31127,7 +31284,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -31197,7 +31355,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31220,7 +31379,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31243,7 +31403,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31454,7 +31615,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -31477,7 +31639,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -31546,7 +31709,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31616,7 +31780,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31639,7 +31804,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31709,7 +31875,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31825,7 +31992,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31848,7 +32016,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31871,7 +32040,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31894,7 +32064,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -31916,7 +32087,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -31986,7 +32158,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32009,7 +32182,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32032,7 +32206,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -32055,7 +32230,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32078,7 +32254,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32101,7 +32278,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32171,7 +32349,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32194,7 +32373,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32311,7 +32491,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32334,7 +32515,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32357,7 +32539,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32427,7 +32610,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32497,7 +32681,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32520,7 +32705,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32543,7 +32729,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -32566,7 +32753,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32589,7 +32777,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32612,7 +32801,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32682,7 +32872,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32752,7 +32943,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32916,7 +33108,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32939,7 +33132,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -32962,7 +33156,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33079,7 +33274,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -33102,7 +33298,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33172,7 +33369,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33195,7 +33393,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33218,7 +33417,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33241,7 +33441,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33311,7 +33512,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33381,7 +33583,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33404,7 +33607,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33427,7 +33631,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33497,7 +33702,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33520,7 +33726,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33543,7 +33750,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33613,7 +33821,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33800,7 +34009,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33870,7 +34080,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -33987,7 +34198,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34010,7 +34222,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34033,7 +34246,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34150,7 +34364,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34173,7 +34388,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34196,7 +34412,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34219,7 +34436,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34242,7 +34460,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -34265,7 +34484,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34288,7 +34508,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34311,7 +34532,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34381,7 +34603,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34545,7 +34768,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34568,7 +34792,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34638,7 +34863,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34708,7 +34934,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34778,7 +35005,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34848,7 +35076,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34871,7 +35100,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -34894,7 +35124,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -34964,7 +35195,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -34987,7 +35219,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35010,7 +35243,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35033,7 +35267,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35385,7 +35620,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35455,7 +35691,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35478,7 +35715,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35595,7 +35833,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -35803,7 +36042,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -35873,7 +36113,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -35943,7 +36184,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36013,7 +36255,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36036,7 +36279,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36059,7 +36303,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -36082,7 +36327,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36105,7 +36351,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36175,7 +36422,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36198,7 +36446,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36221,7 +36470,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36244,7 +36494,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36267,7 +36518,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36290,7 +36542,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36313,7 +36566,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36336,7 +36590,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36359,7 +36614,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36476,7 +36732,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36499,7 +36756,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36569,7 +36827,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36639,7 +36898,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36662,7 +36922,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36732,7 +36993,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36755,7 +37017,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36778,7 +37041,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36801,7 +37065,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36824,7 +37089,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36894,7 +37160,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -36916,7 +37183,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36939,7 +37207,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -36996,7 +37265,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37019,7 +37289,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37042,7 +37313,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37065,7 +37337,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37088,7 +37361,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37111,7 +37385,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37181,7 +37456,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37204,7 +37480,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -37227,7 +37504,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37250,7 +37528,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37273,7 +37552,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37296,7 +37576,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37319,7 +37600,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -37389,7 +37671,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37412,7 +37695,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37435,7 +37719,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37458,7 +37743,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37528,7 +37814,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -37551,7 +37838,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37574,7 +37862,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37597,7 +37886,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37667,7 +37957,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -37690,7 +37981,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37713,7 +38005,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -37923,7 +38216,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -37945,7 +38239,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -37968,7 +38263,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -37991,7 +38287,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38014,7 +38311,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38037,7 +38335,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38060,7 +38359,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38130,7 +38430,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38153,7 +38454,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38176,7 +38478,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -38199,7 +38502,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38269,7 +38573,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38292,7 +38597,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38315,7 +38621,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38385,7 +38692,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38455,7 +38763,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -38478,7 +38787,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -38501,7 +38811,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38571,7 +38882,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38594,7 +38906,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38711,7 +39024,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -38781,7 +39095,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -38851,7 +39166,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -38920,7 +39236,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -38990,7 +39307,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -39107,7 +39425,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -39317,7 +39636,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -39339,7 +39659,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -39443,7 +39764,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -39603,7 +39925,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -39626,7 +39949,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39649,7 +39973,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39672,7 +39997,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39695,7 +40021,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39718,7 +40045,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39741,7 +40069,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39811,7 +40140,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -39881,7 +40211,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -39904,7 +40235,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -39927,7 +40259,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -39950,7 +40283,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -40114,7 +40448,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -40137,7 +40472,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -40160,7 +40496,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -40183,7 +40520,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -40253,7 +40591,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -40276,7 +40615,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -40298,7 +40638,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -40368,7 +40709,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -40532,7 +40874,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -40555,7 +40898,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -40670,7 +41014,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -40692,7 +41037,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -40715,7 +41061,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -40785,7 +41132,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -40855,7 +41203,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -40925,7 +41274,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -40948,7 +41298,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -40971,7 +41322,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -40994,7 +41346,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -41205,7 +41558,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -41227,7 +41581,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -41344,7 +41699,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -41367,7 +41723,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -41531,7 +41888,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -41601,7 +41959,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上市電子"
@@ -41624,7 +41983,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -41693,7 +42053,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -41716,7 +42077,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -41785,7 +42147,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -41996,7 +42359,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42113,7 +42477,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42136,7 +42501,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42159,7 +42525,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42182,7 +42549,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42299,7 +42667,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42322,7 +42691,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42392,7 +42762,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42462,7 +42833,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42579,7 +42951,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42602,7 +42975,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42625,7 +42999,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42648,7 +43023,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42671,7 +43047,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42694,7 +43071,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -42717,7 +43095,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42740,7 +43119,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42810,7 +43190,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42833,7 +43214,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -42856,7 +43238,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42879,7 +43262,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42902,7 +43286,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42925,7 +43310,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -42948,7 +43334,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -43018,7 +43405,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43088,7 +43476,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43158,7 +43547,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43181,7 +43571,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -43203,7 +43594,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43273,7 +43665,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43389,7 +43782,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43412,7 +43806,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43482,7 +43877,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -43552,7 +43948,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43575,7 +43972,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43598,7 +43996,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -43621,7 +44020,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -43785,7 +44185,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -43855,7 +44256,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43878,7 +44280,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43947,7 +44350,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -43970,7 +44374,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -43993,7 +44398,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44063,7 +44469,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44086,7 +44493,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44109,7 +44517,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -44132,7 +44541,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44155,7 +44565,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44178,7 +44589,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44201,7 +44613,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -44224,7 +44637,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44247,7 +44661,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44270,7 +44685,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44293,7 +44709,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -44316,7 +44733,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44339,7 +44757,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44362,7 +44781,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44385,7 +44805,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44408,7 +44829,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44431,7 +44853,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44454,7 +44877,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -44477,7 +44901,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44500,7 +44925,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44523,7 +44949,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44593,7 +45020,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44616,7 +45044,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -44639,7 +45068,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44662,7 +45092,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44685,7 +45116,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44708,7 +45140,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44731,7 +45164,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44801,7 +45235,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44824,7 +45259,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44847,7 +45283,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44870,7 +45307,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -44893,7 +45331,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44916,7 +45355,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -44939,7 +45379,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44962,7 +45403,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -44985,7 +45427,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45008,7 +45451,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45031,7 +45475,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45148,7 +45593,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45171,7 +45617,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45194,7 +45641,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -45217,7 +45665,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -45240,7 +45689,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45310,7 +45760,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45333,7 +45784,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45356,7 +45808,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45379,7 +45832,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45402,7 +45856,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45425,7 +45880,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -45448,7 +45904,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45471,7 +45928,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45494,7 +45952,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45517,7 +45976,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45587,7 +46047,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45657,7 +46118,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45774,7 +46236,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45844,7 +46307,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -45867,7 +46331,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -46031,7 +46496,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -46101,7 +46567,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -46171,7 +46638,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -46193,7 +46661,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -46215,7 +46684,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃航運"
@@ -46238,7 +46708,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃航運"
@@ -46261,7 +46732,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -46378,7 +46850,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃航運"
@@ -46401,7 +46874,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -46424,7 +46898,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -46447,7 +46922,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃觀光"
@@ -46517,7 +46993,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46634,7 +47111,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46704,7 +47182,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46727,7 +47206,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46750,7 +47230,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46773,7 +47254,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46919,7 +47401,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46942,7 +47425,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46965,7 +47449,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -46988,7 +47473,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -47011,7 +47497,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -47081,7 +47568,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -47104,7 +47592,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -47126,7 +47615,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -47149,7 +47639,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47172,7 +47663,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47242,7 +47734,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47265,7 +47758,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -47335,7 +47829,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47358,7 +47853,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47522,7 +48018,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47592,7 +48089,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47615,7 +48113,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -47638,7 +48137,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47661,7 +48161,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47684,7 +48185,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47707,7 +48209,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47730,7 +48233,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47800,7 +48304,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47823,7 +48328,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -47893,7 +48399,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -47963,7 +48470,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48033,7 +48541,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48150,7 +48659,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48173,7 +48683,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -48196,7 +48707,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48219,7 +48731,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48242,7 +48755,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48265,7 +48779,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48288,7 +48803,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48405,7 +48921,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48475,7 +48992,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48498,7 +49016,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48521,7 +49040,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48544,7 +49064,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48567,7 +49088,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48731,7 +49253,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48801,7 +49324,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -48824,7 +49348,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48847,7 +49372,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -48870,7 +49396,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48893,7 +49420,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -48916,7 +49444,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49033,7 +49562,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -49056,7 +49586,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -49079,7 +49610,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49196,7 +49728,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49219,7 +49752,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -49242,7 +49776,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49265,7 +49800,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49335,7 +49871,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49452,7 +49989,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49475,7 +50013,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -49592,7 +50131,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49615,7 +50155,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -49732,7 +50273,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49755,7 +50297,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49872,7 +50415,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49895,7 +50439,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49965,7 +50510,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -49988,7 +50534,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -50199,7 +50746,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50222,7 +50770,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50245,7 +50794,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -50268,7 +50818,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50291,7 +50842,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50314,7 +50866,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50337,7 +50890,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50407,7 +50961,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上市電子"
@@ -50477,7 +51032,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50500,7 +51056,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50523,7 +51080,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50593,7 +51151,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50616,7 +51175,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50639,7 +51199,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50709,7 +51270,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -50732,7 +51294,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50802,7 +51365,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃其他"
@@ -50825,7 +51389,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50848,7 +51413,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -50918,7 +51484,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50941,7 +51508,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50964,7 +51532,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -50987,7 +51556,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃鋼鐵"
@@ -51057,7 +51627,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51080,7 +51651,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51103,7 +51675,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51126,7 +51699,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃建材營造"
@@ -51149,7 +51723,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51172,7 +51747,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51242,7 +51818,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51358,7 +51935,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51381,7 +51959,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51404,7 +51983,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51521,7 +52101,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51685,7 +52266,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51755,7 +52337,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51778,7 +52361,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51801,7 +52385,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -51824,7 +52409,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -51941,7 +52527,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52152,7 +52739,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52175,7 +52763,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52198,7 +52787,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52221,7 +52811,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -52243,7 +52834,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -52360,7 +52952,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52383,7 +52976,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52453,7 +53047,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52758,7 +53353,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -52781,7 +53377,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52851,7 +53448,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52874,7 +53472,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -52897,7 +53496,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -52967,7 +53567,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -53036,7 +53637,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -53059,7 +53661,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53082,7 +53685,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53105,7 +53709,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53175,7 +53780,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53198,7 +53804,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53221,7 +53828,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53244,7 +53852,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -53266,7 +53875,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53383,7 +53993,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃紡織"
@@ -53406,7 +54017,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -53429,7 +54041,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃化工"
@@ -53452,7 +54065,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53475,7 +54089,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53545,7 +54160,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53568,7 +54184,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -53590,7 +54207,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53706,7 +54324,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53729,7 +54348,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53799,7 +54419,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -53915,7 +54536,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -53938,7 +54560,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54008,7 +54631,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -54031,7 +54655,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -54053,7 +54678,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -54076,7 +54702,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54192,7 +54819,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54262,7 +54890,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54285,7 +54914,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54308,7 +54938,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54331,7 +54962,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -54354,7 +54986,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54424,7 +55057,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -54447,7 +55081,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃生技醫療"
@@ -54470,7 +55105,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54493,7 +55129,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "未知"
@@ -54657,7 +55294,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -54725,7 +55363,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54795,7 +55434,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54912,7 +55552,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電子"
@@ -54935,7 +55576,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃文化創意"
@@ -54958,7 +55600,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     },
@@ -55027,7 +55670,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ],
       "industry": "上櫃電機機械"
@@ -55059,7 +55703,8 @@
           "date": "20260413",
           "foreign_net": 0,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 0,
+          "no_data": true
         }
       ]
     }
