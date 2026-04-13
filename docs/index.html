@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>台股 CANSLIM 戰情室</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -98,19 +101,20 @@
             <div v-if="!isLoading && !errorState" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
                 <!-- Tabs -->
                 <div class="flex space-x-2 mb-4">
-                    <button @click="activeTab = 'search'" 
+                    <button @click="activeTab = 'search'; console.log('tab=search')"
                             :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'search' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
                         <i class="fas fa-search mr-2"></i>個股查詢
                     </button>
-                    <button @click="activeTab = 'ranking'" 
+                    <button @click="activeTab = 'ranking'; console.log('tab=ranking, current:', activeTab)"
                             :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'ranking' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
                         <i class="fas fa-trophy mr-2"></i>排名篩選
                     </button>
-                    <button @click="activeTab = 'screener'" 
+                    <button @click="activeTab = 'screener'; console.log('tab=screener, current:', activeTab)"
                             :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'screener' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
                         <i class="fas fa-filter mr-2"></i>條件選股
                     </button>
                 </div>
+                <p class="text-xs text-slate-400 mb-2">目前 activeTab = {{ activeTab }}</p>
 
                 <!-- Search Tab -->
                 <div v-if="activeTab === 'search'" class="relative">
@@ -413,17 +417,17 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts v202604130900 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         [v-cloak] { display: none !important; }
-        
+
         .tab-active {
             background: #3b82f6;
             color: white;
         }
     </style>
-    <script src="app.js"></script>
+    <script src="app.js?v=202604130900"></script>
 </body>
 </html>

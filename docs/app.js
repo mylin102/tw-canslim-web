@@ -109,19 +109,20 @@ const app = createApp({
                 
                 console.log("🔄 Fetching data...");
                 
-                // Load uncompressed JSON directly
-                const response = await fetch('data.json?t=' + Date.now());
+                // Load uncompressed JSON directly with cache bust
+                const response = await fetch('data.json?v=99999&t=' + Date.now());
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: 找不到資料檔`);
                 }
                 loadingProgress.value = 80;
-                
+
                 const data = await response.json();
-                
+
                 loadingProgress.value = 100;
                 stockData.value = data;
                 lastUpdated.value = data.last_updated;
                 console.log("✅ 資料載入成功:", Object.keys(data.stocks).length, "檔股票");
+                console.log("📊 activeTab is now:", activeTab.value);
             } catch (error) {
                 console.error('❌ 資料載入失敗:', error);
                 errorState.value = `資料載入失敗: ${error.message}`;
