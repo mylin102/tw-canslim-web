@@ -144,8 +144,9 @@ class TestFinMindProcessor:
                 mock_loader.side_effect = Exception("API Error")
                 
                 processor = FinMindProcessor()
+                # Should handle dl being None or failed
                 
-                # Should not raise exception
+                # Should not raise exception even if dl is None
                 result = processor.fetch_institutional_investors(
                     stock_id="2330",
                     start_date="2026-04-07",
@@ -153,7 +154,7 @@ class TestFinMindProcessor:
                 )
                 
                 # Should return empty or None gracefully
-                assert result is None or len(result) == 0
+                assert result is None
         except ImportError:
             pytest.skip("FinMindProcessor not implemented yet")
     
