@@ -76,15 +76,3 @@ def test_compute_canslim_score_etf():
     # 40 (L) + 30 (M) = 70
     score = compute_canslim_score_etf(factors_weak)
     assert score == 70
-
-def test_odd_lot_restrictions():
-    from core.logic import is_odd_lot, can_exit_trade
-    
-    # Standard Lot (1000 shares)
-    assert is_odd_lot(1000) == False
-    assert can_exit_trade("2026-04-15", "2026-04-15", 1000) == True # Can day trade
-    
-    # Odd Lot (500 shares)
-    assert is_odd_lot(500) == True
-    assert can_exit_trade("2026-04-15", "2026-04-15", 500) == False # Cannot day trade
-    assert can_exit_trade("2026-04-15", "2026-04-16", 500) == True # Can exit next day

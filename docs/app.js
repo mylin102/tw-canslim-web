@@ -53,8 +53,8 @@ const app = createApp({
             };
             
             if (currentStock.value && currentStock.value.is_etf) {
-                base['C'].label = 'C - (ETF不適用)';
-                base['A'].label = 'A - (ETF不適用)';
+                base['C'].label = 'C - 成份股動能';
+                base['A'].label = 'A - 指數獲利力';
             }
             return base;
         });
@@ -78,14 +78,14 @@ const app = createApp({
         const canslimDefinitions = {
             'C': {
                 title: 'Current Quarterly Earnings — 當季每股盈餘',
-                desc: '當季 EPS 較去年同期成長 ≥ 25%。盈利加速是股價大漲的核心驅動力。',
+                desc: '個股：EPS 成長 ≥ 25%。 ETF：追蹤成份股之獲利動能與產業強度。',
                 bgColor: 'bg-blue-50 border-blue-200',
                 textColor: 'text-blue-700',
                 badgeColor: 'bg-blue-100'
             },
             'A': {
                 title: 'Annual Earnings Growth — 年度盈利成長',
-                desc: '過去 3-5 年 EPS 年複合成長率 ≥ 25%。持續成長的公司才有長期漲幅。',
+                desc: '個股：年度 EPS 穩定增長且 ROE ≥ 17%。 ETF：追蹤指數之獲利一致性與長期趨勢。',
                 bgColor: 'bg-green-50 border-green-200',
                 textColor: 'text-green-700',
                 badgeColor: 'bg-green-100'
@@ -106,7 +106,7 @@ const app = createApp({
             },
             'L': {
                 title: 'Leader or Laggard — 強勢股 vs 弱勢股',
-                desc: 'Mansfield RS 指標 > 0，代表股價表現優於大盤平均水平。只買龍頭股，不買落後股。',
+                desc: 'Mansfield RS > 0 代表表現優於大盤平均水平。正值越高，代表其相對強度越強，顯示個股正處於「強勢區」。',
                 bgColor: 'bg-red-50 border-red-200',
                 textColor: 'text-red-700',
                 badgeColor: 'bg-red-100'
