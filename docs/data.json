@@ -1,5 +1,805 @@
 {
-  "last_updated": "2026-04-15 16:10:05",
-  "stocks": {},
-  "industry_strength": []
+  "last_updated": "2026-04-15 16:11:15",
+  "stocks": {
+    "2330": {
+      "symbol": "2330",
+      "name": "台積電",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": true,
+        "M": true,
+        "score": 60,
+        "mansfield_rs": 1.244,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.05,
+          "current": 1.244
+        },
+        "rs_ratio": 1.32,
+        "grid_strategy": {
+          "volatility_daily": 2.12,
+          "volatility_annual": 33.62,
+          "spacing_pct": 3.18,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 2212.17,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 2146.09,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 2080.0,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 2013.91,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 1947.83,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 18954,
+          "trust_net": 615,
+          "dealer_net": 653
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -1276,
+          "trust_net": -4824,
+          "dealer_net": 53
+        },
+        {
+          "date": "20260410",
+          "foreign_net": 8159,
+          "trust_net": -176,
+          "dealer_net": 374
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 721,
+          "trust_net": -104,
+          "dealer_net": -498
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 18393,
+          "trust_net": 451,
+          "dealer_net": 1711
+        },
+        {
+          "date": "20260407",
+          "foreign_net": 5880,
+          "trust_net": 420,
+          "dealer_net": 91
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -9386,
+          "trust_net": -193,
+          "dealer_net": 136
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 6181,
+          "trust_net": 633,
+          "dealer_net": 2462
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -20438,
+          "trust_net": 1420,
+          "dealer_net": 2731
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -15960,
+          "trust_net": 557,
+          "dealer_net": -439
+        }
+      ],
+      "financials": {
+        "eps": 66.17,
+        "pe_ratio": 31.434185,
+        "price": 2080.0,
+        "high_52w": 2100.0,
+        "low_52w": 816.0,
+        "volume": 43470265,
+        "avg_volume": 36810122,
+        "market_cap": 53939647021056
+      }
+    },
+    "2317": {
+      "symbol": "2317",
+      "name": "鴻海",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.421,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.169,
+          "current": -2.421
+        },
+        "rs_ratio": -0.07,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 17772,
+          "trust_net": -76,
+          "dealer_net": 1436
+        },
+        {
+          "date": "20260413",
+          "foreign_net": 7366,
+          "trust_net": -4413,
+          "dealer_net": 385
+        },
+        {
+          "date": "20260410",
+          "foreign_net": -4482,
+          "trust_net": -416,
+          "dealer_net": 594
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -5433,
+          "trust_net": -526,
+          "dealer_net": -246
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 11610,
+          "trust_net": -85,
+          "dealer_net": 4648
+        },
+        {
+          "date": "20260407",
+          "foreign_net": -10782,
+          "trust_net": -142,
+          "dealer_net": 613
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -5414,
+          "trust_net": -434,
+          "dealer_net": 327
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 10467,
+          "trust_net": 59,
+          "dealer_net": 2463
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -21640,
+          "trust_net": -225,
+          "dealer_net": 2682
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -13625,
+          "trust_net": 237,
+          "dealer_net": -388
+        }
+      ],
+      "financials": {
+        "eps": 13.4,
+        "pe_ratio": 15.485075,
+        "price": 207.5,
+        "high_52w": 265.0,
+        "low_52w": 131.5,
+        "volume": 70509744,
+        "avg_volume": 59916074,
+        "market_cap": 2897268178944
+      }
+    },
+    "2454": {
+      "symbol": "2454",
+      "name": "聯發科",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -0.899,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.674,
+          "current": -0.899
+        },
+        "rs_ratio": 1.06,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 121,
+          "trust_net": 143,
+          "dealer_net": 141
+        },
+        {
+          "date": "20260413",
+          "foreign_net": 439,
+          "trust_net": -526,
+          "dealer_net": 10
+        },
+        {
+          "date": "20260410",
+          "foreign_net": -1442,
+          "trust_net": -277,
+          "dealer_net": 1
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -728,
+          "trust_net": -178,
+          "dealer_net": -80
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -81,
+          "trust_net": -56,
+          "dealer_net": 198
+        },
+        {
+          "date": "20260407",
+          "foreign_net": -830,
+          "trust_net": -687,
+          "dealer_net": 125
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -825,
+          "trust_net": -28,
+          "dealer_net": 11
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -3538,
+          "trust_net": -63,
+          "dealer_net": 135
+        },
+        {
+          "date": "20260331",
+          "foreign_net": 313,
+          "trust_net": -856,
+          "dealer_net": 365
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -1260,
+          "trust_net": 96,
+          "dealer_net": -3
+        }
+      ],
+      "financials": {
+        "eps": 66.05,
+        "pe_ratio": 27.10068,
+        "price": 1790.0,
+        "high_52w": 1975.0,
+        "low_52w": 1130.0,
+        "volume": 22563029,
+        "avg_volume": 9180553,
+        "market_cap": 2857037201408
+      }
+    },
+    "2603": {
+      "symbol": "2603",
+      "name": "長榮",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.642,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.307,
+          "current": -2.642
+        },
+        "rs_ratio": 0.37,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 3164,
+          "trust_net": -580,
+          "dealer_net": -60
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -2823,
+          "trust_net": -331,
+          "dealer_net": -34
+        },
+        {
+          "date": "20260410",
+          "foreign_net": 574,
+          "trust_net": -172,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 1823,
+          "trust_net": -575,
+          "dealer_net": 96
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -5292,
+          "trust_net": -259,
+          "dealer_net": 196
+        },
+        {
+          "date": "20260407",
+          "foreign_net": 401,
+          "trust_net": -58,
+          "dealer_net": 236
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -628,
+          "trust_net": -14,
+          "dealer_net": 347
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 1668,
+          "trust_net": 1000,
+          "dealer_net": 263
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -3693,
+          "trust_net": 659,
+          "dealer_net": 782
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -854,
+          "trust_net": 70,
+          "dealer_net": 878
+        }
+      ],
+      "financials": {
+        "eps": 31.64,
+        "pe_ratio": 6.4159293,
+        "price": 203.0,
+        "high_52w": 265.0,
+        "low_52w": 175.0,
+        "volume": 10132153,
+        "avg_volume": 15376046,
+        "market_cap": 439503716352
+      }
+    },
+    "2881": {
+      "symbol": "2881",
+      "name": "富邦金",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.798,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.492,
+          "current": -2.798
+        },
+        "rs_ratio": -0.01,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 3646,
+          "trust_net": -2810,
+          "dealer_net": 165
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -5175,
+          "trust_net": -3112,
+          "dealer_net": -191
+        },
+        {
+          "date": "20260410",
+          "foreign_net": -10072,
+          "trust_net": 95,
+          "dealer_net": 204
+        },
+        {
+          "date": "20260409",
+          "foreign_net": -7630,
+          "trust_net": 1352,
+          "dealer_net": -113
+        },
+        {
+          "date": "20260408",
+          "foreign_net": -1313,
+          "trust_net": 1384,
+          "dealer_net": 245
+        },
+        {
+          "date": "20260407",
+          "foreign_net": -6366,
+          "trust_net": 2299,
+          "dealer_net": -150
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -946,
+          "trust_net": 1689,
+          "dealer_net": -164
+        },
+        {
+          "date": "20260401",
+          "foreign_net": -1006,
+          "trust_net": 1948,
+          "dealer_net": 757
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2765,
+          "trust_net": 1041,
+          "dealer_net": 1687
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -4675,
+          "trust_net": 2381,
+          "dealer_net": -213
+        }
+      ],
+      "financials": {
+        "eps": 8.37,
+        "pe_ratio": 10.454002,
+        "price": 87.5,
+        "high_52w": 98.8,
+        "low_52w": 74.82927,
+        "volume": 21321124,
+        "avg_volume": 19544942,
+        "market_cap": 1225644441600
+      }
+    },
+    "2308": {
+      "symbol": "2308",
+      "name": "台達電",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 50,
+        "mansfield_rs": 6.283,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.104,
+          "current": 6.283
+        },
+        "rs_ratio": 2.01,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": -2179,
+          "trust_net": -159,
+          "dealer_net": 93
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -248,
+          "trust_net": -311,
+          "dealer_net": 34
+        },
+        {
+          "date": "20260410",
+          "foreign_net": 581,
+          "trust_net": 25,
+          "dealer_net": 250
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 1053,
+          "trust_net": -98,
+          "dealer_net": 871
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 3910,
+          "trust_net": -33,
+          "dealer_net": 448
+        },
+        {
+          "date": "20260407",
+          "foreign_net": 3600,
+          "trust_net": -15,
+          "dealer_net": 302
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -2172,
+          "trust_net": 96,
+          "dealer_net": 240
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 440,
+          "trust_net": 483,
+          "dealer_net": 526
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5628,
+          "trust_net": 262,
+          "dealer_net": 375
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -843,
+          "trust_net": 88,
+          "dealer_net": 84
+        }
+      ],
+      "financials": {
+        "eps": 23.1,
+        "pe_ratio": 77.27273,
+        "price": 1785.0,
+        "high_52w": 1835.0,
+        "low_52w": 307.0,
+        "volume": 10378682,
+        "avg_volume": 12508582,
+        "market_cap": 4636614852608
+      }
+    },
+    "2382": {
+      "symbol": "2382",
+      "name": "廣達",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": true,
+        "M": true,
+        "score": 40,
+        "mansfield_rs": -2.014,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.396,
+          "current": -2.014
+        },
+        "rs_ratio": 0.13,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": 2849,
+          "trust_net": -710,
+          "dealer_net": 74
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -240,
+          "trust_net": 249,
+          "dealer_net": -69
+        },
+        {
+          "date": "20260410",
+          "foreign_net": 11030,
+          "trust_net": 1344,
+          "dealer_net": 585
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 14888,
+          "trust_net": 419,
+          "dealer_net": -437
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 33610,
+          "trust_net": 218,
+          "dealer_net": 2354
+        },
+        {
+          "date": "20260407",
+          "foreign_net": 469,
+          "trust_net": 420,
+          "dealer_net": 243
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -4649,
+          "trust_net": 1037,
+          "dealer_net": 301
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 4859,
+          "trust_net": 1127,
+          "dealer_net": 672
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -2001,
+          "trust_net": 270,
+          "dealer_net": 1157
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -5285,
+          "trust_net": 172,
+          "dealer_net": 523
+        }
+      ],
+      "financials": {
+        "eps": 18.9,
+        "pe_ratio": 16.322752,
+        "price": 308.5,
+        "high_52w": 329.5,
+        "low_52w": 222.5,
+        "volume": 34069029,
+        "avg_volume": 18231608,
+        "market_cap": 1189118869504
+      }
+    },
+    "3711": {
+      "symbol": "3711",
+      "name": "日月光投控",
+      "industry": "核心標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 50,
+        "mansfield_rs": 5.758,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 1.299,
+          "current": 5.758
+        },
+        "rs_ratio": 4.34,
+        "grid_strategy": null
+      },
+      "institutional": [
+        {
+          "date": "20260414",
+          "foreign_net": -2526,
+          "trust_net": 288,
+          "dealer_net": -162
+        },
+        {
+          "date": "20260413",
+          "foreign_net": -573,
+          "trust_net": -202,
+          "dealer_net": -69
+        },
+        {
+          "date": "20260410",
+          "foreign_net": -1807,
+          "trust_net": -589,
+          "dealer_net": 522
+        },
+        {
+          "date": "20260409",
+          "foreign_net": 2799,
+          "trust_net": -235,
+          "dealer_net": -232
+        },
+        {
+          "date": "20260408",
+          "foreign_net": 8881,
+          "trust_net": -330,
+          "dealer_net": 634
+        },
+        {
+          "date": "20260407",
+          "foreign_net": -4191,
+          "trust_net": -441,
+          "dealer_net": 173
+        },
+        {
+          "date": "20260402",
+          "foreign_net": -477,
+          "trust_net": 3193,
+          "dealer_net": -55
+        },
+        {
+          "date": "20260401",
+          "foreign_net": 6386,
+          "trust_net": 218,
+          "dealer_net": 760
+        },
+        {
+          "date": "20260331",
+          "foreign_net": -5952,
+          "trust_net": -615,
+          "dealer_net": 665
+        },
+        {
+          "date": "20260330",
+          "foreign_net": -301,
+          "trust_net": 225,
+          "dealer_net": 445
+        }
+      ],
+      "financials": {
+        "eps": 8.73,
+        "pe_ratio": 51.145477,
+        "price": 446.5,
+        "high_52w": 460.0,
+        "low_52w": 127.0,
+        "volume": 30472590,
+        "avg_volume": 22230659,
+        "market_cap": 1956052336640
+      }
+    }
+  }
 }
