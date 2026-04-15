@@ -314,14 +314,18 @@ class TEJProcessor:
             return None
     
     def is_etf(self, coid: str) -> bool:
-        """Simple heuristic to detect if a symbol is an ETF in Taiwan market."""
-        # Taiwan ETFs usually start with 00 or are 5-6 digits with specific patterns
-        # Or check the listing info if already fetched
-        if coid.startswith('00') and len(coid) <= 6:
-            # 0050, 00631L, etc.
+        """
+        Detects if a symbol is an ETF in Taiwan market.
+        Rule: Starts with '00' and is 5 or 6 digits, or has L/R suffixes.
+        """
+        # Rule 1: 00-prefix with 5-6 digits (e.g., 0050, 00631L, 00981A)
+        if coid.startswith('00') and (len(coid) == 5 or len(coid) == 6 or len(coid) == 4):
             return True
-        if coid.endswith('L') or coid.endswith('R'): # Leveraged/Inverse
+            
+        # Rule 2: Leveraged/Inverse suffixes (older pattern)
+        if coid.endswith('L') or coid.endswith('R'): 
             return True
+            
         return False
 
     def calculate_canslim_c_and_a(self, coid: str) -> Dict:

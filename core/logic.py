@@ -84,44 +84,40 @@ def calculate_l_factor(rs_rank: float, threshold: float = 80) -> bool:
 def calculate_mansfield_rs(stock_prices: Optional[pd.Series], market_prices: Optional[pd.Series], window: int = 250) -> float:
     """
     Calculates Mansfield Relative Strength (MRIS).
-    Formula: ((Current RS / Avg RS over Window) - 1) * 10
+    Requires at least 200 days of overlapping data for a valid average.
     """
     if stock_prices is None or market_prices is None: return 0.0
-    if len(stock_prices) < window or len(market_prices) < window: return 0.0
     
-    # Align dates
+    # Align dates strictly
     df = pd.DataFrame({'stock': stock_prices, 'market': market_prices}).dropna()
-    if len(df) < window: return 0.0
+    
+    # Need enough history for meaningful RS
+    if len(df) < 200: 
+        return 0.0
     
     df['rs'] = df['stock'] / df['market']
     current_rs = df['rs'].iloc[-1]
     avg_rs = df['rs'].tail(window).mean()
     
-    if avg_rs == 0: return 0.0
+    if avg_rs == 0 or pd.isna(avg_rs): return 0.0
     mris = ((current_rs / avg_rs) - 1) * 10
     return round(mris, 3)
 
 def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> int:
-    """Calculates composite CANSLIM score (0-100)."""
+    """Standard CANSLIM scoring."""
     score = 0
     weights = {'C': 20, 'A': 20, 'N': 10, 'S': 10, 'L': 20, 'I': 10, 'M': 10}
     for f, w in weights.items():
         if factors.get(f): score += w
-    
-    # Extra points for strong institutional accumulation
-    if institutional_strength >= 0.005: score += 5
-    elif institutional_strength >= 0.002: score += 2
-    
     return min(score, 100)
 
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:
-    """ETF specialized scoring (ignores C/A)."""
+    """ETF scoring - redistributes C/A weights to L and M."""
     score = 0
-    weights = {'N': 20, 'S': 20, 'L': 30, 'I': 10, 'M': 20}
+    # For ETFs, Relative Strength (L) and Market Trend (M) are most important
+    weights = {'N': 10, 'S': 10, 'L': 40, 'I': 10, 'M': 30}
     for f, w in weights.items():
         if factors.get(f): score += w
-    
-    if institutional_strength >= 0.002: score += 5
     return min(score, 100)
 
 def calculate_volatility_grid(prices: pd.Series, is_etf: bool = False) -> Optional[dict]:
@@ -163,3 +159,18 @@ def calculate_volatility_grid(prices: pd.Series, is_etf: bool = False) -> Option
         "levels": levels,
         "is_etf": is_etf
     }
+
+def is_odd_lot(shares: int) -> bool:
+    """Check if the trade quantity is odd-lot (less than 1000 shares)."""
+    return 0 < shares < 1000
+
+def can_exit_trade(entry_date: str, current_date: str, shares: int) -> bool:
+    """
+    Rule: Taiwan stock market odd-lots (零股) are prohibited from day trading (禁止當沖).
+    Returns True if the trade can be closed.
+    """
+    if not is_odd_lot(shares):
+        return True # Standard lots can day trade
+        
+    # For odd lots, entry and exit dates must be different
+    return entry_date != current_date

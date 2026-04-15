@@ -66,13 +66,25 @@ def test_calculate_volatility_grid():
     assert len(grid['levels']) == 5
     assert grid['levels'][2]['label'] == "Pivot (平衡位)"
 
-def test_compute_canslim_score():
-    factors = {'C': True, 'A': True, 'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
-    # Weights sum to 100
-    score = compute_canslim_score(factors, institutional_strength=0.006)
-    assert score == 100 # capped at 100
+def test_compute_canslim_score_etf():
+    # ETF Weights: N:10, S:10, L:40, I:10, M:30
+    factors = {'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
+    score = compute_canslim_score_etf(factors)
+    assert score == 100
     
-    factors_weak = {'C': False, 'A': False, 'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
-    # 100 - 20 - 20 = 60
-    score = compute_canslim_score(factors_weak)
-    assert score == 60
+    factors_weak = {'N': False, 'S': False, 'L': True, 'I': False, 'M': True}
+    # 40 (L) + 30 (M) = 70
+    score = compute_canslim_score_etf(factors_weak)
+    assert score == 70
+
+def test_odd_lot_restrictions():
+    from core.logic import is_odd_lot, can_exit_trade
+    
+    # Standard Lot (1000 shares)
+    assert is_odd_lot(1000) == False
+    assert can_exit_trade("2026-04-15", "2026-04-15", 1000) == True # Can day trade
+    
+    # Odd Lot (500 shares)
+    assert is_odd_lot(500) == True
+    assert can_exit_trade("2026-04-15", "2026-04-15", 500) == False # Cannot day trade
+    assert can_exit_trade("2026-04-15", "2026-04-16", 500) == True # Can exit next day
