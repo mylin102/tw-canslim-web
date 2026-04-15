@@ -205,12 +205,15 @@ const app = createApp({
         const fetchData = async () => {
             try {
                 isLoading.value = true;
-                const response = await fetch('data.json?t=' + Date.now());
+                // 先嘗試加載精簡版數據進行測試
+                const response = await fetch('data_light.json?t=' + Date.now());
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 const data = await response.json();
                 stockData.value = data;
                 lastUpdated.value = data.last_updated;
+                console.log(`✅ 數據加載成功: ${Object.keys(data.stocks).length} 檔股票`);
             } catch (error) {
+                console.error('數據加載錯誤:', error);
                 errorState.value = '載入失敗: ' + error.message;
             } finally {
                 isLoading.value = false;
