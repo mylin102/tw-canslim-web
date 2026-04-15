@@ -11,7 +11,7 @@ from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 
-from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid
+from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
 
 # TAIEX via yfinance
 TAIEX_SYMBOL = "^TWII"
@@ -514,12 +514,10 @@ class CanslimEngine:
                 yf_ticker = f"{ticker}{suffix}"
             
             stock = yf.Ticker(yf_ticker)
-            hist = stock.history(period=period)
+            # Use auto_adjust=True to handle splits/dividends correctly
+            hist = stock.history(period=period, auto_adjust=True)
             if hist is not None and not hist.empty:
                 return hist['Close']
-            return None
-        except Exception as e:
-            logger.debug(f"yfinance history failed for {ticker}: {e}")
             return None
         except Exception as e:
             logger.debug(f"yfinance history failed for {ticker}: {e}")
@@ -601,7 +599,7 @@ class CanslimEngine:
                 a_score = tej_ca.get('A', False)
                 tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
 
-                n_score = self.check_n_new_high(financial_data.get("price", 0), financial_data.get("high_52w", 0))
+                n_score = check_n_factor(stock_hist)
                 s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
 
                 inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0

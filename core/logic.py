@@ -81,26 +81,45 @@ def calculate_l_factor(rs_rank: float, threshold: float = 80) -> bool:
     """L - Leader or Laggard."""
     return rs_rank >= threshold
 
+def check_n_factor(prices: pd.Series) -> bool:
+    """
+    N - New Highs or New Momentum.
+    Pass if price is near 52-week high OR 60-day high.
+    This handles stocks with historical split anomalies.
+    """
+    if prices is None or len(prices) < 20: return False
+    
+    current = prices.iloc[-1]
+    high_52w = prices.tail(250).max()
+    high_60d = prices.tail(60).max()
+    
+    # Pass if within 10% of 52-week high OR at 60-day high (New Momentum)
+    return (current >= high_52w * 0.9) or (current >= high_60d * 0.98)
+
 def calculate_mansfield_rs(stock_prices: Optional[pd.Series], market_prices: Optional[pd.Series], window: int = 250) -> float:
     """
     Calculates Mansfield Relative Strength (MRIS).
-    Requires at least 200 days of overlapping data for a valid average.
+    Uses an adaptive window if 250-day data shows extreme anomalies.
     """
     if stock_prices is None or market_prices is None: return 0.0
-    
-    # Align dates strictly
     df = pd.DataFrame({'stock': stock_prices, 'market': market_prices}).dropna()
-    
-    # Need enough history for meaningful RS
-    if len(df) < 200: 
-        return 0.0
+    if len(df) < 60: return 0.0
     
     df['rs'] = df['stock'] / df['market']
-    current_rs = df['rs'].iloc[-1]
-    avg_rs = df['rs'].tail(window).mean()
     
-    if avg_rs == 0 or pd.isna(avg_rs): return 0.0
-    mris = ((current_rs / avg_rs) - 1) * 10
+    # Try 250-day average first
+    actual_window = min(window, len(df))
+    avg_rs = df['rs'].tail(actual_window).mean()
+    current_rs = df['rs'].iloc[-1]
+    
+    mris = ((current_rs / avg_rs) - 1) * 10 if avg_rs != 0 else 0
+    
+    # Self-Correction: If MRIS is extremely negative but price is at short-term high,
+    # it's likely a data split anomaly. Fallback to 60-day relative strength.
+    if mris < -5 and current_rs >= df['rs'].tail(60).max() * 0.95:
+        avg_rs_short = df['rs'].tail(60).mean()
+        mris = ((current_rs / avg_rs_short) - 1) * 10 if avg_rs_short != 0 else 0
+        
     return round(mris, 3)
 
 def calculate_rs_trend(stock_prices: Optional[pd.Series], market_prices: Optional[pd.Series], window: int = 250) -> dict:

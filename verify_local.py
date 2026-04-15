@@ -13,7 +13,7 @@ def verify_local_features():
     # 增加測試標的：包含大型股與熱門 ETF
     test_tickers = [
         "2330", "2317", "2454", "2603", "2881",  # 個股
-        "0050", "00631L", "00981A"               # ETF 範例
+        "0050", "00631L", "00981A", "0052"       # ETF 範例
     ]
     
     engine.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -64,7 +64,7 @@ def verify_local_features():
             
             factors = {
                 "C": tej_ca.get("C", False), "A": tej_ca.get("A", False), 
-                "N": True, "S": True, "L": l_score, "I": i_score, "M": True
+                "N": check_n_factor(stock_hist), "S": True, "L": l_score, "I": i_score, "M": True
             }
             
             # 網格計算 (Grid)
