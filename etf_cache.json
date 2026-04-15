@@ -1,0 +1,1086 @@
+{
+  "last_updated": "2026-04-15 08:51:22",
+  "total_count": 216,
+  "etfs": {
+    "0050": {
+      "name": "元大台灣50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0051": {
+      "name": "元大中型100",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0052": {
+      "name": "富邦科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0053": {
+      "name": "元大電子",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0055": {
+      "name": "元大MSCI金融",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0056": {
+      "name": "元大高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0057": {
+      "name": "富邦摩台",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "0061": {
+      "name": "元大寶滬深",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006203": {
+      "name": "元大MSCI台灣",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006205(新臺幣)<br>00625K(人民幣)": {
+      "name": "富邦上証(新臺幣)<br>富邦上証+R(人民幣)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006204": {
+      "name": "永豐臺灣加權",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006206": {
+      "name": "元大上證50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006207": {
+      "name": "復華滬深(原簡稱:FH滬深)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "006208": {
+      "name": "富邦台50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00631L": {
+      "name": "元大台灣50正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00632R": {
+      "name": "元大台灣50反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00633L": {
+      "name": "富邦上証正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00634R": {
+      "name": "富邦上証反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00636(新臺幣)<br>00636K(美元)": {
+      "name": "國泰中國A50(新臺幣)<br>國泰中國A50+U(美元)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00635U": {
+      "name": "期元大S&P黃金",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00637L": {
+      "name": "元大滬深300正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00638R": {
+      "name": "元大滬深300反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00639": {
+      "name": "富邦深100",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00642U": {
+      "name": "期元大S&P石油",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00640L": {
+      "name": "富邦日本正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00641R": {
+      "name": "富邦日本反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00645": {
+      "name": "富邦日本",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00643(新臺幣)<br>00643K(人民幣)": {
+      "name": "群益深証中小(新臺幣)<br>群益深証中小+R(人民幣)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00646": {
+      "name": "元大S&P500",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00647L": {
+      "name": "元大S&P500正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00648R": {
+      "name": "元大S&P500反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00650L": {
+      "name": "復華香港正2(原簡稱:FH香港正2)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00651R": {
+      "name": "復華香港反1(原簡稱:FH香港反1)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00655L": {
+      "name": "國泰中國A50正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00656R": {
+      "name": "國泰中國A50反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00652": {
+      "name": "富邦印度",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00653L": {
+      "name": "富邦印度正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00654R": {
+      "name": "富邦印度反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00657(新臺幣)<br>00657K(美元)": {
+      "name": "國泰日經225(新臺幣)<br>國泰日經225+U(美元)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00660": {
+      "name": "元大歐洲50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00661": {
+      "name": "元大日經225",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00662": {
+      "name": "富邦NASDAQ",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00663L": {
+      "name": "國泰臺灣加權正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00664R": {
+      "name": "國泰臺灣加權反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00665L": {
+      "name": "富邦恒生國企正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00666R": {
+      "name": "富邦恒生國企反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00675L": {
+      "name": "富邦臺灣加權正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00676R": {
+      "name": "富邦臺灣加權反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00673R": {
+      "name": "期元大S&P原油反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00674R": {
+      "name": "期元大S&P黃金反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00669R": {
+      "name": "國泰美國道瓊反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00668(新臺幣)<br>00668K(美元)": {
+      "name": "國泰美國道瓊(新臺幣)<br>國泰美國道瓊+U(美元)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00678": {
+      "name": "群益那斯達克生技(原簡稱:群益NBI生技)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00680L": {
+      "name": "元大美債20正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00681R": {
+      "name": "元大美債20反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00670L": {
+      "name": "富邦NASDAQ正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00671R": {
+      "name": "富邦NASDAQ反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00682U": {
+      "name": "期元大美元指數",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00683L": {
+      "name": "期元大美元指正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00684R": {
+      "name": "期元大美元指反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00685L": {
+      "name": "群益臺灣加權正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00686R": {
+      "name": "群益臺灣加權反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00690": {
+      "name": "兆豐藍籌30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00688L": {
+      "name": "國泰20年美債正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00689R": {
+      "name": "國泰20年美債反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00693U": {
+      "name": "期街口S&P黃豆",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00692": {
+      "name": "富邦公司治理",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00700": {
+      "name": "富邦恒生國企",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00703": {
+      "name": "台新MSCI中國",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00709": {
+      "name": "富邦歐洲",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00701": {
+      "name": "國泰股利精選30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00702": {
+      "name": "國泰標普低波高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00710B": {
+      "name": "復華彭博非投等債(原簡稱:FH彭博非投等債)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00711B": {
+      "name": "復華彭博新興債(原簡稱:FH彭博新興債)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00712": {
+      "name": "復華富時不動產(原簡稱:FH富時不動產)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00706L": {
+      "name": "期元大S&P日圓正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00707R": {
+      "name": "期元大S&P日圓反1",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00708L": {
+      "name": "期元大S&P黃金正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00713": {
+      "name": "元大台灣高息低波",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00714": {
+      "name": "群益道瓊美國地產",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00715L": {
+      "name": "期街口布蘭特正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00717": {
+      "name": "富邦美國特別股",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00730": {
+      "name": "富邦臺灣優質高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00728": {
+      "name": "第一金工業30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00731": {
+      "name": "復華富時高息低波(原簡稱:FH富時高息低波)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00733": {
+      "name": "富邦臺灣中小",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00738U": {
+      "name": "期元大道瓊白銀",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00735": {
+      "name": "國泰臺韓科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00736": {
+      "name": "國泰新興市場",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00737": {
+      "name": "國泰AI機器人",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00739": {
+      "name": "元大MSCI A股",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00752": {
+      "name": "中信中國50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00753L": {
+      "name": "中信中國50正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00757": {
+      "name": "統一FANG+",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00763U": {
+      "name": "期街口道瓊銅",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00762": {
+      "name": "元大全球AI",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00770": {
+      "name": "國泰北美科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00775B": {
+      "name": "新光投等債15+",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00783": {
+      "name": "富邦中証500",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00830": {
+      "name": "國泰費城半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00771": {
+      "name": "元大US高息特別股",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00851": {
+      "name": "台新全球AI",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00852L": {
+      "name": "國泰美國道瓊正2",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00850": {
+      "name": "元大臺灣ESG永續",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00861": {
+      "name": "元大全球未來通訊",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00865B": {
+      "name": "國泰US短期公債",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00875": {
+      "name": "國泰網路資安",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00876": {
+      "name": "元大全球5G",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00878": {
+      "name": "國泰永續高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00881": {
+      "name": "國泰台灣科技龍頭",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00882": {
+      "name": "中信中國高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00885": {
+      "name": "富邦越南",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00891": {
+      "name": "中信關鍵半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00892": {
+      "name": "富邦台灣半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00893": {
+      "name": "國泰智能電動車",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00895": {
+      "name": "富邦未來車",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00894": {
+      "name": "中信小資高價30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00896": {
+      "name": "中信綠能及電動車",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00897": {
+      "name": "富邦基因免疫生技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00898": {
+      "name": "國泰基因免疫革命",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00901": {
+      "name": "永豐智能車供應鏈",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00900": {
+      "name": "富邦特選高股息30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00899": {
+      "name": "FT潔淨能源",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00903": {
+      "name": "富邦元宇宙",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00902": {
+      "name": "中信電池及儲能",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00904": {
+      "name": "新光臺灣半導體30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00905": {
+      "name": "FT臺灣Smart",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00908": {
+      "name": "富邦入息REITs+",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00907": {
+      "name": "永豐優息存股",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00911": {
+      "name": "兆豐洲際半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00912": {
+      "name": "中信臺灣智慧 50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00909": {
+      "name": "國泰數位支付服務",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00910": {
+      "name": "第一金太空衛星",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00913": {
+      "name": "兆豐台灣晶圓製造",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00915": {
+      "name": "凱基優選高股息30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00917": {
+      "name": "中信特選金融",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00916": {
+      "name": "國泰全球品牌50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00919": {
+      "name": "群益台灣精選高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00920": {
+      "name": "富邦ESG綠色電力",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00918": {
+      "name": "大華優利高填息30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00921": {
+      "name": "兆豐龍頭等權重",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00923": {
+      "name": "群益台ESG低碳50(原簡稱:群益台灣ESG低碳)",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00922": {
+      "name": "國泰台灣領袖50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00924": {
+      "name": "復華S&P500成長",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00926": {
+      "name": "凱基全球菁英55",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00927": {
+      "name": "群益半導體收益",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00929": {
+      "name": "復華台灣科技優息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00930": {
+      "name": "永豐ESG低碳高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00932": {
+      "name": "兆豐永續高息等權",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00934": {
+      "name": "中信成長高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00935": {
+      "name": "野村臺灣新科技50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00936": {
+      "name": "台新永續高息中小",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00941": {
+      "name": "中信上游半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00939": {
+      "name": "統一台灣高息動能",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00940": {
+      "name": "元大台灣價值高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00945B": {
+      "name": "凱基美國非投等債",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00944": {
+      "name": "野村趨勢動能高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00946": {
+      "name": "群益科技高息成長",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00943": {
+      "name": "兆豐電子高息等權",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00947": {
+      "name": "台新臺灣IC設計",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00949": {
+      "name": "復華日本龍頭",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00951": {
+      "name": "台新日本半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00954": {
+      "name": "中信日本半導體",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00956": {
+      "name": "中信日經高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00953B": {
+      "name": "群益優選非投等債",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00952": {
+      "name": "凱基台灣AI 50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00960": {
+      "name": "野村全球航運龍頭",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00961": {
+      "name": "FT臺灣永續高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00938": {
+      "name": "凱基優選30",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00963": {
+      "name": "中信全球高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00964": {
+      "name": "中信亞太高股息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00965": {
+      "name": "元大航太防衛科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00962": {
+      "name": "台新AI優息動能",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00971": {
+      "name": "野村美國研發龍頭",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00972": {
+      "name": "野村日本動能高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009800": {
+      "name": "中信NASDAQ",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009801": {
+      "name": "中信美國創新科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009803": {
+      "name": "玉山市值動能50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009802": {
+      "name": "富邦旗艦50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009804": {
+      "name": "聯邦台精彩50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00980A": {
+      "name": "主動野村臺灣優選",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009805": {
+      "name": "新光美國電力基建",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009808": {
+      "name": "華南永昌優選50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00982A": {
+      "name": "主動群益台灣強棒",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00981A": {
+      "name": "主動統一台股增長",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00983A": {
+      "name": "主動中信ARK創新",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00984A": {
+      "name": "主動安聯台灣高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009810": {
+      "name": "玉山全球藍籌100",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00985A": {
+      "name": "主動野村台灣50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009811": {
+      "name": "統一美國50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00986A": {
+      "name": "主動台新龍頭成長",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00985B": {
+      "name": "群益ESG投等債0-5",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009812": {
+      "name": "野村日本東證",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00981T": {
+      "name": "平衡凱基雙核收息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009809": {
+      "name": "富邦淨零ESG50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00982D": {
+      "name": "主動富邦動態入息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00983D": {
+      "name": "主動富邦複合收益",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009813": {
+      "name": "貝萊德標普卓越50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00989A": {
+      "name": "主動摩根美國科技",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00988A": {
+      "name": "主動統一全球創新",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00991A": {
+      "name": "主動復華未來50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00990A": {
+      "name": "主動元大AI新經濟",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00982T": {
+      "name": "平衡兆豐台美動能",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00987A": {
+      "name": "主動台新優勢成長",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00992A": {
+      "name": "主動群益科技創新",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00994A": {
+      "name": "主動第一金台股優",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00995A": {
+      "name": "主動中信台灣卓越",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009816": {
+      "name": "凱基台灣TOP50",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00993A": {
+      "name": "主動安聯台灣",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00984D": {
+      "name": "主動聯博全球非投",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009817": {
+      "name": "國泰日本不動產",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "009818": {
+      "name": "華南永昌NASDAQxT",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00996A": {
+      "name": "主動兆豐台灣豐收",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00400A": {
+      "name": "主動國泰動能高息",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00401A": {
+      "name": "主動摩根台灣鑫收",
+      "market": "TWSE",
+      "type": "ETF"
+    },
+    "00997A": {
+      "name": "主動群益美國增長",
+      "market": "TWSE",
+      "type": "ETF"
+    }
+  }
+}

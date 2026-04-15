@@ -1,0 +1,57 @@
+[
+  {
+    "score": 0,
+    "trust_consecutive_days": 0,
+    "trust_20d_cumulative": 0,
+    "foreign_sync": 0,
+    "details": {},
+    "stock_id": "2330",
+    "grade": "D",
+    "description": "機構賣出",
+    "analysis_date": "2026-04-13 22:15:44"
+  },
+  {
+    "score": 0,
+    "trust_consecutive_days": 0,
+    "trust_20d_cumulative": 0,
+    "foreign_sync": 0,
+    "details": {},
+    "stock_id": "2317",
+    "grade": "D",
+    "description": "機構賣出",
+    "analysis_date": "2026-04-13 22:15:51"
+  },
+  {
+    "score": 0,
+    "trust_consecutive_days": 0,
+    "trust_20d_cumulative": 0,
+    "foreign_sync": 0,
+    "details": {},
+    "stock_id": "2454",
+    "grade": "D",
+    "description": "機構賣出",
+    "analysis_date": "2026-04-13 22:15:58"
+  },
+  {
+    "score": 0,
+    "trust_consecutive_days": 0,
+    "trust_20d_cumulative": 0,
+    "foreign_sync": 0,
+    "details": {},
+    "stock_id": "2303",
+    "grade": "D",
+    "description": "機構賣出",
+    "analysis_date": "2026-04-13 22:16:02"
+  },
+  {
+    "score": 0,
+    "trust_consecutive_days": 0,
+    "trust_20d_cumulative": 0,
+    "foreign_sync": 0,
+    "details": {},
+    "stock_id": "2308",
+    "grade": "D",
+    "description": "機構賣出",
+    "analysis_date": "2026-04-13 22:16:09"
+  }
+]

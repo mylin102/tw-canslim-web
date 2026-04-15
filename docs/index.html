@@ -196,8 +196,20 @@
                     <!-- Stock Header -->
                     <div class="bg-slate-800 text-white p-6 flex justify-between items-center">
                         <div>
-                            <h2 class="text-2xl font-bold">{{ currentStock.name }} {{ currentStock.symbol }}</h2>
-                            <span class="text-blue-300 font-medium">總分: {{ currentStock.canslim.score }}</span>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h2 class="text-2xl font-bold">{{ currentStock.name }} {{ currentStock.symbol }}</h2>
+                                <span v-if="currentStock.is_etf" class="text-xs bg-blue-500 text-white px-2 py-0.5 rounded uppercase">ETF</span>
+                                <!-- Integrated Professional Badges -->
+                                <span v-if="currentStock.canslim.excel_ratings && currentStock.canslim.excel_ratings.smr_rating" 
+                                      class="text-xs bg-purple-600 text-white px-2 py-0.5 rounded uppercase tracking-wider">
+                                    SMR: {{ currentStock.canslim.excel_ratings.smr_rating }}
+                                </span>
+                                <span v-if="currentStock.canslim.excel_ratings && currentStock.canslim.excel_ratings.composite_rating" 
+                                      class="text-xs bg-indigo-600 text-white px-2 py-0.5 rounded uppercase tracking-wider">
+                                    專家評等: {{ currentStock.canslim.excel_ratings.composite_rating }}
+                                </span>
+                            </div>
+                            <span class="text-blue-300 font-medium">CANSLIM 綜合評分: {{ currentStock.canslim.score }}</span>
                         </div>
                         <div class="text-right">
                             <div class="text-xs uppercase tracking-wider bg-green-500/20 text-green-400 px-2 py-1 rounded">
@@ -210,13 +222,23 @@
                     <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4 border-b border-slate-100">
                         <div v-for="(val, key) in metricsMap" :key="key" class="text-center p-3 rounded-lg bg-slate-50">
                             <div class="text-xs text-slate-400 font-bold mb-1">{{ val.label }}</div>
-                            <div :class="['text-xl font-bold', currentStock.canslim[key] ? 'pass' : 'fail']">
+                            <!-- Use currentStock.is_etf to force N/A for C and A components -->
+                            <div v-if="currentStock && currentStock.is_etf && (key === 'C' || key === 'A')" class="text-xl font-bold text-slate-300">
+                                N/A
+                            </div>
+                            <div v-else :class="['text-xl font-bold', currentStock.canslim[key] ? 'pass' : 'fail']">
                                 {{ currentStock.canslim[key] ? 'PASS' : 'FAIL' }}
                             </div>
                         </div>
                         <div class="text-center p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
                             <div class="text-xs text-blue-600 font-bold mb-1">總分</div>
                             <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.score }}</div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-slate-50">
+                            <div class="text-xs text-slate-400 font-bold mb-1">Mansfield RS</div>
+                            <div :class="['text-xl font-bold', currentStock.canslim.mansfield_rs > 0 ? 'pass' : 'fail']">
+                                {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs }}
+                            </div>
                         </div>
                         <div class="text-center p-3 rounded-lg bg-slate-50">
                             <div class="text-xs text-slate-400 font-bold mb-1">RS 相對強度</div>
@@ -226,34 +248,88 @@
                         </div>
                     </div>
 
+                    <!-- NEW: Quarterly Financials Section -->
+                    <div v-if="currentStock.tej_quarterly && currentStock.tej_quarterly.quarters.length > 0" class="p-6 border-b border-slate-100 bg-blue-50/30">
+                        <h3 class="font-bold text-slate-700 mb-4 flex items-center">
+                            <i class="fas fa-file-invoice-dollar mr-2 text-indigo-500"></i> 季度財務表現 (TEJ 數據)
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm border-collapse">
+                                <thead>
+                                    <tr class="text-slate-500 border-b border-slate-200 bg-slate-100/50">
+                                        <th class="p-2 font-bold whitespace-nowrap">季度</th>
+                                        <th v-for="label in financialLabels" :key="label" class="p-2 font-bold text-right whitespace-nowrap">
+                                            {{ label }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="q in currentStock.tej_quarterly.quarters" :key="q.date" class="border-b border-slate-100 hover:bg-white transition-colors">
+                                        <td class="p-2 font-medium">{{ q.date.substring(0, 7) }}</td>
+                                        <td v-for="(label, key) in financialLabels" :key="key" class="p-2 text-right font-mono">
+                                            <span v-if="q[key] !== null">
+                                                {{ (key.includes('margin') || key.includes('rate')) ? q[key].toFixed(2) + '%' : q[key].toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}
+                                            </span>
+                                            <span v-else class="text-slate-300">-</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <!-- Institutional Details -->
                     <div class="p-6">
                         <h3 class="font-bold text-slate-700 mb-4 flex items-center">
                             <i class="fas fa-building mr-2 text-blue-500"></i> 機構持股明細 (三大法人買賣超)
                         </h3>
 
-                        <!-- Excel Ratings Section -->
-                        <div v-if="currentStock.canslim.excel_ratings" class="mb-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
-                            <h4 class="font-bold text-purple-800 mb-3 flex items-center">
-                                <i class="fas fa-file-excel mr-2"></i> Excel 分析評分
+                        <!-- NEW: Institutional Accumulation Strength -->
+                        <div class="mb-6 p-4 bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg border border-teal-200">
+                            <h4 class="font-bold text-teal-800 mb-3 flex items-center">
+                                <i class="fas fa-magnet mr-2"></i> 法人吸籌力道 (佔總股本比例)
                             </h4>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                <div class="text-center p-2 bg-white rounded shadow-sm">
-                                    <div class="text-xs text-purple-600 font-bold">Composite</div>
-                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.composite_rating || 'N/A' }}</div>
+                            
+                            <!-- Case: Data Available -->
+                            <div v-if="currentStock.canslim.inst_strength_20d !== undefined" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 font-medium">5日吸籌 (極短線)</span>
+                                        <span :class="['font-bold', currentStock.canslim.inst_strength_5d >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_5d }}%
+                                        </span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div :class="['h-2.5 rounded-full transition-all duration-500', 
+                                             currentStock.canslim.inst_strength_5d >= 0 ? 'bg-green-500' : 'bg-red-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_5d) * 20, 100) + '%' }">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text-center p-2 bg-white rounded shadow-sm">
-                                    <div class="text-xs text-purple-600 font-bold">EPS</div>
-                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.eps_rating || 'N/A' }}</div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 font-medium">20日吸籌 (波段)</span>
+                                        <span :class="['font-bold', currentStock.canslim.inst_strength_20d >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_20d }}%
+                                        </span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div :class="['h-2.5 rounded-full transition-all duration-500', 
+                                             currentStock.canslim.inst_strength_20d >= 0 ? 'bg-blue-500' : 'bg-orange-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_20d) * 10, 100) + '%' }">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text-center p-2 bg-white rounded shadow-sm">
-                                    <div class="text-xs text-purple-600 font-bold">RS</div>
-                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.rs_rating || 'N/A' }}</div>
-                                </div>
-                                <div class="text-center p-2 bg-white rounded shadow-sm">
-                                    <div class="text-xs text-purple-600 font-bold">SMR</div>
-                                    <div class="text-lg font-bold text-purple-700">{{ currentStock.canslim.excel_ratings.smr_rating || 'N/A' }}</div>
-                                </div>
+                            </div>
+
+                            <!-- Case: No Data -->
+                            <div v-else class="text-center py-4 text-slate-400 italic text-sm">
+                                <i class="fas fa-info-circle mr-1"></i> 暫無該股的股本或籌碼佔比資料
+                            </div>
+
+                            <div class="mt-3 text-xs text-slate-500">
+                                <i class="fas fa-info-circle mr-1"></i> 
+                                計算方式：(期間法人淨買超張數 * 1000) / 總發行股數。 20日吸籌 > 0.2% 為初步認同，> 0.5% 為強力鎖碼。
                             </div>
                         </div>
 
@@ -332,6 +408,58 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- NEW: Strategy Lab (Grid Strategy) -->
+                        <div v-if="currentStock.canslim.grid_strategy" class="mt-8 p-6 bg-slate-900 text-slate-100 rounded-xl border border-slate-700 shadow-xl animate-fade-in">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-xl font-bold flex items-center">
+                                        <i class="fas fa-flask mr-2 text-blue-400"></i> 量化策略建議 (Strategy Lab)
+                                        <span class="ml-3 text-xs bg-blue-600 text-white px-2 py-0.5 rounded uppercase tracking-widest">Beta</span>
+                                    </h3>
+                                    <p class="text-slate-400 text-sm mt-1">基於 20 日統計波動率 ({{ currentStock.canslim.grid_strategy.volatility }}%) 計算之自動網格</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs text-slate-500 uppercase">網格間距</div>
+                                    <div class="text-lg font-mono font-bold text-blue-400">±{{ currentStock.canslim.grid_strategy.spacing }}%</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-3">
+                                <div v-for="level in currentStock.canslim.grid_strategy.levels" :key="level.label"
+                                     class="flex items-center justify-between p-3 rounded-lg border transition-all"
+                                     :class="[
+                                        level.type === 'sell-strong' ? 'bg-red-950/30 border-red-900/50 text-red-200' :
+                                        level.type === 'sell' ? 'bg-orange-950/20 border-orange-900/30 text-orange-200' :
+                                        level.type === 'buy' ? 'bg-green-950/20 border-green-900/30 text-green-200' :
+                                        level.type === 'buy-strong' ? 'bg-emerald-950/30 border-emerald-900/50 text-emerald-200' :
+                                        'bg-slate-800 border-slate-700 text-slate-300'
+                                     ]">
+                                    <div class="flex items-center">
+                                        <i :class="[
+                                            'fas mr-3 w-5 text-center',
+                                            level.type.includes('sell') ? 'fa-arrow-trend-up' : 
+                                            level.type.includes('buy') ? 'fa-arrow-trend-down' : 'fa-minus'
+                                        ]"></i>
+                                        <span class="font-medium">{{ level.label }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs opacity-50">{{ level.type === 'neutral' ? '基準現價' : '建議位點' }}</span>
+                                        <span class="text-xl font-mono font-bold">{{ level.price.toFixed(2) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700/50 text-xs text-slate-400 leading-relaxed">
+                                <p class="mb-2"><strong><i class="fas fa-info-circle mr-1"></i> 策略說明：</strong></p>
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>本模組採用「波動率動態網格」算法，間距由近 20 個交易日的標準差決定。</li>
+                                    <li><strong>Pivot (基準位)</strong> 為最新收盤價。建議在股價拉回至 Buy 1 或 Buy 2 區域時分批佈局。</li>
+                                    <li>當股價觸及 Sell 1 或 Sell 2 區域時，代表短線乖離率已高，建議分批獲利了結。</li>
+                                    <li>此為量化參考數據，不構成投資建議。網格策略在強勢趨勢中可能過早賣出，請配合 RS 強度參考。</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
