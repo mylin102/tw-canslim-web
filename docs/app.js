@@ -205,17 +205,45 @@ const app = createApp({
         const fetchData = async () => {
             try {
                 isLoading.value = true;
-                // 先嘗試加載精簡版數據進行測試
-                const response = await fetch('data_light.json?t=' + Date.now());
+                loadingProgress.value = 10;
+                
+                console.time('數據加載');
+                const response = await fetch('data.json?t=' + Date.now());
                 if (!response.ok) throw new Error('HTTP ' + response.status);
+                
+                loadingProgress.value = 30;
                 const data = await response.json();
+                
+                loadingProgress.value = 60;
+                console.log(`📊 數據加載中: ${Object.keys(data.stocks).length} 檔股票`);
+                
+                // 分批設置數據以避免阻塞
+                await new Promise(resolve => setTimeout(resolve, 0));
                 stockData.value = data;
+                
+                loadingProgress.value = 90;
                 lastUpdated.value = data.last_updated;
-                console.log(`✅ 數據加載成功: ${Object.keys(data.stocks).length} 檔股票`);
+                
+                console.timeEnd('數據加載');
+                console.log(`✅ 數據加載完成: ${Object.keys(data.stocks).length} 檔股票`);
+                
             } catch (error) {
                 console.error('數據加載錯誤:', error);
                 errorState.value = '載入失敗: ' + error.message;
+                
+                // 嘗試加載精簡版作為備用
+                console.log('嘗試加載精簡版數據...');
+                try {
+                    const fallbackResponse = await fetch('data_light.json?t=' + Date.now());
+                    const fallbackData = await fallbackResponse.json();
+                    stockData.value = fallbackData;
+                    lastUpdated.value = fallbackData.last_updated + ' (精簡版)';
+                    console.log(`✅ 精簡版數據加載成功: ${Object.keys(fallbackData.stocks).length} 檔股票`);
+                } catch (fallbackError) {
+                    console.error('精簡版數據也加載失敗:', fallbackError);
+                }
             } finally {
+                loadingProgress.value = 100;
                 isLoading.value = false;
             }
         };
