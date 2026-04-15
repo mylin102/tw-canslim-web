@@ -11,6 +11,12 @@ const app = createApp({
         const errorState = ref(null);
         const searchSuggestions = ref([]);
 
+        // Single stock update state
+        const showUpdateModal = ref(false);
+        const updateTicker = ref('');
+        const isUpdateLoading = ref(false);
+        const updateStatus = ref('');
+
         // Tab state
         const activeTab = ref('search');
         const screenerMinScore = ref(0);
@@ -268,7 +274,42 @@ const app = createApp({
             }
         };
 
-        onMounted(fetchData);
+        const checkUrlParams = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            // Check for ?update:2330
+            for (const [key, value] of urlParams.entries()) {
+                if (key.startsWith('update')) {
+                    const ticker = key.includes(':') ? key.split(':')[1] : value;
+                    if (ticker) {
+                        updateTicker.value = ticker;
+                        showUpdateModal.value = true;
+                    }
+                }
+            }
+        };
+
+        const triggerUpdate = () => {
+            if (!updateTicker.value || updateTicker.value.length < 4) {
+                updateStatus.value = '請輸入正確的股票代號';
+                return;
+            }
+            
+            isUpdateLoading.value = true;
+            updateStatus.value = '準備跳轉至 GitHub...';
+            
+            // Redirect to GitHub Issue with pre-filled title
+            const repoUrl = 'https://github.com/mylin102/tw-canslim-web';
+            const issueTitle = `update:${updateTicker.value}`;
+            const issueBody = `On-demand update request for stock: ${updateTicker.value}. This will be processed automatically.`;
+            const githubUrl = `${repoUrl}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+            
+            window.location.href = githubUrl;
+        };
+
+        onMounted(() => {
+            fetchData();
+            checkUrlParams();
+        });
 
         // Watch for tab changes to render chart when needed
         watch(activeTab, async (newTab) => {
@@ -329,7 +370,8 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
-            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional
+            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional,
+            showUpdateModal, updateTicker, isUpdateLoading, updateStatus, triggerUpdate
         };
     }
 });
