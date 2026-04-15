@@ -163,9 +163,19 @@ const app = createApp({
         });
 
         const allStocksSorted = computed(() => {
-            if (!stockData.value) return [];
-            return Object.values(stockData.value.stocks)
-                .sort((a, b) => b.canslim.score - a.canslim.score);
+            if (!stockData.value || !stockData.value.stocks) return [];
+            try {
+                return Object.values(stockData.value.stocks)
+                    .filter(s => s && s.canslim)
+                    .sort((a, b) => {
+                        const scoreA = (a.canslim && typeof a.canslim.score === 'number') ? a.canslim.score : 0;
+                        const scoreB = (b.canslim && typeof b.canslim.score === 'number') ? b.canslim.score : 0;
+                        return scoreB - scoreA;
+                    });
+            } catch (e) {
+                console.error("Critical: Global sorting failed", e);
+                return [];
+            }
         });
 
         const filteredStocks = computed(() => {
@@ -271,5 +281,10 @@ const app = createApp({
         };
     }
 });
+
+app.config.errorHandler = (err, vm, info) => {
+    console.error("Vue Global Error:", err, info);
+    // Silent catch to prevent white screen
+};
 
 app.mount('#app');
