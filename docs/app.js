@@ -13,7 +13,7 @@ const app = createApp({
 
         // Tab state
         const activeTab = ref('search');
-        const screenerMinScore = ref(60);
+        const screenerMinScore = ref(0);
         const screenerMinRs = ref(0);
         const screenerFundOnly = ref(false);
         const screenerIndustry = ref('all');
@@ -41,13 +41,35 @@ const app = createApp({
                 String(b.date).localeCompare(String(a.date)));
         });
 
-        const metricsMap = {
-            'C': { label: 'C - 當季盈餘' },
-            'A': { label: 'A - 年度成長' },
-            'N': { label: 'N - 新高/因子' },
-            'S': { label: 'S - 供需' },
-            'L': { label: 'L - 強勢股' },
-            'I': { label: 'I - 機構認同' }
+        const metricsMap = computed(() => {
+            const base = {
+                'C': { label: 'C - 當季盈餘' },
+                'A': { label: 'A - 年度成長' },
+                'N': { label: 'N - 新高/因子' },
+                'S': { label: 'S - 供需' },
+                'L': { label: 'L - 強勢股' },
+                'I': { label: 'I - 機構認同' }
+            };
+            
+            if (currentStock.value && currentStock.value.is_etf) {
+                base['C'].label = 'C - (ETF不適用)';
+                base['A'].label = 'A - (ETF不適用)';
+            }
+            return base;
+        });
+
+        const instStrengthLabels = {
+            '5d': '5日吸籌力道',
+            '20d': '20日吸籌力道'
+        };
+
+        const financialLabels = {
+            'eps': '每股盈餘 (EPS)',
+            'revenue': '營業收入 (百萬)',
+            'net_income': '稅後淨利 (百萬)',
+            'gross_margin': '毛利率 (%)',
+            'operating_margin': '營業利益率 (%)',
+            'net_margin': '純益率 (%)'
         };
 
         // CANSLIM definitions (from William J. O'Neil's "How to Make Money in Stocks")
@@ -83,7 +105,7 @@ const app = createApp({
             },
             'L': {
                 title: 'Leader or Laggard — 強勢股 vs 弱勢股',
-                desc: '股價表現優於大盤 20% 以上。只買龍頭股，不買落後股。',
+                desc: 'Mansfield RS 指標 > 0，代表股價表現優於大盤平均水平。只買龍頭股，不買落後股。',
                 bgColor: 'bg-red-50 border-red-200',
                 textColor: 'text-red-700',
                 badgeColor: 'bg-red-100'
@@ -242,7 +264,7 @@ const app = createApp({
         return {
             stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
-            currentStock, allStocksSorted, filteredStocks, metricsMap,
+            currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
             availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional
