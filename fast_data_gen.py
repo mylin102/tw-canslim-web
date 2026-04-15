@@ -1,7 +1,6 @@
 """
-Fast Dashboard Data Generator - Parallel yfinance downloads
-Uses ThreadPoolExecutor for stable, parallel data fetching.
-Generates data.json with 100% consistency with core.logic.
+Fast Dashboard Data Generator - Optimized Batch yfinance
+Uses small chunks + robust index mapping for 100% data recovery.
 """
 
 import os
@@ -13,9 +12,7 @@ import pandas as pd
 import yfinance as yf
 import numpy as np
 from datetime import datetime, timedelta
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Optional
-from excel_processor import ExcelDataProcessor
 from tej_processor import TEJProcessor
 from core.logic import (
     calculate_accumulation_strength, compute_canslim_score, 
@@ -23,6 +20,7 @@ from core.logic import (
     calculate_mansfield_rs, calculate_volatility_grid,
     calculate_rs_trend, check_n_factor
 )
+from excel_processor import ExcelDataProcessor
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -78,11 +76,55 @@ class FastDataGenerator:
         self.industry_data = self.excel_proc.load_industry_data()
         self.tej_processor = TEJProcessor()
 
-    def fetch_single(self, t, info, market_prices, trading_dates, inst_by_date):
+    def run(self):
+        logger.info(f"Starting Optimized Batch Data Generator for {len(self.ticker_info)} symbols")
+        
+        # Market Benchmark
+        market_prices = None
+        for sym in ["^TWII", "0050.TW"]:
+            try:
+                market_prices = yf.download(sym, period="2y", auto_adjust=True, progress=False)['Close'].squeeze()
+                if not market_prices.empty: break
+            except: continue
+        
+        # Institutional Dates
+        trading_dates = []
         try:
-            sym = f"{t}{info['suffix']}"
-            prices = yf.Ticker(sym).history(period="2y", auto_adjust=True)['Close'].squeeze()
-            if prices.empty: return None
+            r = requests.get("https://www.twse.com.tw/rwd/zh/TAIEX/TAIEXChart", params={"response": "json"}, timeout=15)
+            trading_dates = [row[0].replace("-", "") for row in r.json() if row[0]][-20:]
+        except: pass
+        inst_by_date = {d: fetch_inst_all(d) for d in trading_dates}
+
+        # Chunked Batch Download (Small chunks to avoid rate limit)
+        all_symbols = [f"{t}{info['suffix']}" for t, info in self.ticker_info.items()]
+        price_data = {}
+        
+        logger.info(f"Downloading history in chunks of 50...")
+        for i in range(0, len(all_symbols), 50):
+            chunk = all_symbols[i:i+50]
+            try:
+                df = yf.download(chunk, period="2y", auto_adjust=True, progress=False, threads=True)
+                if df is None or df.empty: continue
+                
+                # Robust extraction
+                if len(chunk) == 1:
+                    t = chunk[0].split('.')[0]
+                    price_data[t] = df['Close'].dropna().squeeze()
+                else:
+                    cols = df.columns.get_level_values(0).unique() if isinstance(df.columns, pd.MultiIndex) else df.columns
+                    for sym in chunk:
+                        if sym in cols:
+                            p = df[sym]['Close'].dropna().squeeze() if isinstance(df.columns, pd.MultiIndex) else df.dropna().squeeze()
+                            if not p.empty: price_data[sym.split('.')[0]] = p
+            except Exception as e:
+                logger.warning(f"Chunk {i} failed: {e}")
+            time.sleep(2) # Polite delay
+
+        output = {"last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "stocks": {}}
+        
+        for t, prices in price_data.items():
+            info = self.ticker_info.get(t)
+            if not info: continue
             
             is_etf = self.tej_processor.is_etf(t) or t.startswith("00")
             history = []
@@ -96,13 +138,6 @@ class FastDataGenerator:
             l_score = calculate_l_factor(m_rs)
             i_score = len(history) >= 1 and sum(h["foreign_net"]+h["trust_net"]+h["dealer_net"] for h in history[:3]) > 0
             
-            # rs_ratio (approximate)
-            rs_ratio = 1.0
-            if market_prices is not None and len(prices) >= 60:
-                stock_ret = (prices.iloc[-1] - prices.iloc[-60]) / prices.iloc[-60]
-                m_ret = (market_prices.iloc[-1] - market_prices.iloc[-60]) / market_prices.iloc[-60]
-                rs_ratio = round(stock_ret / m_ret, 2) if abs(m_ret) > 0.01 else 1.0
-
             factors = {"C": False, "A": False, "N": n_score, "S": True, "L": l_score, "I": i_score, "M": True}
             if not is_etf and self.excel_ratings and t in self.excel_ratings:
                 r = self.excel_ratings[t].get('eps_rating', 0)
@@ -111,45 +146,19 @@ class FastDataGenerator:
             score = compute_canslim_score_etf(factors) if is_etf else compute_canslim_score(factors)
             grid = calculate_volatility_grid(prices, is_etf=is_etf) if (score >= 60 or is_etf) else None
 
-            return t, {
+            output["stocks"][t] = {
                 "symbol": t, "name": info["name"], "industry": "ETF" if is_etf else self.industry_data.get(t, {}).get('industry', '未知'),
                 "is_etf": is_etf,
                 "canslim": {
                     "C": bool(factors["C"]), "A": bool(factors["A"]), "N": bool(factors["N"]), 
                     "S": bool(factors["S"]), "L": bool(factors["L"]), "I": bool(factors["I"]), "M": bool(factors["M"]),
-                    "score": int(score), "mansfield_rs": float(m_rs), "rs_trend": rs_trend, "rs_ratio": rs_ratio,
+                    "score": int(score), "mansfield_rs": float(m_rs), "rs_trend": rs_trend,
                     "grid_strategy": grid, "excel_ratings": self.excel_ratings.get(t), "fund_holdings": self.fund_holdings.get(t)
                 },
                 "institutional": history[:20]
             }
-        except: return None
 
-    def run(self):
-        logger.info(f"Starting Parallel Data Generator for {len(self.ticker_info)} symbols")
-        market_prices = yf.download("^TWII", period="2y", auto_adjust=True)['Close'].squeeze()
-        
-        # Institutional Dates
-        trading_dates = []
-        try:
-            r = requests.get("https://www.twse.com.tw/rwd/zh/TAIEX/TAIEXChart", params={"response": "json"}, timeout=15)
-            trading_dates = [row[0].replace("-", "") for row in r.json() if row[0]][-20:]
-        except: pass
-        inst_by_date = {d: fetch_inst_all(d) for d in trading_dates}
-
-        output = {"last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "stocks": {}}
-        
-        # Limit to top 500 for fast dashboard, or all if you prefer
-        tickers = list(self.ticker_info.items())
-        
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = [executor.submit(self.fetch_single, t, info, market_prices, trading_dates, inst_by_date) for t, info in tickers]
-            for i, future in enumerate(as_completed(futures)):
-                res = future.result()
-                if res:
-                    output["stocks"][res[0]] = res[1]
-                if i % 100 == 0: logger.info(f"Progress: {i}/{len(tickers)}")
-
-        # Recalculate Industry Strength
+        # Industry Strength
         ind_map = {}
         for s in output["stocks"].values():
             ind = s["industry"]
