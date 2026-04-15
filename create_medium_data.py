@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-創建一個中等大小的 data.json (500檔股票)
+創建一個中等大小的 data.json (1000檔股票)
 """
 
 import json
@@ -28,21 +28,22 @@ def create_medium_data():
     for stock_id in important_stocks:
         if stock_id in stocks:
             medium_stocks[stock_id] = stocks[stock_id]
-    
-    # 再加入其他股票直到達到500檔
+    # 取前 1000 檔股票
+    ...
+    # 再加入其他股票直到達到1000檔
     for stock_id, stock_data in stocks.items():
-        if stock_id not in medium_stocks and len(medium_stocks) < 500:
+        if stock_id not in medium_stocks and len(medium_stocks) < 1000:
             medium_stocks[stock_id] = stock_data
-    
+
     # 創建中等大小數據
     medium_data = {
         "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "stocks": medium_stocks,
         "industry_strength": data_base.get("industry_strength", [])
     }
-    
+
     print(f"中等大小股票數量: {len(medium_data['stocks'])}")
-    
+
     # 保存
     with open(data_path, 'w', encoding='utf-8') as f:
         json.dump(medium_data, f, ensure_ascii=False, indent=2)
