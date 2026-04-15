@@ -54,6 +54,13 @@ def verify_local_features():
             m_rs = calculate_mansfield_rs(stock_hist, market_hist) if stock_hist is not None else 0.0
             rs_trend = calculate_rs_trend(stock_hist, market_hist) if stock_hist is not None else {"trend": "neutral", "delta": 0}
             
+            # Calculate rs_ratio
+            rs_ratio = 1.0
+            if stock_hist is not None and market_hist is not None and len(stock_hist) >= 120:
+                stock_ret = (stock_hist.iloc[-1] - stock_hist.iloc[-120]) / stock_hist.iloc[-120]
+                market_ret = (market_hist.iloc[-1] - market_hist.iloc[-120]) / market_hist.iloc[-120]
+                rs_ratio = round(stock_ret / market_ret, 2) if abs(market_ret) > 0.01 else 1.0
+            
             inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares > 0 else 0
             
             l_score = calculate_l_factor(m_rs)
@@ -78,11 +85,12 @@ def verify_local_features():
                 "industry": "ETF" if is_etf else "驗證標的",
                 "is_etf": is_etf,
                 "canslim": {
-                    "C": factors["C"], "A": factors["A"], "N": True, "S": True, 
-                    "L": l_score, "I": i_score, "M": True,
+                    "C": factors["C"], "A": factors["A"], "N": factors["N"], "S": factors["S"], 
+                    "L": factors["L"], "I": factors["I"], "M": factors["M"],
                     "score": score,
                     "mansfield_rs": round(m_rs, 3),
                     "rs_trend": rs_trend,
+                    "rs_ratio": rs_ratio,
                     "grid_strategy": grid_data
                 },
                 "institutional": history[:10] if history else [],

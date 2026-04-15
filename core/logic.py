@@ -77,9 +77,12 @@ def calculate_a_factor(eps_years: pd.Series, threshold: float = 0.25, roe: Optio
         
     return is_growing
 
-def calculate_l_factor(rs_rank: float, threshold: float = 80) -> bool:
-    """L - Leader or Laggard."""
-    return rs_rank >= threshold
+def calculate_l_factor(rs_value: float, threshold: float = 0) -> bool:
+    """
+    L - Leader or Laggard.
+    For Mansfield RS, any value > 0 is outperforming.
+    """
+    return rs_value > threshold
 
 def check_n_factor(prices: pd.Series) -> bool:
     """
@@ -163,14 +166,15 @@ def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> i
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:
     """
     ETF scoring - implements the reference logic for ETFs.
-    Reflects 'Component Quality' logic: if RS is strong, assume components are quality.
+    Reflects 'Component Quality' logic: if RS is strong (L is PASS), 
+    we assume components (C/A) are also quality.
     """
     if factors.get('L'):
         factors['C'] = True
         factors['A'] = True
         
     score = 0
-    # For ETFs, Relative Strength (L) and Market Trend (M) are most important
+    # For ETFs, Relative Strength (L) and Market Trend (M) are the primary drivers
     weights = {'N': 10, 'S': 10, 'L': 40, 'I': 10, 'M': 30}
     for f, w in weights.items():
         if factors.get(f): score += w

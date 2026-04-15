@@ -138,11 +138,19 @@ class FastDataGenerator:
                     inst = inst_by_date[d][t]
                     history.append({"date": d, **inst})
 
-            # CANSLIM Factors
+            # RS and N
             m_rs = calculate_mansfield_rs(prices, market_prices)
             rs_trend = calculate_rs_trend(prices, market_prices)
             n_score = check_n_factor(prices)
             l_score = calculate_l_factor(m_rs)
+
+            # rs_ratio (Relative Strength Ratio)
+            rs_ratio = 1.0
+            if market_prices is not None and len(prices) >= 120 and len(market_prices) >= 120:
+                stock_ret = (prices.iloc[-1] - prices.iloc[-120]) / prices.iloc[-120]
+                market_ret = (market_prices.iloc[-1] - market_prices.iloc[-120]) / market_prices.iloc[-120]
+                rs_ratio = round(stock_ret / market_ret, 2) if abs(market_ret) > 0.01 else 1.0
+
             i_score = len(history) >= 3 and sum(h["foreign_net"]+h["trust_net"]+h["dealer_net"] for h in history[:3]) > 0
             
             factors = {
@@ -168,7 +176,7 @@ class FastDataGenerator:
                 "canslim": {
                     "C": bool(factors["C"]), "A": bool(factors["A"]), "N": bool(factors["N"]), 
                     "S": bool(factors["S"]), "L": bool(factors["L"]), "I": bool(factors["I"]), "M": bool(factors["M"]),
-                    "score": int(score), "mansfield_rs": float(m_rs), "rs_trend": rs_trend,
+                    "score": int(score), "mansfield_rs": float(m_rs), "rs_trend": rs_trend, "rs_ratio": rs_ratio,
                     "grid_strategy": grid_data, 
                     "excel_ratings": self.excel_ratings.get(t),
                     "fund_holdings": self.fund_holdings.get(t)
