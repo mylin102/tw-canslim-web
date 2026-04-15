@@ -242,9 +242,10 @@
                         </div>
                         <div class="text-center p-3 rounded-lg bg-slate-50">
                             <div class="text-xs text-slate-400 font-bold mb-1">RS 相對強度</div>
-                            <div :class="['text-xl font-bold', currentStock.canslim.rs_ratio >= 1.2 ? 'pass' : currentStock.canslim.rs_ratio >= 1.0 ? 'text-yellow-600' : 'fail']">
-                                {{ currentStock.canslim.rs_ratio ? currentStock.canslim.rs_ratio.toFixed(2) : 'N/A' }}
+                            <div v-if="currentStock && currentStock.canslim" :class="['text-xl font-bold', (currentStock.canslim.rs_ratio || 0) >= 1.2 ? 'pass' : (currentStock.canslim.rs_ratio || 0) >= 1.0 ? 'text-yellow-600' : 'fail']">
+                                {{ typeof currentStock.canslim.rs_ratio === 'number' ? currentStock.canslim.rs_ratio.toFixed(2) : 'N/A' }}
                             </div>
+                            <div v-else class="text-xl font-bold text-slate-300">N/A</div>
                         </div>
                     </div>
 
@@ -291,32 +292,32 @@
                             </h4>
                             
                             <!-- Case: Data Available -->
-                            <div v-if="currentStock.canslim.inst_strength_20d !== undefined" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div v-if="currentStock.canslim && currentStock.canslim.inst_strength_20d !== undefined && currentStock.canslim.inst_strength_20d !== null" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <div class="flex justify-between text-sm mb-1">
                                         <span class="text-slate-600 font-medium">5日吸籌 (極短線)</span>
-                                        <span :class="['font-bold', currentStock.canslim.inst_strength_5d >= 0 ? 'text-green-600' : 'text-red-600']">
-                                            {{ currentStock.canslim.inst_strength_5d }}%
+                                        <span :class="['font-bold', (currentStock.canslim.inst_strength_5d || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_5d || 0 }}%
                                         </span>
                                     </div>
                                     <div class="w-full bg-slate-200 rounded-full h-2.5">
                                         <div :class="['h-2.5 rounded-full transition-all duration-500', 
-                                             currentStock.canslim.inst_strength_5d >= 0 ? 'bg-green-500' : 'bg-red-500']"
-                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_5d) * 20, 100) + '%' }">
+                                             (currentStock.canslim.inst_strength_5d || 0) >= 0 ? 'bg-green-500' : 'bg-red-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_5d || 0) * 20, 100) + '%' }">
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="flex justify-between text-sm mb-1">
                                         <span class="text-slate-600 font-medium">20日吸籌 (波段)</span>
-                                        <span :class="['font-bold', currentStock.canslim.inst_strength_20d >= 0 ? 'text-green-600' : 'text-red-600']">
-                                            {{ currentStock.canslim.inst_strength_20d }}%
+                                        <span :class="['font-bold', (currentStock.canslim.inst_strength_20d || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_20d || 0 }}%
                                         </span>
                                     </div>
                                     <div class="w-full bg-slate-200 rounded-full h-2.5">
                                         <div :class="['h-2.5 rounded-full transition-all duration-500', 
-                                             currentStock.canslim.inst_strength_20d >= 0 ? 'bg-blue-500' : 'bg-orange-500']"
-                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_20d) * 10, 100) + '%' }">
+                                             (currentStock.canslim.inst_strength_20d || 0) >= 0 ? 'bg-blue-500' : 'bg-orange-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_20d || 0) * 10, 100) + '%' }">
                                         </div>
                                     </div>
                                 </div>
