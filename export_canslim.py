@@ -491,15 +491,12 @@ class CanslimEngine:
 
     def get_price_history(self, ticker: str, period: str = "2y") -> Optional[pd.Series]:
         """Fetch historical close prices. Prefers TEJ, fallbacks to yfinance."""
-        # Standardize market index for yfinance
-        yf_ticker = ticker
-        if ticker == "TWII": yf_ticker = "^TWII"
-        
         # 1. Try TEJ first
         if self.tej_processor.initialized:
             try:
-                # TEJ usually uses 'TWII' without ^
-                df_tej = self.tej_processor.get_daily_prices(ticker, count=500)
+                # TEJ index doesn't need ^
+                tej_sym = ticker.replace("^", "")
+                df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500)
                 if df_tej is not None and not df_tej.empty:
                     return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
             except Exception as e:
@@ -507,10 +504,22 @@ class CanslimEngine:
 
         # 2. Fallback to yfinance
         try:
+            if ticker == "TWII" or ticker == "^TWII":
+                yf_ticker = "^TWII"
+            elif "." in ticker:
+                yf_ticker = ticker
+            else:
+                # Add suffix from metadata or default to .TW
+                suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
+                yf_ticker = f"{ticker}{suffix}"
+            
             stock = yf.Ticker(yf_ticker)
             hist = stock.history(period=period)
             if hist is not None and not hist.empty:
                 return hist['Close']
+            return None
+        except Exception as e:
+            logger.debug(f"yfinance history failed for {ticker}: {e}")
             return None
         except Exception as e:
             logger.debug(f"yfinance history failed for {ticker}: {e}")

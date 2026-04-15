@@ -2,6 +2,7 @@ import os
 import json
 import logging
 import pandas as pd
+import numpy as np
 from datetime import datetime
 from export_canslim import CanslimEngine
 
@@ -25,8 +26,8 @@ def verify_local_features():
             print(f"--- Analyzing {t} ---")
             info = engine.ticker_info.get(t, {"name": t, "suffix": ".TW"})
             
-            # 判斷是否為 ETF
-            is_etf = engine.tej_processor.is_etf(t) or "ETF" in info.get("name", "")
+            # 判斷是否為 ETF (代號 00 開頭或是名稱包含 ETF)
+            is_etf = engine.tej_processor.is_etf(t) or "ETF" in info.get("name", "") or t.startswith("00")
             
             # 1. Institutional Data
             history = engine.fetch_institutional_data_finmind(t, days=60)
@@ -92,8 +93,21 @@ def verify_local_features():
 
     # Save to docs/data.json
     with open("docs/data.json", "w", encoding="utf-8") as f:
-        json.dump(engine.output_data, f, ensure_ascii=False, indent=2)
+        def json_serial(obj):
+            if isinstance(obj, (datetime, pd.Timestamp)):
+                return obj.strftime('%Y-%m-%d')
+            if isinstance(obj, np.bool_):
+                return bool(obj)
+            if isinstance(obj, np.integer):
+                return int(obj)
+            if isinstance(obj, np.floating):
+                return float(obj)
+            raise TypeError ("Type %s not serializable" % type(obj))
+
+        json.dump(engine.output_data, f, ensure_ascii=False, indent=2, default=json_serial)
+
     print("\n🎉 Verification data generated successfully at docs/data.json")
+
 
 if __name__ == "__main__":
     verify_local_features()
