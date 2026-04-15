@@ -163,16 +163,36 @@ const app = createApp({
             ) || null;
         });
 
+        // 緩存排序結果以提高性能
+        const sortedStocksCache = ref(null);
+        const sortedStocksCacheKey = ref('');
+        
         const allStocksSorted = computed(() => {
             if (!stockData.value || !stockData.value.stocks) return [];
+            
+            // 檢查緩存
+            const cacheKey = `${Object.keys(stockData.value.stocks).length}`;
+            if (sortedStocksCache.value && sortedStocksCacheKey.value === cacheKey) {
+                return sortedStocksCache.value;
+            }
+            
             try {
-                return Object.values(stockData.value.stocks)
+                console.time('股票排序');
+                const sorted = Object.values(stockData.value.stocks)
                     .filter(s => s && s.canslim)
                     .sort((a, b) => {
                         const scoreA = (a.canslim && typeof a.canslim.score === 'number') ? a.canslim.score : 0;
                         const scoreB = (b.canslim && typeof b.canslim.score === 'number') ? b.canslim.score : 0;
                         return scoreB - scoreA;
                     });
+                console.timeEnd('股票排序');
+                console.log(`📊 排序完成: ${sorted.length} 檔股票`);
+                
+                // 更新緩存
+                sortedStocksCache.value = sorted;
+                sortedStocksCacheKey.value = cacheKey;
+                
+                return sorted;
             } catch (e) {
                 console.error("Critical: Global sorting failed", e);
                 return [];
