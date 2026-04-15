@@ -275,25 +275,29 @@ const app = createApp({
         };
 
         const checkUrlParams = () => {
+            const fullUrl = window.location.href;
             const search = window.location.search;
-            if (!search) return;
+            
+            let ticker = '';
 
-            // 支援 ?update:2330 格式
-            if (search.includes('update:')) {
-                const ticker = search.split('update:')[1].split('&')[0];
-                if (ticker) {
-                    updateTicker.value = ticker;
-                    showUpdateModal.value = true;
-                    return;
+            // 1. 優先嘗試標準解析 ?update=2330
+            const urlParams = new URLSearchParams(search);
+            ticker = urlParams.get('update');
+
+            // 2. 如果沒抓到，嘗試解析 ?update:2330 格式 (包含 URL 編碼處理)
+            if (!ticker) {
+                const decodedUrl = decodeURIComponent(fullUrl);
+                if (decodedUrl.includes('update:')) {
+                    ticker = decodedUrl.split('update:')[1].split('&')[0].split('#')[0];
                 }
             }
 
-            // 支援標準 ?update=2330 格式
-            const urlParams = new URLSearchParams(search);
-            const updateVal = urlParams.get('update');
-            if (updateVal) {
-                updateTicker.value = updateVal;
-                showUpdateModal.value = true;
+            // 3. 如果抓到代號，延遲 500ms 顯示，確保 Safari 中 Vue 已完全掛載
+            if (ticker && /^\d{4,6}$/.test(ticker)) {
+                setTimeout(() => {
+                    updateTicker.value = ticker;
+                    showUpdateModal.value = true;
+                }, 500);
             }
         };
 
