@@ -275,16 +275,25 @@ const app = createApp({
         };
 
         const checkUrlParams = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            // Check for ?update:2330
-            for (const [key, value] of urlParams.entries()) {
-                if (key.startsWith('update')) {
-                    const ticker = key.includes(':') ? key.split(':')[1] : value;
-                    if (ticker) {
-                        updateTicker.value = ticker;
-                        showUpdateModal.value = true;
-                    }
+            const search = window.location.search;
+            if (!search) return;
+
+            // 支援 ?update:2330 格式
+            if (search.includes('update:')) {
+                const ticker = search.split('update:')[1].split('&')[0];
+                if (ticker) {
+                    updateTicker.value = ticker;
+                    showUpdateModal.value = true;
+                    return;
                 }
+            }
+
+            // 支援標準 ?update=2330 格式
+            const urlParams = new URLSearchParams(search);
+            const updateVal = urlParams.get('update');
+            if (updateVal) {
+                updateTicker.value = updateVal;
+                showUpdateModal.value = true;
             }
         };
 
