@@ -112,14 +112,21 @@ class FastDataGenerator:
             chunk = ticker_symbols[i:i+100]
             try:
                 df = yf.download(chunk, period="2y", auto_adjust=True, progress=False, threads=True)
-                if len(chunk) == 1:
-                    price_data[chunk[0].split('.')[0]] = df['Close'].dropna().squeeze()
-                else:
+                if df is None or df.empty: continue
+                
+                # Handle MultiIndex for multiple tickers
+                if isinstance(df.columns, pd.MultiIndex):
                     for sym in chunk:
-                        if sym in df.columns.levels[0]:
+                        if sym in df.columns.get_level_values(0):
                             p = df[sym]['Close'].dropna().squeeze()
-                            if not p.empty: price_data[sym.split('.')[0]] = p
-            except: pass
+                            if not p.empty:
+                                price_data[sym.split('.')[0]] = p
+                else:
+                    # Single ticker case
+                    if len(chunk) == 1:
+                        price_data[chunk[0].split('.')[0]] = df['Close'].dropna().squeeze()
+            except Exception as e:
+                logger.warning(f"Batch download error at {i}: {e}")
             time.sleep(1)
 
         # Build output
