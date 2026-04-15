@@ -26,8 +26,8 @@ def verify_local_features():
             print(f"--- Analyzing {t} ---")
             info = engine.ticker_info.get(t, {"name": t, "suffix": ".TW"})
             
-            # 判斷是否為 ETF (代號 00 開頭或是名稱包含 ETF)
-            is_etf = engine.tej_processor.is_etf(t) or "ETF" in info.get("name", "") or t.startswith("00")
+            # 判斷是否為 ETF (代號 00 開頭 4-6 碼皆視為 ETF)
+            is_etf = engine.tej_processor.is_etf(t) or t.startswith("00")
             
             # 1. Institutional Data
             history = engine.fetch_institutional_data_finmind(t, days=60)
