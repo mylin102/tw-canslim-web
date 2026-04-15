@@ -17,7 +17,12 @@ class FinMindProcessor:
     """Process FinMind API data for institutional investors."""
     
     def __init__(self):
-        self.dl = DataLoader()
+        try:
+            self.dl = DataLoader()
+        except Exception as e:
+            logger.error(f"Failed to initialize FinMind DataLoader: {e}")
+            self.dl = None
+            
         self.investor_name_map = {
             'Foreign_Investor': '外資',
             'Investment_Trust': '投信',
@@ -140,9 +145,10 @@ class FinMindProcessor:
             Parsed institutional data dict
         """
         try:
-            # Calculate date range (add buffer for holidays/weekends)
+            # Calculate date range (add more buffer for holidays/weekends/long lookbacks)
+            # For 60 trading days, we need about 90 calendar days
             end_date = datetime.now()
-            start_date = end_date - timedelta(days=days * 2)  # Buffer
+            start_date = end_date - timedelta(days=int(days * 1.6) + 7)  # Buffer factor 1.6 + 1 week
             
             start_str = start_date.strftime('%Y-%m-%d')
             end_str = end_date.strftime('%Y-%m-%d')
@@ -167,6 +173,17 @@ class FinMindProcessor:
             
         except Exception as e:
             logger.error(f"Failed to fetch recent trading days for {stock_id}: {e}")
+            return None
+
+    def fetch_stock_info(self, stock_id: str) -> Optional[pd.DataFrame]:
+        """Fetch basic stock info including share issued."""
+        try:
+            df = self.dl.taiwan_stock_info()
+            if df is not None:
+                return df[df['stock_id'] == stock_id]
+            return None
+        except Exception as e:
+            logger.error(f"Failed to fetch stock info for {stock_id}: {e}")
             return None
     
     def get_institutional_summary(self, inst_data: Dict[str, Dict]) -> Dict:
