@@ -4,3 +4,5 @@ requests
 pytest
 openpyxl
 FinMind
+tejapi
+beautifulsoup4
