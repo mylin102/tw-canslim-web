@@ -51,6 +51,9 @@ def verify_local_features():
             total_shares = market_cap / price if price > 0 else 0
             
             m_rs = calculate_mansfield_rs(stock_hist, market_hist) if stock_hist is not None else 0.0
+            from core.logic import calculate_rs_trend
+            rs_trend = calculate_rs_trend(stock_hist, market_hist) if stock_hist is not None else {"trend": "neutral", "delta": 0}
+            
             inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares > 0 else 0
             
             l_score = calculate_l_factor(m_rs)
@@ -79,6 +82,7 @@ def verify_local_features():
                     "L": l_score, "I": i_score, "M": True,
                     "score": score,
                     "mansfield_rs": round(m_rs, 3),
+                    "rs_trend": rs_trend,
                     "grid_strategy": grid_data
                 },
                 "institutional": history[:10] if history else [],

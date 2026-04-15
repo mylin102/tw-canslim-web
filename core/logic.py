@@ -103,6 +103,35 @@ def calculate_mansfield_rs(stock_prices: Optional[pd.Series], market_prices: Opt
     mris = ((current_rs / avg_rs) - 1) * 10
     return round(mris, 3)
 
+def calculate_rs_trend(stock_prices: Optional[pd.Series], market_prices: Optional[pd.Series], window: int = 250) -> dict:
+    """
+    Analyzes the trend of Mansfield RS over the last 5 trading days.
+    Returns: {trend: 'up'|'down'|'flat', delta: float}
+    """
+    if stock_prices is None or market_prices is None or len(stock_prices) < window + 5:
+        return {'trend': 'neutral', 'delta': 0}
+    
+    df = pd.DataFrame({'stock': stock_prices, 'market': market_prices}).dropna()
+    if len(df) < window + 5: return {'trend': 'neutral', 'delta': 0}
+    
+    df['rs'] = df['stock'] / df['market']
+    
+    def get_mris_at(idx):
+        subset = df['rs'].iloc[:idx]
+        curr = subset.iloc[-1]
+        avg = subset.tail(window).mean()
+        return ((curr / avg) - 1) * 10 if avg != 0 else 0
+
+    mris_now = get_mris_at(len(df))
+    mris_prev = get_mris_at(len(df) - 5) # 5 days ago
+    
+    delta = round(mris_now - mris_prev, 3)
+    if delta > 0.05: trend = 'up'
+    elif delta < -0.05: trend = 'down'
+    else: trend = 'flat'
+    
+    return {'trend': trend, 'delta': delta, 'current': round(mris_now, 3)}
+
 def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> int:
     """Standard CANSLIM scoring."""
     score = 0

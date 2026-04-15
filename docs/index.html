@@ -237,11 +237,22 @@
                         </div>
                         <div class="text-center p-3 rounded-lg bg-slate-50">
                             <div class="text-xs text-slate-400 font-bold mb-1">Mansfield RS</div>
-                            <div :class="['text-xl font-bold', currentStock.canslim.mansfield_rs > 0 ? 'pass' : 'fail']">
-                                {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs }}
+                            <div class="flex items-center justify-center gap-1">
+                                <div :class="['text-xl font-bold', currentStock.canslim.mansfield_rs > 0 ? 'pass' : 'fail']">
+                                    {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs }}
+                                </div>
+                                <i v-if="currentStock.canslim.rs_trend" :class="[
+                                    'fas text-xs',
+                                    currentStock.canslim.rs_trend.trend === 'up' ? 'fa-arrow-trend-up text-green-500' :
+                                    currentStock.canslim.rs_trend.trend === 'down' ? 'fa-arrow-trend-down text-red-500' :
+                                    'fa-minus text-slate-300'
+                                ]"></i>
                             </div>
                             <div class="text-[10px] mt-1 font-bold" :class="currentStock.canslim.mansfield_rs > 0 ? 'text-green-600' : 'text-red-600'">
-                                {{ currentStock.canslim.mansfield_rs > 0 ? '優於大盤 (Outperforming)' : '低於平均 (Lagging)' }}
+                                {{ currentStock.canslim.mansfield_rs > 0 ? '優於大盤' : '低於平均' }}
+                                <span v-if="currentStock.canslim.rs_trend && currentStock.canslim.rs_trend.trend !== 'flat'" class="ml-1 opacity-70">
+                                    ({{ currentStock.canslim.rs_trend.trend === 'up' ? '上升中' : '下滑中' }})
+                                </span>
                             </div>
                         </div>
                         <div class="text-center p-3 rounded-lg bg-slate-50">
