@@ -46,7 +46,8 @@ def calculate_accumulation_strength(chip_df: pd.DataFrame, total_shares: float, 
     
     # Taiwan stock chips are in 'shares' (1000 per lot)
     strength = (total_net_buy * 1000) / total_shares
-    return round(strength * 100, 4)
+    # Return as decimal (e.g., 0.004 for 0.4%)
+    return round(strength, 6)
 
 def calculate_rs_score(stock_returns: pd.Series, market_returns: pd.Series) -> float:
     """Simple RS ratio."""
