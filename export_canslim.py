@@ -11,6 +11,8 @@ from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 
+from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid
+
 # TAIEX via yfinance
 TAIEX_SYMBOL = "^TWII"
 RS_LOOKBACK_DAYS = 180  # ~6 months
@@ -75,6 +77,22 @@ def get_all_tw_tickers():
     except Exception as e:
         logger.error(f"Failed to fetch TPEx tickers: {e}")
     
+    # 3. Add ETFs from cache
+    cache_file = os.path.join(SCRIPT_DIR, "etf_cache.json")
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                cache_data = json.load(f)
+                etfs = cache_data.get("etfs", {})
+                for tid, info in etfs.items():
+                    # Preserve existing stock if ID collision (rare for 4-digit)
+                    if tid not in ticker_map or "ETF" in info.get("name", ""):
+                        suffix = ".TW" if info.get("market") == "TWSE" else ".TWO"
+                        ticker_map[tid] = {"name": info["name"], "suffix": suffix}
+            logger.info(f"Integrated {len(etfs)} ETFs from cache")
+        except Exception as e:
+            logger.error(f"Failed to integrate ETF cache: {e}")
+
     # Add known stocks that might be missing
     for code, name in KNOWN_STOCK_NAMES.items():
         if code not in ticker_map:
@@ -90,11 +108,24 @@ class CanslimEngine:
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
         self.tej_processor = TEJProcessor()
+        self.etf_list = self._load_etf_cache()
         self.excel_ratings = None
         self.fund_holdings = None
         self.industry_data = None
         self.industry_strength = None
         self._load_excel_data()
+
+    def _load_etf_cache(self):
+        """Load ETF list from local cache file."""
+        cache_file = os.path.join(SCRIPT_DIR, "etf_cache.json")
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    return data.get("etfs", {})
+            except Exception as e:
+                logger.error(f"Failed to load ETF cache: {e}")
+        return {}
 
     def _load_excel_data(self):
         """Load Excel data if available."""
@@ -445,13 +476,6 @@ class CanslimEngine:
     def calculate_canslim_score(self, c: bool, a: bool, n: bool, s: bool, l: bool, i: bool, m: bool) -> int:
         """Calculate CANSLIM score (0-100)."""
         return self.calculate_enhanced_canslim_score(c, a, n, s, l, i, m)
-        base_score = sum([1 for metric in metrics if metric]) * 14
-        
-        # Bonus: C and A are more important
-        if c and a:
-            base_score += 2
-        
-        return min(base_score, 100)
 
     def validate_stock_data(self, data: Dict) -> bool:
         """Validate stock data structure."""
@@ -465,18 +489,62 @@ class CanslimEngine:
         
         return True
 
+    def get_price_history(self, ticker: str, period: str = "2y") -> Optional[pd.Series]:
+        """Fetch historical close prices. Prefers TEJ, fallbacks to yfinance."""
+        # 1. Try TEJ first
+        if self.tej_processor.initialized:
+            try:
+                # Convert period to start_date approximate
+                days = 730 if "2y" in period else 180
+                start_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
+                df_tej = self.tej_processor.get_daily_prices(ticker, start_date=start_date)
+                if df_tej is not None and not df_tej.empty:
+                    # Return Series indexed by date with 'close' values
+                    return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
+            except Exception as e:
+                logger.debug(f"TEJ history failed for {ticker}: {e}")
+
+        # 2. Fallback to yfinance
+        try:
+            # Don't add suffix to index symbols or already suffixed tickers
+            if ticker.startswith("^") or "." in ticker:
+                full_ticker = ticker
+            else:
+                suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
+                full_ticker = f"{ticker}{suffix}"
+            
+            stock = yf.Ticker(full_ticker)
+            hist = stock.history(period=period)
+            if hist is not None and not hist.empty:
+                return hist['Close']
+            return None
+        except Exception as e:
+            logger.debug(f"yfinance history failed for {ticker}: {e}")
+            return None
+
     def run(self):
         logger.info("="*80)
-        logger.info("Starting CANSLIM Analysis with FinMind API + Excel Integration")
+        logger.info("Starting CANSLIM Analysis with Mansfield RS & Resume Capability")
         logger.info("="*80)
         
-        # Fetch market return first (used for RS calculation)
-        market_return = self.get_market_return_6m()
-        if market_return is not None:
-            logger.info(f"Market return (6mo): {market_return*100:.2f}%")
-        else:
-            logger.warning("Could not fetch market return, RS calculation will use defaults")
+        # 1. Try to load existing data for resuming
+        existing_count = 0
+        if os.path.exists(DATA_FILE):
+            try:
+                with open(DATA_FILE, "r", encoding="utf-8") as f:
+                    old_data = json.load(f)
+                    if "stocks" in old_data:
+                        self.output_data["stocks"] = old_data["stocks"]
+                        existing_count = len(self.output_data["stocks"])
+                        logger.info(f"📂 Found existing data. Resuming with {existing_count} stocks already processed.")
+            except Exception as e:
+                logger.warning(f"Could not load existing data for resume: {e}")
 
+        # 2. Fetch market benchmark history once
+        logger.info(f"Fetching {TAIEX_SYMBOL} history for Mansfield RS...")
+        market_hist = self.get_price_history(TAIEX_SYMBOL, period="2y")
+        market_return = self.get_market_return_6m()
+        
         # Priority list + extended scan
         priority = ["1101", "2330", "3565", "6770", "2303", "8069", "6805"]
         all_t = sorted(list(self.ticker_info.keys()))
@@ -485,122 +553,118 @@ class CanslimEngine:
         logger.info(f"Analyzing {len(scan_list)} stocks...")
 
         for i, t in enumerate(scan_list):
-            if i % 50 == 0:
-                logger.info(f"Processing {i}/{len(scan_list)}...")
+            # SMARTER RESUME LOGIC: 
+            # Skip only if stock exists AND contains the latest calculated fields (grid_strategy)
+            if t in self.output_data["stocks"]:
+                stock_entry = self.output_data["stocks"][t]
+                if "grid_strategy" in stock_entry.get("canslim", {}):
+                    continue
+                else:
+                    logger.info(f"🔄 Stock {t} exists but missing new fields. Re-processing...")
+
+            if i % 10 == 0:
+                logger.info(f"Processing {i}/{len(scan_list)}... (Current: {t})")
             
-            info = self.ticker_info.get(t, {"name": t, "suffix": ".TW"})
-            
-            # Fetch institutional data via FinMind
-            history = self.fetch_institutional_data_finmind(t, days=20)
-            
-            if not history:
-                # Fallback to empty data if fetch fails
-                logger.debug(f"No institutional data for {t}, using defaults")
-                history = [{
-                    "date": datetime.now().strftime("%Y%m%d"),
-                    "foreign_net": 0,
-                    "trust_net": 0,
-                    "dealer_net": 0,
-                    "no_data": True
-                }]
-            
-            # Fetch financial data
-            financial_data = self.fetch_financial_data(t)
-            
-            if not financial_data:
-                # Skip if we can't get financial data
+            try:
+                info = self.ticker_info.get(t, {"name": t, "suffix": ".TW"})
+                history = self.fetch_institutional_data_finmind(t, days=60)
+                
+                if not history:
+                    history = [{"date": datetime.now().strftime("%Y%m%d"), "no_data": True}]
+                
+                chip_df = pd.DataFrame(history)
+                financial_data = self.fetch_financial_data(t)
+                if not financial_data: continue
+                
+                # Mansfield RS Calculation
+                stock_hist = self.get_price_history(t, period="2y")
+                m_rs = calculate_mansfield_rs(stock_hist, market_hist) if stock_hist is not None and market_hist is not None else 0.0
+
+                price = financial_data.get("price", 0) or 0
+                market_cap = financial_data.get("market_cap", 0) or 0
+                shares_outstanding = financial_data.get("sharesOutstanding", 0) or 0
+                
+                total_shares = 0
+                if price > 0 and market_cap > 0:
+                    total_shares = market_cap / price
+                elif shares_outstanding > 0:
+                    total_shares = shares_outstanding
+                
+                tej_ca = {}
+                if self.tej_processor.initialized:
+                    tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
+                
+                c_score = tej_ca.get('C', False)
+                a_score = tej_ca.get('A', False)
+                tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
+
+                n_score = self.check_n_new_high(financial_data.get("price", 0), financial_data.get("high_52w", 0))
+                s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
+
+                inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0
+                inst_strength_5d = calculate_accumulation_strength(chip_df, total_shares, days=5) if total_shares else 0.0
+                i_score = self.check_i_institutional(history)
+                
+                # New L factor based on Mansfield
+                l_score = calculate_l_factor(m_rs)
+                
+                rs_ratio = 1.0
+                if stock_hist is not None and market_return is not None:
+                    # Calculate actual 6-month return (approx 120 trading days)
+                    if len(stock_hist) >= 120:
+                        stock_return_6m = (stock_hist.iloc[-1] - stock_hist.iloc[-120]) / stock_hist.iloc[-120]
+                        rs_ratio = stock_return_6m / market_return if abs(market_return) > 0.01 else 1.0
+                
+                excel_ratings = self.get_excel_canslim_ratings(t)
+                fund_data = self.fund_holdings.get(t) if self.fund_holdings else None
+                industry_info = self.industry_data.get(t) if self.industry_data else None
+                
+                # ETF Identification
+                industry_name = industry_info.get('industry', '') if industry_info else ''
+                is_etf = (t in self.etf_list) or len(t) >= 5 or "ETF" in industry_name or "受益證券" in industry_name
+                
+                factors = {"C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True}
+                
+                if is_etf:
+                    score = compute_canslim_score_etf(factors, institutional_strength=inst_strength_20d)
+                else:
+                    score = compute_canslim_score(factors, institutional_strength=inst_strength_20d)
+
+                # Strategy Lab: Grid Strategy
+                grid_data = None
+                if (score >= 60 or is_etf) and stock_hist is not None:
+                    grid_data = calculate_volatility_grid(stock_hist, is_etf=is_etf)
+
+                stock_data = {
+                    "symbol": t, "name": info["name"],
+                    "industry": industry_name,
+                    "is_etf": is_etf,
+                    "canslim": {
+                        "C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True,
+                        "score": score, 
+                        "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
+                        "mansfield_rs": round(m_rs, 3),
+                        "inst_strength_20d": round(inst_strength_20d * 100, 3) if inst_strength_20d else 0,
+                        "inst_strength_5d": round(inst_strength_5d * 100, 3) if inst_strength_5d else 0,
+                        "excel_ratings": excel_ratings, "fund_holdings": fund_data,
+                        "grid_strategy": grid_data
+                    },
+                    "institutional": history[:20], "financials": financial_data, "tej_quarterly": tej_financials
+                }
+                
+                if self.validate_stock_data(stock_data):
+                    self.output_data["stocks"][t] = stock_data
+
+                # INCREMENTAL SAVE: Save every 50 new stocks
+                if len(self.output_data["stocks"]) % 50 == 0:
+                    self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
+                    with open(DATA_FILE, "w", encoding="utf-8") as f:
+                        json.dump(self.output_data, f, ensure_ascii=False, indent=2)
+
+            except Exception as e:
+                logger.error(f"Error processing {t}: {e}")
                 continue
-            
-            # Calculate CANSLIM metrics
-            # Try TEJ for C and A metrics first
-            tej_ca = {}
-            if self.tej_processor.initialized:
-                tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
-            
-            # Use TEJ C/A if available, otherwise fallback to defaults
-            c_score = tej_ca.get('C', False)
-            a_score = tej_ca.get('A', False)
-            
-            # Store TEJ financial data if available
-            tej_financials = None
-            if self.tej_processor.initialized:
-                tej_financials = self.tej_processor.get_quarterly_financials(t)
-
-            n_score = self.check_n_new_high(
-                financial_data.get("price", 0),
-                financial_data.get("high_52w", 0)
-            )
-
-            s_score = self.check_s_volume(
-                financial_data.get("volume", 0),
-                financial_data.get("avg_volume", 0)
-            )
-
-            i_score = self.check_i_institutional(history)
-            
-            # Calculate RS (Relative Strength) using 52-week range
-            # RS = position in 52-week range (0-1), scaled to vs market
-            price = financial_data.get("price", 0) or 0
-            high_52w = financial_data.get("high_52w", 0) or 0
-            low_52w = financial_data.get("low_52w", 0) or 0
-            
-            rs_ratio = None
-            if high_52w and low_52w and high_52w > low_52w and market_return is not None:
-                # Stock return approximation: position in 52-week range
-                stock_range_position = (price - low_52w) / (high_52w - low_52w)
-                # Annualize: if at 80% of range, roughly +60% from low
-                stock_return_approx = stock_range_position * 0.8 - 0.2  # -20% to +60%
-                rs_ratio = stock_return_approx / market_return if abs(market_return) > 0.01 else 1.0
-                l_score = self.check_l_relative_strength(stock_return_approx, market_return)
-            else:
-                l_score = True  # Default if can't calculate
-
-            a_score = True
-            m_score = True
-            
-            # Get Excel ratings if available
-            excel_ratings = self.get_excel_canslim_ratings(t)
-            
-            # Get fund holdings data if available
-            fund_data = None
-            if self.fund_holdings and t in self.fund_holdings:
-                fund_data = self.fund_holdings[t]
-            
-            # Get industry classification if available
-            industry_info = None
-            if self.industry_data and t in self.industry_data:
-                industry_info = self.industry_data[t]
-
-            # Calculate enhanced score with Excel integration
-            score = self.calculate_enhanced_canslim_score(
-                c_score, a_score, n_score, s_score, l_score, i_score, m_score,
-                excel_ratings
-            )
-
-            stock_data = {
-                "symbol": t,
-                "name": info["name"],
-                "industry": industry_info.get('industry') if industry_info else None,
-                "canslim": {
-                    "C": c_score,
-                    "A": a_score,
-                    "N": n_score,
-                    "S": s_score,
-                    "L": l_score,
-                    "I": i_score,
-                    "M": m_score,
-                    "score": score,
-                    "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
-                    "excel_ratings": excel_ratings,
-                    "fund_holdings": fund_data
-                },
-                "institutional": history[:20],  # Last 20 days
-                "financials": financial_data,
-                "tej_quarterly": tej_financials
-            }
-            
-            if self.validate_stock_data(stock_data):
-                self.output_data["stocks"][t] = stock_data
 
         self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -658,8 +722,25 @@ class CanslimEngine:
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
 
+        # Safety: Backup existing file with timestamp before overwriting
+        if os.path.exists(DATA_FILE):
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_file = os.path.join(OUTPUT_DIR, f"data_{timestamp}.json.bak")
+            import shutil
+            try:
+                shutil.copy2(DATA_FILE, backup_file)
+                logger.info(f"🛡️ Versioned backup created: {backup_file}")
+            except Exception as e:
+                logger.error(f"Failed to create backup: {e}")
+
         with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(self.output_data, f, ensure_ascii=False, indent=2)
+            # Custom JSON encoder to handle Timestamps and other non-serializable objects
+            def json_serial(obj):
+                if isinstance(obj, (datetime, pd.Timestamp)):
+                    return obj.strftime('%Y-%m-%d')
+                raise TypeError ("Type %s not serializable" % type(obj))
+            
+            json.dump(self.output_data, f, ensure_ascii=False, indent=2, default=json_serial)
 
         logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
 
