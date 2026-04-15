@@ -24,6 +24,7 @@ const app = createApp({
         const screenerFundOnly = ref(false);
         const screenerIndustry = ref('all');
         const screenerInstBuy = ref('any');
+        const displayLimit = ref(500); // 預設顯示 500 檔
 
         const availableIndustries = computed(() => {
             if (!stockData.value) return [];
@@ -205,7 +206,7 @@ const app = createApp({
             }
         });
 
-        const filteredStocks = computed(() => {
+        const allFilteredStocks = computed(() => {
             if (!stockData.value) return [];
             let result = Object.values(stockData.value.stocks)
                 .filter(s => s.canslim.score >= screenerMinScore.value);
@@ -226,6 +227,19 @@ const app = createApp({
             }
 
             return result.sort((a, b) => b.canslim.score - a.canslim.score);
+        });
+
+        const filteredStocks = computed(() => {
+            return allFilteredStocks.value.slice(0, displayLimit.value);
+        });
+
+        const loadMore = () => {
+            displayLimit.value += 500;
+        };
+
+        // 當過濾條件改變時，重置顯示數量
+        watch([screenerMinScore, screenerIndustry, screenerInstBuy, screenerMinRs, screenerFundOnly], () => {
+            displayLimit.value = 500;
         });
 
         const fetchData = async () => {
