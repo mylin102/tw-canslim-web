@@ -403,15 +403,9 @@
                                 <tbody>
                                     <tr v-for="row in sortedInstitutional" :key="row.date" class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                                         <td class="py-3">{{ row.date }}</td>
-                                        <td :class="['py-3', (row.foreign_net || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
-                                            {{ typeof row.foreign_net === 'number' ? row.foreign_net.toLocaleString() : '0' }}
-                                        </td>
-                                        <td :class="['py-3', (row.trust_net || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
-                                            {{ typeof row.trust_net === 'number' ? row.trust_net.toLocaleString() : '0' }}
-                                        </td>
-                                        <td :class="['py-3', (row.dealer_net || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
-                                            {{ typeof row.dealer_net === 'number' ? row.dealer_net.toLocaleString() : '0' }}
-                                        </td>
+                                        <td :class="['py-3', row.foreign_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.foreign_net.toLocaleString() }}</td>
+                                        <td :class="['py-3', row.trust_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.trust_net.toLocaleString() }}</td>
+                                        <td :class="['py-3', row.dealer_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.dealer_net.toLocaleString() }}</td>
                                     </tr>
                                 </tbody>
                             </table>
