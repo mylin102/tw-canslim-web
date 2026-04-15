@@ -418,11 +418,11 @@
                                         <i class="fas fa-flask mr-2 text-blue-400"></i> 量化策略建議 (Strategy Lab)
                                         <span class="ml-3 text-xs bg-blue-600 text-white px-2 py-0.5 rounded uppercase tracking-widest">Beta</span>
                                     </h3>
-                                    <p class="text-slate-400 text-sm mt-1">基於 20 日統計波動率 ({{ currentStock.canslim.grid_strategy.volatility }}%) 計算之自動網格</p>
+                                    <p class="text-slate-400 text-sm mt-1">基於 60 日統計波動率 ({{ currentStock.canslim.grid_strategy.volatility_daily || 0 }}%) 計算之自動網格</p>
                                 </div>
                                 <div class="text-right">
                                     <div class="text-xs text-slate-500 uppercase">網格間距</div>
-                                    <div class="text-lg font-mono font-bold text-blue-400">±{{ currentStock.canslim.grid_strategy.spacing }}%</div>
+                                    <div class="text-lg font-mono font-bold text-blue-400">±{{ currentStock.canslim.grid_strategy.spacing_pct || 0 }}%</div>
                                 </div>
                             </div>
 
@@ -446,7 +446,9 @@
                                     </div>
                                     <div class="flex items-center gap-4">
                                         <span class="text-xs opacity-50">{{ level.type === 'neutral' ? '基準現價' : '建議位點' }}</span>
-                                        <span class="text-xl font-mono font-bold">{{ level.price.toFixed(2) }}</span>
+                                        <span class="text-xl font-mono font-bold">
+                                            {{ typeof level.price === 'number' ? level.price.toFixed(2) : 'N/A' }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>

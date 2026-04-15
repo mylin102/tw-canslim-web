@@ -29,7 +29,7 @@ const app = createApp({
         });
 
         const inst3dNet = (stock) => {
-            if (!stock.institutional || stock.institutional.length < 1) return 0;
+            if (!stock || !stock.institutional || !Array.isArray(stock.institutional) || stock.institutional.length < 1) return 0;
             const n = Math.min(3, stock.institutional.length);
             return stock.institutional.slice(0, n).reduce((sum, d) =>
                 sum + (d.foreign_net || 0) + (d.trust_net || 0) + (d.dealer_net || 0), 0);
