@@ -491,29 +491,23 @@ class CanslimEngine:
 
     def get_price_history(self, ticker: str, period: str = "2y") -> Optional[pd.Series]:
         """Fetch historical close prices. Prefers TEJ, fallbacks to yfinance."""
+        # Standardize market index for yfinance
+        yf_ticker = ticker
+        if ticker == "TWII": yf_ticker = "^TWII"
+        
         # 1. Try TEJ first
         if self.tej_processor.initialized:
             try:
-                # Convert period to start_date approximate
-                days = 730 if "2y" in period else 180
-                start_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
-                df_tej = self.tej_processor.get_daily_prices(ticker, start_date=start_date)
+                # TEJ usually uses 'TWII' without ^
+                df_tej = self.tej_processor.get_daily_prices(ticker, count=500)
                 if df_tej is not None and not df_tej.empty:
-                    # Return Series indexed by date with 'close' values
                     return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
             except Exception as e:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
         # 2. Fallback to yfinance
         try:
-            # Don't add suffix to index symbols or already suffixed tickers
-            if ticker.startswith("^") or "." in ticker:
-                full_ticker = ticker
-            else:
-                suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
-                full_ticker = f"{ticker}{suffix}"
-            
-            stock = yf.Ticker(full_ticker)
+            stock = yf.Ticker(yf_ticker)
             hist = stock.history(period=period)
             if hist is not None and not hist.empty:
                 return hist['Close']
