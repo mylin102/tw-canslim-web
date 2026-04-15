@@ -240,6 +240,9 @@
                             <div :class="['text-xl font-bold', currentStock.canslim.mansfield_rs > 0 ? 'pass' : 'fail']">
                                 {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs }}
                             </div>
+                            <div class="text-[10px] mt-1 font-bold" :class="currentStock.canslim.mansfield_rs > 0 ? 'text-green-600' : 'text-red-600'">
+                                {{ currentStock.canslim.mansfield_rs > 0 ? '優於大盤 (Outperforming)' : '低於平均 (Lagging)' }}
+                            </div>
                         </div>
                         <div class="text-center p-3 rounded-lg bg-slate-50">
                             <div class="text-xs text-slate-400 font-bold mb-1">RS 相對強度</div>
@@ -247,6 +250,9 @@
                                 {{ typeof currentStock.canslim.rs_ratio === 'number' ? currentStock.canslim.rs_ratio.toFixed(2) : 'N/A' }}
                             </div>
                             <div v-else class="text-xl font-bold text-slate-300">N/A</div>
+                            <div v-if="currentStock.canslim && currentStock.canslim.rs_ratio" class="text-[10px] mt-1 font-bold" :class="currentStock.canslim.rs_ratio >= 1.0 ? 'text-blue-600' : 'text-slate-400'">
+                                {{ currentStock.canslim.rs_ratio >= 1.0 ? '強於基準' : '弱於基準' }}
+                            </div>
                         </div>
                     </div>
 

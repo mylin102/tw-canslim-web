@@ -106,13 +106,21 @@ def calculate_mansfield_rs(stock_prices: Optional[pd.Series], market_prices: Opt
 def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> int:
     """Standard CANSLIM scoring."""
     score = 0
+    # M factor is critical
     weights = {'C': 20, 'A': 20, 'N': 10, 'S': 10, 'L': 20, 'I': 10, 'M': 10}
     for f, w in weights.items():
         if factors.get(f): score += w
     return min(score, 100)
 
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:
-    """ETF scoring - redistributes C/A weights to L and M."""
+    """
+    ETF scoring - implements the reference logic for ETFs.
+    Reflects 'Component Quality' logic: if RS is strong, assume components are quality.
+    """
+    if factors.get('L'):
+        factors['C'] = True
+        factors['A'] = True
+        
     score = 0
     # For ETFs, Relative Strength (L) and Market Trend (M) are most important
     weights = {'N': 10, 'S': 10, 'L': 40, 'I': 10, 'M': 30}
@@ -159,18 +167,3 @@ def calculate_volatility_grid(prices: pd.Series, is_etf: bool = False) -> Option
         "levels": levels,
         "is_etf": is_etf
     }
-
-def is_odd_lot(shares: int) -> bool:
-    """Check if the trade quantity is odd-lot (less than 1000 shares)."""
-    return 0 < shares < 1000
-
-def can_exit_trade(entry_date: str, current_date: str, shares: int) -> bool:
-    """
-    Rule: Taiwan stock market odd-lots (零股) are prohibited from day trading (禁止當沖).
-    Returns True if the trade can be closed.
-    """
-    if not is_odd_lot(shares):
-        return True # Standard lots can day trade
-        
-    # For odd lots, entry and exit dates must be different
-    return entry_date != current_date
