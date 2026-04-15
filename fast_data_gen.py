@@ -45,7 +45,7 @@ def get_all_tw_tickers():
         with open(cache_file, "r", encoding="utf-8") as f:
             etfs = json.load(f).get("etfs", {})
             for tid, info in etfs.items():
-                if "<BR>" in tid: continue
+                if "<BR>" in tid or "<br>" in tid: continue
                 suffix = ".TW" if info.get("market") == "TWSE" else ".TWO"
                 ticker_map[tid] = {"name": info["name"], "suffix": suffix}
     return ticker_map
@@ -100,25 +100,133 @@ class FastDataGenerator:
         price_data = {}
         
         logger.info(f"Downloading history in chunks of 50...")
+        failed_downloads = []
+        
         for i in range(0, len(all_symbols), 50):
             chunk = all_symbols[i:i+50]
+            chunk_failed = []
+            
             try:
-                df = yf.download(chunk, period="2y", auto_adjust=True, progress=False, threads=True)
-                if df is None or df.empty: continue
+                # 使用更穩健的下載方式
+                df = yf.download(
+                    chunk, 
+                    period="2y", 
+                    auto_adjust=True, 
+                    progress=False, 
+                    threads=True,
+                    ignore_tz=True,
+                    group_by='ticker'
+                )
                 
-                # Robust extraction
-                if len(chunk) == 1:
-                    t = chunk[0].split('.')[0]
-                    price_data[t] = df['Close'].dropna().squeeze()
-                else:
-                    cols = df.columns.get_level_values(0).unique() if isinstance(df.columns, pd.MultiIndex) else df.columns
+                if df is None or df.empty:
+                    logger.warning(f"Chunk {i}: df is None or empty")
+                    # 嘗試單獨下載每個股票
                     for sym in chunk:
-                        if sym in cols:
-                            p = df[sym]['Close'].dropna().squeeze() if isinstance(df.columns, pd.MultiIndex) else df.dropna().squeeze()
-                            if not p.empty: price_data[sym.split('.')[0]] = p
+                        try:
+                            single_df = yf.download(sym, period="2y", auto_adjust=True, progress=False)
+                            if single_df is not None and not single_df.empty and 'Close' in single_df.columns:
+                                t = sym.split('.')[0]
+                                price_data[t] = single_df['Close'].dropna().squeeze()
+                            else:
+                                chunk_failed.append(sym)
+                        except Exception as e:
+                            logger.debug(f"Failed to download {sym} individually: {e}")
+                            chunk_failed.append(sym)
+                    continue
+                
+                # 處理下載結果
+                if isinstance(df.columns, pd.MultiIndex):
+                    # MultiIndex結構: (Price, Ticker) 當 group_by='ticker'
+                    # 或者 (Ticker, Price) 當 group_by='column'
+                    # 檢查結構
+                    if df.columns.names[0] == 'Price' and df.columns.names[1] == 'Ticker':
+                        # 結構: (Price, Ticker)
+                        tickers = df.columns.get_level_values(1).unique()
+                        for ticker in tickers:
+                            try:
+                                if ('Close', ticker) in df.columns:
+                                    close_series = df[('Close', ticker)].dropna().squeeze()
+                                    if not close_series.empty:
+                                        t = ticker.split('.')[0]
+                                        price_data[t] = close_series
+                                else:
+                                    chunk_failed.append(ticker)
+                            except Exception as e:
+                                logger.debug(f"Failed to extract {ticker}: {e}")
+                                chunk_failed.append(ticker)
+                    elif df.columns.names[0] == 'Ticker' and df.columns.names[1] == 'Price':
+                        # 結構: (Ticker, Price)
+                        tickers = df.columns.get_level_values(0).unique()
+                        for ticker in tickers:
+                            try:
+                                if (ticker, 'Close') in df.columns:
+                                    close_series = df[(ticker, 'Close')].dropna().squeeze()
+                                    if not close_series.empty:
+                                        t = ticker.split('.')[0]
+                                        price_data[t] = close_series
+                                else:
+                                    chunk_failed.append(ticker)
+                            except Exception as e:
+                                logger.debug(f"Failed to extract {ticker}: {e}")
+                                chunk_failed.append(ticker)
+                    else:
+                        # 未知結構
+                        logger.warning(f"Chunk {i}: Unknown MultiIndex structure: {df.columns.names}")
+                        # 嘗試通用的方法
+                        try:
+                            # 尋找包含'Close'的列
+                            close_cols = [col for col in df.columns if 'Close' in str(col)]
+                            for col in close_cols:
+                                try:
+                                    close_series = df[col].dropna().squeeze()
+                                    if not close_series.empty:
+                                        # 嘗試從列名提取股票代號
+                                        col_str = str(col)
+                                        if '.TW' in col_str or '.TWO' in col_str:
+                                            # 從列名提取股票代號
+                                            import re
+                                            match = re.search(r'([0-9]{4,5}\.[TW]+)', col_str)
+                                            if match:
+                                                ticker = match.group(1)
+                                                t = ticker.split('.')[0]
+                                                price_data[t] = close_series
+                                except Exception as e:
+                                    logger.debug(f"Failed to extract from column {col}: {e}")
+                        except Exception as e:
+                            logger.warning(f"Failed to extract any data: {e}")
+                            chunk_failed.extend(chunk)
+                else:
+                    # 單一股票或異常結構
+                    logger.warning(f"Chunk {i}: Unexpected df structure, shape={df.shape}")
+                    # 嘗試提取第一個股票
+                    if len(chunk) == 1 and 'Close' in df.columns:
+                        t = chunk[0].split('.')[0]
+                        price_data[t] = df['Close'].dropna().squeeze()
+                    else:
+                        # 標記所有失敗
+                        chunk_failed.extend(chunk)
+                
             except Exception as e:
-                logger.warning(f"Chunk {i} failed: {e}")
+                logger.error(f"Chunk {i} failed: {e}")
+                chunk_failed.extend(chunk)
+            
+            if chunk_failed:
+                failed_downloads.extend(chunk_failed)
+                logger.warning(f"Chunk {i}: {len(chunk_failed)} failed downloads")
+            
             time.sleep(2) # Polite delay
+        
+        # 記錄失敗的下載
+        if failed_downloads:
+            logger.error(f"\n{len(failed_downloads)} Failed downloads:")
+            # 分組顯示失敗的股票
+            failed_groups = {}
+            for sym in failed_downloads:
+                base = sym.split('.')[0]
+                failed_groups.setdefault(base, []).append(sym)
+            
+            for base, syms in list(failed_groups.items())[:10]:  # 只顯示前10組
+                logger.error(f"  {syms}: Failed to download")
 
         output = {"last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "stocks": {}}
         
