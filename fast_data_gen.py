@@ -71,9 +71,9 @@ class FastDataGenerator:
         self.ticker_info = get_all_tw_tickers()
         self.root_dir = os.path.dirname(os.path.abspath(__file__))
         self.excel_proc = ExcelDataProcessor(self.root_dir)
-        self.excel_ratings = self.excel_proc.load_health_check_data()
-        self.fund_holdings = self.excel_proc.load_fund_holdings_data()
-        self.industry_data = self.excel_proc.load_industry_data()
+        self.excel_ratings = self.excel_proc.load_health_check_data() or {}
+        self.fund_holdings = self.excel_proc.load_fund_holdings_data() or {}
+        self.industry_data = self.excel_proc.load_industry_data() or {}
         self.tej_processor = TEJProcessor()
 
     def run(self):
