@@ -275,9 +275,11 @@ const app = createApp({
                 console.log('嘗試加載精簡版數據...');
                 try {
                     const fallbackResponse = await fetch('data_light.json?t=' + Date.now());
+                    if (!fallbackResponse.ok) throw new Error('HTTP ' + fallbackResponse.status);
                     const fallbackData = await fallbackResponse.json();
                     stockData.value = fallbackData;
                     lastUpdated.value = fallbackData.last_updated + ' (精簡版)';
+                    errorState.value = null;
                     console.log(`✅ 精簡版數據加載成功: ${Object.keys(fallbackData.stocks).length} 檔股票`);
                 } catch (fallbackError) {
                     console.error('精簡版數據也加載失敗:', fallbackError);

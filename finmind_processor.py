@@ -8,7 +8,11 @@ import logging
 import pandas as pd
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
-from FinMind.data import DataLoader
+
+try:
+    from FinMind.data import DataLoader
+except ImportError:  # pragma: no cover - exercised via environments without FinMind
+    DataLoader = None
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +21,8 @@ class FinMindProcessor:
     """Process FinMind API data for institutional investors."""
     
     def __init__(self):
-        self.dl = DataLoader()
+        self.available = DataLoader is not None
+        self.dl = None
         self.investor_name_map = {
             'Foreign_Investor': '外資',
             'Investment_Trust': '投信',
@@ -25,6 +30,15 @@ class FinMindProcessor:
             'Dealer_Hedging': '自營商避險',
             'Foreign_Dealer_Self': '外資自營商'
         }
+        if not self.available:
+            logger.warning("FinMind package is not installed; FinMind-backed data fetches are disabled")
+            return
+
+        try:
+            self.dl = DataLoader()
+        except Exception as exc:
+            logger.warning(f"FinMind DataLoader initialization failed: {exc}")
+            self.available = False
     
     def calculate_net(self, buy: int, sell: int) -> int:
         """Calculate net buy/sell."""
@@ -51,6 +65,9 @@ class FinMindProcessor:
         Returns:
             DataFrame with institutional data or None on failure
         """
+        if not self.available or self.dl is None:
+            logger.warning("Skipping FinMind fetch because FinMind is unavailable in this environment")
+            return None
         try:
             logger.info(f"Fetching institutional data for {stock_id} ({start_date} to {end_date})")
             

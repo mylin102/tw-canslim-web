@@ -6,9 +6,13 @@ Fetches company basics, monthly revenue, quarterly EPS, and shareholder data.
 import os
 import logging
 import pandas as pd
-import tejapi
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
+
+try:
+    import tejapi
+except ImportError:  # pragma: no cover - exercised via environments without tejapi
+    tejapi = None
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +33,12 @@ class TEJProcessor:
     """Process TEJ API data for CANSLIM engine."""
     
     def __init__(self, api_key: str = None):
+        if tejapi is None:
+            logger.warning("tejapi package is not installed")
+            self.api_key = None
+            self.initialized = False
+            return
+
         self.api_key = api_key or os.environ.get('TEJ_API_KEY')
         if not self.api_key:
             # Try to load from .env file

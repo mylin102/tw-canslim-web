@@ -14,6 +14,9 @@ import numpy as np
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 from tej_processor import TEJProcessor
+from create_medium_data import create_medium_data
+from create_light_data import create_lightweight_data
+from compress_data import compress_json
 from core.logic import (
     calculate_accumulation_strength, compute_canslim_score, 
     compute_canslim_score_etf, calculate_l_factor, 
@@ -289,10 +292,14 @@ class FastDataGenerator:
             if isinstance(obj, (np.integer, np.floating, np.float64, np.int64)): return obj.item()
             raise TypeError ("Type %s not serializable" % type(obj))
 
-        out_path = os.path.join(self.root_dir, "docs", "data.json")
-        with open(out_path, 'w', encoding='utf-8') as f:
+        base_out_path = os.path.join(self.root_dir, "docs", "data_base.json")
+        with open(base_out_path, 'w', encoding='utf-8') as f:
             json.dump(output, f, ensure_ascii=False, indent=2, default=json_serial)
-        logger.info(f"✅ Exported {len(output['stocks'])} stocks.")
+        logger.info(f"✅ Exported {len(output['stocks'])} stocks to data_base.json.")
+
+        create_medium_data()
+        create_lightweight_data()
+        compress_json()
 
 if __name__ == "__main__":
     FastDataGenerator().run()

@@ -3,6 +3,6 @@ yfinance
 requests
 pytest
 openpyxl
-FinMind
-tejapi
+FinMind>=1.9.7,<2
+tejapi>=0.1.31,<0.2
 beautifulsoup4
