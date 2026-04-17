@@ -24,6 +24,8 @@ from core.logic import (
 )
 from excel_processor import ExcelDataProcessor
 from create_medium_data import create_medium_data
+from create_light_data import create_lightweight_data
+from compress_data import compress_json
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -192,9 +194,11 @@ class SingleStockUpdater:
         
         logger.info(f"✅ Updated {ticker} in data_base.json")
 
-        # 6. Re-sync to medium data (docs/data.json)
-        logger.info("Syncing changes to docs/data.json...")
+        # 6. Rebuild all published artifacts from the updated base snapshot
+        logger.info("Syncing changes to published data files...")
         create_medium_data()
+        create_lightweight_data()
+        compress_json()
         logger.info("✅ All updates complete.")
 
 if __name__ == "__main__":

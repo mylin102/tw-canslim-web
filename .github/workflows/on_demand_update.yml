@@ -41,7 +41,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data_base.json docs/data.json
+          git add docs/data_base.json docs/data.json docs/data_light.json docs/data.json.gz
           git commit -m "On-demand update: ${{ steps.extract.outputs.ticker }}" || echo "No changes to commit"
           git push
 
