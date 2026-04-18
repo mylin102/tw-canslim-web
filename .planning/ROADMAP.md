@@ -41,7 +41,12 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 3. Maintainer can add new fields to exported stock schemas without breaking resume logic or existing data
 4. Maintainer can abort a failed update run and rollback to the last validated snapshot within 5 minutes
 
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Establish publish-safety tests and the shared locked writer/restore helper
+- [ ] 01-02-PLAN.md — Migrate primary exporters to validated, versioned, explicit-failure publishing
+- [ ] 01-03-PLAN.md — Migrate incremental publish scripts and add rollback CLI validation
 
 ---
 
@@ -105,7 +110,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Safety Hardening | 0/0 | Not started | - |
+| 1. Safety Hardening | 0/3 | Not started | - |
 | 2. Dynamic Core Selection | 0/0 | Not started | - |
 | 3. Rotating Batch Orchestration | 0/0 | Not started | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
