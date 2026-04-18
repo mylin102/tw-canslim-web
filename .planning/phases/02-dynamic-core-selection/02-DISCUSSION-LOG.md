@@ -5,7 +5,7 @@
 
 **Date:** 2026-04-19
 **Phase:** 02-dynamic-core-selection
-**Areas discussed:** Core membership sources, Signal promotion source, Universe cap and tie-breaks, Drop-out behavior
+**Areas discussed:** Core membership sources, Signal promotion source, Universe cap and tie-breaks, Drop-out behavior, Volume ranking source
 
 ---
 
@@ -58,6 +58,19 @@
 
 **User's choice:** Keep yesterday's signal names for one extra day, then drop them unless they still qualify
 **Notes:** Recent movers should remain visible briefly, but not linger beyond one extra day without renewed qualification.
+
+---
+
+## Volume ranking source
+
+| Option | Description | Selected |
+|--------|-------------|----------|
+| Extend the existing signal artifact once to persist a latest volume metric, then rank from artifacts | Artifact-driven and deterministic volume-leader selection | ✓ |
+| Run a lightweight live prepass from the current financial-data fetch path each day | Use live fetches to derive volume leaders before selection | |
+| Use a temporary proxy rank and refine true volume handling in a later phase | Delay exact volume implementation | |
+
+**User's choice:** Extend the existing signal artifact once to persist a latest volume metric, then rank from artifacts
+**Notes:** Phase 2 should keep selector inputs artifact-driven rather than adding a separate daily API prepass just to rank volume leaders.
 
 ---
 

@@ -22,6 +22,7 @@ Implement the daily core-stock selection layer that decides which names always r
 ### Universe cap and tie-breaks
 - **D-03:** Target a daily core universe of about 300 names.
 - **D-04:** Always keep base symbols, ETFs, watchlist names, yesterday-signal names, and today's active signal names first; fill remaining slots by RS rank and volume rank.
+- **D-06:** The top-volume leaders bucket should come from an extended persisted signal artifact that carries a latest volume metric, so ranking stays artifact-driven instead of requiring a daily live prepass.
 
 ### Drop-out behavior
 - **D-05:** Yesterday's signal names get a one-day carryover window, then drop out unless they still qualify through another active bucket.
@@ -75,6 +76,7 @@ Implement the daily core-stock selection layer that decides which names always r
 - Keep important stocks always fresh while the broader market updates gradually under API limits.
 - Reuse the existing fused parquet / alpha integration path for signal-driven promotion instead of inventing a new signal surface in this phase.
 - Treat yesterday's signal names as sticky for one extra day so recent movers do not disappear immediately.
+- Extend the persisted signal artifact to carry the latest usable volume metric so volume leaders can be selected deterministically from artifacts.
 
 </specifics>
 
