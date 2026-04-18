@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Sequence
 
@@ -15,6 +15,18 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 SIGNAL_SCORE_THRESHOLD = 75
+RS_LEADER_THRESHOLD = 80
+MAX_REQUIRED_BUCKET_SIZE = 500
+TOP_VOLUME_LEADER_COUNT = 100
+BUCKET_ORDER = (
+    "base_symbols",
+    "etf_symbols",
+    "watchlist_symbols",
+    "yesterday_signals",
+    "today_signals",
+    "rs_leaders",
+    "top_volume_leaders",
+)
 REQUIRED_CONFIG_KEYS = {
     "base_symbols",
     "etf_symbols",
@@ -25,10 +37,17 @@ REQUIRED_FUSED_COLUMNS = {
     "stock_id",
     "date",
     "score",
+    "rs_rating",
     "latest_volume",
     "volume_rank",
 }
-REQUIRED_MASTER_COLUMNS = {"stock_id", "date"}
+REQUIRED_MASTER_COLUMNS = {
+    "stock_id",
+    "date",
+    "score",
+    "latest_volume",
+    "volume_rank",
+}
 
 
 @dataclass(frozen=True)
@@ -43,11 +62,10 @@ class CoreSelectionConfig:
 
 @dataclass(frozen=True)
 class RankedCandidate:
-    """Rankable candidate for the remaining selector slots."""
+    """Rankable candidate for selector fill slots."""
 
     symbol: str
-    rs_metric: float = 0.0
-    volume_metric: float = 0.0
+    mansfield_rs: float = 0.0
     volume_rank: int | None = None
 
 
@@ -56,13 +74,10 @@ class CoreSelectionResult:
     """Ordered selector output for downstream export wiring."""
 
     core_symbols: list[str]
-    fixed_symbols: list[str]
-    carryover_signal_symbols: list[str]
-    today_signal_symbols: list[str]
     ranked_fill_symbols: list[str]
     target_size: int
-    overflow_symbols: list[str] = field(default_factory=list)
-    debug_counts: dict[str, int] = field(default_factory=dict)
+    bucket_symbols: dict[str, list[str]]
+    bucket_counts: dict[str, int]
 
     @property
     def core_set(self) -> set[str]:
@@ -94,25 +109,26 @@ def load_core_selection_config(config_path: str | Path = "core_selection_config.
 
 
 def load_selector_inputs(
+    *,
+    config_path: str | Path,
     fused_path: str | Path,
     master_path: str | Path,
     baseline_path: str | Path,
     signal_score_threshold: int = SIGNAL_SCORE_THRESHOLD,
 ) -> dict[str, Any]:
-    """Load selector inputs and derive signal/candidate buckets from persisted artifacts."""
+    """Load selector inputs and derive persisted buckets from trusted artifacts."""
+    config = load_core_selection_config(config_path)
     fused_df = pd.read_parquet(fused_path).copy()
     master_df = pd.read_parquet(master_path).copy()
 
     _require_columns("fused parquet", fused_df, REQUIRED_FUSED_COLUMNS)
     _require_columns("master parquet", master_df, REQUIRED_MASTER_COLUMNS)
 
-    fused_df["stock_id"] = fused_df["stock_id"].astype(str)
-    master_df["stock_id"] = master_df["stock_id"].astype(str)
-    fused_df["date"] = pd.to_datetime(fused_df["date"]).dt.normalize()
-    master_df["date"] = pd.to_datetime(master_df["date"]).dt.normalize()
-
     if fused_df.empty or master_df.empty:
         raise ValueError("Selector inputs require non-empty fused and master parquet files")
+
+    fused_df = _normalize_selector_frame(fused_df)
+    master_df = _normalize_selector_frame(master_df)
 
     latest_fused_date = fused_df["date"].max()
     latest_master_date = master_df["date"].max()
@@ -122,49 +138,51 @@ def load_selector_inputs(
             f"is older than master date {latest_master_date.date()}"
         )
 
-    latest_rows = fused_df[fused_df["date"] == latest_fused_date].copy()
-    if latest_rows["latest_volume"].isna().any() or latest_rows["volume_rank"].isna().any():
-        raise ValueError("Fused parquet must persist latest_volume and volume_rank for every latest-date row")
+    latest_rows = _latest_rows(fused_df, latest_fused_date)
+    previous_fused_date = _previous_date(fused_df)
+    previous_rows = (
+        _latest_rows(fused_df, previous_fused_date)
+        if previous_fused_date is not None
+        else pd.DataFrame(columns=fused_df.columns)
+    )
 
-    unique_dates = sorted(fused_df["date"].dropna().unique())
-    previous_fused_date = unique_dates[-2] if len(unique_dates) > 1 else None
-
-    today_signal_symbols = _dedupe_preserve_order(
+    today_signal_symbols = _ordered_symbols(
         latest_rows.loc[latest_rows["score"].fillna(0) >= signal_score_threshold, "stock_id"].tolist()
     )
+    yesterday_signal_symbols = [
+        symbol
+        for symbol in _ordered_symbols(
+            previous_rows.loc[previous_rows["score"].fillna(0) >= signal_score_threshold, "stock_id"].tolist()
+        )
+        if symbol not in today_signal_symbols
+    ]
 
-    carryover_signal_symbols: list[str] = []
-    if previous_fused_date is not None:
-        previous_rows = fused_df[fused_df["date"] == previous_fused_date]
-        carryover_signal_symbols = [
-            symbol
-            for symbol in _dedupe_preserve_order(
-                previous_rows.loc[
-                    previous_rows["score"].fillna(0) >= signal_score_threshold,
-                    "stock_id",
-                ].tolist()
-            )
-            if symbol not in today_signal_symbols
-        ]
-
-    rs_metrics = _load_baseline_rs_metrics(baseline_path)
-    ranked_candidates = sorted(
-        [
-            RankedCandidate(
-                symbol=symbol,
-                rs_metric=float(rs_metrics.get(symbol, 0.0)),
-                volume_metric=float(row["latest_volume"]),
-                volume_rank=int(row["volume_rank"]),
-            )
-            for symbol, row in latest_rows.drop_duplicates("stock_id", keep="last").set_index("stock_id").iterrows()
-            if _is_valid_symbol(symbol)
-        ],
-        key=_ranked_candidate_sort_key,
+    # Explicit RS leader bucket: rs_rating >= 80 on the repo's 0-100 scale.
+    rs_leaders = _ordered_symbols(
+        latest_rows.loc[latest_rows["rs_rating"].fillna(0) >= 80, "stock_id"].tolist()
     )
+    top_volume_rows = latest_rows.sort_values(["volume_rank", "stock_id"]).head(TOP_VOLUME_LEADER_COUNT)
+    top_volume_leaders = _ordered_symbols(top_volume_rows["stock_id"].tolist())
+
+    mansfield_rs_metrics = _load_baseline_rs_metrics(baseline_path)
+    ranked_candidates = [
+        RankedCandidate(
+            symbol=str(row["stock_id"]),
+            mansfield_rs=float(mansfield_rs_metrics.get(str(row["stock_id"]), 0.0)),
+            volume_rank=_to_int_or_none(row["volume_rank"]),
+        )
+        for _, row in latest_rows.iterrows()
+        if _is_valid_symbol(str(row["stock_id"]))
+    ]
+    ranked_candidates.sort(key=_ranked_candidate_sort_key)
 
     return {
+        "config": config,
+        "all_symbols": latest_rows["stock_id"].tolist(),
         "today_signal_symbols": today_signal_symbols,
-        "carryover_signal_symbols": carryover_signal_symbols,
+        "yesterday_signal_symbols": yesterday_signal_symbols,
+        "rs_leaders": rs_leaders,
+        "top_volume_leaders": top_volume_leaders,
         "ranked_candidates": ranked_candidates,
         "latest_fused_date": latest_fused_date.to_pydatetime(),
         "previous_fused_date": previous_fused_date.to_pydatetime() if previous_fused_date is not None else None,
@@ -173,40 +191,59 @@ def load_selector_inputs(
 
 
 def build_core_universe(
+    *,
     all_symbols: Sequence[str],
     config: CoreSelectionConfig,
     ranked_candidates: Sequence[RankedCandidate] | None = None,
     today_signal_symbols: Sequence[str] | None = None,
-    carryover_signal_symbols: Sequence[str] | None = None,
+    yesterday_signal_symbols: Sequence[str] | None = None,
+    rs_leaders: Sequence[str] | None = None,
+    top_volume_leaders: Sequence[str] | None = None,
     target_size: int | None = None,
 ) -> CoreSelectionResult:
-    """Build the ordered core universe from fixed buckets and ranked fill candidates."""
-    effective_target_size = target_size or config.target_size
-    if effective_target_size <= 0:
+    """Build the ordered core universe from required buckets plus deterministic fill."""
+    base_target_size = target_size or config.target_size
+    if base_target_size <= 0:
         raise ValueError("target_size must be positive")
 
-    allowed_symbols = {
-        symbol
-        for symbol in (str(value) for value in all_symbols)
-        if _is_valid_symbol(symbol)
+    allowed_symbols = {symbol for symbol in map(str, all_symbols) if _is_valid_symbol(symbol)}
+    bucket_inputs = {
+        "base_symbols": config.base_symbols,
+        "etf_symbols": config.etf_symbols,
+        "watchlist_symbols": config.watchlist_symbols,
+        "yesterday_signals": list(yesterday_signal_symbols or []),
+        "today_signals": list(today_signal_symbols or []),
+        "rs_leaders": list(rs_leaders or []),
+        "top_volume_leaders": list(top_volume_leaders or []),
     }
 
-    fixed_symbols = [
-        symbol
-        for symbol in _dedupe_preserve_order(
-            config.base_symbols
-            + config.etf_symbols
-            + config.watchlist_symbols
-            + list(carryover_signal_symbols or [])
-            + list(today_signal_symbols or [])
+    bucket_symbols: dict[str, list[str]] = {}
+    required_symbols: list[str] = []
+    required_seen: set[str] = set()
+    for bucket_name in BUCKET_ORDER:
+        bucket_members = []
+        for symbol in _ordered_symbols(bucket_inputs[bucket_name]):
+            if symbol not in allowed_symbols or symbol in required_seen:
+                continue
+            required_seen.add(symbol)
+            bucket_members.append(symbol)
+        bucket_symbols[bucket_name] = bucket_members
+        required_symbols.extend(bucket_members)
+
+    required_total = len(required_symbols)
+    if required_total > MAX_REQUIRED_BUCKET_SIZE:
+        raise ValueError(
+            f"required bucket membership exceeds {MAX_REQUIRED_BUCKET_SIZE}; "
+            f"required bucket total is {required_total}"
         )
-        if symbol in allowed_symbols
-    ]
+
+    effective_target_size = base_target_size
+    if required_total > base_target_size:
+        effective_target_size = required_total
 
     ranked_fill_symbols: list[str] = []
-    selected_symbols = set(fixed_symbols)
-    remaining_slots = max(0, effective_target_size - len(fixed_symbols))
-
+    selected_symbols = set(required_symbols)
+    remaining_slots = max(0, effective_target_size - required_total)
     for candidate in sorted(ranked_candidates or [], key=_ranked_candidate_sort_key):
         if candidate.symbol not in allowed_symbols or candidate.symbol in selected_symbols:
             continue
@@ -215,55 +252,79 @@ def build_core_universe(
         if len(ranked_fill_symbols) >= remaining_slots:
             break
 
-    overflow_symbols = fixed_symbols[effective_target_size:] if len(fixed_symbols) > effective_target_size else []
-    core_symbols = fixed_symbols + ranked_fill_symbols
+    core_symbols = required_symbols + ranked_fill_symbols
+    bucket_counts = {bucket_name: len(bucket_symbols[bucket_name]) for bucket_name in BUCKET_ORDER}
+    bucket_counts["required_total"] = required_total
+    bucket_counts["ranked_fill_symbols"] = len(ranked_fill_symbols)
+    bucket_counts["core_symbols"] = len(core_symbols)
 
     return CoreSelectionResult(
         core_symbols=core_symbols,
-        fixed_symbols=fixed_symbols,
-        carryover_signal_symbols=list(carryover_signal_symbols or []),
-        today_signal_symbols=list(today_signal_symbols or []),
         ranked_fill_symbols=ranked_fill_symbols,
         target_size=effective_target_size,
-        overflow_symbols=overflow_symbols,
-        debug_counts={
-            "fixed_symbols": len(fixed_symbols),
-            "ranked_fill_symbols": len(ranked_fill_symbols),
-            "core_symbols": len(core_symbols),
-        },
+        bucket_symbols=bucket_symbols,
+        bucket_counts=bucket_counts,
     )
+
+
+def _normalize_selector_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    """Normalize persisted selector artifacts for deterministic loading."""
+    normalized = frame.copy()
+    normalized["stock_id"] = normalized["stock_id"].astype(str)
+    normalized["date"] = pd.to_datetime(normalized["date"]).dt.normalize()
+    if "volume_rank" in normalized.columns:
+        normalized["volume_rank"] = pd.to_numeric(normalized["volume_rank"], errors="coerce")
+    return normalized
+
+
+def _latest_rows(frame: pd.DataFrame, target_date: pd.Timestamp | None) -> pd.DataFrame:
+    """Return latest unique stock rows for the requested date."""
+    if target_date is None:
+        return pd.DataFrame(columns=frame.columns)
+    return (
+        frame[frame["date"] == target_date]
+        .sort_values(["stock_id", "volume_rank"], na_position="last")
+        .drop_duplicates("stock_id", keep="first")
+        .sort_values(["volume_rank", "stock_id"], na_position="last")
+        .reset_index(drop=True)
+    )
+
+
+def _previous_date(frame: pd.DataFrame) -> pd.Timestamp | None:
+    """Return the immediately previous fused date when available."""
+    unique_dates = sorted(frame["date"].dropna().unique())
+    if len(unique_dates) < 2:
+        return None
+    return pd.Timestamp(unique_dates[-2])
 
 
 def _validate_symbol_bucket(bucket_name: str, value: Any) -> list[str]:
     """Validate a configured symbol bucket."""
     if not isinstance(value, list):
         raise ValueError(f"{bucket_name} must be a list of 4-digit symbol strings")
+    return _ordered_symbols(value, bucket_name=bucket_name)
 
-    validated: list[str] = []
-    for symbol in value:
-        normalized = str(symbol)
-        if not _is_valid_symbol(normalized):
-            raise ValueError(f"{bucket_name} contains invalid symbol {symbol!r}")
-        validated.append(normalized)
-    return validated
+
+def _ordered_symbols(symbols: Sequence[str], bucket_name: str | None = None) -> list[str]:
+    """Deduplicate symbols while preserving first appearance."""
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for value in symbols:
+        symbol = str(value)
+        if not _is_valid_symbol(symbol):
+            if bucket_name is not None:
+                raise ValueError(f"{bucket_name} contains invalid symbol {value!r}")
+            continue
+        if symbol in seen:
+            continue
+        seen.add(symbol)
+        ordered.append(symbol)
+    return ordered
 
 
 def _is_valid_symbol(symbol: str) -> bool:
     """Return True when the selector symbol matches repo expectations."""
     return len(symbol) == 4 and symbol.isdigit()
-
-
-def _dedupe_preserve_order(symbols: Sequence[str]) -> list[str]:
-    """Deduplicate symbols while preserving the first occurrence."""
-    ordered: list[str] = []
-    seen: set[str] = set()
-    for value in symbols:
-        symbol = str(value)
-        if not _is_valid_symbol(symbol) or symbol in seen:
-            continue
-        seen.add(symbol)
-        ordered.append(symbol)
-    return ordered
 
 
 def _require_columns(label: str, frame: pd.DataFrame, required_columns: set[str]) -> None:
@@ -289,7 +350,14 @@ def _load_baseline_rs_metrics(baseline_path: str | Path) -> dict[str, float]:
     return metrics
 
 
-def _ranked_candidate_sort_key(candidate: RankedCandidate) -> tuple[float, int, float, str]:
-    """Stable selector ordering after fixed buckets."""
+def _to_int_or_none(value: Any) -> int | None:
+    """Convert persisted volume_rank values into deterministic ints."""
+    if pd.isna(value):
+        return None
+    return int(value)
+
+
+def _ranked_candidate_sort_key(candidate: RankedCandidate) -> tuple[float, int, str]:
+    """Stable selector ordering after required buckets: (-mansfield_rs, volume_rank, symbol)."""
     volume_rank = candidate.volume_rank if candidate.volume_rank is not None else 10**9
-    return (-candidate.rs_metric, volume_rank, -candidate.volume_metric, candidate.symbol)
+    return (-candidate.mansfield_rs, volume_rank, candidate.symbol)

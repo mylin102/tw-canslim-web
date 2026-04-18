@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 import pandas as pd
 import pytest
 
@@ -11,6 +13,22 @@ from core_selection import (
 )
 from fuse_excel_data import fuse_data
 from historical_generator import HistoricalGenerator
+
+
+def _write_selector_config(path):
+    path.write_text(
+        json.dumps(
+            {
+                "base_symbols": ["1101", "2330"],
+                "etf_symbols": ["0050"],
+                "watchlist_symbols": ["8069"],
+                "target_size": 300,
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
 
 def test_fixed_buckets_dedupe_and_preserve_order(selector_config_factory):
@@ -60,8 +78,11 @@ def test_signals_use_latest_fused_date_and_one_day_carryover(selector_artifact_f
         baseline_rs={"1101": 40, "2303": 65, "2330": 95, "2454": 88},
     )
 
+    config_path = artifacts["root"] / "core_selection_config.json"
+    _write_selector_config(config_path)
+
     inputs = load_selector_inputs(
-        config_path=artifacts["root"] / "core_selection_config.json",
+        config_path=config_path,
         fused_path=artifacts["fused_path"],
         master_path=artifacts["master_path"],
         baseline_path=artifacts["baseline_path"],
@@ -70,7 +91,7 @@ def test_signals_use_latest_fused_date_and_one_day_carryover(selector_artifact_f
     assert inputs["today_signal_symbols"] == ["2330"]
     assert inputs["yesterday_signal_symbols"] == ["2303"]
     assert inputs["rs_leaders"] == ["2330", "2454"]
-    assert inputs["top_volume_leaders"] == ["2330", "2454", "2303", "1101"]
+    assert inputs["top_volume_leaders"] == ["2330", "2454"]
     assert inputs["previous_fused_date"].strftime("%Y-%m-%d") == "2026-04-02"
 
 
@@ -111,9 +132,12 @@ def test_stale_fused_requires_volume_fields_and_newer_or_equal_master(selector_a
         baseline_rs={"2330": 95},
     )
 
+    config_path = artifacts["root"] / "core_selection_config.json"
+    _write_selector_config(config_path)
+
     with pytest.raises(ValueError, match="required columns|stale"):
         load_selector_inputs(
-            config_path=artifacts["root"] / "core_selection_config.json",
+            config_path=config_path,
             fused_path=artifacts["fused_path"],
             master_path=artifacts["master_path"],
             baseline_path=artifacts["baseline_path"],
@@ -234,8 +258,11 @@ def test_load_selector_inputs_uses_persisted_volume_columns(selector_artifact_fa
         baseline_rs={"2330": 95, "2454": 90},
     )
 
+    config_path = artifacts["root"] / "core_selection_config.json"
+    _write_selector_config(config_path)
+
     inputs = load_selector_inputs(
-        config_path=artifacts["root"] / "core_selection_config.json",
+        config_path=config_path,
         fused_path=artifacts["fused_path"],
         master_path=artifacts["master_path"],
         baseline_path=artifacts["baseline_path"],
