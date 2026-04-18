@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import pandas as pd
 import pytest
 
 from core_selection import (
@@ -6,6 +9,8 @@ from core_selection import (
     load_core_selection_config,
     load_selector_inputs,
 )
+from fuse_excel_data import fuse_data
+from historical_generator import HistoricalGenerator
 
 
 def test_fixed_buckets_dedupe_and_preserve_order(selector_config_factory):
@@ -100,3 +105,127 @@ def test_stale_fused_requires_volume_fields_and_newer_or_equal_master(selector_a
             artifacts["master_path"],
             artifacts["baseline_path"],
         )
+
+
+def test_process_ticker_includes_latest_volume_from_trading_volume(monkeypatch):
+    generator = object.__new__(HistoricalGenerator)
+
+    price_rows = pd.DataFrame(
+        [
+            {
+                "stock_id": "2330",
+                "date": "2026-04-01",
+                "close": 100,
+                "max": 100,
+                "Trading_Volume": 1100,
+            },
+            {
+                "stock_id": "2330",
+                "date": "2026-04-02",
+                "close": 101,
+                "max": 101,
+                "Trading_Volume": 2200,
+            },
+        ]
+    )
+
+    monkeypatch.setattr(
+        generator,
+        "fetch_raw_data",
+        lambda stock_id, start_date, end_date: (pd.DataFrame(), pd.DataFrame(), price_rows.copy()),
+    )
+
+    result = generator.process_ticker("2330", "2026-04-01", "2026-04-02")
+
+    assert "latest_volume" in result.columns
+    assert result["latest_volume"].tolist() == [1100, 2200]
+
+
+def test_run_full_market_persists_volume_rank(tmp_path, monkeypatch):
+    generator = object.__new__(HistoricalGenerator)
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("historical_generator.get_all_tw_tickers", lambda: {"2330": ".TW", "2303": ".TW"})
+    monkeypatch.setattr(
+        generator,
+        "process_ticker",
+        lambda stock_id, start_date, end_date: pd.DataFrame(
+            [
+                {
+                    "stock_id": stock_id,
+                    "date": pd.Timestamp("2026-04-03"),
+                    "close": 100,
+                    "one_year_return": 0.1 if stock_id == "2330" else 0.2,
+                    "latest_volume": 9_000 if stock_id == "2330" else 7_000,
+                    "C": True,
+                    "I": True,
+                    "N": True,
+                    "S": True,
+                    "A": True,
+                }
+            ]
+        ),
+    )
+
+    generator.run_full_market("2026-04-01", "2026-04-03")
+
+    master_df = pd.read_parquet(tmp_path / "master_canslim_signals.parquet").sort_values("stock_id")
+    assert "volume_rank" in master_df.columns
+    assert master_df.set_index("stock_id")["volume_rank"].to_dict() == {"2303": 2, "2330": 1}
+
+
+def test_fuse_data_copies_volume_fields_into_fused_artifact(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    pd.DataFrame(
+        [
+            {
+                "stock_id": "2330",
+                "date": "2026-04-03",
+                "score": 96,
+                "latest_volume": 9000,
+                "volume_rank": 1,
+            }
+        ]
+    ).to_parquet(tmp_path / "master_canslim_signals.parquet", index=False)
+
+    class FakeExcelProcessor:
+        def __init__(self, root: str):
+            self.root = root
+
+        def load_health_check_data(self):
+            return {
+                "2330": {
+                    "rs_rating": 95,
+                    "composite_rating": 99,
+                    "smr_rating": "A",
+                }
+            }
+
+        def load_fund_holdings_data(self):
+            return {"2330": {"change": 2}}
+
+    monkeypatch.setattr("fuse_excel_data.ExcelDataProcessor", FakeExcelProcessor)
+
+    fuse_data()
+
+    fused_df = pd.read_parquet(tmp_path / "master_canslim_signals_fused.parquet")
+    assert fused_df.loc[0, "latest_volume"] == 9000
+    assert fused_df.loc[0, "volume_rank"] == 1
+
+
+def test_load_selector_inputs_uses_persisted_volume_columns(selector_artifact_factory):
+    artifacts = selector_artifact_factory(
+        fused_rows=[
+            {"stock_id": "2330", "date": "2026-04-03", "score": 96, "latest_volume": 9000, "volume_rank": 2},
+            {"stock_id": "2454", "date": "2026-04-03", "score": 91, "latest_volume": 9500, "volume_rank": 1},
+        ],
+        baseline_rs={"2330": 95, "2454": 90},
+    )
+
+    inputs = load_selector_inputs(
+        artifacts["fused_path"],
+        artifacts["master_path"],
+        artifacts["baseline_path"],
+    )
+
+    assert [candidate.symbol for candidate in inputs["ranked_candidates"]] == ["2330", "2454"]
+    assert [candidate.volume_rank for candidate in inputs["ranked_candidates"]] == [2, 1]
