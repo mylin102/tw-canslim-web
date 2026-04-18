@@ -11,7 +11,7 @@ from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 
-from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid
+from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
 
 # TAIEX via yfinance
 TAIEX_SYMBOL = "^TWII"
@@ -494,27 +494,28 @@ class CanslimEngine:
         # 1. Try TEJ first
         if self.tej_processor.initialized:
             try:
-                # Convert period to start_date approximate
-                days = 730 if "2y" in period else 180
-                start_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
-                df_tej = self.tej_processor.get_daily_prices(ticker, start_date=start_date)
+                # TEJ index doesn't need ^
+                tej_sym = ticker.replace("^", "")
+                df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500)
                 if df_tej is not None and not df_tej.empty:
-                    # Return Series indexed by date with 'close' values
                     return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
             except Exception as e:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
         # 2. Fallback to yfinance
         try:
-            # Don't add suffix to index symbols or already suffixed tickers
-            if ticker.startswith("^") or "." in ticker:
-                full_ticker = ticker
+            if ticker == "TWII" or ticker == "^TWII":
+                yf_ticker = "^TWII"
+            elif "." in ticker:
+                yf_ticker = ticker
             else:
+                # Add suffix from metadata or default to .TW
                 suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
-                full_ticker = f"{ticker}{suffix}"
+                yf_ticker = f"{ticker}{suffix}"
             
-            stock = yf.Ticker(full_ticker)
-            hist = stock.history(period=period)
+            stock = yf.Ticker(yf_ticker)
+            # Use auto_adjust=True to handle splits/dividends correctly
+            hist = stock.history(period=period, auto_adjust=True)
             if hist is not None and not hist.empty:
                 return hist['Close']
             return None
@@ -598,7 +599,7 @@ class CanslimEngine:
                 a_score = tej_ca.get('A', False)
                 tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
 
-                n_score = self.check_n_new_high(financial_data.get("price", 0), financial_data.get("high_52w", 0))
+                n_score = check_n_factor(stock_hist)
                 s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
 
                 inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0

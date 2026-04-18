@@ -1,0 +1,493 @@
+{
+  "last_updated": "2026-04-15 10:26:35",
+  "stocks": {
+    "2330": {
+      "symbol": "2330",
+      "name": "台積電",
+      "industry": "驗證標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 2.13,
+          "volatility_annual": 33.79,
+          "spacing_pct": 3.19,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 2234.09,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 2167.05,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 2100.0,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 2032.95,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 1965.91,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": 66.17,
+        "pe_ratio": 31.736437,
+        "price": 2100.0,
+        "high_52w": 2100.0,
+        "low_52w": 816.0,
+        "volume": 16014462,
+        "avg_volume": 36810122,
+        "market_cap": 54458297876480
+      }
+    },
+    "2317": {
+      "symbol": "2317",
+      "name": "鴻海",
+      "industry": "驗證標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 2.43,
+          "volatility_annual": 38.64,
+          "spacing_pct": 3.65,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 226.41,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 218.7,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 211.0,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 203.3,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 195.59,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": 13.4,
+        "pe_ratio": 15.746269,
+        "price": 211.0,
+        "high_52w": 265.0,
+        "low_52w": 131.5,
+        "volume": 35590658,
+        "avg_volume": 59916074,
+        "market_cap": 2946137849856
+      }
+    },
+    "2454": {
+      "symbol": "2454",
+      "name": "聯發科",
+      "industry": "驗證標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 3.37,
+          "volatility_annual": 53.46,
+          "spacing_pct": 5.05,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 2025.9,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 1932.95,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 1840.0,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 1747.05,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 1654.1,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": 66.05,
+        "pe_ratio": 27.857683,
+        "price": 1840.0,
+        "high_52w": 1975.0,
+        "low_52w": 1130.0,
+        "volume": 11904386,
+        "avg_volume": 9180553,
+        "market_cap": 2936842747904
+      }
+    },
+    "2603": {
+      "symbol": "2603",
+      "name": "長榮",
+      "industry": "驗證標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 1.86,
+          "volatility_annual": 29.46,
+          "spacing_pct": 2.78,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 213.77,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 208.14,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 202.5,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 196.86,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 191.23,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": 31.64,
+        "pe_ratio": 6.4001265,
+        "price": 202.5,
+        "high_52w": 265.0,
+        "low_52w": 175.0,
+        "volume": 4012822,
+        "avg_volume": 15376046,
+        "market_cap": 438421192704
+      }
+    },
+    "2881": {
+      "symbol": "2881",
+      "name": "富邦金",
+      "industry": "驗證標的",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 1.16,
+          "volatility_annual": 18.37,
+          "spacing_pct": 1.74,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 90.95,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 89.43,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 87.9,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 86.37,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 84.85,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": 8.37,
+        "pe_ratio": 10.501793,
+        "price": 87.9,
+        "high_52w": 98.8,
+        "low_52w": 74.82927,
+        "volume": 5777935,
+        "avg_volume": 19544942,
+        "market_cap": 1231247376384
+      }
+    },
+    "0050": {
+      "symbol": "0050",
+      "name": "元大台灣50",
+      "industry": "ETF",
+      "is_etf": true,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 1.99,
+          "volatility_annual": 31.58,
+          "spacing_pct": 2.39,
+          "levels": [
+            {
+              "label": "Sell 2 (超漲出清)",
+              "price": 89.11,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (壓力減碼)",
+              "price": 87.08,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (平衡位)",
+              "price": 85.05,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐分批)",
+              "price": 83.02,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (超跌佈局)",
+              "price": 80.99,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": true
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": null,
+        "pe_ratio": 29.207777,
+        "price": null,
+        "high_52w": 85.1,
+        "low_52w": 38.9875,
+        "volume": 47995686,
+        "avg_volume": 138426574,
+        "market_cap": null
+      }
+    },
+    "00631L": {
+      "symbol": "00631L",
+      "name": "元大台灣50正2",
+      "industry": "ETF",
+      "is_etf": true,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 13.17,
+          "volatility_annual": 209.12,
+          "spacing_pct": 15.81,
+          "levels": [
+            {
+              "label": "Sell 2 (超漲出清)",
+              "price": 33.96,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (壓力減碼)",
+              "price": 29.88,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (平衡位)",
+              "price": 25.8,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐分批)",
+              "price": 21.72,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (超跌佈局)",
+              "price": 17.64,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": true
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": 542.0,
+        "low_52w": 19.1,
+        "volume": 136815635,
+        "avg_volume": 46689395,
+        "market_cap": null
+      }
+    },
+    "00981A": {
+      "symbol": "00981A",
+      "name": "主動統一台股增長",
+      "industry": "ETF",
+      "is_etf": true,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": 0.0,
+        "grid_strategy": {
+          "volatility_daily": 2.88,
+          "volatility_annual": 45.78,
+          "spacing_pct": 3.46,
+          "levels": [
+            {
+              "label": "Sell 2 (超漲出清)",
+              "price": 26.16,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (壓力減碼)",
+              "price": 25.32,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (平衡位)",
+              "price": 24.47,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐分批)",
+              "price": 23.62,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (超跌佈局)",
+              "price": 22.78,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": true
+        }
+      },
+      "institutional": [],
+      "financials": {
+        "eps": null,
+        "pe_ratio": 48.05605,
+        "price": null,
+        "high_52w": 24.51,
+        "low_52w": 9.88,
+        "volume": 138749435,
+        "avg_volume": 210837509,
+        "market_cap": null
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+name: On-demand Single Stock Update
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update-stock:
+    if: startsWith(github.event.issue.title, 'update:')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Extract Ticker
+        id: extract
+        run: |
+          TITLE="${{ github.event.issue.title }}"
+          TICKER=$(echo $TITLE | cut -d':' -f2 | xargs)
+          echo "ticker=$TICKER" >> $GITHUB_OUTPUT
+          echo "Updating stock: $TICKER"
+
+      - name: Run Update Script
+        run: |
+          python3 update_single_stock.py ${{ steps.extract.outputs.ticker }}
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data_base.json docs/data.json docs/data_light.json docs/data.json.gz
+          git commit -m "On-demand update: ${{ steps.extract.outputs.ticker }}" || echo "No changes to commit"
+          git push
+
+      - name: Close and Lock Issue
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label "automated-update"
+          gh issue close ${{ github.event.issue.number }} --comment "✅ Stock ${{ steps.extract.outputs.ticker }} has been updated successfully!"
+          gh issue lock ${{ github.event.issue.number }} --reason "resolved"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
