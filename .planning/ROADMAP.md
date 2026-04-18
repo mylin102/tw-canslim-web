@@ -63,7 +63,14 @@ Plans:
 3. Core list size stays within 200-500 stocks to respect API budgets
 4. Signal stocks (ORB breakouts, volume spikes) always appear in the core list on signal detection day
 
-**Plans**: TBD
+**Plans**: 3 plans
+
+---
+
+Plans:
+- [ ] 02-01-PLAN.md — Establish selector contracts, config, and Wave 0 test scaffolding
+- [ ] 02-02-PLAN.md — Implement artifact-backed volume-aware core-universe selection
+- [ ] 02-03-PLAN.md — Wire the selector into `export_canslim.py` without disturbing Phase 1 publish safety
 
 ---
 
