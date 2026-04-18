@@ -49,6 +49,31 @@ def calculate_accumulation_strength(chip_df: pd.DataFrame, total_shares: float, 
     # Return as decimal (e.g., 0.004 for 0.4%)
     return round(strength, 6)
 
+def calculate_i_factor(
+    chip_df: pd.DataFrame,
+    days: int = 3,
+    total_shares: Optional[float] = None,
+    conviction_threshold: float = 0.002,
+) -> bool:
+    """
+    I - Institutional Sponsorship.
+    Backwards-compatible helper for tests and older callers.
+    """
+    if chip_df.empty:
+        return False
+
+    recent = chip_df.head(days).copy()
+    cols = ['foreign_net', 'trust_net', 'dealer_net']
+    for c in cols:
+        if c not in recent.columns:
+            recent[c] = 0
+
+    if total_shares is not None:
+        return calculate_accumulation_strength(recent, total_shares, days=days) >= conviction_threshold
+
+    total_net_buy = (recent['foreign_net'] + recent['trust_net'] + recent['dealer_net']).sum()
+    return total_net_buy > 0
+
 def calculate_rs_score(stock_returns: pd.Series, market_returns: pd.Series) -> float:
     """Simple RS ratio."""
     if len(stock_returns) < 250: return 0.0
@@ -161,6 +186,8 @@ def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> i
     weights = {'C': 20, 'A': 20, 'N': 10, 'S': 10, 'L': 20, 'I': 10, 'M': 10}
     for f, w in weights.items():
         if factors.get(f): score += w
+    if institutional_strength >= 0.005:
+        score += 5
     return min(score, 100)
 
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:
