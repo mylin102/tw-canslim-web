@@ -104,6 +104,7 @@ class HistoricalGenerator:
             df_price = df_price_raw.copy()
             df_price['date'] = pd.to_datetime(df_price['date'])
             df_price = df_price.sort_values('date')
+            df_price['latest_volume'] = df_price['Trading_Volume'].fillna(0)
             df_price['high_250d'] = df_price['max'].rolling(window=250, min_periods=1).max()
             df_price['N'] = df_price['close'] >= (df_price['high_250d'] * 0.9)
             df_price['vol_avg_50d'] = df_price['Trading_Volume'].rolling(window=50, min_periods=1).mean()
@@ -129,7 +130,7 @@ class HistoricalGenerator:
             df_combined['A'] = df_combined['eps'].rolling(window=500).apply(lambda x: calculate_a_factor(pd.Series(x[::250]))).fillna(0).astype(bool)
             df_combined['I'] = (df_combined['foreign_net'] + df_combined['trust_net']).rolling(window=3).sum() > 0
             
-            return df_combined[['stock_id', 'date', 'close', 'one_year_return', 'C', 'I', 'N', 'S', 'A']]
+            return df_combined[['stock_id', 'date', 'close', 'one_year_return', 'latest_volume', 'C', 'I', 'N', 'S', 'A']]
         except Exception as e:
             return pd.DataFrame()
 
@@ -153,6 +154,11 @@ class HistoricalGenerator:
         master_df = pd.concat(all_dfs, ignore_index=True)
         master_df['L_rank'] = master_df.groupby('date')['one_year_return'].rank(pct=True) * 100
         master_df['L'] = master_df['L_rank'] >= 80
+        master_df['volume_rank'] = (
+            master_df.groupby('date')['latest_volume']
+            .rank(method='first', ascending=False)
+            .astype(int)
+        )
         
         # Set M factor
         master_df['M'] = market_status

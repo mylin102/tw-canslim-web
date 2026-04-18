@@ -13,6 +13,13 @@ logger = logging.getLogger(__name__)
 
 MASTER_SIGNAL_PATH = "master_canslim_signals.parquet"
 EXCEL_FILE = "股票健診60409.xlsm"
+REQUIRED_MASTER_COLUMNS = {
+    "stock_id",
+    "date",
+    "score",
+    "latest_volume",
+    "volume_rank",
+}
 
 def fuse_data():
     if not os.path.exists(MASTER_SIGNAL_PATH):
@@ -40,6 +47,12 @@ def fuse_data():
 
     logger.info(f"🚀 Fusing features into {MASTER_SIGNAL_PATH}...")
     df_master = pd.read_parquet(MASTER_SIGNAL_PATH)
+    missing_columns = sorted(REQUIRED_MASTER_COLUMNS - set(df_master.columns))
+    if missing_columns:
+        raise ValueError(
+            "Master signal file is missing selector columns: "
+            + ", ".join(missing_columns)
+        )
     
     # Merge logic: We apply the latest Excel rating to all recent dates in the backtest 
     # (or you can use it as a point-in-time snapshot if you have historical excels)
@@ -51,6 +64,7 @@ def fuse_data():
         how='left'
     )
 
+    # Preserve selector-ready volume fields (`latest_volume`, `volume_rank`) from master.
     # Save the Super-Master file
     output_path = "master_canslim_signals_fused.parquet"
     df_fused.to_parquet(output_path)
