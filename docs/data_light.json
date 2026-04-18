@@ -1,0 +1,2677 @@
+{
+  "last_updated": "2026-04-17 09:58:39",
+  "stocks": {
+    "1201": {
+      "symbol": "1201",
+      "name": "味全",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.828,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.123,
+          "current": -3.828
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1203": {
+      "symbol": "1203",
+      "name": "味王",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.225,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.302,
+          "current": -2.225
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1308": {
+      "symbol": "1308",
+      "name": "亞聚",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -1.658,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.996,
+          "current": -1.658
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1220": {
+      "symbol": "1220",
+      "name": "台榮",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.12,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.017,
+          "current": -3.12
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1313": {
+      "symbol": "1313",
+      "name": "聯成",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -1.239,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.028,
+          "current": -1.239
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1310": {
+      "symbol": "1310",
+      "name": "台苯",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.121,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.424,
+          "current": -2.121
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1321": {
+      "symbol": "1321",
+      "name": "大洋",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.51,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.287,
+          "current": -3.51
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1215": {
+      "symbol": "1215",
+      "name": "卜蜂",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.2,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.342,
+          "current": -2.2
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1315": {
+      "symbol": "1315",
+      "name": "達新",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.917,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.201,
+          "current": -2.917
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1323": {
+      "symbol": "1323",
+      "name": "永裕",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.509,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.481,
+          "current": -2.509
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1325": {
+      "symbol": "1325",
+      "name": "恆大",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.568,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.13,
+          "current": -3.568
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1218": {
+      "symbol": "1218",
+      "name": "泰山",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.982,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.313,
+          "current": -2.982
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1338": {
+      "symbol": "1338",
+      "name": "廣華-KY",
+      "industry": "汽車工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.78,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.215,
+          "current": -4.78
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1225": {
+      "symbol": "1225",
+      "name": "福懋油",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.076,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.076,
+          "current": -2.076
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1304": {
+      "symbol": "1304",
+      "name": "台聚",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -0.599,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -1.265,
+          "current": -0.599
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1108": {
+      "symbol": "1108",
+      "name": "幸福",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.841,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.189,
+          "current": -2.841
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1340": {
+      "symbol": "1340",
+      "name": "勝悅-KY",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.445,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.222,
+          "current": -3.445
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1301": {
+      "symbol": "1301",
+      "name": "台塑",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -0.463,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.857,
+          "current": -0.463
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1309": {
+      "symbol": "1309",
+      "name": "台達化",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 40,
+        "mansfield_rs": 1.456,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -2.258,
+          "current": 1.456
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1102": {
+      "symbol": "1102",
+      "name": "亞泥",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.482,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.146,
+          "current": -3.482
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1101": {
+      "symbol": "1101",
+      "name": "台泥",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.89,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.246,
+          "current": -2.89
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1303": {
+      "symbol": "1303",
+      "name": "南亞",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 50,
+        "mansfield_rs": 3.309,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.296,
+          "current": 3.309
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1312": {
+      "symbol": "1312",
+      "name": "國喬",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -0.996,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.687,
+          "current": -0.996
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1227": {
+      "symbol": "1227",
+      "name": "佳格",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.098,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.021,
+          "current": -3.098
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1219": {
+      "symbol": "1219",
+      "name": "福壽",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.812,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.156,
+          "current": -2.812
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1213": {
+      "symbol": "1213",
+      "name": "大飲",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.395,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.228,
+          "current": -4.395
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1256": {
+      "symbol": "1256",
+      "name": "鮮活果汁-KY",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -1.864,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.019,
+          "current": -1.864
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1324": {
+      "symbol": "1324",
+      "name": "地球",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.774,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.294,
+          "current": -2.774
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1232": {
+      "symbol": "1232",
+      "name": "大統益",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.928,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.205,
+          "current": -2.928
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1236": {
+      "symbol": "1236",
+      "name": "宏亞",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -1.929,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.161,
+          "current": -1.929
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1104": {
+      "symbol": "1104",
+      "name": "環泥",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.896,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.249,
+          "current": -2.896
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1210": {
+      "symbol": "1210",
+      "name": "大成",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.097,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.209,
+          "current": -3.097
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1234": {
+      "symbol": "1234",
+      "name": "黑松",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.374,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.099,
+          "current": -3.374
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1314": {
+      "symbol": "1314",
+      "name": "中石化",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.808,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.219,
+          "current": -2.808
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1307": {
+      "symbol": "1307",
+      "name": "三芳",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.232,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.13,
+          "current": -3.232
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1337": {
+      "symbol": "1337",
+      "name": "再生-KY",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.881,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.199,
+          "current": -2.881
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1229": {
+      "symbol": "1229",
+      "name": "聯華",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.099,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.183,
+          "current": -3.099
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1109": {
+      "symbol": "1109",
+      "name": "信大",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.102,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.141,
+          "current": -3.102
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1231": {
+      "symbol": "1231",
+      "name": "聯華食",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.443,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.196,
+          "current": -4.443
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1217": {
+      "symbol": "1217",
+      "name": "愛之味",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.17,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.079,
+          "current": -3.17
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1233": {
+      "symbol": "1233",
+      "name": "天仁",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.378,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.16,
+          "current": -3.378
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1305": {
+      "symbol": "1305",
+      "name": "華夏",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -0.952,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -1.436,
+          "current": -0.952
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1235": {
+      "symbol": "1235",
+      "name": "興泰",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.25,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.071,
+          "current": -4.25
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1110": {
+      "symbol": "1110",
+      "name": "東泥",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.638,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.103,
+          "current": -3.638
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1103": {
+      "symbol": "1103",
+      "name": "嘉泥",
+      "industry": "水泥工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.942,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.107,
+          "current": -2.942
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1339": {
+      "symbol": "1339",
+      "name": "昭輝",
+      "industry": "汽車工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.59,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.238,
+          "current": -3.59
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1319": {
+      "symbol": "1319",
+      "name": "東陽",
+      "industry": "汽車工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.649,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.246,
+          "current": -4.649
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1326": {
+      "symbol": "1326",
+      "name": "台化",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": true,
+        "I": false,
+        "M": true,
+        "score": 50,
+        "mansfield_rs": 1.791,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.841,
+          "current": 1.791
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1216": {
+      "symbol": "1216",
+      "name": "統一",
+      "industry": "食品工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.263,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.023,
+          "current": -3.263
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1316": {
+      "symbol": "1316",
+      "name": "上曜",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.156,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.194,
+          "current": -4.156
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1413": {
+      "symbol": "1413",
+      "name": "宏洲",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.669,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.17,
+          "current": -3.669
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1437": {
+      "symbol": "1437",
+      "name": "勤益控",
+      "industry": "其他",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.098,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.215,
+          "current": -3.098
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1473": {
+      "symbol": "1473",
+      "name": "台南",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.789,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.288,
+          "current": -3.789
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1452": {
+      "symbol": "1452",
+      "name": "宏益",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.95,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.11,
+          "current": -2.95
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1341": {
+      "symbol": "1341",
+      "name": "富林-KY",
+      "industry": "塑膠工業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.186,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.119,
+          "current": -3.186
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1417": {
+      "symbol": "1417",
+      "name": "嘉裕",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.476,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.243,
+          "current": -2.476
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1443": {
+      "symbol": "1443",
+      "name": "立益物流",
+      "industry": "其他",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.122,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.13,
+          "current": -4.122
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1446": {
+      "symbol": "1446",
+      "name": "宏和",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.295,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.038,
+          "current": -4.295
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1409": {
+      "symbol": "1409",
+      "name": "新纖",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -1.497,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.199,
+          "current": -1.497
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1342": {
+      "symbol": "1342",
+      "name": "八貫",
+      "industry": "其他",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.348,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.049,
+          "current": -2.348
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1435": {
+      "symbol": "1435",
+      "name": "中福",
+      "industry": "其他",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -6.466,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.203,
+          "current": -6.466
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1470": {
+      "symbol": "1470",
+      "name": "大統新創",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.714,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.042,
+          "current": -2.714
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1463": {
+      "symbol": "1463",
+      "name": "強盛新",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.172,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.141,
+          "current": -3.172
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1444": {
+      "symbol": "1444",
+      "name": "力麗",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.995,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.206,
+          "current": -2.995
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1441": {
+      "symbol": "1441",
+      "name": "大東",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.939,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.131,
+          "current": -3.939
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1466": {
+      "symbol": "1466",
+      "name": "聚隆",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.519,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.229,
+          "current": -2.519
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1419": {
+      "symbol": "1419",
+      "name": "新紡",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.362,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.11,
+          "current": -2.362
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1438": {
+      "symbol": "1438",
+      "name": "三地開發",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.578,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.162,
+          "current": -4.578
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1453": {
+      "symbol": "1453",
+      "name": "大將",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.487,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.117,
+          "current": -3.487
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1436": {
+      "symbol": "1436",
+      "name": "華友聯",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.826,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.057,
+          "current": -4.826
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1459": {
+      "symbol": "1459",
+      "name": "聯發",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.002,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.121,
+          "current": -3.002
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1418": {
+      "symbol": "1418",
+      "name": "東華",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.702,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.134,
+          "current": -3.702
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1447": {
+      "symbol": "1447",
+      "name": "力鵬",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.598,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.143,
+          "current": -3.598
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1457": {
+      "symbol": "1457",
+      "name": "宜進",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.278,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.1,
+          "current": -3.278
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1460": {
+      "symbol": "1460",
+      "name": "宏遠",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.484,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.295,
+          "current": -2.484
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1465": {
+      "symbol": "1465",
+      "name": "偉全",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.081,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.04,
+          "current": -3.081
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1423": {
+      "symbol": "1423",
+      "name": "利華",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.39,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.185,
+          "current": -2.39
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1467": {
+      "symbol": "1467",
+      "name": "南緯",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.684,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.154,
+          "current": -3.684
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1451": {
+      "symbol": "1451",
+      "name": "年興",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.933,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.211,
+          "current": -2.933
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1442": {
+      "symbol": "1442",
+      "name": "名軒",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -5.891,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.366,
+          "current": -5.891
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1471": {
+      "symbol": "1471",
+      "name": "首利",
+      "industry": "電子零組件業",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -1.836,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.243,
+          "current": -1.836
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1432": {
+      "symbol": "1432",
+      "name": "大魯閣",
+      "industry": "運動休閒",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.14,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.362,
+          "current": -3.14
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1445": {
+      "symbol": "1445",
+      "name": "大宇",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.312,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.117,
+          "current": -3.312
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1402": {
+      "symbol": "1402",
+      "name": "遠東新",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.632,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.245,
+          "current": -3.632
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1464": {
+      "symbol": "1464",
+      "name": "得力",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.643,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.014,
+          "current": -3.643
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1454": {
+      "symbol": "1454",
+      "name": "台富",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.352,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.223,
+          "current": -3.352
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1468": {
+      "symbol": "1468",
+      "name": "昶和",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.52,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.339,
+          "current": -3.52
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1474": {
+      "symbol": "1474",
+      "name": "弘裕",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -3.657,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.129,
+          "current": -3.657
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1476": {
+      "symbol": "1476",
+      "name": "儒鴻",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.871,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.227,
+          "current": -3.871
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1416": {
+      "symbol": "1416",
+      "name": "廣豐",
+      "industry": "其他",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.977,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.103,
+          "current": -2.977
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1475": {
+      "symbol": "1475",
+      "name": "業旺",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -4.135,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.161,
+          "current": -4.135
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1456": {
+      "symbol": "1456",
+      "name": "怡華",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.164,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.265,
+          "current": -2.164
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1439": {
+      "symbol": "1439",
+      "name": "雋揚",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.434,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.242,
+          "current": -3.434
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1455": {
+      "symbol": "1455",
+      "name": "集盛",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -2.761,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.306,
+          "current": -2.761
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1449": {
+      "symbol": "1449",
+      "name": "佳和",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -1.471,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -1.027,
+          "current": -1.471
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1472": {
+      "symbol": "1472",
+      "name": "三洋實業",
+      "industry": "建材營造",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.764,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.171,
+          "current": -2.764
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1434": {
+      "symbol": "1434",
+      "name": "福懋",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.597,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": -0.022,
+          "current": -2.597
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1440": {
+      "symbol": "1440",
+      "name": "南紡",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": true,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 30,
+        "mansfield_rs": -2.988,
+        "rs_trend": {
+          "trend": "flat",
+          "delta": 0.045,
+          "current": -2.988
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1410": {
+      "symbol": "1410",
+      "name": "南染",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.752,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.305,
+          "current": -3.752
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    },
+    "1414": {
+      "symbol": "1414",
+      "name": "東和",
+      "industry": "紡織纖維",
+      "is_etf": false,
+      "canslim": {
+        "C": false,
+        "A": false,
+        "N": false,
+        "S": true,
+        "L": false,
+        "I": false,
+        "M": true,
+        "score": 20,
+        "mansfield_rs": -3.82,
+        "rs_trend": {
+          "trend": "down",
+          "delta": -0.203,
+          "current": -3.82
+        },
+        "grid_strategy": null,
+        "excel_ratings": null,
+        "fund_holdings": null
+      },
+      "institutional": []
+    }
+  },
+  "industry_strength": [
+    {
+      "industry": "ETF",
+      "avg_score": 58.5,
+      "total_inst_net_3d": 0,
+      "high_score_count": 54,
+      "stock_count": 211
+    },
+    {
+      "industry": "化學工業",
+      "avg_score": 33.0,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 20
+    },
+    {
+      "industry": "電子零組件業",
+      "avg_score": 32.7,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 196
+    },
+    {
+      "industry": "通信網路業",
+      "avg_score": 32.5,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 55
+    },
+    {
+      "industry": "玻璃陶瓷",
+      "avg_score": 32.0,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 5
+    },
+    {
+      "industry": "半導體業",
+      "avg_score": 31.9,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 123
+    },
+    {
+      "industry": "其他電子類",
+      "avg_score": 31.4,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 49
+    },
+    {
+      "industry": "電子工業",
+      "avg_score": 31.2,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 245
+    },
+    {
+      "industry": "創新板股票",
+      "avg_score": 30.0,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 5
+    },
+    {
+      "industry": "化學生技醫療",
+      "avg_score": 29.3,
+      "total_inst_net_3d": 0,
+      "high_score_count": 0,
+      "stock_count": 30
+    }
+  ]
+}

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>台股 CANSLIM 戰情室</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7QTFR4L9R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L7QTFR4L9R');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pass { color: #10b981; }
+        .fail { color: #ef4444; }
+        body { background-color: #f8fafc; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 bg-slate-50">
+    <!-- Vue Mount Point -->
+    <div id="app">
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <header class="mb-8 text-center relative">
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">
+                    <i class="fas fa-chart-line mr-2"></i>台股 CANSLIM 戰情室
+                </h1>
+                <p class="text-slate-500">最後更新: {{ lastUpdated }}</p>
+            </header>
+
+            <!-- Error State -->
+            <div v-if="errorState" class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8 text-center">
+                <i class="fas fa-exclamation-triangle text-3xl text-red-500 mb-3"></i>
+                <p class="text-red-700">{{ errorState }}</p>
+                <button @click="fetchData" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
+                    <i class="fas fa-redo mr-2"></i>重新載入
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div v-if="isLoading" class="text-center py-20">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-slate-500 mt-4">載入資料中...</p>
+                <div class="max-w-xs mx-auto mt-6">
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                             :style="{ width: loadingProgress + '%' }"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">{{ loadingProgress }}%</p>
+                </div>
+            </div>
+
+            <!-- CANSLIM 定義解釋 (Homepage Info Section) -->
+            <div v-if="!isLoading && !errorState && stockData" class="mb-8 animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div @click="showCanslimDefs = !showCanslimDefs"
+                         class="p-6 cursor-pointer flex justify-between items-center hover:bg-slate-50 transition">
+                        <h2 class="text-xl font-bold text-slate-800">
+                            <i class="fas fa-book-open mr-2 text-blue-600"></i>CANSLIM 投資法則 — William J. O'Neil
+                        </h2>
+                        <i :class="['fas text-slate-400 transition-transform', showCanslimDefs ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
+                    </div>
+                    <div v-if="showCanslimDefs" class="px-6 pb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div v-for="(item, key) in canslimDefinitions" :key="key"
+                                 class="p-4 rounded-lg border transition hover:shadow-md"
+                                 :class="item.bgColor">
+                                <div class="flex items-start gap-3">
+                                    <span :class="['text-2xl font-bold w-10 h-10 flex items-center justify-center rounded-full shrink-0',
+                                        item.textColor, item.badgeColor]">
+                                        {{ key }}
+                                    </span>
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 mb-1">{{ item.title }}</h3>
+                                        <p class="text-sm text-slate-600">{{ item.desc }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 bg-slate-50 rounded-lg text-sm text-slate-600">
+                            <p class="mb-2"><strong>出處：</strong>William J. O'Neil 所著《How to Make Money in Stocks》（譯：如何在股票市場賺錢）</p>
+                            <p>O'Neil 研究歷史上最強勢股後發現，所有大漲股在起漲前都有這 7 項共同特徵。CANSLIM 是將這些特徵量化為可操作的選股系統，幫投資人找出「漲幅最大的股票」。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top 10 CANSLIM Ranking (Homepage Hero Section) -->
+            <div v-if="!isLoading && !errorState && stockData" class="mb-8 animate-fade-in">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl shadow-lg p-6 text-white">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold"><i class="fas fa-fire mr-2"></i>CANSLIM 熱門前十</h2>
+                            <p class="text-blue-200 text-sm mt-1">綜合評分最高的股票，點擊可查看詳情</p>
+                        </div>
+                        <button @click="activeTab = 'ranking'" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition">
+                            查看完整排行 <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                        <div v-for="(stock, idx) in allStocksSorted.slice(0, 10)" :key="stock.symbol"
+                             @click="searchQuery = stock.symbol; activeTab = 'search'"
+                             class="bg-white/10 hover:bg-white/20 rounded-lg p-3 cursor-pointer transition group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span :class="['text-lg font-bold', idx < 3 ? 'text-yellow-300' : 'text-white']">
+                                    #{{ idx + 1 }}
+                                </span>
+                                <span :class="['px-2 py-0.5 rounded text-xs font-bold',
+                                    stock.canslim.score >= 90 ? 'bg-green-500 text-white' :
+                                    stock.canslim.score >= 70 ? 'bg-blue-400 text-white' :
+                                    'bg-slate-500 text-white']">
+                                    {{ stock.canslim.score }}分
+                                </span>
+                            </div>
+                            <div class="text-sm font-mono font-bold group-hover:text-yellow-300 transition">
+                                {{ stock.symbol }}
+                            </div>
+                            <div class="text-xs text-blue-200 truncate">
+                                {{ stock.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Area -->
+            <div v-if="!isLoading && !errorState" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
+                <!-- Tabs -->
+                <div class="flex space-x-2 mb-4">
+                    <button @click="activeTab = 'search'; console.log('tab=search')"
+                            :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'search' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                        <i class="fas fa-search mr-2"></i>個股查詢
+                    </button>
+                    <button @click="activeTab = 'ranking'; console.log('tab=ranking, current:', activeTab)"
+                            :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'ranking' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                        <i class="fas fa-trophy mr-2"></i>排名篩選
+                    </button>
+                    <button @click="activeTab = 'screener'; console.log('tab=screener, current:', activeTab)"
+                            :class="['px-4 py-2 rounded-lg font-medium transition', activeTab === 'screener' ? 'tab-active' : 'bg-slate-100 text-slate-600']">
+                        <i class="fas fa-filter mr-2"></i>條件選股
+                    </button>
+                </div>
+                <p class="text-xs text-slate-400 mb-2">目前 activeTab = {{ activeTab }}</p>
+
+                <!-- Search Tab -->
+                <div v-if="activeTab === 'search'" class="relative">
+                    <input type="text" 
+                           v-model="searchQuery" 
+                           @input="onSearchInput"
+                           placeholder="輸入台股代號 (如: 2330) 或股票名稱..." 
+                           class="w-full pl-12 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                    <i class="fas fa-search absolute left-4 top-4 text-slate-400"></i>
+                    <button v-if="searchQuery" 
+                            @click="clearSearch" 
+                            class="absolute right-4 top-3 text-slate-400 hover:text-slate-600 transition-colors">
+                        <i class="fas fa-times-circle text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Search suggestions -->
+                <div v-if="searchQuery.length >= 2 && searchSuggestions.length > 0" 
+                     class="mt-2 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    <div v-for="stock in searchSuggestions" 
+                         :key="stock.symbol"
+                         @click="selectStock(stock.symbol)"
+                         class="px-4 py-3 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0 transition-colors">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-slate-800">{{ stock.symbol }}</span>
+                            <span class="text-slate-600">{{ stock.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Area -->
+            <div v-if="currentStock && !isLoading && activeTab === 'search'" class="animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <!-- Stock Header -->
+                    <div class="bg-slate-800 text-white p-6 flex justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h2 class="text-2xl font-bold">{{ currentStock.name }} {{ currentStock.symbol }}</h2>
+                                <span v-if="currentStock.is_etf" class="text-xs bg-blue-500 text-white px-2 py-0.5 rounded uppercase">ETF</span>
+                                <!-- Integrated Professional Badges -->
+                                <span v-if="currentStock.canslim.excel_ratings && currentStock.canslim.excel_ratings.smr_rating" 
+                                      class="text-xs bg-purple-600 text-white px-2 py-0.5 rounded uppercase tracking-wider">
+                                    SMR: {{ currentStock.canslim.excel_ratings.smr_rating }}
+                                </span>
+                                <span v-if="currentStock.canslim.excel_ratings && currentStock.canslim.excel_ratings.composite_rating" 
+                                      class="text-xs bg-indigo-600 text-white px-2 py-0.5 rounded uppercase tracking-wider">
+                                    專家評等: {{ currentStock.canslim.excel_ratings.composite_rating }}
+                                </span>
+                            </div>
+                            <span class="text-blue-300 font-medium">CANSLIM 綜合評分: {{ currentStock.canslim.score }}</span>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs uppercase tracking-wider bg-green-500/20 text-green-400 px-2 py-1 rounded">
+                                市場趨勢: 多頭
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CANSLIM Grid -->
+                    <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4 border-b border-slate-100">
+                        <div v-for="(val, key) in metricsMap" :key="key" class="text-center p-3 rounded-lg bg-slate-50">
+                            <div class="text-xs text-slate-400 font-bold mb-1">{{ val.label }}</div>
+                            <!-- Use currentStock.is_etf to force N/A for C and A components -->
+                            <div v-if="currentStock && currentStock.is_etf && (key === 'C' || key === 'A')" class="text-xl font-bold text-slate-300">
+                                N/A
+                            </div>
+                            <div v-else :class="['text-xl font-bold', currentStock.canslim[key] ? 'pass' : 'fail']">
+                                {{ currentStock.canslim[key] ? 'PASS' : 'FAIL' }}
+                            </div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
+                            <div class="text-xs text-blue-600 font-bold mb-1">總分</div>
+                            <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.score }}</div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-slate-50">
+                            <div class="text-xs text-slate-400 font-bold mb-1">Mansfield RS</div>
+                            <div :class="['text-xl font-bold', currentStock.canslim.mansfield_rs > 0 ? 'pass' : 'fail']">
+                                {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs }}
+                            </div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-slate-50">
+                            <div class="text-xs text-slate-400 font-bold mb-1">RS 相對強度</div>
+                            <div v-if="currentStock && currentStock.canslim" :class="['text-xl font-bold', (currentStock.canslim.rs_ratio || 0) >= 1.2 ? 'pass' : (currentStock.canslim.rs_ratio || 0) >= 1.0 ? 'text-yellow-600' : 'fail']">
+                                {{ typeof currentStock.canslim.rs_ratio === 'number' ? currentStock.canslim.rs_ratio.toFixed(2) : 'N/A' }}
+                            </div>
+                            <div v-else class="text-xl font-bold text-slate-300">N/A</div>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Quarterly Financials Section -->
+                    <div v-if="currentStock.tej_quarterly && Array.isArray(currentStock.tej_quarterly.quarters) && currentStock.tej_quarterly.quarters.length > 0" class="p-6 border-b border-slate-100 bg-blue-50/30">
+                        <h3 class="font-bold text-slate-700 mb-4 flex items-center">
+                            <i class="fas fa-file-invoice-dollar mr-2 text-indigo-500"></i> 季度財務表現 (TEJ 數據)
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm border-collapse">
+                                <thead>
+                                    <tr class="text-slate-500 border-b border-slate-200 bg-slate-100/50">
+                                        <th class="p-2 font-bold whitespace-nowrap">季度</th>
+                                        <th v-for="label in financialLabels" :key="label" class="p-2 font-bold text-right whitespace-nowrap">
+                                            {{ label }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="q in currentStock.tej_quarterly.quarters" :key="q.date" class="border-b border-slate-100 hover:bg-white transition-colors">
+                                        <td class="p-2 font-medium">{{ q.date ? q.date.substring(0, 7) : 'N/A' }}</td>
+                                        <td v-for="(label, key) in financialLabels" :key="key" class="p-2 text-right font-mono">
+                                            <span v-if="q[key] !== null && q[key] !== undefined">
+                                                {{ (key.includes('margin') || key.includes('rate')) ? (typeof q[key] === 'number' ? q[key].toFixed(2) + '%' : q[key]) : (typeof q[key] === 'number' ? q[key].toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) : q[key]) }}
+                                            </span>
+                                            <span v-else class="text-slate-300">-</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Institutional Details -->
+                    <div class="p-6">
+                        <h3 class="font-bold text-slate-700 mb-4 flex items-center">
+                            <i class="fas fa-building mr-2 text-blue-500"></i> 機構持股明細 (三大法人買賣超)
+                        </h3>
+
+                        <!-- NEW: Institutional Accumulation Strength -->
+                        <div class="mb-6 p-4 bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg border border-teal-200">
+                            <h4 class="font-bold text-teal-800 mb-3 flex items-center">
+                                <i class="fas fa-magnet mr-2"></i> 法人吸籌力道 (佔總股本比例)
+                            </h4>
+                            
+                            <!-- Case: Data Available -->
+                            <div v-if="currentStock.canslim && currentStock.canslim.inst_strength_20d !== undefined && currentStock.canslim.inst_strength_20d !== null" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 font-medium">5日吸籌 (極短線)</span>
+                                        <span :class="['font-bold', (currentStock.canslim.inst_strength_5d || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_5d || 0 }}%
+                                        </span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div :class="['h-2.5 rounded-full transition-all duration-500', 
+                                             (currentStock.canslim.inst_strength_5d || 0) >= 0 ? 'bg-green-500' : 'bg-red-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_5d || 0) * 20, 100) + '%' }">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-600 font-medium">20日吸籌 (波段)</span>
+                                        <span :class="['font-bold', (currentStock.canslim.inst_strength_20d || 0) >= 0 ? 'text-green-600' : 'text-red-600']">
+                                            {{ currentStock.canslim.inst_strength_20d || 0 }}%
+                                        </span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5">
+                                        <div :class="['h-2.5 rounded-full transition-all duration-500', 
+                                             (currentStock.canslim.inst_strength_20d || 0) >= 0 ? 'bg-blue-500' : 'bg-orange-500']"
+                                             :style="{ width: Math.min(Math.abs(currentStock.canslim.inst_strength_20d || 0) * 10, 100) + '%' }">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Case: No Data -->
+                            <div v-else class="text-center py-4 text-slate-400 italic text-sm">
+                                <i class="fas fa-info-circle mr-1"></i> 暫無該股的股本或籌碼佔比資料
+                            </div>
+
+                            <div class="mt-3 text-xs text-slate-500">
+                                <i class="fas fa-info-circle mr-1"></i> 
+                                計算方式：(期間法人淨買超張數 * 1000) / 總發行股數。 20日吸籌 > 0.2% 為初步認同，> 0.5% 為強力鎖碼。
+                            </div>
+                        </div>
+
+                        <!-- Fund Holdings Section -->
+                        <div v-if="currentStock.canslim.fund_holdings" class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-chart-pie mr-2"></i> 投信基金持股趨勢 (機構認同度)
+                            </h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">本月</div>
+                                    <div class="text-2xl font-bold text-blue-700">{{ currentStock.canslim.fund_holdings.current_month || '0' }}</div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">上月</div>
+                                    <div class="text-2xl font-bold text-slate-600">{{ currentStock.canslim.fund_holdings.previous_month || '0' }}</div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">增減</div>
+                                    <div :class="['text-2xl font-bold', currentStock.canslim.fund_holdings.change >= 0 ? 'text-green-600' : 'text-red-600']">
+                                        <i :class="currentStock.canslim.fund_holdings.change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'" class="mr-1"></i>
+                                        {{ Math.abs(currentStock.canslim.fund_holdings.change || 0) }}
+                                    </div>
+                                    <div class="text-xs text-slate-400">檔</div>
+                                </div>
+                                <div class="text-center p-3 bg-white rounded shadow-sm">
+                                    <div class="text-xs text-slate-500 font-bold mb-1">變化</div>
+                                    <div :class="['text-2xl font-bold', currentStock.canslim.fund_holdings.change_pct >= 0 ? 'text-green-600' : 'text-red-600']">
+                                        {{ currentStock.canslim.fund_holdings.change_pct >= 0 ? '+' : '' }}{{ currentStock.canslim.fund_holdings.change_pct || 0 }}%
+                                    </div>
+                                    <div class="text-xs text-slate-400">月增率</div>
+                                </div>
+                            </div>
+                            <div v-if="currentStock.canslim.fund_holdings.change > 0" class="mt-3 p-2 bg-green-50 rounded text-sm text-green-700">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                投信基金持股增加 <strong>{{ currentStock.canslim.fund_holdings.change }}</strong> 檔，顯示機構認同度提升
+                            </div>
+                            <div v-else-if="currentStock.canslim.fund_holdings.change < 0" class="mt-3 p-2 bg-red-50 rounded text-sm text-red-700">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                投信基金持股減少 <strong>{{ Math.abs(currentStock.canslim.fund_holdings.change) }}</strong> 檔，注意機構撤出風險
+                            </div>
+                        </div>
+
+                        <div class="mb-6 h-64 w-full">
+                            <canvas id="inst-chart"></canvas>
+                        </div>
+
+                        <div v-if="currentStock.institutional && currentStock.institutional.length > 0 && currentStock.institutional[0].no_data" 
+                             class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>無法取得機構籌碼明細</strong>
+                            <p class="text-sm mt-1">
+                                此股為上櫃股或較小市值股票，目前暫無三大法人買賣記錄。
+                                評分可能受到影響，僅供參考。
+                            </p>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead>
+                                    <tr class="text-slate-400 border-b border-slate-100">
+                                        <th class="pb-2">日期</th>
+                                        <th class="pb-2">外資 (張)</th>
+                                        <th class="pb-2">投信 (張)</th>
+                                        <th class="pb-2">自營商 (張)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="row in sortedInstitutional" :key="row.date" class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                                        <td class="py-3">{{ row.date }}</td>
+                                        <td :class="['py-3', row.foreign_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.foreign_net.toLocaleString() }}</td>
+                                        <td :class="['py-3', row.trust_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.trust_net.toLocaleString() }}</td>
+                                        <td :class="['py-3', row.dealer_net >= 0 ? 'text-green-600' : 'text-red-600']">{{ row.dealer_net.toLocaleString() }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- NEW: Strategy Lab (Grid Strategy) -->
+                        <div v-if="currentStock.canslim.grid_strategy" class="mt-8 p-6 bg-slate-900 text-slate-100 rounded-xl border border-slate-700 shadow-xl animate-fade-in">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-xl font-bold flex items-center">
+                                        <i class="fas fa-flask mr-2 text-blue-400"></i> 量化策略建議 (Strategy Lab)
+                                        <span class="ml-3 text-xs bg-blue-600 text-white px-2 py-0.5 rounded uppercase tracking-widest">Beta</span>
+                                    </h3>
+                                    <p class="text-slate-400 text-sm mt-1">基於 60 日統計波動率 ({{ currentStock.canslim.grid_strategy.volatility_daily || 0 }}%) 計算之自動網格</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs text-slate-500 uppercase">網格間距</div>
+                                    <div class="text-lg font-mono font-bold text-blue-400">±{{ currentStock.canslim.grid_strategy.spacing_pct || 0 }}%</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-3">
+                                <div v-for="level in currentStock.canslim.grid_strategy.levels" :key="level.label"
+                                     class="flex items-center justify-between p-3 rounded-lg border transition-all"
+                                     :class="[
+                                        level.type === 'sell-strong' ? 'bg-red-950/30 border-red-900/50 text-red-200' :
+                                        level.type === 'sell' ? 'bg-orange-950/20 border-orange-900/30 text-orange-200' :
+                                        level.type === 'buy' ? 'bg-green-950/20 border-green-900/30 text-green-200' :
+                                        level.type === 'buy-strong' ? 'bg-emerald-950/30 border-emerald-900/50 text-emerald-200' :
+                                        'bg-slate-800 border-slate-700 text-slate-300'
+                                     ]">
+                                    <div class="flex items-center">
+                                        <i :class="[
+                                            'fas mr-3 w-5 text-center',
+                                            level.type.includes('sell') ? 'fa-arrow-trend-up' : 
+                                            level.type.includes('buy') ? 'fa-arrow-trend-down' : 'fa-minus'
+                                        ]"></i>
+                                        <span class="font-medium">{{ level.label }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-xs opacity-50">{{ level.type === 'neutral' ? '基準現價' : '建議位點' }}</span>
+                                        <span class="text-xl font-mono font-bold">
+                                            {{ typeof level.price === 'number' ? level.price.toFixed(2) : 'N/A' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700/50 text-xs text-slate-400 leading-relaxed">
+                                <p class="mb-2"><strong><i class="fas fa-info-circle mr-1"></i> 策略說明：</strong></p>
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>本模組採用「波動率動態網格」算法，間距由近 20 個交易日的標準差決定。</li>
+                                    <li><strong>Pivot (基準位)</strong> 為最新收盤價。建議在股價拉回至 Buy 1 或 Buy 2 區域時分批佈局。</li>
+                                    <li>當股價觸及 Sell 1 或 Sell 2 區域時，代表短線乖離率已高，建議分批獲利了結。</li>
+                                    <li>此為量化參考數據，不構成投資建議。網格策略在強勢趨勢中可能過早賣出，請配合 RS 強度參考。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Debug Info -->
+            <div v-if="!isLoading && stockData" class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-xs">
+                <strong>Debug:</strong>
+                stocks: {{ Object.keys(stockData.stocks).length }} |
+                tab: {{ activeTab }} |
+                sorted: {{ allStocksSorted.length }} |
+                filtered: {{ filteredStocks.length }}
+            </div>
+
+            <!-- Ranking Tab -->
+            <div v-if="activeTab === 'ranking' && !isLoading && stockData" class="animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6">
+                        <h2 class="text-2xl font-bold"><i class="fas fa-trophy mr-2"></i>CANSLIM 高分排名</h2>
+                        <p class="text-yellow-100 text-sm mt-1">綜合評分前 20 名，點擊可查看詳情</p>
+                    </div>
+                    <div class="p-6">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-slate-200">
+                                    <th class="pb-3 text-slate-500 font-medium">排名</th>
+                                    <th class="pb-3 text-slate-500 font-medium">代號</th>
+                                    <th class="pb-3 text-slate-500 font-medium">名稱</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">總分</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">C</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">I</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(stock, idx) in allStocksSorted.slice(0, 20)" :key="stock.symbol"
+                                    @click="searchQuery = stock.symbol; activeTab = 'search'"
+                                    class="border-b border-slate-100 hover:bg-blue-50 cursor-pointer transition">
+                                    <td class="py-3">
+                                        <span :class="['inline-flex items-center justify-center w-8 h-8 rounded-full font-bold',
+                                            idx < 3 ? 'bg-yellow-100 text-yellow-800' : 'bg-slate-100 text-slate-600']">
+                                            {{ idx + 1 }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 font-mono font-bold">{{ stock.symbol }}</td>
+                                    <td class="py-3">{{ stock.name }}</td>
+                                    <td class="py-3 text-center">
+                                        <span :class="['px-2 py-1 rounded font-bold text-sm',
+                                            stock.canslim.score >= 80 ? 'bg-green-100 text-green-800' :
+                                            stock.canslim.score >= 60 ? 'bg-blue-100 text-blue-800' :
+                                            'bg-slate-100 text-slate-600']">
+                                            {{ stock.canslim.score }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 text-center" :class="stock.canslim.C ? 'text-green-600' : 'text-red-600'">
+                                        {{ stock.canslim.C ? '✓' : '✗' }}
+                                    </td>
+                                    <td class="py-3 text-center" :class="stock.canslim.I ? 'text-green-600' : 'text-red-600'">
+                                        {{ stock.canslim.I ? '✓' : '✗' }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-sm text-slate-500 mt-4">共 {{ allStocksSorted.length }} 檔股票，顯示前 20 名</p>
+                    </div>
+                </div>
+
+                <!-- Industry Strength Section -->
+                <div v-if="stockData.industry_strength && stockData.industry_strength.length > 0" class="mt-8 bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-6">
+                        <h2 class="text-2xl font-bold"><i class="fas fa-layer-group mr-2"></i>強勢產業排名</h2>
+                        <p class="text-teal-100 text-sm mt-1">依 CANSLIM 平均分數排序，找出資金集中的強勢族群</p>
+                    </div>
+                    <div class="p-6 overflow-x-auto">
+                        <table class="w-full text-left min-w-[600px]">
+                            <thead>
+                                <tr class="border-b border-slate-200">
+                                    <th class="pb-3 text-slate-500 font-medium">排名</th>
+                                    <th class="pb-3 text-slate-500 font-medium">產業名稱</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">CANSLIM<br>平均分</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">3日法人<br>淨買超(張)</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">高分股<br>檔數</th>
+                                    <th class="pb-3 text-slate-500 font-medium text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(ind, idx) in stockData.industry_strength" :key="ind.industry"
+                                    class="border-b border-slate-100 hover:bg-teal-50 cursor-pointer transition">
+                                    <td class="py-3">
+                                        <span :class="['inline-flex items-center justify-center w-8 h-8 rounded-full font-bold',
+                                            idx < 3 ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-600']">
+                                            {{ idx + 1 }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 font-medium">{{ ind.industry }}</td>
+                                    <td class="py-3 text-center">
+                                        <span :class="['px-2 py-1 rounded font-bold text-sm',
+                                            ind.avg_score >= 70 ? 'bg-green-100 text-green-800' :
+                                            ind.avg_score >= 65 ? 'bg-blue-100 text-blue-800' :
+                                            'bg-slate-100 text-slate-600']">
+                                            {{ ind.avg_score }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 text-center" :class="ind.total_inst_net_3d >= 0 ? 'text-green-600' : 'text-red-600'">
+                                        {{ ind.total_inst_net_3d >= 0 ? '+' : '' }}{{ ind.total_inst_net_3d.toLocaleString() }}
+                                    </td>
+                                    <td class="py-3 text-center">
+                                        <span class="px-2 py-1 rounded font-bold text-sm bg-purple-100 text-purple-800">
+                                            {{ ind.high_score_count }} / {{ ind.stock_count }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 text-center">
+                                        <button @click="screenerIndustry = ind.industry; activeTab = 'screener'" 
+                                                class="px-3 py-1 bg-teal-500 text-white rounded-lg text-sm hover:bg-teal-600 transition">
+                                            查看個股
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-4 p-3 bg-slate-50 rounded text-xs text-slate-500">
+                            <strong>計算方式：</strong>
+                            1. CANSLIM 平均分：該產業所有股票的平均評分（越高代表整體質量越好）
+                            2. 3 日法人淨買超：該產業所有股票的三大法人近 3 日買超總和（資金流向指標）
+                            3. 高分股檔數：該產業中 CANSLIM 分數 ≥ 80 的股票數量（強勢股密度）
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screener Tab -->
+            <div v-if="activeTab === 'screener' && !isLoading && stockData" class="animate-fade-in">
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-6">
+                        <h2 class="text-2xl font-bold"><i class="fas fa-filter mr-2"></i>條件選股</h2>
+                        <p class="text-green-100 text-sm mt-1">篩選符合 CANSLIM 標準的潛力股</p>
+                    </div>
+                    <div class="p-6">
+                        <!-- Filter Controls -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <label class="text-sm font-medium text-slate-600 mb-1 block">最低分數</label>
+                                <select v-model.number="screenerMinScore" class="w-full px-3 py-2 rounded-lg border border-slate-300">
+                                    <option :value="60">60 分以上</option>
+                                    <option :value="70">70 分以上</option>
+                                    <option :value="80">80 分以上</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-slate-600 mb-1 block">產業類別</label>
+                                <select v-model="screenerIndustry" class="w-full px-3 py-2 rounded-lg border border-slate-300">
+                                    <option value="all">全部產業</option>
+                                    <option v-for="ind in availableIndustries.filter(i => i !== 'all')" :key="ind" :value="ind">{{ ind }}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-slate-600 mb-1 block">法人買超</label>
+                                <select v-model="screenerInstBuy" class="w-full px-3 py-2 rounded-lg border border-slate-300">
+                                    <option value="any">不限</option>
+                                    <option value="3d">近 3 日買超</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Results Table -->
+                        <div v-if="filteredStocks.length > 0">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="border-b border-slate-200">
+                                        <th class="pb-3 text-slate-500 font-medium">代號</th>
+                                        <th class="pb-3 text-slate-500 font-medium">名稱</th>
+                                        <th class="pb-3 text-slate-500 font-medium">產業</th>
+                                        <th class="pb-3 text-slate-500 font-medium text-center">總分</th>
+                                        <th class="pb-3 text-slate-500 font-medium text-center">3日淨買超</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="stock in filteredStocks.slice(0, 50)" :key="stock.symbol"
+                                        @click="searchQuery = stock.symbol; activeTab = 'search'"
+                                        class="border-b border-slate-100 hover:bg-blue-50 cursor-pointer transition">
+                                        <td class="py-3 font-mono font-bold">{{ stock.symbol }}</td>
+                                        <td class="py-3">{{ stock.name }}</td>
+                                        <td class="py-3 text-sm text-slate-600">{{ stock.industry || '未知' }}</td>
+                                        <td class="py-3 text-center">
+                                            <span :class="['px-2 py-1 rounded font-bold text-sm',
+                                                stock.canslim.score >= 80 ? 'bg-green-100 text-green-800' :
+                                                stock.canslim.score >= 60 ? 'bg-blue-100 text-blue-800' :
+                                                'bg-slate-100 text-slate-600']">
+                                                {{ stock.canslim.score }}
+                                            </span>
+                                        </td>
+                                        <td class="py-3 text-center" :class="inst3dNet(stock) >= 0 ? 'text-green-600' : 'text-red-600'">
+                                            {{ inst3dNet(stock) >= 0 ? '+' : '' }}{{ inst3dNet(stock).toLocaleString() }} 張
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-sm text-slate-500 mt-4">共找到 {{ filteredStocks.length }} 檔符合條件的股票，顯示前 50 名</p>
+                        </div>
+
+                        <!-- No Results -->
+                        <div v-else class="text-center py-12 text-slate-400">
+                            <i class="fas fa-search text-4xl mb-4"></i>
+                            <p>目前沒有符合條件的股票</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder -->
+            <div v-if="!currentStock && !isLoading && !errorState && activeTab === 'search'" class="text-center py-20 opacity-50">
+                <i class="fas fa-search-dollar text-6xl text-slate-200 mb-4"></i>
+                <p class="text-slate-400">請輸入股票代號 (如 2330) 開始查詢</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts v202604130900 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        [v-cloak] { display: none !important; }
+
+        .tab-active {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+    <script src="app.js?v=202604131600"></script>
+</body>
+</html>

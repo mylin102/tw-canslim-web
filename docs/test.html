@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANSLIM 測試</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>CANSLIM 數據測試</h1>
+        <div v-if="isLoading">載入中...</div>
+        <div v-else-if="errorState" style="color: red;">{{ errorState }}</div>
+        <div v-else>
+            <p>最後更新: {{ lastUpdated }}</p>
+            <p>股票數量: {{ stockCount }}</p>
+            <p>Debug: stocks: {{ stockCount }} | tab: search</p>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+        
+        const app = createApp({
+            setup() {
+                const isLoading = ref(true);
+                const errorState = ref(null);
+                const lastUpdated = ref('載入中...');
+                const stockData = ref(null);
+                
+                const stockCount = ref(0);
+                
+                const fetchData = async () => {
+                    try {
+                        console.log('開始加載數據...');
+                        const response = await fetch('data.json?t=' + Date.now());
+                        if (!response.ok) throw new Error('HTTP ' + response.status);
+                        
+                        const data = await response.json();
+                        console.log('數據解析完成');
+                        
+                        stockData.value = data;
+                        lastUpdated.value = data.last_updated;
+                        stockCount.value = Object.keys(data.stocks || {}).length;
+                        
+                        console.log(`加載成功: ${stockCount.value} 檔股票`);
+                    } catch (error) {
+                        console.error('加載錯誤:', error);
+                        errorState.value = '載入失敗: ' + error.message;
+                    } finally {
+                        isLoading.value = false;
+                    }
+                };
+                
+                onMounted(fetchData);
+                
+                return {
+                    isLoading,
+                    errorState,
+                    lastUpdated,
+                    stockCount
+                };
+            }
+        });
+        
+        app.mount('#app');
+    </script>
+</body>
+</html>

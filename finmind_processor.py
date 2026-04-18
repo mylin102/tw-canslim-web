@@ -8,7 +8,11 @@ import logging
 import pandas as pd
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
-from FinMind.data import DataLoader
+
+try:
+    from FinMind.data import DataLoader
+except ImportError:  # pragma: no cover - exercised via environments without FinMind
+    DataLoader = None
 
 logger = logging.getLogger(__name__)
 
@@ -17,12 +21,8 @@ class FinMindProcessor:
     """Process FinMind API data for institutional investors."""
     
     def __init__(self):
-        try:
-            self.dl = DataLoader()
-        except Exception as e:
-            logger.error(f"Failed to initialize FinMind DataLoader: {e}")
-            self.dl = None
-            
+        self.available = DataLoader is not None
+        self.dl = None
         self.investor_name_map = {
             'Foreign_Investor': '外資',
             'Investment_Trust': '投信',
@@ -30,6 +30,15 @@ class FinMindProcessor:
             'Dealer_Hedging': '自營商避險',
             'Foreign_Dealer_Self': '外資自營商'
         }
+        if not self.available:
+            logger.warning("FinMind package is not installed; FinMind-backed data fetches are disabled")
+            return
+
+        try:
+            self.dl = DataLoader()
+        except Exception as exc:
+            logger.warning(f"FinMind DataLoader initialization failed: {exc}")
+            self.available = False
     
     def calculate_net(self, buy: int, sell: int) -> int:
         """Calculate net buy/sell."""
@@ -56,6 +65,9 @@ class FinMindProcessor:
         Returns:
             DataFrame with institutional data or None on failure
         """
+        if not self.available or self.dl is None:
+            logger.warning("Skipping FinMind fetch because FinMind is unavailable in this environment")
+            return None
         try:
             logger.info(f"Fetching institutional data for {stock_id} ({start_date} to {end_date})")
             
@@ -145,10 +157,9 @@ class FinMindProcessor:
             Parsed institutional data dict
         """
         try:
-            # Calculate date range (add more buffer for holidays/weekends/long lookbacks)
-            # For 60 trading days, we need about 90 calendar days
+            # Calculate date range (add buffer for holidays/weekends)
             end_date = datetime.now()
-            start_date = end_date - timedelta(days=int(days * 1.6) + 7)  # Buffer factor 1.6 + 1 week
+            start_date = end_date - timedelta(days=days * 2)  # Buffer
             
             start_str = start_date.strftime('%Y-%m-%d')
             end_str = end_date.strftime('%Y-%m-%d')
@@ -173,17 +184,6 @@ class FinMindProcessor:
             
         except Exception as e:
             logger.error(f"Failed to fetch recent trading days for {stock_id}: {e}")
-            return None
-
-    def fetch_stock_info(self, stock_id: str) -> Optional[pd.DataFrame]:
-        """Fetch basic stock info including share issued."""
-        try:
-            df = self.dl.taiwan_stock_info()
-            if df is not None:
-                return df[df['stock_id'] == stock_id]
-            return None
-        except Exception as e:
-            logger.error(f"Failed to fetch stock info for {stock_id}: {e}")
             return None
     
     def get_institutional_summary(self, inst_data: Dict[str, Dict]) -> Dict:
