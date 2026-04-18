@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增量交易系統儀表板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .signals-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .signal-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .signal-item.breakout {
+            border-left-color: #FF9800;
+        }
+        
+        .signal-item strong {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .signal-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+        
+        .signal-score {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+        
+        .signal-conditions {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .ranking-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .ranking-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ranking-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .rs-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .rs-high {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .rs-medium {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .rs-low {
+            background: #f44336;
+            color: white;
+        }
+        
+        .breakout-badge {
+            background: #FF9800;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .ranking-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 增量交易系統儀表板</h1>
+            <p>收盤後自動更新 • RS評分 • 突破訊號</p>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h2>系統狀態</h2>
+                <div class="stats" id="system-stats">
+                    <div class="loading">載入中...</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>交易訊號</h2>
+                <div class="signals-grid" id="signals-list">
+                    <div class="loading">載入中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>RS 排名 Top 20</h2>
+            <table class="ranking-table" id="ranking-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代號</th>
+                        <th>名稱</th>
+                        <th>RS 評分</th>
+                        <th>價格</th>
+                        <th>MA20</th>
+                        <th>狀態</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="7" class="loading">載入中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="last-updated" id="last-updated">
+            最後更新: 載入中...
+        </div>
+    </div>
+    
+    <script>
+        // 載入資料
+        async function loadData() {
+            try {
+                // 載入訊號資料
+                const signalsResponse = await fetch('signals.json');
+                const signalsData = await signalsResponse.json();
+                
+                // 載入排名資料
+                const rankingResponse = await fetch('ranking.json');
+                const rankingData = await rankingResponse.json();
+                
+                // 更新系統狀態
+                updateSystemStats(signalsData, rankingData);
+                
+                // 更新交易訊號
+                updateSignals(signalsData.signals);
+                
+                // 更新排名表格
+                updateRanking(rankingData.ranking);
+                
+                // 更新最後更新時間
+                document.getElementById('last-updated').textContent = 
+                    `最後更新: ${signalsData.last_updated}`;
+                    
+            } catch (error) {
+                console.error('載入資料失敗:', error);
+                document.getElementById('system-stats').innerHTML = 
+                    '<div class="stat-item"><div class="stat-value">❌</div><div class="stat-label">載入失敗</div></div>';
+            }
+        }
+        
+        function updateSystemStats(signalsData, rankingData) {
+            const statsContainer = document.getElementById('system-stats');
+            
+            const stats = [
+                {
+                    value: signalsData.signals ? signalsData.signals.length : 0,
+                    label: '交易訊號'
+                },
+                {
+                    value: rankingData.ranking ? rankingData.ranking.length : 0,
+                    label: '排名股票'
+                },
+                {
+                    value: signalsData.signals && signalsData.signals.length > 0 ? 
+                        Math.max(...signalsData.signals.map(s => s.score || 0)).toFixed(1) : '0.0',
+                    label: '最高 RS'
+                },
+                {
+                    value: signalsData.signals ? 
+                        signalsData.signals.filter(s => s.conditions && s.conditions.includes('Breakout')).length : 0,
+                    label: '突破訊號'
+                }
+            ];
+            
+            statsContainer.innerHTML = stats.map(stat => `
+                <div class="stat-item">
+                    <div class="stat-value">${stat.value}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+        
+        function updateSignals(signals) {
+            const signalsContainer = document.getElementById('signals-list');
+            
+            if (!signals || signals.length === 0) {
+                signalsContainer.innerHTML = '<div class="loading">暫無交易訊號</div>';
+                return;
+            }
+            
+            // 只顯示前10個訊號
+            const topSignals = signals.slice(0, 10);
+            
+            signalsContainer.innerHTML = topSignals.map(signal => {
+                const hasBreakout = signal.conditions && signal.conditions.includes('Breakout');
+                
+                return `
+                    <div class="signal-item ${hasBreakout ? 'breakout' : ''}">
+                        <strong>${signal.symbol || 'N/A'}</strong>
+                        <div class="signal-info">
+                            <div>${signal.name || '未知股票'}</div>
+                            <div class="signal-conditions">${signal.conditions ? signal.conditions.join(' · ') : '無條件'}</div>
+                        </div>
+                        <div class="signal-score">${(signal.score || 0).toFixed(1)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function updateRanking(ranking) {
+            const tableBody = document.querySelector('#ranking-table tbody');
+            
+            if (!ranking || ranking.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="loading">暫無排名資料</td></tr>';
+                return;
+            }
+            
+            tableBody.innerHTML = ranking.slice(0, 20).map((stock, index) => {
+                // 決定 RS 評分樣式
+                let rsClass = 'rs-low';
+                if (stock.rs >= 80) rsClass = 'rs-high';
+                else if (stock.rs >= 60) rsClass = 'rs-medium';
+                
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${stock.symbol || 'N/A'}</strong></td>
+                        <td>${stock.name || '未知'}</td>
+                        <td><span class="rs-badge ${rsClass}">${(stock.rs || 0).toFixed(1)}</span></td>
+                        <td>${(stock.price || 0).toFixed(2)}</td>
+                        <td>${(stock.ma20 || 0).toFixed(2)}</td>
+                        <td>
+                            ${stock.is_breakout ? '<span class="breakout-badge">突破</span>' : '-'}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+        // 每5分鐘自動更新
+        setInterval(loadData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

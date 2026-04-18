@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 測試</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .file-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .file-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages 測試頁面</h1>
+    
+    <div class="status success">
+        <h2>✅ 系統正常</h2>
+        <p>GitHub Pages 正在運作中。如果看到此頁面，表示設定正確。</p>
+    </div>
+    
+    <div class="file-list">
+        <h3>📁 可用頁面</h3>
+        <ul>
+            <li><a href="index.html">主頁面 (CANSLIM 戰情室)</a></li>
+            <li><a href="incremental_dashboard.html">增量交易儀表板</a></li>
+            <li><a href="signals.json">交易訊號 (JSON)</a></li>
+            <li><a href="ranking.json">RS 排名 (JSON)</a></li>
+        </ul>
+    </div>
+    
+    <div class="status warning">
+        <h3>⚠️ 如果看到 404 錯誤</h3>
+        <p>請檢查以下設定：</p>
+        <ol>
+            <li>前往 Repository Settings → Pages</li>
+            <li>確認 Source 設定為 "Deploy from a branch"</li>
+            <li>選擇 Branch: <code>main</code> 或 <code>master</code></li>
+            <li>選擇 Folder: <code>/docs</code></li>
+            <li>點擊 Save</li>
+            <li>等待幾分鐘讓 GitHub Pages 部署</li>
+        </ol>
+    </div>
+    
+    <div>
+        <h3>🔗 快速連結</h3>
+        <a href="https://github.com/mylin102/tw-canslim-web/settings/pages" class="btn" target="_blank">GitHub Pages 設定</a>
+        <a href="https://mylin102.github.io/tw-canslim-web/" class="btn" target="_blank">主頁面</a>
+        <a href="https://mylin102.github.io/tw-canslim-web/incremental_dashboard.html" class="btn" target="_blank">增量儀表板</a>
+    </div>
+    
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+        <p><strong>最後更新:</strong> 2026-04-18</p>
+        <p><strong>系統狀態:</strong> 增量交易系統已就緒</p>
+        <p><strong>股票數量:</strong> 2173 檔</p>
+    </div>
+    
+    <script>
+        // 顯示當前 URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlInfo = document.createElement('div');
+            urlInfo.className = 'status';
+            urlInfo.innerHTML = `
+                <h3>🌐 當前網址資訊</h3>
+                <p><strong>完整網址:</strong> ${window.location.href}</p>
+                <p><strong>主機:</strong> ${window.location.host}</p>
+                <p><strong>路徑:</strong> ${window.location.pathname}</p>
+            `;
+            document.body.insertBefore(urlInfo, document.querySelector('.file-list'));
+            
+            // 測試檔案是否存在
+            const testFiles = ['signals.json', 'ranking.json', 'state_light.json'];
+            const testResults = document.createElement('div');
+            testResults.className = 'status';
+            
+            Promise.all(testFiles.map(file => 
+                fetch(file).then(res => ({file, ok: res.ok}))
+                .catch(() => ({file, ok: false}))
+            )).then(results => {
+                const allOk = results.every(r => r.ok);
+                testResults.className = allOk ? 'status success' : 'status warning';
+                testResults.innerHTML = `
+                    <h3>📊 檔案可用性測試</h3>
+                    ${results.map(r => `
+                        <p>${r.ok ? '✅' : '❌'} ${r.file}: ${r.ok ? '可存取' : '無法存取'}</p>
+                    `).join('')}
+                `;
+                document.body.insertBefore(testResults, document.querySelector('.btn'));
+            });
+        });
+    </script>
+</body>
+</html>

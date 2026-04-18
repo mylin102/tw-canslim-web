@@ -1,38 +1,89 @@
-name: Update CANSLIM Data
+name: 增量交易系統自動更新
 
 on:
   schedule:
-    - cron: '30 8 * * 1-5' # 16:30 Taiwan time (UTC+8)
-  workflow_dispatch: # Allow manual trigger
+    # 台灣時間 18:00 (收盤後) = UTC 10:00
+    - cron: '0 10 * * 1-5' # UTC 10:00 = 台灣 18:00, 週一至週五
+  workflow_dispatch: # 允許手動觸發
 
 permissions:
   contents: write
 
 jobs:
-  update-data:
+  incremental-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
     steps:
-      - name: Checkout
+      - name: 🛠️ 檢查程式碼
         uses: actions/checkout@v4
-
-      - name: Set up Python
+        with:
+          fetch-depth: 0  # 取得完整歷史記錄
+    
+      - name: 🐍 設定 Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pip'
-
-      - name: Install dependencies
+    
+      - name: 📦 安裝依賴
         run: |
           pip install -r requirements.txt
-
-      - name: Generate Dashboard Data
+          pip install yfinance pandas numpy requests
+    
+      - name: 🔄 執行增量更新
         run: |
-          python fast_data_gen.py
-
-      - name: Commit and Push
+          echo "開始增量更新流程..."
+          
+          # 1. 先執行完整的 CANSLIM 資料更新
+          echo "步驟 1: 更新 CANSLIM 資料..."
+          python export_canslim.py
+          
+          # 2. 執行增量計算
+          echo "步驟 2: 執行增量計算..."
+          python incremental_workflow.py
+          
+          # 3. 建立股票索引
+          echo "步驟 3: 建立股票索引..."
+          python create_stock_index.py
+          
+          echo "✅ 增量更新完成！"
+    
+      - name: 📊 檢查結果
+        run: |
+          echo "檢查生成的檔案..."
+          ls -la docs/*.json docs/*.html 2>/dev/null | head -20
+          
+          # 檢查資料完整性
+          python -c "
+          import json
+          try:
+              with open('docs/signals.json', 'r') as f:
+                  signals = json.load(f)
+              print(f'✅ 交易訊號: {len(signals.get(\"signals\", []))} 個')
+          except Exception as e:
+              print(f'❌ 訊號檔案錯誤: {e}')
+              
+          try:
+              with open('docs/ranking.json', 'r') as f:
+                  ranking = json.load(f)
+              print(f'✅ RS 排名: {len(ranking.get(\"ranking\", []))} 筆')
+          except Exception as e:
+              print(f'❌ 排名檔案錯誤: {e}')
+          "
+    
+      - name: 📤 提交更新
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data_base.json docs/data.json docs/data_light.json docs/data.json.gz
-          git commit -m "Auto-update CANSLIM data: $(date +%Y-%m-%d)" || echo "No changes to commit"
+          
+          # 添加所有更新的檔案
+          git add docs/data.json docs/data_base.json docs/data_light.json docs/data.json.gz
+          git add docs/signals.json docs/ranking.json docs/state.json docs/state_light.json docs/stock_index.json
+          git add docs/incremental_dashboard.html docs/test_github_pages.html 2>/dev/null || true
+          
+          # 提交
+          git commit -m "📈 自動更新: CANSLIM資料 + 增量計算 $(date +'%Y-%m-%d %H:%M')" || echo "沒有變更可提交"
+          
+          # 推送
           git push
