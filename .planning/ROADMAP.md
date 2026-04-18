@@ -44,7 +44,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Establish publish-safety tests and the shared locked writer/restore helper
+- [x] 01-01-PLAN.md — Establish publish-safety tests and the shared locked writer/restore helper
 - [ ] 01-02-PLAN.md — Migrate primary exporters to validated, versioned, explicit-failure publishing
 - [ ] 01-03-PLAN.md — Migrate incremental publish scripts and add rollback CLI validation
 
@@ -110,7 +110,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Safety Hardening | 0/3 | Not started | - |
+| 1. Safety Hardening | 1/3 | In progress | - |
 | 2. Dynamic Core Selection | 0/0 | Not started | - |
 | 3. Rotating Batch Orchestration | 0/0 | Not started | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |

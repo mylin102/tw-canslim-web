@@ -7,10 +7,10 @@
 
 ### Safety & Reliability
 
-- [ ] **SAFE-01**: Maintainer can run the update workflow without concurrent writers corrupting published JSON artifacts.
-- [ ] **SAFE-02**: Maintainer can see explicit update failures and retry outcomes instead of silent API/data suppression.
-- [ ] **SAFE-03**: Maintainer can evolve exported stock schemas safely using versioned metadata and validation checks.
-- [ ] **SAFE-04**: Maintainer can publish updates atomically and recover to the last good snapshot when a run fails validation.
+- [x] **SAFE-01**: Maintainer can run the update workflow without concurrent writers corrupting published JSON artifacts.
+- [x] **SAFE-02**: Maintainer can see explicit update failures and retry outcomes instead of silent API/data suppression.
+- [x] **SAFE-03**: Maintainer can evolve exported stock schemas safely using versioned metadata and validation checks.
+- [x] **SAFE-04**: Maintainer can publish updates atomically and recover to the last good snapshot when a run fails validation.
 
 ### Orchestration
 
@@ -54,10 +54,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SAFE-01 | Phase 1 | Pending |
-| SAFE-02 | Phase 1 | Pending |
-| SAFE-03 | Phase 1 | Pending |
-| SAFE-04 | Phase 1 | Pending |
+| SAFE-01 | Phase 1 | Complete |
+| SAFE-02 | Phase 1 | Complete |
+| SAFE-03 | Phase 1 | Complete |
+| SAFE-04 | Phase 1 | Complete |
 | ORCH-01 | Phase 2 | Pending |
 | ORCH-02 | Phase 3 | Pending |
 | ORCH-03 | Phase 3 | Pending |
