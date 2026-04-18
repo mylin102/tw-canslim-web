@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>機構持股資料測試</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .stock-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .stock-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .institutional-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .institutional-table th {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        .institutional-table td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .institutional-table tr:hover {
+            background: #f1f3f4;
+        }
+        .net-positive {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .net-negative {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>機構持股資料測試</h1>
+    
+    <div class="status success">
+        <h2>✅ 機構持股資料已修復</h2>
+        <p>所有股票現在都有機構持股資料欄位。下次自動更新時會獲取真實資料。</p>
+    </div>
+    
+    <div id="stock-data" class="stock-info">
+        <h3>載入中...</h3>
+        <div class="loading">正在載入股票資料...</div>
+    </div>
+    
+    <div class="status warning">
+        <h3>📊 資料說明</h3>
+        <p>目前顯示的是範例資料，用於測試資料結構是否正確。</p>
+        <p>真實的機構持股資料將在以下情況獲取：</p>
+        <ol>
+            <li>手動執行 <code>python3 export_canslim.py</code></li>
+            <li>GitHub Actions 每日自動更新（台灣時間 18:00）</li>
+            <li>增量計算系統更新時</li>
+        </ol>
+    </div>
+    
+    <script>
+        async function loadStockData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                const container = document.getElementById('stock-data');
+                
+                // 顯示幾支重要股票的資料
+                const testStocks = ['2330', '2317', '2454', '3008'];
+                let html = '';
+                
+                for (const stockId of testStocks) {
+                    const stock = data.stocks[stockId];
+                    if (!stock) continue;
+                    
+                    html += `
+                        <div class="stock-info">
+                            <h3>${stockId} - ${stock.name || '未知股票'}</h3>
+                            <p><strong>價格:</strong> ${stock.price || 0} | <strong>CANSLIM 評分:</strong> ${stock.canslim?.score || 0}</p>
+                            
+                            <h4>機構持股資料 (最近3天):</h4>
+                    `;
+                    
+                    if (stock.institutional && stock.institutional.length > 0) {
+                        html += `
+                            <table class="institutional-table">
+                                <thead>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>外資買賣超</th>
+                                        <th>投信買賣超</th>
+                                        <th>自營商買賣超</th>
+                                        <th>總計</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
+                        
+                        for (const inst of stock.institutional.slice(0, 3)) {
+                            const total = (inst.foreign_net || 0) + (inst.trust_net || 0) + (inst.dealer_net || 0);
+                            const totalClass = total >= 0 ? 'net-positive' : 'net-negative';
+                            
+                            html += `
+                                <tr>
+                                    <td>${inst.date}</td>
+                                    <td class="${inst.foreign_net >= 0 ? 'net-positive' : 'net-negative'}">${inst.foreign_net}</td>
+                                    <td class="${inst.trust_net >= 0 ? 'net-positive' : 'net-negative'}">${inst.trust_net}</td>
+                                    <td class="${inst.dealer_net >= 0 ? 'net-positive' : 'net-negative'}">${inst.dealer_net}</td>
+                                    <td class="${totalClass}">${total}</td>
+                                </tr>
+                            `;
+                        }
+                        
+                        html += `
+                                </tbody>
+                            </table>
+                        `;
+                    } else {
+                        html += `<p>暫無機構持股資料</p>`;
+                    }
+                    
+                    html += `</div>`;
+                }
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('載入資料失敗:', error);
+                document.getElementById('stock-data').innerHTML = `
+                    <div class="status error">
+                        <h3>❌ 載入失敗</h3>
+                        <p>錯誤: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', loadStockData);
+    </script>
+</body>
+</html>
