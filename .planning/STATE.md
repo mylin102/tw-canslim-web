@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-04-18T21:07:46Z"
+last_updated: "2026-04-18T21:31:08.054Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
-  percent: 33
+  completed_plans: 2
+  percent: 67
 ---
 
 # State: tw-canslim-web
@@ -33,11 +33,11 @@ progress:
 ## Current Position
 
 **Phase**: 1 - Safety Hardening  
-**Plan**: 02 of 03  
+**Plan**: 03 of 03  
 **Status**: In progress  
-**Progress**: `███████░░░░░░░░░░░░░` 33%
+**Progress**: `██████████████░░░░░░░` 67%
 
-**Current Work**: Plan 01 complete — artifact-aware publish safety helper and regression scaffolds are in place; Plan 02 is next.
+**Current Work**: Plan 02 complete — primary exporters now publish through the shared bundle-safe helper with explicit failure reporting; Plan 03 is next.
 
 **Blockers**: None
 
@@ -48,13 +48,13 @@ progress:
 ### Completion Stats
 
 - **Phases completed**: 0/4
-- **Plans completed**: 1/3
+- **Plans completed**: 2/3
 - **Requirements validated**: 4/13
-- **Current phase progress**: 33%
+- **Current phase progress**: 67%
 
 ### Velocity
 
-- **Plans per day**: 1/day
+- **Plans per day**: 2/day
 - **Days in current phase**: 1
 - **Estimated phase completion**: TBD after Plans 02-03 velocity
 
@@ -77,13 +77,16 @@ progress:
 | 2026-04-18 | Brownfield approach: reuse CanslimEngine, add orchestration layer | Codebase analysis shows proven calculation logic; problem is update strategy, not scoring | Minimal refactor risk, faster delivery |
 | 2026-04-19 | Use one docs/.publish.lock file to serialize related artifact bundle publishes | Bundle-level lock prevents mixed live versions across related docs artifacts | Plans 02-03 can migrate writers onto one shared publish contract |
 | 2026-04-19 | Keep only the latest manifest-backed snapshot under backups/last_good | Restore must be deterministic and operator-friendly during publish failures | Rollback path is simple and bounded to the most recent validated bundle |
+| Phase 01-safety-hardening P02 | 16m | 2 tasks | 3 files |
+
+- [Phase 01-safety-hardening]: Fallback to helper-first resume loading, then raw stock-level revalidation when a whole artifact is incompatible.
+- [Phase 01-safety-hardening]: Keep dashboard exports on the shared data artifact contract by adding validator-required metadata and CANSLIM fields.
 
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
 - [ ] Pre-Phase 1: Test file locking proof-of-concept on macOS (fcntl availability)
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
-- [ ] Execute Plan 02 to migrate primary exporters to the shared publish helper
 - [ ] Execute Plan 03 to migrate incremental writers and rollback CLI validation
 
 ### Known Issues
@@ -125,15 +128,14 @@ progress:
 
 ### What Just Happened
 
-- Plan 01 completed for Phase 1 with bundle-safe publish helper, backup/restore support, and artifact-aware validation
-- Regression coverage added for bundle locking, snapshot retention, restore flow, and resume compatibility
-- Smoke scaffolds added for primary writers, operational writers, and workflow concurrency migration checks
+- Plan 02 completed for Phase 1 with bundle-safe publishing wired into `export_canslim.py` and `export_dashboard_data.py`
+- Primary CANSLIM exports now validate resumed stock entries, surface retry/failure counters in `update_summary.json`, and fail loudly on publish errors
+- Script-level smoke/regression coverage now executes both primary exporter publish paths
 
 ### What's Next
 
-1. Execute Plan 02 to migrate primary exporters to `publish_artifact_bundle`
-2. Add workflow-level concurrency and explicit-failure publish wiring
-3. Execute Plan 03 to migrate incremental/operational writers and validate rollback CLI flows
+1. Execute Plan 03 to migrate incremental/operational writers and validate rollback CLI flows
+2. Reuse the new primary-exporter failure summary patterns in the remaining publish-path scripts
 
 ### Open Questions
 
@@ -144,7 +146,7 @@ progress:
 **If continuing Phase 1 execution:**
 
 - `publish_safety.py` now provides `load_artifact_json`, `validate_artifact_payload`, `validate_resume_stock_entry`, `publish_artifact_bundle`, and `restore_latest_bundle`
-- Plan 02 should wire primary exporters and workflows to the shared helper and activate skipped smoke assertions
+- Plan 02 is complete: primary exporters now publish through the shared helper and have executable smoke coverage
 - Plan 03 should migrate operational writers and turn on deprecated-writer guard assertions
 
 **If user requests revision:**
