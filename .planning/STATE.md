@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-04-18T23:20:33.068Z"
+last_updated: "2026-04-18T23:36:11.826Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
-  percent: 67
+  completed_plans: 5
+  percent: 83
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 05:31 UTC+8
+**Last Updated:** 2026-04-19 07:36 UTC+8
 
 ---
 
@@ -33,13 +33,13 @@ progress:
 ## Current Position
 
 Phase: 02 (dynamic-core-selection) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 **Phase**: 2 - Dynamic Core Selection  
-**Plan**: 01 of 03 complete  
+**Plan**: 02 of 03 complete  
 **Status**: In Progress  
-**Progress**: `███████░░░░░░░░░░░░` 33%
+**Progress**: `█████████████░░░░░░` 67%
 
-**Current Work**: Phase 2 Plan 01 complete — selector contracts/config, artifact validation, and Wave 0 selector tests are in place ahead of export wiring.
+**Current Work**: Phase 2 Plan 02 complete — selector artifacts now persist volume ranks and `core_selection.py` builds the required bucketed core universe ahead of export wiring.
 
 **Blockers**: None
 
@@ -50,9 +50,9 @@ Plan: 2 of 3
 ### Completion Stats
 
 - **Phases completed**: 1/4
-- **Plans completed**: 4/6
+- **Plans completed**: 5/6
 - **Requirements validated**: 5/13
-- **Current phase progress**: 33%
+- **Current phase progress**: 67%
 
 ### Velocity
 
@@ -96,12 +96,18 @@ Plan: 2 of 3
 - [Phase 02]: Derive today and carryover signal buckets from the latest two fused parquet dates and fail closed when fused data is stale.
 - [Phase 02]: Restore institutional compatibility with calculate_i_factor while preserving the conviction bonus path.
 
+| Phase 02 P02 | 4m | 2 tasks | 4 files |
+
+- [Phase 02]: Persist latest_volume and date-level volume_rank in the master parquet so selector volume leaders stay artifact-driven.
+- [Phase 02]: Fail closed when fused parquet freshness or selector-required columns drift from master artifacts.
+- [Phase 02]: Preserve all required selector buckets first, expand only up to 500 names, then fill by (-mansfield_rs, volume_rank, symbol).
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
 - [ ] Pre-Phase 1: Test file locking proof-of-concept on macOS (fcntl availability)
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
-- [ ] Execute Phase 2 Plan 02 for artifact-backed volume-aware core-universe selection
+- [x] Execute Phase 2 Plan 02 for artifact-backed volume-aware core-universe selection
 - [ ] Execute Phase 2 Plan 03 to wire selector output into `export_canslim.py`
 
 ### Known Issues
@@ -143,14 +149,14 @@ Plan: 2 of 3
 
 ### What Just Happened
 
-- Phase 2 Plan 01 completed with checked-in selector config, validated selector helpers, and pytest scaffolding for fixed buckets, carryover signals, ranking, and stale fused detection
-- `tests/test_institutional_logic.py` now collects and passes again through the restored `calculate_i_factor` helper and conviction bonus semantics
-- Phase 2 verification commands now run cleanly with `PYTHONPATH=.`
+- Phase 2 Plan 02 persisted `latest_volume` and deterministic `volume_rank` fields into master/fused selector artifacts
+- `core_selection.py` now loads config + artifact inputs, rejects stale fused data, and preserves required buckets for yesterday/today signals, RS leaders, and top-volume leaders
+- Phase 2 selector verification now passes for persisted volume fields, overflow guards, and deterministic `mansfield_rs` fill ordering
 
 ### What's Next
 
-1. Implement Phase 2 Plan 02 artifact-backed volume-aware core-universe selection on top of `core_selection.py`
-2. Wire selector output into `export_canslim.py` in Phase 2 Plan 03 without regressing Phase 1 publish safety
+1. Wire selector output into `export_canslim.py` in Phase 2 Plan 03 without regressing Phase 1 publish safety
+2. Keep Phase 3 rotation work deferred until export wiring is complete
 
 ### Open Questions
 
@@ -160,11 +166,11 @@ Plan: 2 of 3
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 2 Plan 01 execution:**
+**If continuing after Phase 2 Plan 02 execution:**
 
-- `core_selection.py` now owns the selector contract, input validation, carryover logic, and ranked-fill ordering helpers
-- `core_selection_config.json` is the checked-in source of truth for base, ETF, watchlist, and target-size settings
-- `tests/test_core_selection.py` and selector fixtures in `tests/conftest.py` define the expected selector behavior before export wiring
+- `historical_generator.py` persists selector-ready `latest_volume` and `volume_rank` columns into `master_canslim_signals.parquet`
+- `master_canslim_signals_fused.parquet` is now validated to carry those volume fields through `fuse_excel_data.py`
+- `core_selection.py` returns bucket metadata plus `core_symbols`/`core_set`, preserving required buckets first and only using `docs/data_base.json` for `mansfield_rs` ranked fill
 
 **If user requests revision:**
 
