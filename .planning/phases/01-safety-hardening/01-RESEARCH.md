@@ -35,7 +35,7 @@ The safest plan is: first centralize all artifact writes behind one shared write
 
 - Keep the existing Python pipeline + static GitHub Pages output model; do not plan a database-backed orchestration state or a service rewrite. [VERIFIED: copilot-instructions.md:10-16]
 - Fit the implementation into the current GitHub Actions automation model. [VERIFIED: copilot-instructions.md:13-15]
-- Preserve compatibility with existing dashboard/search consumers unless output changes are explicitly wired through. [VERIFIED: copilot-instructions.md:15][VERIFIED: docs/app.js references in CONCERNS.md:146-167]
+- Preserve compatibility with existing dashboard/search consumers unless output changes are explicitly wired through. [VERIFIED: copilot-instructions.md:15][VERIFIED: CONCERNS.md:146-167]
 - Follow current Python conventions: snake_case naming, stdlib/third-party/local import order, module-level logging, docstrings, and type hints where practical. [VERIFIED: CONVENTIONS.md:7-68][VERIFIED: CONVENTIONS.md:106-170]
 - Do not plan direct repo edits outside the GSD workflow. [VERIFIED: copilot-instructions.md:279-290]
 
@@ -52,14 +52,14 @@ The safest plan is: first centralize all artifact writes behind one shared write
 | Library | Version | Purpose | When to Use |
 |---------|---------|---------|-------------|
 | `pytest` | 9.0.2 installed locally; 9.0.3 current on PyPI as of 2026-04-07 [VERIFIED: `pytest --version`][VERIFIED: PyPI JSON for pytest] | Unit/integration validation for locks, schema guards, resume behavior, and rollback. [VERIFIED: requirements.txt:4][VERIFIED: tests directory listing] | Use for all Phase 1 safety gates and regressions. [VERIFIED: POST_MORTEM_20260415.md:39-44] |
-| Python stdlib `gzip` | Python 3.11+ runtime [VERIFIED: compress_data.py:1-41][VERIFIED: update_data.yml:23-32] | Regenerate `docs/data.json.gz` from the validated `data.json`. [VERIFIED: compress_data.py:17-41] | Use after `data.json` passes validation and before the final publish marker is written. [VERIFIED: compress_data.py:17-41][ASSUMED] |
+| Python stdlib `gzip` | Python 3.11+ runtime [VERIFIED: compress_data.py:1-41][VERIFIED: update_data.yml:23-32] | Regenerate `docs/data.json.gz` from the validated `data.json`. [VERIFIED: compress_data.py:17-41] | Use after `data.json` passes validation and before the final publish marker is written. [VERIFIED: compress_data.py:17-41] |
 
 ### Alternatives Considered
 | Instead of | Could Use | Tradeoff |
 |------------|-----------|----------|
 | `fcntl` advisory locks [VERIFIED: python3 fcntl docstrings] | `portalocker` or `filelock` [ASSUMED] | Extra dependency is unnecessary for Darwin + GitHub Actions Ubuntu; stdlib is lower-risk here. [VERIFIED: update_data.yml:14-32][ASSUMED] |
 | Project-specific schema validator + version policy [VERIFIED: docs/data.json schema probe][VERIFIED: CONCERNS.md:312-347] | `jsonschema` 4.26.0 [VERIFIED: PyPI JSON for jsonschema] | `jsonschema` is stronger for broad contracts, but Phase 1 only needs one controlled artifact family and can stay dependency-light if validation remains narrow. [VERIFIED: copilot-instructions.md:10-16][ASSUMED] |
-| Workflow `concurrency` plus file locks [CITED: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency] | File locks only [ASSUMED] | Workflow concurrency prevents remote overlap; file locks still protect local/manual runs and multi-script access on the same filesystem. [VERIFIED: on_demand_update.yml:1-54][VERIFIED: update_data.yml:1-90] |
+| Workflow `concurrency` plus file locks [CITED: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency] | File locks only | Workflow concurrency prevents remote overlap; file locks still protect local/manual runs and multi-script access on the same filesystem. [VERIFIED: on_demand_update.yml:1-54][VERIFIED: update_data.yml:1-90] |
 
 **Installation:** No new dependency is required for the recommended Phase 1 core path. [VERIFIED: python stdlib usage]
 
@@ -87,8 +87,8 @@ This fits the repo's existing pattern of keeping reusable logic in `core/` while
 | `docs/data_base.json` | Full snapshot source. [VERIFIED: fast_data_gen.py:295-302][VERIFIED: create_medium_data.py:11-19] | `fast_data_gen.py`, `update_single_stock.py`. [VERIFIED: fast_data_gen.py:295-302][VERIFIED: update_single_stock.py:171-201] | Make this the canonical mutable dataset. [VERIFIED: current derivation chain] |
 | `docs/data.json` | Main published subset consumed by dashboard. [VERIFIED: export_canslim.py:23][VERIFIED: quick_auto_update.py:22-116] | `export_canslim.py`, `quick_data_gen.py`, `quick_auto_update.py`, `quick_auto_update_enhanced.py`, `verify_local.py`, derived from `create_medium_data.py`. [VERIFIED: export_canslim.py:663-744][VERIFIED: quick_data_gen.py:281-285][VERIFIED: quick_auto_update.py:115-116][VERIFIED: quick_auto_update_enhanced.py:217-232][VERIFIED: verify_local.py:98-104][VERIFIED: create_medium_data.py:47-49] | Stop direct writes; generate only through shared publish helper. [VERIFIED: current fragmentation] |
 | `docs/data_light.json` | Lightweight derivative. [VERIFIED: create_light_data.py:11-42][VERIFIED: quick_auto_update.py:120-145] | `create_light_data.py`, `quick_auto_update.py`, `quick_auto_update_enhanced.py`. [VERIFIED: create_light_data.py:35-37][VERIFIED: quick_auto_update.py:143-144][VERIFIED: quick_auto_update_enhanced.py:269-270] | Derive from canonical snapshot under same lock. [VERIFIED: artifact dependency chain] |
-| `docs/data.json.gz` | Compressed derivative. [VERIFIED: compress_data.py:17-41] | `compress_data.py` and workflows commit it. [VERIFIED: compress_data.py:17-41][VERIFIED: update_data.yml:81-82][VERIFIED: on_demand_update.yml:44] | Regenerate after validated `data.json`; publish with same run ID. [VERIFIED: current pipeline][ASSUMED] |
-| `docs/update_summary.json` | Run summary artifact. [VERIFIED: quick_auto_update.py:156-183][VERIFIED: quick_auto_update_enhanced.py:280-313] | `quick_auto_update.py`, `quick_auto_update_enhanced.py`. [VERIFIED: quick_auto_update.py:175-176][VERIFIED: quick_auto_update_enhanced.py:305-306] | Promote as a required safety artifact with failure counts and rollback pointer. [VERIFIED: SAFE-02/04 goals][ASSUMED] |
+| `docs/data.json.gz` | Compressed derivative. [VERIFIED: compress_data.py:17-41] | `compress_data.py` and workflows commit it. [VERIFIED: compress_data.py:17-41][VERIFIED: update_data.yml:81-82][VERIFIED: on_demand_update.yml:44] | Regenerate after validated `data.json`; publish with the same `run_id`. [ASSUMED] |
+| `docs/update_summary.json` | Run summary artifact. [VERIFIED: quick_auto_update.py:156-183][VERIFIED: quick_auto_update_enhanced.py:280-313] | `quick_auto_update.py`, `quick_auto_update_enhanced.py`. [VERIFIED: quick_auto_update.py:175-176][VERIFIED: quick_auto_update_enhanced.py:305-306] | Promote as a required safety artifact with failure counts and rollback pointer. |
 
 ### Pattern 1: Single Publish Transaction
 **What:** All scripts call one helper that acquires an exclusive lock, writes staged files in the target directory, validates them, then promotes them with `os.replace`. [VERIFIED: python3 fcntl docstrings][CITED: https://docs.python.org/3/library/os.html#os.replace]
@@ -146,9 +146,9 @@ def atomic_json_write(target: Path, payload: dict) -> None:
 
 | Option | Pros | Cons | Recommendation |
 |--------|------|------|----------------|
-| Integer version only | Simple. [ASSUMED] | Any field addition usually forces full rebuild or unsafe skip logic. [VERIFIED: CONCERNS.md:317-330] | Not recommended. [VERIFIED: resume risk] |
-| Semver-like string + required-field validator | Handles additive fields safely and keeps skip logic explicit. [ASSUMED] | Slightly more code. [ASSUMED] | **Recommended.** [ASSUMED] |
-| Content-hash manifest of required paths | Very precise. [ASSUMED] | Higher complexity than Phase 1 needs. [ASSUMED] | Defer unless resume logic becomes much more dynamic. [ASSUMED] |
+| Integer version only | Simple. | Any field addition usually forces full rebuild or unsafe skip logic. [VERIFIED: CONCERNS.md:317-330] | Not recommended. [VERIFIED: resume risk] |
+| Semver-like string + required-field validator | Handles additive fields safely and keeps skip logic explicit. [ASSUMED] | Slightly more code. | **Recommended.** [ASSUMED] |
+| Content-hash manifest of required paths | Very precise. | Higher complexity than Phase 1 needs. | Defer unless resume logic becomes much more dynamic. |
 
 **Recommended envelope:**
 ```json
@@ -179,10 +179,10 @@ def atomic_json_write(target: Path, payload: dict) -> None:
 
 | Problem | Don't Build | Use Instead | Why |
 |---------|-------------|-------------|-----|
-| Cross-script mutual exclusion | Ad hoc `.lock` file existence checks with polling only. [ASSUMED] | `fcntl.flock`/`lockf` around a real lock file. [VERIFIED: python3 fcntl docstrings] | The stdlib already exposes exclusive/shared locking and non-blocking behavior. [VERIFIED: python3 fcntl docstrings] |
+| Cross-script mutual exclusion | Ad hoc `.lock` file existence checks with polling only. | `fcntl.flock`/`lockf` around a real lock file. [VERIFIED: python3 fcntl docstrings] | The stdlib already exposes exclusive/shared locking and non-blocking behavior. [VERIFIED: python3 fcntl docstrings] |
 | Atomic publish | Direct overwrite or append-to-live-file flows. [VERIFIED: export_canslim.py:663-744][VERIFIED: quick_auto_update.py:115-176] | Same-directory temp write + `os.replace`. [CITED: https://docs.python.org/3/library/os.html#os.replace][VERIFIED: python3 tempfile.NamedTemporaryFile docstring] | This is the standard safe pattern for replacing files on POSIX. [CITED: https://docs.python.org/3/library/os.html#os.replace] |
 | Exception reporting | `except: pass` or `except: return default`. [VERIFIED: repo-wide bare except grep] | Specific exception types plus `logger.exception` for unexpected failures. [VERIFIED: python3 logging.Logger.exception docstring] | Silent fallback is exactly what Phase 1 is trying to remove. [VERIFIED: SAFE-02][VERIFIED: CONCERNS.md:31-55] |
-| Resume compatibility | “Ticker exists, skip it.” [VERIFIED: export_canslim.py:557-565][VERIFIED: CONCERNS.md:317-330] | Version-aware validator with required-field checks. [VERIFIED: docs/data.json schema probe][ASSUMED] | Presence-only resume causes partial schema drift. [VERIFIED: CONCERNS.md:317-330] |
+| Resume compatibility | “Ticker exists, skip it.” [VERIFIED: export_canslim.py:557-565][VERIFIED: CONCERNS.md:317-330] | Version-aware validator with required-field checks. | Presence-only resume causes partial schema drift. [VERIFIED: CONCERNS.md:317-330] |
 
 **Key insight:** Phase 1 should not invent a new orchestration framework; it should centralize existing file I/O rules so every current entry point can share them. [VERIFIED: copilot-instructions.md:10-16][VERIFIED: ROADMAP.md:153-161]
 
@@ -197,19 +197,19 @@ def atomic_json_write(target: Path, payload: dict) -> None:
 ### Pitfall 2: Replacing bare exceptions with broad `except Exception` and no surfaced outcome
 **What goes wrong:** Logs improve, but the run still “succeeds” with hidden data loss. [VERIFIED: CONCERNS.md:45-54][VERIFIED: POST_MORTEM_20260415.md:29-34]  
 **Why it happens:** Failure counts are not accumulated into a publish decision. [VERIFIED: quick_auto_update.py:150-183][VERIFIED: export_canslim.py:666-668]  
-**How to avoid:** Track per-run counts for retries, soft failures, fatal failures, and skipped stocks; fail publish when thresholds are crossed. [ASSUMED]  
+**How to avoid:** Track per-run counts for retries, soft failures, fatal failures, and skipped stocks; fail publish when thresholds are crossed.  
 **Warning signs:** `logger.error(...)` exists, but `update_summary.json` or exit codes never reflect the failures. [VERIFIED: current scripts]
 
 ### Pitfall 3: Adding `schema_version` but not validating stock completeness
 **What goes wrong:** New fields still go missing on resumed stocks because the version matches while the record shape does not. [VERIFIED: CONCERNS.md:317-330]  
 **Why it happens:** Resume safety is about field presence, not just top-level version labels. [VERIFIED: export_canslim.py:557-565][VERIFIED: docs/data.json schema probe]  
-**How to avoid:** Validate required stock paths for the current schema before skipping. [ASSUMED]  
+**How to avoid:** Validate required stock paths for the current schema before skipping.  
 **Warning signs:** Dashboard fields appear for newly computed stocks but stay absent for resumed ones. [VERIFIED: CONCERNS.md:327-330]
 
 ### Pitfall 4: Keeping backups that were never validated
 **What goes wrong:** Rollback restores an already-bad file, as seen by tiny rescue artifacts already in `docs/`. [VERIFIED: backup artifact inventory]  
 **Why it happens:** Current backup creation copies the prior file without validating it and stores multiple rescue artifacts with no manifest. [VERIFIED: export_canslim.py:727-735][VERIFIED: backup artifact inventory]  
-**How to avoid:** Validate snapshot JSON, schema, and minimum stock counts before declaring it `last_good`. [ASSUMED]  
+**How to avoid:** Validate snapshot JSON, schema, and minimum stock counts before declaring it `last_good`.  
 **Warning signs:** Backup directories contain 86-byte or similarly tiny JSON files. [VERIFIED: backup artifact inventory]
 
 ## Code Examples
@@ -255,7 +255,7 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 |--------------|------------------|--------------|--------|
 | In-place overwrite of live JSON. [VERIFIED: export_canslim.py:663-744][VERIFIED: quick_auto_update.py:115-176] | Stage + validate + `os.replace`. [CITED: https://docs.python.org/3/library/os.html#os.replace] | Long-standing Python/POSIX guidance. [CITED: https://docs.python.org/3/library/os.html#os.replace] | Prevents partial live-file corruption. [CITED: https://docs.python.org/3/library/os.html#os.replace] |
 | Silent `except:` fallback. [VERIFIED: repo-wide bare except grep] | Specific exceptions + logged traceback. [VERIFIED: python3 logging.Logger.exception docstring] | Long-standing stdlib capability. [VERIFIED: python3 logging.Logger.exception docstring] | Makes retry and publish decisions observable. [VERIFIED: SAFE-02] |
-| Resume by ticker presence. [VERIFIED: CONCERNS.md:317-330] | Resume by schema compatibility + required fields. [ASSUMED] | Current best practice for file-based snapshots. [ASSUMED] | Allows additive schema evolution without half-updated records. [ASSUMED] |
+| Resume by ticker presence. [VERIFIED: CONCERNS.md:317-330] | Resume by schema compatibility + required fields. | Current recommended Phase 1 approach. | Allows additive schema evolution without half-updated records. |
 
 **Deprecated/outdated:**
 - `os.rename(temp_file, 'docs/data.json')` as the primary promotion API is outdated here; prefer `os.replace` for explicit destination overwrite behavior. [VERIFIED: quick_auto_update_enhanced.py:232][CITED: https://docs.python.org/3/library/os.html#os.replace]
@@ -266,26 +266,26 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 1. **Should Phase 1 support every legacy writer, or deprecate some immediately?**
    - What we know: At least six entry points still write publish artifacts directly, and several duplicate scoring logic. [VERIFIED: current write inventory][VERIFIED: CONCERNS.md:7-30]
    - What's unclear: Whether maintainers still rely on `quick_data_gen.py`, `quick_auto_update.py`, and `verify_local.py` as first-class tools. [ASSUMED]
-   - Recommendation: Decide this in Wave 0; if a script is kept, it must use the shared writer; if not, explicitly deprecate it. [ASSUMED]
+   - Recommendation: Decide this in Wave 0; if a script is kept, it must use the shared writer; if not, explicitly deprecate it.
 
 2. **Should rollback restore only docs artifacts, or also the canonical base snapshot?**
    - What we know: `data_base.json` is already the upstream for `data.json`/`data_light.json` in the newer path. [VERIFIED: fast_data_gen.py:295-302][VERIFIED: create_medium_data.py:10-63][VERIFIED: create_light_data.py:11-42]
    - What's unclear: Whether a rollback should restore `data_base.json` directly or regenerate derivatives from the saved base snapshot. [ASSUMED]
-   - Recommendation: Save and restore the full bundle in Phase 1, then simplify later if the canonical path is stabilized. [ASSUMED]
+   - Recommendation: Save and restore the full bundle in Phase 1, then simplify later if the canonical path is stabilized.
 
 ## Environment Availability
 
 | Dependency | Required By | Available | Version | Fallback |
 |------------|------------|-----------|---------|----------|
 | Python 3 | All Phase 1 tooling and scripts. [VERIFIED: repo codebase] | ✓ [VERIFIED: `python3 --version`] | 3.12.5 local; workflow uses 3.11. [VERIFIED: `python3 --version`][VERIFIED: update_data.yml:23-32] | — |
-| pytest | Validation architecture. [VERIFIED: requirements.txt:4] | ✓ [VERIFIED: `pytest --version`] | 9.0.2 local. [VERIFIED: `pytest --version`] | `python3 -m pytest` if PATH differs. [ASSUMED] |
-| GitHub Actions workflow concurrency | Remote overlap protection. [VERIFIED: workflows exist] | Configurable, not currently enabled. [VERIFIED: update_data.yml:1-90][VERIFIED: on_demand_update.yml:1-54] | — | File locks still protect same-checkout runs. [ASSUMED] |
+| pytest | Validation architecture. [VERIFIED: requirements.txt:4] | ✓ [VERIFIED: `pytest --version`] | 9.0.2 local. [VERIFIED: `pytest --version`] | `python3 -m pytest` if PATH differs. |
+| GitHub Actions workflow concurrency | Remote overlap protection. [VERIFIED: workflows exist] | Configurable, not currently enabled. [VERIFIED: update_data.yml:1-90][VERIFIED: on_demand_update.yml:1-54] | — | File locks still protect same-checkout runs. |
 
 **Missing dependencies with no fallback:**
 - None for planning and local validation. [VERIFIED: environment probes]
 
 **Missing dependencies with fallback:**
-- Workflow-level concurrency is missing today, but same-checkout file locks still provide local safety once implemented. [VERIFIED: current workflow YAML][ASSUMED]
+- Workflow-level concurrency is missing today, but same-checkout file locks still provide local safety once implemented. [VERIFIED: current workflow YAML]
 
 ## Validation Architecture
 
@@ -306,15 +306,15 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 | SAFE-04 | Publish can rollback to last good snapshot. [VERIFIED: REQUIREMENTS.md:13] | integration | `PYTHONPATH=. pytest tests/test_rollback.py -q` | ❌ Wave 0 |
 
 ### Sampling Rate
-- **Per task commit:** `PYTHONPATH=. pytest tests/test_logic_v2.py -q` plus the new Phase 1 safety tests touched by the change. [VERIFIED: POST_MORTEM_20260415.md:39-44][ASSUMED]
-- **Per wave merge:** `PYTHONPATH=. pytest -q` after fixing current collection errors. [VERIFIED: pytest --collect-only output][ASSUMED]
-- **Phase gate:** `PYTHONPATH=. pytest -q && python3 verify_local.py` once `verify_local.py` also uses the shared writer. [VERIFIED: POST_MORTEM_20260415.md:39-56][ASSUMED]
+- **Per task commit:** `PYTHONPATH=. pytest tests/test_logic_v2.py -q` plus the new Phase 1 safety tests touched by the change. [VERIFIED: POST_MORTEM_20260415.md:39-44]
+- **Per wave merge:** `PYTHONPATH=. pytest -q` after fixing current collection errors. [VERIFIED: pytest --collect-only output]
+- **Phase gate:** `PYTHONPATH=. pytest -q && python3 verify_local.py` once `verify_local.py` also uses the shared writer. [VERIFIED: POST_MORTEM_20260415.md:39-56]
 
 ### Wave 0 Gaps
-- [ ] `tests/test_artifact_io.py` — lock acquisition, timeout, same-directory atomic replace, partial-write prevention. [ASSUMED]
-- [ ] `tests/test_failure_policy.py` — logged exception coverage and publish-fail thresholds. [ASSUMED]
-- [ ] `tests/test_schema_guard.py` — schema version compatibility and required-field validation. [ASSUMED]
-- [ ] `tests/test_rollback.py` — snapshot restore and manifest verification. [ASSUMED]
+- [ ] `tests/test_artifact_io.py` — lock acquisition, timeout, same-directory atomic replace, partial-write prevention.
+- [ ] `tests/test_failure_policy.py` — logged exception coverage and publish-fail thresholds.
+- [ ] `tests/test_schema_guard.py` — schema version compatibility and required-field validation.
+- [ ] `tests/test_rollback.py` — snapshot restore and manifest verification.
 - [ ] Fix or quarantine `tests/test_institutional_logic.py` because it currently breaks collection. [VERIFIED: pytest --collect-only output][VERIFIED: tests/test_institutional_logic.py:9-70]
 
 ## Security Domain
@@ -326,7 +326,7 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 | V2 Authentication | no — Phase 1 is file/process safety, not user auth. [VERIFIED: REQUIREMENTS.md:10-13] | — |
 | V3 Session Management | no — no session layer is introduced. [VERIFIED: repo architecture] | — |
 | V4 Access Control | no — scope is local scripts and workflow coordination. [VERIFIED: Phase 1 goal] | — |
-| V5 Input Validation | yes — ticker input, JSON structure, and schema validation all matter. [VERIFIED: update_single_stock.py:88-92][VERIFIED: docs/data.json schema probe] | Regex ticker validation plus explicit schema validation. [VERIFIED: update_single_stock.py:88-92][ASSUMED] |
+| V5 Input Validation | yes — ticker input, JSON structure, and schema validation all matter. [VERIFIED: update_single_stock.py:88-92][VERIFIED: docs/data.json schema probe] | Regex ticker validation plus explicit schema validation. [VERIFIED: update_single_stock.py:88-92] |
 | V6 Cryptography | yes — integrity checks can use `hashlib.sha256`; do not invent custom checksums. [ASSUMED] | Python stdlib `hashlib`. [ASSUMED] |
 
 ### Known Threat Patterns for this stack
@@ -334,7 +334,7 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 | Pattern | STRIDE | Standard Mitigation |
 |---------|--------|---------------------|
 | Concurrent file overwrite corrupts JSON. [VERIFIED: POST_MORTEM_20260415.md:29-34][VERIFIED: current write inventory] | Tampering / DoS | Exclusive publish lock + atomic replace + validation before promotion. [VERIFIED: python3 fcntl docstrings][CITED: https://docs.python.org/3/library/os.html#os.replace] |
-| Silent fallback hides provider failure and publishes degraded data. [VERIFIED: CONCERNS.md:31-55] | Repudiation / Integrity | Specific exception logging, retry accounting, and publish-fail thresholds. [VERIFIED: python3 logging.Logger.exception docstring][ASSUMED] |
+| Silent fallback hides provider failure and publishes degraded data. [VERIFIED: CONCERNS.md:31-55] | Repudiation / Integrity | Specific exception logging, retry accounting, and publish-fail thresholds. [VERIFIED: python3 logging.Logger.exception docstring] |
 | Unvalidated issue-title ticker input reaches on-demand update path. [VERIFIED: on_demand_update.yml:28-38][VERIFIED: update_single_stock.py:88-92] | Input validation / Tampering | Keep regex validation in `update_single_stock.py` and reject unexpected ticker formats early. [VERIFIED: update_single_stock.py:88-92] |
 
 ## Sources
@@ -359,10 +359,15 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 
 | # | Claim | Section | Risk if Wrong |
 |---|-------|---------|---------------|
-| A1 | `data.json.gz` should be regenerated before the final publish marker is written. [ASSUMED] | Standard Stack / Write Targets | Could cause minor artifact ordering rework. |
-| A2 | Semantic schema versions (`major.minor`) are the best fit for Phase 1 resume compatibility. [ASSUMED] | Architecture Patterns | Could change validator design or force a simpler integer version. |
-| A3 | `backups/last_good/` outside `docs/` is the best rollback storage location. [ASSUMED] | Architecture Patterns | Could require a different backup path if deployment or git policies differ. |
-| A4 | Publish failure thresholds should be enforced via per-run failure counters. [ASSUMED] | Common Pitfalls / Security Domain | Could affect exit-code policy and summary format. |
+| A1 | `portalocker` or `filelock` are viable alternatives if the project later needs cross-platform locking beyond Unix runners. [ASSUMED] | Standard Stack / Alternatives | Could change whether stdlib locking remains sufficient. |
+| A2 | A narrow project-specific validator is preferable to adding `jsonschema` in Phase 1. [ASSUMED] | Standard Stack / Alternatives | Could add a new dependency and change validation tasks. |
+| A3 | `data.json.gz` should be regenerated after validated `data.json` and should carry the same `run_id`. [ASSUMED] | Write Targets | Could cause artifact-ordering rework. |
+| A4 | Semantic schema versions (`major.minor`) are the best fit for Phase 1 resume compatibility. [ASSUMED] | Architecture Patterns | Could change validator design or force a simpler integer version. |
+| A5 | A semver-like schema plus required-field validator is the right recommendation over integer-only or content-hash options. [ASSUMED] | Architecture Patterns | Could change migration and resume behavior. |
+| A6 | `backups/last_good/` outside `docs/` is the best rollback storage location. [ASSUMED] | Architecture Patterns | Could require a different backup path if deployment or git policies differ. |
+| A7 | Maintainers may still rely on `quick_data_gen.py`, `quick_auto_update.py`, and `verify_local.py` as first-class tools. [ASSUMED] | Open Questions | Could expand or shrink the writer-refactor scope. |
+| A8 | Rollback should restore the full artifact bundle, not just one canonical file. [ASSUMED] | Open Questions | Could change rollback implementation and validation steps. |
+| A9 | Integrity checking should use `hashlib.sha256` in Phase 1. [ASSUMED] | Security Domain | Could change the manifest/checksum implementation. |
 
 ## Metadata
 
@@ -372,4 +377,4 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 - Pitfalls: HIGH — backed by real post-mortem incidents, stale backups, missing schema metadata, and current bare-except sites. [VERIFIED: POST_MORTEM_20260415.md][VERIFIED: backup artifact inventory][VERIFIED: docs/data.json schema probe][VERIFIED: repo-wide bare except grep]
 
 **Research date:** 2026-04-18 [VERIFIED: system date]  
-**Valid until:** 2026-05-18 for repo-specific observations; re-check external docs if implementation starts later. [ASSUMED]
+**Valid until:** 2026-05-18 for repo-specific observations; re-check external docs if implementation starts later.
