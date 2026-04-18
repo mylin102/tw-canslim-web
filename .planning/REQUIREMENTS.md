@@ -54,24 +54,24 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SAFE-01 | Phase TBD | Pending |
-| SAFE-02 | Phase TBD | Pending |
-| SAFE-03 | Phase TBD | Pending |
-| SAFE-04 | Phase TBD | Pending |
-| ORCH-01 | Phase TBD | Pending |
-| ORCH-02 | Phase TBD | Pending |
-| ORCH-03 | Phase TBD | Pending |
-| ORCH-04 | Phase TBD | Pending |
-| ORCH-05 | Phase TBD | Pending |
-| PUB-01 | Phase TBD | Pending |
-| PUB-02 | Phase TBD | Pending |
-| PUB-03 | Phase TBD | Pending |
-| PUB-04 | Phase TBD | Pending |
+| SAFE-01 | Phase 1 | Pending |
+| SAFE-02 | Phase 1 | Pending |
+| SAFE-03 | Phase 1 | Pending |
+| SAFE-04 | Phase 1 | Pending |
+| ORCH-01 | Phase 2 | Pending |
+| ORCH-02 | Phase 3 | Pending |
+| ORCH-03 | Phase 3 | Pending |
+| ORCH-04 | Phase 3 | Pending |
+| ORCH-05 | Phase 3 | Pending |
+| PUB-01 | Phase 4 | Pending |
+| PUB-02 | Phase 4 | Pending |
+| PUB-03 | Phase 4 | Pending |
+| PUB-04 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 13 total
-- Mapped to phases: 0
-- Unmapped: 13 ⚠️
+- Mapped to phases: 13
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-04-18*
