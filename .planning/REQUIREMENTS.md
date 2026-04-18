@@ -14,7 +14,7 @@
 
 ### Orchestration
 
-- [ ] **ORCH-01**: Maintainer can generate a daily core stock universe from base symbols, volume leaders, RS leaders, and active signals.
+- [x] **ORCH-01**: Maintainer can generate a daily core stock universe from base symbols, volume leaders, RS leaders, and active signals.
 - [ ] **ORCH-02**: Maintainer can rotate non-core stocks through deterministic batches so broad market coverage completes within a three-day cycle.
 - [ ] **ORCH-03**: Maintainer can persist orchestration state across runs, including rotation position, freshness, and failed-stock tracking.
 - [ ] **ORCH-04**: Maintainer can resume a partial update run without rebuilding the entire market snapshot.
@@ -58,7 +58,7 @@
 | SAFE-02 | Phase 1 | Complete |
 | SAFE-03 | Phase 1 | Complete |
 | SAFE-04 | Phase 1 | Complete |
-| ORCH-01 | Phase 2 | Pending |
+| ORCH-01 | Phase 2 | Complete |
 | ORCH-02 | Phase 3 | Pending |
 | ORCH-03 | Phase 3 | Pending |
 | ORCH-04 | Phase 3 | Pending |

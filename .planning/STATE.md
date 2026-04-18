@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-04-18T23:12:15.335Z"
+last_updated: "2026-04-18T23:20:33.068Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 6
-  completed_plans: 3
-  percent: 50
+  completed_plans: 4
+  percent: 67
 ---
 
 # State: tw-canslim-web
@@ -32,12 +32,14 @@ progress:
 
 ## Current Position
 
-**Phase**: 1 - Safety Hardening  
-**Plan**: 03 of 03  
-**Status**: Complete  
-**Progress**: `████████████████████` 100%
+Phase: 02 (dynamic-core-selection) — EXECUTING
+Plan: 2 of 3
+**Phase**: 2 - Dynamic Core Selection  
+**Plan**: 01 of 03 complete  
+**Status**: In Progress  
+**Progress**: `███████░░░░░░░░░░░░` 33%
 
-**Current Work**: Phase 1 complete — operational publish paths, rollback CLI, and workflow serialization now use the shared publish-safety contract.
+**Current Work**: Phase 2 Plan 01 complete — selector contracts/config, artifact validation, and Wave 0 selector tests are in place ahead of export wiring.
 
 **Blockers**: None
 
@@ -48,15 +50,15 @@ progress:
 ### Completion Stats
 
 - **Phases completed**: 1/4
-- **Plans completed**: 3/3
-- **Requirements validated**: 4/13
-- **Current phase progress**: 100%
+- **Plans completed**: 4/6
+- **Requirements validated**: 5/13
+- **Current phase progress**: 33%
 
 ### Velocity
 
-- **Plans per day**: 3/day
+- **Plans per day**: 4/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: Phase 1 completed on 2026-04-19
+- **Estimated phase completion**: Phase 2 in progress as of 2026-04-19
 
 ### Quality
 
@@ -88,12 +90,19 @@ progress:
 - [Phase 01-safety-hardening]: Deprecate unsupported legacy direct writers instead of migrating every historical utility in Phase 1.
 - [Phase 01-safety-hardening]: Use one publish-surface concurrency group across scheduled and on-demand workflows.
 
+| Phase 02 P01 | 2m | 2 tasks | 5 files |
+
+- [Phase 02]: Keep fixed selector buckets in checked-in JSON with exact-key and 4-digit symbol validation.
+- [Phase 02]: Derive today and carryover signal buckets from the latest two fused parquet dates and fail closed when fused data is stale.
+- [Phase 02]: Restore institutional compatibility with calculate_i_factor while preserving the conviction bonus path.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
 - [ ] Pre-Phase 1: Test file locking proof-of-concept on macOS (fcntl availability)
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
-- [ ] Start Phase 2 planning/execution for dynamic core selection (ORCH-01)
+- [ ] Execute Phase 2 Plan 02 for artifact-backed volume-aware core-universe selection
+- [ ] Execute Phase 2 Plan 03 to wire selector output into `export_canslim.py`
 
 ### Known Issues
 
@@ -134,14 +143,14 @@ progress:
 
 ### What Just Happened
 
-- Plan 03 completed for Phase 1 with bundle-safe operational quick/batch writers, hardened verification/on-demand publish paths, and a deterministic rollback CLI
-- Scheduled and on-demand GitHub Actions workflows now share one publish-surface concurrency group
-- Unsupported legacy direct writers now fail fast before touching live `docs/` artifacts
+- Phase 2 Plan 01 completed with checked-in selector config, validated selector helpers, and pytest scaffolding for fixed buckets, carryover signals, ranking, and stale fused detection
+- `tests/test_institutional_logic.py` now collects and passes again through the restored `calculate_i_factor` helper and conviction bonus semantics
+- Phase 2 verification commands now run cleanly with `PYTHONPATH=.`
 
 ### What's Next
 
-1. Start Phase 2 planning/execution for dynamic core selection (ORCH-01)
-2. Reuse Phase 1 update summary patterns and serialized publish contract in future orchestration phases
+1. Implement Phase 2 Plan 02 artifact-backed volume-aware core-universe selection on top of `core_selection.py`
+2. Wire selector output into `export_canslim.py` in Phase 2 Plan 03 without regressing Phase 1 publish safety
 
 ### Open Questions
 
@@ -151,9 +160,11 @@ progress:
 
 **If continuing after Phase 1 execution:**
 
-- `publish_safety.py` now governs supported operational, verification, and on-demand publish flows plus rollback
-- Both GitHub Actions publish entry points serialize through the same publish-surface concurrency group
-- Legacy direct writers are intentionally deprecated; future work should build on the supported scripts/workflows instead
+**If continuing after Phase 2 Plan 01 execution:**
+
+- `core_selection.py` now owns the selector contract, input validation, carryover logic, and ranked-fill ordering helpers
+- `core_selection_config.json` is the checked-in source of truth for base, ETF, watchlist, and target-size settings
+- `tests/test_core_selection.py` and selector fixtures in `tests/conftest.py` define the expected selector behavior before export wiring
 
 **If user requests revision:**
 

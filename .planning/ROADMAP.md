@@ -68,7 +68,7 @@ Plans:
 ---
 
 Plans:
-- [ ] 02-01-PLAN.md — Establish selector contracts, config, and Wave 0 test scaffolding
+- [x] 02-01-PLAN.md — Establish selector contracts, config, and Wave 0 test scaffolding
 - [ ] 02-02-PLAN.md — Implement artifact-backed volume-aware core-universe selection
 - [ ] 02-03-PLAN.md — Wire the selector into `export_canslim.py` without disturbing Phase 1 publish safety
 
@@ -118,7 +118,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
-| 2. Dynamic Core Selection | 0/0 | Not started | - |
+| 2. Dynamic Core Selection | 1/3 | In Progress | - |
 | 3. Rotating Batch Orchestration | 0/0 | Not started | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
 
