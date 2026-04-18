@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+from pathlib import Path
 
 from publish_safety import PublishRestoreError, restore_latest_bundle
 
@@ -34,7 +35,7 @@ def main(argv: list[str] | None = None) -> int:
         result = restore_latest_bundle(
             lock_path=args.lock_path,
             backup_dir=args.backup_dir,
-            targets=DEFAULT_TARGETS,
+            targets=tuple(str(Path(target).resolve()) for target in DEFAULT_TARGETS),
             logger=logger,
         )
     except PublishRestoreError as exc:

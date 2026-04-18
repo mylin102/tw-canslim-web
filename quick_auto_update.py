@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deprecated legacy fast data generator entrypoint.
+Deprecated legacy quick update entrypoint.
 """
 
 from __future__ import annotations
@@ -8,9 +8,9 @@ from __future__ import annotations
 import sys
 
 DEPRECATION_MESSAGE = (
-    "Deprecated legacy writer: fast_data_gen.py no longer writes live docs artifacts. "
-    "Use .github/workflows/update_data.yml, quick_auto_update_enhanced.py, or update_single_stock.py "
-    "for supported publish flows."
+    "Deprecated legacy writer: quick_auto_update.py no longer publishes live docs artifacts. "
+    "Use quick_auto_update_enhanced.py for supported quick updates or batch_update_institutional.py "
+    "for the maintained operational path."
 )
 
 

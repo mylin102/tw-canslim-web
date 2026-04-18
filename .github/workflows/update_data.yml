@@ -6,6 +6,10 @@ on:
     - cron: '0 10 * * 1-5' # UTC 10:00 = 台灣 18:00, 週一至週五
   workflow_dispatch: # 允許手動觸發
 
+concurrency:
+  group: publish-surface-${{ github.repository }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
