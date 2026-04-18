@@ -1,34 +1,58 @@
+import importlib
+import json
+import sys
 from pathlib import Path
 
-import pytest
 
-
-WORKFLOWS = (
+REPO_WORKFLOWS = (
     ".github/workflows/update_data.yml",
     ".github/workflows/on_demand_update.yml",
 )
 
-DEPRECATED_WRITERS = (
-    "quick_auto_update_enhanced.py",
-    "batch_update_institutional.py",
-    "verify_local.py",
-)
+
+def load_module(module_name: str):
+    sys.modules.pop(module_name, None)
+    return importlib.import_module(module_name)
 
 
-@pytest.mark.parametrize("workflow_path", WORKFLOWS)
-def test_publish_workflow_exists(repo_root: Path, workflow_path: str):
-    assert (repo_root / workflow_path).exists()
+def test_publish_workflow_exists(repo_root: Path):
+    for workflow_path in REPO_WORKFLOWS:
+        assert (repo_root / workflow_path).exists()
 
 
-@pytest.mark.skip(reason="Plan 01-02 adds workflow-level publish concurrency")
-@pytest.mark.parametrize("workflow_path", WORKFLOWS)
-def test_publish_workflow_declares_concurrency(repo_root: Path, workflow_path: str):
-    source = (repo_root / workflow_path).read_text(encoding="utf-8")
+def test_on_demand_update_workflow_declares_publish_surface_concurrency(repo_root: Path):
+    source = (repo_root / ".github/workflows/on_demand_update.yml").read_text(encoding="utf-8")
+
     assert "concurrency:" in source
+    assert "publish-surface" in source
+    assert "cancel-in-progress: false" in source
 
 
-@pytest.mark.skip(reason="Plan 01-03 adds deprecated-writer guards before live docs writes")
-@pytest.mark.parametrize("script_name", DEPRECATED_WRITERS)
-def test_deprecated_writers_fail_before_touching_live_docs(repo_root: Path, script_name: str):
-    source = (repo_root / script_name).read_text(encoding="utf-8")
-    assert "PublishValidationError" in source or "PublishTransactionError" in source
+def test_restore_publish_snapshot_cli_restores_latest_bundle(
+    monkeypatch,
+    publish_paths,
+    artifact_bundle_factory,
+    read_artifact,
+):
+    module = load_module("publish_safety")
+    docs_dir = publish_paths["docs"]
+    backup_dir = publish_paths["backup"]
+    lock_path = publish_paths["lock"]
+
+    module.publish_artifact_bundle(
+        artifact_bundle_factory("restore-run", docs_dir),
+        lock_path=str(lock_path),
+        backup_dir=str(backup_dir),
+    )
+    (docs_dir / "data.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+    (docs_dir / "update_summary.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+
+    rollback_module = load_module("restore_publish_snapshot")
+    monkeypatch.chdir(publish_paths["root"])
+
+    assert rollback_module.main([]) == 0
+
+    assert read_artifact(docs_dir / "data.json", "data")["run_id"] == "restore-run"
+    assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "restore-run"
+    manifest = json.loads((backup_dir / next(iter(p.name for p in backup_dir.iterdir() if p.is_dir())) / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["run_id"] == "restore-run"
