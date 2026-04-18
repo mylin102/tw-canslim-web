@@ -207,3 +207,113 @@ def test_export_canslim_reraises_publish_transaction_failures(
 
     with pytest.raises(module.PublishTransactionError):
         engine.run()
+
+
+def test_export_dashboard_data_publishes_artifact_aware_bundle(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_dashboard_data")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    fused_path = tmp_path / "signals.parquet"
+    fused_path.write_text("placeholder", encoding="utf-8")
+    output_path = docs_dir / "data.json"
+    published = {}
+
+    dataframe = pd.DataFrame(
+        [
+            {
+                "date": pd.Timestamp("2026-04-18"),
+                "stock_id": "2330",
+                "C": True,
+                "I": True,
+                "N": True,
+                "S": True,
+                "score": 95,
+                "rs_rating": 88.5,
+                "fund_change": 4.2,
+                "smr_rating": "A",
+            }
+        ]
+    )
+
+    monkeypatch.setattr(module, "FUSED_DATA_PATH", str(fused_path))
+    monkeypatch.setattr(module, "OUTPUT_JSON_PATH", str(output_path))
+    monkeypatch.setattr(module.pd, "read_parquet", lambda path: dataframe)
+    monkeypatch.setattr(module, "get_all_tw_tickers", lambda: {"2330": {"name": "TSMC", "suffix": ".TW"}})
+    monkeypatch.setattr(
+        module,
+        "publish_artifact_bundle",
+        lambda bundle, **kwargs: published.setdefault("bundle", bundle),
+        raising=False,
+    )
+
+    module.export_data()
+
+    bundle = published["bundle"]
+    payload = bundle[str(output_path)]["payload"]
+    assert bundle[str(output_path)]["artifact_kind"] == "data"
+    assert payload["schema_version"] == "1.0"
+    assert payload["artifact_kind"] == "data"
+    assert payload["run_id"]
+    assert payload["generated_at"]
+    assert payload["stocks"]["2330"]["canslim"]["mansfield_rs"] == pytest.approx(88.5)
+    assert payload["stocks"]["2330"]["canslim"]["grid_strategy"]["mode"] == "dashboard_snapshot"
+
+
+def test_export_dashboard_data_raises_on_missing_input(monkeypatch: pytest.MonkeyPatch):
+    module = _load_module("export_dashboard_data")
+    logger_calls = []
+
+    monkeypatch.setattr(module, "FUSED_DATA_PATH", "missing.parquet")
+    monkeypatch.setattr(module.os.path, "exists", lambda path: False)
+    monkeypatch.setattr(module.logger, "exception", lambda message, *args: logger_calls.append((message, args)))
+
+    with pytest.raises(FileNotFoundError):
+        module.export_data()
+
+    assert logger_calls
+
+
+def test_export_dashboard_data_reraises_publish_failures(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_dashboard_data")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    fused_path = tmp_path / "signals.parquet"
+    fused_path.write_text("placeholder", encoding="utf-8")
+    output_path = docs_dir / "data.json"
+
+    dataframe = pd.DataFrame(
+        [
+            {
+                "date": pd.Timestamp("2026-04-18"),
+                "stock_id": "2330",
+                "C": True,
+                "I": True,
+                "N": True,
+                "S": True,
+                "score": 95,
+                "rs_rating": 88.5,
+                "fund_change": 4.2,
+                "smr_rating": "A",
+            }
+        ]
+    )
+
+    monkeypatch.setattr(module, "FUSED_DATA_PATH", str(fused_path))
+    monkeypatch.setattr(module, "OUTPUT_JSON_PATH", str(output_path))
+    monkeypatch.setattr(module.pd, "read_parquet", lambda path: dataframe)
+    monkeypatch.setattr(module, "get_all_tw_tickers", lambda: {"2330": {"name": "TSMC", "suffix": ".TW"}})
+    monkeypatch.setattr(
+        module,
+        "publish_artifact_bundle",
+        lambda bundle, **kwargs: (_ for _ in ()).throw(module.PublishTransactionError("publish failed")),
+        raising=False,
+    )
+
+    with pytest.raises(module.PublishTransactionError):
+        module.export_data()
