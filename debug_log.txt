@@ -1,0 +1,173 @@
+2026-04-18 21:47:37,804 - INFO - 🚀 開始快速自動更新 (加強版)
+
+2026-04-18 21:47:37,804 - INFO - 步驟 1: 更新前10支股票的機構持股資料...
+2026-04-18 21:47:37,804 - INFO - 🚀 開始更新前10支股票的機構持股資料
+2026-04-18 21:47:37,805 - INFO - 🔍 載入現有資料...
+2026-04-18 21:47:37,809 - INFO - ✅ 成功載入 1000 支股票資料
+2026-04-18 21:47:37,810 - DEBUG -   樣本股票 2330: 欄位=['symbol', 'name', 'industry', 'is_etf', 'canslim', 'institutional']
+2026-04-18 21:47:37,810 - DEBUG -   樣本股票 2303: 欄位=['symbol', 'name', 'industry', 'is_etf', 'canslim', 'institutional']
+2026-04-18 21:47:37,810 - DEBUG -   樣本股票 2317: 欄位=['symbol', 'name', 'industry', 'is_etf', 'canslim', 'institutional']
+2026-04-18 21:47:37,810 - INFO - 初始化 FinMind 處理器...
+2026-04-18 21:47:37,894 - DEBUG - Using selector: KqueueSelector
+2026-04-18 21:47:37,957 - DEBUG - Starting new HTTPS connection (1): api.web.finmindtrade.com:443
+2026-04-18 21:47:39,748 - DEBUG - https://api.web.finmindtrade.com:443 "GET /v2/user_info HTTP/1.1" 200 40
+2026-04-18 21:47:39,750 - INFO - ✅ FinMind 處理器可用
+2026-04-18 21:47:39,750 - INFO - 處理前 10 支股票: 2330, 2303, 2317, 6770, 0050, 0056, 00878, 2454, 2412, 2881
+2026-04-18 21:47:39,750 - INFO - 
+處理股票 2330...
+2026-04-18 21:47:39,750 - DEBUG - 獲取 2330 真實機構持股資料...
+2026-04-18 21:47:39,750 - INFO - Fetching institutional data for 2330 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:39,752 - DEBUG - Starting new HTTPS connection (1): api.finmindtrade.com:443
+2026-04-18 21:47:41,628 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2330&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1632
+2026-04-18 21:47:41,632 - INFO - Fetched 140 records for 2330
+2026-04-18 21:47:41,642 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:41,642 - DEBUG -   2330: 找到 20 天資料
+2026-04-18 21:47:41,642 - INFO - ✅ 2330: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:41,642 - DEBUG -   2330 範例資料: {'date': '20260417', 'foreign_net': -9383, 'trust_net': -2186, 'dealer_net': -270}
+2026-04-18 21:47:41,642 - INFO - ✅ 2330: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:41,642 - INFO - 
+處理股票 2303...
+2026-04-18 21:47:41,643 - DEBUG - 獲取 2303 真實機構持股資料...
+2026-04-18 21:47:41,643 - INFO - Fetching institutional data for 2303 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:44,502 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2303&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1742
+2026-04-18 21:47:44,504 - INFO - Fetched 140 records for 2303
+2026-04-18 21:47:44,512 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:44,512 - DEBUG -   2303: 找到 20 天資料
+2026-04-18 21:47:44,512 - INFO - ✅ 2303: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:44,512 - DEBUG -   2303 範例資料: {'date': '20260417', 'foreign_net': 57658, 'trust_net': 41005, 'dealer_net': 2444}
+2026-04-18 21:47:44,512 - INFO - ✅ 2303: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:44,512 - INFO - 
+處理股票 2317...
+2026-04-18 21:47:44,512 - DEBUG - 獲取 2317 真實機構持股資料...
+2026-04-18 21:47:44,512 - INFO - Fetching institutional data for 2317 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:45,119 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2317&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1653
+2026-04-18 21:47:45,122 - INFO - Fetched 140 records for 2317
+2026-04-18 21:47:45,133 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:45,133 - DEBUG -   2317: 找到 20 天資料
+2026-04-18 21:47:45,134 - INFO - ✅ 2317: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:45,134 - DEBUG -   2317 範例資料: {'date': '20260417', 'foreign_net': -2625, 'trust_net': -1360, 'dealer_net': -313}
+2026-04-18 21:47:45,134 - INFO - ✅ 2317: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:45,134 - INFO - 
+處理股票 6770...
+2026-04-18 21:47:45,134 - DEBUG - 獲取 6770 真實機構持股資料...
+2026-04-18 21:47:45,134 - INFO - Fetching institutional data for 6770 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:45,599 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=6770&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1624
+2026-04-18 21:47:45,600 - INFO - Fetched 140 records for 6770
+2026-04-18 21:47:45,608 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:45,608 - DEBUG -   6770: 找到 20 天資料
+2026-04-18 21:47:45,608 - INFO - ✅ 6770: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:45,608 - DEBUG -   6770 範例資料: {'date': '20260417', 'foreign_net': -10115, 'trust_net': -382, 'dealer_net': -2106}
+2026-04-18 21:47:45,608 - INFO - ✅ 6770: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:45,608 - INFO - 
+處理股票 0050...
+2026-04-18 21:47:45,608 - DEBUG - 獲取 0050 真實機構持股資料...
+2026-04-18 21:47:45,608 - INFO - Fetching institutional data for 0050 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:46,837 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=0050&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1590
+2026-04-18 21:47:46,840 - INFO - Fetched 140 records for 0050
+2026-04-18 21:47:46,850 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:46,850 - DEBUG -   0050: 找到 20 天資料
+2026-04-18 21:47:46,850 - INFO - ✅ 0050: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:46,850 - DEBUG -   0050 範例資料: {'date': '20260417', 'foreign_net': -29519, 'trust_net': 0, 'dealer_net': -12938}
+2026-04-18 21:47:46,850 - INFO - ✅ 0050: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:46,850 - INFO - 
+處理股票 0056...
+2026-04-18 21:47:46,850 - DEBUG - 獲取 0056 真實機構持股資料...
+2026-04-18 21:47:46,851 - INFO - Fetching institutional data for 0056 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:47,017 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=0056&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1420
+2026-04-18 21:47:47,020 - INFO - Fetched 140 records for 0056
+2026-04-18 21:47:47,031 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:47,031 - DEBUG -   0056: 找到 20 天資料
+2026-04-18 21:47:47,031 - INFO - ✅ 0056: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:47,031 - DEBUG -   0056 範例資料: {'date': '20260417', 'foreign_net': -1710, 'trust_net': 0, 'dealer_net': 14646}
+2026-04-18 21:47:47,031 - INFO - ✅ 0056: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:47,031 - INFO - 
+處理股票 00878...
+2026-04-18 21:47:47,031 - DEBUG - 獲取 00878 真實機構持股資料...
+2026-04-18 21:47:47,031 - INFO - Fetching institutional data for 00878 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:47,767 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=00878&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1361
+2026-04-18 21:47:47,769 - INFO - Fetched 140 records for 00878
+2026-04-18 21:47:47,779 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:47,780 - DEBUG -   00878: 找到 20 天資料
+2026-04-18 21:47:47,780 - INFO - ✅ 00878: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:47,780 - DEBUG -   00878 範例資料: {'date': '20260417', 'foreign_net': 57645, 'trust_net': 0, 'dealer_net': 76994}
+2026-04-18 21:47:47,780 - INFO - ✅ 00878: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:47,780 - INFO - 
+處理股票 2454...
+2026-04-18 21:47:47,780 - DEBUG - 獲取 2454 真實機構持股資料...
+2026-04-18 21:47:47,780 - INFO - Fetching institutional data for 2454 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:47,922 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2454&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1606
+2026-04-18 21:47:47,924 - INFO - Fetched 140 records for 2454
+2026-04-18 21:47:47,934 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:47,934 - DEBUG -   2454: 找到 20 天資料
+2026-04-18 21:47:47,934 - INFO - ✅ 2454: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:47,934 - DEBUG -   2454 範例資料: {'date': '20260417', 'foreign_net': 5340, 'trust_net': 1283, 'dealer_net': 148}
+2026-04-18 21:47:47,934 - INFO - ✅ 2454: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:47,934 - INFO - 
+處理股票 2412...
+2026-04-18 21:47:47,934 - DEBUG - 獲取 2412 真實機構持股資料...
+2026-04-18 21:47:47,935 - INFO - Fetching institutional data for 2412 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:48,428 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2412&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1464
+2026-04-18 21:47:48,431 - INFO - Fetched 140 records for 2412
+2026-04-18 21:47:48,444 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:48,444 - DEBUG -   2412: 找到 20 天資料
+2026-04-18 21:47:48,444 - INFO - ✅ 2412: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:48,444 - DEBUG -   2412 範例資料: {'date': '20260417', 'foreign_net': 5320, 'trust_net': -544, 'dealer_net': -37}
+2026-04-18 21:47:48,444 - INFO - ✅ 2412: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:48,444 - INFO - 
+處理股票 2881...
+2026-04-18 21:47:48,444 - DEBUG - 獲取 2881 真實機構持股資料...
+2026-04-18 21:47:48,444 - INFO - Fetching institutional data for 2881 (2026-03-09 to 2026-04-18)
+2026-04-18 21:47:49,179 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2881&securities_trader_id=&stock_id=&start_date=2026-03-09&end_date=2026-04-18&user_id=&password=&device=package HTTP/1.1" 200 1595
+2026-04-18 21:47:49,182 - INFO - Fetched 140 records for 2881
+2026-04-18 21:47:49,193 - INFO - Parsed institutional data for 28 days
+2026-04-18 21:47:49,193 - DEBUG -   2881: 找到 20 天資料
+2026-04-18 21:47:49,193 - INFO - ✅ 2881: 成功獲取 20 筆真實機構持股資料
+2026-04-18 21:47:49,193 - DEBUG -   2881 範例資料: {'date': '20260417', 'foreign_net': -4565, 'trust_net': -3004, 'dealer_net': 18}
+2026-04-18 21:47:49,193 - INFO - ✅ 2881: 更新為真實機構持股資料 (20 筆)
+2026-04-18 21:47:49,193 - INFO - 
+儲存更新後的資料...
+2026-04-18 21:47:49,235 - INFO - ✅ 已更新 10 支股票的機構持股資料
+2026-04-18 21:47:49,235 - INFO -    真實資料: 10 支
+2026-04-18 21:47:49,235 - INFO -    範例資料: 0 支
+2026-04-18 21:47:49,235 - INFO - 更新輕量版資料...
+2026-04-18 21:47:49,241 - INFO - ✅ 輕量版資料已更新
+2026-04-18 21:47:49,242 - INFO - 
+步驟 2: 驗證更新結果...
+2026-04-18 21:47:49,242 - INFO - 
+🔍 驗證更新結果...
+2026-04-18 21:47:49,246 - INFO - ✅ 資料完整性檢查通過
+2026-04-18 21:47:49,246 - INFO -    股票數量: 1000
+2026-04-18 21:47:49,246 - INFO -    最後更新: 2026-04-18 21:47:49
+2026-04-18 21:47:49,246 - INFO -    更新統計: {'total_updated': 10, 'real_data_count': 10, 'sample_data_count': 0, 'timestamp': '2026-04-18T21:47:49.193933'}
+2026-04-18 21:47:49,246 - INFO -    2330: ✅ 20 筆機構持股資料
+2026-04-18 21:47:49,246 - INFO -       來源: FinMind API (真實資料)
+2026-04-18 21:47:49,246 - INFO -       最新日期: 20260417
+2026-04-18 21:47:49,246 - INFO -    2303: ✅ 20 筆機構持股資料
+2026-04-18 21:47:49,246 - INFO -       來源: FinMind API (真實資料)
+2026-04-18 21:47:49,246 - INFO -       最新日期: 20260417
+2026-04-18 21:47:49,246 - INFO -    2317: ✅ 20 筆機構持股資料
+2026-04-18 21:47:49,246 - INFO -       來源: FinMind API (真實資料)
+2026-04-18 21:47:49,246 - INFO -       最新日期: 20260417
+2026-04-18 21:47:49,246 - INFO - 
+步驟 3: 建立更新摘要...
+2026-04-18 21:47:49,246 - INFO - 建立更新摘要...
+2026-04-18 21:47:49,246 - INFO - ✅ 更新摘要已建立
+2026-04-18 21:47:49,246 - INFO - 
+============================================================
+2026-04-18 21:47:49,247 - INFO - 🎉 快速自動更新完成！
+2026-04-18 21:47:49,247 - INFO - 
+📊 更新成果:
+2026-04-18 21:47:49,247 - INFO - 1. ✅ 前10支股票機構持股資料已更新
+2026-04-18 21:47:49,247 - INFO - 2. ✅ 加入詳細日誌和完整性檢查
+2026-04-18 21:47:49,247 - INFO - 3. ✅ 資料已驗證通過
+2026-04-18 21:47:49,247 - INFO - 4. ✅ 更新摘要已建立
+2026-04-18 21:47:49,247 - INFO - 
+📁 產出檔案:
+2026-04-18 21:47:49,247 - INFO - • docs/data.json - 完整資料
+2026-04-18 21:47:49,247 - INFO - • docs/data_light.json - 輕量版資料
+2026-04-18 21:47:49,247 - INFO - • docs/update_summary.json - 更新摘要
+2026-04-18 21:47:49,247 - INFO - • debug_log.txt - 詳細日誌
+2026-04-18 21:47:49,247 - INFO - 
+🌐 測試連結:
+2026-04-18 21:47:49,247 - INFO - • https://mylin102.github.io/tw-canslim-web/test_institutional.html
+2026-04-18 21:47:49,247 - INFO - • https://mylin102.github.io/tw-canslim-web/update_summary.json

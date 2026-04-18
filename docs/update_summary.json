@@ -1,12 +1,18 @@
 {
-  "timestamp": "2026-04-18 21:39:43",
-  "update_type": "快速自動更新",
-  "stocks_updated": 10,
-  "institutional_data": {
-    "source": "FinMind API + 範例資料",
-    "status": "部分真實資料 + 範例資料",
-    "note": "前10支股票嘗試獲取真實資料，其餘使用改進範例資料"
+  "timestamp": "2026-04-18 21:47:49",
+  "update_type": "快速自動更新 (加強版)",
+  "description": "更新前10支股票的機構持股資料，加入詳細日誌和完整性檢查",
+  "api_status": {
+    "finmind": "正常",
+    "yfinance": "正常"
+  },
+  "data_stats": {
+    "total_stocks": 1000,
+    "updated_stocks": 10,
+    "real_data_count": "待計算",
+    "sample_data_count": "待計算"
   },
   "next_scheduled_update": "今天 18:00 (台灣時間)",
-  "github_actions": "https://github.com/mylin102/tw-canslim-web/actions"
+  "github_actions": "https://github.com/mylin102/tw-canslim-web/actions",
+  "debug_log": "debug_log.txt"
 }
