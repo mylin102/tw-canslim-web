@@ -225,22 +225,16 @@ Source: recommended deterministic implementation for D-03/D-04. [ASSUMED]
 **Deprecated/outdated:**
 - Hard-coded `priority` inside `export_canslim.py` is the old mechanism to replace. [VERIFIED: export_canslim.py:682-684]
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **What exact source should drive volume ranking?**
-   - What we know: `docs/data_base.json` has RS but no persisted `financials`, and current master/fused parquet artifacts do not expose absolute volume columns. [VERIFIED: local artifact inspection; historical_generator.py:153-165; fuse_excel_data.py:47-56]
-   - What's unclear: whether planner should extend the existing signal artifact schema with `volume`/`volume_rank`, or accept a live yfinance prepass. [VERIFIED: export_canslim.py:394-412; ASSUMED]
-   - Recommendation: prefer extending the existing master/fused parquet path so volume ranking stays file-based and deterministic. [ASSUMED]
+   - Resolved: extend the existing master/fused signal artifacts with persisted `latest_volume` and `volume_rank`, then rank top-volume leaders from those artifacts instead of a daily live prepass. [VERIFIED: 02-CONTEXT.md D-06; phase discussion log; planner alignment]
 
 2. **Should same-day promotion fail closed when fused parquet is stale?**
-   - What we know: local fused data is one year behind raw master data. [VERIFIED: local parquet inspection]
-   - What's unclear: whether the production workflow always regenerates fused parquet before `export_canslim.py`. [VERIFIED: update_data.yml does not reference fused generation]
-   - Recommendation: planner should add an explicit freshness guard and either refresh fused data or stop promotion with an operator-visible error. [VERIFIED: update_data.yml; ASSUMED]
+   - Resolved: fail closed on stale fused inputs in the selector/export path, with an operator-visible error rather than a silent fallback to a different parser. [VERIFIED: Common Pitfalls; planner alignment]
 
 3. **What should seed the first checked-in base/ETF/watchlist config?**
-   - What we know: there is no existing watchlist/base-symbol source in the repo, and the current inline list has only seven symbols. [VERIFIED: repo search; export_canslim.py:682]
-   - What's unclear: which user-curated names beyond the roadmap examples must always stay in core. [VERIFIED: ROADMAP.md]
-   - Recommendation: seed from the current 7-symbol list plus roadmap examples like `0050`, then let the user edit the config file. [VERIFIED: export_canslim.py; ROADMAP.md; ASSUMED]
+   - Resolved: seed `base_symbols` from the current 7-symbol inline list, seed `etf_symbols` with `0050`, `0056`, and `00878`, and keep `watchlist_symbols` as a checked-in editable array. [VERIFIED: 02-CONTEXT.md; planned 02-01 seed config]
 
 ## Environment Availability
 
