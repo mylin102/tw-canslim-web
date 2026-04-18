@@ -5,13 +5,20 @@ import logging
 import requests
 import pandas as pd
 import yfinance as yf
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 
 from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
+from publish_safety import (
+    PublishTransactionError,
+    PublishValidationError,
+    load_artifact_json,
+    publish_artifact_bundle,
+    validate_resume_stock_entry,
+)
 
 # TAIEX via yfinance
 TAIEX_SYMBOL = "^TWII"
@@ -21,6 +28,7 @@ RS_LOOKBACK_DAYS = 180  # ~6 months
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "docs")
 DATA_FILE = os.path.join(OUTPUT_DIR, "data.json")
+SCHEMA_VERSION = "1.0"
 
 # Setup logging
 logging.basicConfig(
@@ -103,7 +111,7 @@ def get_all_tw_tickers():
 
 class CanslimEngine:
     def __init__(self):
-        self.output_data = {"last_updated": "", "stocks": {}}
+        self.output_data = self._build_output_payload()
         self.ticker_info = get_all_tw_tickers()
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
@@ -113,7 +121,118 @@ class CanslimEngine:
         self.fund_holdings = None
         self.industry_data = None
         self.industry_strength = None
+        self.failure_stats = {
+            "retry_attempts": 0,
+            "retry_failures": 0,
+            "resume_rejected": 0,
+            "stock_failures": 0,
+        }
+        self.failure_details = []
         self._load_excel_data()
+
+    def _build_output_payload(self) -> Dict:
+        """Create the artifact envelope for the primary stock payload."""
+        generated_at = self._utc_timestamp()
+        return {
+            "schema_version": SCHEMA_VERSION,
+            "artifact_kind": "data",
+            "run_id": self._build_run_id(),
+            "generated_at": generated_at,
+            "last_updated": "",
+            "stocks": {},
+        }
+
+    def _build_run_id(self) -> str:
+        """Build a stable run identifier for bundle publishes."""
+        return datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+
+    def _utc_timestamp(self) -> str:
+        """Return an ISO-like UTC timestamp."""
+        return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def _ensure_runtime_state(self) -> None:
+        """Backfill runtime metadata for test-created engine instances."""
+        if not hasattr(self, "failure_stats") or not isinstance(self.failure_stats, dict):
+            self.failure_stats = {
+                "retry_attempts": 0,
+                "retry_failures": 0,
+                "resume_rejected": 0,
+                "stock_failures": 0,
+            }
+        if not hasattr(self, "failure_details") or not isinstance(self.failure_details, list):
+            self.failure_details = []
+        if not hasattr(self, "output_data") or not isinstance(self.output_data, dict):
+            self.output_data = self._build_output_payload()
+
+        self.output_data.setdefault("schema_version", SCHEMA_VERSION)
+        self.output_data.setdefault("artifact_kind", "data")
+        self.output_data.setdefault("run_id", self._build_run_id())
+        self.output_data.setdefault("generated_at", self._utc_timestamp())
+        self.output_data.setdefault("last_updated", "")
+        self.output_data.setdefault("stocks", {})
+
+    def _record_stock_failure(self, ticker: str, message: str, exc: Exception | None = None) -> None:
+        """Track a stock-level processing failure and log it explicitly."""
+        self._ensure_runtime_state()
+        self.failure_stats["stock_failures"] += 1
+        detail = {"ticker": ticker, "message": message}
+        self.failure_details.append(detail)
+        if exc is not None:
+            logger.exception("%s for %s", message, ticker)
+        else:
+            logger.error("%s for %s", message, ticker)
+
+    def _build_update_summary(self) -> Dict:
+        """Build the publish summary payload for the primary export path."""
+        generated_at = self._utc_timestamp()
+        status = "failed" if (
+            self.failure_stats["retry_failures"] > 0 or self.failure_stats["stock_failures"] > 0
+        ) else "success"
+        return {
+            "schema_version": SCHEMA_VERSION,
+            "artifact_kind": "update_summary",
+            "run_id": self.output_data["run_id"],
+            "generated_at": generated_at,
+            "status": status,
+            "stats": dict(self.failure_stats),
+            "timestamp": generated_at,
+            "update_type": "canslim_export",
+            "description": "Primary CANSLIM export publish summary",
+            "api_status": {
+                "retry_failures": self.failure_stats["retry_failures"],
+            },
+            "data_stats": {
+                "total_stocks": len(self.output_data["stocks"]),
+                "updated_stocks": len(self.output_data["stocks"]),
+            },
+            "failures": list(self.failure_details),
+        }
+
+    def _json_default(self, obj):
+        """Serialize datetime-like objects for publish payloads."""
+        if isinstance(obj, (datetime, pd.Timestamp)):
+            return obj.strftime("%Y-%m-%d")
+        raise TypeError("Type %s not serializable" % type(obj))
+
+    def _publish_snapshot(self) -> Dict:
+        """Publish live artifacts through one bundle-safe transaction."""
+        self._ensure_runtime_state()
+        update_summary_file = os.path.join(OUTPUT_DIR, "update_summary.json")
+        bundle = {
+            DATA_FILE: {
+                "artifact_kind": "data",
+                "payload": self.output_data,
+            },
+            update_summary_file: {
+                "artifact_kind": "update_summary",
+                "payload": self._build_update_summary(),
+            },
+        }
+        return publish_artifact_bundle(
+            bundle,
+            logger=logger,
+            json_default=self._json_default,
+        )
 
     def _load_etf_cache(self):
         """Load ETF list from local cache file."""
@@ -190,23 +309,26 @@ class CanslimEngine:
         """Safely convert to int, handling commas and None."""
         try:
             return int(str(s).replace(",", "").replace("-", "0") or "0")
-        except:
+        except (TypeError, ValueError):
             return 0
 
     def _fetch_with_retry(self, url: str, params: Dict = None, max_retries: int = 3) -> Optional[requests.Response]:
         """Fetch URL with retry logic and exponential backoff."""
+        self._ensure_runtime_state()
         for attempt in range(max_retries):
             try:
                 response = requests.get(url, params=params, timeout=15)
                 response.raise_for_status()
                 return response
             except requests.RequestException as e:
+                self.failure_stats["retry_attempts"] += 1
                 logger.warning(f"Attempt {attempt + 1} failed for {url}: {e}")
                 if attempt < max_retries - 1:
                     wait_time = 2 ** attempt
                     time.sleep(wait_time)
                 else:
-                    logger.error(f"All attempts failed for {url}")
+                    self.failure_stats["retry_failures"] += 1
+                    logger.error(f"All attempts failed for {url}: {e}")
                     return None
 
     def fetch_twse_inst(self, date_str: str) -> Dict:
@@ -327,7 +449,7 @@ class CanslimEngine:
                                     'quarter': quarter,
                                     'eps': eps
                                 })
-                            except:
+                            except (TypeError, ValueError):
                                 pass
                 
                 return eps_data if eps_data else None
@@ -350,7 +472,7 @@ class CanslimEngine:
             years = len(eps_history) - 1
             cagr = (eps_history[-1] / eps_history[0]) ** (1 / years) - 1
             return cagr >= A_ANNUAL_CAGR_THRESHOLD
-        except:
+        except (TypeError, ValueError, ZeroDivisionError):
             return False
 
     def check_s_smr_rating(self, smr_rating: Optional[str]) -> bool:
@@ -524,6 +646,7 @@ class CanslimEngine:
             return None
 
     def run(self):
+        self._ensure_runtime_state()
         logger.info("="*80)
         logger.info("Starting CANSLIM Analysis with Mansfield RS & Resume Capability")
         logger.info("="*80)
@@ -532,14 +655,23 @@ class CanslimEngine:
         existing_count = 0
         if os.path.exists(DATA_FILE):
             try:
-                with open(DATA_FILE, "r", encoding="utf-8") as f:
-                    old_data = json.load(f)
-                    if "stocks" in old_data:
-                        self.output_data["stocks"] = old_data["stocks"]
-                        existing_count = len(self.output_data["stocks"])
-                        logger.info(f"📂 Found existing data. Resuming with {existing_count} stocks already processed.")
-            except Exception as e:
-                logger.warning(f"Could not load existing data for resume: {e}")
+                old_data = load_artifact_json(DATA_FILE, artifact_kind="data", logger=logger)
+            except PublishValidationError as exc:
+                logger.warning(f"Existing artifact failed validation; scanning raw resume payload instead: {exc}")
+                try:
+                    with open(DATA_FILE, "r", encoding="utf-8") as handle:
+                        old_data = json.load(handle)
+                except (OSError, json.JSONDecodeError) as raw_exc:
+                    logger.warning(f"Could not load existing data for resume: {raw_exc}")
+                    old_data = {}
+            except OSError as exc:
+                logger.warning(f"Could not load existing data for resume: {exc}")
+                old_data = {}
+
+            if "stocks" in old_data:
+                self.output_data["stocks"] = old_data["stocks"]
+                existing_count = len(self.output_data["stocks"])
+                logger.info(f"📂 Found existing data. Resuming with {existing_count} stocks already processed.")
 
         # 2. Fetch market benchmark history once
         logger.info(f"Fetching {TAIEX_SYMBOL} history for Mansfield RS...")
@@ -554,14 +686,14 @@ class CanslimEngine:
         logger.info(f"Analyzing {len(scan_list)} stocks...")
 
         for i, t in enumerate(scan_list):
-            # SMARTER RESUME LOGIC: 
-            # Skip only if stock exists AND contains the latest calculated fields (grid_strategy)
             if t in self.output_data["stocks"]:
                 stock_entry = self.output_data["stocks"][t]
-                if "grid_strategy" in stock_entry.get("canslim", {}):
+                try:
+                    validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION)
                     continue
-                else:
-                    logger.info(f"🔄 Stock {t} exists but missing new fields. Re-processing...")
+                except PublishValidationError as exc:
+                    self.failure_stats["resume_rejected"] += 1
+                    logger.info(f"🔄 Resume rejected for {t}: {exc}. Re-processing...")
 
             if i % 10 == 0:
                 logger.info(f"Processing {i}/{len(scan_list)}... (Current: {t})")
@@ -575,7 +707,9 @@ class CanslimEngine:
                 
                 chip_df = pd.DataFrame(history)
                 financial_data = self.fetch_financial_data(t)
-                if not financial_data: continue
+                if not financial_data:
+                    self._record_stock_failure(t, "Missing financial data")
+                    continue
                 
                 # Mansfield RS Calculation
                 stock_hist = self.get_price_history(t, period="2y")
@@ -637,6 +771,7 @@ class CanslimEngine:
                     grid_data = calculate_volatility_grid(stock_hist, is_etf=is_etf)
 
                 stock_data = {
+                    "schema_version": SCHEMA_VERSION,
                     "symbol": t, "name": info["name"],
                     "industry": industry_name,
                     "is_etf": is_etf,
@@ -660,14 +795,19 @@ class CanslimEngine:
                 if len(self.output_data["stocks"]) % 50 == 0:
                     self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
-                    with open(DATA_FILE, "w", encoding="utf-8") as f:
-                        json.dump(self.output_data, f, ensure_ascii=False, indent=2)
+                    self._publish_snapshot()
 
+            except (PublishValidationError, PublishTransactionError):
+                logger.exception("Publish failed while processing %s", t)
+                raise
             except Exception as e:
-                logger.error(f"Error processing {t}: {e}")
+                self._record_stock_failure(t, "Error processing stock", exc=e)
                 continue
 
+        self.output_data["schema_version"] = SCHEMA_VERSION
+        self.output_data["artifact_kind"] = "data"
         self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.output_data["generated_at"] = self._utc_timestamp()
 
         # Calculate industry strength using CANSLIM data
         if self.industry_data:
@@ -722,26 +862,11 @@ class CanslimEngine:
 
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
-
-        # Safety: Backup existing file with timestamp before overwriting
-        if os.path.exists(DATA_FILE):
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_file = os.path.join(OUTPUT_DIR, f"data_{timestamp}.json.bak")
-            import shutil
-            try:
-                shutil.copy2(DATA_FILE, backup_file)
-                logger.info(f"🛡️ Versioned backup created: {backup_file}")
-            except Exception as e:
-                logger.error(f"Failed to create backup: {e}")
-
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            # Custom JSON encoder to handle Timestamps and other non-serializable objects
-            def json_serial(obj):
-                if isinstance(obj, (datetime, pd.Timestamp)):
-                    return obj.strftime('%Y-%m-%d')
-                raise TypeError ("Type %s not serializable" % type(obj))
-            
-            json.dump(self.output_data, f, ensure_ascii=False, indent=2, default=json_serial)
+        try:
+            self._publish_snapshot()
+        except (PublishValidationError, PublishTransactionError):
+            logger.exception("Failed to publish CANSLIM artifact bundle")
+            raise
 
         logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
 
