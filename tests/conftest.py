@@ -2,6 +2,7 @@ import gzip
 import json
 from pathlib import Path
 
+import pandas as pd
 import pytest
 
 
@@ -124,5 +125,65 @@ def read_artifact():
 
         with path.open("r", encoding="utf-8") as handle:
             return json.load(handle)
+
+    return factory
+
+
+@pytest.fixture
+def selector_config_factory(tmp_path: Path):
+    def factory(payload: dict | None = None) -> tuple[Path, dict]:
+        config = {
+            "base_symbols": ["1101", "2330"],
+            "etf_symbols": ["0050"],
+            "watchlist_symbols": ["8069"],
+            "target_size": 6,
+        }
+        if payload:
+            config.update(payload)
+
+        path = tmp_path / "core_selection_config.json"
+        path.write_text(json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")
+        return path, config
+
+    return factory
+
+
+@pytest.fixture
+def selector_artifact_factory(tmp_path: Path):
+    def factory(
+        *,
+        fused_rows: list[dict],
+        master_rows: list[dict] | None = None,
+        baseline_rs: dict[str, float] | None = None,
+    ) -> dict[str, Path]:
+        root = tmp_path / "selector_artifacts"
+        docs_dir = root / "docs"
+        docs_dir.mkdir(parents=True, exist_ok=True)
+
+        fused_path = root / "master_canslim_signals_fused.parquet"
+        master_path = root / "master_canslim_signals.parquet"
+        baseline_path = docs_dir / "data_base.json"
+
+        pd.DataFrame(fused_rows).to_parquet(fused_path, index=False)
+        pd.DataFrame(master_rows or fused_rows).to_parquet(master_path, index=False)
+
+        baseline_payload = {
+            "stocks": {
+                symbol: {"canslim": {"mansfield_rs": rs_value}}
+                for symbol, rs_value in (baseline_rs or {}).items()
+            }
+        }
+        baseline_path.write_text(
+            json.dumps(baseline_payload, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        return {
+            "root": root,
+            "docs": docs_dir,
+            "fused_path": fused_path,
+            "master_path": master_path,
+            "baseline_path": baseline_path,
+        }
 
     return factory
