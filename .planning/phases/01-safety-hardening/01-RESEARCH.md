@@ -261,17 +261,13 @@ def can_resume(stock_entry: dict, schema_version: str) -> bool:
 - `os.rename(temp_file, 'docs/data.json')` as the primary promotion API is outdated here; prefer `os.replace` for explicit destination overwrite behavior. [VERIFIED: quick_auto_update_enhanced.py:232][CITED: https://docs.python.org/3/library/os.html#os.replace]
 - Timestamped `.bak` copies without validation or manifest are inadequate as a rollback system. [VERIFIED: export_canslim.py:727-735][VERIFIED: backup artifact inventory]
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Should Phase 1 support every legacy writer, or deprecate some immediately?**
-   - What we know: At least six entry points still write publish artifacts directly, and several duplicate scoring logic. [VERIFIED: current write inventory][VERIFIED: CONCERNS.md:7-30]
-   - What's unclear: Whether maintainers still rely on `quick_data_gen.py`, `quick_auto_update.py`, and `verify_local.py` as first-class tools. [ASSUMED]
-   - Recommendation: Decide this in Wave 0; if a script is kept, it must use the shared writer; if not, explicitly deprecate it.
+1. **Legacy writers vs. deprecation**
+   - Resolution: Phase 1 must cover the active publish path in two ways: migrate currently used production/maintenance writers to the shared safety layer, and explicitly deprecate remaining direct-writer utilities that are not kept in the supported path. The supported path includes `export_canslim.py`, `export_dashboard_data.py`, `quick_auto_update_enhanced.py`, `batch_update_institutional.py`, `verify_local.py`, and the GitHub Actions workflows that invoke them. Older direct writers such as `quick_data_gen.py`, `quick_auto_update.py`, and other ad hoc generators should either stop writing live `docs/` artifacts or be marked unsupported within this phase.
 
-2. **Should rollback restore only docs artifacts, or also the canonical base snapshot?**
-   - What we know: `data_base.json` is already the upstream for `data.json`/`data_light.json` in the newer path. [VERIFIED: fast_data_gen.py:295-302][VERIFIED: create_medium_data.py:10-63][VERIFIED: create_light_data.py:11-42]
-   - What's unclear: Whether a rollback should restore `data_base.json` directly or regenerate derivatives from the saved base snapshot. [ASSUMED]
-   - Recommendation: Save and restore the full bundle in Phase 1, then simplify later if the canonical path is stabilized.
+2. **Rollback scope**
+   - Resolution: rollback should restore the full publish bundle for the supported path, not only a single file. Phase 1 should treat `docs/data_base.json` as the canonical mutable snapshot when present, then restore or regenerate dependent artifacts (`docs/data.json`, `docs/data_light.json`, `docs/data.json.gz`, and `docs/update_summary.json`) as one locked publish transaction so the site never sees a mixed-version bundle.
 
 ## Environment Availability
 
