@@ -19,7 +19,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 
 ## Phases
 
-- [ ] **Phase 1: Safety Hardening** - Eliminate data corruption and silent failures before scaling orchestration
+- [x] **Phase 1: Safety Hardening** - Eliminate data corruption and silent failures before scaling orchestration
 - [ ] **Phase 2: Dynamic Core Selection** - Implement signal-driven priority selection for daily core stock universe
 - [ ] **Phase 3: Rotating Batch Orchestration** - Build 3-day rotation system with persistent state and resume capability
 - [ ] **Phase 4: Publishing & Freshness Awareness** - Deliver merged outputs with explicit freshness metadata and update summaries
@@ -46,7 +46,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 Plans:
 - [x] 01-01-PLAN.md — Establish publish-safety tests and the shared locked writer/restore helper
 - [x] 01-02-PLAN.md — Migrate primary exporters to validated, versioned, explicit-failure publishing
-- [ ] 01-03-PLAN.md — Migrate incremental publish scripts and add rollback CLI validation
+- [x] 01-03-PLAN.md — Migrate incremental publish scripts and add rollback CLI validation
 
 ---
 
@@ -110,7 +110,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Safety Hardening | 2/3 | In progress | - |
+| 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 0/0 | Not started | - |
 | 3. Rotating Batch Orchestration | 0/0 | Not started | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |

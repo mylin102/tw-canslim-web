@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-04-18T21:31:08.054Z"
+last_updated: "2026-04-18T21:31:28Z"
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
-  percent: 67
+  completed_plans: 3
+  percent: 100
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 05:07 UTC+8
+**Last Updated:** 2026-04-19 05:31 UTC+8
 
 ---
 
@@ -34,10 +34,10 @@ progress:
 
 **Phase**: 1 - Safety Hardening  
 **Plan**: 03 of 03  
-**Status**: In progress  
-**Progress**: `██████████████░░░░░░░` 67%
+**Status**: Complete  
+**Progress**: `████████████████████` 100%
 
-**Current Work**: Plan 02 complete — primary exporters now publish through the shared bundle-safe helper with explicit failure reporting; Plan 03 is next.
+**Current Work**: Phase 1 complete — operational publish paths, rollback CLI, and workflow serialization now use the shared publish-safety contract.
 
 **Blockers**: None
 
@@ -47,16 +47,16 @@ progress:
 
 ### Completion Stats
 
-- **Phases completed**: 0/4
-- **Plans completed**: 2/3
+- **Phases completed**: 1/4
+- **Plans completed**: 3/3
 - **Requirements validated**: 4/13
-- **Current phase progress**: 67%
+- **Current phase progress**: 100%
 
 ### Velocity
 
-- **Plans per day**: 2/day
+- **Plans per day**: 3/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: TBD after Plans 02-03 velocity
+- **Estimated phase completion**: Phase 1 completed on 2026-04-19
 
 ### Quality
 
@@ -82,21 +82,27 @@ progress:
 - [Phase 01-safety-hardening]: Fallback to helper-first resume loading, then raw stock-level revalidation when a whole artifact is incompatible.
 - [Phase 01-safety-hardening]: Keep dashboard exports on the shared data artifact contract by adding validator-required metadata and CANSLIM fields.
 
+| Phase 01-safety-hardening P03 | 18min | 3 tasks | 12 files |
+
+- [Phase 01-safety-hardening]: Keep operational data/data_light payloads on the validated stock schema so supported writers can share publish_artifact_bundle.
+- [Phase 01-safety-hardening]: Deprecate unsupported legacy direct writers instead of migrating every historical utility in Phase 1.
+- [Phase 01-safety-hardening]: Use one publish-surface concurrency group across scheduled and on-demand workflows.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
 - [ ] Pre-Phase 1: Test file locking proof-of-concept on macOS (fcntl availability)
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
-- [ ] Execute Plan 03 to migrate incremental writers and rollback CLI validation
+- [ ] Start Phase 2 planning/execution for dynamic core selection (ORCH-01)
 
 ### Known Issues
 
 | Issue | Severity | Discovered | Status |
 |-------|----------|------------|--------|
-| 28 bare `except:` clauses causing silent API failures | HIGH | Research (CONCERNS.md) | Pending Phase 1 |
-| 6 scripts write to data.json without coordination (race conditions) | CRITICAL | Research (CONCERNS.md) | Pending Phase 1 |
-| No schema versioning (resume breaks when fields added) | HIGH | Research (CONCERNS.md) | Pending Phase 1 |
-| No rollback mechanism (bad updates corrupt GitHub Pages) | MEDIUM | Research (POST_MORTEM) | Pending Phase 1 |
+| 28 bare `except:` clauses causing silent API failures | HIGH | Research (CONCERNS.md) | Mitigated on supported publish paths in Phase 1 |
+| 6 scripts write to data.json without coordination (race conditions) | CRITICAL | Research (CONCERNS.md) | Resolved for supported/operational publish paths in Phase 1 |
+| No schema versioning (resume breaks when fields added) | HIGH | Research (CONCERNS.md) | Resolved for supported publish artifacts in Phase 1 |
+| No rollback mechanism (bad updates corrupt GitHub Pages) | MEDIUM | Research (POST_MORTEM) | Resolved with manifest-backed bundle restore CLI in Phase 1 |
 
 ---
 
@@ -128,14 +134,14 @@ progress:
 
 ### What Just Happened
 
-- Plan 02 completed for Phase 1 with bundle-safe publishing wired into `export_canslim.py` and `export_dashboard_data.py`
-- Primary CANSLIM exports now validate resumed stock entries, surface retry/failure counters in `update_summary.json`, and fail loudly on publish errors
-- Script-level smoke/regression coverage now executes both primary exporter publish paths
+- Plan 03 completed for Phase 1 with bundle-safe operational quick/batch writers, hardened verification/on-demand publish paths, and a deterministic rollback CLI
+- Scheduled and on-demand GitHub Actions workflows now share one publish-surface concurrency group
+- Unsupported legacy direct writers now fail fast before touching live `docs/` artifacts
 
 ### What's Next
 
-1. Execute Plan 03 to migrate incremental/operational writers and validate rollback CLI flows
-2. Reuse the new primary-exporter failure summary patterns in the remaining publish-path scripts
+1. Start Phase 2 planning/execution for dynamic core selection (ORCH-01)
+2. Reuse Phase 1 update summary patterns and serialized publish contract in future orchestration phases
 
 ### Open Questions
 
@@ -143,11 +149,11 @@ progress:
 
 ### Context for Next Agent
 
-**If continuing Phase 1 execution:**
+**If continuing after Phase 1 execution:**
 
-- `publish_safety.py` now provides `load_artifact_json`, `validate_artifact_payload`, `validate_resume_stock_entry`, `publish_artifact_bundle`, and `restore_latest_bundle`
-- Plan 02 is complete: primary exporters now publish through the shared helper and have executable smoke coverage
-- Plan 03 should migrate operational writers and turn on deprecated-writer guard assertions
+- `publish_safety.py` now governs supported operational, verification, and on-demand publish flows plus rollback
+- Both GitHub Actions publish entry points serialize through the same publish-surface concurrency group
+- Legacy direct writers are intentionally deprecated; future work should build on the supported scripts/workflows instead
 
 **If user requests revision:**
 
