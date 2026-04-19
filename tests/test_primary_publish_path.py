@@ -303,6 +303,230 @@ def test_export_canslim_reraises_selector_validation_failures(
         engine.run()
 
 
+def test_export_canslim_rotation_plan_processes_due_retries_before_scheduled_batch_and_finalizes_after_publish(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+
+    engine = _build_engine(module, tickers=("2330", "2454", "1101", "1301"))
+    _stub_engine_dependencies(monkeypatch, module, engine)
+
+    events = []
+    states = []
+    plan = {
+        "retry_symbols": ["2454"],
+        "scheduled_batch": {
+            "batch_index": 1,
+            "rotation_generation": "gen-1",
+            "symbols": ["1101", "1301"],
+            "completed_symbols": [],
+            "remaining_symbols": ["1101", "1301"],
+            "is_resume": False,
+        },
+        "worklist": ["2454", "1101", "1301"],
+        "daily_budget": 3,
+    }
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(
+        module,
+        "build_core_universe",
+        lambda **kwargs: SimpleNamespace(
+            core_symbols=["2330"],
+            core_set={"2330"},
+            bucket_counts={"core_symbols": 1},
+            target_size=1,
+        ),
+        raising=False,
+    )
+    monkeypatch.setattr(module, "load_state", lambda path=None: {"freshness": {}, "retry_queue": []}, raising=False)
+    monkeypatch.setattr(module, "build_daily_plan", lambda **kwargs: plan, raising=False)
+    monkeypatch.setattr(
+        module,
+        "write_in_progress",
+        lambda state, **kwargs: events.append(("write_in_progress", kwargs["planned_batch"]["symbols"])) or state,
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "mark_symbol_completed",
+        lambda state, **kwargs: states.append(kwargs["symbol"]) or state,
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "finalize_failure",
+        lambda state, **kwargs: (_ for _ in ()).throw(AssertionError("scheduled success path should not queue retry")),
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "finalize_success",
+        lambda state, **kwargs: events.append(("finalize_success", kwargs["completed_at"])) or state,
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "publish_artifact_bundle",
+        lambda bundle, **kwargs: events.append(("publish", sorted(bundle))) or {
+            "published_targets": list(bundle),
+            "run_id": "run-rotation",
+            "snapshot_dir": str(tmp_path / "backups" / "last_good" / "run-rotation"),
+        },
+    )
+
+    engine.run()
+
+    assert list(engine.output_data["stocks"])[:4] == ["2330", "2454", "1101", "1301"]
+    assert events[0] == ("write_in_progress", ["1101", "1301"])
+    assert states == ["1101", "1301"]
+    assert events[-2][0] == "publish"
+    assert events[-1][0] == "finalize_success"
+
+
+def test_export_canslim_rotation_publish_failure_does_not_advance_cursor(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+
+    engine = _build_engine(module, tickers=("2330", "1101"))
+    _stub_engine_dependencies(monkeypatch, module, engine)
+
+    finalized = []
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(
+        module,
+        "build_core_universe",
+        lambda **kwargs: SimpleNamespace(
+            core_symbols=["2330"],
+            core_set={"2330"},
+            bucket_counts={"core_symbols": 1},
+            target_size=1,
+        ),
+        raising=False,
+    )
+    monkeypatch.setattr(module, "load_state", lambda path=None: {"freshness": {}, "retry_queue": []}, raising=False)
+    monkeypatch.setattr(
+        module,
+        "build_daily_plan",
+        lambda **kwargs: {
+            "retry_symbols": [],
+            "scheduled_batch": {
+                "batch_index": 0,
+                "rotation_generation": "gen-2",
+                "symbols": ["1101"],
+                "completed_symbols": [],
+                "remaining_symbols": ["1101"],
+                "is_resume": False,
+            },
+            "worklist": ["1101"],
+            "daily_budget": 1,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(module, "write_in_progress", lambda state, **kwargs: state, raising=False)
+    monkeypatch.setattr(module, "mark_symbol_completed", lambda state, **kwargs: state, raising=False)
+    monkeypatch.setattr(
+        module,
+        "finalize_success",
+        lambda state, **kwargs: finalized.append(kwargs["completed_at"]) or state,
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "publish_artifact_bundle",
+        lambda bundle, **kwargs: (_ for _ in ()).throw(module.PublishTransactionError("publish failed")),
+    )
+
+    with pytest.raises(module.PublishTransactionError, match="publish failed"):
+        engine.run()
+
+    assert finalized == []
+
+
+def test_export_canslim_rotation_failure_queues_retry_without_overwriting_prior_freshness(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+
+    engine = _build_engine(module, tickers=("2330", "1101"))
+    _stub_engine_dependencies(monkeypatch, module, engine, broken_ticker="1101")
+
+    observed_failures = []
+    rotation_state = {
+        "freshness": {
+            "1101": {
+                "last_attempted_at": "2026-04-18T00:00:00Z",
+                "last_succeeded_at": "2026-04-18T00:00:05Z",
+                "last_batch_generation": "older-generation",
+                "source": "rotation",
+            }
+        },
+        "retry_queue": [],
+    }
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(
+        module,
+        "build_core_universe",
+        lambda **kwargs: SimpleNamespace(
+            core_symbols=["2330"],
+            core_set={"2330"},
+            bucket_counts={"core_symbols": 1},
+            target_size=1,
+        ),
+        raising=False,
+    )
+    monkeypatch.setattr(module, "load_state", lambda path=None: rotation_state, raising=False)
+    monkeypatch.setattr(
+        module,
+        "build_daily_plan",
+        lambda **kwargs: {
+            "retry_symbols": [],
+            "scheduled_batch": {
+                "batch_index": 0,
+                "rotation_generation": "gen-3",
+                "symbols": ["1101"],
+                "completed_symbols": [],
+                "remaining_symbols": ["1101"],
+                "is_resume": False,
+            },
+            "worklist": ["1101"],
+            "daily_budget": 1,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(module, "write_in_progress", lambda state, **kwargs: state, raising=False)
+    monkeypatch.setattr(
+        module,
+        "finalize_failure",
+        lambda state, **kwargs: observed_failures.append((kwargs["symbol"], state["freshness"]["1101"]["last_succeeded_at"])) or state,
+        raising=False,
+    )
+    monkeypatch.setattr(module, "mark_symbol_completed", lambda state, **kwargs: (_ for _ in ()).throw(AssertionError("failed symbol must not finalize success")), raising=False)
+    monkeypatch.setattr(module, "publish_artifact_bundle", lambda bundle, **kwargs: {"published_targets": list(bundle)}, raising=False)
+
+    engine.run()
+
+    assert observed_failures == [("1101", "2026-04-18T00:00:05Z")]
+
+
 def test_export_dashboard_data_publishes_artifact_aware_bundle(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
