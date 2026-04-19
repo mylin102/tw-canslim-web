@@ -56,6 +56,7 @@ def test_restore_publish_snapshot_cli_restores_latest_bundle(
         backup_dir=str(backup_dir),
     )
     (docs_dir / "data.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+    (docs_dir / "stock_index.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
     (docs_dir / "update_summary.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
 
     rollback_module = load_module("restore_publish_snapshot")
@@ -64,9 +65,40 @@ def test_restore_publish_snapshot_cli_restores_latest_bundle(
     assert rollback_module.main([]) == 0
 
     assert read_artifact(docs_dir / "data.json", "data")["run_id"] == "restore-run"
+    assert read_artifact(docs_dir / "stock_index.json", "stock_index")["run_id"] == "restore-run"
     assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "restore-run"
     manifest = json.loads((backup_dir / next(iter(p.name for p in backup_dir.iterdir() if p.is_dir())) / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["run_id"] == "restore-run"
+
+
+def test_restore_publish_snapshot_cli_restores_scheduled_phase4_snapshot(
+    monkeypatch,
+    publish_paths,
+    phase4_artifact_bundle_factory,
+    read_artifact,
+):
+    module = load_module("publish_safety")
+    docs_dir = publish_paths["docs"]
+    backup_dir = publish_paths["backup"]
+    lock_path = publish_paths["lock"]
+
+    module.publish_artifact_bundle(
+        phase4_artifact_bundle_factory("scheduled-run", docs_dir),
+        lock_path=str(lock_path),
+        backup_dir=str(backup_dir),
+    )
+    (docs_dir / "data.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+    (docs_dir / "stock_index.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+    (docs_dir / "update_summary.json").write_text("{\"run_id\": \"broken\"}\n", encoding="utf-8")
+
+    rollback_module = load_module("restore_publish_snapshot")
+    monkeypatch.chdir(publish_paths["root"])
+
+    assert rollback_module.main([]) == 0
+
+    assert read_artifact(docs_dir / "data.json", "data")["run_id"] == "scheduled-run"
+    assert read_artifact(docs_dir / "stock_index.json", "stock_index")["run_id"] == "scheduled-run"
+    assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "scheduled-run"
 
 
 @pytest.mark.parametrize("module_name", DEPRECATED_WRITERS)
@@ -119,12 +151,11 @@ def test_workflows_stage_phase4_publish_artifacts(repo_root: Path):
     assert "docs/update_summary.json" in on_demand_source
 
 
-def test_scheduled_publish_chain_has_no_legacy_stock_index_dependency(repo_root: Path):
+def test_scheduled_workflow_uses_single_verified_publish_path(repo_root: Path):
     scheduled_source = workflow_source(repo_root, ".github/workflows/update_data.yml")
-    incremental_source = (repo_root / "incremental_workflow.py").read_text(encoding="utf-8")
 
-    assert "python incremental_workflow.py" in scheduled_source
-    assert "from create_stock_index import create_stock_index_with_rs" not in incremental_source
-    assert "create_stock_index_with_rs" not in incremental_source
-    assert "股票索引建立" not in incremental_source
-    assert '[sys.executable, "export_canslim.py"]' not in incremental_source
+    assert "python export_canslim.py" in scheduled_source
+    assert "python incremental_workflow.py" not in scheduled_source
+    assert "docs/signals.json" not in scheduled_source
+    assert "docs/ranking.json" not in scheduled_source
+    assert "docs/state_light.json" not in scheduled_source

@@ -45,6 +45,7 @@ def test_publish_artifact_bundle_serializes_concurrent_bundle_promotions(
         read_artifact(docs_dir / "data.json", "data")["run_id"],
         read_artifact(docs_dir / "data_light.json", "data_light")["run_id"],
         read_artifact(docs_dir / "data.json.gz", "data_gz")["run_id"],
+        read_artifact(docs_dir / "stock_index.json", "stock_index")["run_id"],
         read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"],
     }
     assert len(run_ids) == 1
@@ -80,6 +81,7 @@ def test_publish_artifact_bundle_keeps_only_latest_validated_manifest(
         str(docs_dir / "data.json"),
         str(docs_dir / "data_light.json"),
         str(docs_dir / "data.json.gz"),
+        str(docs_dir / "stock_index.json"),
         str(docs_dir / "update_summary.json"),
     }
 
@@ -105,7 +107,7 @@ def test_restore_latest_bundle_rewrites_requested_targets_atomically(
         backup_dir=str(backup_dir),
     )
 
-    for file_name in ("data_base.json", "data.json", "data_light.json", "update_summary.json"):
+    for file_name in ("data_base.json", "data.json", "data_light.json", "stock_index.json", "update_summary.json"):
         (docs_dir / file_name).write_text("{\"run_id\": \"corrupt\"}", encoding="utf-8")
 
     result = module.restore_latest_bundle(
@@ -118,12 +120,14 @@ def test_restore_latest_bundle_rewrites_requested_targets_atomically(
         str(docs_dir / "data.json"),
         str(docs_dir / "data_light.json"),
         str(docs_dir / "data.json.gz"),
+        str(docs_dir / "stock_index.json"),
         str(docs_dir / "update_summary.json"),
     }
     assert read_artifact(docs_dir / "data_base.json", "data_base")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "data.json", "data")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "data_light.json", "data_light")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "data.json.gz", "data_gz")["run_id"] == "run-b"
+    assert read_artifact(docs_dir / "stock_index.json", "stock_index")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "run-b"
 
 

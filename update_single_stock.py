@@ -33,6 +33,7 @@ from excel_processor import ExcelDataProcessor
 from publish_safety import (
     PublishTransactionError,
     PublishValidationError,
+    is_publish_safety_error,
     load_artifact_json,
     publish_artifact_bundle,
 )
@@ -354,7 +355,9 @@ class SingleStockUpdater:
                 logger=logger,
                 json_default=json_default,
             )
-        except (PublishValidationError, PublishTransactionError) as exc:
+        except Exception as exc:  # noqa: BLE001 - re-raise non publish_safety failures
+            if not is_publish_safety_error(exc):
+                raise
             logger.error("On-demand publish failed for %s: %s", ticker, exc)
             return False
 

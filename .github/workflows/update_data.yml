@@ -60,17 +60,10 @@ jobs:
     
       - name: 🔄 執行增量更新
         run: |
-          echo "開始增量更新流程..."
-          
-          # 1. 先執行完整的 CANSLIM 資料更新
-          echo "步驟 1: 更新 CANSLIM 資料..."
+          echo "開始每日發布流程..."
+          echo "步驟 1: 更新 CANSLIM 資料與 Phase 4 publish bundle..."
           python export_canslim.py
-          
-          # 2. 執行增量計算
-          echo "步驟 2: 執行增量計算..."
-          python incremental_workflow.py
-
-          echo "✅ 增量更新完成！"
+          echo "✅ 每日發布完成！"
 
       - name: ⏱️ 驗證 runtime budget
         env:
@@ -98,24 +91,20 @@ jobs:
         run: |
           echo "檢查生成的檔案..."
           ls -la docs/*.json docs/*.html 2>/dev/null | head -20
-          
-          # 檢查資料完整性
-          python -c "
+          python - <<'PY'
           import json
-          try:
-              with open('docs/signals.json', 'r') as f:
-                  signals = json.load(f)
-              print(f'✅ 交易訊號: {len(signals.get(\"signals\", []))} 個')
-          except Exception as e:
-              print(f'❌ 訊號檔案錯誤: {e}')
-              
-          try:
-              with open('docs/ranking.json', 'r') as f:
-                  ranking = json.load(f)
-              print(f'✅ RS 排名: {len(ranking.get(\"ranking\", []))} 筆')
-           except Exception as e:
-               print(f'❌ 排名檔案錯誤: {e}')
-           "
+          from pathlib import Path
+
+          for path_str in (
+              "docs/data.json",
+              "docs/data_base.json",
+              "docs/stock_index.json",
+              "docs/update_summary.json",
+          ):
+              path = Path(path_str)
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              print(f"✅ {path_str}: artifact_kind={payload.get('artifact_kind')} run_id={payload.get('run_id')}")
+          PY
 
       - name: 📦 上傳 rotation state artifact
         if: always()
@@ -132,13 +121,12 @@ jobs:
           
           # 添加所有更新的檔案
           git add docs/data.json docs/data_base.json docs/data_light.json docs/data.json.gz
-          git add docs/signals.json docs/ranking.json docs/state.json docs/state_light.json
           git add docs/stock_index.json docs/update_summary.json
           git add .orchestration/rotation_state.json
           git add docs/incremental_dashboard.html docs/test_github_pages.html 2>/dev/null || true
           
           # 提交
-          git commit -m "📈 自動更新: CANSLIM資料 + 增量計算 $(date +'%Y-%m-%d %H:%M')" || echo "沒有變更可提交"
+          git commit -m "📈 自動更新: CANSLIM資料發布 $(date +'%Y-%m-%d %H:%M')" || echo "沒有變更可提交"
           
           # 推送
           git push

@@ -14,6 +14,7 @@ from typing import Any
 from publish_safety import (
     PublishTransactionError,
     PublishValidationError,
+    is_publish_safety_error,
     load_artifact_json,
     publish_artifact_bundle,
 )
@@ -280,7 +281,9 @@ def update_top_stocks_institutional() -> dict[str, Any]:
 
     try:
         publish_result = publish_operational_bundle(data, summary)
-    except (PublishValidationError, PublishTransactionError) as exc:
+    except Exception as exc:  # noqa: BLE001 - re-raise non publish_safety failures
+        if not is_publish_safety_error(exc):
+            raise
         logger.error("❌ publish bundle 失敗: %s", exc)
         return {"success": False, "error": str(exc)}
 

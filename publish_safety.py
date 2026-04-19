@@ -67,6 +67,15 @@ class PublishRestoreError(Exception):
     """Raised when bundle restore fails."""
 
 
+def is_publish_safety_error(exc: BaseException) -> bool:
+    """Return whether an exception belongs to the publish_safety error family."""
+    return exc.__class__.__module__ == __name__ and exc.__class__.__name__ in {
+        "PublishValidationError",
+        "PublishTransactionError",
+        "PublishRestoreError",
+    }
+
+
 def load_artifact_json(path: str, *, artifact_kind: str, logger=None) -> dict:
     """Load and validate a published artifact."""
     target = Path(path)
@@ -236,7 +245,7 @@ def restore_latest_bundle(
             snapshot_dir = _latest_snapshot_dir(backup_root)
             manifest_path = snapshot_dir / "manifest.json"
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            requested = {str(Path(target)) for target in targets} if targets else None
+            requested = {str(Path(target).resolve()) for target in targets} if targets else None
 
             artifacts = manifest["artifacts"]
             entries = [
@@ -246,10 +255,11 @@ def restore_latest_bundle(
                     "backup_file": entry["backup_file"],
                 }
                 for target, entry in artifacts.items()
-                if requested is None or target in requested
+                if requested is None or str(Path(target).resolve()) in requested
             ]
             if requested and len(entries) != len(requested):
-                missing = sorted(requested.difference(entry["target"] for entry in entries))
+                present = {str(Path(entry["target"]).resolve()) for entry in entries}
+                missing = sorted(requested.difference(present))
                 raise PublishRestoreError(f"Snapshot missing requested targets: {missing}")
 
             staged_files = []

@@ -8,20 +8,11 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-from pathlib import Path
 
 from publish_safety import PublishRestoreError, restore_latest_bundle
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
-
-DEFAULT_TARGETS = (
-    "docs/data_base.json",
-    "docs/data.json",
-    "docs/data_light.json",
-    "docs/data.json.gz",
-    "docs/update_summary.json",
-)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -29,13 +20,19 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Restore the latest validated publish bundle")
     parser.add_argument("--lock-path", default="docs/.publish.lock")
     parser.add_argument("--backup-dir", default="backups/last_good")
+    parser.add_argument(
+        "--target",
+        action="append",
+        dest="targets",
+        help="Specific artifact target to restore. Repeat to restore multiple targets.",
+    )
     args = parser.parse_args(argv)
 
     try:
         result = restore_latest_bundle(
             lock_path=args.lock_path,
             backup_dir=args.backup_dir,
-            targets=tuple(str(Path(target).resolve()) for target in DEFAULT_TARGETS),
+            targets=tuple(args.targets) if args.targets else None,
             logger=logger,
         )
     except PublishRestoreError as exc:

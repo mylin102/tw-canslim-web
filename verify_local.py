@@ -25,7 +25,7 @@ from core.logic import (
     compute_canslim_score_etf,
 )
 from export_canslim import CanslimEngine
-from publish_safety import PublishTransactionError, PublishValidationError, publish_artifact_bundle
+from publish_safety import PublishTransactionError, PublishValidationError, is_publish_safety_error, publish_artifact_bundle
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -205,7 +205,9 @@ def rebuild(target_tickers: list[str] | None = None, sleep_seconds: float = 0.5)
 
     try:
         publish_rebuild_bundle(output, target_tickers)
-    except (PublishValidationError, PublishTransactionError) as exc:
+    except Exception as exc:  # noqa: BLE001 - re-raise non publish_safety failures
+        if not is_publish_safety_error(exc):
+            raise
         logger.error("Verification publish failed: %s", exc)
         return False
 

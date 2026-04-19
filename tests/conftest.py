@@ -207,7 +207,7 @@ def stock_index_payload_factory(stock_index_entry_factory):
 
 
 @pytest.fixture
-def artifact_bundle_factory(stock_payload_factory, summary_payload_factory):
+def artifact_bundle_factory(stock_payload_factory, stock_index_payload_factory, summary_payload_factory):
     def factory(run_id: str, docs_dir: Path) -> dict[str, dict]:
         return {
             str(docs_dir / "data_base.json"): {
@@ -225,6 +225,10 @@ def artifact_bundle_factory(stock_payload_factory, summary_payload_factory):
             str(docs_dir / "data.json.gz"): {
                 "artifact_kind": "data_gz",
                 "payload": stock_payload_factory(run_id),
+            },
+            str(docs_dir / "stock_index.json"): {
+                "artifact_kind": "stock_index",
+                "payload": stock_index_payload_factory(run_id),
             },
             str(docs_dir / "update_summary.json"): {
                 "artifact_kind": "update_summary",
