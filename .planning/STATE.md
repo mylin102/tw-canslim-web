@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-04-19T02:08:56.337Z"
+last_updated: "2026-04-19T02:21:25.864Z"
 progress:
   total_phases: 4
   completed_phases: 2
   total_plans: 9
-  completed_plans: 7
-  percent: 78
+  completed_plans: 8
+  percent: 89
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 10:08 UTC+8
+**Last Updated:** 2026-04-19 10:21 UTC+8
 
 ---
 
@@ -33,13 +33,13 @@ progress:
 ## Current Position
 
 Phase: 03 (rotating-batch-orchestration) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 **Phase**: 3 - Rotating Batch Orchestration  
-**Plan**: 01 of 03 complete  
+**Plan**: 02 of 03 complete  
 **Status**: In Progress  
-**Progress**: `███████░░░░░░░░░░░░` 33%
+**Progress**: `█████████████░░░░░░` 67%
 
-**Current Work**: Phase 3 Plan 01 is complete — durable `.orchestration/rotation_state.json` state helpers and shared provider policy contracts are now in place for rotation planning.
+**Current Work**: Phase 3 Plan 02 is complete — deterministic three-way rotation planning, retry-first worklists, frozen in-progress batches, and finalize-success-only cursor advancement are now implemented.
 
 **Blockers**: None
 
@@ -50,13 +50,13 @@ Plan: 2 of 3
 ### Completion Stats
 
 - **Phases completed**: 2/4
-- **Plans completed**: 7/9
-- **Requirements validated**: 7/13
-- **Current phase progress**: 33%
+- **Plans completed**: 8/9
+- **Requirements validated**: 9/13
+- **Current phase progress**: 67%
 
 ### Velocity
 
-- **Plans per day**: 7/day
+- **Plans per day**: 8/day
 - **Days in current phase**: 1
 - **Estimated phase completion**: Phase 3 in progress as of 2026-04-19
 
@@ -112,6 +112,11 @@ Plan: 2 of 3
 - [Phase 03]: Persist rotation state only in .orchestration/rotation_state.json with strict schema validation and atomic os.replace writes.
 - [Phase 03]: Keep provider retry and throttling defaults in a pure ProviderPolicy table while preserving the 1000-symbol non-core daily budget.
 
+| Phase 03 P02 | 4m | 2 tasks | 4 files |
+
+- [Phase 03]: Used a stable sorted non-core partition plus a joined-symbol generation fingerprint so universe churn is explicit without date offsets or hashing.
+- [Phase 03]: Reserved scheduled-batch capacity before selecting due retries and advanced current_batch_index only inside finalize_success().
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
@@ -160,13 +165,13 @@ Plan: 2 of 3
 
 ### What Just Happened
 
-- Phase 3 Plan 01 added `orchestration_state.py` plus the tracked `.orchestration/rotation_state.json` seed for atomic, schema-validated durable orchestration state.
-- New pytest coverage locks in default state seeding, atomic save semantics, and retry-queue durability across reloads.
-- `provider_policies.py` now centralizes explicit retry/backoff and throttling metadata for requests, FinMind, TEJ, and yfinance while preserving the 1000-symbol non-core budget target.
+- Phase 3 Plan 02 added `rotation_orchestrator.py` with deterministic three-way partitioning, generation tracking, retry-first plan assembly, and explicit write/resume/finalize seams.
+- `orchestration_state.py` now persists richer per-symbol freshness metadata (`last_attempted_at`, `last_succeeded_at`, `last_batch_generation`) while preserving prior success freshness across retry queue handling.
+- New pytest coverage proves frozen in-progress batches resume remaining symbols only and that `current_batch_index` advances only inside `finalize_success()`.
 
 ### What's Next
 
-1. Execute Phase 3 Plan 02 to build deterministic 3-way partitioning, retry-first planning, and resume/finalization seams on top of the new state helper.
+1. Execute Phase 3 Plan 03 to wire `build_daily_plan(...)`, `write_in_progress(...)`, and `finalize_*()` into `export_canslim.py` and the scheduled workflow.
 2. Keep reusing the Phase 2 selector boundary and the Phase 1 publish-safety contract without introducing any database or new orchestration service.
 
 ### Open Questions
@@ -177,11 +182,11 @@ Plan: 2 of 3
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 3 Plan 01 execution:**
+**If continuing after Phase 3 Plan 02 execution:**
 
-- `orchestration_state.py` owns load/save/enqueue helpers for `.orchestration/rotation_state.json` and rejects malformed payloads loudly with `PublishValidationError`/`ValueError`.
-- `provider_policies.py` defines pure `ProviderPolicy` contracts plus deterministic `compute_backoff_seconds(...)` for requests, FinMind, TEJ, and yfinance.
-- Tests now exist at `tests/test_rotation_state.py` and `tests/test_provider_policies.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
+- `rotation_orchestrator.py` now exposes `build_daily_plan(...)`, `write_in_progress(...)`, `mark_symbol_completed(...)`, `finalize_success(...)`, and `finalize_failure(...)` as verifier-friendly seams.
+- `orchestration_state.py` keeps strict schema validation but now stores richer freshness metadata and supports in-memory retry-queue mutation before the final atomic save.
+- Tests now exist at `tests/test_rotation_state.py`, `tests/test_rotation_orchestrator.py`, and `tests/test_provider_policies.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
 
 **If user requests revision:**
 
