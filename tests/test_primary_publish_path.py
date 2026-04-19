@@ -649,6 +649,115 @@ def test_export_canslim_rotation_failure_queues_retry_without_overwriting_prior_
     assert observed_failures == [("1101", "2026-04-18T00:00:05Z")]
 
 
+@pytest.mark.xfail(reason="Phase 4 primary publish bundle is not implemented yet")
+def test_export_canslim_primary_bundle_contains_stock_index_json(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+    stock_index_path = docs_dir / "stock_index.json"
+    summary_path = docs_dir / "update_summary.json"
+
+    engine = _build_engine(module, tickers=("1101", "2330", "2454"))
+    _stub_engine_dependencies(monkeypatch, module, engine)
+    _stub_selector(monkeypatch, module, core_symbols=("2330",))
+
+    published = {}
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(
+        module,
+        "load_state",
+        lambda path=None: {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "gen-phase4",
+            "retry_queue": [],
+            "freshness": {
+                "2330": {
+                    "last_attempted_at": "2026-04-19T01:00:00Z",
+                    "last_succeeded_at": "2026-04-19T01:00:00Z",
+                    "last_batch_generation": "gen-phase4",
+                    "source": "core",
+                }
+            },
+            "in_progress": None,
+            "last_completed_batch": None,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "build_daily_plan",
+        lambda **kwargs: {
+            "retry_symbols": [],
+            "scheduled_batch": {
+                "batch_index": 0,
+                "rotation_generation": "gen-phase4",
+                "symbols": ["1101", "2454"],
+                "completed_symbols": [],
+                "remaining_symbols": ["1101", "2454"],
+                "is_resume": False,
+            },
+            "worklist": ["1101", "2454"],
+            "daily_budget": 2,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "write_in_progress",
+        lambda state, **kwargs: {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "gen-phase4",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": {
+                "batch_index": 0,
+                "rotation_generation": "gen-phase4",
+                "symbols": ["1101", "2454"],
+                "completed_symbols": [],
+                "remaining_symbols": ["1101", "2454"],
+            },
+            "last_completed_batch": None,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "mark_symbol_completed",
+        lambda state, **kwargs: {
+            **state,
+            "in_progress": {
+                **state["in_progress"],
+                "completed_symbols": state["in_progress"]["completed_symbols"] + [kwargs["symbol"]],
+                "remaining_symbols": [
+                    symbol for symbol in state["in_progress"]["remaining_symbols"] if symbol != kwargs["symbol"]
+                ],
+            },
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "publish_artifact_bundle",
+        lambda bundle, **kwargs: published.setdefault("bundle", bundle) or {
+            "published_targets": list(bundle),
+            "run_id": "run-phase4",
+            "snapshot_dir": str(tmp_path / "backups" / "last_good" / "run-phase4"),
+        },
+    )
+
+    engine.run()
+
+    assert set(published["bundle"]) == {str(data_path), str(stock_index_path), str(summary_path)}
+
+
 def test_export_dashboard_data_publishes_artifact_aware_bundle(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

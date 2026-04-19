@@ -125,3 +125,26 @@ def test_restore_latest_bundle_rewrites_requested_targets_atomically(
     assert read_artifact(docs_dir / "data_light.json", "data_light")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "data.json.gz", "data_gz")["run_id"] == "run-b"
     assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "run-b"
+
+
+@pytest.mark.xfail(reason="Phase 4 stock_index bundle support is not implemented yet")
+def test_publish_artifact_bundle_promotes_stock_index_with_primary_artifacts(
+    publish_paths,
+    phase4_artifact_bundle_factory,
+):
+    module = load_publish_safety()
+    docs_dir = publish_paths["docs"]
+    backup_dir = publish_paths["backup"]
+    lock_path = publish_paths["lock"]
+
+    result = module.publish_artifact_bundle(
+        phase4_artifact_bundle_factory("run-phase4", docs_dir),
+        lock_path=str(lock_path),
+        backup_dir=str(backup_dir),
+    )
+
+    assert set(result["published_targets"]) == {
+        str(docs_dir / "data.json"),
+        str(docs_dir / "stock_index.json"),
+        str(docs_dir / "update_summary.json"),
+    }

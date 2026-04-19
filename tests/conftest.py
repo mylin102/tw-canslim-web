@@ -31,6 +31,7 @@ def sample_stock_entry():
         symbol: str = "2330",
         *,
         schema_version: str = "1.0",
+        industry: str = "Semiconductor",
         mansfield_rs: float = 88.1,
         grid_strategy: dict | None = None,
     ) -> dict:
@@ -38,6 +39,7 @@ def sample_stock_entry():
             "schema_version": schema_version,
             "symbol": symbol,
             "name": f"Stock {symbol}",
+            "industry": industry,
             "canslim": {
                 "score": 95,
                 "mansfield_rs": mansfield_rs,
@@ -67,8 +69,63 @@ def stock_payload_factory(sample_stock_entry):
 
 
 @pytest.fixture
+def freshness_entry_factory():
+    def factory(
+        *,
+        last_attempted_at: str = "2026-04-19T02:00:00Z",
+        last_succeeded_at: str = "2026-04-19T02:00:00Z",
+        last_batch_generation: str = "gen-1",
+        source: str = "rotation",
+    ) -> dict:
+        return {
+            "last_attempted_at": last_attempted_at,
+            "last_succeeded_at": last_succeeded_at,
+            "last_batch_generation": last_batch_generation,
+            "source": source,
+        }
+
+    return factory
+
+
+@pytest.fixture
+def rotation_state_factory(freshness_entry_factory):
+    def factory(
+        *,
+        freshness: dict[str, dict] | None = None,
+        current_batch_index: int = 0,
+        rotation_generation: str = "gen-1",
+        retry_queue: list[dict] | None = None,
+        in_progress: dict | None = None,
+        last_completed_batch: dict | None = None,
+    ) -> dict:
+        return {
+            "schema_version": "1.0",
+            "current_batch_index": current_batch_index,
+            "rotation_generation": rotation_generation,
+            "retry_queue": list(retry_queue or []),
+            "freshness": dict(
+                freshness
+                or {
+                    "2330": freshness_entry_factory(),
+                }
+            ),
+            "in_progress": in_progress,
+            "last_completed_batch": last_completed_batch,
+        }
+
+    return factory
+
+
+@pytest.fixture
 def summary_payload_factory():
-    def factory(run_id: str) -> dict:
+    def factory(
+        run_id: str,
+        *,
+        refreshed_symbols: list[str] | None = None,
+        failed_symbols: list[str] | None = None,
+        next_rotation: dict | None = None,
+        freshness_counts: dict | None = None,
+    ) -> dict:
         return {
             "timestamp": "2026-04-18 20:00:00",
             "update_type": "bundle publish",
@@ -81,6 +138,66 @@ def summary_payload_factory():
             "data_stats": {
                 "total_stocks": 2,
                 "updated_stocks": 2,
+            },
+            "refreshed_symbols": refreshed_symbols or ["2330", "2317"],
+            "failed_symbols": failed_symbols or [],
+            "next_rotation": next_rotation or {"batch_index": 1, "symbols": ["2454", "2303"]},
+            "freshness_counts": freshness_counts or {"today": 2, "warning": 0, "stale": 0},
+        }
+
+    return factory
+
+
+@pytest.fixture
+def stock_index_entry_factory():
+    def factory(
+        symbol: str = "2330",
+        *,
+        name: str | None = None,
+        industry: str = "Semiconductor",
+        freshness: dict | None = None,
+        last_succeeded_at: str = "2026-04-19T02:00:00Z",
+        in_snapshot: bool = True,
+    ) -> dict:
+        return {
+            "symbol": symbol,
+            "name": name or f"Stock {symbol}",
+            "industry": industry,
+            "freshness": freshness
+            or {
+                "days_old": 0,
+                "level": "today",
+                "label": "🟢 今日",
+            },
+            "last_succeeded_at": last_succeeded_at,
+            "in_snapshot": in_snapshot,
+        }
+
+    return factory
+
+
+@pytest.fixture
+def stock_index_payload_factory(stock_index_entry_factory):
+    def factory(run_id: str) -> dict:
+        return {
+            "schema_version": "1.0",
+            "artifact_kind": "stock_index",
+            "run_id": run_id,
+            "generated_at": "2026-04-19T04:00:00Z",
+            "last_updated": "2026-04-19 12:00:00",
+            "stocks": {
+                "2330": stock_index_entry_factory("2330"),
+                "1101": stock_index_entry_factory(
+                    "1101",
+                    industry="Cement",
+                    freshness={
+                        "days_old": 4,
+                        "level": "stale",
+                        "label": "🔴 逾3天",
+                    },
+                    last_succeeded_at="2026-04-15T02:00:00Z",
+                    in_snapshot=False,
+                ),
             },
         }
 
@@ -112,6 +229,28 @@ def artifact_bundle_factory(stock_payload_factory, summary_payload_factory):
                 "payload": summary_payload_factory(run_id),
             },
         }
+
+    return factory
+
+
+@pytest.fixture
+def phase4_artifact_bundle_factory(stock_payload_factory, stock_index_payload_factory, summary_payload_factory):
+    def factory(run_id: str, docs_dir: Path) -> dict[str, dict]:
+        bundle = {
+            str(docs_dir / "data.json"): {
+                "artifact_kind": "data",
+                "payload": stock_payload_factory(run_id),
+            },
+            str(docs_dir / "stock_index.json"): {
+                "artifact_kind": "stock_index",
+                "payload": stock_index_payload_factory(run_id),
+            },
+            str(docs_dir / "update_summary.json"): {
+                "artifact_kind": "update_summary",
+                "payload": summary_payload_factory(run_id),
+            },
+        }
+        return bundle
 
     return factory
 
