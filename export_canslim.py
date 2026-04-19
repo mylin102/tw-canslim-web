@@ -1158,9 +1158,17 @@ class CanslimEngine:
                         score = compute_canslim_score(factors, institutional_strength=inst_strength_20d)
 
                     # Strategy Lab: Grid Strategy
-                    grid_data = None
+                    grid_data = {
+                        "volatility_daily": 0.0,
+                        "volatility_annual": 0.0,
+                        "spacing_pct": 0.0,
+                        "levels": [],
+                        "is_etf": is_etf,
+                    }
                     if (score >= 60 or is_etf) and stock_hist is not None:
-                        grid_data = calculate_volatility_grid(stock_hist, is_etf=is_etf)
+                        calculated_grid = calculate_volatility_grid(stock_hist, is_etf=is_etf)
+                        if calculated_grid is not None:
+                            grid_data = calculated_grid
 
                     stock_data = {
                         "schema_version": SCHEMA_VERSION,

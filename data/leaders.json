@@ -1,8 +1,47 @@
 {
   "schema_version": 1,
   "date": "2026-04-19",
-  "generated_at": "2026-04-19T06:40:52Z",
+  "generated_at": "2026-04-19T13:12:50Z",
   "universe": [
+    {
+      "symbol": "0050",
+      "name": "元大台灣50",
+      "rs_rating": 52,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.9,
+      "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "0056",
+      "name": "元大高股息",
+      "rs_rating": 43,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "00878",
+      "name": "國泰永續高股息",
+      "rs_rating": 42,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
     {
       "symbol": "1303",
       "name": "南亞",
@@ -10,7 +49,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 16,
+      "industry_rank": 17,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -24,7 +63,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 18,
+      "industry_rank": 14,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -78,7 +117,7 @@
       "breakout_score": 0.5,
       "volume_score": 1.0,
       "composite_score": 0.4,
-      "industry_rank": 19,
+      "industry_rank": 15,
       "tags": [
         "leader",
         "verified"
@@ -119,7 +158,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -133,7 +172,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -147,7 +186,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -161,7 +200,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -189,7 +228,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 19,
+      "industry_rank": 15,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -216,7 +255,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -244,7 +283,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -258,7 +297,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -286,7 +325,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -300,7 +339,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 19,
+      "industry_rank": 15,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -314,7 +353,7 @@
       "breakout_score": 0.5,
       "volume_score": 1.0,
       "composite_score": 0.2,
-      "industry_rank": 41,
+      "industry_rank": 999,
       "tags": [
         "leader",
         "verified"
@@ -327,7 +366,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.3,
-      "industry_rank": 11,
+      "industry_rank": 13,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -341,7 +380,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.3,
-      "industry_rank": 11,
+      "industry_rank": 13,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -355,7 +394,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -383,7 +422,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 15,
+      "industry_rank": 11,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -397,7 +436,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -411,7 +450,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -425,7 +464,7 @@
       "breakout_score": 0.5,
       "volume_score": 1.0,
       "composite_score": 0.4,
-      "industry_rank": 15,
+      "industry_rank": 11,
       "tags": [
         "leader",
         "verified"
@@ -504,7 +543,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 18,
+      "industry_rank": 14,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -518,7 +557,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -532,7 +571,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.3,
-      "industry_rank": 15,
+      "industry_rank": 11,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -572,7 +611,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.3,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -586,7 +625,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -613,7 +652,7 @@
       "breakout_score": 0.5,
       "volume_score": 1.0,
       "composite_score": 0.4,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "verified"
@@ -626,11 +665,23 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
         "verified"
+      ]
+    },
+    {
+      "symbol": "3565",
+      "name": "山太士",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.1,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
       ]
     },
     {
@@ -640,7 +691,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -682,7 +733,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -696,7 +747,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -710,7 +761,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -724,7 +775,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -764,7 +815,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 18,
+      "industry_rank": 14,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -884,7 +935,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 15,
+      "industry_rank": 11,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -911,7 +962,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 36,
+      "industry_rank": 27,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -951,7 +1002,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -992,7 +1043,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 6,
+      "industry_rank": 7,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1045,7 +1096,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 4,
+      "industry_rank": 9,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1072,7 +1123,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1086,7 +1137,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1113,7 +1164,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1127,7 +1178,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1174,13 +1225,25 @@
       ]
     },
     {
+      "symbol": "6770",
+      "name": "力積電",
+      "rs_rating": 63,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.4,
+      "industry_rank": 5,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
       "symbol": "8021",
       "name": "尖點",
       "rs_rating": 99,
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
@@ -1221,7 +1284,7 @@
       "breakout_score": 1.0,
       "volume_score": 1.0,
       "composite_score": 0.5,
-      "industry_rank": 8,
+      "industry_rank": 5,
       "tags": [
         "leader",
         "breakout_candidate",
