@@ -61,3 +61,27 @@ def test_stock_index_includes_non_snapshot_symbols(rotation_state_factory):
         "last_succeeded_at": "2026-04-16T01:00:00Z",
         "in_snapshot": False,
     }
+
+
+def test_stock_index_falls_back_to_baseline_last_succeeded_at_when_rotation_state_is_blank(rotation_state_factory):
+    module = import_module("publish_projection")
+
+    payload = module.build_stock_index_payload(
+        run_id="run-phase4",
+        generated_at="2026-04-19T12:00:00Z",
+        snapshot_stocks={},
+        baseline_stocks={
+            "1101": {
+                "symbol": "1101",
+                "name": "台泥",
+                "industry": "Cement",
+                "last_succeeded_at": "2026-04-18 21:47:49",
+            },
+        },
+        ticker_info={"1101": {"name": "台泥"}},
+        freshness_state=rotation_state_factory(freshness={"1101": {"last_succeeded_at": ""}}),
+        as_of="2026-04-19T12:00:00Z",
+    )
+
+    assert payload["stocks"]["1101"]["last_succeeded_at"] == "2026-04-18 21:47:49"
+    assert payload["stocks"]["1101"]["freshness"]["level"] == "warning"

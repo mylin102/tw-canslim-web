@@ -323,6 +323,53 @@
                                         </div>
                                     </div>
 
+                                    <!-- Recent Flow Histogram -->
+                                    <div v-if="currentStock.institutional && currentStock.institutional.length > 0">
+                                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">近期三大法人淨流向直方圖 (張)</h4>
+                                        <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm space-y-3">
+                                            <div v-for="day in recentInstitutionalDays(currentStock)" :key="`bar-${day.date}`" class="space-y-2">
+                                                <div class="flex items-center justify-between text-[11px] font-black text-slate-400">
+                                                    <span>{{ day.date.substring(4, 8) }}</span>
+                                                    <span class="font-mono text-slate-500">
+                                                        淨額 {{ (((day.foreign_net ?? 0) + (day.trust_net ?? 0) + (day.dealer_net ?? 0))).toLocaleString() }}
+                                                    </span>
+                                                </div>
+                                                <div class="space-y-1.5">
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="w-10 text-[10px] font-black text-emerald-600">外資</span>
+                                                        <div class="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                                                            <div :class="['h-full rounded-full', institutionalBarClass(day.foreign_net, 'bg-emerald-500', 'bg-rose-400')]"
+                                                                 :style="{ width: institutionalBarWidth(day.foreign_net, currentStock) }"></div>
+                                                        </div>
+                                                        <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.foreign_net > 0 ? 'text-emerald-500' : day.foreign_net < 0 ? 'text-rose-500' : 'text-slate-300']">
+                                                            {{ (day.foreign_net ?? 0).toLocaleString() }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="w-10 text-[10px] font-black text-indigo-600">投信</span>
+                                                        <div class="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                                                            <div :class="['h-full rounded-full', institutionalBarClass(day.trust_net, 'bg-indigo-500', 'bg-amber-400')]"
+                                                                 :style="{ width: institutionalBarWidth(day.trust_net, currentStock) }"></div>
+                                                        </div>
+                                                        <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.trust_net > 0 ? 'text-indigo-500' : day.trust_net < 0 ? 'text-amber-500' : 'text-slate-300']">
+                                                            {{ (day.trust_net ?? 0).toLocaleString() }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="w-10 text-[10px] font-black text-sky-600">自營</span>
+                                                        <div class="flex-1 h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                                                            <div :class="['h-full rounded-full', institutionalBarClass(day.dealer_net, 'bg-sky-500', 'bg-fuchsia-400')]"
+                                                                 :style="{ width: institutionalBarWidth(day.dealer_net, currentStock) }"></div>
+                                                        </div>
+                                                        <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.dealer_net > 0 ? 'text-sky-500' : day.dealer_net < 0 ? 'text-fuchsia-500' : 'text-slate-300']">
+                                                            {{ (day.dealer_net ?? 0).toLocaleString() }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Recent Flow Table -->
                                     <div v-if="currentStock.institutional && currentStock.institutional.length > 0">
                                         <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">近期三大法人買賣超 (張)</h4>

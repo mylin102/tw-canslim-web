@@ -74,7 +74,12 @@ def build_data_projection(
         merged_entry["name"] = merged_entry.get("name", symbol)
         merged_entry["industry"] = merged_entry.get("industry", "")
 
-        last_succeeded_at = str(freshness_by_symbol.get(symbol, {}).get("last_succeeded_at", ""))
+        last_succeeded_at = _effective_last_succeeded_at(
+            symbol=symbol,
+            freshness_by_symbol=freshness_by_symbol,
+            snapshot_entry=snapshot_entry,
+            baseline_entry=base_entry,
+        )
         merged_entry["freshness"] = classify_freshness(last_succeeded_at=last_succeeded_at, as_of=as_of)
         merged_entry["last_succeeded_at"] = last_succeeded_at
         payload["stocks"][symbol] = merged_entry
@@ -110,7 +115,12 @@ def build_stock_index_payload(
         snapshot_entry = snapshot_stocks.get(symbol, {})
         baseline_entry = baseline_stocks.get(symbol, {})
         ticker_entry = ticker_info.get(symbol, {})
-        last_succeeded_at = str(freshness_by_symbol.get(symbol, {}).get("last_succeeded_at", ""))
+        last_succeeded_at = _effective_last_succeeded_at(
+            symbol=symbol,
+            freshness_by_symbol=freshness_by_symbol,
+            snapshot_entry=snapshot_entry,
+            baseline_entry=baseline_entry,
+        )
 
         payload["stocks"][symbol] = {
             "symbol": symbol,
@@ -333,6 +343,25 @@ def _deep_merge(base_value: Any, overlay_value: Any) -> Any:
     if overlay_value in (None, ""):
         return deepcopy(base_value)
     return deepcopy(overlay_value)
+
+
+def _effective_last_succeeded_at(
+    *,
+    symbol: str,
+    freshness_by_symbol: dict[str, Any],
+    snapshot_entry: dict[str, Any],
+    baseline_entry: dict[str, Any],
+) -> str:
+    state_entry = dict(freshness_by_symbol.get(symbol, {}))
+    candidate = str(state_entry.get("last_succeeded_at", "")).strip()
+    if candidate:
+        return candidate
+
+    for entry in (snapshot_entry, baseline_entry):
+        candidate = str(entry.get("last_succeeded_at", "")).strip()
+        if candidate:
+            return candidate
+    return ""
 
 
 def _dedupe_preserving_order(values) -> list[str]:

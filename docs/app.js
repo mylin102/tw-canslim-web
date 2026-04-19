@@ -91,8 +91,6 @@ const app = createApp({
             return { label: '💤 盤整中', class: 'bg-slate-100 text-slate-600 border-slate-200' };
         };
 
-        let chartInstance = null;
-
         const fetchData = async () => {
             isLoading.value = true;
             loadingProgress.value = 10;
@@ -217,6 +215,14 @@ const app = createApp({
         });
 
         const getFreshnessBadge = (freshness) => {
+            if (freshness && typeof freshness === 'object') {
+                const level = freshness.level || 'unknown';
+                const label = freshness.label || '未知';
+                if (level === 'today') return { label, classes: 'bg-green-100 text-green-700 border-green-200' };
+                if (level === 'warning') return { label, classes: 'bg-amber-100 text-amber-700 border-amber-200' };
+                if (level === 'stale') return { label, classes: 'bg-rose-100 text-rose-700 border-rose-200' };
+                return { label, classes: 'bg-slate-100 text-slate-500 border-slate-200' };
+            }
             if (!freshness) return { label: '未知', classes: 'bg-slate-100 text-slate-500 border-slate-200' };
             if (freshness === 'realtime') return { label: '即時', classes: 'bg-green-100 text-green-700 border-green-200' };
             if (freshness === 'daily') return { label: '今日', classes: 'bg-blue-100 text-blue-700 border-blue-200' };
@@ -226,6 +232,33 @@ const app = createApp({
 
         const getStockFreshness = (stock) => {
             return stock.freshness || 'daily';
+        };
+
+        const recentInstitutionalDays = (stock, count = 5) => {
+            if (!stock || !Array.isArray(stock.institutional)) return [];
+            return stock.institutional.slice(0, count);
+        };
+
+        const institutionalScale = (stock, count = 5) => {
+            const days = recentInstitutionalDays(stock, count);
+            const values = days.flatMap(day => [
+                Math.abs(day.foreign_net || 0),
+                Math.abs(day.trust_net || 0),
+                Math.abs(day.dealer_net || 0),
+            ]);
+            return Math.max(...values, 1);
+        };
+
+        const institutionalBarWidth = (value, stock, count = 5) => {
+            if (!value) return '0%';
+            const scale = institutionalScale(stock, count);
+            return `${Math.max(Math.round((Math.abs(value || 0) / scale) * 100), 2)}%`;
+        };
+
+        const institutionalBarClass = (value, positiveClass, negativeClass) => {
+            if (value > 0) return positiveClass;
+            if (value < 0) return negativeClass;
+            return 'bg-slate-200';
         };
 
         onMounted(() => {
@@ -238,7 +271,7 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             canslimDefinitions, getScoreCategory, getFreshnessBadge, getStockFreshness,
-            availableIndustries
+            availableIndustries, recentInstitutionalDays, institutionalBarWidth, institutionalBarClass
         };
     }
 });

@@ -60,3 +60,38 @@ def test_merge_snapshot_keeps_baseline_floor_and_prefers_refreshed_snapshot_reco
     assert payload["stocks"]["2330"]["canslim"]["mansfield_rs"] == 95.0
     assert payload["stocks"]["1101"]["canslim"]["score"] == 61
     assert payload["stocks"]["1101"]["freshness"]["label"] == "🔴 逾3天"
+
+
+def test_merge_projection_falls_back_to_baseline_last_succeeded_at_when_rotation_state_is_missing():
+    module = import_module("publish_projection")
+
+    payload = module.build_data_projection(
+        run_id="run-phase4",
+        generated_at="2026-04-19T12:00:00Z",
+        snapshot_stocks={
+            "1101": {
+                "symbol": "1101",
+                "name": "台泥",
+                "industry": "Cement",
+                "canslim": {"score": 61, "mansfield_rs": 22.0, "grid_strategy": {"mode": "snapshot"}},
+                "institutional": [],
+                "last_succeeded_at": "",
+            }
+        },
+        baseline_stocks={
+            "1101": {
+                "symbol": "1101",
+                "name": "台泥",
+                "industry": "Cement",
+                "canslim": {"score": 61, "mansfield_rs": 22.0, "grid_strategy": {"mode": "baseline"}},
+                "institutional": [],
+                "last_succeeded_at": "2026-04-18 21:47:49",
+            },
+        },
+        freshness_state={"freshness": {}},
+        snapshot_symbols={"1101"},
+        as_of="2026-04-19T12:00:00Z",
+    )
+
+    assert payload["stocks"]["1101"]["last_succeeded_at"] == "2026-04-18 21:47:49"
+    assert payload["stocks"]["1101"]["freshness"]["level"] == "warning"
