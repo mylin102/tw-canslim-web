@@ -249,16 +249,43 @@ const app = createApp({
             return Math.max(...values, 1);
         };
 
-        const institutionalBarWidth = (value, stock, count = 5) => {
-            if (!value) return '0%';
+        const institutionalBarStyle = (value, stock, count = 5) => {
+            const normalized = safeNumber(value);
             const scale = institutionalScale(stock, count);
-            return `${Math.max(Math.round((Math.abs(value || 0) / scale) * 100), 2)}%`;
+            const height = normalized === 0
+                ? 2
+                : Math.max(Math.round((Math.abs(normalized) / scale) * 44), 4);
+
+            if (normalized > 0) {
+                return {
+                    height: `${height}%`,
+                    bottom: '50%',
+                };
+            }
+
+            if (normalized < 0) {
+                return {
+                    height: `${height}%`,
+                    top: '50%',
+                };
+            }
+
+            return {
+                height: '2px',
+                bottom: 'calc(50% - 1px)',
+            };
         };
 
         const institutionalBarClass = (value, positiveClass, negativeClass) => {
             if (value > 0) return positiveClass;
             if (value < 0) return negativeClass;
-            return 'bg-slate-200';
+            return 'bg-slate-300';
+        };
+
+        const institutionalValueClass = (value, positiveClass, negativeClass) => {
+            if (value > 0) return positiveClass;
+            if (value < 0) return negativeClass;
+            return 'text-slate-300';
         };
 
         const safeNumber = (value) => {
@@ -285,8 +312,8 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             canslimDefinitions, getScoreCategory, getFreshnessBadge, getStockFreshness,
-            availableIndustries, recentInstitutionalDays, institutionalBarWidth, institutionalBarClass,
-            formatNumber, totalInstitutionalNet
+            availableIndustries, recentInstitutionalDays, institutionalBarStyle, institutionalBarClass,
+            institutionalValueClass, formatNumber, totalInstitutionalNet
         };
     }
 });
