@@ -187,3 +187,13 @@ def selector_artifact_factory(tmp_path: Path):
         }
 
     return factory
+
+
+@pytest.fixture
+def rotation_state_paths(tmp_path: Path) -> dict[str, Path]:
+    root = tmp_path / ".orchestration"
+    root.mkdir(parents=True, exist_ok=True)
+    return {
+        "root": root,
+        "state": root / "rotation_state.json",
+    }
