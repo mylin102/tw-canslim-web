@@ -9,6 +9,8 @@ import pandas as pd
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
 
+from provider_policies import ProviderRetryExhaustedError, call_with_provider_policy, get_provider_policy
+
 try:
     from FinMind.data import DataLoader
 except ImportError:  # pragma: no cover - exercised via environments without FinMind
@@ -23,6 +25,11 @@ class FinMindProcessor:
     def __init__(self):
         self.available = DataLoader is not None
         self.dl = None
+        self.provider_runtime_state = {
+            "retry_attempts": 0,
+            "retry_failures": 0,
+            "provider_wait_seconds": 0.0,
+        }
         self.investor_name_map = {
             'Foreign_Investor': '外資',
             'Investment_Trust': '投信',
@@ -68,22 +75,35 @@ class FinMindProcessor:
         if not self.available or self.dl is None:
             logger.warning("Skipping FinMind fetch because FinMind is unavailable in this environment")
             return None
+        policy = get_provider_policy("finmind")
         try:
             logger.info(f"Fetching institutional data for {stock_id} ({start_date} to {end_date})")
-            
-            df = self.dl.taiwan_stock_institutional_investors(
-                stock_id=stock_id,
-                start_date=start_date,
-                end_date=end_date
+            logger.debug(
+                "FinMind provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
+                policy.min_interval_seconds,
+                policy.quota_window_seconds,
+                policy.max_requests_per_window,
             )
-            
+
+            df = call_with_provider_policy(
+                "finmind",
+                lambda: self.dl.taiwan_stock_institutional_investors(
+                    stock_id=stock_id,
+                    start_date=start_date,
+                    end_date=end_date,
+                ),
+                runtime_state=self.provider_runtime_state,
+            )
+
             if df is None or len(df) == 0:
                 logger.warning(f"No institutional data for {stock_id}")
                 return None
             
             logger.info(f"Fetched {len(df)} records for {stock_id}")
             return df
-            
+        except ProviderRetryExhaustedError as exc:
+            logger.error(f"FinMind retries exhausted for {stock_id}: {exc}")
+            return None
         except Exception as e:
             logger.error(f"Failed to fetch institutional data for {stock_id}: {e}")
             return None

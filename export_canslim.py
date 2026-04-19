@@ -5,12 +5,15 @@ import logging
 import requests
 import pandas as pd
 import yfinance as yf
+from io import StringIO
 from datetime import UTC, datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 from core_selection import build_core_universe
+from provider_policies import ProviderRetryExhaustedError, call_with_provider_policy, get_provider_policy
+from yfinance_provider import get_price_history_with_policy
 
 from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
 from publish_safety import (
@@ -59,14 +62,45 @@ KNOWN_STOCK_NAMES = {
     "6770": "力智",
 }
 
-def get_all_tw_tickers():
+def get_all_tw_tickers(*, runtime_state: dict | None = None):
     """Fetch both TWSE and TPEx tickers with correct metadata."""
     logger.info("Fetching full TWSE and TPEx ticker lists...")
     ticker_map = {}
+    requests_policy = get_provider_policy("requests")
+
+    def fetch_csv(url: str) -> Optional[pd.DataFrame]:
+        logger.debug(
+            "Requests provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
+            requests_policy.min_interval_seconds,
+            requests_policy.quota_window_seconds,
+            requests_policy.max_requests_per_window,
+        )
+        try:
+            response = call_with_provider_policy(
+                "requests",
+                lambda: requests.get(url, timeout=15),
+                runtime_state=runtime_state,
+                should_retry=lambda candidate: getattr(candidate, "status_code", None) in requests_policy.retryable_statuses,
+            )
+        except ProviderRetryExhaustedError as exc:
+            logger.error(f"Failed to fetch ticker CSV {url}: {exc}")
+            return None
+        except requests.RequestException as exc:
+            logger.error(f"Failed to fetch ticker CSV {url}: {exc}")
+            return None
+
+        try:
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            logger.error(f"Ticker CSV response failed for {url}: {exc}")
+            return None
+        return pd.read_csv(StringIO(response.text), encoding="utf-8")
     
     # 1. Listed (上市)
     try:
-        df_l = pd.read_csv(TWSE_TICKER_URL, encoding='utf-8')
+        df_l = fetch_csv(TWSE_TICKER_URL)
+        if df_l is None:
+            raise ValueError("TWSE ticker response unavailable")
         for _, row in df_l.iterrows():
             tid = str(row['公司代號']).strip()
             if len(tid) == 4:
@@ -77,7 +111,9 @@ def get_all_tw_tickers():
     
     # 2. OTC (上櫃)
     try:
-        df_o = pd.read_csv(TPEx_TICKER_URL, encoding='utf-8')
+        df_o = fetch_csv(TPEx_TICKER_URL)
+        if df_o is None:
+            raise ValueError("TPEx ticker response unavailable")
         for _, row in df_o.iterrows():
             tid = str(row['公司代號']).strip()
             if len(tid) == 4:
@@ -112,8 +148,15 @@ def get_all_tw_tickers():
 
 class CanslimEngine:
     def __init__(self):
+        self.failure_stats = {
+            "retry_attempts": 0,
+            "retry_failures": 0,
+            "resume_rejected": 0,
+            "stock_failures": 0,
+            "provider_wait_seconds": 0.0,
+        }
         self.output_data = self._build_output_payload()
-        self.ticker_info = get_all_tw_tickers()
+        self.ticker_info = get_all_tw_tickers(runtime_state=self.failure_stats)
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
         self.tej_processor = TEJProcessor()
@@ -122,12 +165,6 @@ class CanslimEngine:
         self.fund_holdings = None
         self.industry_data = None
         self.industry_strength = None
-        self.failure_stats = {
-            "retry_attempts": 0,
-            "retry_failures": 0,
-            "resume_rejected": 0,
-            "stock_failures": 0,
-        }
         self.failure_details = []
         self._load_excel_data()
 
@@ -159,6 +196,7 @@ class CanslimEngine:
                 "retry_failures": 0,
                 "resume_rejected": 0,
                 "stock_failures": 0,
+                "provider_wait_seconds": 0.0,
             }
         if not hasattr(self, "failure_details") or not isinstance(self.failure_details, list):
             self.failure_details = []
@@ -171,6 +209,11 @@ class CanslimEngine:
         self.output_data.setdefault("generated_at", self._utc_timestamp())
         self.output_data.setdefault("last_updated", "")
         self.output_data.setdefault("stocks", {})
+        self.failure_stats.setdefault("provider_wait_seconds", 0.0)
+        if hasattr(self, "finmind_processor") and self.finmind_processor is not None:
+            self.finmind_processor.provider_runtime_state = self.failure_stats
+        if hasattr(self, "tej_processor") and self.tej_processor is not None:
+            self.tej_processor.provider_runtime_state = self.failure_stats
 
     def _record_stock_failure(self, ticker: str, message: str, exc: Exception | None = None) -> None:
         """Track a stock-level processing failure and log it explicitly."""
@@ -195,12 +238,19 @@ class CanslimEngine:
             "run_id": self.output_data["run_id"],
             "generated_at": generated_at,
             "status": status,
-            "stats": dict(self.failure_stats),
+            "stats": {
+                "retry_attempts": self.failure_stats.get("retry_attempts", 0),
+                "retry_failures": self.failure_stats.get("retry_failures", 0),
+                "resume_rejected": self.failure_stats.get("resume_rejected", 0),
+                "stock_failures": self.failure_stats.get("stock_failures", 0),
+                "provider_wait_seconds": self.failure_stats.get("provider_wait_seconds", 0.0),
+            },
             "timestamp": generated_at,
             "update_type": "canslim_export",
             "description": "Primary CANSLIM export publish summary",
             "api_status": {
                 "retry_failures": self.failure_stats["retry_failures"],
+                "provider_wait_seconds": self.failure_stats.get("provider_wait_seconds", 0.0),
             },
             "data_stats": {
                 "total_stocks": len(self.output_data["stocks"]),
@@ -314,23 +364,36 @@ class CanslimEngine:
             return 0
 
     def _fetch_with_retry(self, url: str, params: Dict = None, max_retries: int = 3) -> Optional[requests.Response]:
-        """Fetch URL with retry logic and exponential backoff."""
+        """Fetch URL through the shared requests provider policy contract."""
         self._ensure_runtime_state()
-        for attempt in range(max_retries):
-            try:
-                response = requests.get(url, params=params, timeout=15)
-                response.raise_for_status()
-                return response
-            except requests.RequestException as e:
-                self.failure_stats["retry_attempts"] += 1
-                logger.warning(f"Attempt {attempt + 1} failed for {url}: {e}")
-                if attempt < max_retries - 1:
-                    wait_time = 2 ** attempt
-                    time.sleep(wait_time)
-                else:
-                    self.failure_stats["retry_failures"] += 1
-                    logger.error(f"All attempts failed for {url}: {e}")
-                    return None
+        policy = get_provider_policy("requests")
+        logger.debug(
+            "Requests provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
+            policy.min_interval_seconds,
+            policy.quota_window_seconds,
+            policy.max_requests_per_window,
+        )
+        try:
+            response = call_with_provider_policy(
+                "requests",
+                lambda: requests.get(url, params=params, timeout=15),
+                runtime_state=self.failure_stats,
+                should_retry=lambda candidate: getattr(candidate, "status_code", None) in policy.retryable_statuses,
+                max_attempts=max_retries,
+            )
+        except ProviderRetryExhaustedError as exc:
+            logger.error(f"All attempts failed for {url}: {exc}")
+            return None
+        except requests.RequestException as exc:
+            logger.error(f"Non-retryable request failure for {url}: {exc}")
+            return None
+
+        try:
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            logger.error(f"Request failed for {url}: {exc}")
+            return None
+        return response
 
     def fetch_twse_inst(self, date_str: str) -> Dict:
         """Fetch TWSE (Listed) Institutional Trades."""
@@ -394,12 +457,23 @@ class CanslimEngine:
 
     def fetch_financial_data(self, ticker: str) -> Optional[Dict]:
         """Fetch financial data from TWSE MOPS API."""
+        self._ensure_runtime_state()
+        policy = get_provider_policy("yfinance")
         try:
             # Use yfinance for basic financial data
             suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
             full_ticker = f"{ticker}{suffix}"
-            stock = yf.Ticker(full_ticker)
-            info = stock.info
+            logger.debug(
+                "yfinance provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
+                policy.min_interval_seconds,
+                policy.quota_window_seconds,
+                policy.max_requests_per_window,
+            )
+            info = call_with_provider_policy(
+                "yfinance",
+                lambda: yf.Ticker(full_ticker).info,
+                runtime_state=self.failure_stats,
+            )
             
             return {
                 "eps": info.get("trailingEps"),
@@ -417,6 +491,8 @@ class CanslimEngine:
 
     def fetch_quarterly_eps(self, ticker: str) -> Optional[List[Dict]]:
         """Fetch quarterly EPS data from TWSE MOPS API."""
+        self._ensure_runtime_state()
+        policy = get_provider_policy("requests")
         try:
             # Use TWSE historical EPS API
             url = f"https://mops.twse.com.tw/mops/web/ajax_t163sb04"
@@ -428,7 +504,12 @@ class CanslimEngine:
                 "companyid": ticker,
             }
             
-            response = requests.post(url, data=params, timeout=10)
+            response = call_with_provider_policy(
+                "requests",
+                lambda: requests.post(url, data=params, timeout=10),
+                runtime_state=self.failure_stats,
+                should_retry=lambda candidate: getattr(candidate, "status_code", None) in policy.retryable_statuses,
+            )
             if response.status_code == 200:
                 # Parse HTML table response
                 from bs4 import BeautifulSoup
@@ -497,22 +578,23 @@ class CanslimEngine:
     def get_market_return_6m(self) -> Optional[float]:
         """Get TAIEX 6-month return using yfinance."""
         try:
-            twii = yf.Ticker(TAIEX_SYMBOL)
             end_date = datetime.now()
             start_date = end_date - timedelta(days=RS_LOOKBACK_DAYS + 30)  # Buffer
-            
-            hist = twii.history(
+
+            hist = get_price_history_with_policy(
+                TAIEX_SYMBOL,
                 start=start_date.strftime('%Y-%m-%d'),
-                end=end_date.strftime('%Y-%m-%d')
+                end=end_date.strftime('%Y-%m-%d'),
+                runtime_state=self.failure_stats,
             )
-            
+
             if hist is None or len(hist) < 30:
                 logger.warning(f"Insufficient TAIEX data ({len(hist) if hist is not None else 0} rows)")
                 return None
             
             # Get prices from ~180 trading days ago and latest
-            start_price = hist['Close'].iloc[0]
-            end_price = hist['Close'].iloc[-1]
+            start_price = hist.iloc[0]
+            end_price = hist.iloc[-1]
             
             market_return = (end_price - start_price) / start_price
             logger.info(f"TAIEX 6mo return: {market_return*100:.2f}% ({start_price:.0f} → {end_price:.0f})")
@@ -619,6 +701,7 @@ class CanslimEngine:
             try:
                 # TEJ index doesn't need ^
                 tej_sym = ticker.replace("^", "")
+                self.tej_processor.provider_runtime_state = self.failure_stats
                 df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500)
                 if df_tej is not None and not df_tej.empty:
                     return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
@@ -626,25 +709,21 @@ class CanslimEngine:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
         # 2. Fallback to yfinance
-        try:
-            if ticker == "TWII" or ticker == "^TWII":
-                yf_ticker = "^TWII"
-            elif "." in ticker:
-                yf_ticker = ticker
-            else:
-                # Add suffix from metadata or default to .TW
-                suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
-                yf_ticker = f"{ticker}{suffix}"
-            
-            stock = yf.Ticker(yf_ticker)
-            # Use auto_adjust=True to handle splits/dividends correctly
-            hist = stock.history(period=period, auto_adjust=True)
-            if hist is not None and not hist.empty:
-                return hist['Close']
-            return None
-        except Exception as e:
-            logger.debug(f"yfinance history failed for {ticker}: {e}")
-            return None
+        if ticker == "TWII" or ticker == "^TWII":
+            yf_ticker = "^TWII"
+        elif "." in ticker:
+            yf_ticker = ticker
+        else:
+            # Add suffix from metadata or default to .TW
+            suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
+            yf_ticker = f"{ticker}{suffix}"
+
+        return get_price_history_with_policy(
+            yf_ticker,
+            period=period,
+            auto_adjust=True,
+            runtime_state=self.failure_stats,
+        )
 
     def run(self):
         self._ensure_runtime_state()

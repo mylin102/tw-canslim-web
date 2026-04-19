@@ -9,6 +9,8 @@ import pandas as pd
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
 
+from provider_policies import ProviderRetryExhaustedError, call_with_provider_policy, get_provider_policy
+
 try:
     import tejapi
 except ImportError:  # pragma: no cover - exercised via environments without tejapi
@@ -33,6 +35,11 @@ class TEJProcessor:
     """Process TEJ API data for CANSLIM engine."""
     
     def __init__(self, api_key: str = None):
+        self.provider_runtime_state = {
+            "retry_attempts": 0,
+            "retry_failures": 0,
+            "provider_wait_seconds": 0.0,
+        }
         if tejapi is None:
             logger.warning("tejapi package is not installed")
             self.api_key = None
@@ -61,6 +68,27 @@ class TEJProcessor:
         self.initialized = True
         logger.info("TEJ API initialized")
 
+    def _tej_get_with_policy(self, table: str, **kwargs) -> Optional[pd.DataFrame]:
+        """Route all TEJ table fetches through the shared provider policy contract."""
+        if not self.initialized or tejapi is None:
+            return None
+        policy = get_provider_policy("tej")
+        logger.debug(
+            "TEJ provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
+            policy.min_interval_seconds,
+            policy.quota_window_seconds,
+            policy.max_requests_per_window,
+        )
+        try:
+            return call_with_provider_policy(
+                "tej",
+                lambda: tejapi.get(table, **kwargs),
+                runtime_state=self.provider_runtime_state,
+            )
+        except ProviderRetryExhaustedError as exc:
+            logger.error(f"TEJ retries exhausted for {table}: {exc}")
+            return None
+
     def get_daily_prices(self, coid: str, 
                          start_date: str = None, 
                          end_date: str = None,
@@ -81,11 +109,9 @@ class TEJProcessor:
                 params['mdate']['lte'] = end_date
             
             # Try TRAIL first (common for trial keys)
-            try:
-                data = tejapi.get('TRAIL/TAPRCD', **params)
-            except:
-                # Fallback to standard TWN table
-                data = tejapi.get('TWN/APRCD', **params)
+            data = self._tej_get_with_policy('TRAIL/TAPRCD', **params)
+            if data is None or len(data) == 0:
+                data = self._tej_get_with_policy('TWN/APRCD', **params)
 
             if data is None or len(data) == 0:
                 return None
@@ -146,7 +172,7 @@ class TEJProcessor:
         try:
             # TWN tables usually have coid, mdate, and acc_code/val patterns
             # Or they might be pivoted. For these specific tables, they are usually in 'acc_code' format
-            data = tejapi.get(table, coid=[coid], paginate=True)
+            data = self._tej_get_with_policy(table, coid=[coid], paginate=True)
             if data is None or len(data) == 0:
                 return None
             
@@ -166,7 +192,7 @@ class TEJProcessor:
             return None
         
         try:
-            data = tejapi.get('TRAIL/AIND', coid=[coid], paginate=True)
+            data = self._tej_get_with_policy('TRAIL/AIND', coid=[coid], paginate=True)
             if data is None or len(data) == 0:
                 return None
             
@@ -205,7 +231,7 @@ class TEJProcessor:
             if start_date and end_date:
                 params['mdate'] = {'gte': start_date, 'lte': end_date}
             
-            data = tejapi.get('TRAIL/TASALE', **params)
+            data = self._tej_get_with_policy('TRAIL/TASALE', **params)
             if data is None or len(data) == 0:
                 return None
             
@@ -235,7 +261,7 @@ class TEJProcessor:
             if start_date and end_date:
                 params['mdate'] = {'gte': start_date, 'lte': end_date}
             
-            data = tejapi.get('TRAIL/TAMT', **params)
+            data = self._tej_get_with_policy('TRAIL/TAMT', **params)
             if data is None or len(data) == 0:
                 return None
             
@@ -258,11 +284,13 @@ class TEJProcessor:
             # We need at least 'count' unique dates
             # Fetch last 3 years to be safe
             start_date = (datetime.now() - timedelta(days=365*3)).strftime('%Y-%m-%d')
-            data = tejapi.get('TRAIL/TAIM1AQ', 
-                              coid=[coid], 
-                              acc_code=list(TEJ_ACC_CODE.values()),
-                              mdate={'gte': start_date},
-                              paginate=True)
+            data = self._tej_get_with_policy(
+                'TRAIL/TAIM1AQ',
+                coid=[coid],
+                acc_code=list(TEJ_ACC_CODE.values()),
+                mdate={'gte': start_date},
+                paginate=True,
+            )
             
             if data is None or len(data) == 0:
                 return None
@@ -464,7 +492,7 @@ class TEJProcessor:
         # Fetch company info in bulk
         if self.initialized:
             try:
-                data = tejapi.get('TRAIL/AIND', coid=coids, paginate=True)
+                data = self._tej_get_with_policy('TRAIL/AIND', coid=coids, paginate=True)
                 if data is not None and len(data) > 0:
                     for _, row in data.iterrows():
                         coid = row.get('coid')
