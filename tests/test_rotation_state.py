@@ -59,7 +59,9 @@ def test_save_rotation_state_writes_atomically_and_preserves_fields(
         ],
         "freshness": {
             "2330": {
-                "last_success_at": "2026-04-19T00:00:00Z",
+                "last_attempted_at": "2026-04-19T00:00:00Z",
+                "last_succeeded_at": "2026-04-19T00:00:00Z",
+                "last_batch_generation": "gen-2026-04-19",
                 "source": "rotation",
             }
         },
