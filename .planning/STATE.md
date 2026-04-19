@@ -2,21 +2,21 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-last_updated: "2026-04-19T05:46:14.206Z"
+status: complete
+last_updated: "2026-04-19T06:09:36.968Z"
 progress:
   total_phases: 4
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 12
-  completed_plans: 11
-  percent: 92
+  completed_plans: 12
+  percent: 100
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 13:46 UTC+8
+**Last Updated:** 2026-04-19 14:09 UTC+8
 
 ---
 
@@ -32,14 +32,14 @@ progress:
 
 ## Current Position
 
-Phase: 04 (publishing-freshness-awareness) — EXECUTING
+Phase: 04 (publishing-freshness-awareness) — COMPLETE
 Plan: 3 of 3
 **Phase**: 4 - Publishing & Freshness Awareness  
-**Plan**: 2 of 3 complete  
-**Status**: In progress  
-**Progress**: `[███████░░░]` 67%
+**Plan**: 3 of 3 complete  
+**Status**: Complete  
+**Progress**: `[██████████]` 100%
 
-**Current Work**: Phase 4 Plan 02 is complete — the dashboard now consumes `stock_index.json` for full-universe search, shows freshness badges across key surfaces, and gives non-snapshot stocks an explicit limited-detail state.
+**Current Work**: Phase 4 is complete — scheduled and on-demand publish paths now keep `data.json`, `stock_index.json`, and `update_summary.json` synchronized through the shared publish projection bundle.
 
 **Blockers**: None
 
@@ -49,16 +49,16 @@ Plan: 3 of 3
 
 ### Completion Stats
 
-- **Phases completed**: 3/4
-- **Plans completed**: 11/12
+- **Phases completed**: 4/4
+- **Plans completed**: 12/12
 - **Requirements validated**: 13/13
-- **Current phase progress**: 67%
+- **Current phase progress**: 100%
 
 ### Velocity
 
-- **Plans per day**: 11/day
+- **Plans per day**: 12/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: Phase 4 underway after Plan 02 on 2026-04-19
+- **Estimated phase completion**: Phase 4 completed on 2026-04-19
 
 ### Quality
 
@@ -135,6 +135,11 @@ Plan: 3 of 3
 - [Phase 04]: Freshness badges style by freshness.level but render the publish-layer label instead of recalculating age in the browser.
 - [Phase 04]: Non-snapshot stocks keep identity and freshness visible while all CANSLIM/detail sections are replaced with an explicit limited-detail notice.
 
+| Phase 04 P03 | 7 min | 2 tasks | 5 files |
+
+- [Phase 04]: Single-stock publishing now reuses build_publish_projection_bundle so data.json, stock_index.json, and update_summary.json stay synchronized.
+- [Phase 04]: Workflow regressions use runtime xfail gates so Task 1 could land safely before Task 2 removed the legacy gaps.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
@@ -183,14 +188,14 @@ Plan: 3 of 3
 
 ### What Just Happened
 
-- Phase 4 Plan 02 rewired `docs/app.js` to fetch `data.json` and `stock_index.json` together so search suggestions cover the full published stock universe.
-- `docs/index.html` now renders publish-sourced freshness badges in search suggestions, stock detail, ranking rows, and screener rows.
-- Non-snapshot search hits now keep identity and freshness visible while replacing CANSLIM/detail sections with an explicit limited-detail notice.
+- Phase 4 Plan 03 aligned scheduled and on-demand workflows so both explicitly stage `docs/stock_index.json` and `docs/update_summary.json`.
+- `update_single_stock.py` now persists on-demand freshness and rebuilds Phase 4 publish artifacts through `build_publish_projection_bundle(...)`.
+- Workflow and operational regressions now lock in the removal of the standalone `create_stock_index.py` dependency.
 
 ### What's Next
 
-1. Execute Phase 4 Plan 03 to finish the remaining Phase 4 validation/polish work.
-2. Keep building on the Phase 3 rotation/workflow seams without introducing a database or replacing the existing publish contract.
+1. Run final verification for the completed milestone.
+2. Preserve the shared publish bundle and workflow artifact contract in any follow-on work.
 
 ### Open Questions
 
@@ -200,11 +205,11 @@ Plan: 3 of 3
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 4 Plan 02:**
+**If continuing after Phase 4 completion:**
 
-- `docs/app.js` now treats `stock_index.json` as the full-universe search source and only hydrates rich detail from `data.json` when `in_snapshot` is true.
-- `docs/index.html` now expects `freshness.level`/`freshness.label` on snapshot and index records and shows a limited-detail message for `has_full_detail: false` results.
-- Continue preserving the brownfield no-build frontend flow; avoid adding new runtime dependencies or fabricating CANSLIM detail for non-snapshot stocks.
+- Publish paths should continue to reuse `build_publish_projection_bundle(...)` instead of reimplementing `stock_index.json` or `update_summary.json`.
+- Both GitHub workflows now rely on `export_canslim.py` / `update_single_stock.py` to generate the full Phase 4 artifact bundle; do not reintroduce a separate `create_stock_index.py` step.
+- Continue preserving the brownfield no-build frontend flow and the shared `publish-surface` workflow concurrency group.
 
 **If user requests revision:**
 

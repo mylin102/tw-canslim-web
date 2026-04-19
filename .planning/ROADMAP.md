@@ -22,7 +22,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 - [x] **Phase 1: Safety Hardening** - Eliminate data corruption and silent failures before scaling orchestration
 - [x] **Phase 2: Dynamic Core Selection** - Implement signal-driven priority selection for daily core stock universe
 - [x] **Phase 3: Rotating Batch Orchestration** - Build 3-day rotation system with persistent state and resume capability
-- [ ] **Phase 4: Publishing & Freshness Awareness** - Deliver merged outputs with explicit freshness metadata and update summaries
+- [x] **Phase 4: Publishing & Freshness Awareness** - Deliver merged outputs with explicit freshness metadata and update summaries
 
 ---
 
@@ -117,7 +117,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Build the publish projection layer and bundle-safe freshness artifacts
 - [x] 04-02-PLAN.md
-- [ ] 04-03-PLAN.md
+- [x] 04-03-PLAN.md
 
 **UI hint**: yes
 
@@ -130,7 +130,7 @@ Plans:
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
 | 3. Rotating Batch Orchestration | 3/3 | Complete | 2026-04-19 |
-| 4. Publishing & Freshness Awareness | 2/3 | In Progress | - |
+| 4. Publishing & Freshness Awareness | 3/3 | Complete | 2026-04-19 |
 
 ---
 
@@ -184,4 +184,4 @@ Plans:
 
 ---
 
-*Last updated: 2026-04-19 after Phase 4 Plan 02 execution*
+*Last updated: 2026-04-19 after Phase 4 Plan 03 execution*
