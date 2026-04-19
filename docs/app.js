@@ -4,6 +4,7 @@ const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
 const app = createApp({
     setup() {
         const stockData = ref(null);
+        const stockIndex = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('載入中...');
         const isLoading = ref(true);
@@ -42,6 +43,10 @@ const app = createApp({
         });
 
         const metricsMap = computed(() => {
+            if (currentStock.value && currentStock.value.has_full_detail === false) {
+                return {};
+            }
+
             const base = {
                 'C': { label: 'C - 當季盈餘' },
                 'A': { label: 'A - 年度成長' },
@@ -128,14 +133,68 @@ const app = createApp({
 
         let chartInstance = null;
 
+        const getIndexEntries = () => {
+            if (!stockIndex.value || !Array.isArray(stockIndex.value.entries)) return [];
+            return stockIndex.value.entries;
+        };
+
+        const getSnapshotStock = (symbol) => {
+            if (!stockData.value || !stockData.value.stocks) return null;
+            return stockData.value.stocks[symbol] || null;
+        };
+
+        const buildSearchResult = (entry) => {
+            if (!entry) return null;
+
+            const snapshotStock = getSnapshotStock(entry.symbol);
+
+            if (entry.in_snapshot && snapshotStock) {
+                return {
+                    ...snapshotStock,
+                    freshness: entry.freshness || snapshotStock.freshness || null,
+                    last_succeeded_at: entry.last_succeeded_at || snapshotStock.last_succeeded_at || null,
+                    in_snapshot: true,
+                    has_full_detail: true
+                };
+            }
+
+            return {
+                symbol: entry.symbol,
+                name: entry.name,
+                industry: entry.industry || snapshotStock?.industry || '未知',
+                freshness: entry.freshness || snapshotStock?.freshness || null,
+                last_succeeded_at: entry.last_succeeded_at || snapshotStock?.last_succeeded_at || null,
+                in_snapshot: false,
+                has_full_detail: false,
+                is_etf: snapshotStock?.is_etf || false,
+                canslim: {
+                    score: '資料未收錄',
+                    excel_ratings: null,
+                    mansfield_rs: '資料未收錄',
+                    rs_ratio: null
+                },
+                institutional: [],
+                tej_quarterly: null
+            };
+        };
+
+        const findSearchMatches = (query) => {
+            if (!query) return [];
+
+            return getIndexEntries().filter((entry) => {
+                const symbol = String(entry.symbol || '').toLowerCase();
+                const name = String(entry.name || '').toLowerCase();
+                return symbol.includes(query) || name.includes(query);
+            });
+        };
+
         const updateSuggestions = () => {
-            if (!stockData.value || searchQuery.value.length < 2) {
+            if (searchQuery.value.length < 2) {
                 searchSuggestions.value = [];
                 return;
             }
             const query = searchQuery.value.trim().toLowerCase();
-            searchSuggestions.value = Object.values(stockData.value.stocks)
-                .filter(s => s.symbol.includes(query) || s.name.toLowerCase().includes(query))
+            searchSuggestions.value = findSearchMatches(query)
                 .slice(0, 10);
         };
 
@@ -157,8 +216,17 @@ const app = createApp({
         const currentStock = computed(() => {
             if (!stockData.value || !searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
-            return stockData.value.stocks[query] || Object.values(stockData.value.stocks).find(s =>
-                s.name.toLowerCase().includes(query) || s.symbol.includes(query)
+            const exactIndexMatch = getIndexEntries().find((entry) =>
+                String(entry.symbol || '').toLowerCase() === query
+            );
+            if (exactIndexMatch) return buildSearchResult(exactIndexMatch);
+
+            const partialIndexMatch = findSearchMatches(query)[0];
+            if (partialIndexMatch) return buildSearchResult(partialIndexMatch);
+
+            return getSnapshotStock(query) || Object.values(stockData.value.stocks).find((stock) =>
+                String(stock.name || '').toLowerCase().includes(query) ||
+                String(stock.symbol || '').toLowerCase().includes(query)
             ) || null;
         });
 
@@ -194,10 +262,19 @@ const app = createApp({
         const fetchData = async () => {
             try {
                 isLoading.value = true;
-                const response = await fetch('data.json?t=' + Date.now());
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                const data = await response.json();
+                const timestamp = Date.now();
+                const [dataResponse, indexResponse] = await Promise.all([
+                    fetch('data.json?t=' + timestamp),
+                    fetch('stock_index.json?t=' + timestamp)
+                ]);
+                if (!dataResponse.ok) throw new Error('data.json HTTP ' + dataResponse.status);
+                if (!indexResponse.ok) throw new Error('stock_index.json HTTP ' + indexResponse.status);
+                const [data, index] = await Promise.all([
+                    dataResponse.json(),
+                    indexResponse.json()
+                ]);
                 stockData.value = data;
+                stockIndex.value = index;
                 lastUpdated.value = data.last_updated;
             } catch (error) {
                 errorState.value = '載入失敗: ' + error.message;
@@ -226,6 +303,7 @@ const app = createApp({
         const renderChart = () => {
             const canvas = document.getElementById('inst-chart');
             if (!canvas || !currentStock.value) return;
+            if (currentStock.value.has_full_detail === false) return;
             if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
 
             const data = currentStock.value.institutional || [];
