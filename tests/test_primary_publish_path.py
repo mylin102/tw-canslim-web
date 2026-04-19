@@ -209,6 +209,53 @@ def test_export_canslim_reraises_publish_transaction_failures(
         engine.run()
 
 
+def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+    summary_path = docs_dir / "update_summary.json"
+
+    engine = _build_engine(module, tickers=("0050", "1101", "2330", "2454", "3008"))
+    _stub_engine_dependencies(monkeypatch, module, engine)
+
+    selector_calls = []
+    published = {}
+
+    def fake_build_core_universe(**kwargs):
+        selector_calls.append(kwargs)
+        return SimpleNamespace(
+            core_symbols=["0050", "2330", "1101"],
+            core_set={"0050", "2330", "1101"},
+            bucket_counts={"core_symbols": 3, "required_total": 3},
+            target_size=3,
+        )
+
+    def fake_publish_artifact_bundle(bundle: dict[str, dict], **kwargs):
+        published["bundle"] = bundle
+        return {
+            "published_targets": list(bundle),
+            "run_id": "run-selector",
+            "snapshot_dir": str(tmp_path / "backups" / "last_good" / "run-selector"),
+        }
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(module, "build_core_universe", fake_build_core_universe, raising=False)
+    monkeypatch.setattr(module, "publish_artifact_bundle", fake_publish_artifact_bundle)
+
+    engine.run()
+
+    assert len(selector_calls) == 1
+    assert selector_calls[0]["all_symbols"] == ["0050", "1101", "2330", "2454", "3008"]
+    assert list(engine.output_data["stocks"])[:5] == ["0050", "2330", "1101", "2454", "3008"]
+    assert len(set(engine.output_data["stocks"])) == len(engine.output_data["stocks"])
+    assert set(published["bundle"]) == {str(data_path), str(summary_path)}
+
+
 def test_export_dashboard_data_publishes_artifact_aware_bundle(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
