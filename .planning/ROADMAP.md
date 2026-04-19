@@ -20,7 +20,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 ## Phases
 
 - [x] **Phase 1: Safety Hardening** - Eliminate data corruption and silent failures before scaling orchestration
-- [ ] **Phase 2: Dynamic Core Selection** - Implement signal-driven priority selection for daily core stock universe
+- [x] **Phase 2: Dynamic Core Selection** - Implement signal-driven priority selection for daily core stock universe
 - [ ] **Phase 3: Rotating Batch Orchestration** - Build 3-day rotation system with persistent state and resume capability
 - [ ] **Phase 4: Publishing & Freshness Awareness** - Deliver merged outputs with explicit freshness metadata and update summaries
 
@@ -70,7 +70,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Establish selector contracts, config, and Wave 0 test scaffolding
 - [x] 02-02-PLAN.md — Implement artifact-backed volume-aware core-universe selection
-- [ ] 02-03-PLAN.md — Wire the selector into `export_canslim.py` without disturbing Phase 1 publish safety
+- [x] 02-03-PLAN.md — Wire the selector into `export_canslim.py` without disturbing Phase 1 publish safety
 
 ---
 
@@ -118,7 +118,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
-| 2. Dynamic Core Selection | 2/3 | In Progress | - |
+| 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
 | 3. Rotating Batch Orchestration | 0/0 | Not started | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
 

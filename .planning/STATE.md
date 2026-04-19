@@ -2,21 +2,21 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-04-18T23:36:11.826Z"
+status: ready_for_verification
+last_updated: "2026-04-19T00:05:34.915Z"
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
-  percent: 83
+  completed_plans: 6
+  percent: 100
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 07:36 UTC+8
+**Last Updated:** 2026-04-19 08:05 UTC+8
 
 ---
 
@@ -32,14 +32,14 @@ progress:
 
 ## Current Position
 
-Phase: 02 (dynamic-core-selection) — EXECUTING
-Plan: 3 of 3
+Phase: 03 (rotating-batch-orchestration) — READY
+Plan: 0 of 0
 **Phase**: 2 - Dynamic Core Selection  
-**Plan**: 02 of 03 complete  
-**Status**: In Progress  
-**Progress**: `█████████████░░░░░░` 67%
+**Plan**: 03 of 03 complete  
+**Status**: Ready for Verification  
+**Progress**: `████████████████████` 100%
 
-**Current Work**: Phase 2 Plan 02 complete — selector artifacts now persist volume ranks and `core_selection.py` builds the required bucketed core universe ahead of export wiring.
+**Current Work**: Phase 2 complete — `export_canslim.py` now builds its scan order from the artifact-backed selector while preserving Phase 1 bundle publishing.
 
 **Blockers**: None
 
@@ -49,10 +49,10 @@ Plan: 3 of 3
 
 ### Completion Stats
 
-- **Phases completed**: 1/4
-- **Plans completed**: 5/6
+- **Phases completed**: 2/4
+- **Plans completed**: 6/6
 - **Requirements validated**: 5/13
-- **Current phase progress**: 67%
+- **Current phase progress**: 100%
 
 ### Velocity
 
@@ -102,13 +102,18 @@ Plan: 3 of 3
 - [Phase 02]: Fail closed when fused parquet freshness or selector-required columns drift from master artifacts.
 - [Phase 02]: Preserve all required selector buckets first, expand only up to 500 names, then fill by (-mansfield_rs, volume_rank, symbol).
 
+| Phase 02 P03 | 21m | 2 tasks | 3 files |
+
+- [Phase 02]: Kept export wiring on build_core_universe(...) by extending the selector helper to accept artifact paths without breaking existing selector unit tests.
+- [Phase 02]: Preserved the brownfield non-core tail exactly as selection.core_symbols plus the first 2000 remaining sorted tickers.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
 - [ ] Pre-Phase 1: Test file locking proof-of-concept on macOS (fcntl availability)
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
 - [x] Execute Phase 2 Plan 02 for artifact-backed volume-aware core-universe selection
-- [ ] Execute Phase 2 Plan 03 to wire selector output into `export_canslim.py`
+- [x] Execute Phase 2 Plan 03 to wire selector output into `export_canslim.py`
 
 ### Known Issues
 
@@ -149,14 +154,14 @@ Plan: 3 of 3
 
 ### What Just Happened
 
-- Phase 2 Plan 02 persisted `latest_volume` and deterministic `volume_rank` fields into master/fused selector artifacts
-- `core_selection.py` now loads config + artifact inputs, rejects stale fused data, and preserves required buckets for yesterday/today signals, RS leaders, and top-volume leaders
-- Phase 2 selector verification now passes for persisted volume fields, overflow guards, and deterministic `mansfield_rs` fill ordering
+- Phase 2 Plan 03 replaced the static export priority seam with selector-driven `scan_list` construction in `export_canslim.py`
+- Export regressions now prove selector-first scan ordering, loud selector validation failures, and unchanged Phase 1 bundle publishing
+- `core_selection.py` now accepts the export path's checked-in artifact inputs directly through `build_core_universe(...)`
 
 ### What's Next
 
-1. Wire selector output into `export_canslim.py` in Phase 2 Plan 03 without regressing Phase 1 publish safety
-2. Keep Phase 3 rotation work deferred until export wiring is complete
+1. Start Phase 3 rotation planning and keep it scoped to non-core orchestration state/batching
+2. Reuse the selector-produced core/non-core split without changing the publish-safety contract
 
 ### Open Questions
 
