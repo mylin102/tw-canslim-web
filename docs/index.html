@@ -331,7 +331,7 @@
                                                 <div class="flex items-center justify-between text-[11px] font-black text-slate-400">
                                                     <span>{{ day.date.substring(4, 8) }}</span>
                                                     <span class="font-mono text-slate-500">
-                                                        淨額 {{ (((day.foreign_net ?? 0) + (day.trust_net ?? 0) + (day.dealer_net ?? 0))).toLocaleString() }}
+                                                        淨額 {{ formatNumber(totalInstitutionalNet(day)) }}
                                                     </span>
                                                 </div>
                                                 <div class="space-y-1.5">
@@ -342,7 +342,7 @@
                                                                  :style="{ width: institutionalBarWidth(day.foreign_net, currentStock) }"></div>
                                                         </div>
                                                         <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.foreign_net > 0 ? 'text-emerald-500' : day.foreign_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ (day.foreign_net ?? 0).toLocaleString() }}
+                                                            {{ formatNumber(day.foreign_net) }}
                                                         </span>
                                                     </div>
                                                     <div class="flex items-center gap-2">
@@ -352,7 +352,7 @@
                                                                  :style="{ width: institutionalBarWidth(day.trust_net, currentStock) }"></div>
                                                         </div>
                                                         <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.trust_net > 0 ? 'text-indigo-500' : day.trust_net < 0 ? 'text-amber-500' : 'text-slate-300']">
-                                                            {{ (day.trust_net ?? 0).toLocaleString() }}
+                                                            {{ formatNumber(day.trust_net) }}
                                                         </span>
                                                     </div>
                                                     <div class="flex items-center gap-2">
@@ -362,7 +362,7 @@
                                                                  :style="{ width: institutionalBarWidth(day.dealer_net, currentStock) }"></div>
                                                         </div>
                                                         <span :class="['w-16 text-right text-[10px] font-mono font-bold', day.dealer_net > 0 ? 'text-sky-500' : day.dealer_net < 0 ? 'text-fuchsia-500' : 'text-slate-300']">
-                                                            {{ (day.dealer_net ?? 0).toLocaleString() }}
+                                                            {{ formatNumber(day.dealer_net) }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -387,13 +387,13 @@
                                                     <tr v-for="day in currentStock.institutional.slice(0, 5)" :key="day.date" class="border-t border-slate-50">
                                                         <td class="p-3 text-slate-400 font-bold">{{ day.date.substring(4, 8) }}</td>
                                                         <td :class="['p-3 text-right font-bold', day.foreign_net > 0 ? 'text-emerald-500' : day.foreign_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ day.foreign_net.toLocaleString() }}
+                                                            {{ formatNumber(day.foreign_net) }}
                                                         </td>
                                                         <td :class="['p-3 text-right font-bold', day.trust_net > 0 ? 'text-emerald-500' : day.trust_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ day.trust_net.toLocaleString() }}
+                                                            {{ formatNumber(day.trust_net) }}
                                                         </td>
                                                         <td :class="['p-3 text-right font-bold', day.dealer_net > 0 ? 'text-emerald-500' : day.dealer_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ day.dealer_net.toLocaleString() }}
+                                                            {{ formatNumber(day.dealer_net) }}
                                                         </td>
                                                     </tr>
                                                 </tbody>

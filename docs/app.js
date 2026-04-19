@@ -261,6 +261,20 @@ const app = createApp({
             return 'bg-slate-200';
         };
 
+        const safeNumber = (value) => {
+            const normalized = Number(value);
+            return Number.isFinite(normalized) ? normalized : 0;
+        };
+
+        const formatNumber = (value) => {
+            return safeNumber(value).toLocaleString();
+        };
+
+        const totalInstitutionalNet = (day) => {
+            if (!day || typeof day !== 'object') return 0;
+            return safeNumber(day.foreign_net) + safeNumber(day.trust_net) + safeNumber(day.dealer_net);
+        };
+
         onMounted(() => {
             fetchData();
         });
@@ -271,7 +285,8 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             canslimDefinitions, getScoreCategory, getFreshnessBadge, getStockFreshness,
-            availableIndustries, recentInstitutionalDays, institutionalBarWidth, institutionalBarClass
+            availableIndustries, recentInstitutionalDays, institutionalBarWidth, institutionalBarClass,
+            formatNumber, totalInstitutionalNet
         };
     }
 });
