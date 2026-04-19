@@ -1,9 +1,21 @@
 {
   "schema_version": "1.0",
-  "current_batch_index": 0,
-  "rotation_generation": "",
+  "current_batch_index": 1,
+  "rotation_generation": "gen-phase4",
   "retry_queue": [],
-  "freshness": {},
+  "freshness": {
+    "2330": {
+      "last_attempted_at": "2026-04-19T06:38:43Z",
+      "last_succeeded_at": "2026-04-19T06:38:43Z",
+      "last_batch_generation": "gen-phase4",
+      "source": "core"
+    }
+  },
   "in_progress": null,
-  "last_completed_batch": null
+  "last_completed_batch": {
+    "batch_index": 0,
+    "rotation_generation": "gen-phase4",
+    "completed_at": "2026-04-19T06:38:43Z",
+    "symbol_count": 2
+  }
 }
