@@ -142,9 +142,12 @@ class BatchInstitutionalUpdater:
         exhausted_retries: int,
         failed_tickers: list[str],
         offset_day: int,
+        refreshed_symbols: list[str],
     ) -> dict[str, Any]:
         """建立批次更新摘要。"""
         return {
+            "schema_version": "1.0",
+            "artifact_kind": "update_summary",
             "timestamp": data["last_updated"],
             "update_type": "機構持股批次更新",
             "description": "批次更新機構持股資料並以 bundle 安全發佈 data/data_light/update_summary。",
@@ -162,6 +165,17 @@ class BatchInstitutionalUpdater:
                 "exhausted_retries": exhausted_retries,
                 "failed_tickers": failed_tickers,
                 "failed_steps": [],
+            },
+            "refreshed_symbols": list(refreshed_symbols),
+            "failed_symbols": list(failed_tickers),
+            "next_rotation": {
+                "batch_index": (offset_day + 1) % 3,
+                "symbols": [],
+            },
+            "freshness_counts": {
+                "today": 0,
+                "warning": 0,
+                "stale": 0,
             },
             "next_batch": {
                 "offset_day": (offset_day + 1) % 3,
@@ -272,6 +286,7 @@ class BatchInstitutionalUpdater:
             exhausted_retries=exhausted_retries,
             failed_tickers=failed_tickers,
             offset_day=offset_day,
+            refreshed_symbols=stock_ids,
         )
 
         try:

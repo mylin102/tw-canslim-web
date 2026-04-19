@@ -119,9 +119,12 @@ def build_update_summary(
     exhausted_retries: int,
     failed_tickers: list[str],
     failed_steps: list[str],
+    refreshed_symbols: list[str],
 ) -> dict[str, Any]:
     """建立更新摘要。"""
     return {
+        "schema_version": "1.0",
+        "artifact_kind": "update_summary",
         "timestamp": data["last_updated"],
         "update_type": "快速自動更新 (加強版)",
         "description": "更新前10支股票機構持股資料，並以 bundle 安全發佈相關 artifacts。",
@@ -139,6 +142,17 @@ def build_update_summary(
             "exhausted_retries": exhausted_retries,
             "failed_tickers": failed_tickers,
             "failed_steps": failed_steps,
+        },
+        "refreshed_symbols": list(refreshed_symbols),
+        "failed_symbols": list(failed_tickers),
+        "next_rotation": {
+            "batch_index": 0,
+            "symbols": [],
+        },
+        "freshness_counts": {
+            "today": 0,
+            "warning": 0,
+            "stale": 0,
         },
         "next_action": "檢查 failed_tickers 並在下一次完整排程更新前確認資料來源。",
         "next_scheduled_update": "今天 18:00 (台灣時間)",
@@ -261,6 +275,7 @@ def update_top_stocks_institutional() -> dict[str, Any]:
         exhausted_retries=exhausted_retries,
         failed_tickers=failed_tickers,
         failed_steps=[],
+        refreshed_symbols=top_stocks,
     )
 
     try:

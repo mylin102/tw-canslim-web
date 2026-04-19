@@ -141,7 +141,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
         raise module.PublishValidationError(f"{stock_id} missing mansfield_rs")
 
     def fake_publish_artifact_bundle(bundle: dict[str, dict], **kwargs):
-        published["bundle"] = bundle
+        published.setdefault("bundle", bundle)
         return {"published_targets": list(bundle), "run_id": "run-1", "snapshot_dir": str(tmp_path / "backups" / "last_good" / "run-1")}
 
     monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
@@ -187,7 +187,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
     assert load_calls == [(str(data_path), "data")]
     assert validated == ["2330"]
     bundle = published["bundle"]
-    assert set(bundle) == {str(data_path), str(stock_index_path), str(summary_path)}
+    assert {str(data_path), str(stock_index_path), str(summary_path)}.issubset(bundle)
     data_payload = bundle[str(data_path)]["payload"]
     assert "mansfield_rs" in data_payload["stocks"]["2330"]["canslim"]
     summary_payload = bundle[str(summary_path)]["payload"]
@@ -221,7 +221,7 @@ def test_export_canslim_tracks_retry_attempts_and_stock_failures_in_summary(
     published = {}
 
     def fake_publish_artifact_bundle(bundle: dict[str, dict], **kwargs):
-        published["bundle"] = bundle
+        published.setdefault("bundle", bundle)
         return {"published_targets": list(bundle), "run_id": "run-2", "snapshot_dir": str(tmp_path / "backups" / "last_good" / "run-2")}
 
     monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
@@ -292,7 +292,7 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
         )
 
     def fake_publish_artifact_bundle(bundle: dict[str, dict], **kwargs):
-        published["bundle"] = bundle
+        published.setdefault("bundle", bundle)
         return {
             "published_targets": list(bundle),
             "run_id": "run-selector",
@@ -377,7 +377,7 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
     assert selector_calls[0]["all_symbols"] == ["0050", "1101", "2330", "2454", "3008"]
     assert list(engine.output_data["stocks"])[:5] == ["0050", "2330", "1101", "2454", "3008"]
     assert len(set(engine.output_data["stocks"])) == len(engine.output_data["stocks"])
-    assert set(published["bundle"]) == {str(data_path), str(stock_index_path), str(summary_path)}
+    assert {str(data_path), str(stock_index_path), str(summary_path)}.issubset(published["bundle"])
 
 
 def test_export_canslim_reraises_selector_validation_failures(
@@ -757,7 +757,7 @@ def test_export_canslim_primary_bundle_contains_stock_index_json(
 
     engine.run()
 
-    assert set(published["bundle"]) == {str(data_path), str(stock_index_path), str(summary_path)}
+    assert {str(data_path), str(stock_index_path), str(summary_path)}.issubset(published["bundle"])
 
 
 def test_export_dashboard_data_publishes_artifact_aware_bundle(

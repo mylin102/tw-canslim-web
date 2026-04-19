@@ -53,6 +53,8 @@ def build_light_payload(output: dict[str, Any]) -> dict[str, Any]:
 def publish_rebuild_bundle(output: dict[str, Any], target_tickers: list[str]) -> dict[str, Any]:
     """Publish rebuilt verification artifacts through the shared bundle helper."""
     summary = {
+        "schema_version": "1.0",
+        "artifact_kind": "update_summary",
         "timestamp": output["last_updated"],
         "update_type": "verification rebuild",
         "description": f"Verification rebuild for {', '.join(target_tickers)}",
@@ -60,6 +62,17 @@ def publish_rebuild_bundle(output: dict[str, Any], target_tickers: list[str]) ->
         "data_stats": {
             "total_stocks": len(output.get("stocks", {})),
             "updated_stocks": len(target_tickers),
+        },
+        "refreshed_symbols": list(target_tickers),
+        "failed_symbols": [],
+        "next_rotation": {
+            "batch_index": 0,
+            "symbols": [],
+        },
+        "freshness_counts": {
+            "today": 0,
+            "warning": 0,
+            "stale": 0,
         },
         "published_targets": [
             "docs/data.json",

@@ -127,6 +127,8 @@ def summary_payload_factory():
         freshness_counts: dict | None = None,
     ) -> dict:
         return {
+            "schema_version": "1.0",
+            "artifact_kind": "update_summary",
             "timestamp": "2026-04-18 20:00:00",
             "update_type": "bundle publish",
             "description": f"publish run {run_id}",

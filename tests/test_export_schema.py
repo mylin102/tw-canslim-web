@@ -96,6 +96,17 @@ def test_checked_in_update_summary_uses_phase4_contract(repo_root: Path):
     module.validate_artifact_payload(payload, artifact_kind="update_summary")
 
 
+def test_checked_in_data_artifacts_validate_under_current_contract(repo_root: Path):
+    module = load_publish_safety()
+    docs_dir = repo_root / "docs"
+
+    data_payload = json.loads((docs_dir / "data.json").read_text(encoding="utf-8"))
+    data_base_payload = json.loads((docs_dir / "data_base.json").read_text(encoding="utf-8"))
+
+    module.validate_artifact_payload(data_payload, artifact_kind="data")
+    module.validate_artifact_payload(data_base_payload, artifact_kind="data_base")
+
+
 def test_checked_in_phase4_publish_bundle_shares_run_id(repo_root: Path):
     docs_dir = repo_root / "docs"
     data_payload = json.loads((docs_dir / "data.json").read_text(encoding="utf-8"))

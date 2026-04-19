@@ -39,6 +39,9 @@ def test_update_summary_previews_next_rotation_without_mutating_state(rotation_s
         as_of="2026-04-19T12:00:00Z",
     )
 
+    assert summary["schema_version"] == "1.0"
+    assert summary["artifact_kind"] == "update_summary"
+    assert summary["run_id"] == "run-phase4"
     assert summary["timestamp"] == "2026-04-19T12:00:00Z"
     assert summary["update_type"] == "canslim_export"
     assert summary["data_stats"] == {"total_stocks": 2, "updated_stocks": 2}
