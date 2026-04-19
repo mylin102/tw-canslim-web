@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, TypedDict
 
@@ -29,7 +30,9 @@ class RetryQueueEntry(TypedDict):
 
 
 class FreshnessEntry(TypedDict):
-    last_success_at: str
+    last_attempted_at: str
+    last_succeeded_at: str
+    last_batch_generation: str
     source: str
 
 
@@ -77,9 +80,14 @@ def load_rotation_state(path: str | Path = DEFAULT_STATE_PATH) -> RotationState:
     return _validate_rotation_state(payload)
 
 
-def save_rotation_state(state: RotationState | dict[str, Any], path: str | Path = DEFAULT_STATE_PATH) -> RotationState:
+def save_rotation_state(
+    state: RotationState | dict[str, Any],
+    path: str | Path | None = DEFAULT_STATE_PATH,
+) -> RotationState:
     """Validate and atomically persist rotation state."""
     validated = _validate_rotation_state(state)
+    if path is None:
+        return validated
     state_path = Path(path)
     state_path.parent.mkdir(parents=True, exist_ok=True)
     fd, temp_path = tempfile.mkstemp(
@@ -102,8 +110,9 @@ def save_rotation_state(state: RotationState | dict[str, Any], path: str | Path 
 
 
 def enqueue_retry_failure(
+    state: RotationState | dict[str, Any] | None = None,
     *,
-    path: str | Path = DEFAULT_STATE_PATH,
+    path: str | Path | None = DEFAULT_STATE_PATH,
     symbol: str,
     provider: str,
     error: str,
@@ -114,7 +123,7 @@ def enqueue_retry_failure(
     attempt_count: int = 1,
 ) -> RotationState:
     """Append a retryable failure to durable state and persist it."""
-    state = load_rotation_state(path=path)
+    state_to_update = load_rotation_state(path=path) if state is None else _validate_rotation_state(deepcopy(state))
     entry: RetryQueueEntry = {
         "symbol": _require_non_empty_string(symbol, "retry_queue.symbol"),
         "provider": _require_non_empty_string(provider, "retry_queue.provider"),
@@ -128,8 +137,10 @@ def enqueue_retry_failure(
             "retry_queue.rotation_generation",
         ),
     }
-    state["retry_queue"].append(entry)
-    return save_rotation_state(state, path=path)
+    state_to_update["retry_queue"].append(entry)
+    if path is None:
+        return _validate_rotation_state(state_to_update)
+    return save_rotation_state(state_to_update, path=path)
 
 
 def _default_rotation_state() -> RotationState:
@@ -233,7 +244,18 @@ def _validate_freshness_entry(value: Any) -> FreshnessEntry:
     if not isinstance(value, dict):
         raise PublishValidationError("freshness entries must be objects")
     return {
-        "last_success_at": _require_non_empty_string(value.get("last_success_at"), "freshness.last_success_at"),
+        "last_attempted_at": _require_non_empty_string(
+            value.get("last_attempted_at"),
+            "freshness.last_attempted_at",
+        ),
+        "last_succeeded_at": _require_non_empty_string(
+            value.get("last_succeeded_at"),
+            "freshness.last_succeeded_at",
+        ),
+        "last_batch_generation": _require_non_empty_string(
+            value.get("last_batch_generation"),
+            "freshness.last_batch_generation",
+        ),
         "source": _require_non_empty_string(value.get("source"), "freshness.source"),
     }
 
