@@ -2,21 +2,21 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-04-19T03:41:10.837Z"
+status: in_progress
+last_updated: "2026-04-19T04:38:44.930Z"
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 12
-  completed_plans: 9
-  percent: 75
+  completed_plans: 10
+  percent: 83
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 10:21 UTC+8
+**Last Updated:** 2026-04-19 12:38 UTC+8
 
 ---
 
@@ -32,14 +32,14 @@ progress:
 
 ## Current Position
 
-Phase: 04 (publishing-freshness-awareness) — READY
-Plan: 0 of 0
+Phase: 04 (publishing-freshness-awareness) — EXECUTING
+Plan: 2 of 3
 **Phase**: 4 - Publishing & Freshness Awareness  
-**Plan**: 00 of 00 complete  
-**Status**: Ready to plan  
-**Progress**: `████████████████████` 100%
+**Plan**: 1 of 3 complete  
+**Status**: In progress  
+**Progress**: `[███░░░░░░░]` 33%
 
-**Current Work**: Phase 3 is complete and verified — deterministic three-way rotation, durable resume state, provider-policy wiring, workflow restore/persist checkpoints, and runtime budget gating are now live.
+**Current Work**: Phase 4 Plan 01 is complete — the primary exporter now projects freshness-aware merged data, a full-universe `stock_index.json`, and next-rotation summary previews from Phase 3 state.
 
 **Blockers**: None
 
@@ -50,15 +50,15 @@ Plan: 0 of 0
 ### Completion Stats
 
 - **Phases completed**: 3/4
-- **Plans completed**: 9/9
+- **Plans completed**: 10/12
 - **Requirements validated**: 13/13
-- **Current phase progress**: 100%
+- **Current phase progress**: 33%
 
 ### Velocity
 
-- **Plans per day**: 9/day
+- **Plans per day**: 10/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: Phase 3 completed on 2026-04-19
+- **Estimated phase completion**: Phase 4 underway after Plan 01 on 2026-04-19
 
 ### Quality
 
@@ -123,6 +123,12 @@ Plan: 0 of 0
 - [Phase 03]: Keep provider pacing and retry accounting in one shared runtime-state contract so export summaries and runtime-budget artifacts derive from the same counters.
 - [Phase 03]: Restore rotation checkpoints through a named GitHub artifact before each workflow run and still commit the fixed .orchestration/rotation_state.json path on scheduled publishes.
 
+| Phase 04 P01 | 6min | 2 tasks | 11 files |
+
+- [Phase 04]: Added publish_projection.py as the single seam that derives merged data, stock index, and summary payloads from one snapshot.
+- [Phase 04]: Used docs/data_base.json as the merged snapshot floor while keeping non-snapshot symbols discoverable only through stock_index.json.
+- [Phase 04]: Previewed next rotation from cloned state with an advanced batch index so finalize_success remains the only live cursor mutation.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
@@ -171,13 +177,13 @@ Plan: 0 of 0
 
 ### What Just Happened
 
-- Phase 3 Plan 03 wired `build_daily_plan(...)`, `write_in_progress(...)`, and `finalize_*()` into `export_canslim.py` without breaking Phase 1 publish safety.
-- Shared provider pacing/retry policies now cover requests, FinMind, TEJ, and yfinance through one explicit contract.
-- Scheduled and on-demand workflows now restore and persist `.orchestration/rotation_state.json`, and the runtime budget gate records `.orchestration/runtime_budget.json`.
+- Phase 4 Plan 01 added `publish_projection.py` to derive merged `data.json`, `stock_index.json`, and enriched `update_summary.json` from current output, baseline coverage, and durable freshness state.
+- `publish_safety.py` now validates `stock_index.json`, and `export_canslim.py` publishes all three primary artifacts in one bundle-safe transaction.
+- Regression coverage now locks freshness labels, merged snapshot precedence, stock-index membership, and next-rotation summary previews.
 
 ### What's Next
 
-1. Start Phase 4 planning for publishing and freshness-aware outputs.
+1. Execute Phase 4 Plan 02 for frontend-facing search and freshness consumption.
 2. Keep building on the Phase 3 rotation/workflow seams without introducing a database or replacing the existing publish contract.
 
 ### Open Questions
@@ -188,11 +194,11 @@ Plan: 0 of 0
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 3 completion:**
+**If continuing after Phase 4 Plan 01:**
 
-- `export_canslim.py` now assembles `selection.core_symbols + daily_plan["worklist"]`, checkpoints scheduled batches with `write_in_progress(...)`, records per-symbol freshness, and advances the cursor only after final publish success.
-- Provider policy enforcement is centralized in `provider_policies.py`, with live wiring in `export_canslim.py`, `finmind_processor.py`, `tej_processor.py`, and `yfinance_provider.py`.
-- Tests now exist at `tests/test_rotation_state.py`, `tests/test_rotation_orchestrator.py`, `tests/test_provider_policies.py`, and rotation-aware `tests/test_primary_publish_path.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
+- `publish_projection.py` is now the publish seam for per-symbol freshness labels, merged snapshot data, `stock_index.json`, and update-summary rotation previews.
+- `export_canslim.py` still finalizes rotation state only after the final publish succeeds; summary previews advance a cloned batch index instead of mutating live state.
+- Tests now exist at `tests/test_publish_freshness.py`, `tests/test_stock_index.py`, `tests/test_publish_merge.py`, and `tests/test_publish_summary_phase4.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
 
 **If user requests revision:**
 

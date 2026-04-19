@@ -112,7 +112,12 @@ Plans:
 3. Dashboard loads stock and screener data from merged baseline-plus-incremental outputs (data.json reflects both daily core updates and rotating batch coverage)
 4. Maintainer sees an update summary artifact (update_summary.json) showing what refreshed, what failed, and what rotates next run
 
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [x] 04-01-PLAN.md — Build the publish projection layer and bundle-safe freshness artifacts
+- [ ] 04-02-PLAN.md
+- [ ] 04-03-PLAN.md
 
 **UI hint**: yes
 
@@ -125,7 +130,7 @@ Plans:
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
 | 3. Rotating Batch Orchestration | 3/3 | Complete | 2026-04-19 |
-| 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
+| 4. Publishing & Freshness Awareness | 1/3 | In Progress | - |
 
 ---
 
@@ -179,4 +184,4 @@ Plans:
 
 ---
 
-*Last updated: 2026-04-19 after Phase 3 verification*
+*Last updated: 2026-04-19 after Phase 4 Plan 01 execution*

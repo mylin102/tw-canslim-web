@@ -22,10 +22,10 @@
 
 ### Publishing & UX
 
-- [ ] **PUB-01**: Dashboard user can see freshness metadata for each stock and understand when data is stale.
-- [ ] **PUB-02**: Dashboard user can search the full stock universe through a publish-ready index even when a stock is not present in the main screener snapshot.
-- [ ] **PUB-03**: Dashboard user can load stock and screener data from outputs produced by the merged baseline-plus-incremental update model.
-- [ ] **PUB-04**: Maintainer can publish an update summary artifact that shows what refreshed, what failed, and what rotates next.
+- [x] **PUB-01**: Dashboard user can see freshness metadata for each stock and understand when data is stale.
+- [x] **PUB-02**: Dashboard user can search the full stock universe through a publish-ready index even when a stock is not present in the main screener snapshot.
+- [x] **PUB-03**: Dashboard user can load stock and screener data from outputs produced by the merged baseline-plus-incremental update model.
+- [x] **PUB-04**: Maintainer can publish an update summary artifact that shows what refreshed, what failed, and what rotates next.
 
 ## v2 Requirements
 
@@ -63,10 +63,10 @@
 | ORCH-03 | Phase 3 | Complete |
 | ORCH-04 | Phase 3 | Complete |
 | ORCH-05 | Phase 3 | Complete |
-| PUB-01 | Phase 4 | Pending |
-| PUB-02 | Phase 4 | Pending |
-| PUB-03 | Phase 4 | Pending |
-| PUB-04 | Phase 4 | Pending |
+| PUB-01 | Phase 4 | Complete |
+| PUB-02 | Phase 4 | Complete |
+| PUB-03 | Phase 4 | Complete |
+| PUB-04 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 13 total
@@ -75,4 +75,4 @@
 
 ---
 *Requirements defined: 2026-04-18*
-*Last updated: 2026-04-18 after initial definition*
+*Last updated: 2026-04-19 after Phase 4 Plan 01 execution*
