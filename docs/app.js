@@ -143,6 +143,38 @@ const app = createApp({
             return stockData.value.stocks[symbol] || null;
         };
 
+        const getFreshnessBadge = (freshness) => {
+            if (!freshness) {
+                return {
+                    label: '新鮮度未提供',
+                    classes: 'bg-slate-100 text-slate-600 border-slate-200'
+                };
+            }
+
+            switch (freshness.level) {
+                case 'today':
+                    return {
+                        label: freshness.label || '🟢 今日',
+                        classes: 'bg-emerald-100 text-emerald-700 border-emerald-200'
+                    };
+                case 'days_1_2':
+                    return {
+                        label: freshness.label || '🟡 2天前',
+                        classes: 'bg-amber-100 text-amber-700 border-amber-200'
+                    };
+                case 'days_3_plus':
+                    return {
+                        label: freshness.label || '🔴 逾3天',
+                        classes: 'bg-rose-100 text-rose-700 border-rose-200'
+                    };
+                default:
+                    return {
+                        label: freshness.label || '新鮮度未提供',
+                        classes: 'bg-slate-100 text-slate-600 border-slate-200'
+                    };
+            }
+        };
+
         const buildSearchResult = (entry) => {
             if (!entry) return null;
 
@@ -345,7 +377,7 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
-            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional
+            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional, getFreshnessBadge
         };
     }
 });
