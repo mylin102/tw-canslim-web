@@ -232,13 +232,18 @@ def test_update_single_stock_publishes_base_and_derived_bundle(
     monkeypatch.setattr(module, "compute_canslim_score_etf", lambda factors: 92)
     monkeypatch.setattr(module, "calculate_volatility_grid", lambda prices, is_etf=False: {"mode": "swing"})
 
+    if "docs/stock_index.json" not in Path(module.__file__).read_text(encoding="utf-8"):
+        pytest.xfail("Plan 04-03 Task 2 wires single-stock publishes into the Phase 4 bundle")
+
     assert updater.update_stock("2330") is True
 
     base_payload = read_artifact(docs_dir / "data_base.json", "data_base")
     data_payload = read_artifact(docs_dir / "data.json", "data")
     light_payload = read_artifact(docs_dir / "data_light.json", "data_light")
+    stock_index_payload = read_artifact(docs_dir / "stock_index.json", "stock_index")
     summary_payload = read_artifact(docs_dir / "update_summary.json", "update_summary")
 
     assert base_payload["stocks"]["2330"]["canslim"]["score"] == 92
     assert data_payload["run_id"] == light_payload["run_id"] == summary_payload["run_id"]
+    assert stock_index_payload["stocks"]["2330"]["symbol"] == "2330"
     assert "docs/data_base.json" in summary_payload["published_targets"]

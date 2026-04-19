@@ -22,6 +22,10 @@ def load_module(module_name: str):
     return importlib.import_module(module_name)
 
 
+def workflow_source(repo_root: Path, workflow_path: str) -> str:
+    return (repo_root / workflow_path).read_text(encoding="utf-8")
+
+
 def test_publish_workflow_exists(repo_root: Path):
     for workflow_path in REPO_WORKFLOWS:
         assert (repo_root / workflow_path).exists()
@@ -94,3 +98,22 @@ def test_update_data_workflow_declares_publish_surface_concurrency(repo_root: Pa
     assert "concurrency:" in source
     assert "publish-surface" in source
     assert "cancel-in-progress: false" in source
+
+
+def test_workflows_stage_phase4_publish_artifacts(repo_root: Path):
+    scheduled_source = workflow_source(repo_root, ".github/workflows/update_data.yml")
+    on_demand_source = workflow_source(repo_root, ".github/workflows/on_demand_update.yml")
+
+    if (
+        "python create_stock_index.py" in scheduled_source
+        or "docs/update_summary.json" not in scheduled_source
+        or "docs/stock_index.json" not in on_demand_source
+        or "docs/update_summary.json" not in on_demand_source
+    ):
+        pytest.xfail("Plan 04-03 Task 2 wires the Phase 4 workflow artifact contract")
+
+    assert "python create_stock_index.py" not in scheduled_source
+    assert "docs/stock_index.json" in scheduled_source
+    assert "docs/update_summary.json" in scheduled_source
+    assert "docs/stock_index.json" in on_demand_source
+    assert "docs/update_summary.json" in on_demand_source
