@@ -351,42 +351,74 @@ class CanslimEngine:
         universe = []
         core_set = set(selection.core_symbols)
         
-        for symbol in sorted(list(self.output_data["stocks"].keys())):
-            if symbol not in core_set:
-                continue
+        # Priority 1: Add symbols from Excel health check if score is high or explicitly present
+        excel_symbols = set()
+        if self.excel_ratings:
+            for symbol, ratings in self.excel_ratings.items():
+                # Force include if composite rating > 70 OR it's a known important symbol
+                comp_rating = ratings.get("composite_rating")
+                if comp_rating and comp_rating >= 70:
+                    excel_symbols.add(symbol)
+            logger.info(f"Identified {len(excel_symbols)} potential leaders from Excel health check.")
+
+        # Combine selection core with high-quality excel symbols
+        final_universe_symbols = sorted(list(core_set.union(excel_symbols)))
+        
+        for symbol in final_universe_symbols:
+            # Check if we have processed data for this symbol
+            stock_data = self.output_data["stocks"].get(symbol)
+            
+            # Fallback for symbols present in Excel but not in current batch output
+            if not stock_data:
+                # Try to get basic info if missing
+                info = self.ticker_info.get(symbol, {"name": symbol})
+                excel_ratings = self.get_excel_canslim_ratings(symbol)
                 
-            stock_data = self.output_data["stocks"][symbol]
-            canslim = stock_data["canslim"]
-            financials = stock_data.get("financials", {})
-            
-            # Map breakout_score: 1.0 if N is True, else 0.5 (proximity would be better but N is binary here)
-            breakout_score = 1.0 if canslim.get("N") else 0.5
-            
-            # Map volume_score: 1.0 if S is True, else 0.5
-            volume_score = 1.0 if canslim.get("S") else 0.5
-            
-            # RS Rating: use excel_ratings if available, else fallback to a derived value or 0
-            rs_rating = 0
-            excel_ratings = canslim.get("excel_ratings")
-            if excel_ratings and excel_ratings.get("rs_rating"):
-                rs_rating = int(excel_ratings["rs_rating"])
-            elif canslim.get("mansfield_rs"):
-                # Rough mapping: mansfield_rs > 0 is roughly top 50%?
-                # Better to just use 0 if not sure, but we'll try to be helpful
-                rs_rating = min(99, max(1, 50 + int(canslim["mansfield_rs"] * 5)))
+                # If we have neither processed data nor Excel ratings, skip
+                if not excel_ratings:
+                    continue
+                    
+                entry = {
+                    "symbol": symbol,
+                    "name": info["name"],
+                    "rs_rating": int(excel_ratings.get("rs_rating") or 0),
+                    "breakout_score": 0.5, # Default since no price data
+                    "volume_score": 0.5,
+                    "composite_score": round((excel_ratings.get("composite_rating") or 0) / 100.0, 3),
+                    "industry_rank": 999,
+                    "tags": ["leader", "from_excel"]
+                }
+            else:
+                canslim = stock_data["canslim"]
                 
-            entry = {
-                "symbol": symbol,
-                "name": stock_data["name"],
-                "rs_rating": rs_rating,
-                "breakout_score": breakout_score,
-                "volume_score": volume_score,
-                "composite_score": round(canslim["score"] / 100.0, 3),
-                "industry_rank": industry_rank_map.get(stock_data.get("industry"), 999),
-                "tags": ["leader"]
-            }
-            if canslim.get("N"):
-                entry["tags"].append("breakout_candidate")
+                # Map breakout_score: 1.0 if N is True, else 0.5
+                breakout_score = 1.0 if canslim.get("N") else 0.5
+                
+                # Map volume_score: 1.0 if S is True, else 0.5
+                volume_score = 1.0 if canslim.get("S") else 0.5
+                
+                # RS Rating: use excel_ratings if available
+                rs_rating = 0
+                excel_ratings = canslim.get("excel_ratings")
+                if excel_ratings and excel_ratings.get("rs_rating"):
+                    rs_rating = int(excel_ratings["rs_rating"])
+                elif canslim.get("mansfield_rs"):
+                    rs_rating = min(99, max(1, 50 + int(canslim["mansfield_rs"] * 5)))
+                    
+                entry = {
+                    "symbol": symbol,
+                    "name": stock_data["name"],
+                    "rs_rating": rs_rating,
+                    "breakout_score": breakout_score,
+                    "volume_score": volume_score,
+                    "composite_score": round(canslim["score"] / 100.0, 3),
+                    "industry_rank": industry_rank_map.get(stock_data.get("industry"), 999),
+                    "tags": ["leader"]
+                }
+                if canslim.get("N"):
+                    entry["tags"].append("breakout_candidate")
+                if symbol in excel_symbols:
+                    entry["tags"].append("verified")
                 
             universe.append(entry)
             
@@ -404,7 +436,7 @@ class CanslimEngine:
             }
         }
         
-        logger.info(f"Exporting {len(universe)} leaders to {leaders_file}...")
+        logger.info(f"Exporting {len(universe)} leaders to {leaders_file} (including Excel-sourced)...")
         return publish_artifact_bundle(
             bundle,
             logger=logger,
