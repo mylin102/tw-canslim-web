@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-增量交易系統工作流程
-整合 CANSLIM 資料更新與增量計算
+增量交易系統工作流程。
+
+Phase 4 之後，主資料發布由 export_canslim.py 負責；
+本模組只負責增量衍生輸出與驗證，避免重跑舊的發布/索引鏈。
 """
 
 import os
@@ -30,34 +32,9 @@ def check_dependencies():
         logger.info("請執行: pip install pandas yfinance numpy")
         return False
 
-def run_canslim_update():
-    """執行 CANSLIM 資料更新"""
-    logger.info("步驟 1: 執行 CANSLIM 資料更新...")
-    
-    try:
-        # 嘗試執行 export_canslim.py
-        import subprocess
-        result = subprocess.run(
-            [sys.executable, "export_canslim.py"],
-            capture_output=True,
-            text=True,
-            timeout=600  # 10分鐘超時
-        )
-        
-        if result.returncode == 0:
-            logger.info("✅ CANSLIM 資料更新完成")
-            return True
-        else:
-            logger.error(f"❌ CANSLIM 更新失敗: {result.stderr}")
-            return False
-            
-    except Exception as e:
-        logger.error(f"❌ 執行 CANSLIM 更新時發生錯誤: {e}")
-        return False
-
 def run_incremental_calculation():
     """執行增量計算"""
-    logger.info("步驟 2: 執行增量計算...")
+    logger.info("步驟 1: 執行增量計算...")
     
     try:
         # 檢查增量計算模組是否存在
@@ -93,42 +70,17 @@ def run_incremental_calculation():
         logger.error(f"❌ 增量計算錯誤: {e}")
         return False
 
-def create_stock_index():
-    """建立股票索引"""
-    logger.info("步驟 3: 建立股票索引...")
-    
-    try:
-        # 檢查股票索引模組是否存在
-        try:
-            from create_stock_index import create_stock_index_with_rs
-        except ImportError:
-            logger.error("❌ 股票索引模組未找到")
-            return False
-        
-        # 建立股票索引
-        success = create_stock_index_with_rs()
-        
-        if success:
-            logger.info("✅ 股票索引建立完成")
-            return True
-        else:
-            logger.error("❌ 股票索引建立失敗")
-            return False
-            
-    except Exception as e:
-        logger.error(f"❌ 股票索引錯誤: {e}")
-        return False
-
 def verify_results():
     """驗證結果"""
-    logger.info("步驟 4: 驗證結果...")
+    logger.info("步驟 2: 驗證結果...")
     
     required_files = [
         "docs/data.json",
         "docs/data_light.json",
         "docs/signals.json",
         "docs/ranking.json",
-        "docs/stock_index.json"
+        "docs/stock_index.json",
+        "docs/update_summary.json",
     ]
     
     all_exist = True
@@ -168,9 +120,7 @@ def main():
     
     # 執行工作流程
     steps = [
-        ("CANSLIM 資料更新", run_canslim_update),
         ("增量計算", run_incremental_calculation),
-        ("股票索引建立", create_stock_index),
         ("結果驗證", verify_results)
     ]
     
@@ -194,11 +144,10 @@ def main():
         
         # 顯示系統狀態
         logger.info("\n📊 系統狀態:")
-        logger.info("  1. CANSLIM 資料: ✅ 已更新")
-        logger.info("  2. 增量計算: ✅ 已完成")
-        logger.info("  3. 交易訊號: ✅ 已產生")
-        logger.info("  4. RS 排名: ✅ 已更新")
-        logger.info("  5. 股票索引: ✅ 已建立")
+        logger.info("  1. 增量計算: ✅ 已完成")
+        logger.info("  2. 交易訊號: ✅ 已產生")
+        logger.info("  3. RS 排名: ✅ 已更新")
+        logger.info("  4. Phase 4 發布輸出: ✅ 已驗證")
         
     else:
         logger.error("⚠️  部分步驟失敗，請檢查日誌")

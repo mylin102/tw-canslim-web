@@ -117,3 +117,14 @@ def test_workflows_stage_phase4_publish_artifacts(repo_root: Path):
     assert "docs/update_summary.json" in scheduled_source
     assert "docs/stock_index.json" in on_demand_source
     assert "docs/update_summary.json" in on_demand_source
+
+
+def test_scheduled_publish_chain_has_no_legacy_stock_index_dependency(repo_root: Path):
+    scheduled_source = workflow_source(repo_root, ".github/workflows/update_data.yml")
+    incremental_source = (repo_root / "incremental_workflow.py").read_text(encoding="utf-8")
+
+    assert "python incremental_workflow.py" in scheduled_source
+    assert "from create_stock_index import create_stock_index_with_rs" not in incremental_source
+    assert "create_stock_index_with_rs" not in incremental_source
+    assert "股票索引建立" not in incremental_source
+    assert '[sys.executable, "export_canslim.py"]' not in incremental_source
