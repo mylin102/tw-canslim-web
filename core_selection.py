@@ -193,7 +193,11 @@ def load_selector_inputs(
 def build_core_universe(
     *,
     all_symbols: Sequence[str],
-    config: CoreSelectionConfig,
+    config: CoreSelectionConfig | None = None,
+    config_path: str | Path | None = None,
+    fused_path: str | Path | None = None,
+    master_path: str | Path | None = None,
+    baseline_path: str | Path | None = None,
     ranked_candidates: Sequence[RankedCandidate] | None = None,
     today_signal_symbols: Sequence[str] | None = None,
     yesterday_signal_symbols: Sequence[str] | None = None,
@@ -202,6 +206,36 @@ def build_core_universe(
     target_size: int | None = None,
 ) -> CoreSelectionResult:
     """Build the ordered core universe from required buckets plus deterministic fill."""
+    if config is None:
+        artifact_paths = {
+            "config_path": config_path,
+            "fused_path": fused_path,
+            "master_path": master_path,
+            "baseline_path": baseline_path,
+        }
+        missing_paths = [name for name, value in artifact_paths.items() if value is None]
+        if missing_paths:
+            raise ValueError(
+                "build_core_universe requires either config or all selector artifact paths; "
+                f"missing {', '.join(sorted(missing_paths))}"
+            )
+        selector_inputs = load_selector_inputs(
+            config_path=config_path,
+            fused_path=fused_path,
+            master_path=master_path,
+            baseline_path=baseline_path,
+        )
+        return build_core_universe(
+            all_symbols=all_symbols,
+            config=selector_inputs["config"],
+            ranked_candidates=selector_inputs["ranked_candidates"],
+            today_signal_symbols=selector_inputs["today_signal_symbols"],
+            yesterday_signal_symbols=selector_inputs["yesterday_signal_symbols"],
+            rs_leaders=selector_inputs["rs_leaders"],
+            top_volume_leaders=selector_inputs["top_volume_leaders"],
+            target_size=target_size,
+        )
+
     base_target_size = target_size or config.target_size
     if base_target_size <= 0:
         raise ValueError("target_size must be positive")
@@ -301,7 +335,7 @@ def _previous_date(frame: pd.DataFrame) -> pd.Timestamp | None:
 def _validate_symbol_bucket(bucket_name: str, value: Any) -> list[str]:
     """Validate a configured symbol bucket."""
     if not isinstance(value, list):
-        raise ValueError(f"{bucket_name} must be a list of 4-digit symbol strings")
+        raise ValueError(f"{bucket_name} must be a list of 4- or 5-digit symbol strings")
     return _ordered_symbols(value, bucket_name=bucket_name)
 
 
@@ -324,7 +358,7 @@ def _ordered_symbols(symbols: Sequence[str], bucket_name: str | None = None) -> 
 
 def _is_valid_symbol(symbol: str) -> bool:
     """Return True when the selector symbol matches repo expectations."""
-    return len(symbol) == 4 and symbol.isdigit()
+    return len(symbol) in {4, 5} and symbol.isdigit()
 
 
 def _require_columns(label: str, frame: pd.DataFrame, required_columns: set[str]) -> None:

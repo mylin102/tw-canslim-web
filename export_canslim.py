@@ -10,6 +10,7 @@ from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
+from core_selection import build_core_universe
 
 from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
 from publish_safety import (
@@ -678,10 +679,21 @@ class CanslimEngine:
         market_hist = self.get_price_history(TAIEX_SYMBOL, period="2y")
         market_return = self.get_market_return_6m()
         
-        # Priority list + extended scan
-        priority = ["1101", "2330", "3565", "6770", "2303", "8069", "6805"]
         all_t = sorted(list(self.ticker_info.keys()))
-        scan_list = priority + [t for t in all_t if t not in priority][:2000]
+        selection = build_core_universe(
+            all_symbols=all_t,
+            config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
+            fused_path=os.path.join(SCRIPT_DIR, "master_canslim_signals_fused.parquet"),
+            master_path=os.path.join(SCRIPT_DIR, "master_canslim_signals.parquet"),
+            baseline_path=os.path.join(OUTPUT_DIR, "data_base.json"),
+        )
+        scan_list = selection.core_symbols + [t for t in all_t if t not in selection.core_set][:2000]
+        logger.info(
+            "Dynamic core selector produced %s core symbols with bucket counts %s",
+            len(selection.core_symbols),
+            selection.bucket_counts,
+        )
+        logger.info("Final scan list contains %s symbols", len(scan_list))
 
         logger.info(f"Analyzing {len(scan_list)} stocks...")
 

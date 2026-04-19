@@ -77,6 +77,25 @@ def _stub_engine_dependencies(monkeypatch: pytest.MonkeyPatch, module, engine, *
     monkeypatch.setattr(module, "compute_canslim_score_etf", lambda factors, institutional_strength=0.0: 90)
 
 
+def _stub_selector(
+    monkeypatch: pytest.MonkeyPatch,
+    module,
+    *,
+    core_symbols: tuple[str, ...] = ("1101", "2330", "3565"),
+):
+    monkeypatch.setattr(
+        module,
+        "build_core_universe",
+        lambda **kwargs: SimpleNamespace(
+            core_symbols=list(core_symbols),
+            core_set=set(core_symbols),
+            bucket_counts={"core_symbols": len(core_symbols), "required_total": len(core_symbols)},
+            target_size=len(core_symbols),
+        ),
+        raising=False,
+    )
+
+
 def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summary_bundle(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -90,6 +109,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
 
     engine = _build_engine(module)
     _stub_engine_dependencies(monkeypatch, module, engine)
+    _stub_selector(monkeypatch, module)
 
     load_calls = []
     validated = []
@@ -153,6 +173,7 @@ def test_export_canslim_tracks_retry_attempts_and_stock_failures_in_summary(
 
     engine = _build_engine(module)
     _stub_engine_dependencies(monkeypatch, module, engine, broken_ticker="3565")
+    _stub_selector(monkeypatch, module)
 
     class DummyRequestException(module.requests.RequestException):
         pass
@@ -196,6 +217,7 @@ def test_export_canslim_reraises_publish_transaction_failures(
 
     engine = _build_engine(module)
     _stub_engine_dependencies(monkeypatch, module, engine)
+    _stub_selector(monkeypatch, module)
 
     monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
     monkeypatch.setattr(module, "DATA_FILE", str(data_path))
