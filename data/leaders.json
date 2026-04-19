@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "date": "2026-04-19",
+  "generated_at": "2026-04-19T06:23:29Z",
+  "universe": [
+    {
+      "symbol": "2317",
+      "name": "鴻海",
+      "rs_rating": 80,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.75,
+      "industry_rank": 2,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2330",
+      "name": "台積電",
+      "rs_rating": 98,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.95,
+      "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    }
+  ]
+}

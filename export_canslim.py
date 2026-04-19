@@ -336,6 +336,81 @@ class CanslimEngine:
             json_default=self._json_default,
         )
 
+    def _export_leaders_json(self, selection) -> Dict:
+        """Export core leaders to data/leaders.json according to External Alpha contract."""
+        self._ensure_runtime_state()
+        leaders_dir = os.path.join(SCRIPT_DIR, "data")
+        if not os.path.exists(leaders_dir):
+            os.makedirs(leaders_dir)
+        leaders_file = os.path.join(leaders_dir, "leaders.json")
+        
+        # Build industry rank mapping
+        industry_strength = self.output_data.get("industry_strength", [])
+        industry_rank_map = {item["industry"]: i + 1 for i, item in enumerate(industry_strength)}
+        
+        universe = []
+        core_set = set(selection.core_symbols)
+        
+        for symbol in sorted(list(self.output_data["stocks"].keys())):
+            if symbol not in core_set:
+                continue
+                
+            stock_data = self.output_data["stocks"][symbol]
+            canslim = stock_data["canslim"]
+            financials = stock_data.get("financials", {})
+            
+            # Map breakout_score: 1.0 if N is True, else 0.5 (proximity would be better but N is binary here)
+            breakout_score = 1.0 if canslim.get("N") else 0.5
+            
+            # Map volume_score: 1.0 if S is True, else 0.5
+            volume_score = 1.0 if canslim.get("S") else 0.5
+            
+            # RS Rating: use excel_ratings if available, else fallback to a derived value or 0
+            rs_rating = 0
+            excel_ratings = canslim.get("excel_ratings")
+            if excel_ratings and excel_ratings.get("rs_rating"):
+                rs_rating = int(excel_ratings["rs_rating"])
+            elif canslim.get("mansfield_rs"):
+                # Rough mapping: mansfield_rs > 0 is roughly top 50%?
+                # Better to just use 0 if not sure, but we'll try to be helpful
+                rs_rating = min(99, max(1, 50 + int(canslim["mansfield_rs"] * 5)))
+                
+            entry = {
+                "symbol": symbol,
+                "name": stock_data["name"],
+                "rs_rating": rs_rating,
+                "breakout_score": breakout_score,
+                "volume_score": volume_score,
+                "composite_score": round(canslim["score"] / 100.0, 3),
+                "industry_rank": industry_rank_map.get(stock_data.get("industry"), 999),
+                "tags": ["leader"]
+            }
+            if canslim.get("N"):
+                entry["tags"].append("breakout_candidate")
+                
+            universe.append(entry)
+            
+        payload = {
+            "schema_version": 1,
+            "date": datetime.now(UTC).strftime("%Y-%m-%d"),
+            "generated_at": self._utc_timestamp(),
+            "universe": universe
+        }
+        
+        bundle = {
+            leaders_file: {
+                "artifact_kind": "leaders",
+                "payload": payload,
+            }
+        }
+        
+        logger.info(f"Exporting {len(universe)} leaders to {leaders_file}...")
+        return publish_artifact_bundle(
+            bundle,
+            logger=logger,
+            json_default=self._json_default,
+        )
+
     def _load_etf_cache(self):
         """Load ETF list from local cache file."""
         cache_file = os.path.join(SCRIPT_DIR, "etf_cache.json")
@@ -1203,6 +1278,12 @@ class CanslimEngine:
                     all_symbols=all_t,
                     scheduled_batch=scheduled_batch,
                 )
+                
+                # Export Leaders for external alpha integration
+                try:
+                    self._export_leaders_json(selection)
+                except Exception as e:
+                    logger.error(f"Failed to export external alpha leaders: {e}")
             except (PublishValidationError, PublishTransactionError):
                 logger.exception("Failed to publish CANSLIM artifact bundle")
                 raise

@@ -26,6 +26,7 @@ SUPPORTED_ARTIFACT_KINDS = {
     "data_gz",
     "stock_index",
     "update_summary",
+    "leaders",
 }
 
 REQUIRED_STOCK_PATHS = (
@@ -43,6 +44,7 @@ ARTIFACT_KIND_BY_NAME = {
     "data.json.gz": "data_gz",
     "stock_index.json": "stock_index",
     "update_summary.json": "update_summary",
+    "leaders.json": "leaders",
 }
 
 STOCK_ARTIFACT_KINDS = {
@@ -106,7 +108,33 @@ def validate_artifact_payload(
         _validate_stock_index_payload(payload, schema_version=schema_version)
         return
 
+    if artifact_kind == "leaders":
+        _validate_leaders_payload(payload)
+        return
+
     _validate_summary_payload(payload)
+
+
+def _validate_leaders_payload(payload: dict) -> None:
+    """Validate external alpha leaders contract."""
+    if payload.get("schema_version") != 1:
+        raise PublishValidationError(f"leaders schema_version mismatch: expected 1, got {payload.get('schema_version')!r}")
+    
+    if not isinstance(payload.get("date"), str):
+        raise PublishValidationError("leaders payload missing string field: date")
+        
+    universe = payload.get("universe")
+    if not isinstance(universe, list):
+        raise PublishValidationError("leaders payload universe must be a list")
+        
+    for entry in universe:
+        if not isinstance(entry, dict):
+            raise PublishValidationError("leaders universe entry must be an object")
+        for key in ("symbol", "rs_rating", "composite_score", "tags"):
+            if key not in entry:
+                raise PublishValidationError(f"leaders universe entry missing required field: {key}")
+        if not isinstance(entry["tags"], list):
+            raise PublishValidationError(f"leaders universe entry {entry['symbol']} tags must be a list")
 
 
 def validate_resume_stock_entry(
@@ -329,10 +357,34 @@ def _validate_stock_index_payload(payload: dict, *, schema_version: str) -> None
 
 
 def _validate_summary_payload(payload: dict) -> None:
-    required_keys = ("timestamp", "update_type", "data_stats")
+    required_keys = (
+        "schema_version",
+        "artifact_kind",
+        "run_id",
+        "timestamp",
+        "update_type",
+        "data_stats",
+        "refreshed_symbols",
+        "failed_symbols",
+        "next_rotation",
+        "freshness_counts",
+    )
     for key in required_keys:
         if key not in payload:
             raise PublishValidationError(f"update_summary payload missing {key}")
+
+    if payload.get("schema_version") != DEFAULT_SCHEMA_VERSION:
+        raise PublishValidationError(
+            f"update_summary schema mismatch: expected {DEFAULT_SCHEMA_VERSION}, got {payload.get('schema_version')!r}"
+        )
+
+    if payload.get("artifact_kind") != "update_summary":
+        raise PublishValidationError(
+            f"update_summary artifact_kind mismatch: expected 'update_summary', got {payload.get('artifact_kind')!r}"
+        )
+
+    if not isinstance(payload.get("run_id"), str) or not payload["run_id"]:
+        raise PublishValidationError("update_summary run_id must be a non-empty string")
 
     data_stats = payload.get("data_stats")
     if not isinstance(data_stats, dict):
@@ -341,6 +393,27 @@ def _validate_summary_payload(payload: dict) -> None:
     for key in ("total_stocks", "updated_stocks"):
         if key not in data_stats:
             raise PublishValidationError(f"update_summary data_stats missing {key}")
+
+    for key in ("refreshed_symbols", "failed_symbols"):
+        if not isinstance(payload.get(key), list):
+            raise PublishValidationError(f"update_summary {key} must be a list")
+
+    next_rotation = payload.get("next_rotation")
+    if not isinstance(next_rotation, dict):
+        raise PublishValidationError("update_summary next_rotation must be an object")
+    for key in ("batch_index", "symbols"):
+        if key not in next_rotation:
+            raise PublishValidationError(f"update_summary next_rotation missing {key}")
+    if not isinstance(next_rotation.get("symbols"), list):
+        raise PublishValidationError("update_summary next_rotation.symbols must be a list")
+
+    freshness_counts = payload.get("freshness_counts")
+    if not isinstance(freshness_counts, dict):
+        raise PublishValidationError("update_summary freshness_counts must be an object")
+    for key in ("today", "warning", "stale"):
+        value = freshness_counts.get(key)
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise PublishValidationError(f"update_summary freshness_counts.{key} must be an integer >= 0")
 
 
 def _resolve_path(data: dict, path: str):
