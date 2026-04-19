@@ -256,6 +256,31 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
     assert set(published["bundle"]) == {str(data_path), str(summary_path)}
 
 
+def test_export_canslim_reraises_selector_validation_failures(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    module = _load_module("export_canslim")
+    docs_dir = tmp_path / "docs"
+    docs_dir.mkdir()
+    data_path = docs_dir / "data.json"
+
+    engine = _build_engine(module, tickers=("0050", "1101", "2330"))
+    _stub_engine_dependencies(monkeypatch, module, engine)
+
+    monkeypatch.setattr(module, "OUTPUT_DIR", str(docs_dir))
+    monkeypatch.setattr(module, "DATA_FILE", str(data_path))
+    monkeypatch.setattr(
+        module,
+        "build_core_universe",
+        lambda **kwargs: (_ for _ in ()).throw(ValueError("selector inputs are stale")),
+        raising=False,
+    )
+
+    with pytest.raises(ValueError, match="selector inputs are stale"):
+        engine.run()
+
+
 def test_export_dashboard_data_publishes_artifact_aware_bundle(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
