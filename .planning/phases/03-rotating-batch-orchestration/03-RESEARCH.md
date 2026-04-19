@@ -243,22 +243,19 @@ with lock_file.open("a+", encoding="utf-8") as handle:
 | A3 | The recommended budget rule is “reserve full current-group capacity, use only leftover capacity for retries, but execute retries first.” | Architecture Patterns | If the desired split is different, task sizing and starvation tests change. |
 | A4 | A shared provider policy helper is preferable to open-coded retries across FinMind/TEJ/yfinance. | Standard Stack / Don’t Hand-Roll | If the user wants zero abstraction, implementation will stay more duplicated. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Where should the durable orchestration state file live?**
-   - What we know: State must be file-based and durable across GitHub Actions runs, and current workflows only commit selected files explicitly. [VERIFIED: REQUIREMENTS.md][VERIFIED: codebase grep]
-   - What's unclear: Whether the maintainer wants the state file public under `docs/` or private elsewhere in the repo. [ASSUMED]
-   - Recommendation: Decide this before planning so workflow commit steps and validation commands target the correct path. [ASSUMED]
+   - **Resolution:** Store durable orchestration state in a non-published repo path at `.orchestration/rotation_state.json`, and explicitly include that fixed file in the scheduled workflow commit step. [RESOLVED: Phase 3 planning direction]
+   - **Why:** This satisfies the file-based durability requirement without exposing internal orchestration state through `docs/`, and it aligns with the existing workflow pattern of committing selected artifact paths explicitly. [VERIFIED: REQUIREMENTS.md][VERIFIED: codebase grep]
 
 2. **What are the exact provider quotas / preferred cooldowns for FinMind, TEJ, and Yahoo paths?**
-   - What we know: The repo depends on FinMind, TEJ, Yahoo Finance, TWSE, and TPEx, and current code does not encode one unified quota table. [VERIFIED: codebase grep][VERIFIED: copilot-instructions.md]
-   - What's unclear: Exact per-provider limits acceptable for the maintainer’s accounts. [ASSUMED]
-   - Recommendation: Plan Phase 3 around configurable provider policies and default conservative backoff values, then confirm quotas during implementation. [ASSUMED]
+   - **Resolution:** Phase 3 should encode one shared provider-policy table with explicit default attempts/backoff values for `finmind`, `tej`, `yfinance`, and requests-based TWSE/TPEx calls, then treat those values as the conservative operational defaults until measured quota data justifies tuning. [RESOLVED: 03-CONTEXT.md D-07 + research recommendation]
+   - **Why:** The roadmap requires provider-aware throttling/backoff now, but quota calibration can remain an implementation-time validation/tuning activity instead of blocking planning. [VERIFIED: REQUIREMENTS.md][VERIFIED: ROADMAP.md]
 
 3. **Should the existing incremental-save cadence (`every 50 stocks`) remain the publish checkpoint granularity?**
-   - What we know: `export_canslim.py` currently publishes every 50 processed stocks. [VERIFIED: codebase grep]
-   - What's unclear: Whether Phase 3 should keep that cadence, reduce it, or only checkpoint orchestration state more frequently while leaving publish cadence unchanged. [ASSUMED]
-   - Recommendation: Keep publish cadence unchanged for Phase 3 unless tests show it interferes with step-level verification or cursor semantics. [VERIFIED: codebase grep][ASSUMED]
+   - **Resolution:** Keep the current publish cadence unchanged in Phase 3 and add orchestration-state checkpoints around batch planning/finalization instead of changing the publish frequency. [RESOLVED: brownfield scope choice]
+   - **Why:** This keeps Phase 1 publish behavior stable while still enabling Phase 3 resume semantics through the new state layer. [VERIFIED: codebase grep][VERIFIED: 03-CONTEXT.md]
 
 ## Environment Availability
 

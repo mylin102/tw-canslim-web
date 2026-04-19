@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: ready_for_verification
-last_updated: "2026-04-19T00:05:34.915Z"
+status: unknown
+last_updated: "2026-04-19T01:29:17.876Z"
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 6
+  total_plans: 9
   completed_plans: 6
-  percent: 100
+  percent: 67
 ---
 
 # State: tw-canslim-web
