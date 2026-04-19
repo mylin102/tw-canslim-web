@@ -12,6 +12,7 @@ import os
 import re
 import sys
 from datetime import UTC, datetime
+from types import SimpleNamespace
 from typing import Any
 
 import numpy as np
@@ -35,6 +36,8 @@ from publish_safety import (
     load_artifact_json,
     publish_artifact_bundle,
 )
+from orchestration_state import DEFAULT_STATE_PATH, load_rotation_state, save_rotation_state
+from publish_projection import build_publish_projection_bundle
 from tej_processor import TEJProcessor
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -189,6 +192,27 @@ class SingleStockUpdater:
             "next_action": "Review the issue response and verify the updated symbol in GitHub Pages.",
         }
 
+    def _utc_timestamp(self) -> str:
+        """Return a UTC timestamp aligned with the shared publish contract."""
+        return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def _load_rotation_state(self) -> dict[str, Any]:
+        """Load or seed durable freshness state for publish projections."""
+        return load_rotation_state(path=DEFAULT_STATE_PATH)
+
+    def _persist_single_stock_success(self, state: dict[str, Any], *, ticker: str, timestamp: str) -> dict[str, Any]:
+        """Record fresh success metadata for the updated ticker."""
+        next_state = save_rotation_state(state, path=None)
+        batch_generation = str(next_state.get("rotation_generation", "")).strip() or f"on-demand-{ticker}"
+        next_state["retry_queue"] = [entry for entry in next_state["retry_queue"] if entry.get("symbol") != ticker]
+        next_state["freshness"][ticker] = {
+            "last_attempted_at": timestamp,
+            "last_succeeded_at": timestamp,
+            "last_batch_generation": batch_generation,
+            "source": "on_demand",
+        }
+        return save_rotation_state(next_state, path=DEFAULT_STATE_PATH)
+
     def update_stock(self, ticker: str) -> bool:
         """Update one ticker and publish all derived artifacts as one bundle."""
         if not re.match(r"^\d{4,6}$", ticker):
@@ -256,21 +280,73 @@ class SingleStockUpdater:
             return False
 
         run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+        generated_at = self._utc_timestamp()
         full_data.setdefault("stocks", {})
+        full_data.setdefault("schema_version", "1.0")
+        full_data["artifact_kind"] = "data_base"
         full_data["stocks"][ticker] = stock_entry
         full_data["run_id"] = run_id
-        full_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        full_data["generated_at"] = generated_at
+        full_data["last_updated"] = generated_at
 
         data_payload = copy.deepcopy(full_data)
-        summary = self.build_summary(run_id, ticker, data_payload)
+        data_payload["artifact_kind"] = "data"
+
+        try:
+            rotation_state = self._persist_single_stock_success(
+                self._load_rotation_state(),
+                ticker=ticker,
+                timestamp=generated_at,
+            )
+        except PublishValidationError as exc:
+            logger.error("Failed to load or persist rotation state: %s", exc)
+            return False
+
+        all_symbols = sorted(set(self.ticker_info) | set(full_data.get("stocks", {})))
+        projected = build_publish_projection_bundle(
+            output_data=data_payload,
+            baseline_payload=full_data,
+            ticker_info=self.ticker_info,
+            freshness_state=rotation_state,
+            failure_details=[],
+            failure_stats={},
+            refreshed_symbols=[ticker],
+            all_symbols=all_symbols,
+            selection=SimpleNamespace(core_set={ticker}),
+            scheduled_batch={
+                "batch_index": rotation_state.get("current_batch_index", 0),
+                "rotation_generation": rotation_state.get("rotation_generation", ""),
+                "symbols": [],
+                "completed_symbols": [],
+                "remaining_symbols": [],
+            },
+            as_of=generated_at,
+        )
+        summary = projected["update_summary"]
+        summary.update(
+            {
+                "update_type": "single stock update",
+                "description": f"On-demand publish for {ticker}",
+                "published_targets": [
+                    "docs/data_base.json",
+                    "docs/data.json",
+                    "docs/data_light.json",
+                    "docs/data.json.gz",
+                    "docs/stock_index.json",
+                    "docs/update_summary.json",
+                ],
+                "next_action": "Review the issue response and verify the updated symbol in GitHub Pages.",
+            }
+        )
 
         try:
             publish_artifact_bundle(
                 {
                     "docs/data_base.json": {"artifact_kind": "data_base", "payload": full_data},
-                    "docs/data.json": {"artifact_kind": "data", "payload": data_payload},
-                    "docs/data_light.json": {"artifact_kind": "data_light", "payload": build_light_payload(data_payload)},
-                    "docs/data.json.gz": {"artifact_kind": "data_gz", "payload": data_payload},
+                    "docs/data.json": {"artifact_kind": "data", "payload": projected["data"]},
+                    "docs/data_light.json": {"artifact_kind": "data_light", "payload": build_light_payload(projected["data"])},
+                    "docs/data.json.gz": {"artifact_kind": "data_gz", "payload": projected["data"]},
+                    "docs/stock_index.json": {"artifact_kind": "stock_index", "payload": projected["stock_index"]},
                     "docs/update_summary.json": {"artifact_kind": "update_summary", "payload": summary},
                 },
                 lock_path="docs/.publish.lock",

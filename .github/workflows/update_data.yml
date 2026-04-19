@@ -69,11 +69,7 @@ jobs:
           # 2. 執行增量計算
           echo "步驟 2: 執行增量計算..."
           python incremental_workflow.py
-          
-          # 3. 建立股票索引
-          echo "步驟 3: 建立股票索引..."
-          python create_stock_index.py
-          
+
           echo "✅ 增量更新完成！"
 
       - name: ⏱️ 驗證 runtime budget
@@ -136,7 +132,8 @@ jobs:
           
           # 添加所有更新的檔案
           git add docs/data.json docs/data_base.json docs/data_light.json docs/data.json.gz
-          git add docs/signals.json docs/ranking.json docs/state.json docs/state_light.json docs/stock_index.json
+          git add docs/signals.json docs/ranking.json docs/state.json docs/state_light.json
+          git add docs/stock_index.json docs/update_summary.json
           git add .orchestration/rotation_state.json
           git add docs/incremental_dashboard.html docs/test_github_pages.html 2>/dev/null || true
           
