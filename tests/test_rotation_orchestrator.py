@@ -32,7 +32,7 @@ def test_build_rotation_groups_partitions_sorted_non_core_symbols_into_three_sta
     ]
 
 
-def test_build_daily_plan_recomputes_future_groups_when_core_membership_changes():
+def test_build_daily_plan_recomputes_generation_when_core_membership_changes():
     module = load_rotation_orchestrator_module()
     all_symbols = ["2454", "1102", "2330", "1101", "2317", "0050", "1301"]
     initial_state = {
