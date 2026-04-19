@@ -148,6 +148,38 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
     monkeypatch.setattr(module, "load_artifact_json", fake_load_artifact_json)
     monkeypatch.setattr(module, "validate_resume_stock_entry", fake_validate_resume_stock_entry)
     monkeypatch.setattr(module, "publish_artifact_bundle", fake_publish_artifact_bundle)
+    monkeypatch.setattr(
+        module,
+        "load_state",
+        lambda path=None: {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": None,
+            "last_completed_batch": None,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "build_daily_plan",
+        lambda **kwargs: {
+            "retry_symbols": [],
+            "scheduled_batch": {
+                "batch_index": 0,
+                "rotation_generation": "gen-resume",
+                "symbols": [],
+                "completed_symbols": [],
+                "remaining_symbols": [],
+                "is_resume": False,
+            },
+            "worklist": [],
+            "daily_budget": 0,
+        },
+        raising=False,
+    )
 
     engine.run()
 
@@ -268,6 +300,73 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
     monkeypatch.setattr(module, "DATA_FILE", str(data_path))
     monkeypatch.setattr(module, "build_core_universe", fake_build_core_universe, raising=False)
     monkeypatch.setattr(module, "publish_artifact_bundle", fake_publish_artifact_bundle)
+    monkeypatch.setattr(
+        module,
+        "load_state",
+        lambda path=None: {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": None,
+            "last_completed_batch": None,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "build_daily_plan",
+        lambda **kwargs: {
+            "retry_symbols": [],
+            "scheduled_batch": {
+                "batch_index": 0,
+                "rotation_generation": "gen-selector",
+                "symbols": ["2454", "3008"],
+                "completed_symbols": [],
+                "remaining_symbols": ["2454", "3008"],
+                "is_resume": False,
+            },
+            "worklist": ["2454", "3008"],
+            "daily_budget": 2,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "write_in_progress",
+        lambda state, **kwargs: {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "gen-selector",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": {
+                "batch_index": 0,
+                "rotation_generation": "gen-selector",
+                "symbols": ["2454", "3008"],
+                "completed_symbols": [],
+                "remaining_symbols": ["2454", "3008"],
+            },
+            "last_completed_batch": None,
+        },
+        raising=False,
+    )
+    monkeypatch.setattr(
+        module,
+        "mark_symbol_completed",
+        lambda state, **kwargs: {
+            **state,
+            "in_progress": {
+                **state["in_progress"],
+                "completed_symbols": state["in_progress"]["completed_symbols"] + [kwargs["symbol"]],
+                "remaining_symbols": [
+                    symbol for symbol in state["in_progress"]["remaining_symbols"] if symbol != kwargs["symbol"]
+                ],
+            },
+        },
+        raising=False,
+    )
 
     engine.run()
 
@@ -349,13 +448,36 @@ def test_export_canslim_rotation_plan_processes_due_retries_before_scheduled_bat
     monkeypatch.setattr(
         module,
         "write_in_progress",
-        lambda state, **kwargs: events.append(("write_in_progress", kwargs["planned_batch"]["symbols"])) or state,
+        lambda state, **kwargs: events.append(("write_in_progress", kwargs["planned_batch"]["symbols"])) or {
+            "schema_version": "1.0",
+            "current_batch_index": 0,
+            "rotation_generation": "gen-1",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": {
+                "batch_index": kwargs["planned_batch"]["batch_index"],
+                "rotation_generation": kwargs["planned_batch"]["rotation_generation"],
+                "symbols": list(kwargs["planned_batch"]["symbols"]),
+                "completed_symbols": [],
+                "remaining_symbols": list(kwargs["planned_batch"]["symbols"]),
+            },
+            "last_completed_batch": None,
+        },
         raising=False,
     )
     monkeypatch.setattr(
         module,
         "mark_symbol_completed",
-        lambda state, **kwargs: states.append(kwargs["symbol"]) or state,
+        lambda state, **kwargs: states.append(kwargs["symbol"]) or {
+            **state,
+            "in_progress": {
+                **state["in_progress"],
+                "completed_symbols": state["in_progress"]["completed_symbols"] + [kwargs["symbol"]],
+                "remaining_symbols": [
+                    symbol for symbol in state["in_progress"]["remaining_symbols"] if symbol != kwargs["symbol"]
+                ],
+            },
+        },
         raising=False,
     )
     monkeypatch.setattr(

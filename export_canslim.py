@@ -12,7 +12,21 @@ from excel_processor import ExcelDataProcessor
 from finmind_processor import FinMindProcessor
 from tej_processor import TEJProcessor
 from core_selection import build_core_universe
-from provider_policies import ProviderRetryExhaustedError, call_with_provider_policy, get_provider_policy
+from orchestration_state import DEFAULT_STATE_PATH, enqueue_retry_failure, save_rotation_state
+from provider_policies import (
+    ProviderRetryExhaustedError,
+    call_with_provider_policy,
+    compute_backoff_seconds,
+    get_provider_policy,
+)
+from rotation_orchestrator import (
+    build_daily_plan,
+    finalize_failure,
+    finalize_success,
+    load_state,
+    mark_symbol_completed,
+    write_in_progress,
+)
 from yfinance_provider import get_price_history_with_policy
 
 from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
@@ -32,6 +46,8 @@ RS_LOOKBACK_DAYS = 180  # ~6 months
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "docs")
 DATA_FILE = os.path.join(OUTPUT_DIR, "data.json")
+ROTATION_STATE_FILE = str(DEFAULT_STATE_PATH)
+RUNTIME_BUDGET_FILE = os.path.join(SCRIPT_DIR, ".orchestration", "runtime_budget.json")
 SCHEMA_VERSION = "1.0"
 
 # Setup logging
@@ -725,241 +741,439 @@ class CanslimEngine:
             runtime_state=self.failure_stats,
         )
 
+    def _rotation_timestamp(self) -> str:
+        """Return a UTC timestamp for durable rotation metadata."""
+        return self._utc_timestamp()
+
+    def _rotation_retry_due_at(self, provider_name: str, attempt_count: int, failed_at: datetime) -> str:
+        """Return the next retry time for a failed non-core symbol."""
+        try:
+            policy = get_provider_policy(provider_name)
+            wait_seconds = compute_backoff_seconds(policy, min(max(1, attempt_count), policy.max_attempts))
+        except (KeyError, ValueError):
+            wait_seconds = 300.0
+        return (failed_at + timedelta(seconds=wait_seconds)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def _persist_non_scheduled_success(
+        self,
+        state: dict,
+        *,
+        symbol: str,
+        attempted_at: str,
+        succeeded_at: str,
+        rotation_generation: str,
+        source: str,
+    ) -> dict:
+        """Persist freshness for core/retry successes and drop any stale retry queue entry."""
+        next_state = save_rotation_state(self._normalized_rotation_state(state), path=None)
+        next_state["retry_queue"] = [entry for entry in next_state["retry_queue"] if entry.get("symbol") != symbol]
+        next_state["freshness"][symbol] = {
+            "last_attempted_at": attempted_at,
+            "last_succeeded_at": succeeded_at,
+            "last_batch_generation": rotation_generation,
+            "source": source,
+        }
+        return save_rotation_state(next_state, path=ROTATION_STATE_FILE)
+
+    def _persist_non_scheduled_failure(
+        self,
+        state: dict,
+        *,
+        symbol: str,
+        error: str,
+        failed_at: datetime,
+        scheduled_batch: dict,
+        provider_name: str = "requests",
+    ) -> dict:
+        """Queue a failed retry symbol without overwriting prior success freshness."""
+        next_state = save_rotation_state(self._normalized_rotation_state(state), path=None)
+        existing_entry = next(
+            (entry for entry in next_state["retry_queue"] if entry.get("symbol") == symbol),
+            None,
+        )
+        next_state["retry_queue"] = [entry for entry in next_state["retry_queue"] if entry.get("symbol") != symbol]
+        attempt_count = 1 if existing_entry is None else int(existing_entry.get("attempt_count", 1)) + 1
+        due_at = self._rotation_retry_due_at(
+            existing_entry.get("provider", provider_name) if existing_entry else provider_name,
+            attempt_count,
+            failed_at,
+        )
+        return enqueue_retry_failure(
+            next_state,
+            path=ROTATION_STATE_FILE,
+            symbol=symbol,
+            provider=existing_entry.get("provider", provider_name) if existing_entry else provider_name,
+            error=error,
+            due_at=due_at,
+            failed_at=failed_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            batch_index=scheduled_batch["batch_index"],
+            rotation_generation=scheduled_batch["rotation_generation"],
+            attempt_count=attempt_count,
+        )
+
+    def _normalized_rotation_state(self, state: dict) -> dict:
+        """Fill any missing rotation-state keys for test seams and defensive writes."""
+        normalized = {
+            "schema_version": SCHEMA_VERSION,
+            "current_batch_index": 0,
+            "rotation_generation": "",
+            "retry_queue": [],
+            "freshness": {},
+            "in_progress": None,
+            "last_completed_batch": None,
+        }
+        normalized.update(state)
+        normalized["retry_queue"] = list(normalized.get("retry_queue", []))
+        normalized["freshness"] = dict(normalized.get("freshness", {}))
+        return normalized
+
+    def _write_runtime_budget(self, started_at: float) -> dict:
+        """Persist runtime budget metrics for workflow validation."""
+        payload = {
+            "elapsed_seconds": round(max(0.0, time.monotonic() - started_at), 3),
+            "retry_attempts": self.failure_stats.get("retry_attempts", 0),
+            "retry_failures": self.failure_stats.get("retry_failures", 0),
+            "provider_wait_seconds": round(self.failure_stats.get("provider_wait_seconds", 0.0), 3),
+        }
+        runtime_dir = os.path.dirname(RUNTIME_BUDGET_FILE)
+        if not os.path.exists(runtime_dir):
+            os.makedirs(runtime_dir)
+        with open(RUNTIME_BUDGET_FILE, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+        return payload
+
     def run(self):
+        started_at = time.monotonic()
         self._ensure_runtime_state()
         logger.info("="*80)
         logger.info("Starting CANSLIM Analysis with Mansfield RS & Resume Capability")
         logger.info("="*80)
-        
-        # 1. Try to load existing data for resuming
-        existing_count = 0
-        if os.path.exists(DATA_FILE):
-            try:
-                old_data = load_artifact_json(DATA_FILE, artifact_kind="data", logger=logger)
-            except PublishValidationError as exc:
-                logger.warning(f"Existing artifact failed validation; scanning raw resume payload instead: {exc}")
+        rotation_state = self._normalized_rotation_state(load_state(path=ROTATION_STATE_FILE))
+        try:
+            # 1. Try to load existing data for resuming
+            existing_count = 0
+            if os.path.exists(DATA_FILE):
                 try:
-                    with open(DATA_FILE, "r", encoding="utf-8") as handle:
-                        old_data = json.load(handle)
-                except (OSError, json.JSONDecodeError) as raw_exc:
-                    logger.warning(f"Could not load existing data for resume: {raw_exc}")
-                    old_data = {}
-            except OSError as exc:
-                logger.warning(f"Could not load existing data for resume: {exc}")
-                old_data = {}
-
-            if "stocks" in old_data:
-                self.output_data["stocks"] = old_data["stocks"]
-                existing_count = len(self.output_data["stocks"])
-                logger.info(f"📂 Found existing data. Resuming with {existing_count} stocks already processed.")
-
-        # 2. Fetch market benchmark history once
-        logger.info(f"Fetching {TAIEX_SYMBOL} history for Mansfield RS...")
-        market_hist = self.get_price_history(TAIEX_SYMBOL, period="2y")
-        market_return = self.get_market_return_6m()
-        
-        all_t = sorted(list(self.ticker_info.keys()))
-        selection = build_core_universe(
-            all_symbols=all_t,
-            config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
-            fused_path=os.path.join(SCRIPT_DIR, "master_canslim_signals_fused.parquet"),
-            master_path=os.path.join(SCRIPT_DIR, "master_canslim_signals.parquet"),
-            baseline_path=os.path.join(OUTPUT_DIR, "data_base.json"),
-        )
-        scan_list = selection.core_symbols + [t for t in all_t if t not in selection.core_set][:2000]
-        logger.info(
-            "Dynamic core selector produced %s core symbols with bucket counts %s",
-            len(selection.core_symbols),
-            selection.bucket_counts,
-        )
-        logger.info("Final scan list contains %s symbols", len(scan_list))
-
-        logger.info(f"Analyzing {len(scan_list)} stocks...")
-
-        for i, t in enumerate(scan_list):
-            if t in self.output_data["stocks"]:
-                stock_entry = self.output_data["stocks"][t]
-                try:
-                    validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION)
-                    continue
+                    old_data = load_artifact_json(DATA_FILE, artifact_kind="data", logger=logger)
                 except PublishValidationError as exc:
-                    self.failure_stats["resume_rejected"] += 1
-                    logger.info(f"🔄 Resume rejected for {t}: {exc}. Re-processing...")
+                    logger.warning(f"Existing artifact failed validation; scanning raw resume payload instead: {exc}")
+                    try:
+                        with open(DATA_FILE, "r", encoding="utf-8") as handle:
+                            old_data = json.load(handle)
+                    except (OSError, json.JSONDecodeError) as raw_exc:
+                        logger.warning(f"Could not load existing data for resume: {raw_exc}")
+                        old_data = {}
+                except OSError as exc:
+                    logger.warning(f"Could not load existing data for resume: {exc}")
+                    old_data = {}
 
-            if i % 10 == 0:
-                logger.info(f"Processing {i}/{len(scan_list)}... (Current: {t})")
-            
-            try:
-                info = self.ticker_info.get(t, {"name": t, "suffix": ".TW"})
-                history = self.fetch_institutional_data_finmind(t, days=60)
-                
-                if not history:
-                    history = [{"date": datetime.now().strftime("%Y%m%d"), "no_data": True}]
-                
-                chip_df = pd.DataFrame(history)
-                financial_data = self.fetch_financial_data(t)
-                if not financial_data:
-                    self._record_stock_failure(t, "Missing financial data")
-                    continue
-                
-                # Mansfield RS Calculation
-                stock_hist = self.get_price_history(t, period="2y")
-                m_rs = calculate_mansfield_rs(stock_hist, market_hist) if stock_hist is not None and market_hist is not None else 0.0
+                if "stocks" in old_data:
+                    self.output_data["stocks"] = old_data["stocks"]
+                    existing_count = len(self.output_data["stocks"])
+                    logger.info(f"📂 Found existing data. Resuming with {existing_count} stocks already processed.")
 
-                price = financial_data.get("price", 0) or 0
-                market_cap = financial_data.get("market_cap", 0) or 0
-                shares_outstanding = financial_data.get("sharesOutstanding", 0) or 0
-                
-                total_shares = 0
-                if price > 0 and market_cap > 0:
-                    total_shares = market_cap / price
-                elif shares_outstanding > 0:
-                    total_shares = shares_outstanding
-                
-                tej_ca = {}
-                if self.tej_processor.initialized:
-                    tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
-                
-                c_score = tej_ca.get('C', False)
-                a_score = tej_ca.get('A', False)
-                tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
+            # 2. Fetch market benchmark history once
+            logger.info(f"Fetching {TAIEX_SYMBOL} history for Mansfield RS...")
+            market_hist = self.get_price_history(TAIEX_SYMBOL, period="2y")
+            market_return = self.get_market_return_6m()
 
-                n_score = check_n_factor(stock_hist)
-                s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
+            all_t = sorted(list(self.ticker_info.keys()))
+            selection = build_core_universe(
+                all_symbols=all_t,
+                config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
+                fused_path=os.path.join(SCRIPT_DIR, "master_canslim_signals_fused.parquet"),
+                master_path=os.path.join(SCRIPT_DIR, "master_canslim_signals.parquet"),
+                baseline_path=os.path.join(OUTPUT_DIR, "data_base.json"),
+            )
+            daily_plan = build_daily_plan(
+                all_symbols=all_t,
+                selection=selection,
+                state=rotation_state,
+                as_of=self._rotation_timestamp(),
+            )
+            scan_list = selection.core_symbols + daily_plan["worklist"]
+            scheduled_batch = daily_plan["scheduled_batch"]
+            scheduled_symbols = set(scheduled_batch["symbols"])
+            retry_symbols = set(daily_plan["retry_symbols"])
 
-                inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0
-                inst_strength_5d = calculate_accumulation_strength(chip_df, total_shares, days=5) if total_shares else 0.0
-                i_score = self.check_i_institutional(history)
-                
-                # New L factor based on Mansfield
-                l_score = calculate_l_factor(m_rs)
-                
-                rs_ratio = 1.0
-                if stock_hist is not None and market_return is not None:
-                    # Calculate actual 6-month return (approx 120 trading days)
-                    if len(stock_hist) >= 120:
-                        stock_return_6m = (stock_hist.iloc[-1] - stock_hist.iloc[-120]) / stock_hist.iloc[-120]
-                        rs_ratio = stock_return_6m / market_return if abs(market_return) > 0.01 else 1.0
-                
-                excel_ratings = self.get_excel_canslim_ratings(t)
-                fund_data = self.fund_holdings.get(t) if self.fund_holdings else None
-                industry_info = self.industry_data.get(t) if self.industry_data else None
-                
-                # ETF Identification
-                industry_name = industry_info.get('industry', '') if industry_info else ''
-                is_etf = (t in self.etf_list) or len(t) >= 5 or "ETF" in industry_name or "受益證券" in industry_name
-                
-                factors = {"C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True}
-                
-                if is_etf:
-                    score = compute_canslim_score_etf(factors, institutional_strength=inst_strength_20d)
-                else:
-                    score = compute_canslim_score(factors, institutional_strength=inst_strength_20d)
+            logger.info(
+                "Dynamic core selector produced %s core symbols with bucket counts %s",
+                len(selection.core_symbols),
+                selection.bucket_counts,
+            )
+            logger.info(
+                "Rotation plan selected %s retries and %s scheduled non-core symbols",
+                len(daily_plan["retry_symbols"]),
+                len(scheduled_batch["symbols"]),
+            )
+            logger.info("Final scan list contains %s symbols", len(scan_list))
 
-                # Strategy Lab: Grid Strategy
-                grid_data = None
-                if (score >= 60 or is_etf) and stock_hist is not None:
-                    grid_data = calculate_volatility_grid(stock_hist, is_etf=is_etf)
-
-                stock_data = {
-                    "schema_version": SCHEMA_VERSION,
-                    "symbol": t, "name": info["name"],
-                    "industry": industry_name,
-                    "is_etf": is_etf,
-                    "canslim": {
-                        "C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True,
-                        "score": score, 
-                        "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
-                        "mansfield_rs": round(m_rs, 3),
-                        "inst_strength_20d": round(inst_strength_20d * 100, 3) if inst_strength_20d else 0,
-                        "inst_strength_5d": round(inst_strength_5d * 100, 3) if inst_strength_5d else 0,
-                        "excel_ratings": excel_ratings, "fund_holdings": fund_data,
-                        "grid_strategy": grid_data
-                    },
-                    "institutional": history[:20], "financials": financial_data, "tej_quarterly": tej_financials
-                }
-                
-                if self.validate_stock_data(stock_data):
-                    self.output_data["stocks"][t] = stock_data
-
-                # INCREMENTAL SAVE: Save every 50 new stocks
-                if len(self.output_data["stocks"]) % 50 == 0:
-                    self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
-                    self._publish_snapshot()
-
-            except (PublishValidationError, PublishTransactionError):
-                logger.exception("Publish failed while processing %s", t)
-                raise
-            except Exception as e:
-                self._record_stock_failure(t, "Error processing stock", exc=e)
-                continue
-
-        self.output_data["schema_version"] = SCHEMA_VERSION
-        self.output_data["artifact_kind"] = "data"
-        self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.output_data["generated_at"] = self._utc_timestamp()
-
-        # Calculate industry strength using CANSLIM data
-        if self.industry_data:
-            industry_stats = {}
-
-            for t, stock in self.output_data["stocks"].items():
-                ind = stock.get('industry')
-                if not ind or ind == '未知':
-                    continue
-
-                if ind not in industry_stats:
-                    industry_stats[ind] = {
-                        'industry': ind,
-                        'scores': [],
-                        'inst_nets': [],
-                        'high_score_count': 0,
-                        'stock_count': 0
+            if scheduled_batch["symbols"] and rotation_state.get("in_progress") is None:
+                rotation_state = write_in_progress(
+                    rotation_state,
+                    planned_batch=scheduled_batch,
+                    path=ROTATION_STATE_FILE,
+                )
+                if rotation_state.get("in_progress") is None:
+                    rotation_state = self._normalized_rotation_state(rotation_state)
+                    rotation_state["rotation_generation"] = scheduled_batch["rotation_generation"]
+                    rotation_state["in_progress"] = {
+                        "batch_index": scheduled_batch["batch_index"],
+                        "rotation_generation": scheduled_batch["rotation_generation"],
+                        "symbols": list(scheduled_batch["symbols"]),
+                        "completed_symbols": list(scheduled_batch.get("completed_symbols", [])),
+                        "remaining_symbols": list(scheduled_batch.get("remaining_symbols", scheduled_batch["symbols"])),
                     }
 
-                industry_stats[ind]['scores'].append(stock['canslim']['score'])
-                industry_stats[ind]['stock_count'] += 1
+            logger.info(f"Analyzing {len(scan_list)} stocks...")
 
-                if stock['canslim']['score'] >= 80:
-                    industry_stats[ind]['high_score_count'] += 1
+            for i, t in enumerate(scan_list):
+                is_scheduled_symbol = t in scheduled_symbols
+                is_retry_symbol = t in retry_symbols
+                source = "rotation" if is_scheduled_symbol else ("retry" if is_retry_symbol else "core")
 
-                # 3-day institutional net buying
-                if stock.get('institutional') and len(stock['institutional']) >= 3:
-                    net_3d = sum([
-                        d.get('foreign_net', 0) + d.get('trust_net', 0) + d.get('dealer_net', 0)
-                        for d in stock['institutional'][:3]
-                    ])
-                    industry_stats[ind]['inst_nets'].append(net_3d)
+                if t in self.output_data["stocks"]:
+                    stock_entry = self.output_data["stocks"][t]
+                    try:
+                        validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION)
+                        continue
+                    except PublishValidationError as exc:
+                        self.failure_stats["resume_rejected"] += 1
+                        logger.info(f"🔄 Resume rejected for {t}: {exc}. Re-processing...")
 
-            # Build final industry strength ranking
-            industry_strength = []
-            for ind, stats in industry_stats.items():
-                avg_score = sum(stats['scores']) / len(stats['scores']) if stats['scores'] else 0
-                total_inst_net = sum(stats['inst_nets']) if stats['inst_nets'] else 0
+                if i % 10 == 0:
+                    logger.info(f"Processing {i}/{len(scan_list)}... (Current: {t})")
 
-                industry_strength.append({
-                    'industry': ind,
-                    'avg_score': round(avg_score, 1),
-                    'total_inst_net_3d': int(total_inst_net),
-                    'high_score_count': stats['high_score_count'],
-                    'stock_count': stats['stock_count']
-                })
+                attempted_at_dt = datetime.now(UTC)
+                attempted_at = attempted_at_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-            # Sort by average score (descending)
-            industry_strength.sort(key=lambda x: x['avg_score'], reverse=True)
-            self.output_data["industry_strength"] = industry_strength[:30]  # Top 30
-            logger.info(f"Calculated industry strength for {len(industry_strength)} industries using CANSLIM data.")
+                try:
+                    info = self.ticker_info.get(t, {"name": t, "suffix": ".TW"})
+                    history = self.fetch_institutional_data_finmind(t, days=60)
 
-        if not os.path.exists(OUTPUT_DIR):
-            os.makedirs(OUTPUT_DIR)
-        try:
-            self._publish_snapshot()
-        except (PublishValidationError, PublishTransactionError):
-            logger.exception("Failed to publish CANSLIM artifact bundle")
-            raise
+                    if not history:
+                        history = [{"date": datetime.now().strftime("%Y%m%d"), "no_data": True}]
 
-        logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
+                    chip_df = pd.DataFrame(history)
+                    financial_data = self.fetch_financial_data(t)
+                    if not financial_data:
+                        raise ValueError("Missing financial data")
+
+                    # Mansfield RS Calculation
+                    stock_hist = self.get_price_history(t, period="2y")
+                    m_rs = calculate_mansfield_rs(stock_hist, market_hist) if stock_hist is not None and market_hist is not None else 0.0
+
+                    price = financial_data.get("price", 0) or 0
+                    market_cap = financial_data.get("market_cap", 0) or 0
+                    shares_outstanding = financial_data.get("sharesOutstanding", 0) or 0
+
+                    total_shares = 0
+                    if price > 0 and market_cap > 0:
+                        total_shares = market_cap / price
+                    elif shares_outstanding > 0:
+                        total_shares = shares_outstanding
+
+                    tej_ca = {}
+                    if self.tej_processor.initialized:
+                        self.tej_processor.provider_runtime_state = self.failure_stats
+                        tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
+
+                    c_score = tej_ca.get('C', False)
+                    a_score = tej_ca.get('A', False)
+                    tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
+
+                    n_score = check_n_factor(stock_hist)
+                    s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
+
+                    inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0
+                    inst_strength_5d = calculate_accumulation_strength(chip_df, total_shares, days=5) if total_shares else 0.0
+                    i_score = self.check_i_institutional(history)
+
+                    # New L factor based on Mansfield
+                    l_score = calculate_l_factor(m_rs)
+
+                    rs_ratio = 1.0
+                    if stock_hist is not None and market_return is not None:
+                        # Calculate actual 6-month return (approx 120 trading days)
+                        if len(stock_hist) >= 120:
+                            stock_return_6m = (stock_hist.iloc[-1] - stock_hist.iloc[-120]) / stock_hist.iloc[-120]
+                            rs_ratio = stock_return_6m / market_return if abs(market_return) > 0.01 else 1.0
+
+                    excel_ratings = self.get_excel_canslim_ratings(t)
+                    fund_data = self.fund_holdings.get(t) if self.fund_holdings else None
+                    industry_info = self.industry_data.get(t) if self.industry_data else None
+
+                    # ETF Identification
+                    industry_name = industry_info.get('industry', '') if industry_info else ''
+                    is_etf = (t in self.etf_list) or len(t) >= 5 or "ETF" in industry_name or "受益證券" in industry_name
+
+                    factors = {"C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True}
+
+                    if is_etf:
+                        score = compute_canslim_score_etf(factors, institutional_strength=inst_strength_20d)
+                    else:
+                        score = compute_canslim_score(factors, institutional_strength=inst_strength_20d)
+
+                    # Strategy Lab: Grid Strategy
+                    grid_data = None
+                    if (score >= 60 or is_etf) and stock_hist is not None:
+                        grid_data = calculate_volatility_grid(stock_hist, is_etf=is_etf)
+
+                    stock_data = {
+                        "schema_version": SCHEMA_VERSION,
+                        "symbol": t, "name": info["name"],
+                        "industry": industry_name,
+                        "is_etf": is_etf,
+                        "canslim": {
+                            "C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True,
+                            "score": score,
+                            "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
+                            "mansfield_rs": round(m_rs, 3),
+                            "inst_strength_20d": round(inst_strength_20d * 100, 3) if inst_strength_20d else 0,
+                            "inst_strength_5d": round(inst_strength_5d * 100, 3) if inst_strength_5d else 0,
+                            "excel_ratings": excel_ratings, "fund_holdings": fund_data,
+                            "grid_strategy": grid_data
+                        },
+                        "institutional": history[:20], "financials": financial_data, "tej_quarterly": tej_financials
+                    }
+
+                    if self.validate_stock_data(stock_data):
+                        self.output_data["stocks"][t] = stock_data
+
+                    succeeded_at = self._rotation_timestamp()
+                    if is_scheduled_symbol:
+                        rotation_state = mark_symbol_completed(
+                            rotation_state,
+                            symbol=t,
+                            attempted_at=attempted_at,
+                            succeeded_at=succeeded_at,
+                            source=source,
+                            path=ROTATION_STATE_FILE,
+                        )
+                    else:
+                        rotation_state = self._persist_non_scheduled_success(
+                            rotation_state,
+                            symbol=t,
+                            attempted_at=attempted_at,
+                            succeeded_at=succeeded_at,
+                            rotation_generation=scheduled_batch["rotation_generation"],
+                            source=source,
+                        )
+
+                    # INCREMENTAL SAVE: Save every 50 new stocks
+                    if len(self.output_data["stocks"]) % 50 == 0:
+                        self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
+                        self._publish_snapshot()
+
+                except (PublishValidationError, PublishTransactionError):
+                    logger.exception("Publish failed while processing %s", t)
+                    raise
+                except Exception as e:
+                    self._record_stock_failure(t, str(e), exc=None)
+                    if is_scheduled_symbol:
+                        failure_state = save_rotation_state(self._normalized_rotation_state(rotation_state), path=None)
+                        failure_state["retry_queue"] = [
+                            entry for entry in failure_state["retry_queue"] if entry.get("symbol") != t
+                        ]
+                        rotation_state = finalize_failure(
+                            failure_state,
+                            symbol=t,
+                            provider="requests",
+                            error=str(e),
+                            failed_at=attempted_at,
+                            due_at=self._rotation_retry_due_at("requests", 1, attempted_at_dt),
+                            path=ROTATION_STATE_FILE,
+                        )
+                    elif is_retry_symbol:
+                        rotation_state = self._persist_non_scheduled_failure(
+                            rotation_state,
+                            symbol=t,
+                            error=str(e),
+                            failed_at=attempted_at_dt,
+                            scheduled_batch=scheduled_batch,
+                        )
+                    continue
+
+            self.output_data["schema_version"] = SCHEMA_VERSION
+            self.output_data["artifact_kind"] = "data"
+            self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.output_data["generated_at"] = self._utc_timestamp()
+
+            # Calculate industry strength using CANSLIM data
+            if self.industry_data:
+                industry_stats = {}
+
+                for t, stock in self.output_data["stocks"].items():
+                    ind = stock.get('industry')
+                    if not ind or ind == '未知':
+                        continue
+
+                    if ind not in industry_stats:
+                        industry_stats[ind] = {
+                            'industry': ind,
+                            'scores': [],
+                            'inst_nets': [],
+                            'high_score_count': 0,
+                            'stock_count': 0
+                        }
+
+                    industry_stats[ind]['scores'].append(stock['canslim']['score'])
+                    industry_stats[ind]['stock_count'] += 1
+
+                    if stock['canslim']['score'] >= 80:
+                        industry_stats[ind]['high_score_count'] += 1
+
+                    # 3-day institutional net buying
+                    if stock.get('institutional') and len(stock['institutional']) >= 3:
+                        net_3d = sum([
+                            d.get('foreign_net', 0) + d.get('trust_net', 0) + d.get('dealer_net', 0)
+                            for d in stock['institutional'][:3]
+                        ])
+                        industry_stats[ind]['inst_nets'].append(net_3d)
+
+                # Build final industry strength ranking
+                industry_strength = []
+                for ind, stats in industry_stats.items():
+                    avg_score = sum(stats['scores']) / len(stats['scores']) if stats['scores'] else 0
+                    total_inst_net = sum(stats['inst_nets']) if stats['inst_nets'] else 0
+
+                    industry_strength.append({
+                        'industry': ind,
+                        'avg_score': round(avg_score, 1),
+                        'total_inst_net_3d': int(total_inst_net),
+                        'high_score_count': stats['high_score_count'],
+                        'stock_count': stats['stock_count']
+                    })
+
+                # Sort by average score (descending)
+                industry_strength.sort(key=lambda x: x['avg_score'], reverse=True)
+                self.output_data["industry_strength"] = industry_strength[:30]  # Top 30
+                logger.info(f"Calculated industry strength for {len(industry_strength)} industries using CANSLIM data.")
+
+            if not os.path.exists(OUTPUT_DIR):
+                os.makedirs(OUTPUT_DIR)
+            try:
+                self._publish_snapshot()
+            except (PublishValidationError, PublishTransactionError):
+                logger.exception("Failed to publish CANSLIM artifact bundle")
+                raise
+
+            if (
+                scheduled_batch["symbols"]
+                and rotation_state.get("in_progress") is not None
+                and not rotation_state["in_progress"].get("remaining_symbols")
+            ):
+                rotation_state = finalize_success(
+                    rotation_state,
+                    completed_at=self._rotation_timestamp(),
+                    path=ROTATION_STATE_FILE,
+                )
+
+            logger.info(f"Done! Exported {len(self.output_data['stocks'])} stocks.")
+        finally:
+            self._write_runtime_budget(started_at)
 
 if __name__ == "__main__":
     CanslimEngine().run()

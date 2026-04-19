@@ -29,6 +29,29 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Restore rotation state artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ROTATION_STATE_ARTIFACT: rotation-state-${{ github.event.repository.default_branch }}
+        run: |
+          mkdir -p .orchestration .orchestration-artifact
+          RESTORED=0
+          for RUN_ID in $(gh run list --branch "${{ github.event.repository.default_branch }}" --json databaseId -L 20 --jq '.[] | select((.databaseId|tostring) != env.GITHUB_RUN_ID) | .databaseId'); do
+            rm -rf .orchestration-artifact/*
+            if gh run download "$RUN_ID" --name "$ROTATION_STATE_ARTIFACT" --dir .orchestration-artifact 2>/dev/null; then
+              RESTORED_FILE=$(find .orchestration-artifact -name rotation_state.json | head -n 1)
+              if [ -n "$RESTORED_FILE" ]; then
+                cp "$RESTORED_FILE" .orchestration/rotation_state.json
+                echo "Restored rotation state from run $RUN_ID"
+                RESTORED=1
+                break
+              fi
+            fi
+          done
+          if [ "$RESTORED" -eq 0 ]; then
+            echo "No prior rotation state artifact found"
+          fi
+
       - name: Extract Ticker
         id: extract
         run: |
@@ -41,11 +64,20 @@ jobs:
         run: |
           python3 update_single_stock.py ${{ steps.extract.outputs.ticker }}
 
+      - name: Upload rotation state artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rotation-state-${{ github.event.repository.default_branch }}
+          path: .orchestration/rotation_state.json
+          if-no-files-found: warn
+
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/data_base.json docs/data.json docs/data_light.json docs/data.json.gz docs/update_summary.json
+          git add .orchestration/rotation_state.json
           git commit -m "On-demand update: ${{ steps.extract.outputs.ticker }}" || echo "No changes to commit"
           git push
 
