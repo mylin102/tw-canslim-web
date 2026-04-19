@@ -1,28 +1,263 @@
 {
   "schema_version": 1,
   "date": "2026-04-19",
-  "generated_at": "2026-04-19T06:23:29Z",
+  "generated_at": "2026-04-19T06:39:22Z",
   "universe": [
     {
-      "symbol": "2317",
-      "name": "鴻海",
-      "rs_rating": 80,
-      "breakout_score": 0.5,
+      "symbol": "0050",
+      "name": "元大台灣50",
+      "rs_rating": 52,
+      "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.75,
-      "industry_rank": 2,
+      "composite_score": 0.9,
+      "industry_rank": 1,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
-      "symbol": "2330",
-      "name": "台積電",
-      "rs_rating": 98,
+      "symbol": "0056",
+      "name": "元大高股息",
+      "rs_rating": 43,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.95,
+      "composite_score": 0.5,
       "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "00878",
+      "name": "國泰永續高股息",
+      "rs_rating": 42,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1303",
+      "name": "南亞",
+      "rs_rating": 66,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 16,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1326",
+      "name": "台化",
+      "rs_rating": 58,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 16,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1528",
+      "name": "恩德",
+      "rs_rating": 61,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 18,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1560",
+      "name": "中砂",
+      "rs_rating": 55,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 18,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1597",
+      "name": "直得",
+      "rs_rating": 51,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 18,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1711",
+      "name": "永光",
+      "rs_rating": 84,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 10,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1717",
+      "name": "長興",
+      "rs_rating": 73,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 10,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1721",
+      "name": "三晃",
+      "rs_rating": 53,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 10,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1727",
+      "name": "中華化",
+      "rs_rating": 57,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 2,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1735",
+      "name": "日勝化",
+      "rs_rating": 61,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 10,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1802",
+      "name": "台玻",
+      "rs_rating": 88,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 5,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2243",
+      "name": "宏旭-KY",
+      "rs_rating": 66,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 28,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2303",
+      "name": "聯電",
+      "rs_rating": 54,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 8,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2308",
+      "name": "台達電",
+      "rs_rating": 83,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 3,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2313",
+      "name": "華通",
+      "rs_rating": 96,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 3,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2316",
+      "name": "楠梓電",
+      "rs_rating": 50,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 3,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2327",
+      "name": "國巨*",
+      "rs_rating": 62,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.5,
+      "industry_rank": 3,
       "tags": [
         "leader",
         "breakout_candidate"
