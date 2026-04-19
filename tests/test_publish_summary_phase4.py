@@ -4,7 +4,6 @@ from types import SimpleNamespace
 import pytest
 
 
-@pytest.mark.xfail(reason="Phase 4 update summary projection is not implemented yet")
 def test_update_summary_previews_next_rotation_without_mutating_state(rotation_state_factory):
     module = import_module("publish_projection")
 

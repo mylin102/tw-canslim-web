@@ -3,7 +3,6 @@ from importlib import import_module
 import pytest
 
 
-@pytest.mark.xfail(reason="Phase 4 stock index projection is not implemented yet")
 def test_stock_index_includes_non_snapshot_symbols(rotation_state_factory):
     module = import_module("publish_projection")
 

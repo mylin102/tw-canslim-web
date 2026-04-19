@@ -3,7 +3,6 @@ from importlib import import_module
 import pytest
 
 
-@pytest.mark.xfail(reason="Phase 4 publish freshness projection is not implemented yet")
 def test_classify_freshness_uses_last_succeeded_at():
     module = import_module("publish_projection")
 
@@ -17,7 +16,6 @@ def test_classify_freshness_uses_last_succeeded_at():
     assert freshness["label"] == "🟢 今日"
 
 
-@pytest.mark.xfail(reason="Phase 4 publish freshness projection is not implemented yet")
 def test_classify_freshness_keeps_one_to_two_day_records_visible():
     module = import_module("publish_projection")
 
@@ -31,7 +29,6 @@ def test_classify_freshness_keeps_one_to_two_day_records_visible():
     assert freshness["label"] == "🟡 2天前"
 
 
-@pytest.mark.xfail(reason="Phase 4 publish freshness projection is not implemented yet")
 def test_classify_freshness_marks_three_day_gap_as_stale():
     module = import_module("publish_projection")
 

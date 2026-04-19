@@ -649,7 +649,6 @@ def test_export_canslim_rotation_failure_queues_retry_without_overwriting_prior_
     assert observed_failures == [("1101", "2026-04-18T00:00:05Z")]
 
 
-@pytest.mark.xfail(reason="Phase 4 primary publish bundle is not implemented yet")
 def test_export_canslim_primary_bundle_contains_stock_index_json(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

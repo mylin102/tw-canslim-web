@@ -3,7 +3,6 @@ from importlib import import_module
 import pytest
 
 
-@pytest.mark.xfail(reason="Phase 4 merged publish projection is not implemented yet")
 def test_merge_snapshot_keeps_baseline_floor_and_prefers_refreshed_snapshot_records():
     module = import_module("publish_projection")
 

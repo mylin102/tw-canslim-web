@@ -127,7 +127,6 @@ def test_restore_latest_bundle_rewrites_requested_targets_atomically(
     assert read_artifact(docs_dir / "update_summary.json", "update_summary")["run_id"] == "run-b"
 
 
-@pytest.mark.xfail(reason="Phase 4 stock_index bundle support is not implemented yet")
 def test_publish_artifact_bundle_promotes_stock_index_with_primary_artifacts(
     publish_paths,
     phase4_artifact_bundle_factory,

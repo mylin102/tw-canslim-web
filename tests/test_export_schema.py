@@ -46,7 +46,6 @@ def test_validate_resume_stock_entry_rejects_missing_nested_contract_fields(samp
         module.validate_resume_stock_entry("2330", missing_rs)
 
 
-@pytest.mark.xfail(reason="Phase 4 stock_index schema support is not implemented yet")
 def test_validate_artifact_payload_accepts_stock_index_contract(stock_index_payload_factory):
     module = load_publish_safety()
 
