@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-04-19T02:21:25.864Z"
+last_updated: "2026-04-19T02:42:55.814Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 9
-  completed_plans: 8
-  percent: 89
+  completed_plans: 9
+  percent: 100
 ---
 
 # State: tw-canslim-web
@@ -116,6 +116,12 @@ Plan: 3 of 3
 
 - [Phase 03]: Used a stable sorted non-core partition plus a joined-symbol generation fingerprint so universe churn is explicit without date offsets or hashing.
 - [Phase 03]: Reserved scheduled-batch capacity before selecting due retries and advanced current_batch_index only inside finalize_success().
+
+| Phase 03 P03 | 13min | 2 tasks | 10 files |
+
+- [Phase 03]: Reuse the Phase 3 rotation/state seams from export_canslim.py and add export-side persistence helpers for retry/core freshness instead of introducing a new orchestration layer.
+- [Phase 03]: Keep provider pacing and retry accounting in one shared runtime-state contract so export summaries and runtime-budget artifacts derive from the same counters.
+- [Phase 03]: Restore rotation checkpoints through a named GitHub artifact before each workflow run and still commit the fixed .orchestration/rotation_state.json path on scheduled publishes.
 
 ### Active TODOs
 

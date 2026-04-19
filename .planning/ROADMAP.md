@@ -93,7 +93,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — Establish durable rotation state and shared provider-policy contracts
 - [x] 03-02-PLAN.md — Implement deterministic partitioning, retry-first planning, and resume/finalization seams
-- [ ] 03-03-PLAN.md — Wire rotation orchestration and provider policies into `export_canslim.py` and the scheduled workflow
+- [x] 03-03-PLAN.md — Wire rotation orchestration and provider policies into `export_canslim.py` and the scheduled workflow
 
 **UI hint**: yes
 
