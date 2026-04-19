@@ -116,7 +116,7 @@ Plans:
 
 Plans:
 - [x] 04-01-PLAN.md — Build the publish projection layer and bundle-safe freshness artifacts
-- [ ] 04-02-PLAN.md
+- [x] 04-02-PLAN.md
 - [ ] 04-03-PLAN.md
 
 **UI hint**: yes
@@ -130,7 +130,7 @@ Plans:
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
 | 3. Rotating Batch Orchestration | 3/3 | Complete | 2026-04-19 |
-| 4. Publishing & Freshness Awareness | 1/3 | In Progress | - |
+| 4. Publishing & Freshness Awareness | 2/3 | In Progress | - |
 
 ---
 
@@ -184,4 +184,4 @@ Plans:
 
 ---
 
-*Last updated: 2026-04-19 after Phase 4 Plan 01 execution*
+*Last updated: 2026-04-19 after Phase 4 Plan 02 execution*
