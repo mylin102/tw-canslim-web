@@ -1,6 +1,6 @@
 {
-  "elapsed_seconds": 241.366,
-  "retry_attempts": 6,
-  "retry_failures": 2,
-  "provider_wait_seconds": 124.085
+  "elapsed_seconds": 2686.642,
+  "retry_attempts": 591,
+  "retry_failures": 197,
+  "provider_wait_seconds": 2214.266
 }

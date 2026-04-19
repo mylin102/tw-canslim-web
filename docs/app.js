@@ -1,415 +1,244 @@
-// Alpha War Room - Dashboard v2.0
-const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
+/*
+ * tw-canslim-web
+ * Lightweight CANSLIM analyzer for Taiwan Stock Market
+ */
+
+const { createApp, ref, computed, onMounted } = Vue;
 
 const app = createApp({
     setup() {
         const stockData = ref(null);
-        const stockIndex = ref(null);
         const searchQuery = ref('');
-        const lastUpdated = ref('載入中...');
+        const lastUpdated = ref('');
         const isLoading = ref(true);
         const loadingProgress = ref(0);
         const errorState = ref(null);
         const searchSuggestions = ref([]);
+        const activeTab = ref('search'); // 'search', 'ranking', 'screener'
 
-        // Tab state
-        const activeTab = ref('search');
-        const screenerMinScore = ref(0);
+        // Screener Filters
+        const screenerMinScore = ref(70);
         const screenerMinRs = ref(0);
         const screenerFundOnly = ref(false);
-        const screenerIndustry = ref('all');
-        const screenerInstBuy = ref('any');
-
-        const availableIndustries = computed(() => {
-            if (!stockData.value) return [];
-            const industries = new Set();
-            Object.values(stockData.value.stocks).forEach(s => {
-                if (s.industry && s.industry !== '未知') industries.add(s.industry);
-            });
-            return ['all', ...Array.from(industries).sort()];
-        });
-
-        const inst3dNet = (stock) => {
-            if (!stock.institutional || stock.institutional.length < 1) return 0;
-            const n = Math.min(3, stock.institutional.length);
-            return stock.institutional.slice(0, n).reduce((sum, d) =>
-                sum + (d.foreign_net || 0) + (d.trust_net || 0) + (d.dealer_net || 0), 0);
-        };
-
-        const sortedInstitutional = computed(() => {
-            if (!currentStock.value || !currentStock.value.institutional) return [];
-            return [...currentStock.value.institutional].sort((a, b) =>
-                String(b.date).localeCompare(String(a.date)));
-        });
-
-        const metricsMap = computed(() => {
-            if (currentStock.value && currentStock.value.has_full_detail === false) {
-                return {};
-            }
-
-            const base = {
-                'C': { label: 'C - 當季盈餘' },
-                'A': { label: 'A - 年度成長' },
-                'N': { label: 'N - 新高/因子' },
-                'S': { label: 'S - 供需' },
-                'L': { label: 'L - 強勢股' },
-                'I': { label: 'I - 機構認同' }
-            };
-            
-            if (currentStock.value && currentStock.value.is_etf) {
-                base['C'].label = 'C - (ETF不適用)';
-                base['A'].label = 'A - (ETF不適用)';
-            }
-            return base;
-        });
-
-        const instStrengthLabels = {
-            '5d': '5日吸籌力道',
-            '20d': '20日吸籌力道'
-        };
+        const screenerIndustry = ref('All');
 
         const financialLabels = {
             'eps': '每股盈餘 (EPS)',
             'revenue': '營業收入 (百萬)',
             'net_income': '稅後淨利 (百萬)',
-            'gross_margin': '毛利率 (%)',
-            'operating_margin': '營業利益率 (%)',
-            'net_margin': '純益率 (%)'
+            'gross_margin': '毛利率',
+            'operating_margin': '營業利益率',
+            'net_margin': '稅後淨利率',
+            'roe': '股東權益報酬率 (ROE)'
         };
 
-        // CANSLIM definitions (from William J. O'Neil's "How to Make Money in Stocks")
-        const showCanslimDefs = ref(true);
         const canslimDefinitions = {
             'C': {
-                title: 'Current Quarterly Earnings — 當季每股盈餘',
-                desc: '當季 EPS 較去年同期成長 ≥ 25%。盈利加速是股價大漲的核心驅動力。',
+                title: 'Current Quarterly Earnings — 當季獲利',
+                desc: '最近一季 EPS 成長率 ≥ 25% (YoY)。這是大漲股的最基本特徵，顯示公司正處於爆發性成長期。',
                 bgColor: 'bg-blue-50 border-blue-200',
-                textColor: 'text-blue-700',
-                badgeColor: 'bg-blue-100'
+                textColor: 'text-blue-800',
+                badgeColor: 'bg-blue-600'
             },
             'A': {
-                title: 'Annual Earnings Growth — 年度盈利成長',
-                desc: '過去 3-5 年 EPS 年複合成長率 ≥ 25%。持續成長的公司才有長期漲幅。',
+                title: 'Annual Earnings Increases — 年度獲利',
+                desc: '最近一年度 EPS 成長率 ≥ 25% (YoY)。確保公司並非曇花一現，而是具備長期成長實力的龍頭潛力。',
                 bgColor: 'bg-green-50 border-green-200',
-                textColor: 'text-green-700',
-                badgeColor: 'bg-green-100'
+                textColor: 'text-green-800',
+                badgeColor: 'bg-green-600'
             },
             'N': {
-                title: 'New Products, Management, Highs — 新高/新動能',
-                desc: '股價接近 52 週新高（≥ 90%），或有新產品、新管理層等利多催化劑。',
+                title: 'New Products, Management, Highs — 新契機',
+                desc: '股價處於 52 週新高的 90% 區間內。買入「創新高」的股票是大賺小賠的關鍵，代表市場對新契機的認同。',
                 bgColor: 'bg-purple-50 border-purple-200',
-                textColor: 'text-purple-700',
-                badgeColor: 'bg-purple-100'
+                textColor: 'text-purple-800',
+                badgeColor: 'bg-purple-600'
             },
             'S': {
-                title: 'Supply and Demand — 供需關係',
-                desc: '成交量放大至平均 150% 以上，代表需求旺盛、籌碼集中。',
-                bgColor: 'bg-orange-50 border-orange-200',
-                textColor: 'text-orange-700',
-                badgeColor: 'bg-orange-100'
+                title: 'Supply and Demand — 供給與需求',
+                desc: '成交量爆發（> 5 日均量 1.5 倍）。當股票在大漲且伴隨巨大成交量時，通常是主力法人建倉的訊號。',
+                bgColor: 'bg-yellow-50 border-yellow-200',
+                textColor: 'text-yellow-800',
+                badgeColor: 'bg-yellow-600'
             },
             'L': {
-                title: 'Leader or Laggard — 強勢股 vs 弱勢股',
-                desc: 'Mansfield RS 指標 > 0，代表股價表現優於大盤平均水平。只買龍頭股，不買落後股。',
-                bgColor: 'bg-red-50 border-red-200',
-                textColor: 'text-red-700',
-                badgeColor: 'bg-red-100'
+                title: 'Leader or Laggard — 強勢股或落後股',
+                desc: 'Mansfield RS 指標 > 0。買入產業中的「領導者」而非受困於底部的「落後股」，才能獲得超額報酬。',
+                bgColor: 'bg-indigo-50 border-indigo-200',
+                textColor: 'text-indigo-800',
+                badgeColor: 'bg-indigo-600'
             },
             'I': {
-                title: 'Institutional Sponsorship — 機構認同',
-                desc: '外資、投信等法人連續 3 日以上淨買進，代表專業投資人認同此股。',
-                bgColor: 'bg-teal-50 border-teal-200',
-                textColor: 'text-teal-700',
-                badgeColor: 'bg-teal-100'
+                title: 'Institutional Sponsorship — 法人追蹤',
+                desc: '三大法人近 3 日買超。跟隨「聰明錢」的腳步，尋找有法人機構背書與鎖碼的績優標的。',
+                bgColor: 'bg-red-50 border-red-200',
+                textColor: 'text-red-800',
+                badgeColor: 'bg-red-600'
             },
             'M': {
                 title: 'Market Direction — 市場趨勢',
-                desc: '大盤處於多頭格局（如加權指數在 200 日均線之上）。順勢操作，逆勢虧損大。',
-                bgColor: 'bg-indigo-50 border-indigo-200',
-                textColor: 'text-indigo-700',
-                badgeColor: 'bg-indigo-100'
+                desc: '追蹤大盤多空。當大盤處於空頭市場時，即便選出再好的股票，成功率也會大幅下降。',
+                bgColor: 'bg-slate-50 border-slate-200',
+                textColor: 'text-slate-800',
+                badgeColor: 'bg-slate-600'
             }
+        };
+
+        const getScoreCategory = (score) => {
+            if (score >= 85) return { label: '🔥 超強勢股', class: 'bg-red-100 text-red-800 border-red-200' };
+            if (score >= 70) return { label: '🚀 潛力股', class: 'bg-orange-100 text-orange-800 border-orange-200' };
+            if (score >= 50) return { label: '📈 轉強中', class: 'bg-blue-100 text-blue-800 border-blue-200' };
+            return { label: '💤 盤整中', class: 'bg-slate-100 text-slate-600 border-slate-200' };
         };
 
         let chartInstance = null;
 
-        const normalizeStockIndexPayload = (payload) => {
-            if (!payload) return [];
-            if (Array.isArray(payload.entries)) return payload.entries;
-            if (payload.stocks && typeof payload.stocks === 'object') {
-                return Object.values(payload.stocks);
+        const fetchData = async () => {
+            isLoading.value = true;
+            loadingProgress.value = 10;
+            try {
+                // Fetch main data
+                const response = await fetch('data.json?t=' + new Date().getTime());
+                loadingProgress.value = 50;
+                const data = await response.json();
+                stockData.value = data;
+                lastUpdated.value = data.last_updated;
+                loadingProgress.value = 100;
+                
+                // If query param exists, auto-select
+                const urlParams = new URLSearchParams(window.location.search);
+                const s = urlParams.get('s');
+                if (s && data.stocks[s]) {
+                    searchQuery.value = s;
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+                errorState.value = "無法載入戰情室數據，請檢查網路連線或稍後再試。";
+            } finally {
+                setTimeout(() => {
+                    isLoading.value = false;
+                }, 500);
             }
-            return [];
-        };
-
-        const getIndexEntries = () => normalizeStockIndexPayload(stockIndex.value);
-
-        const getIndexEntry = (symbol) => {
-            if (!symbol) return null;
-            return getIndexEntries().find((entry) => String(entry.symbol || '') === String(symbol)) || null;
-        };
-
-        const getSnapshotStock = (symbol) => {
-            if (!stockData.value || !stockData.value.stocks) return null;
-            return stockData.value.stocks[symbol] || null;
-        };
-
-        const getStockFreshness = (stock) => {
-            if (!stock) return null;
-            if (stock.freshness) return stock.freshness;
-            return getIndexEntry(stock.symbol)?.freshness || null;
-        };
-
-        const getFreshnessBadge = (freshness) => {
-            if (!freshness) {
-                return {
-                    label: '新鮮度未提供',
-                    classes: 'bg-slate-100 text-slate-600 border-slate-200'
-                };
-            }
-
-            switch (freshness.level) {
-                case 'today':
-                    return {
-                        label: freshness.label || '🟢 今日',
-                        classes: 'bg-emerald-100 text-emerald-700 border-emerald-200'
-                    };
-                case 'days_1_2':
-                case 'warning':
-                    return {
-                        label: freshness.label || `🟡 ${freshness.days_old || 2}天前`,
-                        classes: 'bg-amber-100 text-amber-700 border-amber-200'
-                    };
-                case 'days_3_plus':
-                case 'stale':
-                    return {
-                        label: freshness.label || '🔴 逾3天',
-                        classes: 'bg-rose-100 text-rose-700 border-rose-200'
-                    };
-                default:
-                    return {
-                        label: freshness.label || '新鮮度未提供',
-                        classes: 'bg-slate-100 text-slate-600 border-slate-200'
-                    };
-            }
-        };
-
-        const buildSearchResult = (entry) => {
-            if (!entry) return null;
-
-            const snapshotStock = getSnapshotStock(entry.symbol);
-
-            if (entry.in_snapshot && snapshotStock) {
-                return {
-                    ...snapshotStock,
-                    freshness: entry.freshness || snapshotStock.freshness || getStockFreshness(snapshotStock),
-                    last_succeeded_at: entry.last_succeeded_at || snapshotStock.last_succeeded_at || null,
-                    in_snapshot: true,
-                    has_full_detail: true
-                };
-            }
-
-            return {
-                symbol: entry.symbol,
-                name: entry.name,
-                industry: entry.industry || snapshotStock?.industry || '未知',
-                freshness: entry.freshness || snapshotStock?.freshness || getStockFreshness(snapshotStock) || null,
-                last_succeeded_at: entry.last_succeeded_at || snapshotStock?.last_succeeded_at || null,
-                in_snapshot: false,
-                has_full_detail: false,
-                is_etf: snapshotStock?.is_etf || false,
-                canslim: {
-                    score: '資料未收錄',
-                    excel_ratings: null,
-                    mansfield_rs: '資料未收錄',
-                    rs_ratio: null
-                },
-                institutional: [],
-                tej_quarterly: null
-            };
-        };
-
-        const findSearchMatches = (query) => {
-            if (!query) return [];
-
-            return getIndexEntries().filter((entry) => {
-                const symbol = String(entry.symbol || '').toLowerCase();
-                const name = String(entry.name || '').toLowerCase();
-                return symbol.includes(query) || name.includes(query);
-            });
         };
 
         const updateSuggestions = () => {
-            if (searchQuery.value.length < 2) {
+            if (!searchQuery.value || searchQuery.value.length < 1) {
                 searchSuggestions.value = [];
                 return;
             }
-            const query = searchQuery.value.trim().toLowerCase();
-            searchSuggestions.value = findSearchMatches(query)
-                .slice(0, 10);
+            const query = searchQuery.value.toLowerCase();
+            const matches = Object.values(stockData.value.stocks)
+                .filter(s => s.symbol.includes(query) || s.name.toLowerCase().includes(query))
+                .slice(0, 8);
+            searchSuggestions.value = matches;
         };
 
         const onSearchInput = () => {
             updateSuggestions();
         };
 
-        const clearSearch = () => {
-            searchQuery.value = '';
-            searchSuggestions.value = [];
-        };
-
         const selectStock = (symbol) => {
             searchQuery.value = symbol;
             searchSuggestions.value = [];
-            activeTab.value = 'search';
+            // Update URL without reload
+            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?s=' + symbol;
+            window.history.pushState({path:newurl},'',newurl);
+        };
+
+        const clearSearch = () => {
+            searchQuery.value = '';
+            searchSuggestions.value = [];
+            window.history.pushState({path:window.location.pathname},'',window.location.pathname);
         };
 
         const currentStock = computed(() => {
-            if (!searchQuery.value) return null;
+            if (!stockData.value || !searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
-            const exactIndexMatch = getIndexEntries().find((entry) =>
-                String(entry.symbol || '').toLowerCase() === query
-            );
-            if (exactIndexMatch) return buildSearchResult(exactIndexMatch);
-
-            const partialIndexMatch = findSearchMatches(query)[0];
-            if (partialIndexMatch) return buildSearchResult(partialIndexMatch);
-
-            if (!stockData.value || !stockData.value.stocks) return null;
-
-            return getSnapshotStock(query) || Object.values(stockData.value.stocks).find((stock) =>
-                String(stock.name || '').toLowerCase().includes(query) ||
-                String(stock.symbol || '').toLowerCase().includes(query)
+            
+            // Exact match
+            if (stockData.value.stocks[query]) return stockData.value.stocks[query];
+            
+            // Name match
+            return Object.values(stockData.value.stocks).find(s => 
+                s.name.toLowerCase().includes(query) || s.symbol === query
             ) || null;
         });
 
         const allStocksSorted = computed(() => {
             if (!stockData.value) return [];
             return Object.values(stockData.value.stocks)
-                .sort((a, b) => b.canslim.score - a.canslim.score);
+                .sort((a, b) => {
+                    // Primary: Score
+                    if (b.canslim.score !== a.canslim.score) return b.canslim.score - a.canslim.score;
+                    // Secondary: Institutional score (abs)
+                    const aI = a.canslim.i_score_abs || 0;
+                    const bI = b.canslim.i_score_abs || 0;
+                    if (bI !== aI) return bI - aI;
+                    // Tertiary: Mansfield RS
+                    return (b.canslim.mansfield_rs || 0) - (a.canslim.mansfield_rs || 0);
+                });
         });
 
         const filteredStocks = computed(() => {
             if (!stockData.value) return [];
             let result = Object.values(stockData.value.stocks)
                 .filter(s => s.canslim.score >= screenerMinScore.value);
-
-            if (screenerIndustry.value !== 'all') {
-                result = result.filter(s => (s.industry || '未知') === screenerIndustry.value);
+            
+            if (screenerMinRs.value !== 0) {
+                result = result.filter(s => (s.canslim.mansfield_rs || 0) >= screenerMinRs.value);
             }
 
-            if (screenerInstBuy.value === '3d') {
-                result = result.filter(s => inst3dNet(s) > 0);
+            if (screenerIndustry.value !== 'All') {
+                result = result.filter(s => s.industry === screenerIndustry.value);
             }
 
-            if (screenerMinRs.value > 0) {
-                result = result.filter(s => (s.canslim.rs_rating || 0) >= screenerMinRs.value);
-            }
             if (screenerFundOnly.value) {
-                result = result.filter(s => (s.canslim.fund_change || 0) > 0);
+                result = result.filter(s => (s.canslim.fund_holdings?.current_month || 0) > 0);
             }
 
             return result.sort((a, b) => b.canslim.score - a.canslim.score);
         });
 
-        const fetchData = async () => {
-            try {
-                isLoading.value = true;
-                const timestamp = Date.now();
-                errorState.value = null;
-                const dataResponse = await fetch('data.json?t=' + timestamp);
-                if (!dataResponse.ok) throw new Error('data.json HTTP ' + dataResponse.status);
-                const data = await dataResponse.json();
-                stockData.value = data;
-                lastUpdated.value = data.last_updated;
-
-                try {
-                    const indexResponse = await fetch('stock_index.json?t=' + timestamp);
-                    if (!indexResponse.ok) throw new Error('stock_index.json HTTP ' + indexResponse.status);
-                    stockIndex.value = await indexResponse.json();
-                } catch (indexError) {
-                    stockIndex.value = {
-                        entries: Object.values(data.stocks || {}).map((stock) => ({
-                            symbol: stock.symbol,
-                            name: stock.name,
-                            industry: stock.industry || '',
-                            freshness: stock.freshness || null,
-                            last_succeeded_at: stock.last_succeeded_at || null,
-                            in_snapshot: true
-                        }))
-                    };
-                    errorState.value = 'stock_index.json 載入失敗，已退回快照搜尋: ' + indexError.message;
-                }
-            } catch (error) {
-                errorState.value = '載入失敗: ' + error.message;
-            } finally {
-                isLoading.value = false;
-            }
-        };
-
-        onMounted(fetchData);
-
-        // Watch for tab changes to render chart when needed
-        watch(activeTab, async (newTab) => {
-            if (newTab === 'search' && currentStock.value) {
-                await nextTick();
-                renderChart();
-            }
+        const availableIndustries = computed(() => {
+            if (!stockData.value) return ['All'];
+            const industries = new Set(Object.values(stockData.value.stocks).map(s => s.industry).filter(Boolean));
+            return ['All', ...Array.from(industries).sort()];
         });
 
-        watch(currentStock, async () => {
-            if (activeTab.value === 'search' && currentStock.value) {
-                await nextTick();
-                renderChart();
-            }
+        const metricsMap = computed(() => {
+            return {
+                'C': { label: '當季獲利' },
+                'A': { label: '年度獲利' },
+                'N': { label: '新高/契機' },
+                'S': { label: '籌碼供需' },
+                'L': { label: '市場龍頭' },
+                'I': { label: '法人認同' }
+            };
         });
 
-        const renderChart = () => {
-            const canvas = document.getElementById('inst-chart');
-            if (!canvas || !currentStock.value) return;
-            if (currentStock.value.has_full_detail === false) return;
-            if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-
-            const data = currentStock.value.institutional || [];
-            if (data.length === 0) return;
-
-            const labels = data.map(d => String(d.date));
-            const foreignData = data.map(d => d.foreign_net || 0);
-            const trustData = data.map(d => d.trust_net || 0);
-            const dealerData = data.map(d => d.dealer_net || 0);
-
-            chartInstance = new Chart(canvas, {
-                type: 'bar',
-                data: {
-                    labels,
-                    datasets: [
-                        { label: '外資', data: foreignData, backgroundColor: 'rgba(59, 130, 246, 0.7)' },
-                        { label: '投信', data: trustData, backgroundColor: 'rgba(16, 185, 129, 0.7)' },
-                        { label: '自營商', data: dealerData, backgroundColor: 'rgba(245, 158, 11, 0.7)' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'top' } },
-                    scales: {
-                        y: {
-                            stacked: true,
-                            ticks: { callback: v => v.toLocaleString() + ' 張' }
-                        },
-                        x: { stacked: true }
-                    }
-                }
-            });
+        const getFreshnessBadge = (freshness) => {
+            if (!freshness) return { label: '未知', classes: 'bg-slate-100 text-slate-500 border-slate-200' };
+            if (freshness === 'realtime') return { label: '即時', classes: 'bg-green-100 text-green-700 border-green-200' };
+            if (freshness === 'daily') return { label: '今日', classes: 'bg-blue-100 text-blue-700 border-blue-200' };
+            if (freshness === 'stale') return { label: '延遲', classes: 'bg-amber-100 text-amber-700 border-amber-200' };
+            return { label: freshness, classes: 'bg-slate-100 text-slate-500 border-slate-200' };
         };
+
+        const getStockFreshness = (stock) => {
+            return stock.freshness || 'daily';
+        };
+
+        onMounted(() => {
+            fetchData();
+        });
 
         return {
             stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
-            showCanslimDefs, canslimDefinitions,
-            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional, getFreshnessBadge, getStockFreshness
+            canslimDefinitions, getScoreCategory, getFreshnessBadge, getStockFreshness,
+            availableIndustries
         };
     }
 });

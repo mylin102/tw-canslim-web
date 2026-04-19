@@ -4,31 +4,34 @@ Fetches institutional investors data from FinMind API.
 """
 
 import os
+import time
 import logging
 import pandas as pd
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 from datetime import datetime, timedelta
 
 from provider_policies import ProviderRetryExhaustedError, call_with_provider_policy, get_provider_policy
 
 try:
     from FinMind.data import DataLoader
-except ImportError:  # pragma: no cover - exercised via environments without FinMind
+except ImportError:
     DataLoader = None
 
 logger = logging.getLogger(__name__)
 
 
 class FinMindProcessor:
-    """Process FinMind API data for institutional investors."""
+    """Process FinMind API data with batch support and optimization."""
     
-    def __init__(self):
+    def __init__(self, token: Optional[str] = None):
         self.available = DataLoader is not None
         self.dl = None
+        self.token = token or os.environ.get("FINMIND_API_TOKEN")
         self.provider_runtime_state = {
             "retry_attempts": 0,
             "retry_failures": 0,
             "provider_wait_seconds": 0.0,
+            "api_usage": {},
         }
         self.investor_name_map = {
             'Foreign_Investor': '外資',
@@ -37,24 +40,67 @@ class FinMindProcessor:
             'Dealer_Hedging': '自營商避險',
             'Foreign_Dealer_Self': '外資自營商'
         }
+        
         if not self.available:
             logger.warning("FinMind package is not installed; FinMind-backed data fetches are disabled")
             return
 
         try:
             self.dl = DataLoader()
+            if self.token:
+                self.dl.loginbyToken(self.token)
+                logger.info("FinMind logged in with token")
         except Exception as exc:
             logger.warning(f"FinMind DataLoader initialization failed: {exc}")
             self.available = False
-    
-    def calculate_net(self, buy: int, sell: int) -> int:
-        """Calculate net buy/sell."""
-        return buy - sell
-    
-    def map_investor_name(self, english_name: str) -> str:
-        """Map English investor name to Chinese."""
-        return self.investor_name_map.get(english_name, english_name)
-    
+
+    def get_api_usage(self) -> Dict[str, Any]:
+        """Fetch current API usage and limits."""
+        if not self.available or not self.token:
+            return {"error": "Token not provided or API unavailable"}
+        
+        # NOTE: FinMind has a usage API but DataLoader might not expose it directly
+        # Typically one would call the user_info or similar endpoint
+        try:
+            # Placeholder for actual usage check if available in library
+            # For now we use the state updated by our wrapper
+            return self.provider_runtime_state.get("api_usage", {})
+        except Exception:
+            return {}
+
+    def fetch_all_institutional_investors(
+        self, 
+        date: str,
+    ) -> Optional[pd.DataFrame]:
+        """
+        Fetch institutional investors data for ALL stocks on a specific date.
+        This is much more efficient than fetching stock-by-stock.
+        """
+        if not self.available or self.dl is None:
+            return None
+
+        try:
+            logger.info(f"Fetching market-wide institutional data for {date}")
+            
+            df = call_with_provider_policy(
+                "finmind",
+                lambda: self.dl.taiwan_stock_institutional_investors(
+                    start_date=date,
+                    end_date=date,
+                ),
+                runtime_state=self.provider_runtime_state,
+            )
+
+            if df is None or len(df) == 0:
+                logger.warning(f"No institutional data for date {date}")
+                return None
+            
+            logger.info(f"Fetched {len(df)} records for market on {date}")
+            return df
+        except Exception as e:
+            logger.error(f"Failed to fetch market institutional data: {e}")
+            return None
+
     def fetch_institutional_investors(
         self,
         stock_id: str,
@@ -62,29 +108,12 @@ class FinMindProcessor:
         end_date: str
     ) -> Optional[pd.DataFrame]:
         """
-        Fetch institutional investors data from FinMind.
-        
-        Args:
-            stock_id: Stock code (e.g., "2330")
-            start_date: Start date (YYYY-MM-DD)
-            end_date: End date (YYYY-MM-DD)
-        
-        Returns:
-            DataFrame with institutional data or None on failure
+        Fetch institutional investors data for a single stock.
         """
         if not self.available or self.dl is None:
-            logger.warning("Skipping FinMind fetch because FinMind is unavailable in this environment")
             return None
-        policy = get_provider_policy("finmind")
+            
         try:
-            logger.info(f"Fetching institutional data for {stock_id} ({start_date} to {end_date})")
-            logger.debug(
-                "FinMind provider policy: min_interval_seconds=%s quota_window_seconds=%s max_requests_per_window=%s",
-                policy.min_interval_seconds,
-                policy.quota_window_seconds,
-                policy.max_requests_per_window,
-            )
-
             df = call_with_provider_policy(
                 "finmind",
                 lambda: self.dl.taiwan_stock_institutional_investors(
@@ -96,115 +125,50 @@ class FinMindProcessor:
             )
 
             if df is None or len(df) == 0:
-                logger.warning(f"No institutional data for {stock_id}")
                 return None
             
-            logger.info(f"Fetched {len(df)} records for {stock_id}")
             return df
-        except ProviderRetryExhaustedError as exc:
-            logger.error(f"FinMind retries exhausted for {stock_id}: {exc}")
-            return None
         except Exception as e:
-            logger.error(f"Failed to fetch institutional data for {stock_id}: {e}")
+            logger.error(f"Failed to fetch data for {stock_id}: {e}")
             return None
-    
+
     def parse_institutional_data(self, df: pd.DataFrame) -> Optional[Dict[str, Dict]]:
-        """
-        Parse and aggregate institutional data by date.
-        
-        Args:
-            df: Raw DataFrame from FinMind API
-        
-        Returns:
-            Dict with date as key and institutional flows as values
-        """
+        """Parse and aggregate data by date."""
         if df is None or len(df) == 0:
             return None
         
         try:
             result = {}
+            # Faster aggregation using pandas
+            df['net'] = df['buy'] - df['sell']
             
-            # Group by date
-            for date in df['date'].unique():
-                day_data = df[df['date'] == date]
-                
-                foreign_net = 0
-                trust_net = 0
-                dealer_net = 0
-                
-                for _, row in day_data.iterrows():
-                    name = row['name']
-                    buy = row['buy'] if pd.notna(row['buy']) else 0
-                    sell = row['sell'] if pd.notna(row['sell']) else 0
-                    net = self.calculate_net(int(buy), int(sell))
-                    
-                    # Aggregate by investor type
-                    if 'Foreign_Investor' in name:
-                        foreign_net += net
-                    elif 'Investment_Trust' in name:
-                        trust_net += net
-                    elif 'Dealer' in name:
-                        dealer_net += net
-                
-                # Convert to lots (1 lot = 1000 shares)
+            # Map investor types
+            df['type'] = 'other'
+            df.loc[df['name'].str.contains('Foreign_Investor'), 'type'] = 'foreign'
+            df.loc[df['name'].str.contains('Investment_Trust'), 'type'] = 'trust'
+            df.loc[df['name'].str.contains('Dealer'), 'type'] = 'dealer'
+            
+            grouped = df.groupby(['date', 'type'])['net'].sum().unstack(fill_value=0)
+            
+            for date, row in grouped.iterrows():
                 result[date] = {
-                    'foreign_net': foreign_net // 1000,
-                    'trust_net': trust_net // 1000,
-                    'dealer_net': dealer_net // 1000,
+                    'foreign_net': int(row.get('foreign', 0) // 1000),
+                    'trust_net': int(row.get('trust', 0) // 1000),
+                    'dealer_net': int(row.get('dealer', 0) // 1000),
                     'date': date.replace('-', '')
                 }
             
-            logger.info(f"Parsed institutional data for {len(result)} days")
             return result
-            
         except Exception as e:
-            logger.error(f"Failed to parse institutional data: {e}")
+            logger.error(f"Parse failure: {e}")
             return None
-    
-    def fetch_recent_trading_days(
-        self,
-        stock_id: str,
-        days: int = 20
-    ) -> Optional[Dict[str, Dict]]:
-        """
-        Fetch recent N trading days of institutional data.
-        
-        Args:
-            stock_id: Stock code
-            days: Number of trading days to fetch
-        
-        Returns:
-            Parsed institutional data dict
-        """
-        try:
-            # Calculate date range (add buffer for holidays/weekends)
-            end_date = datetime.now()
-            start_date = end_date - timedelta(days=days * 2)  # Buffer
-            
-            start_str = start_date.strftime('%Y-%m-%d')
-            end_str = end_date.strftime('%Y-%m-%d')
-            
-            # Fetch raw data
-            df = self.fetch_institutional_investors(stock_id, start_str, end_str)
-            
-            if df is None:
-                return None
-            
-            # Parse and aggregate
-            parsed = self.parse_institutional_data(df)
-            
-            if parsed is None:
-                return None
-            
-            # Return only the most recent N days
-            sorted_dates = sorted(parsed.keys(), reverse=True)
-            result = {date: parsed[date] for date in sorted_dates[:days]}
-            
-            return result
-            
-        except Exception as e:
-            logger.error(f"Failed to fetch recent trading days for {stock_id}: {e}")
-            return None
+
+    def fetch_recent_trading_days(self, stock_id: str, days: int = 20) -> Optional[Dict[str, Dict]]:
+        """Legacy helper for single-stock fetch."""
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=days * 2)
+        df = self.fetch_institutional_investors(stock_id, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+        return self.parse_institutional_data(df)
     
     def get_institutional_summary(self, inst_data: Dict[str, Dict]) -> Dict:
         """

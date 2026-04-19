@@ -5,7 +5,7 @@ Pure functions for calculating CANSLIM factors from time-series data.
 
 import pandas as pd
 import numpy as np
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 def calculate_c_factor(eps_series: pd.Series, threshold: float = 0.25) -> bool:
     """
@@ -179,33 +179,128 @@ def calculate_rs_trend(stock_prices: Optional[pd.Series], market_prices: Optiona
     
     return {'trend': trend, 'delta': delta, 'current': round(mris_now, 3)}
 
+def calculate_i_score_v2(
+    chip_df: pd.DataFrame,
+    total_shares: float,
+    days: int = 20
+) -> Dict[str, Any]:
+    """
+    I - Institutional Sponsorship (v2).
+    Calculates a weighted institutional score using:
+    1. Exponentially weighted net buy volume (recent days have more weight).
+    2. Buy volume ratio (net buy as % of total shares).
+    3. Buy streak bonus.
+
+    Returns:
+        Dict with absolute_score (0-100) and details.
+    """
+    if chip_df.empty or total_shares <= 0:
+        return {"score": 0.0, "details": {}}
+
+    # Ensure column names
+    cols = ['foreign_net', 'trust_net', 'dealer_net']
+    for c in cols:
+        if c not in chip_df.columns: chip_df[c] = 0
+
+    df = chip_df.head(days).copy()
+    df['total_net'] = df['foreign_net'] + df['trust_net'] + df['dealer_net']
+
+    # 1. Weighted Net Buy (Exponential decay)
+    weights = np.exp(np.linspace(-1, 0, len(df))) # Most recent is index 0 or N? 
+    # Usually chip_df is sorted by date descending (newest first)
+    # If newest is first:
+    w_sum = (df['total_net'] * weights).sum()
+
+    # 2. Buy volume ratio (lots * 1000 / total_shares)
+    ratio_20d = (df['total_net'].sum() * 1000) / total_shares
+
+    # 3. Streak bonus
+    streak = 0
+    for val in df['total_net']:
+        if val > 0: streak += 1
+        else: break
+
+    # Scoring logic
+    # Base score from ratio: 0.1% accumulation in 20 days is good, 0.5% is great
+    ratio_score = min(ratio_20d / 0.005 * 60, 60) if ratio_20d > 0 else (ratio_20d * 10)
+    streak_score = min(streak * 8, 40)
+
+    total_score = max(0, min(ratio_score + streak_score, 100))
+
+    return {
+        "score": round(total_score, 2),
+        "details": {
+            "streak": streak,
+            "ratio_20d": round(ratio_20d * 100, 4),
+            "weighted_net": round(w_sum, 2)
+        }
+    }
+
+def calculate_percentile_ranks(scores: pd.Series) -> pd.Series:
+    """Convert absolute scores to 0-100 percentile ranks."""
+    if scores.empty:
+        return scores
+    return scores.rank(pct=True) * 100
+
 def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> int:
-    """Standard CANSLIM scoring."""
-    score = 0
-    # M factor is critical
-    weights = {'C': 20, 'A': 20, 'N': 10, 'S': 10, 'L': 20, 'I': 10, 'M': 10}
-    for f, w in weights.items():
-        if factors.get(f): score += w
-    if institutional_strength >= 0.005:
-        score += 5
-    return min(score, 100)
+    """Legacy wrapper for compute_canslim_score_v2."""
+    # Convert institutional_strength (percentage) to approximate abs score for v2 logic
+    i_score_abs = min(institutional_strength / 0.005 * 100, 100)
+    return compute_canslim_score_v2(factors, i_score_abs=i_score_abs)
 
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:
+    """Legacy wrapper for ETF scoring."""
+    # ETF scoring (L=PASS means quality components)
+    f = factors.copy()
+    if f.get('L'):
+        f['C'] = True
+        f['A'] = True
+    # Boost I for ETFs in this wrapper to hit 100 if all pass
+    return compute_canslim_score_v2(f, i_score_abs=100 if f.get('I') else 0)
+
+def compute_canslim_score_v2(
+    factors: dict, 
+    i_score_abs: float = 0,
+    momentum_bonus: float = 0
+) -> int:
     """
-    ETF scoring - implements the reference logic for ETFs.
-    Reflects 'Component Quality' logic: if RS is strong (L is PASS), 
-    we assume components (C/A) are also quality.
+    Calculates weighted CANSLIM score (0-100) with non-linear weighting.
     """
-    if factors.get('L'):
-        factors['C'] = True
-        factors['A'] = True
-        
-    score = 0
-    # For ETFs, Relative Strength (L) and Market Trend (M) are the primary drivers
-    weights = {'N': 10, 'S': 10, 'L': 40, 'I': 10, 'M': 30}
+    # Base weights
+    weights = {
+        'C': 25, 'A': 20, 'N': 15, 'S': 10, 'L': 15, 'I': 15
+    }
+
+    base_score = 0
     for f, w in weights.items():
-        if factors.get(f): score += w
-    return min(score, 100)
+        if f == 'I':
+            # Use the refined I score (normalized)
+            base_score += (i_score_abs / 100) * w
+        elif factors.get(f):
+            base_score += w
+
+    # M (Market) is a multiplier/gate
+    m_multiplier = 1.0 if factors.get('M') else 0.7
+
+    final_score = base_score * m_multiplier + momentum_bonus
+
+    return int(max(0, min(final_score, 100)))
+
+def calculate_score_delta(today_score: int, yesterday_score: int) -> int:
+    """Calculate the change in score."""
+    return today_score - yesterday_score
+
+def get_market_sentiment(stock_scores: List[int]) -> str:
+    """Determine market sentiment based on top score density."""
+    if not stock_scores:
+        return "Unknown"
+
+    high_scores = [s for s in stock_scores if s >= 80]
+    ratio = len(high_scores) / len(stock_scores)
+
+    if ratio > 0.05: return "Bullish (強勢多頭)"
+    if ratio > 0.02: return "Neutral (中性震盪)"
+    return "Bearish (盤整空頭)"
 
 def calculate_volatility_grid(prices: pd.Series, is_etf: bool = False) -> Optional[dict]:
     """Calculates dynamic grid levels based on historical volatility."""

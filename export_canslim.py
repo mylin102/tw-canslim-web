@@ -30,7 +30,17 @@ from rotation_orchestrator import (
 from yfinance_provider import get_price_history_with_policy
 from publish_projection import build_publish_projection_bundle
 
-from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
+from core.logic import (
+    calculate_accumulation_strength, 
+    calculate_i_score_v2,
+    compute_canslim_score_v2,
+    calculate_score_delta,
+    get_market_sentiment,
+    calculate_l_factor, 
+    calculate_mansfield_rs, 
+    calculate_volatility_grid, 
+    check_n_factor
+)
 from publish_safety import (
     PublishTransactionError,
     PublishValidationError,
@@ -482,6 +492,53 @@ class CanslimEngine:
             self.industry_data = None
             self.industry_strength = None
     
+    def fetch_institutional_data_batch(self, tickers: List[str], days: int = 5):
+        """
+        Efficiently fetch institutional data for many stocks using market-wide data.
+        """
+        if not self.finmind_processor.available:
+            logger.warning("FinMind unavailable, skipping batch institutional fetch")
+            return
+            
+        logger.info(f"Starting batch institutional fetch for {len(tickers)} stocks...")
+        
+        # Calculate recent trading dates (last N days)
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=10)
+        
+        current = start_date
+        self.inst_cache = {} 
+        
+        while current <= end_date:
+            date_str = current.strftime('%Y-%m-%d')
+            df = self.finmind_processor.fetch_all_institutional_investors(date_str)
+            
+            if df is not None and not df.empty:
+                df['net'] = df['buy'] - df['sell']
+                
+                df['type'] = 'other'
+                df.loc[df['name'].str.contains('Foreign_Investor'), 'type'] = 'foreign'
+                df.loc[df['name'].str.contains('Investment_Trust'), 'type'] = 'trust'
+                df.loc[df['name'].str.contains('Dealer'), 'type'] = 'dealer'
+                
+                day_grouped = df.groupby(['stock_id', 'type'])['net'].sum().unstack(fill_value=0)
+                date_compact = date_str.replace('-', '')
+                
+                for tid, row in day_grouped.iterrows():
+                    if tid not in self.inst_cache:
+                        self.inst_cache[tid] = []
+                    
+                    self.inst_cache[tid].append({
+                        'date': date_compact,
+                        'foreign_net': int(row.get('foreign', 0) // 1000),
+                        'trust_net': int(row.get('trust', 0) // 1000),
+                        'dealer_net': int(row.get('dealer', 0) // 1000),
+                    })
+            
+            current += timedelta(days=1)
+            
+        logger.info(f"Batch institutional fetch complete. Cached data for {len(self.inst_cache)} stocks.")
+
     def fetch_institutional_data_finmind(self, ticker: str, days: int = 20) -> Optional[List[Dict]]:
         """
         Fetch institutional data using FinMind API.
@@ -1021,6 +1078,10 @@ class CanslimEngine:
             market_return = self.get_market_return_6m()
 
             all_t = sorted(list(self.ticker_info.keys()))
+            
+            # 2b. Batch fetch institutional data for all tickers to save API calls
+            self.fetch_institutional_data_batch(all_t, days=5)
+
             selection = build_core_universe(
                 all_symbols=all_t,
                 config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
@@ -1092,11 +1153,18 @@ class CanslimEngine:
 
                 try:
                     info = self.ticker_info.get(t, {"name": t, "suffix": ".TW"})
-                    history = self.fetch_institutional_data_finmind(t, days=60)
+                    
+                    # Try batch cache first, fallback to individual if needed
+                    history = self.inst_cache.get(t)
+                    if not history:
+                        logger.info(f"Cache miss for {t}, fetching individually...")
+                        history = self.fetch_institutional_data_finmind(t, days=20)
 
                     if not history:
-                        history = [{"date": datetime.now().strftime("%Y%m%d"), "no_data": True}]
+                        # Add a dummy record so the UI knows we tried but found nothing
+                        history = [{"date": datetime.now().strftime("%Y%m%d"), "no_data": True, "foreign_net": 0, "trust_net": 0, "dealer_net": 0}]
 
+                    # Convert to DataFrame for core logic
                     chip_df = pd.DataFrame(history)
                     financial_data = self.fetch_financial_data(t)
                     if not financial_data:
@@ -1115,47 +1183,40 @@ class CanslimEngine:
                         total_shares = market_cap / price
                     elif shares_outstanding > 0:
                         total_shares = shares_outstanding
+                    
+                    # Institutional Scoring (v2)
+                    inst_result = calculate_i_score_v2(chip_df, total_shares, days=20) if total_shares > 0 else {"score": 50.0, "details": {}}
+                    i_score_abs = inst_result["score"]
+                    i_pass = i_score_abs >= 60
 
                     tej_ca = {}
                     if self.tej_processor.initialized:
                         self.tej_processor.provider_runtime_state = self.failure_stats
                         tej_ca = self.tej_processor.calculate_canslim_c_and_a(t)
 
-                    c_score = tej_ca.get('C', False)
-                    a_score = tej_ca.get('A', False)
+                    c_pass = tej_ca.get('C', False)
+                    a_pass = tej_ca.get('A', False)
                     tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
 
-                    n_score = check_n_factor(stock_hist)
-                    s_score = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
+                    n_pass = check_n_factor(stock_hist)
+                    s_pass = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
+                    l_pass = calculate_l_factor(m_rs)
 
-                    inst_strength_20d = calculate_accumulation_strength(chip_df, total_shares, days=20) if total_shares else 0.0
-                    inst_strength_5d = calculate_accumulation_strength(chip_df, total_shares, days=5) if total_shares else 0.0
-                    i_score = self.check_i_institutional(history)
-
-                    # New L factor based on Mansfield
-                    l_score = calculate_l_factor(m_rs)
-
-                    rs_ratio = 1.0
-                    if stock_hist is not None and market_return is not None:
-                        # Calculate actual 6-month return (approx 120 trading days)
-                        if len(stock_hist) >= 120:
-                            stock_return_6m = (stock_hist.iloc[-1] - stock_hist.iloc[-120]) / stock_hist.iloc[-120]
-                            rs_ratio = stock_return_6m / market_return if abs(market_return) > 0.01 else 1.0
-
-                    excel_ratings = self.get_excel_canslim_ratings(t)
-                    fund_data = self.fund_holdings.get(t) if self.fund_holdings else None
                     industry_info = self.industry_data.get(t) if self.industry_data else None
-
-                    # ETF Identification
                     industry_name = industry_info.get('industry', '') if industry_info else ''
                     is_etf = (t in self.etf_list) or len(t) >= 5 or "ETF" in industry_name or "受益證券" in industry_name
 
-                    factors = {"C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True}
-
-                    if is_etf:
-                        score = compute_canslim_score_etf(factors, institutional_strength=inst_strength_20d)
-                    else:
-                        score = compute_canslim_score(factors, institutional_strength=inst_strength_20d)
+                    factors = {"C": c_pass, "A": a_pass, "N": n_pass, "S": s_pass, "L": l_pass, "I": i_pass, "M": True}
+                    
+                    # Bonus for recent momentum (e.g. score jump)
+                    momentum_bonus = 5 if n_pass and s_pass else 0
+                    
+                    # Calculate total score using v2
+                    score = compute_canslim_score_v2(factors, i_score_abs=i_score_abs, momentum_bonus=momentum_bonus)
+                    
+                    # Calculate delta if previous data exists
+                    yesterday_score = old_data.get("stocks", {}).get(t, {}).get("canslim", {}).get("score", score)
+                    score_delta = calculate_score_delta(score, yesterday_score)
 
                     # Strategy Lab: Grid Strategy
                     grid_data = {
@@ -1176,16 +1237,24 @@ class CanslimEngine:
                         "industry": industry_name,
                         "is_etf": is_etf,
                         "canslim": {
-                            "C": c_score, "A": a_score, "N": n_score, "S": s_score, "L": l_score, "I": i_score, "M": True,
-                            "score": score,
-                            "rs_ratio": round(rs_ratio, 2) if rs_ratio else None,
-                            "mansfield_rs": round(m_rs, 3),
-                            "inst_strength_20d": round(inst_strength_20d * 100, 3) if inst_strength_20d else 0,
-                            "inst_strength_5d": round(inst_strength_5d * 100, 3) if inst_strength_5d else 0,
-                            "excel_ratings": excel_ratings, "fund_holdings": fund_data,
-                            "grid_strategy": grid_data
+                            "C": bool(factors["C"]),
+                            "A": bool(factors["A"]),
+                            "N": bool(factors["N"]),
+                            "S": bool(factors["S"]),
+                            "L": bool(factors["L"]),
+                            "I": bool(factors["I"]),
+                            "M": bool(factors["M"]),
+                            "score": int(score),
+                            "score_delta": int(score_delta),
+                            "i_score_abs": float(i_score_abs),
+                            "inst_details": inst_result.get("details", {}),
+                            "mansfield_rs": float(m_rs),
+                            "grid_strategy": grid_data,
+                            "excel_ratings": self.get_excel_canslim_ratings(t),
+                            "fund_holdings": self.fund_holdings.get(t) if self.fund_holdings else None,
                         },
-                        "institutional": history[:20], "financials": financial_data, "tej_quarterly": tej_financials
+                        "institutional": history[:20], "financials": financial_data, "tej_quarterly": tej_financials,
+                        "last_updated": attempted_at,
                     }
 
                     if self.validate_stock_data(stock_data):
