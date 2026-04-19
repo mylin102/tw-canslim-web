@@ -1,6 +1,10 @@
 from importlib import import_module
 import os
 
+import pytest
+
+from publish_safety import PublishValidationError
+
 
 def load_orchestration_state_module():
     return import_module("orchestration_state")
@@ -109,3 +113,23 @@ def test_enqueue_retry_failure_persists_failed_symbol_metadata(rotation_state_pa
         }
     ]
     assert module.load_rotation_state(path=str(rotation_state_paths["state"]))["retry_queue"] == queued["retry_queue"]
+
+
+def test_load_rotation_state_rejects_malformed_payload(rotation_state_paths):
+    module = load_orchestration_state_module()
+    rotation_state_paths["state"].write_text(
+        """
+        {
+          "schema_version": "1.0",
+          "current_batch_index": 0,
+          "rotation_generation": "",
+          "retry_queue": [],
+          "freshness": {},
+          "in_progress": null
+        }
+        """.strip(),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PublishValidationError, match="missing=\\['last_completed_batch'\\]"):
+        module.load_rotation_state(path=str(rotation_state_paths["state"]))
