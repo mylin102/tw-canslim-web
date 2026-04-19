@@ -8,6 +8,7 @@ const { createApp, ref, computed, onMounted } = Vue;
 const app = createApp({
     setup() {
         const stockData = ref(null);
+        const stockIndexData = ref(null);
         const searchQuery = ref('');
         const lastUpdated = ref('');
         const isLoading = ref(true);
@@ -95,18 +96,24 @@ const app = createApp({
             isLoading.value = true;
             loadingProgress.value = 10;
             try {
-                // Fetch main data
-                const response = await fetch('data.json?t=' + new Date().getTime());
+                const [response, indexResponse] = await Promise.all([
+                    fetch('data.json?t=' + new Date().getTime()),
+                    fetch('stock_index.json?t=' + new Date().getTime()),
+                ]);
                 loadingProgress.value = 50;
-                const data = await response.json();
+                const [data, indexData] = await Promise.all([
+                    response.json(),
+                    indexResponse.json(),
+                ]);
                 stockData.value = data;
+                stockIndexData.value = indexData;
                 lastUpdated.value = data.last_updated;
                 loadingProgress.value = 100;
                 
                 // If query param exists, auto-select
                 const urlParams = new URLSearchParams(window.location.search);
                 const s = urlParams.get('s');
-                if (s && data.stocks[s]) {
+                if (s && ((data.stocks && data.stocks[s]) || (indexData.stocks && indexData.stocks[s]))) {
                     searchQuery.value = s;
                 }
             } catch (err) {
@@ -119,14 +126,67 @@ const app = createApp({
             }
         };
 
+        const createIndexFallbackStock = (entry) => {
+            if (!entry) return null;
+            return {
+                symbol: entry.symbol,
+                name: entry.name,
+                industry: entry.industry || '',
+                is_etf: (entry.industry || '').toUpperCase() === 'ETF',
+                freshness: entry.freshness || null,
+                last_succeeded_at: entry.last_succeeded_at || '',
+                has_full_detail: false,
+                institutional: [],
+                financials: {},
+                canslim: {
+                    C: false,
+                    A: false,
+                    N: false,
+                    S: false,
+                    L: false,
+                    I: false,
+                    M: true,
+                    score: 0,
+                    score_delta: 0,
+                    i_score_abs: 0,
+                    inst_details: {},
+                    mansfield_rs: 0,
+                    grid_strategy: { volatility_annual: 0, levels: [] },
+                },
+            };
+        };
+
+        const searchUniverse = computed(() => {
+            const merged = new Map();
+
+            if (stockData.value && stockData.value.stocks) {
+                Object.values(stockData.value.stocks).forEach(stock => {
+                    merged.set(stock.symbol, {
+                        ...stock,
+                        has_full_detail: true,
+                    });
+                });
+            }
+
+            if (stockIndexData.value && stockIndexData.value.stocks) {
+                Object.values(stockIndexData.value.stocks).forEach(entry => {
+                    if (!merged.has(entry.symbol)) {
+                        merged.set(entry.symbol, createIndexFallbackStock(entry));
+                    }
+                });
+            }
+
+            return Array.from(merged.values());
+        });
+
         const updateSuggestions = () => {
             if (!searchQuery.value || searchQuery.value.length < 1) {
                 searchSuggestions.value = [];
                 return;
             }
             const query = searchQuery.value.toLowerCase();
-            const matches = Object.values(stockData.value.stocks)
-                .filter(s => s.symbol.includes(query) || s.name.toLowerCase().includes(query))
+            const matches = searchUniverse.value
+                .filter(s => s.symbol.includes(query) || (s.name || '').toLowerCase().includes(query))
                 .slice(0, 8);
             searchSuggestions.value = matches;
         };
@@ -150,15 +210,16 @@ const app = createApp({
         };
 
         const currentStock = computed(() => {
-            if (!stockData.value || !searchQuery.value) return null;
+            if (!searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
             
             // Exact match
-            if (stockData.value.stocks[query]) return stockData.value.stocks[query];
+            const exactMatch = searchUniverse.value.find(s => s.symbol.toLowerCase() === query);
+            if (exactMatch) return exactMatch;
             
             // Name match
-            return Object.values(stockData.value.stocks).find(s => 
-                s.name.toLowerCase().includes(query) || s.symbol === query
+            return searchUniverse.value.find(s => 
+                (s.name || '').toLowerCase().includes(query) || s.symbol.toLowerCase() === query
             ) || null;
         });
 
@@ -309,7 +370,7 @@ const app = createApp({
         return {
             stockData, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
-            currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
+            currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels, searchUniverse,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             canslimDefinitions, getScoreCategory, getFreshnessBadge, getStockFreshness,
             availableIndustries, recentInstitutionalDays, institutionalBarStyle, institutionalBarClass,

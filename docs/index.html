@@ -141,7 +141,9 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-xs text-slate-400">{{ s.industry }}</span>
-                                    <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-black text-xs">{{ s.canslim.score }}分</span>
+                                    <span :class="['px-2 py-0.5 rounded font-black text-xs', s.has_full_detail === false ? 'bg-slate-100 text-slate-500' : 'bg-blue-100 text-blue-700']">
+                                        {{ s.has_full_detail === false ? '索引' : `${s.canslim.score}分` }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +187,10 @@
                                             <span :class="['px-3 py-1 rounded-full text-xs font-bold border', getFreshnessBadge(getStockFreshness(currentStock)).classes]">
                                                 {{ getFreshnessBadge(getStockFreshness(currentStock)).label }}數據
                                             </span>
-                                            <span v-if="currentStock.canslim.score >= 80" class="px-3 py-1 bg-rose-600 text-white text-xs font-black rounded-full shadow-lg shadow-rose-900/20 animate-pulse">
+                                            <span v-if="currentStock.has_full_detail === false" class="px-3 py-1 bg-slate-600 text-white text-xs font-black rounded-full">
+                                                INDEX ONLY
+                                            </span>
+                                            <span v-else-if="currentStock.canslim.score >= 80" class="px-3 py-1 bg-rose-600 text-white text-xs font-black rounded-full shadow-lg shadow-rose-900/20 animate-pulse">
                                                 STRONG BUY
                                             </span>
                                         </div>
@@ -199,11 +204,11 @@
                                     </div>
                                     <div class="flex items-center gap-6 bg-slate-800/50 p-4 rounded-2xl border border-slate-700/50">
                                         <div class="text-center">
-                                            <div class="text-5xl font-black text-blue-400">{{ currentStock.canslim.score }}</div>
-                                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">總分</div>
+                                            <div class="text-5xl font-black text-blue-400">{{ currentStock.has_full_detail === false ? '—' : currentStock.canslim.score }}</div>
+                                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{{ currentStock.has_full_detail === false ? '索引' : '總分' }}</div>
                                         </div>
-                                        <div v-if="currentStock.canslim.score_delta !== 0" class="h-10 w-px bg-slate-700"></div>
-                                        <div v-if="currentStock.canslim.score_delta !== 0" class="text-center">
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="h-10 w-px bg-slate-700"></div>
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="text-center">
                                             <div :class="['text-2xl font-black', currentStock.canslim.score_delta > 0 ? 'text-emerald-400' : 'text-rose-400']">
                                                 {{ currentStock.canslim.score_delta > 0 ? '↑' : '↓' }}{{ Math.abs(currentStock.canslim.score_delta) }}
                                             </div>
@@ -213,8 +218,14 @@
                                 </div>
                             </div>
 
+                            <div v-if="currentStock.has_full_detail === false" class="p-8 border-b border-slate-100">
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-slate-600">
+                                    這個標的已收錄在完整索引，但目前不在即時分析 snapshot 內，所以先提供代號、名稱、freshness 與索引資訊。
+                                </div>
+                            </div>
+
                             <!-- CANSLIM Matrix -->
-                            <div class="p-8 border-b border-slate-100 grid grid-cols-2 md:grid-cols-6 gap-4">
+                            <div v-if="currentStock.has_full_detail !== false" class="p-8 border-b border-slate-100 grid grid-cols-2 md:grid-cols-6 gap-4">
                                 <div v-for="(val, key) in metricsMap" :key="key" 
                                      class="relative p-4 rounded-2xl transition-all group overflow-hidden"
                                      :class="currentStock.canslim[key] ? 'bg-emerald-50 border border-emerald-100' : 'bg-slate-50 border border-slate-100'">
@@ -235,7 +246,7 @@
                             </div>
 
                             <!-- Detailed Stats Grid -->
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-x divide-slate-100">
+                            <div v-if="currentStock.has_full_detail !== false" class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-x divide-slate-100">
                                 <!-- Left Column: Financials & Market -->
                                 <div class="p-8 space-y-8">
                                     <div>
@@ -587,6 +598,6 @@
     </div>
 
     <!-- Data Logic Script -->
-    <script src="app.js?v=202604200332"></script>
+    <script src="app.js?v=202604200754"></script>
 </body>
 </html>
