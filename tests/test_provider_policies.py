@@ -112,6 +112,39 @@ def test_export_canslim_routes_requests_fetch_retry_through_shared_policy(monkey
     assert observed == [("requests", engine.failure_stats)]
 
 
+def test_export_canslim_ticker_loader_decodes_bom_prefixed_utf8_csv_from_bytes(monkeypatch):
+    module = import_module("export_canslim")
+
+    class DummyResponse:
+        status_code = 200
+
+        def __init__(self, body: bytes):
+            self.content = body
+            self.text = body.decode("iso-8859-1")
+
+        def raise_for_status(self):
+            return None
+
+    csv_by_url = {
+        module.TWSE_TICKER_URL: "\ufeff出表日期,公司代號,公司名稱,公司簡稱\n20260419,1101,台泥,台泥\n".encode("utf-8"),
+        module.TPEx_TICKER_URL: "\ufeff出表日期,公司代號,公司名稱,公司簡稱\n20260419,1240,茂生農經,茂生農經\n".encode("utf-8"),
+    }
+
+    monkeypatch.setattr(
+        module,
+        "call_with_provider_policy",
+        lambda provider_name, operation, **kwargs: operation(),
+        raising=False,
+    )
+    monkeypatch.setattr(module.requests, "get", lambda url, timeout=15: DummyResponse(csv_by_url[url]))
+    monkeypatch.setattr(module.os.path, "exists", lambda path: False)
+
+    ticker_map = module.get_all_tw_tickers(runtime_state={})
+
+    assert ticker_map["1101"] == {"name": "台泥", "suffix": ".TW"}
+    assert ticker_map["1240"] == {"name": "茂生農經", "suffix": ".TWO"}
+
+
 def test_finmind_fetch_institutional_investors_uses_shared_policy_wrapper(monkeypatch):
     module = import_module("finmind_processor")
     observed = []

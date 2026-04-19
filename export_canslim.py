@@ -5,7 +5,7 @@ import logging
 import requests
 import pandas as pd
 import yfinance as yf
-from io import StringIO
+from io import BytesIO
 from datetime import UTC, datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 from excel_processor import ExcelDataProcessor
@@ -111,7 +111,7 @@ def get_all_tw_tickers(*, runtime_state: dict | None = None):
         except requests.RequestException as exc:
             logger.error(f"Ticker CSV response failed for {url}: {exc}")
             return None
-        return pd.read_csv(StringIO(response.text), encoding="utf-8")
+        return pd.read_csv(BytesIO(response.content), encoding="utf-8-sig")
     
     # 1. Listed (上市)
     try:
