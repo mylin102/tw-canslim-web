@@ -91,7 +91,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Establish durable rotation state and shared provider-policy contracts
+- [x] 03-01-PLAN.md — Establish durable rotation state and shared provider-policy contracts
 - [ ] 03-02-PLAN.md — Implement deterministic partitioning, retry-first planning, and resume/finalization seams
 - [ ] 03-03-PLAN.md — Wire rotation orchestration and provider policies into `export_canslim.py` and the scheduled workflow
 
@@ -124,7 +124,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
-| 3. Rotating Batch Orchestration | 0/0 | Not started | - |
+| 3. Rotating Batch Orchestration | 1/3 | In Progress | - |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
 
 ---

@@ -3,20 +3,20 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-04-19T01:29:17.876Z"
+last_updated: "2026-04-19T02:08:56.337Z"
 progress:
   total_phases: 4
   completed_phases: 2
   total_plans: 9
-  completed_plans: 6
-  percent: 67
+  completed_plans: 7
+  percent: 78
 ---
 
 # State: tw-canslim-web
 
 **Project:** tw-canslim-web  
 **Milestone:** Strategy-Driven Update Pipeline Upgrade  
-**Last Updated:** 2026-04-19 08:05 UTC+8
+**Last Updated:** 2026-04-19 10:08 UTC+8
 
 ---
 
@@ -32,14 +32,14 @@ progress:
 
 ## Current Position
 
-Phase: 03 (rotating-batch-orchestration) — READY
-Plan: 0 of 0
-**Phase**: 2 - Dynamic Core Selection  
-**Plan**: 03 of 03 complete  
-**Status**: Ready for Verification  
-**Progress**: `████████████████████` 100%
+Phase: 03 (rotating-batch-orchestration) — EXECUTING
+Plan: 2 of 3
+**Phase**: 3 - Rotating Batch Orchestration  
+**Plan**: 01 of 03 complete  
+**Status**: In Progress  
+**Progress**: `███████░░░░░░░░░░░░` 33%
 
-**Current Work**: Phase 2 complete — `export_canslim.py` now builds its scan order from the artifact-backed selector while preserving Phase 1 bundle publishing.
+**Current Work**: Phase 3 Plan 01 is complete — durable `.orchestration/rotation_state.json` state helpers and shared provider policy contracts are now in place for rotation planning.
 
 **Blockers**: None
 
@@ -50,15 +50,15 @@ Plan: 0 of 0
 ### Completion Stats
 
 - **Phases completed**: 2/4
-- **Plans completed**: 6/6
-- **Requirements validated**: 5/13
-- **Current phase progress**: 100%
+- **Plans completed**: 7/9
+- **Requirements validated**: 7/13
+- **Current phase progress**: 33%
 
 ### Velocity
 
-- **Plans per day**: 4/day
+- **Plans per day**: 7/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: Phase 2 in progress as of 2026-04-19
+- **Estimated phase completion**: Phase 3 in progress as of 2026-04-19
 
 ### Quality
 
@@ -107,6 +107,11 @@ Plan: 0 of 0
 - [Phase 02]: Kept export wiring on build_core_universe(...) by extending the selector helper to accept artifact paths without breaking existing selector unit tests.
 - [Phase 02]: Preserved the brownfield non-core tail exactly as selection.core_symbols plus the first 2000 remaining sorted tickers.
 
+| Phase 03 P01 | 3min | 2 tasks | 6 files |
+
+- [Phase 03]: Persist rotation state only in .orchestration/rotation_state.json with strict schema validation and atomic os.replace writes.
+- [Phase 03]: Keep provider retry and throttling defaults in a pure ProviderPolicy table while preserving the 1000-symbol non-core daily budget.
+
 ### Active TODOs
 
 - [ ] Pre-Phase 1: Audit all 28 bare `except:` clauses identified by research (see CONCERNS.md)
@@ -114,6 +119,7 @@ Plan: 0 of 0
 - [ ] Pre-Phase 1: Map current API quota consumption baseline (run export_canslim.py with call counter)
 - [x] Execute Phase 2 Plan 02 for artifact-backed volume-aware core-universe selection
 - [x] Execute Phase 2 Plan 03 to wire selector output into `export_canslim.py`
+- [x] Execute Phase 3 Plan 01 for durable rotation state and shared provider policy contracts
 
 ### Known Issues
 
@@ -154,28 +160,28 @@ Plan: 0 of 0
 
 ### What Just Happened
 
-- Phase 2 Plan 03 replaced the static export priority seam with selector-driven `scan_list` construction in `export_canslim.py`
-- Export regressions now prove selector-first scan ordering, loud selector validation failures, and unchanged Phase 1 bundle publishing
-- `core_selection.py` now accepts the export path's checked-in artifact inputs directly through `build_core_universe(...)`
+- Phase 3 Plan 01 added `orchestration_state.py` plus the tracked `.orchestration/rotation_state.json` seed for atomic, schema-validated durable orchestration state.
+- New pytest coverage locks in default state seeding, atomic save semantics, and retry-queue durability across reloads.
+- `provider_policies.py` now centralizes explicit retry/backoff and throttling metadata for requests, FinMind, TEJ, and yfinance while preserving the 1000-symbol non-core budget target.
 
 ### What's Next
 
-1. Start Phase 3 rotation planning and keep it scoped to non-core orchestration state/batching
-2. Reuse the selector-produced core/non-core split without changing the publish-safety contract
+1. Execute Phase 3 Plan 02 to build deterministic 3-way partitioning, retry-first planning, and resume/finalization seams on top of the new state helper.
+2. Keep reusing the Phase 2 selector boundary and the Phase 1 publish-safety contract without introducing any database or new orchestration service.
 
 ### Open Questions
 
-- None (roadmap complete, awaiting user approval)
+- None
 
 ### Context for Next Agent
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 2 Plan 02 execution:**
+**If continuing after Phase 3 Plan 01 execution:**
 
-- `historical_generator.py` persists selector-ready `latest_volume` and `volume_rank` columns into `master_canslim_signals.parquet`
-- `master_canslim_signals_fused.parquet` is now validated to carry those volume fields through `fuse_excel_data.py`
-- `core_selection.py` returns bucket metadata plus `core_symbols`/`core_set`, preserving required buckets first and only using `docs/data_base.json` for `mansfield_rs` ranked fill
+- `orchestration_state.py` owns load/save/enqueue helpers for `.orchestration/rotation_state.json` and rejects malformed payloads loudly with `PublishValidationError`/`ValueError`.
+- `provider_policies.py` defines pure `ProviderPolicy` contracts plus deterministic `compute_backoff_seconds(...)` for requests, FinMind, TEJ, and yfinance.
+- Tests now exist at `tests/test_rotation_state.py` and `tests/test_provider_policies.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
 
 **If user requests revision:**
 

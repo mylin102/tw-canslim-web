@@ -16,9 +16,9 @@
 
 - [x] **ORCH-01**: Maintainer can generate a daily core stock universe from base symbols, volume leaders, RS leaders, and active signals.
 - [ ] **ORCH-02**: Maintainer can rotate non-core stocks through deterministic batches so broad market coverage completes within a three-day cycle.
-- [ ] **ORCH-03**: Maintainer can persist orchestration state across runs, including rotation position, freshness, and failed-stock tracking.
+- [x] **ORCH-03**: Maintainer can persist orchestration state across runs, including rotation position, freshness, and failed-stock tracking.
 - [ ] **ORCH-04**: Maintainer can resume a partial update run without rebuilding the entire market snapshot.
-- [ ] **ORCH-05**: Maintainer can run the daily pipeline under provider limits using throttling, retry, and backoff behavior appropriate to each data source.
+- [x] **ORCH-05**: Maintainer can run the daily pipeline under provider limits using throttling, retry, and backoff behavior appropriate to each data source.
 
 ### Publishing & UX
 
@@ -60,9 +60,9 @@
 | SAFE-04 | Phase 1 | Complete |
 | ORCH-01 | Phase 2 | Complete |
 | ORCH-02 | Phase 3 | Pending |
-| ORCH-03 | Phase 3 | Pending |
+| ORCH-03 | Phase 3 | Complete |
 | ORCH-04 | Phase 3 | Pending |
-| ORCH-05 | Phase 3 | Pending |
+| ORCH-05 | Phase 3 | Complete |
 | PUB-01 | Phase 4 | Pending |
 | PUB-02 | Phase 4 | Pending |
 | PUB-03 | Phase 4 | Pending |
