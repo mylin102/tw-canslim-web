@@ -21,7 +21,7 @@ Transform the existing full-update pipeline into a strategy-driven tiered update
 
 - [x] **Phase 1: Safety Hardening** - Eliminate data corruption and silent failures before scaling orchestration
 - [x] **Phase 2: Dynamic Core Selection** - Implement signal-driven priority selection for daily core stock universe
-- [ ] **Phase 3: Rotating Batch Orchestration** - Build 3-day rotation system with persistent state and resume capability
+- [x] **Phase 3: Rotating Batch Orchestration** - Build 3-day rotation system with persistent state and resume capability
 - [ ] **Phase 4: Publishing & Freshness Awareness** - Deliver merged outputs with explicit freshness metadata and update summaries
 
 ---
@@ -124,7 +124,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Safety Hardening | 3/3 | Complete | 2026-04-19 |
 | 2. Dynamic Core Selection | 3/3 | Complete | 2026-04-19 |
-| 3. Rotating Batch Orchestration | 2/3 | In Progress | - |
+| 3. Rotating Batch Orchestration | 3/3 | Complete | 2026-04-19 |
 | 4. Publishing & Freshness Awareness | 0/0 | Not started | - |
 
 ---
@@ -179,4 +179,4 @@ Plans:
 
 ---
 
-*Last updated: 2026-04-18 after roadmap creation*
+*Last updated: 2026-04-19 after Phase 3 verification*

@@ -32,14 +32,14 @@ progress:
 
 ## Current Position
 
-Phase: 03 (rotating-batch-orchestration) — EXECUTING
-Plan: 3 of 3
-**Phase**: 3 - Rotating Batch Orchestration  
-**Plan**: 02 of 03 complete  
-**Status**: In Progress  
-**Progress**: `█████████████░░░░░░` 67%
+Phase: 04 (publishing-freshness-awareness) — READY
+Plan: 0 of 0
+**Phase**: 4 - Publishing & Freshness Awareness  
+**Plan**: 00 of 00 complete  
+**Status**: Ready to plan  
+**Progress**: `████████████████████` 100%
 
-**Current Work**: Phase 3 Plan 02 is complete — deterministic three-way rotation planning, retry-first worklists, frozen in-progress batches, and finalize-success-only cursor advancement are now implemented.
+**Current Work**: Phase 3 is complete and verified — deterministic three-way rotation, durable resume state, provider-policy wiring, workflow restore/persist checkpoints, and runtime budget gating are now live.
 
 **Blockers**: None
 
@@ -49,16 +49,16 @@ Plan: 3 of 3
 
 ### Completion Stats
 
-- **Phases completed**: 2/4
-- **Plans completed**: 8/9
-- **Requirements validated**: 9/13
-- **Current phase progress**: 67%
+- **Phases completed**: 3/4
+- **Plans completed**: 9/9
+- **Requirements validated**: 13/13
+- **Current phase progress**: 100%
 
 ### Velocity
 
-- **Plans per day**: 8/day
+- **Plans per day**: 9/day
 - **Days in current phase**: 1
-- **Estimated phase completion**: Phase 3 in progress as of 2026-04-19
+- **Estimated phase completion**: Phase 3 completed on 2026-04-19
 
 ### Quality
 
@@ -171,14 +171,14 @@ Plan: 3 of 3
 
 ### What Just Happened
 
-- Phase 3 Plan 02 added `rotation_orchestrator.py` with deterministic three-way partitioning, generation tracking, retry-first plan assembly, and explicit write/resume/finalize seams.
-- `orchestration_state.py` now persists richer per-symbol freshness metadata (`last_attempted_at`, `last_succeeded_at`, `last_batch_generation`) while preserving prior success freshness across retry queue handling.
-- New pytest coverage proves frozen in-progress batches resume remaining symbols only and that `current_batch_index` advances only inside `finalize_success()`.
+- Phase 3 Plan 03 wired `build_daily_plan(...)`, `write_in_progress(...)`, and `finalize_*()` into `export_canslim.py` without breaking Phase 1 publish safety.
+- Shared provider pacing/retry policies now cover requests, FinMind, TEJ, and yfinance through one explicit contract.
+- Scheduled and on-demand workflows now restore and persist `.orchestration/rotation_state.json`, and the runtime budget gate records `.orchestration/runtime_budget.json`.
 
 ### What's Next
 
-1. Execute Phase 3 Plan 03 to wire `build_daily_plan(...)`, `write_in_progress(...)`, and `finalize_*()` into `export_canslim.py` and the scheduled workflow.
-2. Keep reusing the Phase 2 selector boundary and the Phase 1 publish-safety contract without introducing any database or new orchestration service.
+1. Start Phase 4 planning for publishing and freshness-aware outputs.
+2. Keep building on the Phase 3 rotation/workflow seams without introducing a database or replacing the existing publish contract.
 
 ### Open Questions
 
@@ -188,11 +188,11 @@ Plan: 3 of 3
 
 **If continuing after Phase 1 execution:**
 
-**If continuing after Phase 3 Plan 02 execution:**
+**If continuing after Phase 3 completion:**
 
-- `rotation_orchestrator.py` now exposes `build_daily_plan(...)`, `write_in_progress(...)`, `mark_symbol_completed(...)`, `finalize_success(...)`, and `finalize_failure(...)` as verifier-friendly seams.
-- `orchestration_state.py` keeps strict schema validation but now stores richer freshness metadata and supports in-memory retry-queue mutation before the final atomic save.
-- Tests now exist at `tests/test_rotation_state.py`, `tests/test_rotation_orchestrator.py`, and `tests/test_provider_policies.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
+- `export_canslim.py` now assembles `selection.core_symbols + daily_plan["worklist"]`, checkpoints scheduled batches with `write_in_progress(...)`, records per-symbol freshness, and advances the cursor only after final publish success.
+- Provider policy enforcement is centralized in `provider_policies.py`, with live wiring in `export_canslim.py`, `finmind_processor.py`, `tej_processor.py`, and `yfinance_provider.py`.
+- Tests now exist at `tests/test_rotation_state.py`, `tests/test_rotation_orchestrator.py`, `tests/test_provider_policies.py`, and rotation-aware `tests/test_primary_publish_path.py`; continue using `PYTHONPATH=. pytest ...` for all verification.
 
 **If user requests revision:**
 
