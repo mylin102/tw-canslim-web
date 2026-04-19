@@ -28,6 +28,7 @@ from rotation_orchestrator import (
     write_in_progress,
 )
 from yfinance_provider import get_price_history_with_policy
+from publish_projection import build_publish_projection_bundle
 
 from core.logic import calculate_accumulation_strength, compute_canslim_score, compute_canslim_score_etf, calculate_l_factor, calculate_mansfield_rs, calculate_volatility_grid, check_n_factor
 from publish_safety import (
@@ -182,6 +183,7 @@ class CanslimEngine:
         self.industry_data = None
         self.industry_strength = None
         self.failure_details = []
+        self.refreshed_symbols = []
         self._load_excel_data()
 
     def _build_output_payload(self) -> Dict:
@@ -216,6 +218,8 @@ class CanslimEngine:
             }
         if not hasattr(self, "failure_details") or not isinstance(self.failure_details, list):
             self.failure_details = []
+        if not hasattr(self, "refreshed_symbols") or not isinstance(self.refreshed_symbols, list):
+            self.refreshed_symbols = []
         if not hasattr(self, "output_data") or not isinstance(self.output_data, dict):
             self.output_data = self._build_output_payload()
 
@@ -281,18 +285,49 @@ class CanslimEngine:
             return obj.strftime("%Y-%m-%d")
         raise TypeError("Type %s not serializable" % type(obj))
 
-    def _publish_snapshot(self) -> Dict:
+    def _publish_snapshot(
+        self,
+        *,
+        rotation_state: dict,
+        selection,
+        all_symbols: list[str],
+        scheduled_batch: dict,
+    ) -> Dict:
         """Publish live artifacts through one bundle-safe transaction."""
         self._ensure_runtime_state()
+        baseline_payload = {"stocks": {}}
+        baseline_file = os.path.join(OUTPUT_DIR, "data_base.json")
+        if os.path.exists(baseline_file):
+            baseline_payload = load_artifact_json(baseline_file, artifact_kind="data_base", logger=logger)
+
+        projected = build_publish_projection_bundle(
+            output_data=self.output_data,
+            baseline_payload=baseline_payload,
+            ticker_info=self.ticker_info,
+            freshness_state=rotation_state,
+            failure_details=self.failure_details,
+            failure_stats=self.failure_stats,
+            refreshed_symbols=self.refreshed_symbols,
+            all_symbols=all_symbols,
+            selection=selection,
+            scheduled_batch=scheduled_batch,
+            as_of=self._rotation_timestamp(),
+        )
+
         update_summary_file = os.path.join(OUTPUT_DIR, "update_summary.json")
+        stock_index_file = os.path.join(OUTPUT_DIR, "stock_index.json")
         bundle = {
             DATA_FILE: {
                 "artifact_kind": "data",
-                "payload": self.output_data,
+                "payload": projected["data"],
+            },
+            stock_index_file: {
+                "artifact_kind": "stock_index",
+                "payload": projected["stock_index"],
             },
             update_summary_file: {
                 "artifact_kind": "update_summary",
-                "payload": self._build_update_summary(),
+                "payload": projected["update_summary"],
             },
         }
         return publish_artifact_bundle(
@@ -1042,6 +1077,8 @@ class CanslimEngine:
                         self.output_data["stocks"][t] = stock_data
 
                     succeeded_at = self._rotation_timestamp()
+                    if t not in self.refreshed_symbols:
+                        self.refreshed_symbols.append(t)
                     if is_scheduled_symbol:
                         rotation_state = mark_symbol_completed(
                             rotation_state,
@@ -1065,7 +1102,12 @@ class CanslimEngine:
                     if len(self.output_data["stocks"]) % 50 == 0:
                         self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                         logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
-                        self._publish_snapshot()
+                        self._publish_snapshot(
+                            rotation_state=rotation_state,
+                            selection=selection,
+                            all_symbols=all_t,
+                            scheduled_batch=scheduled_batch,
+                        )
 
                 except (PublishValidationError, PublishTransactionError):
                     logger.exception("Publish failed while processing %s", t)
@@ -1155,7 +1197,12 @@ class CanslimEngine:
             if not os.path.exists(OUTPUT_DIR):
                 os.makedirs(OUTPUT_DIR)
             try:
-                self._publish_snapshot()
+                self._publish_snapshot(
+                    rotation_state=rotation_state,
+                    selection=selection,
+                    all_symbols=all_t,
+                    scheduled_batch=scheduled_batch,
+                )
             except (PublishValidationError, PublishTransactionError):
                 logger.exception("Failed to publish CANSLIM artifact bundle")
                 raise

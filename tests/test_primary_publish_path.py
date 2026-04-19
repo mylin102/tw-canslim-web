@@ -104,6 +104,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
     docs_dir = tmp_path / "docs"
     docs_dir.mkdir()
     data_path = docs_dir / "data.json"
+    stock_index_path = docs_dir / "stock_index.json"
     summary_path = docs_dir / "update_summary.json"
     data_path.write_text(json.dumps({"stocks": {"2330": {"symbol": "2330", "name": "Old"}}}), encoding="utf-8")
 
@@ -186,7 +187,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
     assert load_calls == [(str(data_path), "data")]
     assert validated == ["2330"]
     bundle = published["bundle"]
-    assert set(bundle) == {str(data_path), str(summary_path)}
+    assert set(bundle) == {str(data_path), str(stock_index_path), str(summary_path)}
     data_payload = bundle[str(data_path)]["payload"]
     assert "mansfield_rs" in data_payload["stocks"]["2330"]["canslim"]
     summary_payload = bundle[str(summary_path)]["payload"]
@@ -201,6 +202,7 @@ def test_export_canslim_tracks_retry_attempts_and_stock_failures_in_summary(
     docs_dir = tmp_path / "docs"
     docs_dir.mkdir()
     data_path = docs_dir / "data.json"
+    stock_index_path = docs_dir / "stock_index.json"
     summary_path = docs_dir / "update_summary.json"
 
     engine = _build_engine(module)
@@ -271,6 +273,7 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
     docs_dir = tmp_path / "docs"
     docs_dir.mkdir()
     data_path = docs_dir / "data.json"
+    stock_index_path = docs_dir / "stock_index.json"
     summary_path = docs_dir / "update_summary.json"
 
     engine = _build_engine(module, tickers=("0050", "1101", "2330", "2454", "3008"))
@@ -374,7 +377,7 @@ def test_export_canslim_uses_selector_core_order_and_preserves_publish_bundle(
     assert selector_calls[0]["all_symbols"] == ["0050", "1101", "2330", "2454", "3008"]
     assert list(engine.output_data["stocks"])[:5] == ["0050", "2330", "1101", "2454", "3008"]
     assert len(set(engine.output_data["stocks"])) == len(engine.output_data["stocks"])
-    assert set(published["bundle"]) == {str(data_path), str(summary_path)}
+    assert set(published["bundle"]) == {str(data_path), str(stock_index_path), str(summary_path)}
 
 
 def test_export_canslim_reraises_selector_validation_failures(

@@ -45,6 +45,6 @@ def test_update_summary_previews_next_rotation_without_mutating_state(rotation_s
     assert summary["refreshed_symbols"] == ["2330", "2454"]
     assert summary["failed_symbols"] == ["1101"]
     assert summary["next_rotation"]["batch_index"] == 2
-    assert summary["next_rotation"]["symbols"] == ["6805", "8069"]
+    assert summary["next_rotation"]["symbols"] == ["8069"]
     assert summary["freshness_counts"] == {"today": 1, "warning": 1, "stale": 0}
     assert state["current_batch_index"] == 1

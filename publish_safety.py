@@ -24,6 +24,7 @@ SUPPORTED_ARTIFACT_KINDS = {
     "data",
     "data_light",
     "data_gz",
+    "stock_index",
     "update_summary",
 }
 
@@ -40,6 +41,7 @@ ARTIFACT_KIND_BY_NAME = {
     "data.json": "data",
     "data_light.json": "data_light",
     "data.json.gz": "data_gz",
+    "stock_index.json": "stock_index",
     "update_summary.json": "update_summary",
 }
 
@@ -98,6 +100,10 @@ def validate_artifact_payload(
 
     if artifact_kind in STOCK_ARTIFACT_KINDS:
         _validate_stock_payload(payload, artifact_kind=artifact_kind, schema_version=schema_version)
+        return
+
+    if artifact_kind == "stock_index":
+        _validate_stock_index_payload(payload, schema_version=schema_version)
         return
 
     _validate_summary_payload(payload)
@@ -285,6 +291,41 @@ def _validate_stock_payload(payload: dict, *, artifact_kind: str, schema_version
 
     for stock_id, stock_entry in stocks.items():
         validate_resume_stock_entry(stock_id, stock_entry, schema_version=schema_version)
+
+
+def _validate_stock_index_payload(payload: dict, *, schema_version: str) -> None:
+    if payload.get("schema_version") != schema_version:
+        raise PublishValidationError(
+            f"stock_index schema mismatch: expected {schema_version}, got {payload.get('schema_version')!r}"
+        )
+
+    stocks = payload.get("stocks")
+    if not isinstance(stocks, dict):
+        raise PublishValidationError("stock_index payload requires a stocks object")
+
+    if "last_updated" not in payload:
+        raise PublishValidationError("stock_index payload missing last_updated")
+
+    for stock_id, stock_entry in stocks.items():
+        if not isinstance(stock_entry, dict):
+            raise PublishValidationError(f"stock_index entry {stock_id} must be an object")
+        if stock_entry.get("symbol") != stock_id:
+            raise PublishValidationError(f"stock_index entry {stock_id} symbol mismatch")
+        for key in ("name", "industry", "last_succeeded_at"):
+            if not isinstance(stock_entry.get(key), str):
+                raise PublishValidationError(f"stock_index entry {stock_id} missing string field: {key}")
+        if not isinstance(stock_entry.get("in_snapshot"), bool):
+            raise PublishValidationError(f"stock_index entry {stock_id} missing bool field: in_snapshot")
+
+        freshness = stock_entry.get("freshness")
+        if not isinstance(freshness, dict):
+            raise PublishValidationError(f"stock_index entry {stock_id} freshness must be an object")
+        days_old = freshness.get("days_old")
+        if days_old is not None and (not isinstance(days_old, int) or isinstance(days_old, bool) or days_old < 0):
+            raise PublishValidationError(f"stock_index entry {stock_id} freshness.days_old must be null or >= 0")
+        for key in ("level", "label"):
+            if not isinstance(freshness.get(key), str):
+                raise PublishValidationError(f"stock_index entry {stock_id} freshness.{key} must be a string")
 
 
 def _validate_summary_payload(payload: dict) -> None:
