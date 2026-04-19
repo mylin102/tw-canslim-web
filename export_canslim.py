@@ -863,6 +863,83 @@ class CanslimEngine:
             'rs_rating': ratings.get('rs_rating'),
             'smr_rating': ratings.get('smr_rating')
         }
+
+    def _get_excel_health_record(self, ticker: str) -> Dict:
+        if not self.excel_ratings:
+            return {}
+        return dict(self.excel_ratings.get(ticker) or {})
+
+    def _excel_c_fallback(self, ticker: str) -> bool:
+        excel_data = self._get_excel_health_record(ticker)
+        if not excel_data:
+            return False
+
+        quarterly_eps_growth = excel_data.get("quarterly_eps_growth_pct")
+        three_quarter_eps_growth = excel_data.get("three_quarter_eps_growth_pct")
+        quarterly_revenue_growth = excel_data.get("quarterly_revenue_growth_pct")
+        eps_rating = excel_data.get("eps_rating") or 0
+
+        return bool(
+            (quarterly_eps_growth is not None and quarterly_eps_growth >= C_QUARTERLY_GROWTH_THRESHOLD * 100)
+            or (three_quarter_eps_growth is not None and three_quarter_eps_growth >= C_QUARTERLY_GROWTH_THRESHOLD * 100)
+            or (
+                quarterly_revenue_growth is not None
+                and quarterly_revenue_growth >= C_QUARTERLY_GROWTH_THRESHOLD * 100
+                and eps_rating >= 80
+            )
+        )
+
+    def _excel_a_fallback(self, ticker: str) -> bool:
+        excel_data = self._get_excel_health_record(ticker)
+        if not excel_data:
+            return False
+
+        annual_eps_growth = excel_data.get("annual_eps_growth_pct")
+        three_year_eps_growth = excel_data.get("three_year_eps_growth_pct")
+        eps_growth_years = excel_data.get("eps_growth_years")
+        eps_rating = excel_data.get("eps_rating") or 0
+
+        return bool(
+            (annual_eps_growth is not None and annual_eps_growth >= 25)
+            or (three_year_eps_growth is not None and three_year_eps_growth >= 25)
+            or (eps_growth_years is not None and eps_growth_years >= 2 and eps_rating >= 80)
+        )
+
+    def _excel_i_fallback(self, ticker: str, current_score: float) -> Tuple[float, Dict]:
+        excel_data = self._get_excel_health_record(ticker)
+        fund_data = dict(self.fund_holdings.get(ticker) or {}) if self.fund_holdings else {}
+        if not excel_data and not fund_data:
+            return current_score, {}
+
+        candidate_score = float(current_score or 0.0)
+        details: Dict[str, float | str | int] = {}
+
+        sponsorship_score = excel_data.get("sponsorship_score")
+        if sponsorship_score is not None:
+            candidate_score = max(candidate_score, float(sponsorship_score))
+            details["sponsorship_score"] = float(sponsorship_score)
+
+        current_month = fund_data.get("current_month")
+        change = fund_data.get("change")
+        change_pct = fund_data.get("change_pct")
+        if current_month is not None:
+            fund_score = 40.0 + min(float(current_month) / 10.0, 40.0)
+            if change is not None and change > 0:
+                fund_score += min(float(change), 20.0)
+            candidate_score = max(candidate_score, min(fund_score, 100.0))
+            details["fund_current_month"] = int(current_month)
+        if change is not None:
+            details["fund_change"] = int(change)
+        if change_pct is not None:
+            details["fund_change_pct"] = float(change_pct)
+
+        institutional_holding_pct = excel_data.get("institutional_holding_pct")
+        if institutional_holding_pct is not None:
+            details["institutional_holding_pct"] = float(institutional_holding_pct)
+
+        if candidate_score > float(current_score or 0.0):
+            details["source"] = "excel_fallback"
+        return min(candidate_score, 100.0), details
     
     def calculate_enhanced_canslim_score(self, c: bool, a: bool, n: bool, s: bool, 
                                          l: bool, i: bool, m: bool,
@@ -1196,6 +1273,15 @@ class CanslimEngine:
 
                     c_pass = tej_ca.get('C', False)
                     a_pass = tej_ca.get('A', False)
+                    if not c_pass:
+                        c_pass = self._excel_c_fallback(t)
+                    if not a_pass:
+                        a_pass = self._excel_a_fallback(t)
+
+                    i_score_abs, excel_i_details = self._excel_i_fallback(t, i_score_abs)
+                    if excel_i_details:
+                        inst_result["details"] = {**inst_result.get("details", {}), **excel_i_details}
+                    i_pass = i_score_abs >= 60
                     tej_financials = self.tej_processor.get_quarterly_financials(t) if self.tej_processor.initialized else None
 
                     n_pass = check_n_factor(stock_hist)

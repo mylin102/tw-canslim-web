@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260419T192112Z",
-  "generated_at": "2026-04-19T19:21:12Z",
+  "run_id": "20260419T194824Z",
+  "generated_at": "2026-04-19T19:48:24Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 6,
@@ -11,7 +11,7 @@
     "stock_failures": 71,
     "provider_wait_seconds": 124.08488716604188
   },
-  "timestamp": "2026-04-19T19:21:12Z",
+  "timestamp": "2026-04-19T19:48:24Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {

@@ -36,6 +36,57 @@ class ExcelDataProcessor:
         # If multiple health check files exist, use the newest one
         if self.health_check_file:
             logger.info(f"Using health check file: {os.path.basename(self.health_check_file)}")
+
+    def _normalize_stock_code(self, raw_code) -> Optional[str]:
+        if pd.isna(raw_code):
+            return None
+
+        stock_code = str(raw_code).strip()
+        if "." in stock_code:
+            stock_code = stock_code.split(".")[0]
+
+        if stock_code.isdigit() and len(stock_code) == 4:
+            return stock_code
+        return None
+
+    def _default_health_record(self, name: str = "") -> Dict:
+        return {
+            "name": name,
+            "composite_rating": None,
+            "eps_rating": None,
+            "rs_rating": None,
+            "smr_rating": None,
+            "quarterly_eps_growth_pct": None,
+            "three_quarter_eps_growth_pct": None,
+            "annual_eps_growth_pct": None,
+            "three_year_eps_growth_pct": None,
+            "eps_growth_years": None,
+            "quarterly_revenue_growth_pct": None,
+            "three_quarter_revenue_growth_pct": None,
+            "fund_holding_count_q0": None,
+            "fund_holding_count_q1": None,
+            "fund_holding_increase_quarters": None,
+            "institutional_holding_pct": None,
+            "institutional_holding_change_pct": None,
+            "sponsorship_score": None,
+            "sponsorship_rating": None,
+        }
+
+    def _ensure_health_record(self, result: Dict[str, Dict], stock_code: str, stock_name: str = "") -> Dict:
+        record = result.setdefault(stock_code, self._default_health_record(stock_name))
+        if stock_name and not record.get("name"):
+            record["name"] = stock_name
+        return record
+
+    def _coerce_number(self, value):
+        if pd.isna(value):
+            return None
+        if isinstance(value, (int, float)):
+            return float(value)
+        try:
+            return float(str(value).strip().replace(",", ""))
+        except ValueError:
+            return None
     
     def load_fundamental_data(self) -> Optional[Dict]:
         """
@@ -100,48 +151,65 @@ class ExcelDataProcessor:
         
         try:
             result = {}
-            
-            # Read Sheet1 (main stock list)
-            df_main = pd.read_excel(
-                self.health_check_file,
-                sheet_name='Sheet1',
-                header=None
-            )
-            
-            # Parse stock codes and names
-            for _, row in df_main.iterrows():
+            excel_file = pd.ExcelFile(self.health_check_file)
+
+            if 'Sheet1' in excel_file.sheet_names:
+                df_main = pd.read_excel(
+                    self.health_check_file,
+                    sheet_name='Sheet1',
+                    header=None
+                )
+
+                for _, row in df_main.iterrows():
+                    try:
+                        stock_code = self._normalize_stock_code(row.iloc[0])
+                        if not stock_code:
+                            continue
+                        stock_name = str(row.iloc[1]).strip() if len(row) > 1 and pd.notna(row.iloc[1]) else ''
+                        self._ensure_health_record(result, stock_code, stock_name)
+                    except Exception as e:
+                        logger.debug(f"Skipping row with invalid data: {e}")
+                        continue
+
+            if '綜合資料' in excel_file.sheet_names:
                 try:
-                    # Handle different formats of stock codes
-                    raw_code = row[0]
-                    if pd.isna(raw_code):
-                        continue
-                    
-                    # Convert to string and clean up
-                    stock_code = str(raw_code).strip()
-                    
-                    # Remove decimal if present (e.g., "2330.0" -> "2330")
-                    if '.' in stock_code:
-                        stock_code = stock_code.split('.')[0]
-                    
-                    # Validate it's a 4-digit stock code
-                    if not stock_code.isdigit() or len(stock_code) != 4:
-                        continue
-                    
-                    stock_name = str(row[1]).strip() if pd.notna(row[1]) else ''
-                    
-                    result[stock_code] = {
-                        'name': stock_name,
-                        'composite_rating': None,
-                        'eps_rating': None,
-                        'rs_rating': None,
-                        'smr_rating': None
+                    df_summary = pd.read_excel(
+                        self.health_check_file,
+                        sheet_name='綜合資料',
+                        header=0
+                    )
+                    df_summary.columns = [str(col).strip() if pd.notna(col) else '' for col in df_summary.columns]
+                    metric_map = {
+                        '近一季EPS成長率(%)': 'quarterly_eps_growth_pct',
+                        '三季平均EPS成長率(%)': 'three_quarter_eps_growth_pct',
+                        '去年EPS成長率(%)': 'annual_eps_growth_pct',
+                        '三年EPS成長率(%)': 'three_year_eps_growth_pct',
+                        'EPS連續成長年數': 'eps_growth_years',
+                        '近一季營收成長率': 'quarterly_revenue_growth_pct',
+                        '三季平均營收成長率': 'three_quarter_revenue_growth_pct',
+                        '基金持有家數Q-0': 'fund_holding_count_q0',
+                        '基金持有家數Q-1': 'fund_holding_count_q1',
+                        '基金家數增加季數': 'fund_holding_increase_quarters',
+                        '三大法人持股比例(%D)': 'institutional_holding_pct',
+                        '三大法人持股變化率(%D)': 'institutional_holding_change_pct',
                     }
+
+                    for _, row in df_summary.iterrows():
+                        stock_code = self._normalize_stock_code(row.get('股票代號'))
+                        if not stock_code:
+                            continue
+                        stock_name = str(row.get('股票名稱')).strip() if pd.notna(row.get('股票名稱')) else ''
+                        record = self._ensure_health_record(result, stock_code, stock_name)
+                        for source_col, target_key in metric_map.items():
+                            if source_col not in df_summary.columns:
+                                continue
+                            value = self._coerce_number(row.get(source_col))
+                            if value is not None:
+                                record[target_key] = value
                 except Exception as e:
-                    logger.debug(f"Skipping row with invalid data: {e}")
-                    continue
-            
-            # Read Composite Rating sheet if exists
-            if 'Composite Rating' in pd.ExcelFile(self.health_check_file).sheet_names:
+                    logger.warning(f"Failed to read 綜合資料 sheet: {e}")
+
+            if 'Composite Rating' in excel_file.sheet_names:
                 try:
                     df_cr = pd.read_excel(
                         self.health_check_file,
@@ -159,27 +227,22 @@ class ExcelDataProcessor:
                                 continue
                             
                             # Handle different column positions
-                            raw_code = str(row.iloc[0]).strip()
+                            stock_code = self._normalize_stock_code(row.iloc[0])
+                            if not stock_code:
+                                continue
+                            stock_name = str(row.iloc[1]).strip() if len(row) > 1 and pd.notna(row.iloc[1]) else ''
                             
                             # Find the rating column (usually column index 2 or 3)
                             rating = None
                             for col_idx in range(2, min(5, len(row))):
                                 if pd.notna(row.iloc[col_idx]):
-                                    val = row.iloc[col_idx]
-                                    if isinstance(val, (int, float)) and 0 <= val <= 100:
+                                    val = self._coerce_number(row.iloc[col_idx])
+                                    if val is not None and 0 <= val <= 100:
                                         rating = val
                                         break
                             
-                            if '.' in raw_code:
-                                raw_code = raw_code.split('.')[0]
-                            
-                            if not raw_code.isdigit() or len(raw_code) != 4:
-                                continue
-                            
-                            stock_code = raw_code
-                            
-                            if stock_code in result:
-                                result[stock_code]['composite_rating'] = float(rating) if rating else None
+                            record = self._ensure_health_record(result, stock_code, stock_name)
+                            record['composite_rating'] = float(rating) if rating is not None else None
                         except Exception as e:
                             logger.debug(f"Skipping Composite Rating row: {e}")
                             continue
@@ -187,7 +250,7 @@ class ExcelDataProcessor:
                     logger.warning(f"Failed to read Composite Rating sheet: {e}")
             
             # Read EPS Rating sheet
-            if 'EPS Rating' in pd.ExcelFile(self.health_check_file).sheet_names:
+            if 'EPS Rating' in excel_file.sheet_names:
                 try:
                     df_eps = pd.read_excel(
                         self.health_check_file,
@@ -202,27 +265,21 @@ class ExcelDataProcessor:
                             if pd.isna(row.iloc[0]):
                                 continue
                             
-                            raw_code = str(row.iloc[0]).strip()
+                            stock_code = self._normalize_stock_code(row.iloc[0])
+                            if not stock_code:
+                                continue
                             
                             # Find the rating column
                             rating = None
                             for col_idx in range(1, min(5, len(row))):
                                 if pd.notna(row.iloc[col_idx]):
-                                    val = row.iloc[col_idx]
-                                    if isinstance(val, (int, float)) and 0 <= val <= 100:
+                                    val = self._coerce_number(row.iloc[col_idx])
+                                    if val is not None and 0 <= val <= 100:
                                         rating = val
                                         break
                             
-                            if '.' in raw_code:
-                                raw_code = raw_code.split('.')[0]
-                            
-                            if not raw_code.isdigit() or len(raw_code) != 4:
-                                continue
-                            
-                            stock_code = raw_code
-                            
-                            if stock_code in result:
-                                result[stock_code]['eps_rating'] = float(rating) if rating else None
+                            record = self._ensure_health_record(result, stock_code)
+                            record['eps_rating'] = float(rating) if rating is not None else None
                         except Exception as e:
                             logger.debug(f"Skipping EPS Rating row: {e}")
                             continue
@@ -230,7 +287,7 @@ class ExcelDataProcessor:
                     logger.warning(f"Failed to read EPS Rating sheet: {e}")
             
             # Read RS Rating sheet
-            if 'RS Rating' in pd.ExcelFile(self.health_check_file).sheet_names:
+            if 'RS Rating' in excel_file.sheet_names:
                 try:
                     df_rs = pd.read_excel(
                         self.health_check_file,
@@ -245,27 +302,21 @@ class ExcelDataProcessor:
                             if pd.isna(row.iloc[0]):
                                 continue
                             
-                            raw_code = str(row.iloc[0]).strip()
+                            stock_code = self._normalize_stock_code(row.iloc[0])
+                            if not stock_code:
+                                continue
                             
                             # Find the rating column
                             rating = None
                             for col_idx in range(1, min(5, len(row))):
                                 if pd.notna(row.iloc[col_idx]):
-                                    val = row.iloc[col_idx]
-                                    if isinstance(val, (int, float)) and 0 <= val <= 100:
+                                    val = self._coerce_number(row.iloc[col_idx])
+                                    if val is not None and 0 <= val <= 100:
                                         rating = val
                                         break
                             
-                            if '.' in raw_code:
-                                raw_code = raw_code.split('.')[0]
-                            
-                            if not raw_code.isdigit() or len(raw_code) != 4:
-                                continue
-                            
-                            stock_code = raw_code
-                            
-                            if stock_code in result:
-                                result[stock_code]['rs_rating'] = float(rating) if rating else None
+                            record = self._ensure_health_record(result, stock_code)
+                            record['rs_rating'] = float(rating) if rating is not None else None
                         except Exception as e:
                             logger.debug(f"Skipping RS Rating row: {e}")
                             continue
@@ -273,7 +324,7 @@ class ExcelDataProcessor:
                     logger.warning(f"Failed to read RS Rating sheet: {e}")
             
             # Read SMR Rating sheet
-            if 'SMR Rating' in pd.ExcelFile(self.health_check_file).sheet_names:
+            if 'SMR Rating' in excel_file.sheet_names:
                 try:
                     df_smr = pd.read_excel(
                         self.health_check_file,
@@ -317,13 +368,48 @@ class ExcelDataProcessor:
                             if not stock_code or len(stock_code) != 4:
                                 continue
                             
-                            if stock_code in result:
-                                result[stock_code]['smr_rating'] = rating
+                            record = self._ensure_health_record(result, stock_code)
+                            record['smr_rating'] = rating
                         except Exception as e:
                             logger.debug(f"Skipping SMR Rating row: {e}")
                             continue
                 except Exception as e:
                     logger.warning(f"Failed to read SMR Rating sheet: {e}")
+
+            if 'Sponsorship Rating' in excel_file.sheet_names:
+                try:
+                    df_sponsorship = pd.read_excel(
+                        self.health_check_file,
+                        sheet_name='Sponsorship Rating',
+                        header=None
+                    )
+
+                    valid_grades = {'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'E'}
+                    for _, row in df_sponsorship.iterrows():
+                        stock_code = self._normalize_stock_code(row.iloc[0])
+                        if not stock_code:
+                            continue
+
+                        record = self._ensure_health_record(result, stock_code)
+                        holding_pct = self._coerce_number(row.iloc[1]) if len(row) > 1 else None
+                        fund_count = self._coerce_number(row.iloc[2]) if len(row) > 2 else None
+                        score_candidates = []
+                        for col_idx in range(3, min(9, len(row))):
+                            score = self._coerce_number(row.iloc[col_idx])
+                            if score is not None and 0 <= score <= 100:
+                                score_candidates.append(score)
+
+                        grade = str(row.iloc[9]).strip() if len(row) > 9 and pd.notna(row.iloc[9]) else None
+                        if holding_pct is not None:
+                            record['institutional_holding_pct'] = holding_pct
+                        if fund_count is not None:
+                            record['fund_holding_count_q0'] = fund_count
+                        if score_candidates:
+                            record['sponsorship_score'] = max(score_candidates)
+                        if grade in valid_grades:
+                            record['sponsorship_rating'] = grade
+                except Exception as e:
+                    logger.warning(f"Failed to read Sponsorship Rating sheet: {e}")
             
             logger.info(f"Loaded health check data for {len(result)} stocks")
             return result
@@ -384,14 +470,9 @@ class ExcelDataProcessor:
                         continue
                     
                     # Extract stock code
-                    raw_code = str(row.iloc[0]).strip()
-                    if '.' in raw_code:
-                        raw_code = raw_code.split('.')[0]
-                    
-                    if not raw_code.isdigit() or len(raw_code) != 4:
+                    stock_code = self._normalize_stock_code(row.iloc[0])
+                    if not stock_code:
                         continue
-                    
-                    stock_code = raw_code
                     
                     # Extract fund holding data
                     current_month = None
