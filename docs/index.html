@@ -540,8 +540,8 @@
                                     <td class="py-3 font-mono font-bold">{{ stock.symbol }}</td>
                                     <td class="py-3">{{ stock.name }}</td>
                                     <td class="py-3 text-center">
-                                        <span :class="['inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border', getFreshnessBadge(stock.freshness).classes]">
-                                            {{ getFreshnessBadge(stock.freshness).label }}
+                                        <span :class="['inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border', getFreshnessBadge(getStockFreshness(stock)).classes]">
+                                            {{ getFreshnessBadge(getStockFreshness(stock)).label }}
                                         </span>
                                     </td>
                                     <td class="py-3 text-center">
@@ -683,8 +683,8 @@
                                         <td class="py-3">{{ stock.name }}</td>
                                         <td class="py-3 text-sm text-slate-600">{{ stock.industry || '未知' }}</td>
                                         <td class="py-3 text-center">
-                                            <span :class="['inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border', getFreshnessBadge(stock.freshness).classes]">
-                                                {{ getFreshnessBadge(stock.freshness).label }}
+                                            <span :class="['inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border', getFreshnessBadge(getStockFreshness(stock)).classes]">
+                                                {{ getFreshnessBadge(getStockFreshness(stock)).label }}
                                             </span>
                                         </td>
                                         <td class="py-3 text-center">

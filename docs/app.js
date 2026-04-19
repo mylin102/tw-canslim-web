@@ -133,14 +133,31 @@ const app = createApp({
 
         let chartInstance = null;
 
-        const getIndexEntries = () => {
-            if (!stockIndex.value || !Array.isArray(stockIndex.value.entries)) return [];
-            return stockIndex.value.entries;
+        const normalizeStockIndexPayload = (payload) => {
+            if (!payload) return [];
+            if (Array.isArray(payload.entries)) return payload.entries;
+            if (payload.stocks && typeof payload.stocks === 'object') {
+                return Object.values(payload.stocks);
+            }
+            return [];
+        };
+
+        const getIndexEntries = () => normalizeStockIndexPayload(stockIndex.value);
+
+        const getIndexEntry = (symbol) => {
+            if (!symbol) return null;
+            return getIndexEntries().find((entry) => String(entry.symbol || '') === String(symbol)) || null;
         };
 
         const getSnapshotStock = (symbol) => {
             if (!stockData.value || !stockData.value.stocks) return null;
             return stockData.value.stocks[symbol] || null;
+        };
+
+        const getStockFreshness = (stock) => {
+            if (!stock) return null;
+            if (stock.freshness) return stock.freshness;
+            return getIndexEntry(stock.symbol)?.freshness || null;
         };
 
         const getFreshnessBadge = (freshness) => {
@@ -158,11 +175,13 @@ const app = createApp({
                         classes: 'bg-emerald-100 text-emerald-700 border-emerald-200'
                     };
                 case 'days_1_2':
+                case 'warning':
                     return {
-                        label: freshness.label || '🟡 2天前',
+                        label: freshness.label || `🟡 ${freshness.days_old || 2}天前`,
                         classes: 'bg-amber-100 text-amber-700 border-amber-200'
                     };
                 case 'days_3_plus':
+                case 'stale':
                     return {
                         label: freshness.label || '🔴 逾3天',
                         classes: 'bg-rose-100 text-rose-700 border-rose-200'
@@ -183,7 +202,7 @@ const app = createApp({
             if (entry.in_snapshot && snapshotStock) {
                 return {
                     ...snapshotStock,
-                    freshness: entry.freshness || snapshotStock.freshness || null,
+                    freshness: entry.freshness || snapshotStock.freshness || getStockFreshness(snapshotStock),
                     last_succeeded_at: entry.last_succeeded_at || snapshotStock.last_succeeded_at || null,
                     in_snapshot: true,
                     has_full_detail: true
@@ -194,7 +213,7 @@ const app = createApp({
                 symbol: entry.symbol,
                 name: entry.name,
                 industry: entry.industry || snapshotStock?.industry || '未知',
-                freshness: entry.freshness || snapshotStock?.freshness || null,
+                freshness: entry.freshness || snapshotStock?.freshness || getStockFreshness(snapshotStock) || null,
                 last_succeeded_at: entry.last_succeeded_at || snapshotStock?.last_succeeded_at || null,
                 in_snapshot: false,
                 has_full_detail: false,
@@ -246,7 +265,7 @@ const app = createApp({
         };
 
         const currentStock = computed(() => {
-            if (!stockData.value || !searchQuery.value) return null;
+            if (!searchQuery.value) return null;
             const query = searchQuery.value.trim().toLowerCase();
             const exactIndexMatch = getIndexEntries().find((entry) =>
                 String(entry.symbol || '').toLowerCase() === query
@@ -255,6 +274,8 @@ const app = createApp({
 
             const partialIndexMatch = findSearchMatches(query)[0];
             if (partialIndexMatch) return buildSearchResult(partialIndexMatch);
+
+            if (!stockData.value || !stockData.value.stocks) return null;
 
             return getSnapshotStock(query) || Object.values(stockData.value.stocks).find((stock) =>
                 String(stock.name || '').toLowerCase().includes(query) ||
@@ -295,19 +316,30 @@ const app = createApp({
             try {
                 isLoading.value = true;
                 const timestamp = Date.now();
-                const [dataResponse, indexResponse] = await Promise.all([
-                    fetch('data.json?t=' + timestamp),
-                    fetch('stock_index.json?t=' + timestamp)
-                ]);
+                errorState.value = null;
+                const dataResponse = await fetch('data.json?t=' + timestamp);
                 if (!dataResponse.ok) throw new Error('data.json HTTP ' + dataResponse.status);
-                if (!indexResponse.ok) throw new Error('stock_index.json HTTP ' + indexResponse.status);
-                const [data, index] = await Promise.all([
-                    dataResponse.json(),
-                    indexResponse.json()
-                ]);
+                const data = await dataResponse.json();
                 stockData.value = data;
-                stockIndex.value = index;
                 lastUpdated.value = data.last_updated;
+
+                try {
+                    const indexResponse = await fetch('stock_index.json?t=' + timestamp);
+                    if (!indexResponse.ok) throw new Error('stock_index.json HTTP ' + indexResponse.status);
+                    stockIndex.value = await indexResponse.json();
+                } catch (indexError) {
+                    stockIndex.value = {
+                        entries: Object.values(data.stocks || {}).map((stock) => ({
+                            symbol: stock.symbol,
+                            name: stock.name,
+                            industry: stock.industry || '',
+                            freshness: stock.freshness || null,
+                            last_succeeded_at: stock.last_succeeded_at || null,
+                            in_snapshot: true
+                        }))
+                    };
+                    errorState.value = 'stock_index.json 載入失敗，已退回快照搜尋: ' + indexError.message;
+                }
             } catch (error) {
                 errorState.value = '載入失敗: ' + error.message;
             } finally {
@@ -377,7 +409,7 @@ const app = createApp({
             currentStock, allStocksSorted, filteredStocks, metricsMap, financialLabels,
             updateSuggestions, onSearchInput, clearSearch, selectStock, fetchData,
             showCanslimDefs, canslimDefinitions,
-            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional, getFreshnessBadge
+            availableIndustries, screenerInstBuy, inst3dNet, sortedInstitutional, getFreshnessBadge, getStockFreshness
         };
     }
 });
