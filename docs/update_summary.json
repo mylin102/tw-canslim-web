@@ -1,392 +1,112 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260419T194824Z",
-  "generated_at": "2026-04-19T19:48:24Z",
-  "status": "failed",
+  "run_id": "20260420T002855Z",
+  "generated_at": "2026-04-20T00:28:55Z",
+  "status": "success",
   "stats": {
-    "retry_attempts": 6,
-    "retry_failures": 2,
+    "retry_attempts": 0,
+    "retry_failures": 0,
     "resume_rejected": 0,
-    "stock_failures": 71,
-    "provider_wait_seconds": 124.08488716604188
+    "stock_failures": 0,
+    "provider_wait_seconds": 0.0
   },
-  "timestamp": "2026-04-19T19:48:24Z",
-  "update_type": "canslim_export",
-  "description": "Primary CANSLIM export publish summary",
+  "timestamp": "2026-04-20T00:28:55Z",
+  "update_type": "ETF backfill",
+  "description": "ETF-only backfill for 20 tickers",
   "api_status": {
-    "retry_failures": 2,
-    "provider_wait_seconds": 124.08488716604188
+    "retry_failures": 0,
+    "provider_wait_seconds": 0.0
   },
   "data_stats": {
-    "total_stocks": 1001,
-    "updated_stocks": 1001
+    "total_stocks": 1018,
+    "updated_stocks": 20
   },
-  "failures": [
-    {
-      "ticker": "00706L",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00707R",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00708L",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00709",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00710B",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00711B",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00712",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00713",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00714",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00715L",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00717",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00728",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00730",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00731",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00733",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00735",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00736",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00737",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00738U",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00739",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00752",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00753L",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00757",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00762",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00763U",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00770",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00771",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00775B",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00783",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00830",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00850",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00851",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00852L",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00861",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00865B",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00875",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00876",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00881",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00882",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00885",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00891",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00892",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00893",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00894",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00895",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00896",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00897",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00898",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00899",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00900",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00901",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00902",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00903",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00904",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00905",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00907",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00908",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00909",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00910",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00911",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00912",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00913",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00915",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00916",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00917",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00918",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00919",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00920",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00921",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00922",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    },
-    {
-      "ticker": "00923",
-      "message": "Cannot join tz-naive with tz-aware DatetimeIndex"
-    }
-  ],
+  "failures": [],
   "refreshed_symbols": [
-    "3565"
+    "00400A",
+    "00401A",
+    "0050",
+    "0051",
+    "0052",
+    "0053",
+    "0055",
+    "0056",
+    "0057",
+    "0061",
+    "006203",
+    "006204",
+    "006206",
+    "006207",
+    "006208",
+    "00631L",
+    "00632R",
+    "00633L",
+    "00634R",
+    "00635U"
   ],
-  "failed_symbols": [
-    "00706L",
-    "00707R",
-    "00708L",
-    "00709",
-    "00710B",
-    "00711B",
-    "00712",
-    "00713",
-    "00714",
-    "00715L",
-    "00717",
-    "00728",
-    "00730",
-    "00731",
-    "00733",
-    "00735",
-    "00736",
-    "00737",
-    "00738U",
-    "00739",
-    "00752",
-    "00753L",
-    "00757",
-    "00762",
-    "00763U",
-    "00770",
-    "00771",
-    "00775B",
-    "00783",
-    "00830",
-    "00850",
-    "00851",
-    "00852L",
-    "00861",
-    "00865B",
-    "00875",
-    "00876",
-    "00881",
-    "00882",
-    "00885",
-    "00891",
-    "00892",
-    "00893",
-    "00894",
-    "00895",
-    "00896",
-    "00897",
-    "00898",
-    "00899",
-    "00900",
-    "00901",
-    "00902",
-    "00903",
-    "00904",
-    "00905",
-    "00907",
-    "00908",
-    "00909",
-    "00910",
-    "00911",
-    "00912",
-    "00913",
-    "00915",
-    "00916",
-    "00917",
-    "00918",
-    "00919",
-    "00920",
-    "00921",
-    "00922",
-    "00923"
-  ],
+  "failed_symbols": [],
   "next_rotation": {
     "batch_index": 2,
     "symbols": [
+      "5903",
+      "5904",
+      "5905",
+      "5906",
+      "5907",
+      "6005",
+      "6015",
+      "6016",
+      "6020",
+      "6021",
+      "6023",
+      "6024",
+      "6026",
+      "6028",
+      "6101",
+      "6103",
+      "6104",
+      "6108",
+      "6109",
+      "6111",
+      "6112",
+      "6113",
+      "6114",
+      "6115",
+      "6116",
+      "6117",
+      "6118",
+      "6120",
+      "6121",
+      "6122",
+      "6123",
+      "6124",
+      "6125",
+      "6126",
+      "6127",
+      "6128",
+      "6129",
+      "6130",
+      "6133",
+      "6134",
+      "6136",
+      "6138",
+      "6139",
+      "6140",
+      "6141",
+      "6142",
+      "6143",
+      "6144",
+      "6146",
+      "6147",
+      "6148",
+      "6150",
+      "6151",
+      "6152",
+      "6153",
+      "6154",
+      "6155",
+      "6156",
       "6158",
       "6160",
       "6161",
@@ -671,6 +391,7 @@
       "6763",
       "6767",
       "6768",
+      "6770",
       "6771",
       "6776",
       "6781",
@@ -686,6 +407,7 @@
       "6799",
       "6803",
       "6804",
+      "6805",
       "6806",
       "6807",
       "6811",
@@ -854,6 +576,7 @@
       "8066",
       "8067",
       "8068",
+      "8069",
       "8070",
       "8071",
       "8072",
@@ -1192,8 +915,17 @@
     ]
   },
   "freshness_counts": {
-    "today": 1,
-    "warning": 0,
+    "today": 20,
+    "warning": 1,
     "stale": 0
-  }
+  },
+  "published_targets": [
+    "docs/data_base.json",
+    "docs/data.json",
+    "docs/data_light.json",
+    "docs/data.json.gz",
+    "docs/stock_index.json",
+    "docs/update_summary.json"
+  ],
+  "next_action": "Review ETF coverage and freshness in GitHub Pages after the backfill run."
 }
