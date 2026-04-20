@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20260420T002855Z",
-  "generated_at": "2026-04-20T00:28:55Z",
-  "last_updated": "2026-04-20T00:28:55Z",
+  "run_id": "20260420T111800Z",
+  "generated_at": "2026-04-20T11:18:26Z",
+  "last_updated": "2026-04-20 11:18:26",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -149,6 +149,18 @@
       "last_succeeded_at": "2026-04-20T00:28:55Z",
       "in_snapshot": true
     },
+    "006205(新臺幣)<br>00625K(人民幣)": {
+      "symbol": "006205(新臺幣)<br>00625K(人民幣)",
+      "name": "富邦上証(新臺幣)<br>富邦上証+R(人民幣)",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
     "006206": {
       "symbol": "006206",
       "name": "元大上證50",
@@ -245,6 +257,18 @@
       "last_succeeded_at": "2026-04-20T00:28:55Z",
       "in_snapshot": true
     },
+    "00636(新臺幣)<br>00636K(美元)": {
+      "symbol": "00636(新臺幣)<br>00636K(美元)",
+      "name": "國泰中國A50(新臺幣)<br>國泰中國A50+U(美元)",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
     "00637L": {
       "symbol": "00637L",
       "name": "元大滬深300正2",
@@ -308,6 +332,18 @@
     "00642U": {
       "symbol": "00642U",
       "name": "期元大S&P石油",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
+    "00643(新臺幣)<br>00643K(人民幣)": {
+      "symbol": "00643(新臺幣)<br>00643K(人民幣)",
+      "name": "群益深証中小(新臺幣)<br>群益深証中小+R(人民幣)",
       "industry": "",
       "freshness": {
         "days_old": null,
@@ -449,6 +485,18 @@
       "last_succeeded_at": "",
       "in_snapshot": false
     },
+    "00657(新臺幣)<br>00657K(美元)": {
+      "symbol": "00657(新臺幣)<br>00657K(美元)",
+      "name": "國泰日經225(新臺幣)<br>國泰日經225+U(美元)",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
     "00660": {
       "symbol": "00660",
       "name": "元大歐洲50",
@@ -524,6 +572,18 @@
     "00666R": {
       "symbol": "00666R",
       "name": "富邦恒生國企反1",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
+    "00668(新臺幣)<br>00668K(美元)": {
+      "symbol": "00668(新臺幣)<br>00668K(美元)",
+      "name": "國泰美國道瓊(新臺幣)<br>國泰美國道瓊+U(美元)",
       "industry": "",
       "freshness": {
         "days_old": null,
@@ -12317,6 +12377,18 @@
       "last_succeeded_at": "2026-04-19T18:30:32Z",
       "in_snapshot": false
     },
+    "3565": {
+      "symbol": "3565",
+      "name": "山太士",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
     "3567": {
       "symbol": "3567",
       "name": "逸昌",
@@ -23345,6 +23417,18 @@
       "last_succeeded_at": "",
       "in_snapshot": false
     },
+    "7794": {
+      "symbol": "7794",
+      "name": "宏碁智新",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
     "7795": {
       "symbol": "7795",
       "name": "長廣",
@@ -23396,6 +23480,18 @@
     "7811": {
       "symbol": "7811",
       "name": "民盛",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
+    },
+    "7821": {
+      "symbol": "7821",
+      "name": "神數",
       "industry": "",
       "freshness": {
         "days_old": null,
