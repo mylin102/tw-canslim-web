@@ -247,3 +247,63 @@ def test_update_single_stock_publishes_base_and_derived_bundle(
     assert data_payload["run_id"] == light_payload["run_id"] == summary_payload["run_id"]
     assert stock_index_payload["stocks"]["2330"]["symbol"] == "2330"
     assert "docs/data_base.json" in summary_payload["published_targets"]
+
+
+def test_update_stocks_accepts_etf_tickers_and_publishes_batch_bundle(
+    monkeypatch: pytest.MonkeyPatch,
+    publish_paths,
+    stock_payload_factory,
+    read_artifact,
+):
+    root = publish_paths["root"]
+    docs_dir = publish_paths["docs"]
+    monkeypatch.chdir(root)
+    write_json(docs_dir / "data_base.json", stock_payload_factory("seed-run"))
+
+    module = load_module("update_single_stock")
+    updater = module.SingleStockUpdater.__new__(module.SingleStockUpdater)
+    updater.root_dir = str(root)
+    updater.ticker_info = {
+        "0050": {"name": "ETF 50", "suffix": ".TW"},
+        "00631L": {"name": "ETF Leveraged", "suffix": ".TW"},
+    }
+    updater.excel_ratings = {}
+    updater.fund_holdings = {}
+    updater.industry_data = {}
+    updater.tej_processor = types.SimpleNamespace(is_etf=lambda ticker: ticker in {"0050", "00631L"})
+    updater.data_base_path = str(docs_dir / "data_base.json")
+
+    monkeypatch.setattr(module, "get_market_prices", lambda: [1, 2, 3])
+    monkeypatch.setattr(module, "get_trading_dates", lambda: ["20260418"])
+    monkeypatch.setattr(
+        module,
+        "fetch_inst_all",
+        lambda date_str: {
+            "0050": {"foreign_net": 1, "trust_net": 2, "dealer_net": 3},
+            "00631L": {"foreign_net": 4, "trust_net": 5, "dealer_net": 6},
+        },
+    )
+    monkeypatch.setattr(module, "download_price_history", lambda symbol: [10, 11, 12])
+    monkeypatch.setattr(module, "calculate_mansfield_rs", lambda prices, market: 12.3)
+    monkeypatch.setattr(module, "calculate_rs_trend", lambda prices, market: "up")
+    monkeypatch.setattr(module, "check_n_factor", lambda prices: True)
+    monkeypatch.setattr(module, "calculate_l_factor", lambda mansfield_rs: True)
+    monkeypatch.setattr(module, "compute_canslim_score", lambda factors: 88)
+    monkeypatch.setattr(module, "compute_canslim_score_etf", lambda factors: 77)
+    monkeypatch.setattr(module, "calculate_volatility_grid", lambda prices, is_etf=False: {"mode": "swing"})
+
+    assert updater.update_stocks(
+        ["0050", "00631L"],
+        update_type="ETF backfill",
+        description="ETF-only backfill for 2 tickers",
+        next_action="Review ETF coverage.",
+    ) is True
+
+    base_payload = read_artifact(docs_dir / "data_base.json", "data_base")
+    summary_payload = read_artifact(docs_dir / "update_summary.json", "update_summary")
+
+    assert base_payload["stocks"]["0050"]["is_etf"] is True
+    assert base_payload["stocks"]["00631L"]["is_etf"] is True
+    assert base_payload["stocks"]["00631L"]["canslim"]["score"] == 77
+    assert summary_payload["update_type"] == "ETF backfill"
+    assert summary_payload["data_stats"]["updated_stocks"] == 2

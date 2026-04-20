@@ -6,6 +6,7 @@ Update Single Stock Data script.
 from __future__ import annotations
 
 import copy
+import argparse
 import json
 import logging
 import os
@@ -214,28 +215,42 @@ class SingleStockUpdater:
         }
         return save_rotation_state(next_state, path=DEFAULT_STATE_PATH)
 
-    def update_stock(self, ticker: str) -> bool:
-        """Update one ticker and publish all derived artifacts as one bundle."""
-        if not re.match(r"^\d{4,6}$", ticker):
-            logger.error("Invalid ticker format: %s. Only 4-6 digits are allowed.", ticker)
-            return False
+    def is_etf_ticker(self, ticker: str) -> bool:
+        """Return whether a ticker should be treated as ETF-like for backfills."""
+        info = self.ticker_info.get(ticker, {})
+        name = str(info.get("name", "")).upper()
+        return bool(
+            ticker.startswith("00")
+            or (hasattr(self.tej_processor, "is_etf") and self.tej_processor.is_etf(ticker))
+            or "ETF" in name
+        )
 
+    def _validate_ticker(self, ticker: str) -> bool:
+        return bool(re.match(r"^[0-9A-Z]{4,6}$", ticker))
+
+    def _collect_market_context(self) -> tuple[Any, list[str], dict[str, dict[str, dict[str, int]]]]:
+        market_prices = get_market_prices()
+        trading_dates = get_trading_dates()
+        inst_by_date = {date: fetch_inst_all(date) for date in trading_dates}
+        return market_prices, trading_dates, inst_by_date
+
+    def _build_stock_entry(
+        self,
+        ticker: str,
+        *,
+        market_prices,
+        trading_dates: list[str],
+        inst_by_date: dict[str, dict[str, dict[str, int]]],
+    ) -> dict[str, Any]:
         info = self.ticker_info.get(ticker, {"name": ticker, "suffix": ".TW"})
-        try:
-            market_prices = get_market_prices()
-            trading_dates = get_trading_dates()
-            inst_by_date = {date: fetch_inst_all(date) for date in trading_dates}
-            prices = download_price_history(f"{ticker}{info['suffix']}")
-        except Exception as exc:  # noqa: BLE001 - explicit failure for on-demand path
-            logger.error("Failed to collect on-demand data for %s: %s", ticker, exc)
-            return False
+        prices = download_price_history(f"{ticker}{info['suffix']}")
 
         history = []
         for trading_date in reversed(trading_dates):
             if ticker in inst_by_date.get(trading_date, {}):
                 history.append({"date": trading_date, **inst_by_date[trading_date][ticker]})
 
-        is_etf = self.tej_processor.is_etf(ticker) or ticker.startswith("00")
+        is_etf = self.is_etf_ticker(ticker)
         m_rs = calculate_mansfield_rs(prices, market_prices)
         rs_trend = calculate_rs_trend(prices, market_prices)
         n_score = check_n_factor(prices)
@@ -248,7 +263,17 @@ class SingleStockUpdater:
             factors["C"] = factors["A"] = rating >= 60
 
         score = compute_canslim_score_etf(factors) if is_etf else compute_canslim_score(factors)
-        grid = calculate_volatility_grid(prices, is_etf=is_etf) if (score >= 60 or is_etf) else None
+        grid = {
+            "volatility_daily": 0.0,
+            "volatility_annual": 0.0,
+            "spacing_pct": 0.0,
+            "levels": [],
+            "is_etf": is_etf,
+        }
+        if score >= 60 or is_etf:
+            calculated_grid = calculate_volatility_grid(prices, is_etf=is_etf)
+            if calculated_grid is not None:
+                grid = calculated_grid
 
         stock_entry = {
             "schema_version": "1.0",
@@ -273,7 +298,17 @@ class SingleStockUpdater:
             },
             "institutional": history[:20],
         }
+        return stock_entry
 
+    def _publish_updated_entries(
+        self,
+        *,
+        updated_entries: dict[str, dict[str, Any]],
+        updated_tickers: list[str],
+        update_type: str,
+        description: str,
+        next_action: str,
+    ) -> bool:
         try:
             full_data = load_artifact_json(self.data_base_path, artifact_kind="data_base", logger=logger)
         except PublishValidationError as exc:
@@ -285,20 +320,23 @@ class SingleStockUpdater:
         full_data.setdefault("stocks", {})
         full_data.setdefault("schema_version", "1.0")
         full_data["artifact_kind"] = "data_base"
-        full_data["stocks"][ticker] = stock_entry
         full_data["run_id"] = run_id
         full_data["generated_at"] = generated_at
         full_data["last_updated"] = generated_at
+        for ticker, stock_entry in updated_entries.items():
+            full_data["stocks"][ticker] = stock_entry
 
         data_payload = copy.deepcopy(full_data)
         data_payload["artifact_kind"] = "data"
 
         try:
-            rotation_state = self._persist_single_stock_success(
-                self._load_rotation_state(),
-                ticker=ticker,
-                timestamp=generated_at,
-            )
+            rotation_state = self._load_rotation_state()
+            for ticker in updated_tickers:
+                rotation_state = self._persist_single_stock_success(
+                    rotation_state,
+                    ticker=ticker,
+                    timestamp=generated_at,
+                )
         except PublishValidationError as exc:
             logger.error("Failed to load or persist rotation state: %s", exc)
             return False
@@ -311,9 +349,9 @@ class SingleStockUpdater:
             freshness_state=rotation_state,
             failure_details=[],
             failure_stats={},
-            refreshed_symbols=[ticker],
+            refreshed_symbols=updated_tickers,
             all_symbols=all_symbols,
-            selection=SimpleNamespace(core_set={ticker}),
+            selection=SimpleNamespace(core_set=set(updated_tickers)),
             scheduled_batch={
                 "batch_index": rotation_state.get("current_batch_index", 0),
                 "rotation_generation": rotation_state.get("rotation_generation", ""),
@@ -326,8 +364,8 @@ class SingleStockUpdater:
         summary = projected["update_summary"]
         summary.update(
             {
-                "update_type": "single stock update",
-                "description": f"On-demand publish for {ticker}",
+                "update_type": update_type,
+                "description": description,
                 "published_targets": [
                     "docs/data_base.json",
                     "docs/data.json",
@@ -336,9 +374,11 @@ class SingleStockUpdater:
                     "docs/stock_index.json",
                     "docs/update_summary.json",
                 ],
-                "next_action": "Review the issue response and verify the updated symbol in GitHub Pages.",
+                "next_action": next_action,
             }
         )
+        summary.setdefault("data_stats", {})
+        summary["data_stats"]["updated_stocks"] = len(updated_tickers)
 
         try:
             publish_artifact_bundle(
@@ -358,17 +398,79 @@ class SingleStockUpdater:
         except Exception as exc:  # noqa: BLE001 - re-raise non publish_safety failures
             if not is_publish_safety_error(exc):
                 raise
-            logger.error("On-demand publish failed for %s: %s", ticker, exc)
+            logger.error("%s publish failed for %s: %s", update_type, ",".join(updated_tickers), exc)
             return False
 
-        logger.info("✅ Updated %s and published data bundle", ticker)
+        logger.info("✅ Updated %s and published data bundle", ", ".join(updated_tickers))
         return True
+
+    def update_stocks(
+        self,
+        tickers: list[str],
+        *,
+        update_type: str,
+        description: str,
+        next_action: str,
+    ) -> bool:
+        normalized_tickers = []
+        seen = set()
+        for raw_ticker in tickers:
+            ticker = str(raw_ticker).strip().upper()
+            if not ticker or ticker in seen:
+                continue
+            if not self._validate_ticker(ticker):
+                logger.warning("Skipping invalid ticker format: %s", ticker)
+                continue
+            seen.add(ticker)
+            normalized_tickers.append(ticker)
+
+        if not normalized_tickers:
+            logger.error("No valid tickers to update")
+            return False
+
+        try:
+            market_prices, trading_dates, inst_by_date = self._collect_market_context()
+        except Exception as exc:  # noqa: BLE001 - shared context failure should stop batch
+            logger.error("Failed to collect shared market context: %s", exc)
+            return False
+
+        updated_entries = {}
+        for ticker in normalized_tickers:
+            try:
+                updated_entries[ticker] = self._build_stock_entry(
+                    ticker,
+                    market_prices=market_prices,
+                    trading_dates=trading_dates,
+                    inst_by_date=inst_by_date,
+                )
+            except Exception as exc:  # noqa: BLE001 - batch should continue on single ticker failure
+                logger.error("Failed to build stock entry for %s: %s", ticker, exc)
+
+        if not updated_entries:
+            logger.error("No ticker entries were built successfully")
+            return False
+
+        updated_tickers = list(updated_entries)
+        return self._publish_updated_entries(
+            updated_entries=updated_entries,
+            updated_tickers=updated_tickers,
+            update_type=update_type,
+            description=description,
+            next_action=next_action,
+        )
+
+    def update_stock(self, ticker: str) -> bool:
+        """Update one ticker and publish all derived artifacts as one bundle."""
+        return self.update_stocks(
+            [ticker],
+            update_type="single stock update",
+            description=f"On-demand publish for {ticker}",
+            next_action="Review the issue response and verify the updated symbol in GitHub Pages.",
+        )
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python update_single_stock.py <ticker>")
-        sys.exit(1)
-
-    ticker = sys.argv[1]
-    sys.exit(0 if SingleStockUpdater().update_stock(ticker) else 1)
+    parser = argparse.ArgumentParser(description="Update one stock and publish the derived bundle.")
+    parser.add_argument("ticker", help="Ticker symbol to update (supports ETF tickers such as 00631L)")
+    args = parser.parse_args()
+    sys.exit(0 if SingleStockUpdater().update_stock(args.ticker) else 1)

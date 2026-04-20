@@ -9,6 +9,7 @@ import pytest
 REPO_WORKFLOWS = (
     ".github/workflows/update_data.yml",
     ".github/workflows/on_demand_update.yml",
+    ".github/workflows/etf_backfill.yml",
 )
 DEPRECATED_WRITERS = (
     "quick_auto_update",
@@ -130,6 +131,17 @@ def test_update_data_workflow_declares_publish_surface_concurrency(repo_root: Pa
     assert "concurrency:" in source
     assert "publish-surface" in source
     assert "cancel-in-progress: false" in source
+
+
+def test_etf_backfill_workflow_declares_publish_surface_concurrency(repo_root: Path):
+    source = (repo_root / ".github/workflows/etf_backfill.yml").read_text(encoding="utf-8")
+
+    assert "concurrency:" in source
+    assert "publish-surface" in source
+    assert "cancel-in-progress: false" in source
+    assert "python3 update_etf_backfill.py" in source
+    assert "schedule:" in source
+    assert "workflow_dispatch:" in source
 
 
 def test_workflows_stage_phase4_publish_artifacts(repo_root: Path):
