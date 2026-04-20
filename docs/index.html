@@ -516,7 +516,7 @@
                                     <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">最小綜合評分</label>
                                     <input type="range" v-model.number="screenerMinScore" min="0" max="100" step="5" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
                                     <div class="flex justify-between text-xs font-bold text-slate-600 mt-2">
-                                        <span>{{ screenerMinScore }} 分</span>
+                                        <span>{{ screenerIndustry === 'ETF' ? 'ETF 顯示全部' : `${screenerMinScore} 分` }}</span>
                                         <span class="text-slate-300">100 分</span>
                                     </div>
                                 </div>

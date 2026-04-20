@@ -240,8 +240,9 @@ const app = createApp({
 
         const filteredStocks = computed(() => {
             if (!stockData.value) return [];
+            const effectiveMinScore = screenerIndustry.value === 'ETF' ? 0 : screenerMinScore.value;
             let result = Object.values(stockData.value.stocks)
-                .filter(s => s.canslim.score >= screenerMinScore.value);
+                .filter(s => s.canslim.score >= effectiveMinScore);
             
             if (screenerMinRs.value !== 0) {
                 result = result.filter(s => (s.canslim.mansfield_rs || 0) >= screenerMinRs.value);
