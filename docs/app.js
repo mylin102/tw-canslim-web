@@ -314,30 +314,36 @@ const app = createApp({
 
         const recentInstitutionalDays = (stock, count = 5) => {
             if (!stock || !Array.isArray(stock.institutional)) return [];
+            // Data in JSON is already in 'Lots' (張) via backend // 1000
             return stock.institutional.slice(0, count);
         };
 
         const institutionalScale = (stock, count = 5) => {
             const days = recentInstitutionalDays(stock, count);
+            if (days.length === 0) return 1;
             const values = days.flatMap(day => [
-                Math.abs(day.foreign_net || 0),
-                Math.abs(day.trust_net || 0),
-                Math.abs(day.dealer_net || 0),
+                Math.abs(safeNumber(day.foreign_net)),
+                Math.abs(safeNumber(day.trust_net)),
+                Math.abs(safeNumber(day.dealer_net)),
             ]);
-            return Math.max(...values, 1);
+            const maxVal = Math.max(...values);
+            return maxVal > 0 ? maxVal : 1;
         };
 
         const institutionalBarStyle = (value, stock, count = 5) => {
             const normalized = safeNumber(value);
             const scale = institutionalScale(stock, count);
+            // Height represents percentage of the max value in the 5-day window
+            // Max height is 44% (half of container minus padding)
             const height = normalized === 0
-                ? 2
+                ? 1 
                 : Math.max(Math.round((Math.abs(normalized) / scale) * 44), 4);
 
             if (normalized > 0) {
                 return {
                     height: `${height}%`,
                     bottom: '50%',
+                    marginBottom: '1px'
                 };
             }
 
@@ -345,8 +351,15 @@ const app = createApp({
                 return {
                     height: `${height}%`,
                     top: '50%',
+                    marginTop: '1px'
                 };
             }
+
+            return {
+                height: '2px',
+                bottom: 'calc(50% - 1px)',
+            };
+        };
 
             return {
                 height: '2px',
