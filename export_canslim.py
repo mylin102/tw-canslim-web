@@ -414,19 +414,28 @@ class CanslimEngine:
                     rs_rating = int(excel_ratings["rs_rating"])
                 elif canslim.get("mansfield_rs"):
                     rs_rating = min(99, max(1, 50 + int(canslim["mansfield_rs"] * 5)))
-                    
+
+                # Blended composite score: 70% CANSLIM, 30% Revenue
+                canslim_score = float(canslim.get("score") or 0.0)
+                revenue_score = float(canslim.get("revenue_score") or 0.0)
+                blended_score = 0.7 * (canslim_score / 100.0) + 0.3 * (revenue_score / 6.0)
+
                 entry = {
                     "symbol": symbol,
                     "name": stock_data["name"],
                     "rs_rating": rs_rating,
                     "breakout_score": breakout_score,
                     "volume_score": volume_score,
-                    "composite_score": round(canslim["score"] / 100.0, 3),
+                    "composite_score": round(blended_score, 3),
                     "industry_rank": industry_rank_map.get(stock_data.get("industry"), 999),
                     "tags": ["leader"]
                 }
                 if canslim.get("N"):
                     entry["tags"].append("breakout_candidate")
+                if canslim.get("rev_accelerating"):
+                    entry["tags"].append("rev_acc")
+                if canslim.get("rev_strong"):
+                    entry["tags"].append("rev_strong")
                 if symbol in excel_symbols:
                     entry["tags"].append("verified")
                 
@@ -1159,12 +1168,24 @@ class CanslimEngine:
             # 2b. Batch fetch institutional data for all tickers to save API calls
             self.fetch_institutional_data_batch(all_t, days=5)
 
+            # 2c. Load revenue features
+            revenue_features = {}
+            revenue_path = os.path.join(OUTPUT_DIR, "api", "stock_features.json")
+            if os.path.exists(revenue_path):
+                try:
+                    with open(revenue_path, "r", encoding="utf-8") as handle:
+                        revenue_features = json.load(handle)
+                    logger.info(f"Loaded revenue features for {len(revenue_features)} stocks.")
+                except Exception as e:
+                    logger.warning(f"Failed to load revenue features: {e}")
+
             selection = build_core_universe(
                 all_symbols=all_t,
                 config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
                 fused_path=os.path.join(SCRIPT_DIR, "master_canslim_signals_fused.parquet"),
                 master_path=os.path.join(SCRIPT_DIR, "master_canslim_signals.parquet"),
                 baseline_path=os.path.join(OUTPUT_DIR, "data_base.json"),
+                revenue_path=revenue_path,
             )
             daily_plan = build_daily_plan(
                 all_symbols=all_t,
@@ -1246,6 +1267,12 @@ class CanslimEngine:
                     financial_data = self.fetch_financial_data(t)
                     if not financial_data:
                         raise ValueError("Missing financial data")
+
+                    # Load revenue features for this stock
+                    rev_feat = revenue_features.get(t, {})
+                    revenue_score = float(rev_feat.get("revenue_score", 0.0))
+                    rev_accelerating = bool(rev_feat.get("rev_accelerating", False))
+                    rev_strong = bool(rev_feat.get("rev_strong", False))
 
                     # Mansfield RS Calculation
                     stock_hist = self.get_price_history(t, period="2y")
@@ -1335,6 +1362,9 @@ class CanslimEngine:
                             "i_score_abs": float(i_score_abs),
                             "inst_details": inst_result.get("details", {}),
                             "mansfield_rs": float(m_rs),
+                            "revenue_score": float(revenue_score),
+                            "rev_accelerating": bool(rev_accelerating),
+                            "rev_strong": bool(rev_strong),
                             "grid_strategy": grid_data,
                             "excel_ratings": self.get_excel_canslim_ratings(t),
                             "fund_holdings": self.fund_holdings.get(t) if self.fund_holdings else None,
