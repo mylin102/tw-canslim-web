@@ -2,13 +2,18 @@
 
 ## Milestones
 
+- 🟢 **v1.1 Advanced Feature Engineering** — In Progress
 - ✅ **v1.0 Strategy-Driven Update Pipeline Upgrade** — Phases 1-4 shipped 2026-04-19 ([archive](./milestones/v1.0-ROADMAP.md))
 
 ## Current Status
 
-No active milestone is defined.
+- **Phase 5: Revenue Feature Pipeline** (In Progress)
 
-Start the next milestone with `/gsd-new-milestone`, using the archived follow-on requirements in `.planning/milestones/v1.0-REQUIREMENTS.md` as the starting point.
+### Phase 5: Revenue Feature Pipeline
+**Goal:** Implement the feature computation pipeline defined in `docs/VAN_FEATURE_pipiline.md`.
+**Plans:** 2 plans
+- [x] 05-01-PLAN.md — Implement core revenue analysis logic and tests.
+- [x] 05-02-PLAN.md — Orchestrate the feature pipeline and export to root /api/ JSON files.
 
 ## Archived Phase Summary
 
@@ -23,4 +28,4 @@ Start the next milestone with `/gsd-new-milestone`, using the archived follow-on
 </details>
 
 ---
-*Last updated: 2026-04-19 after v1.0 milestone completion*
+*Last updated: 2026-04-21 after starting Phase 5*
