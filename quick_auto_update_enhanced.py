@@ -279,6 +279,18 @@ def update_top_stocks_institutional() -> dict[str, Any]:
         refreshed_symbols=top_stocks,
     )
 
+    # Run feature pipeline for the updated stocks
+    try:
+        from feature_pipeline import FeaturePipeline
+        pipeline = FeaturePipeline()
+        pipeline.run(symbols=top_stocks)
+    except Exception as exc:
+        logger.error("❌ Feature pipeline 執行失敗: %s", exc)
+        # We don't want to fail the whole update for this, but we log it
+        if "failed_steps" not in summary["data_stats"]:
+            summary["data_stats"]["failed_steps"] = []
+        summary["data_stats"]["failed_steps"].append("feature_pipeline")
+
     try:
         publish_result = publish_operational_bundle(data, summary)
     except Exception as exc:  # noqa: BLE001 - re-raise non publish_safety failures
