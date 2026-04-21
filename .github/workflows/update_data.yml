@@ -62,7 +62,7 @@ jobs:
         run: |
           echo "開始每日發布流程..."
           echo "步驟 1: 更新 CANSLIM 資料與 Phase 4 publish bundle..."
-          python export_canslim.py
+          TEJ_API_KEY=${{ secrets.TEJ_API_KEY }} FINMIND_API_TOKEN=${{ secrets.FINMIND_TOKEN }} python export_canslim.py
           echo "✅ 每日發布完成！"
 
       - name: ⏱️ 驗證 runtime budget
