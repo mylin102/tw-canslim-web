@@ -13,7 +13,7 @@
     <!-- Vue.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <style>
-        body { font-family: 'Noto Sans TC', sans-serif; }
+        body { font-family: 'Noto Sans TC', sans-serif; font-size: 16px; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         [v-cloak] { display: none !important; }
         .tab-active { background: #3b82f6 !important; color: white !important; }
@@ -21,224 +21,248 @@
         .fail { color: #dc2626; font-weight: 700; }
         .animate-fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Readability improvements */
+        .text-huge { font-size: 3.5rem; line-height: 1; }
+        .card-title { font-size: 1.25rem; font-weight: 900; }
+        .stat-value { font-size: 1.75rem; font-weight: 900; }
+        .table-cell-lg { padding: 1.25rem 1rem; font-size: 1rem; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen">
     <div id="app" v-cloak>
-        <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto px-4 py-12">
             <!-- Header -->
-            <header class="mb-10 text-center relative">
-                <div class="inline-block px-4 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-4 tracking-widest uppercase text-center">
-                    Taiwan Stock Market Analyzer
+            <header class="mb-12 text-center relative">
+                <div class="inline-block px-6 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-black mb-6 tracking-widest uppercase text-center shadow-sm">
+                    Taiwan Stock Market Alpha Intelligence
                 </div>
-                <h1 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tighter">
                     <i class="fas fa-chart-line mr-3 text-blue-600"></i>台股 CANSLIM 戰情室
                 </h1>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-slate-500">
-                    <div class="flex items-center bg-white shadow-sm border border-slate-200 rounded-lg px-3 py-1.5">
-                        <i class="far fa-clock mr-2 text-blue-500"></i>
-                        最後更新: <span class="font-semibold text-slate-700 ml-1">{{ lastUpdated || '載入中...' }}</span>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-base text-slate-500">
+                    <div class="flex items-center bg-white shadow-md border border-slate-200 rounded-2xl px-5 py-2.5">
+                        <i class="far fa-clock mr-3 text-blue-500"></i>
+                        最後更新: <span class="font-bold text-slate-800 ml-1">{{ lastUpdated || '載入中...' }}</span>
                     </div>
-                    <div v-if="stockData" class="flex items-center bg-white shadow-sm border border-slate-200 rounded-lg px-3 py-1.5">
-                        <i class="fas fa-database mr-2 text-indigo-500"></i>
-                        涵蓋標的: <span class="font-semibold text-slate-700 ml-1">{{ Object.keys(stockData.stocks).length }} 檔</span>
-                    </div>
-                    <!-- NEW: Market Sentiment indicator -->
-                    <div v-if="stockData" class="flex items-center bg-slate-50 shadow-sm border border-slate-200 rounded-lg px-3 py-1.5">
-                        <i class="fas fa-heartbeat mr-2 text-rose-500"></i>
-                        市場氣氛: <span :class="['font-bold ml-1', 
-                            allStocksSorted.filter(s => s.canslim.score >= 80).length > 20 ? 'text-green-600' : 'text-slate-600']">
-                            {{ allStocksSorted.filter(s => s.canslim.score >= 80).length > 20 ? '強勢多頭' : '中性震盪' }}
-                        </span>
+                    <div v-if="stockData" class="flex items-center bg-white shadow-md border border-slate-200 rounded-2xl px-5 py-2.5">
+                        <i class="fas fa-database mr-3 text-indigo-500"></i>
+                        涵蓋標的: <span class="font-bold text-slate-800 ml-1">{{ Object.keys(stockData.stocks).length }} 檔</span>
                     </div>
                 </div>
             </header>
 
             <!-- Loading State -->
-            <div v-if="isLoading" class="flex flex-col items-center justify-center py-20">
-                <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-                <p class="text-slate-500 font-medium">戰情室正在同步最新數據... {{ loadingProgress }}%</p>
+            <div v-if="isLoading" class="flex flex-col items-center justify-center py-32">
+                <div class="w-20 h-20 border-8 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-8"></div>
+                <p class="text-xl text-slate-600 font-black tracking-tight">戰情室正在同步最新數據... {{ loadingProgress }}%</p>
             </div>
 
             <!-- Error State -->
-            <div v-if="errorState && !isLoading" class="bg-red-50 border border-red-200 rounded-xl p-8 text-center max-w-lg mx-auto">
-                <i class="fas fa-triangle-exclamation text-4xl text-red-500 mb-4"></i>
-                <h3 class="text-xl font-bold text-red-800 mb-2">連線失敗</h3>
-                <p class="text-red-600">{{ errorState }}</p>
-                <button @click="fetchData" class="mt-6 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">重試</button>
+            <div v-if="errorState && !isLoading" class="bg-red-50 border border-red-200 rounded-3xl p-12 text-center max-w-xl mx-auto shadow-xl">
+                <i class="fas fa-triangle-exclamation text-6xl text-red-500 mb-6"></i>
+                <h3 class="text-2xl font-black text-red-900 mb-3">連線失敗</h3>
+                <p class="text-lg text-red-700">{{ errorState }}</p>
+                <button @click="fetchData" class="mt-8 px-8 py-3 bg-red-600 text-white font-black rounded-2xl hover:bg-red-700 transition shadow-lg">重試</button>
             </div>
 
             <template v-if="!isLoading && !errorState && stockData">
                 <!-- Dashboard Hero -->
-                <div class="mb-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-xl p-8 text-white animate-fade-in">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <div class="mb-10 bg-gradient-to-br from-slate-900 to-indigo-950 rounded-[2.5rem] shadow-2xl p-10 text-white animate-fade-in border border-white/5">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
                         <div>
-                            <h2 class="text-2xl font-black mb-1 flex items-center">
-                                <i class="fas fa-fire-flame-curved mr-3 text-yellow-300"></i>熱門強勢領頭羊
+                            <h2 class="text-3xl font-black mb-2 flex items-center tracking-tight">
+                                <i class="fas fa-fire-flame-curved mr-4 text-yellow-400"></i>今日強勢領頭羊
                             </h2>
-                            <p class="text-blue-100 opacity-80">依據 CANSLIM 綜合評分篩選出的最優質標的</p>
+                            <p class="text-lg text-blue-200 opacity-70">依據 CANSLIM 與營收加速度篩選出的 Top 10</p>
                         </div>
-                        <div class="flex gap-2">
-                            <button @click="activeTab = 'ranking'" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl font-bold transition backdrop-blur-sm border border-white/10">
-                                <i class="fas fa-list-ol mr-2"></i>查看完整排行
-                            </button>
-                        </div>
+                        <button @click="activeTab = 'ranking'" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-2xl font-black transition backdrop-blur-md border border-white/10 flex items-center shadow-lg">
+                            <i class="fas fa-list-ol mr-3"></i>查看完整排行
+                        </button>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
                         <div v-for="(stock, idx) in allStocksSorted.slice(0, 10)" :key="stock.symbol"
                              @click="selectStock(stock.symbol); activeTab = 'search'"
-                             class="bg-white/10 hover:bg-white/20 p-4 rounded-xl cursor-pointer transition-all group relative overflow-hidden border border-white/5 backdrop-blur-sm">
+                             class="bg-white/5 hover:bg-white/15 p-6 rounded-3xl cursor-pointer transition-all group relative overflow-hidden border border-white/5 backdrop-blur-sm hover:scale-[1.03] hover:shadow-2xl">
                             <div v-if="stock.canslim.score_delta && stock.canslim.score_delta !== 0" 
-                                 :class="['absolute top-0 right-0 px-2 py-0.5 text-[10px] font-black rounded-bl-lg', 
+                                 :class="['absolute top-0 right-0 px-3 py-1 text-xs font-black rounded-bl-2xl shadow-inner', 
                                           stock.canslim.score_delta > 0 ? 'bg-emerald-500' : 'bg-rose-500']">
                                 {{ stock.canslim.score_delta > 0 ? '↑' : '↓' }}{{ Math.abs(stock.canslim.score_delta) }}
                             </div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span :class="['text-xs font-black px-2 py-0.5 rounded', idx < 3 ? 'bg-yellow-400 text-yellow-900' : 'bg-blue-800 text-blue-100']">
+                            <div class="flex justify-between items-start mb-4">
+                                <span :class="['text-xs font-black px-2.5 py-1 rounded-lg shadow-sm', idx < 3 ? 'bg-yellow-400 text-yellow-950' : 'bg-blue-800 text-blue-100']">
                                     #{{ idx + 1 }}
                                 </span>
-                                <span class="text-xl font-black text-white group-hover:text-yellow-300">{{ stock.canslim.score }}</span>
+                                <span class="text-2xl font-black text-white group-hover:text-yellow-300 drop-shadow-sm">{{ stock.canslim.score }}</span>
                             </div>
-                            <div class="font-mono text-lg font-bold mb-0.5">{{ stock.symbol }}</div>
-                            <div class="text-sm font-medium text-blue-100 truncate mb-2">{{ stock.name }}</div>
-                            <div class="pt-2 border-t border-white/10 flex justify-between">
-                                <span class="text-[9px] font-bold opacity-60">I: {{ Math.round(stock.canslim.i_score_abs || 0) }}</span>
-                                <span class="text-[9px] font-bold opacity-60">RS: {{ stock.canslim.mansfield_rs?.toFixed(1) }}</span>
+                            <div class="font-mono text-xl font-black mb-1 tracking-tighter">{{ stock.symbol }}</div>
+                            <div class="text-base font-bold text-blue-100 truncate mb-4">{{ stock.name }}</div>
+                            <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] font-black opacity-40 uppercase">RS</span>
+                                    <span class="text-sm font-black text-emerald-400">{{ stock.canslim.mansfield_rs?.toFixed(1) }}</span>
+                                </div>
+                                <div v-if="stock.revenue_features" class="flex flex-col items-end">
+                                    <span class="text-[10px] font-black opacity-40 uppercase">Rev Score</span>
+                                    <span class="text-sm font-black text-blue-400">{{ stock.revenue_features.revenue_score }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tabs Navigation -->
-                <div class="flex space-x-1 bg-white p-1 rounded-2xl shadow-sm border border-slate-200 mb-8 max-w-md">
+                <div class="flex space-x-2 bg-white p-1.5 rounded-3xl shadow-md border border-slate-200 mb-10 max-w-md mx-auto md:mx-0">
                     <button v-for="tab in [{id:'search', icon:'fa-search', label:'個股查詢'}, {id:'ranking', icon:'fa-trophy', label:'即時排行'}, {id:'screener', icon:'fa-filter', label:'條件篩選'}]" 
                             :key="tab.id" @click="activeTab = tab.id"
-                            :class="['flex-1 flex items-center justify-center py-2.5 rounded-xl font-bold transition', activeTab === tab.id ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50']">
-                        <i :class="['fas', tab.icon, 'mr-2']"></i>{{ tab.label }}
+                            :class="['flex-1 flex items-center justify-center py-3.5 rounded-2xl font-black transition-all text-sm', activeTab === tab.id ? 'bg-blue-600 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:bg-slate-50']">
+                        <i :class="['fas', tab.icon, 'mr-2.5']"></i>{{ tab.label }}
                     </button>
                 </div>
 
                 <!-- Search Tab -->
                 <div v-if="activeTab === 'search'" class="animate-fade-in">
                     <!-- Search Input -->
-                    <div class="relative max-w-xl mx-auto mb-8 group">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
-                            <i class="fas fa-search"></i>
+                    <div class="relative max-w-2xl mx-auto mb-12 group">
+                        <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                            <i class="fas fa-search text-xl"></i>
                         </div>
-                        <input v-model="searchQuery" @input="onSearchInput" placeholder="輸入股號或名稱，例如: 2330, 台積電" 
-                               class="w-full pl-11 pr-12 py-4 bg-white border-2 border-slate-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none shadow-sm transition-all font-medium text-lg">
-                        <button v-if="searchQuery" @click="clearSearch" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600">
-                            <i class="fas fa-times-circle"></i>
+                        <input v-model="searchQuery" @input="onSearchInput" placeholder="搜尋 2330, 台積電, 或營收成長股..." 
+                               class="w-full pl-14 pr-14 py-5 bg-white border-2 border-slate-200 rounded-[2rem] focus:border-blue-500 focus:ring-8 focus:ring-blue-500/10 outline-none shadow-lg transition-all font-bold text-xl tracking-tight">
+                        <button v-if="searchQuery" @click="clearSearch" class="absolute inset-y-0 right-0 pr-6 flex items-center text-slate-300 hover:text-slate-600 transition-colors">
+                            <i class="fas fa-times-circle text-xl"></i>
                         </button>
                         
                         <!-- Suggestions Dropdown -->
-                        <div v-if="searchSuggestions.length > 0" class="absolute z-10 w-full mt-2 bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+                        <div v-if="searchSuggestions.length > 0" class="absolute z-50 w-full mt-4 bg-white border border-slate-200 rounded-[2rem] shadow-2xl overflow-hidden animate-fade-in p-2">
                             <div v-for="s in searchSuggestions" :key="s.symbol" @click="selectStock(s.symbol)"
-                                 class="px-5 py-3 hover:bg-slate-50 cursor-pointer flex justify-between items-center border-b border-slate-50 last:border-0">
+                                 class="px-6 py-4 hover:bg-blue-50 cursor-pointer flex justify-between items-center rounded-2xl transition-colors border-b border-slate-50 last:border-0">
+                                <div class="flex items-center gap-4">
+                                    <span class="font-mono font-black text-blue-600 text-lg">{{ s.symbol }}</span>
+                                    <span class="font-black text-slate-800 text-lg">{{ s.name }}</span>
+                                </div>
                                 <div class="flex items-center gap-3">
-                                    <span class="font-mono font-bold text-blue-600">{{ s.symbol }}</span>
-                                    <span class="font-bold text-slate-800">{{ s.name }}</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs text-slate-400">{{ s.industry }}</span>
-                                    <span :class="['px-2 py-0.5 rounded font-black text-xs', s.has_full_detail === false ? 'bg-slate-100 text-slate-500' : 'bg-blue-100 text-blue-700']">
-                                        {{ s.has_full_detail === false ? '索引' : `${s.canslim.score}分` }}
+                                    <span class="text-sm font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-lg">{{ s.industry }}</span>
+                                    <span :class="['px-3 py-1 rounded-xl font-black text-sm shadow-sm', s.has_full_detail === false ? 'bg-slate-100 text-slate-500' : 'bg-blue-600 text-white']">
+                                        {{ s.has_full_detail === false ? 'INDEX' : `${s.canslim.score}分` }}
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Welcome View -->
-                    <div v-if="!currentStock" class="text-center py-20 bg-white rounded-3xl border border-slate-200 shadow-sm px-6">
-                        <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-blue-50 text-blue-600 text-3xl">
-                            <i class="fas fa-magnifying-glass"></i>
-                        </div>
-                        <h2 class="text-2xl font-bold text-slate-900 mb-2">探索您的投資標的</h2>
-                        <p class="text-slate-500 mb-8 max-w-sm mx-auto font-medium">請在上方搜尋列輸入代號，查看該股的 CANSLIM 量化分析與籌碼動向。</p>
-                        
-                        <!-- Mini Documentation -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto text-left">
-                            <div v-for="(item, key) in canslimDefinitions" :key="key" 
-                                 class="p-5 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-slate-100 transition-colors">
-                                <div class="flex items-start gap-4">
-                                    <span :class="['w-10 h-10 shrink-0 rounded-xl flex items-center justify-center font-black text-white shadow-sm', item.badgeColor]">
-                                        {{ key }}
-                                    </span>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">{{ item.title }}</h4>
-                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">{{ item.desc }}</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Detail View -->
-                    <div v-else class="animate-fade-in space-y-6">
+                    <div v-if="currentStock" class="animate-fade-in space-y-8">
                         <!-- Stock Header Panel -->
-                        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                            <div class="bg-slate-900 text-white p-8">
-                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                                    <div>
-                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                            <h2 class="text-4xl font-black tracking-tight">{{ currentStock.name }} {{ currentStock.symbol }}</h2>
-                                            <span v-if="currentStock.is_etf" class="px-2 py-0.5 bg-blue-600 text-white text-[10px] font-black rounded uppercase">ETF</span>
-                                            <span :class="['px-3 py-1 rounded-full text-xs font-bold border', getFreshnessBadge(getStockFreshness(currentStock)).classes]">
-                                                {{ getFreshnessBadge(getStockFreshness(currentStock)).label }}數據
-                                            </span>
-                                            <span v-if="currentStock.has_full_detail === false" class="px-3 py-1 bg-slate-600 text-white text-xs font-black rounded-full">
-                                                INDEX ONLY
-                                            </span>
-                                            <span v-else-if="currentStock.canslim.score >= 80" class="px-3 py-1 bg-rose-600 text-white text-xs font-black rounded-full shadow-lg shadow-rose-900/20 animate-pulse">
-                                                STRONG BUY
+                        <div class="bg-white rounded-[3rem] shadow-xl border border-slate-200 overflow-hidden">
+                            <div class="bg-slate-950 text-white p-10 md:p-12 relative overflow-hidden">
+                                <!-- Background Decoration -->
+                                <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+                                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl"></div>
+
+                                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center gap-4 flex-wrap">
+                                            <h2 class="text-5xl md:text-6xl font-black tracking-tighter">{{ currentStock.name }} <span class="text-blue-500">{{ currentStock.symbol }}</span></h2>
+                                            <span v-if="currentStock.is_etf" class="px-3 py-1 bg-blue-600 text-white text-xs font-black rounded-lg uppercase shadow-lg shadow-blue-900/40">ETF</span>
+                                            <span :class="['px-4 py-1.5 rounded-full text-sm font-black border-2', getFreshnessBadge(getStockFreshness(currentStock)).classes]">
+                                                {{ getFreshnessBadge(getStockFreshness(currentStock)).label }}
                                             </span>
                                         </div>
-                                        <div class="flex flex-wrap items-center gap-4 text-slate-400 font-medium">
-                                            <span class="flex items-center"><i class="fas fa-industry mr-2"></i>{{ currentStock.industry || '一般產業' }}</span>
-                                            <span v-if="currentStock.has_full_detail !== false" class="flex items-center gap-2">
-                                                <i class="fas fa-chart-simple mr-1"></i>
+                                        <div class="flex flex-wrap items-center gap-6 text-lg text-slate-400 font-bold">
+                                            <span class="flex items-center"><i class="fas fa-industry mr-3 text-blue-400"></i>{{ currentStock.industry || '一般產業' }}</span>
+                                            <span v-if="currentStock.has_full_detail !== false" class="flex items-center px-4 py-1 bg-white/5 rounded-xl border border-white/10">
+                                                <i class="fas fa-ranking-star mr-3 text-yellow-400"></i>
                                                 {{ getScoreCategory(currentStock.canslim.score).label }}
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-6 bg-slate-800/50 p-4 rounded-2xl border border-slate-700/50">
-                                        <div class="text-center">
-                                            <div class="text-5xl font-black text-blue-400">{{ currentStock.has_full_detail === false ? '—' : currentStock.canslim.score }}</div>
-                                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{{ currentStock.has_full_detail === false ? '索引' : '總分' }}</div>
+                                    <div class="flex items-center gap-8 bg-white/5 p-6 rounded-[2rem] border border-white/10 backdrop-blur-xl shadow-2xl">
+                                        <div class="text-center px-4">
+                                            <div class="text-7xl font-black text-blue-400 tracking-tighter leading-none">{{ currentStock.has_full_detail === false ? '—' : currentStock.canslim.score }}</div>
+                                            <div class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-3">{{ currentStock.has_full_detail === false ? '索引模式' : 'CANSLIM 總分' }}</div>
                                         </div>
-                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="h-10 w-px bg-slate-700"></div>
-                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="text-center">
-                                            <div :class="['text-2xl font-black', currentStock.canslim.score_delta > 0 ? 'text-emerald-400' : 'text-rose-400']">
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="h-16 w-px bg-white/10"></div>
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="text-center px-4">
+                                            <div :class="['text-3xl font-black leading-none', currentStock.canslim.score_delta > 0 ? 'text-emerald-400' : 'text-rose-400']">
                                                 {{ currentStock.canslim.score_delta > 0 ? '↑' : '↓' }}{{ Math.abs(currentStock.canslim.score_delta) }}
                                             </div>
-                                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">變動</div>
+                                            <div class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-3">趨勢</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div v-if="currentStock.has_full_detail === false" class="p-8 border-b border-slate-100">
-                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-slate-600">
-                                    這個標的已收錄在完整索引，但目前不在即時分析 snapshot 內，所以先提供代號、名稱、freshness 與索引資訊。
+                            <!-- NEW: Revenue Acceleration Insights -->
+                            <div v-if="currentStock.revenue_features" class="p-10 md:p-12 border-b border-slate-100 bg-blue-50/30">
+                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                                    <h3 class="text-2xl font-black text-slate-900 flex items-center tracking-tight">
+                                        <span class="w-3 h-8 bg-blue-600 rounded-full mr-4 shadow-lg shadow-blue-200"></span>
+                                        營收成長與加速度分析 (Revenue Alpha)
+                                    </h3>
+                                    <div :class="['px-6 py-2 rounded-2xl font-black shadow-lg text-lg border-2', 
+                                                currentStock.revenue_features.revenue_score >= 5 ? 'bg-emerald-600 text-white border-emerald-700' : 
+                                                currentStock.revenue_features.revenue_score >= 3 ? 'bg-blue-600 text-white border-blue-700' : 'bg-white text-slate-500 border-slate-200']">
+                                        營收評分: {{ currentStock.revenue_features.revenue_score }} / 6
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                                    <div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 group hover:border-blue-300 transition-colors">
+                                        <div class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">年增率 (YoY)</div>
+                                        <div class="text-4xl font-black font-mono text-slate-900 group-hover:text-blue-600 transition-colors">
+                                            {{ (currentStock.revenue_features.rev_yoy * 100).toFixed(1) }}%
+                                        </div>
+                                        <div class="mt-4 flex gap-2">
+                                            <span v-if="currentStock.revenue_features.rev_yoy > 0.25" class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black rounded-lg border border-emerald-200">HIGH GROWTH</span>
+                                            <span v-if="currentStock.revenue_features.rev_yoy > 0.50" class="px-2 py-0.5 bg-purple-100 text-purple-700 text-[10px] font-black rounded-lg border border-purple-200">EXPLOSIVE</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 group hover:border-blue-300 transition-colors">
+                                        <div class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">月增率 (MoM)</div>
+                                        <div :class="['text-4xl font-black font-mono group-hover:scale-105 transition-transform origin-left', currentStock.revenue_features.rev_mom > 0 ? 'text-emerald-600' : 'text-slate-400']">
+                                            {{ (currentStock.revenue_features.rev_mom * 100).toFixed(1) }}%
+                                        </div>
+                                        <div class="mt-4">
+                                            <span v-if="currentStock.revenue_features.rev_mom > 0.1" class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-black rounded-lg border border-blue-200 uppercase">Strong Monthly Momentum</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 group hover:border-blue-300 transition-colors">
+                                        <div class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">增長加速度 (Acc)</div>
+                                        <div :class="['text-4xl font-black font-mono', currentStock.revenue_features.rev_acc_1 > 0 ? 'text-emerald-600' : 'text-rose-500']">
+                                            {{ currentStock.revenue_features.rev_acc_1 > 0 ? '+' : '' }}{{ (currentStock.revenue_features.rev_acc_1 * 100).toFixed(1) }}
+                                        </div>
+                                        <div class="mt-4 flex gap-2">
+                                            <span v-if="currentStock.revenue_features.rev_accelerating" class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-black rounded-lg border border-amber-200 animate-pulse">ACCELERATING</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-center items-center text-center">
+                                        <div v-if="currentStock.revenue_features.rev_strong" class="text-emerald-500 mb-2">
+                                            <i class="fas fa-circle-check text-4xl shadow-emerald-200 shadow-xl rounded-full"></i>
+                                        </div>
+                                        <div v-else class="text-slate-200 mb-2">
+                                            <i class="fas fa-circle-minus text-4xl"></i>
+                                        </div>
+                                        <div class="text-sm font-black text-slate-800 uppercase tracking-tighter">強力增長旗標</div>
+                                        <div class="text-[10px] font-bold text-slate-400 mt-1 uppercase">YoY > 30% & MoM > 10%</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- CANSLIM Matrix -->
-                            <div v-if="currentStock.has_full_detail !== false" class="p-8 border-b border-slate-100 grid grid-cols-2 md:grid-cols-6 gap-4">
+                            <div v-if="currentStock.has_full_detail !== false" class="p-10 md:p-12 border-b border-slate-100 grid grid-cols-2 md:grid-cols-6 gap-5">
                                 <div v-for="(val, key) in metricsMap" :key="key" 
-                                     class="relative p-4 rounded-2xl transition-all group overflow-hidden"
-                                     :class="currentStock.canslim[key] ? 'bg-emerald-50 border border-emerald-100' : 'bg-slate-50 border border-slate-100'">
+                                     class="relative p-6 rounded-[2rem] transition-all group overflow-hidden border-2 hover:shadow-xl hover:-translate-y-1"
+                                     :class="currentStock.canslim[key] ? 'bg-emerald-50 border-emerald-100 shadow-emerald-900/5' : 'bg-slate-50 border-slate-100 shadow-none'">
                                     <div class="relative z-10">
-                                        <div class="text-[10px] font-black uppercase tracking-widest mb-1" :class="currentStock.canslim[key] ? 'text-emerald-600' : 'text-slate-400'">
+                                        <div class="text-[11px] font-black uppercase tracking-[0.2em] mb-3" :class="currentStock.canslim[key] ? 'text-emerald-600' : 'text-slate-400'">
                                             {{ val.label }}
                                         </div>
-                                        <div v-if="currentStock.is_etf && (key === 'C' || key === 'A')" class="text-2xl font-black text-slate-300">N/A</div>
-                                        <div v-else :class="['text-2xl font-black', currentStock.canslim[key] ? 'text-emerald-700' : 'text-slate-400']">
+                                        <div v-if="currentStock.is_etf && (key === 'C' || key === 'A')" class="text-3xl font-black text-slate-300 italic">N/A</div>
+                                        <div v-else :class="['text-3xl font-black tracking-tighter', currentStock.canslim[key] ? 'text-emerald-700' : 'text-slate-300']">
                                             {{ currentStock.canslim[key] ? 'PASS' : 'FAIL' }}
                                         </div>
                                     </div>
-                                    <div class="absolute -bottom-4 -right-4 text-6xl font-black opacity-5 pointer-events-none group-hover:scale-110 transition-transform"
+                                    <div class="absolute -bottom-6 -right-6 text-9xl font-black opacity-5 pointer-events-none group-hover:scale-125 transition-transform"
                                          :class="currentStock.canslim[key] ? 'text-emerald-900' : 'text-slate-900'">
                                         {{ key }}
                                     </div>
@@ -246,83 +270,90 @@
                             </div>
 
                             <!-- Detailed Stats Grid -->
-                            <div v-if="currentStock.has_full_detail !== false" class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-x divide-slate-100">
+                            <div v-if="currentStock.has_full_detail !== false" class="grid grid-cols-1 lg:grid-cols-2 gap-0 divide-x-2 divide-slate-100">
                                 <!-- Left Column: Financials & Market -->
-                                <div class="p-8 space-y-8">
+                                <div class="p-10 md:p-12 space-y-12">
                                     <div>
-                                        <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center">
-                                            <span class="w-2 h-6 bg-blue-600 rounded-full mr-3"></span>
+                                        <h3 class="text-2xl font-black text-slate-900 mb-8 flex items-center tracking-tight">
+                                            <span class="w-3 h-8 bg-indigo-600 rounded-full mr-4 shadow-lg shadow-indigo-200"></span>
                                             市場相對強度與波動
                                         </h3>
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                                <div class="text-xs font-bold text-slate-400 mb-1">Mansfield RS (半年)</div>
-                                                <div :class="['text-2xl font-black font-mono', currentStock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-600']">
+                                        <div class="grid grid-cols-2 gap-6">
+                                            <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner group hover:bg-white hover:border-indigo-200 transition-all">
+                                                <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3">Mansfield RS (半年)</div>
+                                                <div :class="['text-5xl font-black font-mono tracking-tighter', currentStock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-600']">
                                                     {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs?.toFixed(2) }}
                                                 </div>
+                                                <div class="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest">相比大盤基準線</div>
                                             </div>
-                                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                                <div class="text-xs font-bold text-slate-400 mb-1">年化波動率</div>
-                                                <div class="text-2xl font-black font-mono text-slate-800">
-                                                    {{ currentStock.canslim.grid_strategy?.volatility_annual || 0 }}%
+                                            <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner group hover:bg-white hover:border-indigo-200 transition-all">
+                                                <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3">年化波動率</div>
+                                                <div class="text-5xl font-black font-mono text-slate-900 tracking-tighter">
+                                                    {{ currentStock.canslim.grid_strategy?.volatility_annual || 0 }}<span class="text-2xl ml-1">%</span>
                                                 </div>
+                                                <div class="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest">風險係數</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Grid Strategy Lab -->
                                     <div v-if="currentStock.canslim.grid_strategy && currentStock.canslim.grid_strategy.levels.length > 0">
-                                        <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center">
-                                            <span class="w-2 h-6 bg-indigo-600 rounded-full mr-3"></span>
-                                            動態網格參考位 (策略實驗室)
-                                        </h3>
-                                        <div class="space-y-2">
+                                        <div class="flex justify-between items-center mb-8">
+                                            <h3 class="text-2xl font-black text-slate-900 flex items-center tracking-tight">
+                                                <span class="w-3 h-8 bg-rose-500 rounded-full mr-4 shadow-lg shadow-rose-200"></span>
+                                                策略實驗室：動態網格參考
+                                            </h3>
+                                            <span class="px-3 py-1 bg-rose-100 text-rose-700 text-[10px] font-black rounded-lg border border-rose-200 uppercase">Auto-Generated</span>
+                                        </div>
+                                        <div class="grid grid-cols-1 gap-3">
                                             <div v-for="level in currentStock.canslim.grid_strategy.levels" :key="level.label"
-                                                 class="flex items-center justify-between p-3 rounded-xl border border-slate-100 transition-colors hover:bg-slate-50">
+                                                 class="flex items-center justify-between p-5 rounded-2xl border-2 transition-all hover:scale-[1.01] hover:shadow-lg"
+                                                 :class="level.type.includes('buy') ? 'bg-emerald-50/50 border-emerald-100' : 
+                                                         level.type.includes('sell') ? 'bg-rose-50/50 border-rose-100' : 'bg-slate-50 border-slate-200 shadow-inner'">
                                                 <div class="flex items-center">
-                                                    <div :class="['w-2 h-2 rounded-full mr-3', 
-                                                        level.type.includes('buy') ? 'bg-emerald-500' : 
-                                                        level.type.includes('sell') ? 'bg-rose-500' : 'bg-slate-300']"></div>
-                                                    <span class="text-sm font-bold text-slate-700">{{ level.label }}</span>
+                                                    <div :class="['w-4 h-4 rounded-full mr-4 shadow-sm', 
+                                                        level.type.includes('buy') ? 'bg-emerald-500 shadow-emerald-200' : 
+                                                        level.type.includes('sell') ? 'bg-rose-500 shadow-rose-200' : 'bg-slate-400 shadow-slate-200']"></div>
+                                                    <span class="text-base font-black text-slate-800 uppercase tracking-tighter">{{ level.label }}</span>
                                                 </div>
-                                                <span class="text-lg font-mono font-bold text-slate-900">{{ level.price.toFixed(2) }}</span>
+                                                <span class="text-2xl font-mono font-black text-slate-950">{{ level.price.toFixed(2) }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Right Column: Institutional Flow -->
-                                <div class="p-8 space-y-8 bg-slate-50/30">
+                                <div class="p-10 md:p-12 space-y-12 bg-slate-50/50">
                                     <div>
-                                        <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center">
-                                            <span class="w-2 h-6 bg-teal-600 rounded-full mr-3"></span>
-                                            法人吸籌與認同度 (v2)
+                                        <h3 class="text-2xl font-black text-slate-900 mb-8 flex items-center tracking-tight">
+                                            <span class="w-3 h-8 bg-teal-600 rounded-full mr-4 shadow-lg shadow-teal-200"></span>
+                                            法人吸籌認同度 (Alpha Flow)
                                         </h3>
-                                        <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group">
-                                            <div class="absolute top-0 right-0 p-4">
-                                                <div :class="['text-4xl font-black', currentStock.canslim.i_score_abs >= 60 ? 'text-blue-500' : 'text-slate-200']">
+                                        <div class="p-10 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-2xl relative overflow-hidden group">
+                                            <div class="absolute top-0 right-0 p-8">
+                                                <div :class="['text-6xl font-black tracking-tighter', currentStock.canslim.i_score_abs >= 60 ? 'text-blue-600 drop-shadow-xl' : 'text-slate-200']">
                                                     {{ Math.round(currentStock.canslim.i_score_abs) }}
                                                 </div>
-                                                <div class="text-[9px] font-black text-slate-400 text-right uppercase tracking-tighter">I 分數</div>
+                                                <div class="text-xs font-black text-slate-400 text-right uppercase tracking-widest mt-2">I Score</div>
                                             </div>
 
-                                            <div class="space-y-6 relative z-10">
-                                                <div class="flex items-center gap-8">
+                                            <div class="space-y-10 relative z-10">
+                                                <div class="flex items-center gap-12">
                                                     <div>
-                                                        <div class="text-xs font-bold text-slate-400 mb-1">20日吸籌率</div>
-                                                        <div class="text-3xl font-black font-mono text-blue-600">{{ currentStock.canslim.inst_details?.ratio_20d }}%</div>
+                                                        <div class="text-xs font-black text-slate-400 mb-3 uppercase tracking-[0.2em]">20日吸籌率</div>
+                                                        <div class="text-5xl font-black font-mono text-blue-700 tracking-tighter">{{ currentStock.canslim.inst_details?.ratio_20d }}%</div>
                                                     </div>
                                                     <div>
-                                                        <div class="text-xs font-bold text-slate-400 mb-1">買超連天</div>
-                                                        <div :class="['text-3xl font-black font-mono', currentStock.canslim.inst_details?.streak > 0 ? 'text-emerald-500' : 'text-slate-300']">
+                                                        <div class="text-xs font-black text-slate-400 mb-3 uppercase tracking-[0.2em]">連買天數</div>
+                                                        <div :class="['text-5xl font-black font-mono tracking-tighter', currentStock.canslim.inst_details?.streak > 0 ? 'text-emerald-500' : 'text-slate-300']">
                                                             {{ currentStock.canslim.inst_details?.streak || 0 }}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div class="flex justify-between text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">籌碼吸引力</div>
-                                                    <div class="w-full bg-slate-100 rounded-full h-3 p-0.5 border border-slate-200/50">
-                                                        <div class="bg-gradient-to-r from-blue-400 to-indigo-600 h-full rounded-full transition-all duration-1000 shadow-sm shadow-blue-500/30" 
+                                                    <div class="flex justify-between text-xs font-black text-slate-400 mb-4 uppercase tracking-[0.3em]">Institutional Conviction</div>
+                                                    <div class="w-full bg-slate-100 rounded-full h-5 p-1.5 border border-slate-200 shadow-inner">
+                                                        <div class="bg-gradient-to-r from-blue-400 via-indigo-600 to-blue-900 h-full rounded-full transition-all duration-1000 shadow-xl shadow-blue-500/20" 
                                                              :style="{ width: currentStock.canslim.i_score_abs + '%' }"></div>
                                                     </div>
                                                 </div>
@@ -332,88 +363,40 @@
 
                                     <!-- Recent Flow Histogram -->
                                     <div v-if="currentStock.institutional && currentStock.institutional.length > 0">
-                                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">近期三大法人淨流向直方圖 (張)</h4>
-                                        <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm">
-                                            <div class="grid grid-cols-5 gap-3">
-                                                <div v-for="day in recentInstitutionalDays(currentStock)" :key="`bar-${day.date}`" class="space-y-2 min-w-0">
+                                        <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6 px-2">三大法人近五日流量分佈 (張)</h4>
+                                        <div class="bg-white rounded-[2rem] border border-slate-200 p-8 shadow-xl">
+                                            <div class="grid grid-cols-5 gap-4">
+                                                <div v-for="day in recentInstitutionalDays(currentStock)" :key="`bar-${day.date}`" class="space-y-4 min-w-0">
                                                     <div class="text-center">
-                                                        <div class="text-[11px] font-black text-slate-400">{{ day.date.substring(4, 8) }}</div>
-                                                        <div :class="['text-[10px] font-mono font-bold', totalInstitutionalNet(day) > 0 ? 'text-emerald-500' : totalInstitutionalNet(day) < 0 ? 'text-rose-500' : 'text-slate-300']">
+                                                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-tighter mb-1">{{ day.date.substring(4, 6) }}/{{ day.date.substring(6, 8) }}</div>
+                                                        <div :class="['text-xs font-mono font-black tracking-tighter', totalInstitutionalNet(day) > 0 ? 'text-emerald-500' : totalInstitutionalNet(day) < 0 ? 'text-rose-600' : 'text-slate-300']">
                                                             {{ formatNumber(totalInstitutionalNet(day)) }}
                                                         </div>
                                                     </div>
-                                                    <div class="relative h-44 rounded-2xl border border-slate-100 bg-slate-50/80 px-2 py-3 overflow-hidden">
-                                                        <div class="absolute left-2 right-2 top-1/2 border-t border-dashed border-slate-300"></div>
-                                                        <div class="absolute left-2 top-3 text-[9px] font-black text-slate-300">+</div>
-                                                        <div class="absolute left-2 bottom-3 text-[9px] font-black text-slate-300">-</div>
-                                                        <div class="relative h-full grid grid-cols-3 gap-2 items-stretch">
+                                                    <div class="relative h-56 rounded-2xl border-2 border-slate-50 bg-slate-50/50 px-3 py-4 overflow-hidden shadow-inner">
+                                                        <div class="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-slate-200"></div>
+                                                        <div class="relative h-full grid grid-cols-3 gap-1.5 items-stretch">
                                                             <div class="relative">
-                                                                <div :class="['absolute left-0 right-0 rounded-md', institutionalBarClass(day.foreign_net, 'bg-emerald-500', 'bg-rose-400')]"
+                                                                <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.foreign_net, 'bg-emerald-500', 'bg-rose-500')]"
                                                                      :style="institutionalBarStyle(day.foreign_net, currentStock)"></div>
                                                             </div>
                                                             <div class="relative">
-                                                                <div :class="['absolute left-0 right-0 rounded-md', institutionalBarClass(day.trust_net, 'bg-indigo-500', 'bg-amber-400')]"
+                                                                <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.trust_net, 'bg-indigo-600', 'bg-orange-500')]"
                                                                      :style="institutionalBarStyle(day.trust_net, currentStock)"></div>
                                                             </div>
                                                             <div class="relative">
-                                                                <div :class="['absolute left-0 right-0 rounded-md', institutionalBarClass(day.dealer_net, 'bg-sky-500', 'bg-fuchsia-400')]"
+                                                                <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.dealer_net, 'bg-sky-500', 'bg-slate-400')]"
                                                                      :style="institutionalBarStyle(day.dealer_net, currentStock)"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid grid-cols-3 gap-2 text-center">
-                                                        <div>
-                                                            <div class="text-[9px] font-black text-emerald-600">外資</div>
-                                                            <div :class="['text-[10px] font-mono font-bold', institutionalValueClass(day.foreign_net, 'text-emerald-500', 'text-rose-500')]">
-                                                                {{ formatNumber(day.foreign_net) }}
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-[9px] font-black text-indigo-600">投信</div>
-                                                            <div :class="['text-[10px] font-mono font-bold', institutionalValueClass(day.trust_net, 'text-indigo-500', 'text-amber-500')]">
-                                                                {{ formatNumber(day.trust_net) }}
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-[9px] font-black text-sky-600">自營</div>
-                                                            <div :class="['text-[10px] font-mono font-bold', institutionalValueClass(day.dealer_net, 'text-sky-500', 'text-fuchsia-500')]">
-                                                                {{ formatNumber(day.dealer_net) }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Recent Flow Table -->
-                                    <div v-if="currentStock.institutional && currentStock.institutional.length > 0">
-                                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">近期三大法人買賣超 (張)</h4>
-                                        <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
-                                            <table class="w-full text-left text-sm border-collapse">
-                                                <thead>
-                                                    <tr class="bg-slate-50/80 text-[10px] font-black text-slate-500 uppercase tracking-tighter">
-                                                        <th class="p-3">日期</th>
-                                                        <th class="p-3 text-right">外資</th>
-                                                        <th class="p-3 text-right">投信</th>
-                                                        <th class="p-3 text-right">自營</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="font-mono">
-                                                    <tr v-for="day in currentStock.institutional.slice(0, 5)" :key="day.date" class="border-t border-slate-50">
-                                                        <td class="p-3 text-slate-400 font-bold">{{ day.date.substring(4, 8) }}</td>
-                                                        <td :class="['p-3 text-right font-bold', day.foreign_net > 0 ? 'text-emerald-500' : day.foreign_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ formatNumber(day.foreign_net) }}
-                                                        </td>
-                                                        <td :class="['p-3 text-right font-bold', day.trust_net > 0 ? 'text-emerald-500' : day.trust_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ formatNumber(day.trust_net) }}
-                                                        </td>
-                                                        <td :class="['p-3 text-right font-bold', day.dealer_net > 0 ? 'text-emerald-500' : day.dealer_net < 0 ? 'text-rose-500' : 'text-slate-300']">
-                                                            {{ formatNumber(day.dealer_net) }}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div class="mt-8 flex justify-center gap-6">
+                                                <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500"></span><span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">外資</span></div>
+                                                <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-indigo-600"></span><span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">投信</span></div>
+                                                <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-sky-500"></span><span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">自營</span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -424,77 +407,81 @@
 
                 <!-- Ranking Tab -->
                 <div v-if="activeTab === 'ranking'" class="animate-fade-in">
-                    <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                        <div class="bg-slate-900 text-white p-8">
-                            <h2 class="text-2xl font-black mb-1 flex items-center">
-                                <i class="fas fa-trophy mr-3 text-yellow-400"></i>全市場即時排行
+                    <div class="bg-white rounded-[3rem] shadow-2xl border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-950 text-white p-12">
+                            <h2 class="text-4xl font-black mb-3 flex items-center tracking-tighter">
+                                <i class="fas fa-trophy mr-5 text-yellow-400"></i>全市場頂尖排行
                             </h2>
-                            <p class="text-slate-400 font-medium">綜合評分最高的強勢個股清單</p>
+                            <p class="text-xl text-slate-400 font-bold tracking-tight">綜合評分、相對強度與營收動能三合一篩選</p>
                         </div>
-                        <div class="p-4 md:p-8 overflow-x-auto">
-                            <table class="w-full text-left min-w-[700px]">
+                        <div class="p-4 md:p-10 overflow-x-auto">
+                            <table class="w-full text-left min-w-[800px] border-separate border-spacing-y-2">
                                 <thead>
-                                    <tr class="text-[11px] font-black text-slate-400 uppercase tracking-widest border-b-2 border-slate-100">
-                                        <th class="pb-4 pl-4">排名</th>
-                                        <th class="pb-4">股票</th>
-                                        <th class="pb-4 text-center">趨勢</th>
-                                        <th class="pb-4 text-center">總分</th>
-                                        <th class="pb-4 text-center">I 分數</th>
-                                        <th class="pb-4 text-center">相對強度</th>
-                                        <th class="pb-4 text-center">新鮮度</th>
+                                    <tr class="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">
+                                        <th class="pb-6 pl-8">#</th>
+                                        <th class="pb-6">標的名稱</th>
+                                        <th class="pb-6 text-center">趨勢</th>
+                                        <th class="pb-6 text-center">綜合評分</th>
+                                        <th class="pb-6 text-center">相對強度 (RS)</th>
+                                        <th class="pb-6 text-center">營收評分</th>
+                                        <th class="pb-6 text-center pr-8">新鮮度</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(stock, idx) in allStocksSorted.slice(0, 50)" :key="stock.symbol"
                                         @click="selectStock(stock.symbol); activeTab = 'search'"
-                                        class="border-b border-slate-50 hover:bg-slate-50 cursor-pointer transition-colors group">
-                                        <td class="py-5 pl-4">
-                                            <span :class="['inline-flex items-center justify-center w-8 h-8 rounded-xl font-black text-sm',
-                                                idx < 3 ? 'bg-yellow-100 text-yellow-700 shadow-sm border border-yellow-200' : 'bg-slate-100 text-slate-500']">
+                                        class="hover:scale-[1.01] hover:shadow-xl transition-all cursor-pointer group">
+                                        <td class="table-cell-lg pl-8 bg-slate-50 group-hover:bg-blue-600 group-hover:text-white rounded-l-3xl transition-colors">
+                                            <span :class="['inline-flex items-center justify-center w-10 h-10 rounded-2xl font-black text-base',
+                                                idx < 3 ? 'bg-yellow-400 text-yellow-950 shadow-lg' : 'bg-white text-slate-400 border border-slate-100']">
                                                 {{ idx + 1 }}
                                             </span>
                                         </td>
-                                        <td class="py-5">
-                                            <div class="font-black text-slate-900 group-hover:text-blue-600 transition-colors">{{ stock.name }}</div>
-                                            <div class="font-mono text-xs font-bold text-slate-400">{{ stock.symbol }}</div>
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                            <div class="font-black text-slate-900 text-lg group-hover:text-white transition-colors">{{ stock.name }}</div>
+                                            <div class="font-mono text-sm font-black text-slate-400 group-hover:text-blue-200 tracking-tighter">{{ stock.symbol }}</div>
                                         </td>
-                                        <td class="py-5 text-center">
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
                                             <div v-if="stock.canslim.score_delta !== 0" 
-                                                 :class="['text-xs font-black inline-flex items-center px-2 py-0.5 rounded-lg', 
-                                                          stock.canslim.score_delta > 0 ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-rose-50 text-rose-700 border border-rose-100']">
-                                                <i :class="stock.canslim.score_delta > 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'" class="mr-1"></i>
-                                                {{ Math.abs(stock.canslim.score_delta) }}
+                                                 :class="['text-xs font-black inline-flex items-center px-3 py-1 rounded-xl shadow-sm border-2', 
+                                                          stock.canslim.score_delta > 0 ? 'bg-emerald-500 text-white border-emerald-600' : 'bg-rose-500 text-white border-rose-600']">
+                                                {{ stock.canslim.score_delta > 0 ? '↑' : '↓' }} {{ Math.abs(stock.canslim.score_delta) }}
                                             </div>
-                                            <div v-else class="text-slate-300">-</div>
+                                            <div v-else class="text-slate-200 text-xl font-black">—</div>
                                         </td>
-                                        <td class="py-5 text-center">
-                                            <div :class="['inline-block px-3 py-1.5 rounded-xl font-black text-sm shadow-sm border',
-                                                stock.canslim.score >= 85 ? 'bg-rose-500 text-white border-rose-600' :
-                                                stock.canslim.score >= 70 ? 'bg-orange-400 text-white border-orange-500' :
-                                                'bg-white text-slate-600 border-slate-200']">
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
+                                            <div :class="['inline-block px-5 py-2 rounded-2xl font-black text-lg shadow-lg border-2',
+                                                stock.canslim.score >= 85 ? 'bg-rose-600 text-white border-rose-700' :
+                                                stock.canslim.score >= 70 ? 'bg-orange-500 text-white border-orange-600' :
+                                                'bg-white text-slate-800 border-slate-200 group-hover:bg-blue-500 group-hover:border-blue-400 group-hover:text-white']">
                                                 {{ stock.canslim.score }}
                                             </div>
                                         </td>
-                                        <td class="py-5 text-center font-mono font-bold" :class="stock.canslim.i_score_abs >= 60 ? 'text-blue-600' : 'text-slate-400'">
-                                            {{ Math.round(stock.canslim.i_score_abs || 0) }}
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
+                                            <div :class="['font-mono font-black text-lg group-hover:text-white', stock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-500']">
+                                                {{ stock.canslim.mansfield_rs?.toFixed(2) || '0.00' }}
+                                            </div>
                                         </td>
-                                        <td class="py-5 text-center font-mono font-bold" :class="stock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-500'">
-                                            {{ stock.canslim.mansfield_rs?.toFixed(2) || '0.00' }}
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
+                                            <div v-if="stock.revenue_features" class="font-black text-blue-600 group-hover:text-blue-100 text-xl">
+                                                {{ stock.revenue_features.revenue_score }}<span class="text-[10px] font-black opacity-40 ml-0.5">/6</span>
+                                            </div>
+                                            <div v-else class="text-slate-200">—</div>
                                         </td>
-                                        <td class="py-5 text-center">
-                                            <span :class="['px-2 py-1 rounded-lg text-[10px] font-black border', getFreshnessBadge(getStockFreshness(stock)).classes]">
+                                        <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center pr-8 rounded-r-3xl">
+                                            <span :class="['px-3 py-1.5 rounded-xl text-[10px] font-black border-2 shadow-sm', getFreshnessBadge(getStockFreshness(stock)).classes]">
                                                 {{ getFreshnessBadge(getStockFreshness(stock)).label }}
                                             </span>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="mt-8 p-6 bg-slate-50 rounded-3xl border border-slate-100 text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
-                                <p class="font-medium">清單包含 {{ allStocksSorted.length }} 檔監測標的，顯示前 50 名最符合 CANSLIM 條件之股票。</p>
-                                <div class="flex gap-2">
-                                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-rose-500 rounded-full"></span>超強勢</span>
-                                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-orange-400 rounded-full"></span>潛力股</span>
-                                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-slate-200 rounded-full border border-slate-300"></span>觀察中</span>
+                            <div class="mt-12 p-8 bg-slate-100 rounded-[2.5rem] border-2 border-slate-200 text-base text-slate-600 flex flex-col md:flex-row justify-between items-center gap-6">
+                                <p class="font-black tracking-tight underline underline-offset-8 decoration-blue-500/30">全市場包含 {{ allStocksSorted.length }} 檔股票，僅顯示前 50 名優質標的。</p>
+                                <div class="flex gap-4">
+                                    <span class="flex items-center gap-2 px-4 py-1 bg-white rounded-full border border-slate-200 font-black text-xs shadow-sm"><span class="w-3 h-3 bg-rose-600 rounded-full shadow-lg shadow-rose-200"></span>超強勢</span>
+                                    <span class="flex items-center gap-2 px-4 py-1 bg-white rounded-full border border-slate-200 font-black text-xs shadow-sm"><span class="w-3 h-3 bg-orange-500 rounded-full shadow-lg shadow-orange-200"></span>潛力股</span>
+                                    <span class="flex items-center gap-2 px-4 py-1 bg-white rounded-full border border-slate-200 font-black text-xs shadow-sm"><span class="w-3 h-3 bg-slate-300 rounded-full"></span>觀察中</span>
                                 </div>
                             </div>
                         </div>

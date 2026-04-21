@@ -96,15 +96,26 @@ const app = createApp({
             isLoading.value = true;
             loadingProgress.value = 10;
             try {
-                const [response, indexResponse] = await Promise.all([
+                const [response, indexResponse, featuresResponse] = await Promise.all([
                     fetch('data.json?t=' + new Date().getTime()),
                     fetch('stock_index.json?t=' + new Date().getTime()),
+                    fetch('api/stock_features.json?t=' + new Date().getTime()).catch(() => ({ json: () => ({}) })),
                 ]);
                 loadingProgress.value = 50;
-                const [data, indexData] = await Promise.all([
-                    response.json(),
-                    indexResponse.json(),
-                ]);
+                
+                const data = await response.json();
+                const indexData = await indexResponse.json();
+                const featuresData = typeof featuresResponse.json === 'function' ? await featuresResponse.json() : {};
+                
+                // Merge features into stock data
+                if (data.stocks) {
+                    Object.keys(data.stocks).forEach(symbol => {
+                        if (featuresData[symbol]) {
+                            data.stocks[symbol].revenue_features = featuresData[symbol];
+                        }
+                    });
+                }
+
                 stockData.value = data;
                 stockIndexData.value = indexData;
                 lastUpdated.value = data.last_updated;
@@ -138,6 +149,7 @@ const app = createApp({
                 has_full_detail: false,
                 institutional: [],
                 financials: {},
+                revenue_features: null,
                 canslim: {
                     C: false,
                     A: false,
@@ -229,11 +241,15 @@ const app = createApp({
                 .sort((a, b) => {
                     // Primary: Score
                     if (b.canslim.score !== a.canslim.score) return b.canslim.score - a.canslim.score;
-                    // Secondary: Institutional score (abs)
+                    // Secondary: Revenue Score (Alpha)
+                    const aRev = a.revenue_features?.revenue_score || 0;
+                    const bRev = b.revenue_features?.revenue_score || 0;
+                    if (bRev !== aRev) return bRev - aRev;
+                    // Tertiary: Institutional score (abs)
                     const aI = a.canslim.i_score_abs || 0;
                     const bI = b.canslim.i_score_abs || 0;
                     if (bI !== aI) return bI - aI;
-                    // Tertiary: Mansfield RS
+                    // Fourth: Mansfield RS
                     return (b.canslim.mansfield_rs || 0) - (a.canslim.mansfield_rs || 0);
                 });
         });
