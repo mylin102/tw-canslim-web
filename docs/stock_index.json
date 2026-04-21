@@ -1,20 +1,20 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20260421T053827Z",
-  "generated_at": "2026-04-21T05:38:46Z",
-  "last_updated": "2026-04-21 05:38:46",
+  "run_id": "20260421T055954Z",
+  "generated_at": "2026-04-21T06:00:21Z",
+  "last_updated": "2026-04-21 06:00:21",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
       "name": "主動國泰動能高息",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00401A": {
@@ -22,11 +22,11 @@
       "name": "主動摩根台灣鑫收",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0050": {
@@ -34,11 +34,11 @@
       "name": "元大台灣50",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0051": {
@@ -46,11 +46,11 @@
       "name": "元大中型100",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0052": {
@@ -58,11 +58,11 @@
       "name": "富邦科技",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0053": {
@@ -70,11 +70,11 @@
       "name": "元大電子",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0055": {
@@ -82,11 +82,11 @@
       "name": "元大MSCI金融",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0056": {
@@ -94,11 +94,11 @@
       "name": "元大高股息",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0057": {
@@ -106,11 +106,11 @@
       "name": "富邦摩台",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "0061": {
@@ -118,11 +118,11 @@
       "name": "元大寶滬深",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "006203": {
@@ -130,11 +130,11 @@
       "name": "元大MSCI台灣",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "006204": {
@@ -142,11 +142,11 @@
       "name": "永豐臺灣加權",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "006205(新臺幣)<br>00625K(人民幣)": {
@@ -166,11 +166,11 @@
       "name": "元大上證50",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "006207": {
@@ -178,11 +178,11 @@
       "name": "復華滬深(原簡稱:FH滬深)",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "006208": {
@@ -190,11 +190,11 @@
       "name": "富邦台50",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00631L": {
@@ -202,11 +202,11 @@
       "name": "元大台灣50正2",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00632R": {
@@ -214,11 +214,11 @@
       "name": "元大台灣50反1",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00633L": {
@@ -226,11 +226,11 @@
       "name": "富邦上証正2",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00634R": {
@@ -238,11 +238,11 @@
       "name": "富邦上証反1",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00635U": {
@@ -250,11 +250,11 @@
       "name": "期元大S&P黃金",
       "industry": "ETF",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
       },
-      "last_succeeded_at": "2026-04-20T00:28:55Z",
+      "last_succeeded_at": "",
       "in_snapshot": true
     },
     "00636(新臺幣)<br>00636K(美元)": {

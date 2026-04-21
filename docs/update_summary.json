@@ -1,22 +1,22 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260421T053827Z",
-  "generated_at": "2026-04-21T05:38:46Z",
+  "run_id": "20260421T055954Z",
+  "generated_at": "2026-04-21T06:00:21Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 3,
     "retry_failures": 1,
     "resume_rejected": 0,
-    "stock_failures": 2,
-    "provider_wait_seconds": 9.482342361999997
+    "stock_failures": 393,
+    "provider_wait_seconds": 10.023072692999989
   },
-  "timestamp": "2026-04-21T05:38:46Z",
+  "timestamp": "2026-04-21T06:00:21Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 1,
-    "provider_wait_seconds": 9.482342361999997
+    "provider_wait_seconds": 10.023072692999989
   },
   "data_stats": {
     "total_stocks": 1018,
@@ -24,18 +24,1973 @@
   },
   "failures": [
     {
+      "ticker": "1101",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2330",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2303",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
       "ticker": "3565",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6770",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6805",
       "message": "'CanslimEngine' object has no attribute 'inst_cache'"
     },
     {
       "ticker": "8069",
       "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "0050",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "0056",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "00878",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3450",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3036",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3209",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2887",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3231",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2885",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3090",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3017",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3504",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3048",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3167",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3229",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3481",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3049",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2883",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3189",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3437",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3006",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3042",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3031",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2605",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3380",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3030",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2855",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3037",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3135",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3138",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3305",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3044",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3016",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3026",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3092",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3028",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2527",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3338",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3406",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3023",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3443",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3054",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3010",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2923",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2891",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2834",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2882",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2610",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2881",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2884",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2890",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2886",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2618",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3045",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2801",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2515",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2880",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2812",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2603",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2892",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2609",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2615",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3062",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3013",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2634",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2606",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2637",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3005",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2542",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3033",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2845",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3035",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2646",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2867",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2633",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3008",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2851",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2912",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3024",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2889",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2915",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2897",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3034",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3376",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2836",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3094",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3059",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3149",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3019",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3011",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2903",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2645",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3312",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3056",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2547",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2913",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2597",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3060",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2540",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2520",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2838",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2630",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3413",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2511",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2820",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2601",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2905",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3055",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2702",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2548",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3025",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2535",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3057",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2612",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2850",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3308",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2816",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2910",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3356",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3038",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2945",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2614",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2617",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3321",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3419",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2832",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3003",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3432",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3416",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3002",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2546",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2849",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3046",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2616",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3168",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2705",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2731",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2762",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3050",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2727",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2908",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2509",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3130",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3266",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2707",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3014",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2704",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2852",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2701",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2911",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2753",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3022",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3004",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2739",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3296",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2706",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2636",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3021",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3164",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3311",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2904",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3052",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2939",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2901",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3015",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2537",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2611",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2539",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3150",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3501",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2906",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2748",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2608",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2712",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2613",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3257",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2534",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2524",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3051",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2607",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3029",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2722",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3058",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2538",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3041",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2545",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2514",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3043",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2516",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2642",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2543",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2723",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2528",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3047",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2536",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3346",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3040",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2530",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3032",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3447",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3494",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3018",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3027",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "2929",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3515",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3518",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3528",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3530",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3532",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3533",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3535",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3543",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3545",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3550",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3557",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3563",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3576",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3583",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3588",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3591",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3592",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3593",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3596",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3605",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3607",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3617",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3622",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3645",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3652",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3653",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3661",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3665",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3669",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3673",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3679",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3686",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3694",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3701",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3702",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3703",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3704",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3705",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3706",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3708",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3711",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3712",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3714",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3715",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3716",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "3717",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4104",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4106",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4108",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4119",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4133",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4137",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4142",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4148",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4155",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4164",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4169",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4190",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4306",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4414",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4426",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4438",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4439",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4440",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4441",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4526",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4532",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4536",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4540",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4545",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4551",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4552",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4555",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4557",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4560",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4562",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4564",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4566",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4569",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4571",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4572",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4576",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4581",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4583",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4585",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4588",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4590",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4720",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4722",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4736",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4737",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4739",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4746",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4755",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4763",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4764",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4766",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4770",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4771",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4807",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4904",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4906",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4912",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4915",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4916",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4919",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4927",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4930",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4934",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4935",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4938",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4942",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4943",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4949",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4952",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4956",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4958",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4960",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4961",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4967",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4968",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4976",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4977",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4989",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4994",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "4999",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5007",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5203",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5215",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5222",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5225",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5234",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5243",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5244",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5258",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5269",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5283",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5284",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5285",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5288",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5292",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5306",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5388",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5434",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5469",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5471",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5484",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5515",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5519",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5521",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5522",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5525",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5531",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5533",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5534",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5538",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5546",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5607",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5608",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5706",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5871",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5876",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5880",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5906",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "5907",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6005",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6024",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6108",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6112",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6115",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6116",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6117",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6120",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6128",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6133",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6136",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6139",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6141",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6142",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6152",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6153",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
+    },
+    {
+      "ticker": "6155",
+      "message": "'CanslimEngine' object has no attribute 'inst_cache'"
     }
   ],
   "refreshed_symbols": [],
   "failed_symbols": [
+    "1101",
+    "2330",
+    "2303",
     "3565",
-    "8069"
+    "6770",
+    "6805",
+    "8069",
+    "0050",
+    "0056",
+    "00878",
+    "3450",
+    "3036",
+    "3209",
+    "2887",
+    "3231",
+    "2885",
+    "3090",
+    "3017",
+    "3504",
+    "3048",
+    "3167",
+    "3229",
+    "3481",
+    "3049",
+    "2883",
+    "3189",
+    "3437",
+    "3006",
+    "3042",
+    "3031",
+    "2605",
+    "3380",
+    "3030",
+    "2855",
+    "3037",
+    "3135",
+    "3138",
+    "3305",
+    "3044",
+    "3016",
+    "3026",
+    "3092",
+    "3028",
+    "2527",
+    "3338",
+    "3406",
+    "3023",
+    "3443",
+    "3054",
+    "3010",
+    "2923",
+    "2891",
+    "2834",
+    "2882",
+    "2610",
+    "2881",
+    "2884",
+    "2890",
+    "2886",
+    "2618",
+    "3045",
+    "2801",
+    "2515",
+    "2880",
+    "2812",
+    "2603",
+    "2892",
+    "2609",
+    "2615",
+    "3062",
+    "3013",
+    "2634",
+    "2606",
+    "2637",
+    "3005",
+    "2542",
+    "3033",
+    "2845",
+    "3035",
+    "2646",
+    "2867",
+    "2633",
+    "3008",
+    "2851",
+    "2912",
+    "3024",
+    "2889",
+    "2915",
+    "2897",
+    "3034",
+    "3376",
+    "2836",
+    "3094",
+    "3059",
+    "3149",
+    "3019",
+    "3011",
+    "2903",
+    "2645",
+    "3312",
+    "3056",
+    "2547",
+    "2913",
+    "2597",
+    "3060",
+    "2540",
+    "2520",
+    "2838",
+    "2630",
+    "3413",
+    "2511",
+    "2820",
+    "2601",
+    "2905",
+    "3055",
+    "2702",
+    "2548",
+    "3025",
+    "2535",
+    "3057",
+    "2612",
+    "2850",
+    "3308",
+    "2816",
+    "2910",
+    "3356",
+    "3038",
+    "2945",
+    "2614",
+    "2617",
+    "3321",
+    "3419",
+    "2832",
+    "3003",
+    "3432",
+    "3416",
+    "3002",
+    "2546",
+    "2849",
+    "3046",
+    "2616",
+    "3168",
+    "2705",
+    "2731",
+    "2762",
+    "3050",
+    "2727",
+    "2908",
+    "2509",
+    "3130",
+    "3266",
+    "2707",
+    "3014",
+    "2704",
+    "2852",
+    "2701",
+    "2911",
+    "2753",
+    "3022",
+    "3004",
+    "2739",
+    "3296",
+    "2706",
+    "2636",
+    "3021",
+    "3164",
+    "3311",
+    "2904",
+    "3052",
+    "2939",
+    "2901",
+    "3015",
+    "2537",
+    "2611",
+    "2539",
+    "3150",
+    "3501",
+    "2906",
+    "2748",
+    "2608",
+    "2712",
+    "2613",
+    "3257",
+    "2534",
+    "2524",
+    "3051",
+    "2607",
+    "3029",
+    "2722",
+    "3058",
+    "2538",
+    "3041",
+    "2545",
+    "2514",
+    "3043",
+    "2516",
+    "2642",
+    "2543",
+    "2723",
+    "2528",
+    "3047",
+    "2536",
+    "3346",
+    "3040",
+    "2530",
+    "3032",
+    "3447",
+    "3494",
+    "3018",
+    "3027",
+    "2929",
+    "3515",
+    "3518",
+    "3528",
+    "3530",
+    "3532",
+    "3533",
+    "3535",
+    "3543",
+    "3545",
+    "3550",
+    "3557",
+    "3563",
+    "3576",
+    "3583",
+    "3588",
+    "3591",
+    "3592",
+    "3593",
+    "3596",
+    "3605",
+    "3607",
+    "3617",
+    "3622",
+    "3645",
+    "3652",
+    "3653",
+    "3661",
+    "3665",
+    "3669",
+    "3673",
+    "3679",
+    "3686",
+    "3694",
+    "3701",
+    "3702",
+    "3703",
+    "3704",
+    "3705",
+    "3706",
+    "3708",
+    "3711",
+    "3712",
+    "3714",
+    "3715",
+    "3716",
+    "3717",
+    "4104",
+    "4106",
+    "4108",
+    "4119",
+    "4133",
+    "4137",
+    "4142",
+    "4148",
+    "4155",
+    "4164",
+    "4169",
+    "4190",
+    "4306",
+    "4414",
+    "4426",
+    "4438",
+    "4439",
+    "4440",
+    "4441",
+    "4526",
+    "4532",
+    "4536",
+    "4540",
+    "4545",
+    "4551",
+    "4552",
+    "4555",
+    "4557",
+    "4560",
+    "4562",
+    "4564",
+    "4566",
+    "4569",
+    "4571",
+    "4572",
+    "4576",
+    "4581",
+    "4583",
+    "4585",
+    "4588",
+    "4590",
+    "4720",
+    "4722",
+    "4736",
+    "4737",
+    "4739",
+    "4746",
+    "4755",
+    "4763",
+    "4764",
+    "4766",
+    "4770",
+    "4771",
+    "4807",
+    "4904",
+    "4906",
+    "4912",
+    "4915",
+    "4916",
+    "4919",
+    "4927",
+    "4930",
+    "4934",
+    "4935",
+    "4938",
+    "4942",
+    "4943",
+    "4949",
+    "4952",
+    "4956",
+    "4958",
+    "4960",
+    "4961",
+    "4967",
+    "4968",
+    "4976",
+    "4977",
+    "4989",
+    "4994",
+    "4999",
+    "5007",
+    "5203",
+    "5215",
+    "5222",
+    "5225",
+    "5234",
+    "5243",
+    "5244",
+    "5258",
+    "5269",
+    "5283",
+    "5284",
+    "5285",
+    "5288",
+    "5292",
+    "5306",
+    "5388",
+    "5434",
+    "5469",
+    "5471",
+    "5484",
+    "5515",
+    "5519",
+    "5521",
+    "5522",
+    "5525",
+    "5531",
+    "5533",
+    "5534",
+    "5538",
+    "5546",
+    "5607",
+    "5608",
+    "5706",
+    "5871",
+    "5876",
+    "5880",
+    "5906",
+    "5907",
+    "6005",
+    "6024",
+    "6108",
+    "6112",
+    "6115",
+    "6116",
+    "6117",
+    "6120",
+    "6128",
+    "6133",
+    "6136",
+    "6139",
+    "6141",
+    "6142",
+    "6152",
+    "6153",
+    "6155"
   ],
   "next_rotation": {
     "batch_index": 2,
