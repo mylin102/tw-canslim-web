@@ -7,7 +7,13 @@
 
 ## Current Status
 
-- **Phase 5: Revenue Feature Pipeline** (In Progress)
+- **Phase 6: Revenue-Driven Selection Alpha** (Planned)
+
+### Phase 6: Revenue-Driven Selection Alpha
+**Goal:** Integrate revenue features into selection and ranking logic for alpha export.
+**Plans:** 2 plans
+- [ ] 06-01-PLAN.md — Core Selection Integration (TDD)
+- [ ] 06-02-PLAN.md — Alpha Export Integration & Verification
 
 ### Phase 5: Revenue Feature Pipeline
 **Goal:** Implement the feature computation pipeline defined in `docs/VAN_FEATURE_pipiline.md`.
@@ -28,4 +34,4 @@
 </details>
 
 ---
-*Last updated: 2026-04-21 after starting Phase 5*
+*Last updated: 2026-04-21 after planning Phase 6*
