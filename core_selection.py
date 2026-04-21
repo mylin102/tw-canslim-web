@@ -24,6 +24,7 @@ BUCKET_ORDER = (
     "watchlist_symbols",
     "yesterday_signals",
     "today_signals",
+    "revenue_alpha_leaders",
     "rs_leaders",
     "top_volume_leaders",
 )
@@ -66,6 +67,7 @@ class RankedCandidate:
 
     symbol: str
     mansfield_rs: float = 0.0
+    revenue_score: float = 0.0
     volume_rank: int | None = None
 
 
@@ -114,6 +116,7 @@ def load_selector_inputs(
     fused_path: str | Path,
     master_path: str | Path,
     baseline_path: str | Path,
+    revenue_path: str | Path = "docs/api/stock_features.json",
     signal_score_threshold: int = SIGNAL_SCORE_THRESHOLD,
 ) -> dict[str, Any]:
     """Load selector inputs and derive persisted buckets from trusted artifacts."""
@@ -164,11 +167,29 @@ def load_selector_inputs(
     top_volume_rows = latest_rows.sort_values(["volume_rank", "stock_id"]).head(TOP_VOLUME_LEADER_COUNT)
     top_volume_leaders = _ordered_symbols(top_volume_rows["stock_id"].tolist())
 
+    # Load revenue features
+    revenue_data = {}
+    rev_path = Path(revenue_path)
+    if rev_path.exists():
+        with rev_path.open("r", encoding="utf-8") as handle:
+            revenue_data = json.load(handle)
+
+    revenue_alpha_leaders = []
+    for symbol, features in revenue_data.items():
+        if not isinstance(features, dict):
+            continue
+        score = features.get("revenue_score", 0)
+        accelerating = features.get("rev_accelerating", False)
+        if score >= 5 and accelerating is True:
+            if _is_valid_symbol(str(symbol)):
+                revenue_alpha_leaders.append(str(symbol))
+
     mansfield_rs_metrics = _load_baseline_rs_metrics(baseline_path)
     ranked_candidates = [
         RankedCandidate(
             symbol=str(row["stock_id"]),
             mansfield_rs=float(mansfield_rs_metrics.get(str(row["stock_id"]), 0.0)),
+            revenue_score=float(revenue_data.get(str(row["stock_id"]), {}).get("revenue_score", 0.0)),
             volume_rank=_to_int_or_none(row["volume_rank"]),
         )
         for _, row in latest_rows.iterrows()
@@ -181,6 +202,7 @@ def load_selector_inputs(
         "all_symbols": latest_rows["stock_id"].tolist(),
         "today_signal_symbols": today_signal_symbols,
         "yesterday_signal_symbols": yesterday_signal_symbols,
+        "revenue_alpha_leaders": revenue_alpha_leaders,
         "rs_leaders": rs_leaders,
         "top_volume_leaders": top_volume_leaders,
         "ranked_candidates": ranked_candidates,
@@ -198,9 +220,11 @@ def build_core_universe(
     fused_path: str | Path | None = None,
     master_path: str | Path | None = None,
     baseline_path: str | Path | None = None,
+    revenue_path: str | Path | None = None,
     ranked_candidates: Sequence[RankedCandidate] | None = None,
     today_signal_symbols: Sequence[str] | None = None,
     yesterday_signal_symbols: Sequence[str] | None = None,
+    revenue_alpha_leaders: Sequence[str] | None = None,
     rs_leaders: Sequence[str] | None = None,
     top_volume_leaders: Sequence[str] | None = None,
     target_size: int | None = None,
@@ -219,18 +243,24 @@ def build_core_universe(
                 "build_core_universe requires either config or all selector artifact paths; "
                 f"missing {', '.join(sorted(missing_paths))}"
             )
-        selector_inputs = load_selector_inputs(
-            config_path=config_path,
-            fused_path=fused_path,
-            master_path=master_path,
-            baseline_path=baseline_path,
-        )
+        
+        load_kwargs = {
+            "config_path": config_path,
+            "fused_path": fused_path,
+            "master_path": master_path,
+            "baseline_path": baseline_path,
+        }
+        if revenue_path is not None:
+            load_kwargs["revenue_path"] = revenue_path
+
+        selector_inputs = load_selector_inputs(**load_kwargs)
         return build_core_universe(
             all_symbols=all_symbols,
             config=selector_inputs["config"],
             ranked_candidates=selector_inputs["ranked_candidates"],
             today_signal_symbols=selector_inputs["today_signal_symbols"],
             yesterday_signal_symbols=selector_inputs["yesterday_signal_symbols"],
+            revenue_alpha_leaders=selector_inputs["revenue_alpha_leaders"],
             rs_leaders=selector_inputs["rs_leaders"],
             top_volume_leaders=selector_inputs["top_volume_leaders"],
             target_size=target_size,
@@ -247,6 +277,7 @@ def build_core_universe(
         "watchlist_symbols": config.watchlist_symbols,
         "yesterday_signals": list(yesterday_signal_symbols or []),
         "today_signals": list(today_signal_symbols or []),
+        "revenue_alpha_leaders": list(revenue_alpha_leaders or []),
         "rs_leaders": list(rs_leaders or []),
         "top_volume_leaders": list(top_volume_leaders or []),
     }
@@ -391,7 +422,7 @@ def _to_int_or_none(value: Any) -> int | None:
     return int(value)
 
 
-def _ranked_candidate_sort_key(candidate: RankedCandidate) -> tuple[float, int, str]:
-    """Stable selector ordering after required buckets: (-mansfield_rs, volume_rank, symbol)."""
+def _ranked_candidate_sort_key(candidate: RankedCandidate) -> tuple[float, float, int, str]:
+    """Stable selector ordering after required buckets: (-revenue_score, -mansfield_rs, volume_rank, symbol)."""
     volume_rank = candidate.volume_rank if candidate.volume_rank is not None else 10**9
-    return (-candidate.mansfield_rs, volume_rank, candidate.symbol)
+    return (-candidate.revenue_score, -candidate.mansfield_rs, volume_rank, candidate.symbol)
