@@ -103,12 +103,10 @@ const app = createApp({
                 ]);
                 loadingProgress.value = 50;
                 
-                const data = await response.json();
-                const indexData = await indexResponse.json();
                 const featuresData = typeof featuresResponse.json === 'function' ? await featuresResponse.json() : {};
                 
-                // Merge features into stock data
-                if (data.stocks) {
+                // Merge features into stock data (featuresData is now a dictionary symbol -> data)
+                if (data.stocks && featuresData) {
                     Object.keys(data.stocks).forEach(symbol => {
                         if (featuresData[symbol]) {
                             data.stocks[symbol].revenue_features = featuresData[symbol];

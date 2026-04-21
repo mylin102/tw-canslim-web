@@ -24,10 +24,10 @@ class FeaturePipeline:
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
 
-    def process_stocks(self, symbols: List[str]) -> Dict[str, List]:
+    def process_stocks(self, symbols: List[str]) -> Dict[str, Dict]:
         """Process a list of symbols and return aggregated features and rankings."""
-        stock_features = []
-        rankings = []
+        stock_features = {}
+        rankings = {}
         
         updated_at = datetime.now().strftime("%Y-%m-%d")
         
@@ -44,7 +44,7 @@ class FeaturePipeline:
                 features = calculate_revenue_features(rev_df)
                 if features:
                     # Prepare stock_features.json entry
-                    feature_entry = {
+                    stock_features[symbol] = {
                         "symbol": symbol,
                         "rev_yoy": round(features['rev_yoy'], 4),
                         "rev_mom": round(features['rev_mom'], 4),
@@ -56,16 +56,14 @@ class FeaturePipeline:
                         "updated_at": updated_at,
                         "feature_version": FEATURE_VERSION
                     }
-                    stock_features.append(feature_entry)
                     
                     # Prepare ranking.json entry
-                    ranking_entry = {
+                    rankings[symbol] = {
                         "symbol": symbol,
                         "total_score": features['revenue_score'], # Currently only revenue score
                         "revenue_score": features['revenue_score'],
                         "updated_at": updated_at
                     }
-                    rankings.append(ranking_entry)
                 else:
                     logger.warning(f"Could not calculate features for {symbol}")
             except Exception as e:
