@@ -363,28 +363,30 @@
 
                                     <!-- Recent Flow Histogram -->
                                     <div v-if="currentStock.institutional && currentStock.institutional.length > 0">
-                                        <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6 px-2">三大法人近五日流量分佈 (張)</h4>
+                                        <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6 px-2">三大法人近五日買賣超詳情 (張)</h4>
                                         <div class="bg-white rounded-[2rem] border border-slate-200 p-8 shadow-xl">
                                             <div class="grid grid-cols-5 gap-4">
                                                 <div v-for="day in recentInstitutionalDays(currentStock)" :key="`bar-${day.date}`" class="space-y-4 min-w-0">
                                                     <div class="text-center">
                                                         <div class="text-[10px] font-black text-slate-400 uppercase tracking-tighter mb-1">{{ day.date.substring(4, 6) }}/{{ day.date.substring(6, 8) }}</div>
-                                                        <div :class="['text-xs font-mono font-black tracking-tighter', totalInstitutionalNet(day) > 0 ? 'text-emerald-500' : totalInstitutionalNet(day) < 0 ? 'text-rose-600' : 'text-slate-300']">
-                                                            {{ formatNumber(totalInstitutionalNet(day)) }}
+                                                        <div class="flex flex-col gap-0.5">
+                                                            <div :class="['text-[9px] font-mono font-black leading-none', day.foreign_net > 0 ? 'text-emerald-500' : 'text-rose-400']">{{ formatNumber(day.foreign_net) }}</div>
+                                                            <div :class="['text-[9px] font-mono font-black leading-none', day.trust_net > 0 ? 'text-indigo-600' : 'text-orange-400']">{{ formatNumber(day.trust_net) }}</div>
+                                                            <div :class="['text-[9px] font-mono font-black leading-none', day.dealer_net > 0 ? 'text-sky-500' : 'text-slate-400']">{{ formatNumber(day.dealer_net) }}</div>
                                                         </div>
                                                     </div>
                                                     <div class="relative h-56 rounded-2xl border-2 border-slate-50 bg-slate-50/50 px-3 py-4 overflow-hidden shadow-inner">
                                                         <div class="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-slate-200"></div>
                                                         <div class="relative h-full grid grid-cols-3 gap-1.5 items-stretch">
-                                                            <div class="relative">
+                                                            <div class="relative group/bar">
                                                                 <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.foreign_net, 'bg-emerald-500', 'bg-rose-500')]"
                                                                      :style="institutionalBarStyle(day.foreign_net, currentStock)"></div>
                                                             </div>
-                                                            <div class="relative">
+                                                            <div class="relative group/bar">
                                                                 <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.trust_net, 'bg-indigo-600', 'bg-orange-500')]"
                                                                      :style="institutionalBarStyle(day.trust_net, currentStock)"></div>
                                                             </div>
-                                                            <div class="relative">
+                                                            <div class="relative group/bar">
                                                                 <div :class="['absolute left-0 right-0 rounded-full transition-all duration-500 shadow-sm', institutionalBarClass(day.dealer_net, 'bg-sky-500', 'bg-slate-400')]"
                                                                      :style="institutionalBarStyle(day.dealer_net, currentStock)"></div>
                                                             </div>
