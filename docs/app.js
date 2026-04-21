@@ -96,16 +96,38 @@ const app = createApp({
             isLoading.value = true;
             loadingProgress.value = 10;
             try {
-                const [response, indexResponse, featuresResponse] = await Promise.all([
+                // Fetch basic data and index
+                const [response, indexResponse] = await Promise.all([
                     fetch('data.json?t=' + new Date().getTime()),
-                    fetch('stock_index.json?t=' + new Date().getTime()),
-                    fetch('api/stock_features.json?t=' + new Date().getTime()).catch(() => ({ json: () => ({}) })),
+                    fetch('stock_index.json?t=' + new Date().getTime())
                 ]);
-                loadingProgress.value = 50;
                 
-                const featuresData = typeof featuresResponse.json === 'function' ? await featuresResponse.json() : {};
+                if (!response.ok) throw new Error('Primary data load failed');
                 
-                // Merge features into stock data (featuresData is now a dictionary symbol -> data)
+                loadingProgress.value = 40;
+                const data = await response.json();
+                const indexData = await indexResponse.json();
+                
+                // Fetch features separately (non-critical)
+                let featuresData = {};
+                try {
+                    const featResp = await fetch('api/stock_features.json?t=' + new Date().getTime());
+                    if (featResp.ok) {
+                        const rawFeat = await featResp.json();
+                        // Support both List and Dict formats for robustness
+                        if (Array.isArray(rawFeat)) {
+                            rawFeat.forEach(item => { if (item.symbol) featuresData[item.symbol] = item; });
+                        } else {
+                            featuresData = rawFeat || {};
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Feature data not available, continuing without it.');
+                }
+
+                loadingProgress.value = 70;
+                
+                // Merge features into stock data
                 if (data.stocks && featuresData) {
                     Object.keys(data.stocks).forEach(symbol => {
                         if (featuresData[symbol]) {
@@ -119,15 +141,14 @@ const app = createApp({
                 lastUpdated.value = data.last_updated;
                 loadingProgress.value = 100;
                 
-                // If query param exists, auto-select
                 const urlParams = new URLSearchParams(window.location.search);
                 const s = urlParams.get('s');
-                if (s && ((data.stocks && data.stocks[s]) || (indexData.stocks && indexData.stocks[s]))) {
-                    searchQuery.value = s;
+                if (s) {
+                    setTimeout(() => selectStock(s), 100);
                 }
             } catch (err) {
                 console.error('Fetch error:', err);
-                errorState.value = "無法載入戰情室數據，請檢查網路連線或稍後再試。";
+                errorState.value = "戰情室資料傳輸中斷。請嘗試重新整理網頁，或檢查您的網路連線。";
             } finally {
                 setTimeout(() => {
                     isLoading.value = false;
@@ -331,8 +352,6 @@ const app = createApp({
         const institutionalBarStyle = (value, stock, count = 5) => {
             const normalized = safeNumber(value);
             const scale = institutionalScale(stock, count);
-            // Height represents percentage of the max value in the 5-day window
-            // Max height is 44% (half of container minus padding)
             const height = normalized === 0
                 ? 1 
                 : Math.max(Math.round((Math.abs(normalized) / scale) * 44), 4);
