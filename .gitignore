@@ -48,3 +48,4 @@ master_canslim_signals_fused.parquet
 # Temporary files
 *.tmp
 *.bak
+\n# Backups\n.rewrite-backups/\nbackups/
