@@ -16,7 +16,7 @@ from tej_processor import TEJProcessor
 logger = logging.getLogger(__name__)
 
 FEATURE_VERSION = "v1.0"
-OUTPUT_DIR = "api"
+OUTPUT_DIR = "docs/api"
 
 class FeaturePipeline:
     def __init__(self, api_key: Optional[str] = None):

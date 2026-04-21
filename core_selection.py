@@ -171,8 +171,16 @@ def load_selector_inputs(
     revenue_data = {}
     rev_path = Path(revenue_path)
     if rev_path.exists():
-        with rev_path.open("r", encoding="utf-8") as handle:
-            revenue_data = json.load(handle)
+        try:
+            with rev_path.open("r", encoding="utf-8") as handle:
+                raw_data = json.load(handle)
+                if isinstance(raw_data, dict):
+                    revenue_data = raw_data
+                elif isinstance(raw_data, list):
+                    # Robustness: convert list of features to dict symbol -> features
+                    revenue_data = {item.get("symbol"): item for item in raw_data if isinstance(item, dict) and "symbol" in item}
+        except Exception as e:
+            logger.warning(f"Failed to load revenue features from {revenue_path}: {e}")
 
     revenue_alpha_leaders = []
     for symbol, features in revenue_data.items():
