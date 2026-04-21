@@ -359,12 +359,6 @@ const app = createApp({
             };
         };
 
-            return {
-                height: '2px',
-                bottom: 'calc(50% - 1px)',
-            };
-        };
-
         const institutionalBarClass = (value, positiveClass, negativeClass) => {
             if (value > 0) return positiveClass;
             if (value < 0) return negativeClass;
