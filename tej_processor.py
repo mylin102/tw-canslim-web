@@ -94,8 +94,8 @@ class TEJProcessor:
                          end_date: str = None,
                          count: int = None) -> Optional[pd.DataFrame]:
         """
-        Get daily price data. Tries TRAIL/TAPRCD then TWN/APRCD.
-        Used for RS score, technical analysis, and grid trading.
+        Get daily price data. Tries TRAIL/TAPRCD, then falls back to yfinance 
+        if permission is denied.
         """
         if not self.initialized:
             return None
@@ -104,65 +104,75 @@ class TEJProcessor:
             params = {'coid': [coid], 'paginate': True}
             if start_date:
                 params['mdate'] = {'gte': start_date}
-            if end_date:
-                if 'mdate' not in params: params['mdate'] = {}
-                params['mdate']['lte'] = end_date
             
-            # Try TRAIL first (common for trial keys)
-            data = self._tej_get_with_policy('TRAIL/TAPRCD', **params)
-            if data is None or len(data) == 0:
-                data = self._tej_get_with_policy('TWN/APRCD', **params)
+            # 1. Try TEJ
+            data = None
+            for table in ['TRAIL/TAPRCD', 'TRAIL/APRCD']:
+                try:
+                    data = self._tej_get_with_policy(table, **params)
+                    if data is not None and len(data) > 0:
+                        logger.info(f"Fetched prices from TEJ {table}")
+                        break
+                except Exception as exc:
+                    if "Forbidden" in str(exc):
+                        continue
+                    raise
 
-            if data is None or len(data) == 0:
-                return None
-            
-            # Standardize columns
-            data = data.rename(columns={
-                'mdate': 'date',
-                'open_d': 'open',
-                'high_d': 'high',
-                'low_d': 'low',
-                'close_d': 'close',
-                'vol_nk': 'volume'
-            })
-            
-            # Sort by date and take latest N
-            data['date'] = pd.to_datetime(data['date'])
-            data = data.sort_values('date')
-            if count:
-                data = data.tail(count)
+            if data is not None and len(data) > 0:
+                # Standardize columns
+                data = data.rename(columns={
+                    'mdate': 'date', 'open_d': 'open', 'high_d': 'high',
+                    'low_d': 'low', 'close_d': 'close', 'vol': 'volume'
+                })
+                data['date'] = pd.to_datetime(data['date'])
+                data = data.sort_values('date')
+                return data
+
+            # 2. Fallback to yfinance
+            import yfinance as yf
+            logger.info(f"Falling back to yfinance for {coid}")
+            suffix = ".TWO" if len(coid) >= 4 and coid[0] in '34568' else ".TW"
+            yf_data = yf.download(f"{coid}{suffix}", start=start_date, end=end_date, progress=False)
+            if not yf_data.empty:
+                # Handle MultiIndex if present
+                if isinstance(yf_data.columns, pd.MultiIndex):
+                    yf_data.columns = yf_data.columns.get_level_values(0)
                 
-            return data
+                yf_data = yf_data.reset_index()
+                yf_data.columns = [str(c).lower() for c in yf_data.columns]
+                return yf_data
+            
+            return None
         except Exception as e:
-            logger.error(f"TEJ price fetch error for {coid}: {e}")
+            logger.error(f"Price fetch error for {coid}: {e}")
             return None
 
     def get_income_statement(self, coid: str, count: int = 8) -> Optional[pd.DataFrame]:
-        """Fetch income statement. Tries TRAIL/TAINDB then TWN/AINSTB."""
-        data = self._get_financial_statement('TRAIL/TAINDB', coid, count)
+        """Fetch income statement. Tries TRAIL/TAIM1AQ then TRAIL/TAIM1AQ."""
+        data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         if data is None:
-            data = self._get_financial_statement('TWN/AINSTB', coid, count)
+            data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         return data
 
     def get_balance_sheet(self, coid: str, count: int = 8) -> Optional[pd.DataFrame]:
-        """Fetch balance sheet. Tries TRAIL/TABSTB then TWN/ABSTB."""
-        data = self._get_financial_statement('TRAIL/TABSTB', coid, count)
+        """Fetch balance sheet. Tries TRAIL/TAIM1AQ then TRAIL/TAIM1AQ."""
+        data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         if data is None:
-            data = self._get_financial_statement('TWN/ABSTB', coid, count)
+            data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         return data
 
     def get_cash_flow(self, coid: str, count: int = 8) -> Optional[pd.DataFrame]:
-        """Fetch cash flow. Tries TRAIL/TACFTB then TWN/ACFTB."""
-        data = self._get_financial_statement('TRAIL/TACFTB', coid, count)
+        """Fetch cash flow. Tries TRAIL/TAIM1AQ then TRAIL/TAIM1AQ."""
+        data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         if data is None:
-            data = self._get_financial_statement('TWN/ACFTB', coid, count)
+            data = self._get_financial_statement('TRAIL/TAIM1AQ', coid, count)
         return data
 
     def get_official_revenue(self, coid: str, count: int = 24) -> Optional[pd.DataFrame]:
-        """Fetch official revenue. Tries TRAIL/TAPREV then TWN/APREV."""
-        data = self._get_financial_statement('TRAIL/TAPREV', coid, count)
+        """Fetch official revenue. Tries TRAIL/TAIM1AM then TRAIL/TAIM1AM."""
+        data = self._get_financial_statement('TRAIL/TAIM1AM', coid, count)
         if data is None:
-            data = self._get_financial_statement('TWN/APREV', coid, count)
+            data = self._get_financial_statement('TRAIL/TAIM1AM', coid, count)
         return data
 
     def _get_financial_statement(self, table: str, coid: str, count: int) -> Optional[pd.DataFrame]:
@@ -271,7 +281,7 @@ class TEJProcessor:
             logger.error(f"TEJ TAMT error for {coid}: {e}")
             return None
     
-    def get_quarterly_financials(self, coid: str, count: int = 8) -> Optional[Dict]:
+    def get_quarterly_financials(self, coid: str, count: int = 12) -> Optional[Dict]:
         """
         Get quarterly financial data from TRAIL/TAIM1AQ.
         Returns dict with EPS, revenue, net income for last N quarters.

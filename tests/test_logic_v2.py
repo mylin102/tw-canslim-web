@@ -67,12 +67,13 @@ def test_calculate_volatility_grid():
     assert grid['levels'][2]['label'] == "Pivot (平衡位)"
 
 def test_compute_canslim_score_etf():
-    # ETF Weights: N:10, S:10, L:40, I:10, M:30
+    # Current Weights: C:25, A:20, N:15, S:10, L:15, I:15
+    # If L is True, C and A are forced to True for ETFs.
     factors = {'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
     score = compute_canslim_score_etf(factors)
     assert score == 100
     
     factors_weak = {'N': False, 'S': False, 'L': True, 'I': False, 'M': True}
-    # 40 (L) + 30 (M) = 70
+    # C(25) + A(20) + L(15) = 60
     score = compute_canslim_score_etf(factors_weak)
-    assert score == 70
+    assert score == 60

@@ -194,6 +194,7 @@ class CanslimEngine:
         self.industry_strength = None
         self.failure_details = []
         self.refreshed_symbols = []
+        self.inst_cache = {}
         self._load_excel_data()
 
     def _build_output_payload(self) -> Dict:

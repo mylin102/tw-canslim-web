@@ -171,3 +171,69 @@
 🌐 測試連結:
 2026-04-18 21:47:49,247 - INFO - • https://mylin102.github.io/tw-canslim-web/test_institutional.html
 2026-04-18 21:47:49,247 - INFO - • https://mylin102.github.io/tw-canslim-web/update_summary.json
+2026-04-21 16:44:16,459 - INFO - 🚀 開始快速自動更新 (加強版)
+
+2026-04-21 16:44:16,459 - INFO - 🚀 開始更新前10支股票的機構持股資料
+2026-04-21 16:44:16,459 - INFO - 🔍 載入現有資料...
+2026-04-21 16:44:16,459 - INFO - Validated artifact docs/data.json (data)
+2026-04-21 16:44:16,460 - INFO - ✅ 成功載入 15 支股票資料
+2026-04-21 16:44:16,883 - DEBUG - Using selector: KqueueSelector
+2026-04-21 16:44:16,982 - DEBUG - Starting new HTTPS connection (1): api.web.finmindtrade.com:443
+2026-04-21 16:44:17,361 - DEBUG - https://api.web.finmindtrade.com:443 "GET /v2/user_info HTTP/1.1" 200 38
+2026-04-21 16:44:17,362 - DEBUG - Starting new HTTPS connection (1): api.finmindtrade.com:443
+2026-04-21 16:44:17,704 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2330&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1580
+2026-04-21 16:44:17,712 - INFO - ✅ 2330: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:19,520 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2317&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1609
+2026-04-21 16:44:19,525 - INFO - ✅ 2317: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:19,640 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2454&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1554
+2026-04-21 16:44:19,642 - INFO - ✅ 2454: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:21,436 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2603&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1497
+2026-04-21 16:44:21,441 - INFO - ✅ 2603: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:22,058 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2881&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1537
+2026-04-21 16:44:22,064 - INFO - ✅ 2881: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:22,635 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2308&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1574
+2026-04-21 16:44:22,639 - INFO - ✅ 2308: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:23,822 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=2382&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1598
+2026-04-21 16:44:23,824 - INFO - ✅ 2382: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:25,145 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=3711&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1599
+2026-04-21 16:44:25,152 - INFO - ✅ 3711: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:26,741 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=0050&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1544
+2026-04-21 16:44:26,742 - INFO - ✅ 0050: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:27,823 - DEBUG - https://api.finmindtrade.com:443 "GET /api/v4/data?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=0052&securities_trader_id=&stock_id=&start_date=2026-03-12&end_date=2026-04-21&user_id=&password=&device=package HTTP/1.1" 200 1523
+2026-04-21 16:44:27,825 - INFO - ✅ 0052: 成功獲取 20 筆真實機構持股資料
+2026-04-21 16:44:27,832 - WARNING - TEJ API key not set
+2026-04-21 16:44:27,832 - INFO - Starting feature pipeline for 10 symbols...
+2026-04-21 16:44:27,832 - INFO - Processing features for 2330...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2330
+2026-04-21 16:44:27,832 - INFO - Processing features for 2317...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2317
+2026-04-21 16:44:27,832 - INFO - Processing features for 2454...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2454
+2026-04-21 16:44:27,832 - INFO - Processing features for 2603...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2603
+2026-04-21 16:44:27,832 - INFO - Processing features for 2881...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2881
+2026-04-21 16:44:27,832 - INFO - Processing features for 2308...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2308
+2026-04-21 16:44:27,832 - INFO - Processing features for 2382...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 2382
+2026-04-21 16:44:27,832 - INFO - Processing features for 3711...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 3711
+2026-04-21 16:44:27,832 - INFO - Processing features for 0050...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 0050
+2026-04-21 16:44:27,832 - INFO - Processing features for 0052...
+2026-04-21 16:44:27,832 - WARNING - Insufficient revenue data for 0052
+2026-04-21 16:44:27,833 - INFO - Exported features to docs/api/stock_features.json
+2026-04-21 16:44:27,833 - INFO - Exported rankings to docs/api/ranking.json
+2026-04-21 16:44:27,833 - INFO - Feature pipeline completed.
+2026-04-21 16:44:27,838 - INFO - Published 3 artifacts under docs/.publish.lock
+2026-04-21 16:44:27,838 - INFO - ✅ 已更新 10 支股票並完成 bundle 發佈
+2026-04-21 16:44:27,838 - INFO - 
+🔍 驗證更新結果...
+2026-04-21 16:44:27,838 - INFO - Validated artifact docs/data.json (data)
+2026-04-21 16:44:27,838 - INFO - Validated artifact docs/update_summary.json (update_summary)
+2026-04-21 16:44:27,838 - INFO - ✅ 資料完整性檢查通過
+2026-04-21 16:44:27,838 - INFO -    股票數量: 15
+2026-04-21 16:44:27,838 - INFO -    最後更新: 2026-04-21 16:44:27
+2026-04-21 16:44:27,838 - INFO -    重試次數: 0
+2026-04-21 16:44:27,838 - INFO - 🎉 快速自動更新完成！

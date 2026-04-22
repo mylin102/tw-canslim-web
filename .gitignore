@@ -49,3 +49,5 @@ master_canslim_signals_fused.parquet
 *.tmp
 *.bak
 \n# Backups\n.rewrite-backups/\nbackups/
+.env
+.rewrite-backups/
