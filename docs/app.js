@@ -166,7 +166,32 @@ const app = createApp({
             return { label: '💤 盤整中', class: 'bg-slate-100 text-slate-600 border-slate-200' };
         };
 
-        const getFreshnessBadge = (f) => ({ label: f?.label || '未知', classes: 'bg-blue-100 text-blue-700' });
+        const getFreshnessBadge = (stock) => {
+            if (stock && stock.freshness && stock.freshness.label) {
+                return { label: stock.freshness.label, classes: 'bg-blue-100 text-blue-700' };
+            }
+            
+            // Fallback to institutional date
+            const latestInst = stock?.institutional && stock.institutional[0];
+            if (latestInst && latestInst.date) {
+                const dateStr = String(latestInst.date);
+                const year = parseInt(dateStr.substring(0, 4));
+                const month = parseInt(dateStr.substring(4, 6)) - 1;
+                const day = parseInt(dateStr.substring(6, 8));
+                const instDate = new Date(year, month, day);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                const diffTime = today - instDate;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays <= 0) return { label: '🟢 今日', classes: 'bg-blue-100 text-blue-700' };
+                if (diffDays <= 2) return { label: `🟡 ${diffDays}天前`, classes: 'bg-blue-100 text-blue-700' };
+                return { label: '🔴 逾3天', classes: 'bg-blue-100 text-blue-700' };
+            }
+            
+            return { label: '⚪ 未更新', classes: 'bg-slate-100 text-slate-500' };
+        };
         const getStockFreshness = (s) => s.freshness || 'daily';
 
         const recentInstitutionalDays = (s, count = 5) => (s?.institutional || []).slice(0, count);
