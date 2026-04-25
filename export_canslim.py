@@ -1407,7 +1407,7 @@ class CanslimEngine:
 
                     # INCREMENTAL SAVE: Save every 50 new stocks
                     if len(self.output_data["stocks"]) % 50 == 0:
-                        self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        self.output_data["last_updated"] = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
                         logger.info(f"💾 Saving progress... ({len(self.output_data['stocks'])} stocks total)")
                         self._publish_snapshot(
                             rotation_state=rotation_state,
@@ -1447,7 +1447,7 @@ class CanslimEngine:
 
             self.output_data["schema_version"] = SCHEMA_VERSION
             self.output_data["artifact_kind"] = "data"
-            self.output_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.output_data["last_updated"] = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
             self.output_data["generated_at"] = self._utc_timestamp()
 
             # Calculate industry strength using CANSLIM data

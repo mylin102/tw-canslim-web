@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "artifact_kind": "data",
   "run_id": "recovery-1777155742",
-  "generated_at": "2026-04-22 06:42:05 (Merged with remote)",
-  "last_updated": "2026-04-22 06:42:05 (Merged with remote)",
+  "generated_at": "2026-04-22T06:42:05T(MergedTwithTremote)Z",
+  "last_updated": "2026-04-22T06:42:05T(MergedTwithTremote)Z",
   "stocks": {
     "1101": {
       "schema_version": "1.0",
