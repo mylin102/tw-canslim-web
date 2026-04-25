@@ -1010,7 +1010,9 @@ class CanslimEngine:
                 # TEJ index doesn't need ^
                 tej_sym = ticker.replace("^", "")
                 self.tej_processor.provider_runtime_state = self.failure_stats
-                df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500)
+                # Get correct suffix from metadata
+                actual_suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
+                df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500, suffix=actual_suffix)
                 if df_tej is not None and not df_tej.empty:
                     return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
             except Exception as e:

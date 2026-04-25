@@ -92,7 +92,8 @@ class TEJProcessor:
     def get_daily_prices(self, coid: str, 
                          start_date: str = None, 
                          end_date: str = None,
-                         count: int = None) -> Optional[pd.DataFrame]:
+                         count: int = None,
+                         suffix: str = None) -> Optional[pd.DataFrame]:
         """
         Get daily price data. Tries TRAIL/TAPRCD, then falls back to yfinance 
         if permission is denied.
@@ -130,14 +131,15 @@ class TEJProcessor:
             # 2. Fallback to yfinance
             import yfinance as yf
             logger.info(f"Falling back to yfinance for {coid}")
-            # Simplified suffix logic: prioritize .TW for main weight, .TWO for OTC
-            # In Taiwan: 4-digit codes starting with 2, 1, 3, etc.
-            suffix = ".TWO" if len(coid) == 4 and coid[0] in '34568' else ".TW"
-            # Special case for 5/6 digit or index
+            
             if coid == "TAIEX":
                 ticker_id = "^TWII"
-            else:
+            elif suffix:
                 ticker_id = f"{coid}{suffix}"
+            else:
+                # Heuristic fallback if no suffix provided
+                actual_suffix = ".TWO" if len(coid) == 4 and coid[0] in '34568' else ".TW"
+                ticker_id = f"{coid}{actual_suffix}"
                 
             yf_data = yf.download(ticker_id, start=start_date, end=end_date, progress=False)
             if not yf_data.empty:
