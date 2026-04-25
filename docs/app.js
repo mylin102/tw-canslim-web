@@ -57,18 +57,19 @@ const app = createApp({
             isLoading.value = true;
             loadingProgress.value = 10;
             try {
+                // Use data_light.json for much faster initial load and search
                 const [response, indexResponse] = await Promise.all([
-                    fetch('data.json?t=' + new Date().getTime()),
+                    fetch('data_light.json?t=' + new Date().getTime()),
                     fetch('stock_index.json?t=' + new Date().getTime())
                 ]);
                 
-                if (!response.ok) throw new Error('data.json 載入失敗');
-                if (!indexResponse.ok) throw new Error('stock_index.json 載入失敗');
+                if (!response.ok) throw new Error('資料載入失敗');
+                if (!indexResponse.ok) throw new Error('索引載入失敗');
                 
                 const data = await response.json();
                 const indexData = await indexResponse.json();
                 
-                // Fetch features (non-blocking)
+                loadingProgress.value = 60;
                 try {
                     const featResp = await fetch('api/stock_features.json?t=' + new Date().getTime());
                     if (featResp.ok) {
@@ -90,7 +91,10 @@ const app = createApp({
 
                 stockData.value = data;
                 stockIndexData.value = indexData;
-                lastUpdated.value = data.last_updated || 'Unknown';
+                
+                // Robust date parsing for the UI
+                const rawDate = data.last_updated || 'Unknown';
+                lastUpdated.value = rawDate.replace(/T\(.*?\)/g, ' ').replace('T', ' ').replace('Z', '');
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const s = urlParams.get('s');
