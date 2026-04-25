@@ -29,6 +29,8 @@ from rotation_orchestrator import (
 )
 from yfinance_provider import get_price_history_with_policy
 from publish_projection import build_publish_projection_bundle
+from core.derivatives.skew_provider import OptionSkewProvider
+from core.derivatives.skew_analyzer import SkewAnalyzer
 
 from core.logic import (
     calculate_accumulation_strength, 
@@ -192,6 +194,8 @@ class CanslimEngine:
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
         self.tej_processor = TEJProcessor()
+        self.skew_provider = OptionSkewProvider()
+        self.skew_analyzer = SkewAnalyzer()
         self.etf_list = self._load_etf_cache()
         self.excel_ratings = None
         self.fund_holdings = None
@@ -1172,6 +1176,14 @@ class CanslimEngine:
             market_hist = self.get_price_history(TAIEX_SYMBOL, period="2y")
             market_return = self.get_market_return_6m()
 
+            # 2a. Option Skew Perception
+            logger.info("Perceiving Option Market Skew...")
+            txo_snapshot = self.skew_provider.fetch_txo_market_snapshot()
+            skew_metrics = self.skew_analyzer.calculate_skew_metrics(txo_snapshot)
+            if skew_metrics.get("status") != "no_data":
+                logger.info(f"Option Perception: {skew_metrics.get('perception')} (Ratio: {skew_metrics.get('skew_ratio')})")
+                self.output_data["market_perception"] = skew_metrics
+            
             all_t = sorted(list(self.ticker_info.keys()))
             
             # 2b. Batch fetch institutional data for all tickers to save API calls
