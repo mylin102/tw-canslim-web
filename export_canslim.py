@@ -175,6 +175,7 @@ def get_all_tw_tickers(*, runtime_state: dict | None = None):
 
 class CanslimEngine:
     def __init__(self):
+        self.inst_cache = {}  # Initialize early to avoid AttributeError if later steps fail
         self.failure_stats = {
             "retry_attempts": 0,
             "retry_failures": 0,
@@ -194,7 +195,6 @@ class CanslimEngine:
         self.industry_strength = None
         self.failure_details = []
         self.refreshed_symbols = []
-        self.inst_cache = {}
         self._load_excel_data()
 
     def _build_output_payload(self) -> Dict:
@@ -231,6 +231,8 @@ class CanslimEngine:
             self.failure_details = []
         if not hasattr(self, "refreshed_symbols") or not isinstance(self.refreshed_symbols, list):
             self.refreshed_symbols = []
+        if not hasattr(self, "inst_cache") or not isinstance(self.inst_cache, dict):
+            self.inst_cache = {}
         if not hasattr(self, "output_data") or not isinstance(self.output_data, dict):
             self.output_data = self._build_output_payload()
 
