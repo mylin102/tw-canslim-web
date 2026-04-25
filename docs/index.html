@@ -121,9 +121,9 @@
                 </div>
 
                 <!-- Search Tab -->
-                <div v-if="activeTab === 'search'" class="animate-fade-in">
+                <div v-if="activeTab === 'search' || activeTab === 'detail'" class="animate-fade-in">
                     <!-- Search Input -->
-                    <div class="relative max-w-2xl mx-auto mb-12 group">
+                    <div v-if="activeTab === 'search'" class="relative max-w-2xl mx-auto mb-12 group">
                         <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
                             <i class="fas fa-search text-xl"></i>
                         </div>
@@ -153,6 +153,13 @@
 
                     <!-- Detail View -->
                     <div v-if="currentStock" class="animate-fade-in space-y-8">
+                        <!-- Navigation Back Button -->
+                        <div class="flex justify-start">
+                            <button @click="closeDetail" class="flex items-center px-6 py-3 bg-white border border-slate-200 rounded-2xl font-black text-slate-600 hover:bg-slate-50 transition shadow-sm">
+                                <i class="fas fa-arrow-left mr-3 text-blue-500"></i> 返回搜尋列表
+                            </button>
+                        </div>
+                        
                         <!-- Stock Header Panel -->
                         <div class="bg-white rounded-[3rem] shadow-xl border border-slate-200 overflow-hidden">
                             <div class="bg-slate-950 text-white p-10 md:p-12 relative overflow-hidden">
