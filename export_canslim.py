@@ -157,10 +157,14 @@ def get_all_tw_tickers(*, runtime_state: dict | None = None):
                 cache_data = json.load(f)
                 etfs = cache_data.get("etfs", {})
                 for tid, info in etfs.items():
+                    # Defensive cleaning: Remove HTML tags like <br> and everything after them
+                    # Also remove currency suffixes in parentheses, e.g. "006205(新臺幣)" -> "006205"
+                    clean_tid = tid.split('<br>')[0].split('(')[0].strip()
+                    
                     # Preserve existing stock if ID collision (rare for 4-digit)
-                    if tid not in ticker_map or "ETF" in info.get("name", ""):
+                    if clean_tid not in ticker_map or "ETF" in info.get("name", ""):
                         suffix = ".TW" if info.get("market") == "TWSE" else ".TWO"
-                        ticker_map[tid] = {"name": info["name"], "suffix": suffix}
+                        ticker_map[clean_tid] = {"name": info["name"], "suffix": suffix}
             logger.info(f"Integrated {len(etfs)} ETFs from cache")
         except Exception as e:
             logger.error(f"Failed to integrate ETF cache: {e}")
