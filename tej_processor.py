@@ -110,15 +110,14 @@ class TEJProcessor:
             for table in ['TRAIL/TAPRCD', 'TRAIL/APRCD']:
                 try:
                     data = self._tej_get_with_policy(table, **params)
-                    if data is not None and len(data) > 0:
+                    if data is not None and not data.empty:
                         logger.info(f"Fetched prices from TEJ {table}")
                         break
                 except Exception as exc:
-                    if "Forbidden" in str(exc):
-                        continue
-                    raise
+                    logger.warning(f"TEJ {table} failed: {exc}. Trying next table or fallback...")
+                    continue
 
-            if data is not None and len(data) > 0:
+            if data is not None and not data.empty:
                 # Standardize columns
                 data = data.rename(columns={
                     'mdate': 'date', 'open_d': 'open', 'high_d': 'high',
@@ -131,8 +130,16 @@ class TEJProcessor:
             # 2. Fallback to yfinance
             import yfinance as yf
             logger.info(f"Falling back to yfinance for {coid}")
-            suffix = ".TWO" if len(coid) >= 4 and coid[0] in '34568' else ".TW"
-            yf_data = yf.download(f"{coid}{suffix}", start=start_date, end=end_date, progress=False)
+            # Simplified suffix logic: prioritize .TW for main weight, .TWO for OTC
+            # In Taiwan: 4-digit codes starting with 2, 1, 3, etc.
+            suffix = ".TWO" if len(coid) == 4 and coid[0] in '34568' else ".TW"
+            # Special case for 5/6 digit or index
+            if coid == "TAIEX":
+                ticker_id = "^TWII"
+            else:
+                ticker_id = f"{coid}{suffix}"
+                
+            yf_data = yf.download(ticker_id, start=start_date, end=end_date, progress=False)
             if not yf_data.empty:
                 # Handle MultiIndex if present
                 if isinstance(yf_data.columns, pd.MultiIndex):
@@ -140,6 +147,9 @@ class TEJProcessor:
                 
                 yf_data = yf_data.reset_index()
                 yf_data.columns = [str(c).lower() for c in yf_data.columns]
+                # Map 'adj close' or 'close' to 'close'
+                if 'adj close' in yf_data.columns:
+                    yf_data = yf_data.rename(columns={'adj close': 'close'})
                 return yf_data
             
             return None
