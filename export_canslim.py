@@ -316,8 +316,24 @@ class CanslimEngine:
     ) -> Dict:
         """Publish live artifacts through one bundle-safe transaction."""
         self._ensure_runtime_state()
-        baseline_payload = {"stocks": {}}
+
+        # GSD Anti-Shrinkage Gate
+        existing_count = 0
         baseline_file = os.path.join(OUTPUT_DIR, "data_base.json")
+        if os.path.exists(baseline_file):
+            try:
+                with open(baseline_file, "r", encoding="utf-8") as h:
+                    temp_data = json.load(h)
+                    existing_count = len(temp_data.get("stocks", {}))
+            except: pass
+            
+        current_count = len(self.output_data["stocks"])
+        if existing_count > 500 and current_count < (existing_count * 0.8):
+            logger.error(f"❌ GSD SAFETY GATE TRIPPED: Current count {current_count} is < 80% of baseline {existing_count}.")
+            logger.error("Aborting publish to prevent database fragmentation.")
+            return {}
+
+        baseline_payload = {"stocks": {}}
         if os.path.exists(baseline_file):
             baseline_payload = load_artifact_json(baseline_file, artifact_kind="data_base", logger=logger)
 
