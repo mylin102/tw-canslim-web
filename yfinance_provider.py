@@ -57,4 +57,9 @@ def get_price_history_with_policy(
 
     if history is None or history.empty or "Close" not in history:
         return None
-    return history["Close"]
+    
+    series = history["Close"]
+    # Ensure index is tz-naive for consistent pandas operations
+    if series.index.tz is not None:
+        series.index = series.index.tz_localize(None)
+    return series

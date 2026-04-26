@@ -130,6 +130,15 @@ def calculate_mansfield_rs(stock_prices: Optional[pd.Series], market_prices: Opt
     Uses an adaptive window if 250-day data shows extreme anomalies.
     """
     if stock_prices is None or market_prices is None: return 0.0
+    
+    # Ensure both series are tz-naive for consistent joining
+    if hasattr(stock_prices.index, 'tz') and stock_prices.index.tz is not None:
+        stock_prices = stock_prices.copy()
+        stock_prices.index = stock_prices.index.tz_localize(None)
+    if hasattr(market_prices.index, 'tz') and market_prices.index.tz is not None:
+        market_prices = market_prices.copy()
+        market_prices.index = market_prices.index.tz_localize(None)
+        
     df = pd.DataFrame({'stock': stock_prices, 'market': market_prices}).dropna()
     if len(df) < 60: return 0.0
     

@@ -1018,7 +1018,9 @@ class CanslimEngine:
                 actual_suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
                 df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500, suffix=actual_suffix)
                 if df_tej is not None and not df_tej.empty:
-                    return pd.Series(df_tej['close'].values, index=pd.to_datetime(df_tej['date']))
+                    # Ensure tz-naive for consistent pandas joins
+                    idx = pd.to_datetime(df_tej['date']).dt.tz_localize(None)
+                    return pd.Series(df_tej['close'].values, index=idx)
             except Exception as e:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
