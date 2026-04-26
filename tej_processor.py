@@ -86,7 +86,7 @@ class TEJProcessor:
                 runtime_state=self.provider_runtime_state,
             )
         except ProviderRetryExhaustedError as exc:
-            logger.error(f"TEJ retries exhausted for {table}: {exc}")
+            logger.warning(f"TEJ {table} unavailable (limit or permission): {exc}")
             return None
 
     def get_daily_prices(self, coid: str, 
