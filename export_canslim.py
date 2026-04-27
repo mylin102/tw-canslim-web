@@ -1275,12 +1275,11 @@ class CanslimEngine:
 
                 if t in self.output_data["stocks"]:
                     stock_entry = self.output_data["stocks"][t]
-                    try:
-                        validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION)
+                    if validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION):
                         continue
-                    except PublishValidationError as exc:
+                    else:
                         self.failure_stats["resume_rejected"] += 1
-                        logger.info(f"🔄 Resume rejected for {t}: {exc}. Re-processing...")
+                        logger.info(f"🔄 Resume rejected for {t}. Re-processing...")
 
                 if i % 10 == 0:
                     logger.info(f"Processing {i}/{len(scan_list)}... (Current: {t})")

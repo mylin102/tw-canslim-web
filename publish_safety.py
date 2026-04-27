@@ -152,21 +152,23 @@ def validate_resume_stock_entry(
     *,
     schema_version: str = DEFAULT_SCHEMA_VERSION,
     required_paths: tuple[str, ...] = REQUIRED_STOCK_PATHS,
-) -> None:
-    """Reject incompatible resume records before a writer skips work."""
+) -> bool:
+    """GSD Hardening: Validate resume record. Return False if invalid to trigger re-fetch."""
     if not isinstance(stock_entry, dict):
-        raise PublishValidationError(f"Resume record {stock_id} must be an object")
+        _get_logger(None).warning(f"Resume record {stock_id} must be an object. Skipping.")
+        return False
 
     entry_schema = stock_entry.get("schema_version")
     if entry_schema != schema_version:
-        raise PublishValidationError(
-            f"Resume record {stock_id} schema mismatch: expected {schema_version}, got {entry_schema!r}"
-        )
+        _get_logger(None).debug(f"Resume record {stock_id} schema mismatch. Skipping.")
+        return False
 
     for path in required_paths:
         value = _resolve_path(stock_entry, path)
         if value is None:
-            raise PublishValidationError(f"Resume record {stock_id} missing required field: {path}")
+            _get_logger(None).debug(f"Resume record {stock_id} missing required field: {path}. Skipping.")
+            return False
+    return True
 
 
 def publish_artifact_bundle(
