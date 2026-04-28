@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20260427T215059Z",
-  "generated_at": "2026-04-27T22:27:45Z",
-  "last_updated": "2026-04-27T22:27:45Z",
+  "run_id": "20260427T223413Z",
+  "generated_at": "2026-04-27T22:34:13Z",
+  "last_updated": "2026-04-27T22:34:13Z",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -15,7 +15,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:05:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00401A": {
       "symbol": "00401A",
@@ -27,103 +27,103 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0050": {
       "symbol": "0050",
       "name": "元大台灣50",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T00:34:45Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0051": {
       "symbol": "0051",
       "name": "元大中型100",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0052": {
       "symbol": "0052",
       "name": "富邦科技",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0053": {
       "symbol": "0053",
       "name": "元大電子",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0055": {
       "symbol": "0055",
       "name": "元大MSCI金融",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0056": {
       "symbol": "0056",
       "name": "元大高股息",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T00:34:48Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0057": {
       "symbol": "0057",
       "name": "富邦摩台",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "0061": {
       "symbol": "0061",
       "name": "元大寶滬深",
-      "industry": "ETF",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006203": {
       "symbol": "006203",
@@ -135,7 +135,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006204": {
       "symbol": "006204",
@@ -147,7 +147,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006205": {
       "symbol": "006205",
@@ -159,7 +159,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006206": {
       "symbol": "006206",
@@ -171,7 +171,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006207": {
       "symbol": "006207",
@@ -183,7 +183,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "006208": {
       "symbol": "006208",
@@ -195,7 +195,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00631L": {
       "symbol": "00631L",
@@ -207,7 +207,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00632R": {
       "symbol": "00632R",
@@ -219,7 +219,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00633L": {
       "symbol": "00633L",
@@ -231,7 +231,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00634R": {
       "symbol": "00634R",
@@ -243,7 +243,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00635U": {
       "symbol": "00635U",
@@ -255,7 +255,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00636": {
       "symbol": "00636",
@@ -267,7 +267,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00637L": {
       "symbol": "00637L",
@@ -279,7 +279,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00638R": {
       "symbol": "00638R",
@@ -291,7 +291,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00639": {
       "symbol": "00639",
@@ -303,7 +303,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00640L": {
       "symbol": "00640L",
@@ -315,7 +315,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:31Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00641R": {
       "symbol": "00641R",
@@ -327,7 +327,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00642U": {
       "symbol": "00642U",
@@ -339,7 +339,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00643": {
       "symbol": "00643",
@@ -351,7 +351,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00645": {
       "symbol": "00645",
@@ -363,7 +363,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00646": {
       "symbol": "00646",
@@ -375,7 +375,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00647L": {
       "symbol": "00647L",
@@ -387,7 +387,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00648R": {
       "symbol": "00648R",
@@ -399,7 +399,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:06:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00650L": {
       "symbol": "00650L",
@@ -411,7 +411,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00651R": {
       "symbol": "00651R",
@@ -423,7 +423,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00652": {
       "symbol": "00652",
@@ -435,7 +435,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00653L": {
       "symbol": "00653L",
@@ -447,7 +447,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:11Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00654R": {
       "symbol": "00654R",
@@ -459,7 +459,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00655L": {
       "symbol": "00655L",
@@ -471,7 +471,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00656R": {
       "symbol": "00656R",
@@ -483,7 +483,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00657": {
       "symbol": "00657",
@@ -495,7 +495,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00660": {
       "symbol": "00660",
@@ -507,7 +507,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00661": {
       "symbol": "00661",
@@ -519,7 +519,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00662": {
       "symbol": "00662",
@@ -531,7 +531,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00663L": {
       "symbol": "00663L",
@@ -543,7 +543,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00664R": {
       "symbol": "00664R",
@@ -555,7 +555,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00665L": {
       "symbol": "00665L",
@@ -567,7 +567,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00666R": {
       "symbol": "00666R",
@@ -579,7 +579,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00668": {
       "symbol": "00668",
@@ -591,7 +591,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00669R": {
       "symbol": "00669R",
@@ -603,7 +603,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00670L": {
       "symbol": "00670L",
@@ -615,7 +615,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00671R": {
       "symbol": "00671R",
@@ -627,7 +627,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00673R": {
       "symbol": "00673R",
@@ -639,7 +639,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00674R": {
       "symbol": "00674R",
@@ -651,7 +651,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00675L": {
       "symbol": "00675L",
@@ -663,7 +663,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00676R": {
       "symbol": "00676R",
@@ -675,7 +675,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:31Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00678": {
       "symbol": "00678",
@@ -687,7 +687,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00680L": {
       "symbol": "00680L",
@@ -699,7 +699,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00681R": {
       "symbol": "00681R",
@@ -711,7 +711,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00682U": {
       "symbol": "00682U",
@@ -723,7 +723,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00683L": {
       "symbol": "00683L",
@@ -735,7 +735,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00684R": {
       "symbol": "00684R",
@@ -747,7 +747,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00685L": {
       "symbol": "00685L",
@@ -759,7 +759,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:07:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00686R": {
       "symbol": "00686R",
@@ -771,7 +771,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00688L": {
       "symbol": "00688L",
@@ -783,7 +783,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00689R": {
       "symbol": "00689R",
@@ -795,7 +795,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00690": {
       "symbol": "00690",
@@ -807,7 +807,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00692": {
       "symbol": "00692",
@@ -819,7 +819,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00693U": {
       "symbol": "00693U",
@@ -831,7 +831,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00700": {
       "symbol": "00700",
@@ -843,7 +843,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00701": {
       "symbol": "00701",
@@ -855,7 +855,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00702": {
       "symbol": "00702",
@@ -867,7 +867,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00703": {
       "symbol": "00703",
@@ -879,7 +879,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00706L": {
       "symbol": "00706L",
@@ -891,7 +891,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00707R": {
       "symbol": "00707R",
@@ -903,7 +903,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00708L": {
       "symbol": "00708L",
@@ -915,7 +915,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00709": {
       "symbol": "00709",
@@ -927,7 +927,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00710B": {
       "symbol": "00710B",
@@ -939,7 +939,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00711B": {
       "symbol": "00711B",
@@ -951,7 +951,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00712": {
       "symbol": "00712",
@@ -963,7 +963,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00713": {
       "symbol": "00713",
@@ -975,7 +975,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00714": {
       "symbol": "00714",
@@ -987,7 +987,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00715L": {
       "symbol": "00715L",
@@ -999,7 +999,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00717": {
       "symbol": "00717",
@@ -1011,7 +1011,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00728": {
       "symbol": "00728",
@@ -1023,7 +1023,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00730": {
       "symbol": "00730",
@@ -1035,7 +1035,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00731": {
       "symbol": "00731",
@@ -1047,7 +1047,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00733": {
       "symbol": "00733",
@@ -1059,7 +1059,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00735": {
       "symbol": "00735",
@@ -1071,7 +1071,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00736": {
       "symbol": "00736",
@@ -1083,7 +1083,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00737": {
       "symbol": "00737",
@@ -1095,7 +1095,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00738U": {
       "symbol": "00738U",
@@ -1107,7 +1107,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00739": {
       "symbol": "00739",
@@ -1119,7 +1119,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:08:39Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00752": {
       "symbol": "00752",
@@ -1131,7 +1131,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00753L": {
       "symbol": "00753L",
@@ -1143,7 +1143,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00757": {
       "symbol": "00757",
@@ -1155,7 +1155,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00762": {
       "symbol": "00762",
@@ -1167,7 +1167,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:11Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00763U": {
       "symbol": "00763U",
@@ -1179,7 +1179,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00770": {
       "symbol": "00770",
@@ -1191,7 +1191,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00771": {
       "symbol": "00771",
@@ -1203,7 +1203,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00775B": {
       "symbol": "00775B",
@@ -1215,7 +1215,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00783": {
       "symbol": "00783",
@@ -1227,7 +1227,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00830": {
       "symbol": "00830",
@@ -1239,7 +1239,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00850": {
       "symbol": "00850",
@@ -1251,7 +1251,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00851": {
       "symbol": "00851",
@@ -1263,7 +1263,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00852L": {
       "symbol": "00852L",
@@ -1275,7 +1275,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00861": {
       "symbol": "00861",
@@ -1287,7 +1287,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00865B": {
       "symbol": "00865B",
@@ -1299,7 +1299,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00875": {
       "symbol": "00875",
@@ -1311,7 +1311,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00876": {
       "symbol": "00876",
@@ -1323,7 +1323,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00878": {
       "symbol": "00878",
@@ -1335,7 +1335,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T00:34:51Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00881": {
       "symbol": "00881",
@@ -1347,7 +1347,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00882": {
       "symbol": "00882",
@@ -1359,7 +1359,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00885": {
       "symbol": "00885",
@@ -1371,7 +1371,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00891": {
       "symbol": "00891",
@@ -1383,7 +1383,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00892": {
       "symbol": "00892",
@@ -1395,7 +1395,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00893": {
       "symbol": "00893",
@@ -1407,7 +1407,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:31Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00894": {
       "symbol": "00894",
@@ -1419,7 +1419,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00895": {
       "symbol": "00895",
@@ -1431,7 +1431,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00896": {
       "symbol": "00896",
@@ -1443,7 +1443,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00897": {
       "symbol": "00897",
@@ -1455,7 +1455,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00898": {
       "symbol": "00898",
@@ -1467,7 +1467,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00899": {
       "symbol": "00899",
@@ -1479,7 +1479,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00900": {
       "symbol": "00900",
@@ -1491,7 +1491,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:09:39Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00901": {
       "symbol": "00901",
@@ -1503,7 +1503,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00902": {
       "symbol": "00902",
@@ -1515,7 +1515,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00903": {
       "symbol": "00903",
@@ -1527,7 +1527,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:10Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00904": {
       "symbol": "00904",
@@ -1539,7 +1539,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00905": {
       "symbol": "00905",
@@ -1551,7 +1551,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00907": {
       "symbol": "00907",
@@ -1563,7 +1563,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00908": {
       "symbol": "00908",
@@ -1575,7 +1575,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00909": {
       "symbol": "00909",
@@ -1587,7 +1587,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00910": {
       "symbol": "00910",
@@ -1599,7 +1599,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00911": {
       "symbol": "00911",
@@ -1611,7 +1611,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00912": {
       "symbol": "00912",
@@ -1623,7 +1623,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00913": {
       "symbol": "00913",
@@ -1635,7 +1635,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00915": {
       "symbol": "00915",
@@ -1647,7 +1647,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00916": {
       "symbol": "00916",
@@ -1659,7 +1659,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00917": {
       "symbol": "00917",
@@ -1671,7 +1671,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00918": {
       "symbol": "00918",
@@ -1683,7 +1683,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00919": {
       "symbol": "00919",
@@ -1695,7 +1695,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00920": {
       "symbol": "00920",
@@ -1707,7 +1707,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00921": {
       "symbol": "00921",
@@ -1719,7 +1719,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00922": {
       "symbol": "00922",
@@ -1731,7 +1731,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00923": {
       "symbol": "00923",
@@ -1743,7 +1743,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00924": {
       "symbol": "00924",
@@ -1755,7 +1755,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:31Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00926": {
       "symbol": "00926",
@@ -1767,7 +1767,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00927": {
       "symbol": "00927",
@@ -1779,7 +1779,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00929": {
       "symbol": "00929",
@@ -1791,7 +1791,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00930": {
       "symbol": "00930",
@@ -1803,7 +1803,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00932": {
       "symbol": "00932",
@@ -1815,7 +1815,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00934": {
       "symbol": "00934",
@@ -1827,7 +1827,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00935": {
       "symbol": "00935",
@@ -1839,7 +1839,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00936": {
       "symbol": "00936",
@@ -1851,7 +1851,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:10:39Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00938": {
       "symbol": "00938",
@@ -1863,7 +1863,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00939": {
       "symbol": "00939",
@@ -1875,7 +1875,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00940": {
       "symbol": "00940",
@@ -1887,7 +1887,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:11Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00941": {
       "symbol": "00941",
@@ -1899,7 +1899,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00943": {
       "symbol": "00943",
@@ -1911,7 +1911,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00944": {
       "symbol": "00944",
@@ -1923,7 +1923,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00945B": {
       "symbol": "00945B",
@@ -1935,7 +1935,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00946": {
       "symbol": "00946",
@@ -1947,7 +1947,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00947": {
       "symbol": "00947",
@@ -1959,7 +1959,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00949": {
       "symbol": "00949",
@@ -1971,7 +1971,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00951": {
       "symbol": "00951",
@@ -1983,7 +1983,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00952": {
       "symbol": "00952",
@@ -1995,7 +1995,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00953B": {
       "symbol": "00953B",
@@ -2007,7 +2007,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00954": {
       "symbol": "00954",
@@ -2019,7 +2019,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00956": {
       "symbol": "00956",
@@ -2031,7 +2031,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00960": {
       "symbol": "00960",
@@ -2043,7 +2043,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00961": {
       "symbol": "00961",
@@ -2055,7 +2055,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00962": {
       "symbol": "00962",
@@ -2067,7 +2067,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00963": {
       "symbol": "00963",
@@ -2079,7 +2079,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00964": {
       "symbol": "00964",
@@ -2091,7 +2091,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00965": {
       "symbol": "00965",
@@ -2103,7 +2103,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00971": {
       "symbol": "00971",
@@ -2115,7 +2115,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00972": {
       "symbol": "00972",
@@ -2127,7 +2127,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009800": {
       "symbol": "009800",
@@ -2139,7 +2139,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009801": {
       "symbol": "009801",
@@ -2151,7 +2151,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009802": {
       "symbol": "009802",
@@ -2163,7 +2163,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009803": {
       "symbol": "009803",
@@ -2175,7 +2175,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009804": {
       "symbol": "009804",
@@ -2187,7 +2187,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:37Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009805": {
       "symbol": "009805",
@@ -2199,7 +2199,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009808": {
       "symbol": "009808",
@@ -2211,7 +2211,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:11:39Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009809": {
       "symbol": "009809",
@@ -2223,7 +2223,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00980A": {
       "symbol": "00980A",
@@ -2235,7 +2235,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009810": {
       "symbol": "009810",
@@ -2247,7 +2247,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:11Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009811": {
       "symbol": "009811",
@@ -2259,7 +2259,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:12Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009812": {
       "symbol": "009812",
@@ -2271,7 +2271,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:13Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009813": {
       "symbol": "009813",
@@ -2283,7 +2283,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:14Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009816": {
       "symbol": "009816",
@@ -2295,7 +2295,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:15Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009817": {
       "symbol": "009817",
@@ -2307,7 +2307,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:16Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "009818": {
       "symbol": "009818",
@@ -2319,7 +2319,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:17Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00981A": {
       "symbol": "00981A",
@@ -2331,7 +2331,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:18Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00981T": {
       "symbol": "00981T",
@@ -2343,7 +2343,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00982A": {
       "symbol": "00982A",
@@ -2355,7 +2355,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:20Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00982D": {
       "symbol": "00982D",
@@ -2367,7 +2367,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:21Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00982T": {
       "symbol": "00982T",
@@ -2379,7 +2379,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:22Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00983A": {
       "symbol": "00983A",
@@ -2391,7 +2391,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:23Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00983D": {
       "symbol": "00983D",
@@ -2403,7 +2403,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:24Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00984A": {
       "symbol": "00984A",
@@ -2415,7 +2415,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:25Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00984D": {
       "symbol": "00984D",
@@ -2427,7 +2427,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:26Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00985A": {
       "symbol": "00985A",
@@ -2439,7 +2439,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:27Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00985B": {
       "symbol": "00985B",
@@ -2451,7 +2451,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:28Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00986A": {
       "symbol": "00986A",
@@ -2463,7 +2463,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:29Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00987A": {
       "symbol": "00987A",
@@ -2475,7 +2475,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:30Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00988A": {
       "symbol": "00988A",
@@ -2487,7 +2487,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:31Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00989A": {
       "symbol": "00989A",
@@ -2499,7 +2499,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:32Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00990A": {
       "symbol": "00990A",
@@ -2511,7 +2511,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:33Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00991A": {
       "symbol": "00991A",
@@ -2523,7 +2523,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:34Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00992A": {
       "symbol": "00992A",
@@ -2535,7 +2535,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:35Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00993A": {
       "symbol": "00993A",
@@ -2547,7 +2547,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00994A": {
       "symbol": "00994A",
@@ -2559,7 +2559,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:38Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00995A": {
       "symbol": "00995A",
@@ -2571,7 +2571,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:12:39Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00996A": {
       "symbol": "00996A",
@@ -2583,7 +2583,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:13:08Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "00997A": {
       "symbol": "00997A",
@@ -2595,7 +2595,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:13:09Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "1101": {
       "symbol": "1101",
@@ -2612,7 +2612,7 @@
     "1102": {
       "symbol": "1102",
       "name": "亞泥",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2624,7 +2624,7 @@
     "1103": {
       "symbol": "1103",
       "name": "嘉泥",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2636,7 +2636,7 @@
     "1104": {
       "symbol": "1104",
       "name": "環泥",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2648,7 +2648,7 @@
     "1108": {
       "symbol": "1108",
       "name": "幸福",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2660,7 +2660,7 @@
     "1109": {
       "symbol": "1109",
       "name": "信大",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2672,7 +2672,7 @@
     "1110": {
       "symbol": "1110",
       "name": "東泥",
-      "industry": "上市水泥",
+      "industry": "水泥工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2684,7 +2684,7 @@
     "1201": {
       "symbol": "1201",
       "name": "味全",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2696,7 +2696,7 @@
     "1203": {
       "symbol": "1203",
       "name": "味王",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2708,7 +2708,7 @@
     "1210": {
       "symbol": "1210",
       "name": "大成",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2720,7 +2720,7 @@
     "1213": {
       "symbol": "1213",
       "name": "大飲",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2732,7 +2732,7 @@
     "1215": {
       "symbol": "1215",
       "name": "卜蜂",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2744,7 +2744,7 @@
     "1216": {
       "symbol": "1216",
       "name": "統一",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2756,7 +2756,7 @@
     "1217": {
       "symbol": "1217",
       "name": "愛之味",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2768,7 +2768,7 @@
     "1218": {
       "symbol": "1218",
       "name": "泰山",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2780,7 +2780,7 @@
     "1219": {
       "symbol": "1219",
       "name": "福壽",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2792,7 +2792,7 @@
     "1220": {
       "symbol": "1220",
       "name": "台榮",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2804,7 +2804,7 @@
     "1225": {
       "symbol": "1225",
       "name": "福懋油",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2816,7 +2816,7 @@
     "1227": {
       "symbol": "1227",
       "name": "佳格",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2828,7 +2828,7 @@
     "1229": {
       "symbol": "1229",
       "name": "聯華",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2840,7 +2840,7 @@
     "1231": {
       "symbol": "1231",
       "name": "聯華食",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2852,7 +2852,7 @@
     "1232": {
       "symbol": "1232",
       "name": "大統益",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2864,7 +2864,7 @@
     "1233": {
       "symbol": "1233",
       "name": "天仁",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2876,7 +2876,7 @@
     "1234": {
       "symbol": "1234",
       "name": "黑松",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2888,7 +2888,7 @@
     "1235": {
       "symbol": "1235",
       "name": "興泰",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2900,7 +2900,7 @@
     "1236": {
       "symbol": "1236",
       "name": "宏亞",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2912,7 +2912,7 @@
     "1240": {
       "symbol": "1240",
       "name": "茂生農經",
-      "industry": "未知",
+      "industry": "農業科技業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2924,7 +2924,7 @@
     "1256": {
       "symbol": "1256",
       "name": "鮮活果汁-KY",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2936,7 +2936,7 @@
     "1259": {
       "symbol": "1259",
       "name": "安心",
-      "industry": "上櫃觀光",
+      "industry": "觀光餐旅",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2948,7 +2948,7 @@
     "1264": {
       "symbol": "1264",
       "name": "德麥",
-      "industry": "未知",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2960,7 +2960,7 @@
     "1268": {
       "symbol": "1268",
       "name": "漢來美食",
-      "industry": "上櫃觀光",
+      "industry": "觀光餐旅",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -2996,7 +2996,7 @@
     "1301": {
       "symbol": "1301",
       "name": "台塑",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3008,7 +3008,7 @@
     "1303": {
       "symbol": "1303",
       "name": "南亞",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3020,7 +3020,7 @@
     "1304": {
       "symbol": "1304",
       "name": "台聚",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3032,7 +3032,7 @@
     "1305": {
       "symbol": "1305",
       "name": "華夏",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3044,7 +3044,7 @@
     "1307": {
       "symbol": "1307",
       "name": "三芳",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3056,7 +3056,7 @@
     "1308": {
       "symbol": "1308",
       "name": "亞聚",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3068,7 +3068,7 @@
     "1309": {
       "symbol": "1309",
       "name": "台達化",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3080,7 +3080,7 @@
     "1310": {
       "symbol": "1310",
       "name": "台苯",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3092,7 +3092,7 @@
     "1312": {
       "symbol": "1312",
       "name": "國喬",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3104,7 +3104,7 @@
     "1313": {
       "symbol": "1313",
       "name": "聯成",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3116,7 +3116,7 @@
     "1314": {
       "symbol": "1314",
       "name": "中石化",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3128,7 +3128,7 @@
     "1315": {
       "symbol": "1315",
       "name": "達新",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3140,7 +3140,7 @@
     "1316": {
       "symbol": "1316",
       "name": "上曜",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3152,7 +3152,7 @@
     "1319": {
       "symbol": "1319",
       "name": "東陽",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3164,7 +3164,7 @@
     "1321": {
       "symbol": "1321",
       "name": "大洋",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3176,7 +3176,7 @@
     "1323": {
       "symbol": "1323",
       "name": "永裕",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3188,7 +3188,7 @@
     "1324": {
       "symbol": "1324",
       "name": "地球",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3200,7 +3200,7 @@
     "1325": {
       "symbol": "1325",
       "name": "恆大",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3212,7 +3212,7 @@
     "1326": {
       "symbol": "1326",
       "name": "台化",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3224,7 +3224,7 @@
     "1336": {
       "symbol": "1336",
       "name": "台翰",
-      "industry": "上櫃電子零組件",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3236,7 +3236,7 @@
     "1337": {
       "symbol": "1337",
       "name": "再生-KY",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3248,7 +3248,7 @@
     "1338": {
       "symbol": "1338",
       "name": "廣華-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3260,7 +3260,7 @@
     "1339": {
       "symbol": "1339",
       "name": "昭輝",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3272,7 +3272,7 @@
     "1340": {
       "symbol": "1340",
       "name": "勝悅-KY",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3284,7 +3284,7 @@
     "1341": {
       "symbol": "1341",
       "name": "富林-KY",
-      "industry": "上市塑膠",
+      "industry": "塑膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3296,7 +3296,7 @@
     "1342": {
       "symbol": "1342",
       "name": "八貫",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3308,7 +3308,7 @@
     "1402": {
       "symbol": "1402",
       "name": "遠東新",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3320,7 +3320,7 @@
     "1409": {
       "symbol": "1409",
       "name": "新纖",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3332,7 +3332,7 @@
     "1410": {
       "symbol": "1410",
       "name": "南染",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3344,7 +3344,7 @@
     "1413": {
       "symbol": "1413",
       "name": "宏洲",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3356,7 +3356,7 @@
     "1414": {
       "symbol": "1414",
       "name": "東和",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3368,7 +3368,7 @@
     "1416": {
       "symbol": "1416",
       "name": "廣豐",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3380,7 +3380,7 @@
     "1417": {
       "symbol": "1417",
       "name": "嘉裕",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3392,7 +3392,7 @@
     "1418": {
       "symbol": "1418",
       "name": "東華",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3404,7 +3404,7 @@
     "1419": {
       "symbol": "1419",
       "name": "新紡",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3416,7 +3416,7 @@
     "1423": {
       "symbol": "1423",
       "name": "利華",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3428,7 +3428,7 @@
     "1432": {
       "symbol": "1432",
       "name": "大魯閣",
-      "industry": "上市貿易百貨",
+      "industry": "運動休閒",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3440,7 +3440,7 @@
     "1434": {
       "symbol": "1434",
       "name": "福懋",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3452,7 +3452,7 @@
     "1435": {
       "symbol": "1435",
       "name": "中福",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3464,7 +3464,7 @@
     "1436": {
       "symbol": "1436",
       "name": "華友聯",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3476,7 +3476,7 @@
     "1437": {
       "symbol": "1437",
       "name": "勤益控",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3488,7 +3488,7 @@
     "1438": {
       "symbol": "1438",
       "name": "三地開發",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3500,7 +3500,7 @@
     "1439": {
       "symbol": "1439",
       "name": "雋揚",
-      "industry": "上市紡織纖維",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3512,7 +3512,7 @@
     "1440": {
       "symbol": "1440",
       "name": "南紡",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3524,7 +3524,7 @@
     "1441": {
       "symbol": "1441",
       "name": "大東",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3536,7 +3536,7 @@
     "1442": {
       "symbol": "1442",
       "name": "名軒",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3548,7 +3548,7 @@
     "1443": {
       "symbol": "1443",
       "name": "立益物流",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3560,7 +3560,7 @@
     "1444": {
       "symbol": "1444",
       "name": "力麗",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3572,7 +3572,7 @@
     "1445": {
       "symbol": "1445",
       "name": "大宇",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3584,7 +3584,7 @@
     "1446": {
       "symbol": "1446",
       "name": "宏和",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3596,7 +3596,7 @@
     "1447": {
       "symbol": "1447",
       "name": "力鵬",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3608,7 +3608,7 @@
     "1449": {
       "symbol": "1449",
       "name": "佳和",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3620,7 +3620,7 @@
     "1451": {
       "symbol": "1451",
       "name": "年興",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3632,7 +3632,7 @@
     "1452": {
       "symbol": "1452",
       "name": "宏益",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3644,7 +3644,7 @@
     "1453": {
       "symbol": "1453",
       "name": "大將",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3656,7 +3656,7 @@
     "1454": {
       "symbol": "1454",
       "name": "台富",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3668,7 +3668,7 @@
     "1455": {
       "symbol": "1455",
       "name": "集盛",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3680,7 +3680,7 @@
     "1456": {
       "symbol": "1456",
       "name": "怡華",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3692,7 +3692,7 @@
     "1457": {
       "symbol": "1457",
       "name": "宜進",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3704,7 +3704,7 @@
     "1459": {
       "symbol": "1459",
       "name": "聯發",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3716,7 +3716,7 @@
     "1460": {
       "symbol": "1460",
       "name": "宏遠",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3728,7 +3728,7 @@
     "1463": {
       "symbol": "1463",
       "name": "強盛新",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3740,7 +3740,7 @@
     "1464": {
       "symbol": "1464",
       "name": "得力",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3752,7 +3752,7 @@
     "1465": {
       "symbol": "1465",
       "name": "偉全",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3764,7 +3764,7 @@
     "1466": {
       "symbol": "1466",
       "name": "聚隆",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3776,7 +3776,7 @@
     "1467": {
       "symbol": "1467",
       "name": "南緯",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3788,7 +3788,7 @@
     "1468": {
       "symbol": "1468",
       "name": "昶和",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3800,7 +3800,7 @@
     "1470": {
       "symbol": "1470",
       "name": "大統新創",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3812,7 +3812,7 @@
     "1471": {
       "symbol": "1471",
       "name": "首利",
-      "industry": "上市電子零組件",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3824,7 +3824,7 @@
     "1472": {
       "symbol": "1472",
       "name": "三洋實業",
-      "industry": "上市紡織纖維",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3836,7 +3836,7 @@
     "1473": {
       "symbol": "1473",
       "name": "台南",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3848,7 +3848,7 @@
     "1474": {
       "symbol": "1474",
       "name": "弘裕",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3860,7 +3860,7 @@
     "1475": {
       "symbol": "1475",
       "name": "業旺",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3872,7 +3872,7 @@
     "1476": {
       "symbol": "1476",
       "name": "儒鴻",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3884,7 +3884,7 @@
     "1477": {
       "symbol": "1477",
       "name": "聚陽",
-      "industry": "上市紡織纖維",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3896,7 +3896,7 @@
     "1503": {
       "symbol": "1503",
       "name": "士電",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3908,7 +3908,7 @@
     "1504": {
       "symbol": "1504",
       "name": "東元",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3920,7 +3920,7 @@
     "1506": {
       "symbol": "1506",
       "name": "正道",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3932,7 +3932,7 @@
     "1512": {
       "symbol": "1512",
       "name": "瑞利",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3944,7 +3944,7 @@
     "1513": {
       "symbol": "1513",
       "name": "中興電",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3956,7 +3956,7 @@
     "1514": {
       "symbol": "1514",
       "name": "亞力",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3968,7 +3968,7 @@
     "1515": {
       "symbol": "1515",
       "name": "力山",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3980,7 +3980,7 @@
     "1516": {
       "symbol": "1516",
       "name": "川飛",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -3992,7 +3992,7 @@
     "1517": {
       "symbol": "1517",
       "name": "利奇",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4004,7 +4004,7 @@
     "1519": {
       "symbol": "1519",
       "name": "華城",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4016,7 +4016,7 @@
     "1521": {
       "symbol": "1521",
       "name": "大億",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4028,7 +4028,7 @@
     "1522": {
       "symbol": "1522",
       "name": "堤維西",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4040,7 +4040,7 @@
     "1524": {
       "symbol": "1524",
       "name": "耿鼎",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4052,7 +4052,7 @@
     "1525": {
       "symbol": "1525",
       "name": "江申",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4064,7 +4064,7 @@
     "1526": {
       "symbol": "1526",
       "name": "日馳",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4076,7 +4076,7 @@
     "1527": {
       "symbol": "1527",
       "name": "鑽全",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4088,7 +4088,7 @@
     "1528": {
       "symbol": "1528",
       "name": "恩德",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4100,7 +4100,7 @@
     "1529": {
       "symbol": "1529",
       "name": "樂事綠能",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4112,7 +4112,7 @@
     "1530": {
       "symbol": "1530",
       "name": "亞崴",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4124,7 +4124,7 @@
     "1531": {
       "symbol": "1531",
       "name": "高林股",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4136,7 +4136,7 @@
     "1532": {
       "symbol": "1532",
       "name": "勤美",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4148,7 +4148,7 @@
     "1533": {
       "symbol": "1533",
       "name": "車王電",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4160,7 +4160,7 @@
     "1535": {
       "symbol": "1535",
       "name": "中宇",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4172,7 +4172,7 @@
     "1536": {
       "symbol": "1536",
       "name": "和大",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4184,7 +4184,7 @@
     "1537": {
       "symbol": "1537",
       "name": "廣隆",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4196,7 +4196,7 @@
     "1538": {
       "symbol": "1538",
       "name": "正峰",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4208,7 +4208,7 @@
     "1539": {
       "symbol": "1539",
       "name": "巨庭",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4220,7 +4220,7 @@
     "1540": {
       "symbol": "1540",
       "name": "喬福",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4232,7 +4232,7 @@
     "1541": {
       "symbol": "1541",
       "name": "錩泰",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4244,7 +4244,7 @@
     "1558": {
       "symbol": "1558",
       "name": "伸興",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4256,7 +4256,7 @@
     "1560": {
       "symbol": "1560",
       "name": "中砂",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4280,7 +4280,7 @@
     "1565": {
       "symbol": "1565",
       "name": "精華",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4292,7 +4292,7 @@
     "1568": {
       "symbol": "1568",
       "name": "倉佑",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4304,7 +4304,7 @@
     "1569": {
       "symbol": "1569",
       "name": "濱川",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4316,7 +4316,7 @@
     "1570": {
       "symbol": "1570",
       "name": "力肯",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4328,7 +4328,7 @@
     "1580": {
       "symbol": "1580",
       "name": "新麥",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4340,7 +4340,7 @@
     "1582": {
       "symbol": "1582",
       "name": "信錦",
-      "industry": "上市電子零組件",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4352,7 +4352,7 @@
     "1583": {
       "symbol": "1583",
       "name": "程泰",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4364,7 +4364,7 @@
     "1584": {
       "symbol": "1584",
       "name": "精剛",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4376,7 +4376,7 @@
     "1586": {
       "symbol": "1586",
       "name": "和勤",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4388,7 +4388,7 @@
     "1587": {
       "symbol": "1587",
       "name": "吉茂",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4400,7 +4400,7 @@
     "1589": {
       "symbol": "1589",
       "name": "永冠-KY",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4412,7 +4412,7 @@
     "1590": {
       "symbol": "1590",
       "name": "亞德客-KY",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4424,7 +4424,7 @@
     "1591": {
       "symbol": "1591",
       "name": "駿吉-KY",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4436,7 +4436,7 @@
     "1593": {
       "symbol": "1593",
       "name": "祺驊",
-      "industry": "上櫃生技醫療",
+      "industry": "運動休閒類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4448,7 +4448,7 @@
     "1595": {
       "symbol": "1595",
       "name": "川寶",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4460,7 +4460,7 @@
     "1597": {
       "symbol": "1597",
       "name": "直得",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4472,7 +4472,7 @@
     "1598": {
       "symbol": "1598",
       "name": "岱宇",
-      "industry": "上市化學生技醫療",
+      "industry": "運動休閒",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4484,7 +4484,7 @@
     "1599": {
       "symbol": "1599",
       "name": "宏佳騰",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4496,7 +4496,7 @@
     "1603": {
       "symbol": "1603",
       "name": "華電",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4508,7 +4508,7 @@
     "1604": {
       "symbol": "1604",
       "name": "聲寶",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4520,7 +4520,7 @@
     "1605": {
       "symbol": "1605",
       "name": "華新",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4532,7 +4532,7 @@
     "1608": {
       "symbol": "1608",
       "name": "華榮",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4544,7 +4544,7 @@
     "1609": {
       "symbol": "1609",
       "name": "大亞",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4556,7 +4556,7 @@
     "1611": {
       "symbol": "1611",
       "name": "中電",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4568,7 +4568,7 @@
     "1612": {
       "symbol": "1612",
       "name": "宏泰",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4580,7 +4580,7 @@
     "1614": {
       "symbol": "1614",
       "name": "三洋電",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4592,7 +4592,7 @@
     "1615": {
       "symbol": "1615",
       "name": "大山",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4604,7 +4604,7 @@
     "1616": {
       "symbol": "1616",
       "name": "億泰",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4616,7 +4616,7 @@
     "1617": {
       "symbol": "1617",
       "name": "榮星",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4628,7 +4628,7 @@
     "1618": {
       "symbol": "1618",
       "name": "合機",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4652,7 +4652,7 @@
     "1626": {
       "symbol": "1626",
       "name": "艾美特-KY",
-      "industry": "上市電器電纜",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4664,7 +4664,7 @@
     "1702": {
       "symbol": "1702",
       "name": "南僑",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4676,7 +4676,7 @@
     "1707": {
       "symbol": "1707",
       "name": "葡萄王",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4688,7 +4688,7 @@
     "1708": {
       "symbol": "1708",
       "name": "東鹼",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4700,7 +4700,7 @@
     "1709": {
       "symbol": "1709",
       "name": "和益",
-      "industry": "上市化學",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4712,7 +4712,7 @@
     "1710": {
       "symbol": "1710",
       "name": "東聯",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4724,7 +4724,7 @@
     "1711": {
       "symbol": "1711",
       "name": "永光",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4736,7 +4736,7 @@
     "1712": {
       "symbol": "1712",
       "name": "興農",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4748,7 +4748,7 @@
     "1713": {
       "symbol": "1713",
       "name": "國化",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4760,7 +4760,7 @@
     "1714": {
       "symbol": "1714",
       "name": "和桐",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4772,7 +4772,7 @@
     "1717": {
       "symbol": "1717",
       "name": "長興",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4784,7 +4784,7 @@
     "1718": {
       "symbol": "1718",
       "name": "中纖",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4796,7 +4796,7 @@
     "1720": {
       "symbol": "1720",
       "name": "生達",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4808,7 +4808,7 @@
     "1721": {
       "symbol": "1721",
       "name": "三晃",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4820,7 +4820,7 @@
     "1722": {
       "symbol": "1722",
       "name": "台肥",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4832,7 +4832,7 @@
     "1723": {
       "symbol": "1723",
       "name": "中碳",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4844,7 +4844,7 @@
     "1725": {
       "symbol": "1725",
       "name": "元禎",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4856,7 +4856,7 @@
     "1726": {
       "symbol": "1726",
       "name": "永記",
-      "industry": "上市化學",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4868,7 +4868,7 @@
     "1727": {
       "symbol": "1727",
       "name": "中華化",
-      "industry": "上市化學",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4880,7 +4880,7 @@
     "1730": {
       "symbol": "1730",
       "name": "花仙子",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4892,7 +4892,7 @@
     "1731": {
       "symbol": "1731",
       "name": "美吾華",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4904,7 +4904,7 @@
     "1732": {
       "symbol": "1732",
       "name": "毛寶",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4916,7 +4916,7 @@
     "1733": {
       "symbol": "1733",
       "name": "五鼎",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4928,7 +4928,7 @@
     "1734": {
       "symbol": "1734",
       "name": "杏輝",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4940,7 +4940,7 @@
     "1735": {
       "symbol": "1735",
       "name": "日勝化",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4952,7 +4952,7 @@
     "1736": {
       "symbol": "1736",
       "name": "喬山",
-      "industry": "上市化學生技醫療",
+      "industry": "運動休閒",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4964,7 +4964,7 @@
     "1737": {
       "symbol": "1737",
       "name": "臺鹽",
-      "industry": "上市食品",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4976,7 +4976,7 @@
     "1742": {
       "symbol": "1742",
       "name": "台蠟",
-      "industry": "上櫃化工",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -4988,7 +4988,7 @@
     "1752": {
       "symbol": "1752",
       "name": "南光",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5000,7 +5000,7 @@
     "1760": {
       "symbol": "1760",
       "name": "寶齡富錦",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5012,7 +5012,7 @@
     "1762": {
       "symbol": "1762",
       "name": "中化生",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5024,7 +5024,7 @@
     "1773": {
       "symbol": "1773",
       "name": "勝一",
-      "industry": "上市化學",
+      "industry": "化學生技醫療",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5036,7 +5036,7 @@
     "1776": {
       "symbol": "1776",
       "name": "展宇",
-      "industry": "上市化學",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5048,7 +5048,7 @@
     "1777": {
       "symbol": "1777",
       "name": "生泰",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5060,7 +5060,7 @@
     "1781": {
       "symbol": "1781",
       "name": "合世",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5072,7 +5072,7 @@
     "1783": {
       "symbol": "1783",
       "name": "和康生",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5084,7 +5084,7 @@
     "1784": {
       "symbol": "1784",
       "name": "訊聯",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5096,7 +5096,7 @@
     "1785": {
       "symbol": "1785",
       "name": "光洋科",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5108,7 +5108,7 @@
     "1786": {
       "symbol": "1786",
       "name": "科妍",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5120,7 +5120,7 @@
     "1788": {
       "symbol": "1788",
       "name": "杏昌",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5132,7 +5132,7 @@
     "1789": {
       "symbol": "1789",
       "name": "神隆",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5144,7 +5144,7 @@
     "1795": {
       "symbol": "1795",
       "name": "美時",
-      "industry": "上市化學生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5156,7 +5156,7 @@
     "1796": {
       "symbol": "1796",
       "name": "金穎生技",
-      "industry": "未知",
+      "industry": "食品工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5168,7 +5168,7 @@
     "1799": {
       "symbol": "1799",
       "name": "易威",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5180,7 +5180,7 @@
     "1802": {
       "symbol": "1802",
       "name": "台玻",
-      "industry": "上市玻璃陶瓷",
+      "industry": "玻璃陶瓷",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5192,7 +5192,7 @@
     "1805": {
       "symbol": "1805",
       "name": "寶徠",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5204,7 +5204,7 @@
     "1806": {
       "symbol": "1806",
       "name": "冠軍",
-      "industry": "上市玻璃陶瓷",
+      "industry": "玻璃陶瓷",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5216,7 +5216,7 @@
     "1808": {
       "symbol": "1808",
       "name": "潤隆",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5228,7 +5228,7 @@
     "1809": {
       "symbol": "1809",
       "name": "中釉",
-      "industry": "上市玻璃陶瓷",
+      "industry": "玻璃陶瓷",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5240,7 +5240,7 @@
     "1810": {
       "symbol": "1810",
       "name": "和成",
-      "industry": "上市玻璃陶瓷",
+      "industry": "玻璃陶瓷",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5252,7 +5252,7 @@
     "1813": {
       "symbol": "1813",
       "name": "寶利徠",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5264,7 +5264,7 @@
     "1815": {
       "symbol": "1815",
       "name": "富喬",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5276,7 +5276,7 @@
     "1817": {
       "symbol": "1817",
       "name": "凱撒衛",
-      "industry": "上市玻璃陶瓷",
+      "industry": "玻璃陶瓷",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5288,7 +5288,7 @@
     "1903": {
       "symbol": "1903",
       "name": "士紙",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5300,7 +5300,7 @@
     "1904": {
       "symbol": "1904",
       "name": "正隆",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5312,7 +5312,7 @@
     "1905": {
       "symbol": "1905",
       "name": "華紙",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5324,7 +5324,7 @@
     "1906": {
       "symbol": "1906",
       "name": "寶隆",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5336,7 +5336,7 @@
     "1907": {
       "symbol": "1907",
       "name": "永豐餘",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5348,7 +5348,7 @@
     "1909": {
       "symbol": "1909",
       "name": "榮成",
-      "industry": "上市造紙",
+      "industry": "造紙工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5360,7 +5360,7 @@
     "2002": {
       "symbol": "2002",
       "name": "中鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5372,7 +5372,7 @@
     "2006": {
       "symbol": "2006",
       "name": "東和鋼鐵",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5384,7 +5384,7 @@
     "2007": {
       "symbol": "2007",
       "name": "燁興",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5396,7 +5396,7 @@
     "2008": {
       "symbol": "2008",
       "name": "高興昌",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5408,7 +5408,7 @@
     "2009": {
       "symbol": "2009",
       "name": "第一銅",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5420,7 +5420,7 @@
     "2010": {
       "symbol": "2010",
       "name": "春源",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5432,7 +5432,7 @@
     "2012": {
       "symbol": "2012",
       "name": "春雨",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5444,7 +5444,7 @@
     "2013": {
       "symbol": "2013",
       "name": "中鋼構",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5456,7 +5456,7 @@
     "2014": {
       "symbol": "2014",
       "name": "中鴻",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5468,7 +5468,7 @@
     "2015": {
       "symbol": "2015",
       "name": "豐興",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5480,7 +5480,7 @@
     "2017": {
       "symbol": "2017",
       "name": "官田鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5492,7 +5492,7 @@
     "2020": {
       "symbol": "2020",
       "name": "美亞",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5504,7 +5504,7 @@
     "2022": {
       "symbol": "2022",
       "name": "聚亨",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5516,7 +5516,7 @@
     "2023": {
       "symbol": "2023",
       "name": "燁輝",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5528,7 +5528,7 @@
     "2024": {
       "symbol": "2024",
       "name": "志聯",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5540,7 +5540,7 @@
     "2025": {
       "symbol": "2025",
       "name": "千興",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5552,7 +5552,7 @@
     "2027": {
       "symbol": "2027",
       "name": "大成鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5564,7 +5564,7 @@
     "2028": {
       "symbol": "2028",
       "name": "威致",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5576,7 +5576,7 @@
     "2029": {
       "symbol": "2029",
       "name": "盛餘",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5588,7 +5588,7 @@
     "2030": {
       "symbol": "2030",
       "name": "彰源",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5600,7 +5600,7 @@
     "2031": {
       "symbol": "2031",
       "name": "新光鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5612,7 +5612,7 @@
     "2032": {
       "symbol": "2032",
       "name": "新鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5624,7 +5624,7 @@
     "2033": {
       "symbol": "2033",
       "name": "佳大",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5636,7 +5636,7 @@
     "2034": {
       "symbol": "2034",
       "name": "允強",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5648,7 +5648,7 @@
     "2035": {
       "symbol": "2035",
       "name": "唐榮公司",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5660,7 +5660,7 @@
     "2038": {
       "symbol": "2038",
       "name": "海光",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5672,7 +5672,7 @@
     "2049": {
       "symbol": "2049",
       "name": "上銀",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5684,7 +5684,7 @@
     "2059": {
       "symbol": "2059",
       "name": "川湖",
-      "industry": "上市電子零組件",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5696,7 +5696,7 @@
     "2061": {
       "symbol": "2061",
       "name": "風青",
-      "industry": "未知",
+      "industry": "電器電纜",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5708,7 +5708,7 @@
     "2062": {
       "symbol": "2062",
       "name": "橋椿",
-      "industry": "上市其他",
+      "industry": "居家生活",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5720,7 +5720,7 @@
     "2063": {
       "symbol": "2063",
       "name": "世鎧精密",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5732,7 +5732,7 @@
     "2064": {
       "symbol": "2064",
       "name": "晉椿",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5744,7 +5744,7 @@
     "2065": {
       "symbol": "2065",
       "name": "世豐",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5756,7 +5756,7 @@
     "2066": {
       "symbol": "2066",
       "name": "世德",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5768,7 +5768,7 @@
     "2067": {
       "symbol": "2067",
       "name": "嘉鋼",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5780,7 +5780,7 @@
     "2069": {
       "symbol": "2069",
       "name": "運錩",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5792,7 +5792,7 @@
     "2070": {
       "symbol": "2070",
       "name": "精湛",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5828,7 +5828,7 @@
     "2101": {
       "symbol": "2101",
       "name": "南港",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5840,7 +5840,7 @@
     "2102": {
       "symbol": "2102",
       "name": "泰豐",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5852,7 +5852,7 @@
     "2103": {
       "symbol": "2103",
       "name": "台橡",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5864,7 +5864,7 @@
     "2104": {
       "symbol": "2104",
       "name": "國際中橡",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5876,7 +5876,7 @@
     "2105": {
       "symbol": "2105",
       "name": "正新",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5888,7 +5888,7 @@
     "2106": {
       "symbol": "2106",
       "name": "建大",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5900,7 +5900,7 @@
     "2107": {
       "symbol": "2107",
       "name": "厚生",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5912,7 +5912,7 @@
     "2108": {
       "symbol": "2108",
       "name": "南帝",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5924,7 +5924,7 @@
     "2109": {
       "symbol": "2109",
       "name": "華豐",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5936,7 +5936,7 @@
     "2114": {
       "symbol": "2114",
       "name": "鑫永銓",
-      "industry": "上市橡膠",
+      "industry": "橡膠工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5948,7 +5948,7 @@
     "2115": {
       "symbol": "2115",
       "name": "六暉-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5960,7 +5960,7 @@
     "2201": {
       "symbol": "2201",
       "name": "裕隆",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5972,7 +5972,7 @@
     "2204": {
       "symbol": "2204",
       "name": "中華",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5984,7 +5984,7 @@
     "2206": {
       "symbol": "2206",
       "name": "三陽工業",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -5996,7 +5996,7 @@
     "2207": {
       "symbol": "2207",
       "name": "和泰車",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6008,7 +6008,7 @@
     "2208": {
       "symbol": "2208",
       "name": "台船",
-      "industry": "上市航運",
+      "industry": "航運業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6020,7 +6020,7 @@
     "2211": {
       "symbol": "2211",
       "name": "長榮鋼",
-      "industry": "上市鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6032,7 +6032,7 @@
     "2221": {
       "symbol": "2221",
       "name": "大甲",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6044,7 +6044,7 @@
     "2227": {
       "symbol": "2227",
       "name": "裕日車",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6056,7 +6056,7 @@
     "2228": {
       "symbol": "2228",
       "name": "劍麟",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6068,7 +6068,7 @@
     "2230": {
       "symbol": "2230",
       "name": "泰茂",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6080,7 +6080,7 @@
     "2231": {
       "symbol": "2231",
       "name": "為升",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6092,7 +6092,7 @@
     "2233": {
       "symbol": "2233",
       "name": "宇隆",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6104,7 +6104,7 @@
     "2235": {
       "symbol": "2235",
       "name": "謚源",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6116,7 +6116,7 @@
     "2236": {
       "symbol": "2236",
       "name": "百達-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6128,7 +6128,7 @@
     "2239": {
       "symbol": "2239",
       "name": "英利-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6140,7 +6140,7 @@
     "2241": {
       "symbol": "2241",
       "name": "艾姆勒",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6152,7 +6152,7 @@
     "2243": {
       "symbol": "2243",
       "name": "宏旭-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6164,7 +6164,7 @@
     "2247": {
       "symbol": "2247",
       "name": "汎德永業",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6188,7 +6188,7 @@
     "2250": {
       "symbol": "2250",
       "name": "IKKA-KY",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6224,7 +6224,7 @@
     "2301": {
       "symbol": "2301",
       "name": "光寶科",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6236,7 +6236,7 @@
     "2302": {
       "symbol": "2302",
       "name": "麗正",
-      "industry": "上市電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6260,7 +6260,7 @@
     "2305": {
       "symbol": "2305",
       "name": "全友",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6272,7 +6272,7 @@
     "2308": {
       "symbol": "2308",
       "name": "台達電",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6284,7 +6284,7 @@
     "2312": {
       "symbol": "2312",
       "name": "金寶",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6296,7 +6296,7 @@
     "2313": {
       "symbol": "2313",
       "name": "華通",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6308,7 +6308,7 @@
     "2314": {
       "symbol": "2314",
       "name": "台揚",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6320,7 +6320,7 @@
     "2316": {
       "symbol": "2316",
       "name": "楠梓電",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6332,7 +6332,7 @@
     "2317": {
       "symbol": "2317",
       "name": "鴻海",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6344,7 +6344,7 @@
     "2321": {
       "symbol": "2321",
       "name": "東訊",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6356,7 +6356,7 @@
     "2323": {
       "symbol": "2323",
       "name": "中環",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6368,7 +6368,7 @@
     "2324": {
       "symbol": "2324",
       "name": "仁寶",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6380,7 +6380,7 @@
     "2327": {
       "symbol": "2327",
       "name": "國巨*",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6392,7 +6392,7 @@
     "2328": {
       "symbol": "2328",
       "name": "廣宇",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6404,7 +6404,7 @@
     "2329": {
       "symbol": "2329",
       "name": "華泰",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6416,19 +6416,19 @@
     "2330": {
       "symbol": "2330",
       "name": "台積電",
-      "industry": "電子工業",
+      "industry": "上市電子",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-04-27T00:34:02Z",
+      "last_succeeded_at": "2026-04-27T22:34:13Z",
       "in_snapshot": true
     },
     "2331": {
       "symbol": "2331",
       "name": "精英",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6440,7 +6440,7 @@
     "2332": {
       "symbol": "2332",
       "name": "友訊",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6452,7 +6452,7 @@
     "2337": {
       "symbol": "2337",
       "name": "旺宏",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6464,7 +6464,7 @@
     "2338": {
       "symbol": "2338",
       "name": "光罩",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6476,7 +6476,7 @@
     "2340": {
       "symbol": "2340",
       "name": "台亞",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6488,7 +6488,7 @@
     "2342": {
       "symbol": "2342",
       "name": "茂矽",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6500,7 +6500,7 @@
     "2344": {
       "symbol": "2344",
       "name": "華邦電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6512,7 +6512,7 @@
     "2345": {
       "symbol": "2345",
       "name": "智邦",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6524,7 +6524,7 @@
     "2347": {
       "symbol": "2347",
       "name": "聯強",
-      "industry": "上市電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6536,7 +6536,7 @@
     "2348": {
       "symbol": "2348",
       "name": "海悅",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6548,7 +6548,7 @@
     "2349": {
       "symbol": "2349",
       "name": "錸德",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6560,7 +6560,7 @@
     "2351": {
       "symbol": "2351",
       "name": "順德",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6572,7 +6572,7 @@
     "2352": {
       "symbol": "2352",
       "name": "佳世達",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6584,7 +6584,7 @@
     "2353": {
       "symbol": "2353",
       "name": "宏碁",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6596,7 +6596,7 @@
     "2354": {
       "symbol": "2354",
       "name": "鴻準",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6608,7 +6608,7 @@
     "2355": {
       "symbol": "2355",
       "name": "敬鵬",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6620,7 +6620,7 @@
     "2356": {
       "symbol": "2356",
       "name": "英業達",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6632,7 +6632,7 @@
     "2357": {
       "symbol": "2357",
       "name": "華碩",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6644,7 +6644,7 @@
     "2359": {
       "symbol": "2359",
       "name": "所羅門",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6656,7 +6656,7 @@
     "2360": {
       "symbol": "2360",
       "name": "致茂",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6668,7 +6668,7 @@
     "2362": {
       "symbol": "2362",
       "name": "藍天",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6680,7 +6680,7 @@
     "2363": {
       "symbol": "2363",
       "name": "矽統",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6692,7 +6692,7 @@
     "2364": {
       "symbol": "2364",
       "name": "倫飛",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6704,7 +6704,7 @@
     "2365": {
       "symbol": "2365",
       "name": "昆盈",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6716,7 +6716,7 @@
     "2367": {
       "symbol": "2367",
       "name": "燿華",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6728,7 +6728,7 @@
     "2368": {
       "symbol": "2368",
       "name": "金像電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6740,7 +6740,7 @@
     "2369": {
       "symbol": "2369",
       "name": "菱生",
-      "industry": "上市電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6752,7 +6752,7 @@
     "2371": {
       "symbol": "2371",
       "name": "大同",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6764,7 +6764,7 @@
     "2373": {
       "symbol": "2373",
       "name": "震旦行",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6776,7 +6776,7 @@
     "2374": {
       "symbol": "2374",
       "name": "佳能",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6788,7 +6788,7 @@
     "2375": {
       "symbol": "2375",
       "name": "凱美",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6800,7 +6800,7 @@
     "2376": {
       "symbol": "2376",
       "name": "技嘉",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6812,7 +6812,7 @@
     "2377": {
       "symbol": "2377",
       "name": "微星",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6824,7 +6824,7 @@
     "2379": {
       "symbol": "2379",
       "name": "瑞昱",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6836,7 +6836,7 @@
     "2380": {
       "symbol": "2380",
       "name": "虹光",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6848,7 +6848,7 @@
     "2382": {
       "symbol": "2382",
       "name": "廣達",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6860,7 +6860,7 @@
     "2383": {
       "symbol": "2383",
       "name": "台光電",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6872,7 +6872,7 @@
     "2385": {
       "symbol": "2385",
       "name": "群光",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6884,7 +6884,7 @@
     "2387": {
       "symbol": "2387",
       "name": "精元",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6896,7 +6896,7 @@
     "2388": {
       "symbol": "2388",
       "name": "威盛",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6908,7 +6908,7 @@
     "2390": {
       "symbol": "2390",
       "name": "云辰",
-      "industry": "上市電子",
+      "industry": "其他電子業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6920,7 +6920,7 @@
     "2392": {
       "symbol": "2392",
       "name": "正崴",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6932,7 +6932,7 @@
     "2393": {
       "symbol": "2393",
       "name": "億光",
-      "industry": "上市電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6944,7 +6944,7 @@
     "2395": {
       "symbol": "2395",
       "name": "研華",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6956,7 +6956,7 @@
     "2397": {
       "symbol": "2397",
       "name": "友通",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6968,7 +6968,7 @@
     "2399": {
       "symbol": "2399",
       "name": "映泰",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6980,7 +6980,7 @@
     "2401": {
       "symbol": "2401",
       "name": "凌陽",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -6992,7 +6992,7 @@
     "2402": {
       "symbol": "2402",
       "name": "毅嘉",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7004,7 +7004,7 @@
     "2404": {
       "symbol": "2404",
       "name": "漢唐",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7016,7 +7016,7 @@
     "2405": {
       "symbol": "2405",
       "name": "輔信",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7028,7 +7028,7 @@
     "2406": {
       "symbol": "2406",
       "name": "國碩",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7040,7 +7040,7 @@
     "2408": {
       "symbol": "2408",
       "name": "南亞科",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7052,7 +7052,7 @@
     "2409": {
       "symbol": "2409",
       "name": "友達",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7064,7 +7064,7 @@
     "2412": {
       "symbol": "2412",
       "name": "中華電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7076,7 +7076,7 @@
     "2413": {
       "symbol": "2413",
       "name": "環科",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7088,7 +7088,7 @@
     "2414": {
       "symbol": "2414",
       "name": "精技",
-      "industry": "上市電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7100,7 +7100,7 @@
     "2415": {
       "symbol": "2415",
       "name": "錩新",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7112,7 +7112,7 @@
     "2417": {
       "symbol": "2417",
       "name": "圓剛",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7124,7 +7124,7 @@
     "2419": {
       "symbol": "2419",
       "name": "仲琦",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7136,7 +7136,7 @@
     "2420": {
       "symbol": "2420",
       "name": "新巨",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7148,7 +7148,7 @@
     "2421": {
       "symbol": "2421",
       "name": "建準",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7160,7 +7160,7 @@
     "2423": {
       "symbol": "2423",
       "name": "固緯",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7172,7 +7172,7 @@
     "2424": {
       "symbol": "2424",
       "name": "隴華",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7184,7 +7184,7 @@
     "2425": {
       "symbol": "2425",
       "name": "承啟",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7196,7 +7196,7 @@
     "2426": {
       "symbol": "2426",
       "name": "鼎元",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7208,7 +7208,7 @@
     "2427": {
       "symbol": "2427",
       "name": "三商電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7220,7 +7220,7 @@
     "2428": {
       "symbol": "2428",
       "name": "興勤",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7232,7 +7232,7 @@
     "2429": {
       "symbol": "2429",
       "name": "銘旺科",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7244,7 +7244,7 @@
     "2430": {
       "symbol": "2430",
       "name": "燦坤",
-      "industry": "上市電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7256,7 +7256,7 @@
     "2431": {
       "symbol": "2431",
       "name": "聯昌",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7280,7 +7280,7 @@
     "2433": {
       "symbol": "2433",
       "name": "互盛電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7292,7 +7292,7 @@
     "2434": {
       "symbol": "2434",
       "name": "統懋",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7304,7 +7304,7 @@
     "2436": {
       "symbol": "2436",
       "name": "偉詮電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7316,7 +7316,7 @@
     "2438": {
       "symbol": "2438",
       "name": "翔耀",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7328,7 +7328,7 @@
     "2439": {
       "symbol": "2439",
       "name": "美律",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7340,7 +7340,7 @@
     "2440": {
       "symbol": "2440",
       "name": "太空梭",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7352,7 +7352,7 @@
     "2441": {
       "symbol": "2441",
       "name": "超豐",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7364,7 +7364,7 @@
     "2442": {
       "symbol": "2442",
       "name": "新美齊",
-      "industry": "上市電子",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7376,7 +7376,7 @@
     "2444": {
       "symbol": "2444",
       "name": "兆勁",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7388,7 +7388,7 @@
     "2449": {
       "symbol": "2449",
       "name": "京元電子",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7400,7 +7400,7 @@
     "2450": {
       "symbol": "2450",
       "name": "神腦",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7412,7 +7412,7 @@
     "2451": {
       "symbol": "2451",
       "name": "創見",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7424,7 +7424,7 @@
     "2453": {
       "symbol": "2453",
       "name": "凌群",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7436,7 +7436,7 @@
     "2454": {
       "symbol": "2454",
       "name": "聯發科",
-      "industry": "上市電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7448,7 +7448,7 @@
     "2455": {
       "symbol": "2455",
       "name": "全新",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7460,7 +7460,7 @@
     "2457": {
       "symbol": "2457",
       "name": "飛宏",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7472,7 +7472,7 @@
     "2458": {
       "symbol": "2458",
       "name": "義隆",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7484,7 +7484,7 @@
     "2459": {
       "symbol": "2459",
       "name": "敦吉",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7496,7 +7496,7 @@
     "2460": {
       "symbol": "2460",
       "name": "建通",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7508,7 +7508,7 @@
     "2461": {
       "symbol": "2461",
       "name": "光群雷",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7520,7 +7520,7 @@
     "2462": {
       "symbol": "2462",
       "name": "良得電",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7532,7 +7532,7 @@
     "2464": {
       "symbol": "2464",
       "name": "盟立",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7544,7 +7544,7 @@
     "2465": {
       "symbol": "2465",
       "name": "麗臺",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7556,7 +7556,7 @@
     "2466": {
       "symbol": "2466",
       "name": "冠西電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7568,7 +7568,7 @@
     "2467": {
       "symbol": "2467",
       "name": "志聖",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7580,7 +7580,7 @@
     "2468": {
       "symbol": "2468",
       "name": "華經",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7592,7 +7592,7 @@
     "2471": {
       "symbol": "2471",
       "name": "資通",
-      "industry": "上市電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7604,7 +7604,7 @@
     "2472": {
       "symbol": "2472",
       "name": "立隆電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7616,7 +7616,7 @@
     "2474": {
       "symbol": "2474",
       "name": "可成",
-      "industry": "上市電子",
+      "industry": "其他電子業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7628,7 +7628,7 @@
     "2476": {
       "symbol": "2476",
       "name": "鉅祥",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7640,7 +7640,7 @@
     "2477": {
       "symbol": "2477",
       "name": "美隆電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7652,7 +7652,7 @@
     "2478": {
       "symbol": "2478",
       "name": "大毅",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7664,7 +7664,7 @@
     "2480": {
       "symbol": "2480",
       "name": "敦陽科",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7676,7 +7676,7 @@
     "2481": {
       "symbol": "2481",
       "name": "強茂",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7688,7 +7688,7 @@
     "2482": {
       "symbol": "2482",
       "name": "連宇",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7700,7 +7700,7 @@
     "2483": {
       "symbol": "2483",
       "name": "百容",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7712,7 +7712,7 @@
     "2484": {
       "symbol": "2484",
       "name": "希華",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7724,7 +7724,7 @@
     "2485": {
       "symbol": "2485",
       "name": "兆赫",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7736,7 +7736,7 @@
     "2486": {
       "symbol": "2486",
       "name": "一詮",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7748,7 +7748,7 @@
     "2488": {
       "symbol": "2488",
       "name": "漢平",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7760,7 +7760,7 @@
     "2489": {
       "symbol": "2489",
       "name": "瑞軒",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7772,7 +7772,7 @@
     "2491": {
       "symbol": "2491",
       "name": "吉祥全",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7784,7 +7784,7 @@
     "2492": {
       "symbol": "2492",
       "name": "華新科",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7796,7 +7796,7 @@
     "2493": {
       "symbol": "2493",
       "name": "揚博",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7808,7 +7808,7 @@
     "2495": {
       "symbol": "2495",
       "name": "普安",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7820,7 +7820,7 @@
     "2496": {
       "symbol": "2496",
       "name": "卓越",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7832,7 +7832,7 @@
     "2497": {
       "symbol": "2497",
       "name": "怡利電",
-      "industry": "上市汽車",
+      "industry": "汽車工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7844,7 +7844,7 @@
     "2498": {
       "symbol": "2498",
       "name": "宏達電",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7856,7 +7856,7 @@
     "2501": {
       "symbol": "2501",
       "name": "國建",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7868,7 +7868,7 @@
     "2504": {
       "symbol": "2504",
       "name": "國產",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7880,7 +7880,7 @@
     "2505": {
       "symbol": "2505",
       "name": "國揚",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -7892,7 +7892,7 @@
     "2506": {
       "symbol": "2506",
       "name": "太設",
-      "industry": "上市建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -8180,7 +8180,7 @@
     "2596": {
       "symbol": "2596",
       "name": "綠意",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -8456,7 +8456,7 @@
     "2640": {
       "symbol": "2640",
       "name": "大車隊",
-      "industry": "上櫃其他",
+      "industry": "數位雲端類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -8468,7 +8468,7 @@
     "2641": {
       "symbol": "2641",
       "name": "正德",
-      "industry": "上櫃航運",
+      "industry": "航運業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -8492,7 +8492,7 @@
     "2643": {
       "symbol": "2643",
       "name": "捷迅",
-      "industry": "上櫃航運",
+      "industry": "航運業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -12379,7 +12379,7 @@
     },
     "3565": {
       "symbol": "3565",
-      "name": "山太士",
+      "name": "3565",
       "industry": "",
       "freshness": {
         "days_old": 0,
@@ -12387,7 +12387,7 @@
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T00:34:19Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "3567": {
       "symbol": "3567",
@@ -18224,7 +18224,7 @@
     "6161": {
       "symbol": "6161",
       "name": "捷波",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18236,7 +18236,7 @@
     "6163": {
       "symbol": "6163",
       "name": "華電網",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18284,7 +18284,7 @@
     "6167": {
       "symbol": "6167",
       "name": "久正",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18308,7 +18308,7 @@
     "6169": {
       "symbol": "6169",
       "name": "昱泉",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18320,7 +18320,7 @@
     "6170": {
       "symbol": "6170",
       "name": "統振",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18332,7 +18332,7 @@
     "6171": {
       "symbol": "6171",
       "name": "大城地產",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18344,7 +18344,7 @@
     "6173": {
       "symbol": "6173",
       "name": "信昌電",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18356,7 +18356,7 @@
     "6174": {
       "symbol": "6174",
       "name": "安碁",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18368,7 +18368,7 @@
     "6175": {
       "symbol": "6175",
       "name": "立敦",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18404,7 +18404,7 @@
     "6179": {
       "symbol": "6179",
       "name": "亞通",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18416,7 +18416,7 @@
     "6180": {
       "symbol": "6180",
       "name": "橘子",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18428,7 +18428,7 @@
     "6182": {
       "symbol": "6182",
       "name": "合晶",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18464,7 +18464,7 @@
     "6185": {
       "symbol": "6185",
       "name": "幃翔",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18476,7 +18476,7 @@
     "6186": {
       "symbol": "6186",
       "name": "新潤",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18488,7 +18488,7 @@
     "6187": {
       "symbol": "6187",
       "name": "萬潤",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18500,7 +18500,7 @@
     "6188": {
       "symbol": "6188",
       "name": "廣明",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18524,7 +18524,7 @@
     "6190": {
       "symbol": "6190",
       "name": "萬泰科",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18560,7 +18560,7 @@
     "6194": {
       "symbol": "6194",
       "name": "育富",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18572,7 +18572,7 @@
     "6195": {
       "symbol": "6195",
       "name": "詩肯",
-      "industry": "未知",
+      "industry": "居家生活類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18608,7 +18608,7 @@
     "6198": {
       "symbol": "6198",
       "name": "瑞築",
-      "industry": "上櫃電子",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18620,7 +18620,7 @@
     "6199": {
       "symbol": "6199",
       "name": "天品",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18656,7 +18656,7 @@
     "6203": {
       "symbol": "6203",
       "name": "海韻電",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18668,7 +18668,7 @@
     "6204": {
       "symbol": "6204",
       "name": "艾華",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18704,7 +18704,7 @@
     "6207": {
       "symbol": "6207",
       "name": "雷科",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18716,7 +18716,7 @@
     "6208": {
       "symbol": "6208",
       "name": "日揚",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18740,7 +18740,7 @@
     "6210": {
       "symbol": "6210",
       "name": "慶生",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18752,7 +18752,7 @@
     "6212": {
       "symbol": "6212",
       "name": "理銘",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18812,7 +18812,7 @@
     "6217": {
       "symbol": "6217",
       "name": "中探針",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18824,7 +18824,7 @@
     "6218": {
       "symbol": "6218",
       "name": "豪勉",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18836,7 +18836,7 @@
     "6219": {
       "symbol": "6219",
       "name": "富旺",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18848,7 +18848,7 @@
     "6220": {
       "symbol": "6220",
       "name": "岳豐",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18860,7 +18860,7 @@
     "6221": {
       "symbol": "6221",
       "name": "晉泰",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18872,7 +18872,7 @@
     "6222": {
       "symbol": "6222",
       "name": "立軒",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18884,7 +18884,7 @@
     "6223": {
       "symbol": "6223",
       "name": "旺矽",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18932,7 +18932,7 @@
     "6227": {
       "symbol": "6227",
       "name": "茂綸",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18944,7 +18944,7 @@
     "6228": {
       "symbol": "6228",
       "name": "全譜",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18956,7 +18956,7 @@
     "6229": {
       "symbol": "6229",
       "name": "研通",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18980,7 +18980,7 @@
     "6231": {
       "symbol": "6231",
       "name": "系微",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -18992,7 +18992,7 @@
     "6233": {
       "symbol": "6233",
       "name": "旺玖",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19004,7 +19004,7 @@
     "6234": {
       "symbol": "6234",
       "name": "高僑",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19028,7 +19028,7 @@
     "6236": {
       "symbol": "6236",
       "name": "中湛",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19040,7 +19040,7 @@
     "6237": {
       "symbol": "6237",
       "name": "驊訊",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19064,7 +19064,7 @@
     "6240": {
       "symbol": "6240",
       "name": "松崗",
-      "industry": "上櫃其他",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19076,7 +19076,7 @@
     "6241": {
       "symbol": "6241",
       "name": "鑫永洋",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19088,7 +19088,7 @@
     "6242": {
       "symbol": "6242",
       "name": "立康",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19112,7 +19112,7 @@
     "6244": {
       "symbol": "6244",
       "name": "茂迪",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19124,7 +19124,7 @@
     "6245": {
       "symbol": "6245",
       "name": "立端",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19136,7 +19136,7 @@
     "6246": {
       "symbol": "6246",
       "name": "臺龍",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19148,7 +19148,7 @@
     "6248": {
       "symbol": "6248",
       "name": "沛波",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19172,7 +19172,7 @@
     "6259": {
       "symbol": "6259",
       "name": "百徽",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19184,7 +19184,7 @@
     "6261": {
       "symbol": "6261",
       "name": "久元",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19196,7 +19196,7 @@
     "6263": {
       "symbol": "6263",
       "name": "普萊德",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19208,7 +19208,7 @@
     "6264": {
       "symbol": "6264",
       "name": "富裔",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19220,7 +19220,7 @@
     "6265": {
       "symbol": "6265",
       "name": "方土昶",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19232,7 +19232,7 @@
     "6266": {
       "symbol": "6266",
       "name": "泰詠",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19256,7 +19256,7 @@
     "6270": {
       "symbol": "6270",
       "name": "倍微",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19292,7 +19292,7 @@
     "6274": {
       "symbol": "6274",
       "name": "台燿",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19304,7 +19304,7 @@
     "6275": {
       "symbol": "6275",
       "name": "元山",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19316,7 +19316,7 @@
     "6276": {
       "symbol": "6276",
       "name": "安鈦克",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19352,7 +19352,7 @@
     "6279": {
       "symbol": "6279",
       "name": "胡連",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19400,7 +19400,7 @@
     "6284": {
       "symbol": "6284",
       "name": "佳邦",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19424,7 +19424,7 @@
     "6290": {
       "symbol": "6290",
       "name": "良維",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19436,7 +19436,7 @@
     "6291": {
       "symbol": "6291",
       "name": "沛亨",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19448,7 +19448,7 @@
     "6292": {
       "symbol": "6292",
       "name": "迅德",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19460,7 +19460,7 @@
     "6294": {
       "symbol": "6294",
       "name": "智基",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19496,7 +19496,7 @@
     "6411": {
       "symbol": "6411",
       "name": "晶焱",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19556,7 +19556,7 @@
     "6417": {
       "symbol": "6417",
       "name": "韋僑",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19568,7 +19568,7 @@
     "6418": {
       "symbol": "6418",
       "name": "詠昇",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19580,7 +19580,7 @@
     "6419": {
       "symbol": "6419",
       "name": "京晨科",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19604,7 +19604,7 @@
     "6425": {
       "symbol": "6425",
       "name": "易發",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19640,7 +19640,7 @@
     "6432": {
       "symbol": "6432",
       "name": "今展科",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19652,7 +19652,7 @@
     "6435": {
       "symbol": "6435",
       "name": "大中",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19676,7 +19676,7 @@
     "6441": {
       "symbol": "6441",
       "name": "廣錠",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19760,7 +19760,7 @@
     "6461": {
       "symbol": "6461",
       "name": "益得",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19772,7 +19772,7 @@
     "6462": {
       "symbol": "6462",
       "name": "神盾",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19796,7 +19796,7 @@
     "6465": {
       "symbol": "6465",
       "name": "威潤",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19808,7 +19808,7 @@
     "6469": {
       "symbol": "6469",
       "name": "大樹",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19820,7 +19820,7 @@
     "6470": {
       "symbol": "6470",
       "name": "宇智",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19868,7 +19868,7 @@
     "6482": {
       "symbol": "6482",
       "name": "弘煜科",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19880,7 +19880,7 @@
     "6485": {
       "symbol": "6485",
       "name": "點序",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19892,7 +19892,7 @@
     "6486": {
       "symbol": "6486",
       "name": "互動",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19904,7 +19904,7 @@
     "6488": {
       "symbol": "6488",
       "name": "環球晶",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19928,7 +19928,7 @@
     "6492": {
       "symbol": "6492",
       "name": "生華科",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19940,7 +19940,7 @@
     "6494": {
       "symbol": "6494",
       "name": "九齊",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19952,7 +19952,7 @@
     "6496": {
       "symbol": "6496",
       "name": "科懋",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -19976,7 +19976,7 @@
     "6499": {
       "symbol": "6499",
       "name": "益安",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20012,7 +20012,7 @@
     "6506": {
       "symbol": "6506",
       "name": "雙邦",
-      "industry": "上櫃紡織",
+      "industry": "紡織纖維",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20024,7 +20024,7 @@
     "6508": {
       "symbol": "6508",
       "name": "惠光",
-      "industry": "未知",
+      "industry": "農業科技業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20036,7 +20036,7 @@
     "6509": {
       "symbol": "6509",
       "name": "聚和",
-      "industry": "上櫃化工",
+      "industry": "化學工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20048,7 +20048,7 @@
     "6510": {
       "symbol": "6510",
       "name": "精測",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20060,7 +20060,7 @@
     "6512": {
       "symbol": "6512",
       "name": "啟發電",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20084,7 +20084,7 @@
     "6516": {
       "symbol": "6516",
       "name": "勤崴國際",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20108,7 +20108,7 @@
     "6523": {
       "symbol": "6523",
       "name": "達爾膚",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20144,7 +20144,7 @@
     "6527": {
       "symbol": "6527",
       "name": "明達醫",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20156,7 +20156,7 @@
     "6530": {
       "symbol": "6530",
       "name": "創威",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20180,7 +20180,7 @@
     "6532": {
       "symbol": "6532",
       "name": "瑞耘",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20216,7 +20216,7 @@
     "6535": {
       "symbol": "6535",
       "name": "順藥",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20228,7 +20228,7 @@
     "6538": {
       "symbol": "6538",
       "name": "倉和",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20252,7 +20252,7 @@
     "6542": {
       "symbol": "6542",
       "name": "隆中",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20276,7 +20276,7 @@
     "6547": {
       "symbol": "6547",
       "name": "高端疫苗",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20288,7 +20288,7 @@
     "6548": {
       "symbol": "6548",
       "name": "長科*",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20324,7 +20324,7 @@
     "6556": {
       "symbol": "6556",
       "name": "勝品",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20348,7 +20348,7 @@
     "6560": {
       "symbol": "6560",
       "name": "欣普羅",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20360,7 +20360,7 @@
     "6561": {
       "symbol": "6561",
       "name": "是方",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20372,7 +20372,7 @@
     "6568": {
       "symbol": "6568",
       "name": "宏觀",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20384,7 +20384,7 @@
     "6569": {
       "symbol": "6569",
       "name": "醫揚",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20396,7 +20396,7 @@
     "6570": {
       "symbol": "6570",
       "name": "維田",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20420,7 +20420,7 @@
     "6574": {
       "symbol": "6574",
       "name": "霈方",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20432,7 +20432,7 @@
     "6576": {
       "symbol": "6576",
       "name": "逸達",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20444,7 +20444,7 @@
     "6577": {
       "symbol": "6577",
       "name": "勁豐",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20456,7 +20456,7 @@
     "6578": {
       "symbol": "6578",
       "name": "達邦蛋白",
-      "industry": "未知",
+      "industry": "農業科技業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20528,7 +20528,7 @@
     "6588": {
       "symbol": "6588",
       "name": "東典光電",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20552,7 +20552,7 @@
     "6590": {
       "symbol": "6590",
       "name": "普鴻",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20588,7 +20588,7 @@
     "6593": {
       "symbol": "6593",
       "name": "台灣銘板",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20600,7 +20600,7 @@
     "6596": {
       "symbol": "6596",
       "name": "寬宏藝術",
-      "industry": "上櫃文化創意",
+      "industry": "文化創意業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20636,7 +20636,7 @@
     "6603": {
       "symbol": "6603",
       "name": "富強鑫",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20672,7 +20672,7 @@
     "6609": {
       "symbol": "6609",
       "name": "瀧澤科",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20684,7 +20684,7 @@
     "6612": {
       "symbol": "6612",
       "name": "奈米醫材",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20696,7 +20696,7 @@
     "6613": {
       "symbol": "6613",
       "name": "朋億*",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20720,7 +20720,7 @@
     "6615": {
       "symbol": "6615",
       "name": "慧智",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20732,7 +20732,7 @@
     "6616": {
       "symbol": "6616",
       "name": "特昇-KY",
-      "industry": "上櫃其他",
+      "industry": "居家生活類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20768,7 +20768,7 @@
     "6624": {
       "symbol": "6624",
       "name": "萬年清",
-      "industry": "上櫃其他",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20792,7 +20792,7 @@
     "6629": {
       "symbol": "6629",
       "name": "泰金-KY",
-      "industry": "上櫃其他",
+      "industry": "居家生活類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20816,7 +20816,7 @@
     "6640": {
       "symbol": "6640",
       "name": "均華",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20840,7 +20840,7 @@
     "6642": {
       "symbol": "6642",
       "name": "富致",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20852,7 +20852,7 @@
     "6643": {
       "symbol": "6643",
       "name": "M31",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20876,7 +20876,7 @@
     "6649": {
       "symbol": "6649",
       "name": "台生材",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20888,7 +20888,7 @@
     "6651": {
       "symbol": "6651",
       "name": "全宇昕",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20900,7 +20900,7 @@
     "6654": {
       "symbol": "6654",
       "name": "天正國際",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20948,7 +20948,7 @@
     "6661": {
       "symbol": "6661",
       "name": "威健生技",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20960,7 +20960,7 @@
     "6662": {
       "symbol": "6662",
       "name": "樂斯科",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20972,7 +20972,7 @@
     "6664": {
       "symbol": "6664",
       "name": "群翊",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -20996,7 +20996,7 @@
     "6667": {
       "symbol": "6667",
       "name": "信紘科",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21080,7 +21080,7 @@
     "6679": {
       "symbol": "6679",
       "name": "鈺太",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21092,7 +21092,7 @@
     "6680": {
       "symbol": "6680",
       "name": "鑫創電子",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21104,7 +21104,7 @@
     "6683": {
       "symbol": "6683",
       "name": "雍智科技",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21116,7 +21116,7 @@
     "6684": {
       "symbol": "6684",
       "name": "安格",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21140,7 +21140,7 @@
     "6690": {
       "symbol": "6690",
       "name": "安碁資訊",
-      "industry": "上櫃電子",
+      "industry": "數位雲端類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21200,7 +21200,7 @@
     "6697": {
       "symbol": "6697",
       "name": "東捷資訊",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21224,7 +21224,7 @@
     "6703": {
       "symbol": "6703",
       "name": "軒郁",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21260,7 +21260,7 @@
     "6712": {
       "symbol": "6712",
       "name": "長聖",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21284,7 +21284,7 @@
     "6716": {
       "symbol": "6716",
       "name": "應廣",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21356,7 +21356,7 @@
     "6727": {
       "symbol": "6727",
       "name": "亞泰金屬",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21368,7 +21368,7 @@
     "6728": {
       "symbol": "6728",
       "name": "上洋",
-      "industry": "未知",
+      "industry": "居家生活類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21392,7 +21392,7 @@
     "6732": {
       "symbol": "6732",
       "name": "昇佳電子",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21404,7 +21404,7 @@
     "6733": {
       "symbol": "6733",
       "name": "博晟生醫",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21440,7 +21440,7 @@
     "6741": {
       "symbol": "6741",
       "name": "91APP*-KY",
-      "industry": "未知",
+      "industry": "數位雲端類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21476,7 +21476,7 @@
     "6751": {
       "symbol": "6751",
       "name": "智聯服務",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21488,7 +21488,7 @@
     "6752": {
       "symbol": "6752",
       "name": "叡揚",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21548,7 +21548,7 @@
     "6761": {
       "symbol": "6761",
       "name": "穩得",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21560,7 +21560,7 @@
     "6762": {
       "symbol": "6762",
       "name": "達亞",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21584,7 +21584,7 @@
     "6767": {
       "symbol": "6767",
       "name": "台微醫",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21680,7 +21680,7 @@
     "6788": {
       "symbol": "6788",
       "name": "華景電",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21776,7 +21776,7 @@
     "6803": {
       "symbol": "6803",
       "name": "崑鼎",
-      "industry": "上櫃其他",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -21968,7 +21968,7 @@
     "6843": {
       "symbol": "6843",
       "name": "進典",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -22016,7 +22016,7 @@
     "6855": {
       "symbol": "6855",
       "name": "數泓科",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -22112,7 +22112,7 @@
     "6870": {
       "symbol": "6870",
       "name": "騰雲",
-      "industry": "未知",
+      "industry": "數位雲端類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -22148,7 +22148,7 @@
     "6874": {
       "symbol": "6874",
       "name": "倍力",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -22832,7 +22832,7 @@
     "7402": {
       "symbol": "7402",
       "name": "邑錡",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -22856,7 +22856,7 @@
     "7556": {
       "symbol": "7556",
       "name": "意德士科技",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23420,14 +23420,14 @@
     "7794": {
       "symbol": "7794",
       "name": "宏碁智新",
-      "industry": "居家生活",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:02:36Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "7795": {
       "symbol": "7795",
@@ -23504,14 +23504,14 @@
     "7821": {
       "symbol": "7821",
       "name": "神數",
-      "industry": "其他電子業",
+      "industry": "",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
       "last_succeeded_at": "2026-04-27T22:02:41Z",
-      "in_snapshot": true
+      "in_snapshot": false
     },
     "7822": {
       "symbol": "7822",
@@ -23588,7 +23588,7 @@
     "8024": {
       "symbol": "8024",
       "name": "佑華",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23600,7 +23600,7 @@
     "8027": {
       "symbol": "8027",
       "name": "鈦昇",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23624,7 +23624,7 @@
     "8032": {
       "symbol": "8032",
       "name": "光菱",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23648,7 +23648,7 @@
     "8034": {
       "symbol": "8034",
       "name": "榮群",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23660,7 +23660,7 @@
     "8038": {
       "symbol": "8038",
       "name": "長園科",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23684,7 +23684,7 @@
     "8040": {
       "symbol": "8040",
       "name": "九暘",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23696,7 +23696,7 @@
     "8042": {
       "symbol": "8042",
       "name": "金山電",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23708,7 +23708,7 @@
     "8043": {
       "symbol": "8043",
       "name": "蜜望實",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23720,7 +23720,7 @@
     "8044": {
       "symbol": "8044",
       "name": "網家",
-      "industry": "未知",
+      "industry": "數位雲端類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23756,7 +23756,7 @@
     "8047": {
       "symbol": "8047",
       "name": "星雲",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23768,7 +23768,7 @@
     "8048": {
       "symbol": "8048",
       "name": "德勝",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23780,7 +23780,7 @@
     "8049": {
       "symbol": "8049",
       "name": "晶采",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23792,7 +23792,7 @@
     "8050": {
       "symbol": "8050",
       "name": "廣積",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23804,7 +23804,7 @@
     "8054": {
       "symbol": "8054",
       "name": "安國",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23816,7 +23816,7 @@
     "8059": {
       "symbol": "8059",
       "name": "凱碩",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23828,7 +23828,7 @@
     "8064": {
       "symbol": "8064",
       "name": "東捷",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23840,7 +23840,7 @@
     "8066": {
       "symbol": "8066",
       "name": "來思達",
-      "industry": "未知",
+      "industry": "居家生活類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23852,7 +23852,7 @@
     "8067": {
       "symbol": "8067",
       "name": "志旭",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23864,7 +23864,7 @@
     "8068": {
       "symbol": "8068",
       "name": "全達",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23900,7 +23900,7 @@
     "8071": {
       "symbol": "8071",
       "name": "能率網通",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23912,7 +23912,7 @@
     "8072": {
       "symbol": "8072",
       "name": "陞泰",
-      "industry": "上市電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23924,7 +23924,7 @@
     "8074": {
       "symbol": "8074",
       "name": "鉅橡",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23936,7 +23936,7 @@
     "8076": {
       "symbol": "8076",
       "name": "伍豐",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23948,7 +23948,7 @@
     "8077": {
       "symbol": "8077",
       "name": "洛碁",
-      "industry": "上櫃觀光",
+      "industry": "觀光餐旅",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23960,7 +23960,7 @@
     "8080": {
       "symbol": "8080",
       "name": "泰霖",
-      "industry": "上櫃電子",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23984,7 +23984,7 @@
     "8083": {
       "symbol": "8083",
       "name": "瑞穎",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -23996,7 +23996,7 @@
     "8084": {
       "symbol": "8084",
       "name": "巨虹",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24008,7 +24008,7 @@
     "8085": {
       "symbol": "8085",
       "name": "福華",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24020,7 +24020,7 @@
     "8086": {
       "symbol": "8086",
       "name": "宏捷科",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24032,7 +24032,7 @@
     "8087": {
       "symbol": "8087",
       "name": "麗升能源",
-      "industry": "上櫃電子",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24044,7 +24044,7 @@
     "8088": {
       "symbol": "8088",
       "name": "品安",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24056,7 +24056,7 @@
     "8089": {
       "symbol": "8089",
       "name": "康全電訊",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24068,7 +24068,7 @@
     "8091": {
       "symbol": "8091",
       "name": "翔名",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24080,7 +24080,7 @@
     "8092": {
       "symbol": "8092",
       "name": "建暐",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24092,7 +24092,7 @@
     "8093": {
       "symbol": "8093",
       "name": "保銳",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24104,7 +24104,7 @@
     "8096": {
       "symbol": "8096",
       "name": "擎亞",
-      "industry": "上櫃電子",
+      "industry": "電子通路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24116,7 +24116,7 @@
     "8097": {
       "symbol": "8097",
       "name": "常珵",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24128,7 +24128,7 @@
     "8099": {
       "symbol": "8099",
       "name": "大世科",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24200,7 +24200,7 @@
     "8107": {
       "symbol": "8107",
       "name": "大億金茂",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24212,7 +24212,7 @@
     "8109": {
       "symbol": "8109",
       "name": "博大",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24236,7 +24236,7 @@
     "8111": {
       "symbol": "8111",
       "name": "立碁",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24260,7 +24260,7 @@
     "8114": {
       "symbol": "8114",
       "name": "振樺電",
-      "industry": "上市電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24272,7 +24272,7 @@
     "8121": {
       "symbol": "8121",
       "name": "越峰",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24296,7 +24296,7 @@
     "8147": {
       "symbol": "8147",
       "name": "正淩",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24320,7 +24320,7 @@
     "8155": {
       "symbol": "8155",
       "name": "博智",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24356,7 +24356,7 @@
     "8171": {
       "symbol": "8171",
       "name": "天宇",
-      "industry": "上櫃電子",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24368,7 +24368,7 @@
     "8176": {
       "symbol": "8176",
       "name": "智捷",
-      "industry": "上櫃電子",
+      "industry": "通信網路業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24380,7 +24380,7 @@
     "8182": {
       "symbol": "8182",
       "name": "加高",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24392,7 +24392,7 @@
     "8183": {
       "symbol": "8183",
       "name": "精星",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24428,7 +24428,7 @@
     "8213": {
       "symbol": "8213",
       "name": "志超",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24440,7 +24440,7 @@
     "8215": {
       "symbol": "8215",
       "name": "明基材",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24452,7 +24452,7 @@
     "8222": {
       "symbol": "8222",
       "name": "寶一",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24476,7 +24476,7 @@
     "8234": {
       "symbol": "8234",
       "name": "新漢",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24488,7 +24488,7 @@
     "8240": {
       "symbol": "8240",
       "name": "華宏",
-      "industry": "上櫃電子",
+      "industry": "光電業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24500,7 +24500,7 @@
     "8249": {
       "symbol": "8249",
       "name": "菱光",
-      "industry": "上市電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24512,7 +24512,7 @@
     "8255": {
       "symbol": "8255",
       "name": "朋程",
-      "industry": "上櫃電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24524,7 +24524,7 @@
     "8261": {
       "symbol": "8261",
       "name": "富鼎",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24536,7 +24536,7 @@
     "8271": {
       "symbol": "8271",
       "name": "宇瞻",
-      "industry": "上市電子",
+      "industry": "電子工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24560,7 +24560,7 @@
     "8277": {
       "symbol": "8277",
       "name": "商丞",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24572,7 +24572,7 @@
     "8279": {
       "symbol": "8279",
       "name": "生展",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24584,7 +24584,7 @@
     "8284": {
       "symbol": "8284",
       "name": "三竹",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24596,7 +24596,7 @@
     "8289": {
       "symbol": "8289",
       "name": "泰藝",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24608,7 +24608,7 @@
     "8291": {
       "symbol": "8291",
       "name": "尚茂",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24620,7 +24620,7 @@
     "8299": {
       "symbol": "8299",
       "name": "群聯",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24632,7 +24632,7 @@
     "8341": {
       "symbol": "8341",
       "name": "日友",
-      "industry": "上市其他",
+      "industry": "綠能環保",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24644,7 +24644,7 @@
     "8342": {
       "symbol": "8342",
       "name": "益張",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24656,7 +24656,7 @@
     "8349": {
       "symbol": "8349",
       "name": "恒耀國際",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24668,7 +24668,7 @@
     "8354": {
       "symbol": "8354",
       "name": "冠好",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24680,7 +24680,7 @@
     "8358": {
       "symbol": "8358",
       "name": "金居",
-      "industry": "上櫃電子",
+      "industry": "電子零組件業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24692,7 +24692,7 @@
     "8367": {
       "symbol": "8367",
       "name": "建新國際",
-      "industry": "上市航運",
+      "industry": "航運業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24704,7 +24704,7 @@
     "8374": {
       "symbol": "8374",
       "name": "羅昇",
-      "industry": "上市電機機械",
+      "industry": "電機機械",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24716,7 +24716,7 @@
     "8383": {
       "symbol": "8383",
       "name": "千附",
-      "industry": "上櫃電子",
+      "industry": "半導體業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24728,7 +24728,7 @@
     "8390": {
       "symbol": "8390",
       "name": "金益鼎",
-      "industry": "上櫃其他",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24740,7 +24740,7 @@
     "8401": {
       "symbol": "8401",
       "name": "白紗科",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24752,7 +24752,7 @@
     "8403": {
       "symbol": "8403",
       "name": "盛弘",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24764,7 +24764,7 @@
     "8404": {
       "symbol": "8404",
       "name": "百和興業-KY",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24776,7 +24776,7 @@
     "8409": {
       "symbol": "8409",
       "name": "商之器",
-      "industry": "上櫃生技醫療",
+      "industry": "生技醫療業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24788,7 +24788,7 @@
     "8410": {
       "symbol": "8410",
       "name": "森田",
-      "industry": "上櫃電子",
+      "industry": "電腦及週邊設備業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24800,7 +24800,7 @@
     "8411": {
       "symbol": "8411",
       "name": "福貞-KY",
-      "industry": "上市其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24812,7 +24812,7 @@
     "8415": {
       "symbol": "8415",
       "name": "大國鋼",
-      "industry": "上櫃鋼鐵",
+      "industry": "鋼鐵工業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24824,7 +24824,7 @@
     "8416": {
       "symbol": "8416",
       "name": "實威",
-      "industry": "上櫃電子",
+      "industry": "資訊服務業",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24836,7 +24836,7 @@
     "8421": {
       "symbol": "8421",
       "name": "旭源",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24848,7 +24848,7 @@
     "8422": {
       "symbol": "8422",
       "name": "可寧衛*",
-      "industry": "上市其他",
+      "industry": "綠能環保",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24860,7 +24860,7 @@
     "8423": {
       "symbol": "8423",
       "name": "保綠-KY",
-      "industry": "上櫃其他",
+      "industry": "綠能環保類",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24872,7 +24872,7 @@
     "8424": {
       "symbol": "8424",
       "name": "惠普",
-      "industry": "上櫃建材營造",
+      "industry": "建材營造",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24884,7 +24884,7 @@
     "8426": {
       "symbol": "8426",
       "name": "紅木-KY",
-      "industry": "上櫃其他",
+      "industry": "其他",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24896,7 +24896,7 @@
     "8429": {
       "symbol": "8429",
       "name": "金麗-KY",
-      "industry": "上市貿易百貨",
+      "industry": "貿易百貨",
       "freshness": {
         "days_old": 0,
         "level": "today",
@@ -24908,7 +24908,7 @@
     "8431": {
       "symbol": "8431",
       "name": "匯鑽科",
-      "industry": "上櫃電子",
+      "industry": "其他電子類",
       "freshness": {
         "days_old": 0,
         "level": "today",

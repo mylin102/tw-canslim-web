@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "artifact_kind": "data",
-  "run_id": "clean-rebuild-1777157575",
-  "generated_at": "2026-04-25T22:52:55Z",
-  "last_updated": "2026-04-25T22:52:55Z",
+  "artifact_kind": "data_base",
+  "run_id": "20260427T223413Z",
+  "generated_at": "2026-04-27T22:34:13Z",
+  "last_updated": "2026-04-27T22:34:13Z",
   "stocks": {
     "1101": {
       "symbol": "1101",
@@ -17390,67 +17390,246 @@
       "schema_version": "1.0"
     },
     "2330": {
+      "schema_version": "1.0",
       "symbol": "2330",
       "name": "台積電",
-      "industry": "電子工業",
+      "industry": "上市電子",
+      "is_etf": false,
       "canslim": {
-        "C": false,
+        "C": true,
         "A": true,
         "N": true,
-        "S": false,
+        "S": true,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 70,
-        "rs_rating": 1.96,
-        "excel_ratings": null,
-        "fund_holdings": null
+        "score": 85,
+        "mansfield_rs": 1.073,
+        "rs_trend": {
+          "trend": "up",
+          "delta": 0.145,
+          "current": 1.073
+        },
+        "grid_strategy": {
+          "volatility_daily": 2.25,
+          "volatility_annual": 35.68,
+          "spacing_pct": 3.37,
+          "levels": [
+            {
+              "label": "Sell 2 (強勢減碼)",
+              "price": 2417.71,
+              "type": "sell-strong"
+            },
+            {
+              "label": "Sell 1 (分批獲利)",
+              "price": 2341.35,
+              "type": "sell"
+            },
+            {
+              "label": "Pivot (基準位)",
+              "price": 2265.0,
+              "type": "neutral"
+            },
+            {
+              "label": "Buy 1 (支撐加碼)",
+              "price": 2188.65,
+              "type": "buy"
+            },
+            {
+              "label": "Buy 2 (強力支撐)",
+              "price": 2112.29,
+              "type": "buy-strong"
+            }
+          ],
+          "is_etf": false
+        },
+        "excel_ratings": {
+          "name": "台積電",
+          "composite_rating": 94.0,
+          "eps_rating": 81.0,
+          "rs_rating": 86.0,
+          "smr_rating": "A+",
+          "quarterly_eps_growth_pct": 35.02,
+          "three_quarter_eps_growth_pct": 44.88,
+          "annual_eps_growth_pct": 46.43,
+          "three_year_eps_growth_pct": 19.12,
+          "eps_growth_years": 2.0,
+          "quarterly_revenue_growth_pct": 20.45,
+          "three_quarter_revenue_growth_pct": 29.8,
+          "fund_holding_count_q0": 552.0,
+          "fund_holding_count_q1": 839.0,
+          "fund_holding_increase_quarters": 0.0,
+          "institutional_holding_pct": 75.29,
+          "institutional_holding_change_pct": 0.05,
+          "sponsorship_score": 99.82046678635548,
+          "sponsorship_rating": "A+"
+        },
+        "fund_holdings": {
+          "current_month": 839,
+          "previous_month": 756,
+          "change": 83,
+          "change_pct": 10.98
+        }
       },
       "institutional": [
         {
-          "date": "20260413",
-          "foreign_net": -1275,
-          "trust_net": -4823,
-          "dealer_net": 53
+          "foreign_net": -18941,
+          "trust_net": 5283,
+          "dealer_net": 248,
+          "date": "20260427"
         },
         {
-          "date": "20260410",
-          "foreign_net": 8160,
-          "trust_net": -175,
-          "dealer_net": 375
+          "foreign_net": 8305,
+          "trust_net": 1168,
+          "dealer_net": 255,
+          "date": "20260424"
         },
         {
-          "date": "20260409",
-          "foreign_net": 722,
+          "foreign_net": 7193,
+          "trust_net": 754,
+          "dealer_net": -1380,
+          "date": "20260423"
+        },
+        {
+          "foreign_net": -2133,
+          "trust_net": -742,
+          "dealer_net": -327,
+          "date": "20260422"
+        },
+        {
+          "foreign_net": 2210,
+          "trust_net": 696,
+          "dealer_net": -78,
+          "date": "20260421"
+        },
+        {
+          "foreign_net": -3033,
+          "trust_net": 660,
+          "dealer_net": -71,
+          "date": "20260420"
+        },
+        {
+          "foreign_net": -9383,
+          "trust_net": -2186,
+          "dealer_net": -270,
+          "date": "20260417"
+        },
+        {
+          "foreign_net": -2390,
+          "trust_net": 306,
+          "dealer_net": 1083,
+          "date": "20260416"
+        },
+        {
+          "foreign_net": 4825,
+          "trust_net": -139,
+          "dealer_net": 243,
+          "date": "20260415"
+        },
+        {
+          "foreign_net": 18954,
+          "trust_net": 615,
+          "dealer_net": 653,
+          "date": "20260414"
+        },
+        {
+          "foreign_net": -1276,
+          "trust_net": -4824,
+          "dealer_net": 53,
+          "date": "20260413"
+        },
+        {
+          "foreign_net": 8159,
+          "trust_net": -176,
+          "dealer_net": 374,
+          "date": "20260410"
+        },
+        {
+          "foreign_net": 721,
           "trust_net": -104,
-          "dealer_net": -497
+          "dealer_net": -498,
+          "date": "20260409"
         },
         {
-          "date": "20260408",
           "foreign_net": 18393,
-          "trust_net": 452,
-          "dealer_net": 1711
+          "trust_net": 451,
+          "dealer_net": 1711,
+          "date": "20260408"
         },
         {
-          "date": "20260402",
+          "foreign_net": 5880,
+          "trust_net": 420,
+          "dealer_net": 91,
+          "date": "20260407"
+        },
+        {
           "foreign_net": -9386,
           "trust_net": -193,
-          "dealer_net": 136
+          "dealer_net": 136,
+          "date": "20260402"
         },
         {
-          "date": "20260401",
           "foreign_net": 6181,
           "trust_net": 633,
-          "dealer_net": 2463
+          "dealer_net": 2462,
+          "date": "20260401"
         },
         {
-          "date": "20260331",
           "foreign_net": -20438,
-          "trust_net": 1421,
-          "dealer_net": 2732
+          "trust_net": 1420,
+          "dealer_net": 2731,
+          "date": "20260331"
+        },
+        {
+          "foreign_net": -15960,
+          "trust_net": 557,
+          "dealer_net": -439,
+          "date": "20260330"
+        },
+        {
+          "foreign_net": -11136,
+          "trust_net": 381,
+          "dealer_net": 712,
+          "date": "20260327"
+        },
+        {
+          "foreign_net": -5191,
+          "trust_net": 547,
+          "dealer_net": 143,
+          "date": "20260326"
+        },
+        {
+          "foreign_net": 978,
+          "trust_net": 265,
+          "dealer_net": 700,
+          "date": "20260325"
+        },
+        {
+          "foreign_net": -5179,
+          "trust_net": 691,
+          "dealer_net": 442,
+          "date": "20260324"
+        },
+        {
+          "foreign_net": -15306,
+          "trust_net": 1860,
+          "dealer_net": 724,
+          "date": "20260323"
+        },
+        {
+          "foreign_net": -6769,
+          "trust_net": -4029,
+          "dealer_net": -37,
+          "date": "20260320"
+        },
+        {
+          "foreign_net": -22790,
+          "trust_net": -100,
+          "dealer_net": 451,
+          "date": "20260319"
         }
       ],
-      "schema_version": "1.0"
+      "institutional_source": "FinMind API (Patch)"
     },
     "2331": {
       "symbol": "2331",
