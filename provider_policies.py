@@ -234,5 +234,10 @@ def _record_retry_failure(runtime_state: dict[str, Any]) -> None:
 
 def _is_retryable_exception(policy: ProviderPolicy, exc: Exception) -> bool:
     """Return whether an exception matches the provider retry contract."""
+    err_str = str(exc)
+    # Explicitly DO NOT retry permission or quota errors that won't resolve with time
+    if any(keyword in err_str for keyword in ["Forbidden", "ForbiddenError", "403"]):
+        return False
+
     class_names = {cls.__name__ for cls in type(exc).__mro__}
     return any(name in class_names for name in policy.retryable_exception_names)

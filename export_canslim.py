@@ -1306,7 +1306,7 @@ class CanslimEngine:
                     
                     # Try batch cache first, fallback to individual if needed
                     history = self.inst_cache.get(t)
-                    if not history:
+                    if not history and self.finmind_processor.available:
                         logger.info(f"Cache miss for {t}, fetching individually...")
                         history = self.fetch_institutional_data_finmind(t, days=20)
 
