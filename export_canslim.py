@@ -194,6 +194,7 @@ class CanslimEngine:
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
         self.tej_processor = TEJProcessor()
+        self.finmind_disabled = False  # Track if FinMind should be skipped due to failure
         self.skew_provider = OptionSkewProvider()
         self.skew_analyzer = SkewAnalyzer()
         self.etf_list = self._load_etf_cache()
@@ -580,6 +581,9 @@ class CanslimEngine:
         Fetch institutional data using FinMind API.
         Fallback to TWSE scraper if FinMind fails.
         """
+        if not self.finmind_processor.available:
+            return None
+
         try:
             logger.info(f"Fetching institutional data via FinMind for {ticker}...")
             
@@ -1040,22 +1044,32 @@ class CanslimEngine:
             except Exception as e:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
-        # 2. Fallback to yfinance
-        if ticker == "TWII" or ticker == "^TWII":
-            yf_ticker = "^TWII"
+        # 2. Fallback to yfinance with candidate tickers
+        yf_candidates = []
+        if ticker in ["TAIEX", "TWII", "^TWII"]:
+            yf_candidates = ["^TWII", "006208.TW", "0050.TW"]
         elif "." in ticker:
-            yf_ticker = ticker
+            yf_candidates = [ticker]
         else:
-            # Add suffix from metadata or default to .TW
-            suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
-            yf_ticker = f"{ticker}{suffix}"
+            # Try both .TW and .TWO suffixes for resilience
+            primary_suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
+            secondary_suffix = ".TWO" if primary_suffix == ".TW" else ".TW"
+            yf_candidates = [f"{ticker}{primary_suffix}", f"{ticker}{secondary_suffix}"]
 
-        return get_price_history_with_policy(
-            yf_ticker,
-            period=period,
-            auto_adjust=True,
-            runtime_state=self.failure_stats,
-        )
+        for yf_ticker in yf_candidates:
+            try:
+                res = get_price_history_with_policy(
+                    yf_ticker,
+                    period=period,
+                    auto_adjust=True,
+                    runtime_state=self.failure_stats,
+                )
+                if res is not None and not res.empty:
+                    return res
+            except Exception as e:
+                logger.debug(f"yfinance fallback failed for {yf_ticker}: {e}")
+
+        return None
 
     def _rotation_timestamp(self) -> str:
         """Return a UTC timestamp for durable rotation metadata."""

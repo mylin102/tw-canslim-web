@@ -96,9 +96,14 @@ class TEJProcessor:
             return None
         except Exception as exc:
             err_str = str(exc)
-            if "LimitExceededError" in err_str or "ForbiddenError" in err_str:
+            if "ForbiddenError" in err_str:
+                logger.warning(f"🚀 TEJ Permission Denied (ForbiddenError): Disabling TEJ for this run to save time. {err_str}")
+                self.initialized = False
+                return None
+
+            if "LimitExceededError" in err_str:
                 self.error_count += 1
-                logger.warning(f"TEJ {table} failed with quota/auth error: {err_str}")
+                logger.warning(f"TEJ {table} failed with quota error: {err_str}")
             return None
 
     def get_daily_prices(self, coid: str, 
@@ -150,7 +155,8 @@ class TEJProcessor:
         import yfinance as yf
         logger.info(f"Falling back to yfinance for {coid}")
         
-        if coid == "TAIEX":
+        # TAIEX Mapping: Ensure we use ^TWII instead of TWII.TW
+        if coid in ["TAIEX", "TWII", "^TWII"]:
             ticker_id = "^TWII"
         elif suffix:
             ticker_id = f"{coid}{suffix}"

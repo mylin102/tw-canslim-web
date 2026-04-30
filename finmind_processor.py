@@ -98,7 +98,12 @@ class FinMindProcessor:
             logger.info(f"Fetched {len(df)} records for market on {date}")
             return df
         except Exception as e:
-            logger.error(f"Failed to fetch market institutional data: {e}")
+            err_str = str(e)
+            if "ForbiddenError" in err_str or "403" in err_str:
+                logger.warning(f"🚀 FinMind Permission Denied (ForbiddenError): Disabling FinMind for this run to save time. {err_str}")
+                self.available = False
+            else:
+                logger.error(f"Failed to fetch market institutional data: {e}")
             return None
 
     def fetch_institutional_investors(
@@ -129,7 +134,12 @@ class FinMindProcessor:
             
             return df
         except Exception as e:
-            logger.error(f"Failed to fetch data for {stock_id}: {e}")
+            err_str = str(e)
+            if "ForbiddenError" in err_str or "403" in err_str:
+                logger.warning(f"🚀 FinMind Permission Denied for {stock_id}: Disabling FinMind for this run. {err_str}")
+                self.available = False
+            else:
+                logger.error(f"Failed to fetch data for {stock_id}: {e}")
             return None
 
     def parse_institutional_data(self, df: pd.DataFrame) -> Optional[Dict[str, Dict]]:
