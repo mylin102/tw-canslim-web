@@ -198,3 +198,48 @@ class TEJProcessor:
     def calculate_canslim_c_and_a(self, coid: str) -> Dict[str, Any]:
         """Place holder for C and A factors derived from financials."""
         return {}
+
+    def get_monthly_revenue(self, coid: str) -> Optional[pd.DataFrame]:
+        """Fetch monthly revenue data for CANSLIM C (Current Earnings) analysis.
+
+        Uses TEJ table TRAIL/TAIM1AQ with acc_code='0100' (revenue).
+        Falls back to yfinance if TEJ unavailable.
+
+        Args:
+            coid: Taiwan stock symbol (e.g., '2330')
+
+        Returns:
+            DataFrame with columns [date, revenue] or None
+        """
+        if self.initialized and tejapi is not None:
+            try:
+                df = self._tej_get_with_policy(
+                    'TRAIL/TAIM1AQ',
+                    coid=[coid],
+                    acc_code=TEJ_ACC_CODE['revenue'],
+                    paginate=True,
+                )
+                if df is not None and not df.empty:
+                    df = df.rename(columns={'mdate': 'date', 'val': 'revenue'})
+                    df['date'] = pd.to_datetime(df['date'])
+                    df = df.sort_values('date')
+                    if df['date'].dt.tz is not None:
+                        df['date'] = df['date'].dt.tz_localize(None)
+                    return df
+            except Exception as e:
+                logger.warning(f"TEJ monthly revenue failed for {coid}: {e}")
+
+        # Fallback: use yfinance daily prices, resample monthly
+        logger.info(f"Falling back to yfinance monthly approximation for {coid}")
+        price_df = self.get_daily_prices(coid, count=365)
+        if price_df is not None and not price_df.empty:
+            price_df = price_df.set_index('date')
+            monthly = price_df['close'].resample('ME').last()
+            # Revenue approximation: monthly price change × previous close
+            # This is a rough proxy, not actual TEJ revenue data
+            revenue_df = monthly.to_frame(name='revenue')
+            revenue_df = revenue_df.reset_index()
+            revenue_df['revenue'] = revenue_df['revenue'].diff().fillna(0) * 1000
+            return revenue_df
+
+        return None

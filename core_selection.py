@@ -116,7 +116,7 @@ def load_selector_inputs(
     fused_path: str | Path,
     master_path: str | Path,
     baseline_path: str | Path,
-    revenue_path: str | Path = "docs/api/stock_features.json",
+    revenue_path: str | Path = "api/stock_features.json",
     signal_score_threshold: int = SIGNAL_SCORE_THRESHOLD,
 ) -> dict[str, Any]:
     """Load selector inputs and derive persisted buckets from trusted artifacts."""
