@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20260430T032951Z",
-  "generated_at": "2026-04-30T03:30:17Z",
-  "last_updated": "2026-04-30T03:30:17Z",
+  "run_id": "20260430T112611Z",
+  "generated_at": "2026-04-30T11:26:29Z",
+  "last_updated": "2026-04-30T11:26:29Z",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -13768,6 +13768,18 @@
       },
       "last_succeeded_at": "2026-04-26T04:08:02Z",
       "in_snapshot": true
+    },
+    "4178": {
+      "symbol": "4178",
+      "name": "永笙-KY",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
     },
     "4183": {
       "symbol": "4183",
