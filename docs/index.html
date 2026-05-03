@@ -437,7 +437,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(stock, idx) in allStocksSorted.slice(0, 50)" :key="stock.symbol"
+                                    <tr v-for="(stock, idx) in stockLeaders.slice(0, 50)" :key="stock.symbol"
                                         @click="selectStock(stock.symbol); activeTab = 'search'"
                                         class="hover:scale-[1.01] hover:shadow-xl transition-all cursor-pointer group">
                                         <td class="table-cell-lg pl-8 bg-slate-50 group-hover:bg-blue-600 group-hover:text-white rounded-l-3xl transition-colors">
@@ -451,7 +451,7 @@
                                             <div class="font-mono text-sm font-black text-slate-400 group-hover:text-blue-200 tracking-tighter">{{ stock.symbol }}</div>
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
-                                            <div v-if="stock.canslim.score_delta !== 0" 
+                                            <div v-if="stock.canslim.score_delta != null && stock.canslim.score_delta !== 0" 
                                                  :class="['text-xs font-black inline-flex items-center px-3 py-1 rounded-xl shadow-sm border-2', 
                                                           stock.canslim.score_delta > 0 ? 'bg-emerald-500 text-white border-emerald-600' : 'bg-rose-500 text-white border-rose-600']">
                                                 {{ stock.canslim.score_delta > 0 ? '↑' : '↓' }} {{ Math.abs(stock.canslim.score_delta) }}

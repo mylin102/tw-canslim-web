@@ -148,15 +148,17 @@ const app = createApp({
 
         // Separate stock leaders and ETF leaders at the data layer
         const stockLeaders = computed(() => {
-            return (stockData.value ? Object.values(stockData.value.stocks) : [])
-                .filter(s => !s.is_etf)
-                .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
+            const stocks = stockData.value ? Object.values(stockData.value.stocks) : [];
+            return stocks
+                .filter(s => s && !s.is_etf)
+                .sort((a, b) => ((b && b.canslim && b.canslim.score) || 0) - ((a && a.canslim && a.canslim.score) || 0));
         });
 
         const etfLeaders = computed(() => {
-            return (stockData.value ? Object.values(stockData.value.stocks) : [])
-                .filter(s => s.is_etf)
-                .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
+            const stocks = stockData.value ? Object.values(stockData.value.stocks) : [];
+            return stocks
+                .filter(s => s && s.is_etf)
+                .sort((a, b) => ((b && b.canslim && b.canslim.score) || 0) - ((a && a.canslim && a.canslim.score) || 0));
         });
 
         const selectStock = (symbol) => {
@@ -234,7 +236,7 @@ const app = createApp({
         return {
             stockData, stockIndexData, currentStock, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
-            stockLeaders, etfLeaders, searchUniverse, availableIndustries,
+            stockLeaders, etfLeaders, filteredStocks, searchUniverse, availableIndustries,
             selectStock, closeDetail, onSearchInput, clearSearch, updateSuggestions,
             getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber,
             recentInstitutionalDays, institutionalBarStyle, institutionalBarClass, institutionalValueClass, totalInstitutionalNet,
