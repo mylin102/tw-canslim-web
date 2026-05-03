@@ -65,8 +65,12 @@ def test_export_leaders_json_blends_revenue(engine, tmp_path):
         tsmc = universe[0]
         assert tsmc["symbol"] == "2330"
         
-        # composite_score = 0.7 * (80/100) + 0.3 * (6/6) = 0.56 + 0.3 = 0.86
-        assert tsmc["composite_score"] == 0.86
+        # New three-factor formula:
+        # blended = 0.4 * (80/100) + 0.3 * rs_weight + 0.3 * (6/6)
+        # rs_rating = min(99, max(1, 50 + int(1.5 * 5))) = min(99, 57) = 57
+        # rs_weight = 57/100 = 0.57
+        # blended = 0.4*0.80 + 0.3*0.57 + 0.3*1.0 = 0.32 + 0.171 + 0.30 = 0.791
+        assert tsmc["composite_score"] == 0.791
         
         # Tags
         assert "rev_acc" in tsmc["tags"]
@@ -99,8 +103,11 @@ def test_export_leaders_json_missing_revenue(engine, tmp_path):
             payload = json.load(f)
             
         tsmc = payload["universe"][0]
-        # composite_score = 0.7 * (80/100) + 0.3 * (0/6) = 0.56
-        assert tsmc["composite_score"] == 0.56
+        # New three-factor formula with missing revenue:
+        # rs_rating = min(99, max(1, 50 + int(1.5 * 5))) = min(99, 57) = 57
+        # blended = 0.4 * (80/100) + 0.3 * (57/100) + 0.3 * (0/6)
+        #         = 0.32 + 0.171 + 0.0 = 0.491
+        assert tsmc["composite_score"] == 0.491
         assert "rev_acc" not in tsmc["tags"]
         assert "rev_strong" not in tsmc["tags"]
         

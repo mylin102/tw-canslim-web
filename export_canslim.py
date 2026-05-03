@@ -401,6 +401,15 @@ class CanslimEngine:
 
         # Combine selection core with high-quality excel symbols
         final_universe_symbols = sorted(list(core_set.union(excel_symbols)))
+
+        # Exclude ETFs (00-prefix codes) from leader universe
+        before_etf_filter = len(final_universe_symbols)
+        final_universe_symbols = [s for s in final_universe_symbols if not s.startswith("00")]
+        if before_etf_filter - len(final_universe_symbols) > 0:
+            logger.info(
+                "Excluded %d ETFs from leader universe",
+                before_etf_filter - len(final_universe_symbols),
+            )
         
         for symbol in final_universe_symbols:
             # Check if we have processed data for this symbol
@@ -423,7 +432,14 @@ class CanslimEngine:
                     "breakout_score": 0.5, # Default since no price data
                     "volume_score": 0.5,
                     "composite_score": round((excel_ratings.get("composite_rating") or 0) / 100.0, 3),
-                    "industry_rank": 999,
+                    # Try to resolve industry from ticker_info for a better rank;
+                    # 500 = neutral middle (won't be filtered by B-side _is_valid_leader which checks >=999)
+                    "industry_rank": min(
+                        industry_rank_map.get(
+                            self.ticker_info.get(symbol, {}).get("industry", ""), 500
+                        ),
+                        999,
+                    ),
                     "tags": ["leader", "from_excel"]
                 }
             else:
@@ -443,10 +459,19 @@ class CanslimEngine:
                 elif canslim.get("mansfield_rs"):
                     rs_rating = min(99, max(1, 50 + int(canslim["mansfield_rs"] * 5)))
 
-                # Blended composite score: 70% CANSLIM, 30% Revenue
+                # Blended composite score: 40% CANSLIM + 30% RS + 30% Revenue
                 canslim_score = float(canslim.get("score") or 0.0)
                 revenue_score = float(canslim.get("revenue_score") or 0.0)
-                blended_score = 0.7 * (canslim_score / 100.0) + 0.3 * (revenue_score / 6.0)
+                rs_weight = min(1.0, max(0.0, rs_rating / 100.0))
+                blended_score = (
+                    0.4 * (canslim_score / 100.0)
+                    + 0.3 * rs_weight
+                    + 0.3 * (revenue_score / 6.0)
+                )
+                # Penalty: stocks without RS rating get a 30% discount
+                # to prevent high-revenue stocks from floating into leader list
+                if rs_rating <= 0:
+                    blended_score *= 0.7
 
                 entry = {
                     "symbol": symbol,
@@ -476,13 +501,46 @@ class CanslimEngine:
             "universe": universe
         }
         
+        # Compute summary stats for log + score drift guard
+        if universe:
+            rs_ratings = [r.get("rs_rating", 0) for r in universe]
+            comp_scores = [r.get("composite_score", 0) for r in universe]
+            ind_ranked = sum(1 for r in universe if r.get("industry_rank", 999) < 999)
+            cmin, cmax = min(comp_scores), max(comp_scores)
+
+            # Score drift guard — catch distribution anomalies immediately
+            if cmax - cmin < 0.15:
+                logger.warning(
+                    "[SCORE DRIFT] composite_score range too flat "
+                    "(min=%.3f max=%.3f delta=%.3f < 0.15)",
+                    cmin, cmax, cmax - cmin,
+                )
+            if cmax > 1.0 or cmin < 0.0:
+                logger.error(
+                    "[SCORE DRIFT] composite_score out of [0,1] range "
+                    "(min=%.3f max=%.3f)",
+                    cmin, cmax,
+                )
+
+            logger.info(
+                "Leaders export complete: %d leaders, "
+                "avg_rs=%.1f industry_ranked=%d/%d "
+                "composite_range=[%.3f, %.3f]",
+                len(universe),
+                sum(rs_ratings) / max(len(rs_ratings), 1),
+                ind_ranked,
+                len(universe),
+                cmin,
+                cmax,
+            )
+
         bundle = {
             leaders_file: {
                 "artifact_kind": "leaders",
                 "payload": payload,
             }
         }
-        
+
         logger.info(f"Exporting {len(universe)} leaders to {leaders_file} (including Excel-sourced)...")
         return publish_artifact_bundle(
             bundle,
