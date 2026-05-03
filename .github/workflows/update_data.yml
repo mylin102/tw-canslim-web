@@ -127,6 +127,7 @@ jobs:
           # 添加所有更新的檔案
           git add docs/data.json docs/data_base.json docs/data_light.json docs/data.json.gz
           git add docs/stock_index.json docs/update_summary.json
+          git add docs/etf_regime.json
           git add docs/api/*.json
           git add data/leaders.json
           git add .orchestration/rotation_state.json

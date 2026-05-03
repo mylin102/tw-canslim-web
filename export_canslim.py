@@ -1650,6 +1650,12 @@ class CanslimEngine:
                     self._export_leaders_json(selection)
                 except Exception as e:
                     logger.error(f"Failed to export external alpha leaders: {e}")
+
+                # Export ETF Regime for market environment signal
+                try:
+                    self._export_etf_regime()
+                except Exception as e:
+                    logger.error(f"Failed to export ETF regime: {e}")
             except (PublishValidationError, PublishTransactionError):
                 logger.exception("Failed to publish CANSLIM artifact bundle")
                 raise
