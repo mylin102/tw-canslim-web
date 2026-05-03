@@ -158,7 +158,7 @@ class TEJProcessor:
         # TAIEX Mapping: Ensure we use ^TWII instead of TWII.TW
         if coid in ["TAIEX", "TWII", "^TWII"]:
             ticker_id = "^TWII"
-        elif suffix:
+        elif suffix and coid.find('.') == -1:
             ticker_id = f"{coid}{suffix}"
         else:
             actual_suffix = ".TWO" if len(coid) == 4 and coid[0] in '34568' else ".TW"
