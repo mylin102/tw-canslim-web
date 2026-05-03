@@ -146,6 +146,19 @@ const app = createApp({
                 .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
         });
 
+        // Separate stock leaders and ETF leaders at the data layer
+        const stockLeaders = computed(() => {
+            return (stockData.value ? Object.values(stockData.value.stocks) : [])
+                .filter(s => !s.is_etf)
+                .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
+        });
+
+        const etfLeaders = computed(() => {
+            return (stockData.value ? Object.values(stockData.value.stocks) : [])
+                .filter(s => s.is_etf)
+                .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
+        });
+
         const selectStock = (symbol) => {
             const stock = searchUniverse.value.find(s => s.symbol === symbol);
             if (stock) {
@@ -221,7 +234,7 @@ const app = createApp({
         return {
             stockData, stockIndexData, currentStock, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
             activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
-            allStocksSorted, filteredStocks, searchUniverse, availableIndustries,
+            stockLeaders, etfLeaders, searchUniverse, availableIndustries,
             selectStock, closeDetail, onSearchInput, clearSearch, updateSuggestions,
             getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber,
             recentInstitutionalDays, institutionalBarStyle, institutionalBarClass, institutionalValueClass, totalInstitutionalNet,
