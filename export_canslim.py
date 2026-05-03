@@ -374,6 +374,37 @@ class CanslimEngine:
             json_default=self._json_default,
         )
 
+    def _export_etf_regime(self) -> Dict:
+        """Export ETF regime snapshot to data/etf_regime.json."""
+        from export_etf_regime import build_etf_regime_payload
+
+        data_dir = os.path.join(SCRIPT_DIR, "data")
+        if not os.path.exists(data_dir):
+            os.makedirs(data_dir)
+        regime_file = os.path.join(data_dir, "etf_regime.json")
+
+        payload = build_etf_regime_payload(
+            price_history_fn=self.get_price_history,
+            as_of=self._rotation_timestamp(),
+        )
+
+        bundle = {
+            regime_file: {
+                "artifact_kind": "etf_regime",
+                "payload": payload,
+            }
+        }
+        logger.info(
+            "Exporting ETF regime: %s (confidence=%.4f)",
+            payload["regime"],
+            payload["confidence"],
+        )
+        return publish_artifact_bundle(
+            bundle,
+            logger=logger,
+            json_default=self._json_default,
+        )
+
     def _export_leaders_json(self, selection) -> Dict:
         """Export core leaders to data/leaders.json according to External Alpha contract."""
         self._ensure_runtime_state()

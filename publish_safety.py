@@ -45,6 +45,9 @@ ARTIFACT_KIND_BY_NAME = {
     "stock_index.json": "stock_index",
     "update_summary.json": "update_summary",
     "leaders.json": "leaders",
+    "stocks_leaders.json": "stocks_leaders",
+    "etf_leaders.json": "etf_leaders",
+    "etf_regime.json": "etf_regime",
 }
 
 STOCK_ARTIFACT_KINDS = {
