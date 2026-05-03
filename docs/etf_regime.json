@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "date": "2026-05-03",
+  "generated_at": "2026-05-03T17:31:10Z",
+  "regime": "RISK_OFF",
+  "confidence": 0.5,
+  "features": {
+    "market_momentum": 0.048143,
+    "growth_vs_defensive": 0.044447,
+    "small_vs_large": -0.005658,
+    "hedge_demand": 0.023057,
+    "bond_bid": -0.006236
+  }
+}
