@@ -44,6 +44,90 @@ const app = createApp({
             'M': { title: 'Market Direction', desc: '追蹤大盤多空。' }
         };
 
+        // ============ Core Symbols (與 core_selection_config.json 同步) ============
+        const CORE_SYMBOLS = new Set([
+            '1101', '1301', '1303', '2303', '2330', '2357', '2395',
+            '2881', '2882', '3565', '6770', '6805', '8069',
+            '0050', '0056', '006208', '00878', '00919'
+        ]);
+
+        // Leader thresholds
+        const SIGNAL_SCORE_THRESHOLD = 75;
+        const RS_LEADER_THRESHOLD = 80;
+
+        // 輪動分組計算
+        const getRotationGroup = (symbol) => {
+            if (CORE_SYMBOLS.has(symbol)) return 'core';
+            const code = parseInt(symbol) || 0;
+            const group = code % 3;
+            return `group${group + 1}`;
+        };
+
+        // 股票分級
+        const getStockTier = (symbol, stock) => {
+            if (CORE_SYMBOLS.has(symbol)) {
+                const freshness = stock.freshness || {};
+                const isFresh = freshness.days_old <= 1;
+                return {
+                    tier: 'core', label: 'Core', icon: '✅',
+                    subtext: isFresh ? '最近更新' : '更新延遲',
+                    color: isFresh ? 'text-emerald-600' : 'text-amber-600',
+                    bg: isFresh ? 'bg-emerald-50' : 'bg-amber-50',
+                    border: isFresh ? 'border-emerald-200' : 'border-amber-200',
+                    nextUpdate: '每個交易日'
+                };
+            }
+            const score = stock.canslim?.score || 0;
+            const rs = stock.canslim?.mansfield_rs || 0;
+            if (score >= SIGNAL_SCORE_THRESHOLD || rs >= RS_LEADER_THRESHOLD) {
+                let leaderType = 'Signal';
+                if (rs >= RS_LEADER_THRESHOLD) leaderType = 'RS';
+                else if (score >= SIGNAL_SCORE_THRESHOLD) leaderType = 'Score';
+                return {
+                    tier: 'leader', label: `Leader (${leaderType})`, icon: '🏆',
+                    subtext: `Score: ${score} | RS: ${rs}`,
+                    color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200',
+                    nextUpdate: '每個交易日'
+                };
+            }
+            const group = getRotationGroup(symbol);
+            const freshness = stock.freshness || {};
+            const isStale = freshness.days_old > 2;
+            const groupNames = {
+                'group1': { name: 'G1', day: '一/四' },
+                'group2': { name: 'G2', day: '二/五' },
+                'group3': { name: 'G3', day: '三' }
+            };
+            const info = groupNames[group] || { name: 'G?', day: '?' };
+            return {
+                tier: 'rotation', label: info.name, icon: isStale ? '⏳' : '📅',
+                subtext: `更新：週${info.day}`,
+                color: isStale ? 'text-slate-500' : 'text-blue-600',
+                bg: isStale ? 'bg-slate-50' : 'bg-blue-50',
+                border: isStale ? 'border-slate-200' : 'border-blue-200',
+                nextUpdate: `週${info.day}`
+            };
+        };
+
+        const getNextUpdateDay = (symbol) => {
+            const tier = getStockTier(symbol, {});
+            return tier.nextUpdate || '未知';
+        };
+
+        const formatRelativeTime = (timestamp) => {
+            if (!timestamp) return '';
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffHours / 24);
+            if (diffHours < 1) return '剛剛';
+            if (diffHours < 24) return `${diffHours}小時前`;
+            if (diffDays === 1) return '昨天';
+            if (diffDays < 7) return `${diffDays}天前`;
+            return date.toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' });
+        };
+
         const safeNumber = (value) => {
             const normalized = Number(value);
             return Number.isFinite(normalized) ? normalized : 0;
@@ -240,7 +324,8 @@ const app = createApp({
             selectStock, closeDetail, onSearchInput, clearSearch, updateSuggestions,
             getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber,
             recentInstitutionalDays, institutionalBarStyle, institutionalBarClass, institutionalValueClass, totalInstitutionalNet,
-            financialLabels, canslimDefinitions
+            financialLabels, canslimDefinitions,
+            formatRelativeTime, getStockTier, getNextUpdateDay,
         };
     }
 });

@@ -612,6 +612,22 @@
                                         <div class="px-2 py-0.5 bg-slate-900 text-white rounded font-black text-[10px]">{{ stock.canslim.score }}</div>
                                     </div>
                                     <div class="font-black text-lg text-slate-900 mb-0.5 group-hover:text-blue-600 transition-colors">{{ stock.name }}</div>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span v-if="getStockTier(stock.symbol, stock)"
+                                            :class="`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold border ${getStockTier(stock.symbol, stock).bg} ${getStockTier(stock.symbol, stock).color} ${getStockTier(stock.symbol, stock).border}`"
+                                            :title="getStockTier(stock.symbol, stock).subtext">
+                                            <span class="mr-1.5">{{ getStockTier(stock.symbol, stock).icon }}</span>
+                                            {{ getStockTier(stock.symbol, stock).label }}
+                                        </span>
+                                        <span v-if="getNextUpdateDay(stock.symbol)" class="text-xs text-slate-500">
+                                            <i class="far fa-calendar-check mr-1"></i>
+                                            {{ getNextUpdateDay(stock.symbol) }}
+                                        </span>
+                                    </div>
+                                    <div v-if="getStockTier(stock.symbol, stock).icon" class="mt-1.5 text-xs text-slate-400">
+                                        <i class="far fa-clock mr-1"></i>
+                                        上次更新：{{ formatRelativeTime(stock.freshness?.last_succeeded_at || stock.last_succeeded_at) }}
+                                    </div>
                                     <div class="text-[10px] font-bold text-slate-400 mb-4">{{ stock.industry }}</div>
                                     <div class="pt-3 border-t border-slate-50 flex justify-between">
                                         <div class="flex flex-col">
