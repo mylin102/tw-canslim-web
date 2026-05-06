@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20260506T060404Z",
-  "generated_at": "2026-05-06T06:04:27Z",
-  "last_updated": "2026-05-06T06:04:27Z",
+  "run_id": "20260506T114612Z",
+  "generated_at": "2026-05-06T11:46:34Z",
+  "last_updated": "2026-05-06T11:46:34Z",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -11848,6 +11848,18 @@
       },
       "last_succeeded_at": "2026-05-03T17:41:27Z",
       "in_snapshot": true
+    },
+    "3485": {
+      "symbol": "3485",
+      "name": "敘豐",
+      "industry": "",
+      "freshness": {
+        "days_old": null,
+        "level": "unknown",
+        "label": "⚪ 未更新"
+      },
+      "last_succeeded_at": "",
+      "in_snapshot": false
     },
     "3489": {
       "symbol": "3489",
