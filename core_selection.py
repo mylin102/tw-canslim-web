@@ -397,7 +397,7 @@ def _ordered_symbols(symbols: Sequence[str], bucket_name: str | None = None) -> 
 
 def _is_valid_symbol(symbol: str) -> bool:
     """Return True when the selector symbol matches repo expectations."""
-    return len(symbol) in {4, 5} and symbol.isdigit()
+    return len(symbol) in {4, 5, 6} and symbol.isdigit()
 
 
 def _require_columns(label: str, frame: pd.DataFrame, required_columns: set[str]) -> None:
