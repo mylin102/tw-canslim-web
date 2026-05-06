@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-05-05",
-  "generated_at": "2026-05-05T11:14:58Z",
+  "date": "2026-05-06",
+  "generated_at": "2026-05-06T06:04:28Z",
   "universe": [
     {
       "symbol": "1101",
@@ -11,6 +11,30 @@
       "volume_score": 0.5,
       "composite_score": 0.0,
       "industry_rank": 12,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "1301",
+      "name": "台塑",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.0,
+      "industry_rank": 6,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "1303",
+      "name": "南亞",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
+      "industry_rank": 6,
       "tags": [
         "leader"
       ]
@@ -36,6 +60,31 @@
       "volume_score": 1.0,
       "composite_score": 0.598,
       "industry_rank": 1,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2357",
+      "name": "華碩",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.0,
+      "industry_rank": 26,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2395",
+      "name": "研華",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.042,
+      "industry_rank": 26,
       "tags": [
         "leader",
         "breakout_candidate"

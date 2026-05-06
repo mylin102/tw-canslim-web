@@ -1,29 +1,32 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260505T111438Z",
-  "generated_at": "2026-05-05T11:14:58Z",
+  "run_id": "20260506T060404Z",
+  "generated_at": "2026-05-06T06:04:27Z",
   "status": "failed",
   "stats": {
-    "retry_attempts": 3,
+    "retry_attempts": 4,
     "retry_failures": 1,
-    "resume_rejected": 0,
+    "resume_rejected": 2,
     "stock_failures": 0,
-    "provider_wait_seconds": 9.598029322999992
+    "provider_wait_seconds": 13.276395585000017
   },
-  "timestamp": "2026-05-05T11:14:58Z",
+  "timestamp": "2026-05-06T06:04:27Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 1,
-    "provider_wait_seconds": 9.598029322999992
+    "provider_wait_seconds": 13.276395585000017
   },
   "data_stats": {
     "total_stocks": 2178,
     "updated_stocks": 2178
   },
   "failures": [],
-  "refreshed_symbols": [],
+  "refreshed_symbols": [
+    "1301",
+    "1303"
+  ],
   "failed_symbols": [],
   "next_rotation": {
     "batch_index": 0,
@@ -41,7 +44,6 @@
       "006205",
       "006206",
       "006207",
-      "006208",
       "00631L",
       "00632R",
       "00633L",
@@ -165,7 +167,6 @@
       "00916",
       "00917",
       "00918",
-      "00919",
       "00920",
       "00921",
       "00922",
@@ -273,8 +274,6 @@
       "1268",
       "1294",
       "1295",
-      "1301",
-      "1303",
       "1304",
       "1305",
       "1307",
@@ -574,7 +573,6 @@
       "2354",
       "2355",
       "2356",
-      "2357",
       "2359",
       "2360",
       "2362",
@@ -600,7 +598,6 @@
       "2390",
       "2392",
       "2393",
-      "2395",
       "2397",
       "2399",
       "2401",
@@ -683,13 +680,17 @@
       "2596",
       "2640",
       "2641",
-      "2643"
+      "2643",
+      "2718",
+      "2719",
+      "2724",
+      "2726"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 0,
-    "warning": 1639,
-    "stale": 539
+    "today": 2,
+    "warning": 555,
+    "stale": 1621
   }
 }
