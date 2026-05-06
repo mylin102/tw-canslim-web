@@ -375,13 +375,13 @@ class CanslimEngine:
         )
 
     def _export_etf_regime(self) -> Dict:
-        """Export ETF regime snapshot to data/etf_regime.json."""
+        """Export ETF regime snapshot to docs/etf_regime.json."""
         from export_etf_regime import build_etf_regime_payload
 
-        data_dir = os.path.join(SCRIPT_DIR, "data")
-        if not os.path.exists(data_dir):
-            os.makedirs(data_dir)
-        regime_file = os.path.join(data_dir, "etf_regime.json")
+        docs_dir = os.path.join(SCRIPT_DIR, "docs")
+        if not os.path.exists(docs_dir):
+            os.makedirs(docs_dir)
+        regime_file = os.path.join(docs_dir, "etf_regime.json")
 
         payload = build_etf_regime_payload(
             price_history_fn=self.get_price_history,

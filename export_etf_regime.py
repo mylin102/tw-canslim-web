@@ -28,7 +28,7 @@ ETF_GROUPS: dict[str, list[str]] = {
 
 LOOKBACK_DAYS = 7  # enough for 5d returns
 
-REGIME_PRIORITY = ["RISK_ON", "RISK_OFF", "DEFENSIVE", "CHOP"]
+REGIME_PRIORITY = ["RISK_ON", "TRANSITION", "RISK_OFF", "DEFENSIVE", "CHOP"]
 
 
 def get_etf_close_prices(
@@ -165,7 +165,11 @@ def _fmt(v: Any) -> str:
 def classify_regime(features: dict[str, Any]) -> tuple[str, float]:
     """Classify market regime from ETF features.
 
-    Priority order: RISK_ON → RISK_OFF → DEFENSIVE → CHOP
+    Priority order: RISK_ON → TRANSITION → RISK_OFF → DEFENSIVE → CHOP
+
+    Key principle: RISK_OFF requires *resonance* (>=2 signals), not a single trigger.
+    Hedge demand alone (00632R up) during rising markets is BULL MARKET HEDGING,
+    not risk-off. True risk-off requires market deterioration + flight to safety.
 
     Returns (regime: str, confidence: float).
     Confidence = valid_feature_ratio * agreement_ratio.
@@ -180,7 +184,7 @@ def classify_regime(features: dict[str, Any]) -> tuple[str, float]:
         logger.warning("ETF regime: too few valid features (%d/%d), defaulting to CHOP", valid_count, total_count)
         return "CHOP", 0.0
 
-    # Check RISK_ON
+    # ── RISK_ON: all growth signals positive, no hedging ──
     risk_on_signals = 0
     risk_on_total = 0
     for key in ("market_momentum", "growth_vs_defensive", "small_vs_large"):
@@ -196,25 +200,77 @@ def classify_regime(features: dict[str, Any]) -> tuple[str, float]:
     if risk_on_total > 0 and risk_on_signals == risk_on_total:
         return "RISK_ON", valid_ratio * 1.0
 
-    # Check RISK_OFF — needs strong signals (|z| > threshold)
+    # ── TRANSITION: trend intact but risk rising ──
+    #   - Market still > 0
+    #   - BUT: hedge demand elevated (> 2%) OR small/mid lagging
+    transition_signals = 0
+    transition_total = 0
+    if f.get("market_momentum") is not None and f["market_momentum"] > 0:
+        transition_total += 1
+        transition_signals += 1  # qualifying condition: trend intact
+    if f.get("market_momentum") is not None and f["market_momentum"] <= 0:
+        transition_total += 1  # still counted for agreement, but signal = 0
+
+    # Transition triggers: elevated hedging or narrowing breadth
+    if f.get("hedge_demand") is not None and f["hedge_demand"] > 0.02:
+        transition_signals += 1
+        transition_total += 1
+    elif f.get("hedge_demand") is not None:
+        transition_total += 1
+
+    if f.get("small_vs_large") is not None and f["small_vs_large"] < -0.01:
+        transition_signals += 1
+        transition_total += 1
+    elif f.get("small_vs_large") is not None:
+        transition_total += 1
+
+    # TRANSITION = trend up + at least one risk indicator firing
+    if (
+        transition_total >= 2
+        and transition_signals >= 2
+        and f.get("market_momentum", 0) is not None
+        and f["market_momentum"] > 0
+    ):
+        agreement = transition_signals / transition_total
+        return "TRANSITION", valid_ratio * agreement
+
+    # ── RISK_OFF: market *deterioration* + flight to safety ──
+    #   Core guard: momentum OR growth_vs_defensive must be negative first.
+    #   Then require resonance (>=2 of 4 signals) with >=3 valid features.
+    #   This prevents "rising market + hedging" from triggering RISK_OFF.
+    bearish_core = (
+        (f.get("market_momentum") is not None and f["market_momentum"] < -0.005)
+        or (f.get("growth_vs_defensive") is not None and f["growth_vs_defensive"] < -0.005)
+    )
+
     risk_off_signals = 0
     risk_off_total = 0
-    if f.get("hedge_demand") is not None and f["hedge_demand"] > 0.01:
-        risk_off_signals += 1
-        risk_off_total += 1
-    elif f.get("hedge_demand") is not None:
-        risk_off_total += 1
-    if f.get("bond_bid") is not None and f["bond_bid"] > 0.01:
-        risk_off_signals += 1
-        risk_off_total += 1
-    elif f.get("bond_bid") is not None:
-        risk_off_total += 1
 
-    if risk_off_total > 0 and risk_off_signals > 0:
+    if f.get("hedge_demand") is not None:
+        risk_off_total += 1
+        if f["hedge_demand"] > 0.02:
+            risk_off_signals += 1
+
+    if f.get("bond_bid") is not None:
+        risk_off_total += 1
+        if f["bond_bid"] > 0.01:
+            risk_off_signals += 1
+
+    if f.get("market_momentum") is not None:
+        risk_off_total += 1
+        if f["market_momentum"] < 0:
+            risk_off_signals += 1
+
+    if f.get("growth_vs_defensive") is not None:
+        risk_off_total += 1
+        if f["growth_vs_defensive"] < 0:
+            risk_off_signals += 1
+
+    if bearish_core and risk_off_signals >= 2 and risk_off_total >= 3:
         agreement = risk_off_signals / risk_off_total
         return "RISK_OFF", valid_ratio * agreement
 
-    # Check DEFENSIVE — bonds mildly positive (< 0.01 threshold) + growth weak
+    # ── DEFENSIVE: bonds mildly positive, growth weak ──
     defensive_signals = 0
     defensive_total = 0
     if f.get("growth_vs_defensive") is not None and f["growth_vs_defensive"] < 0:
@@ -231,7 +287,7 @@ def classify_regime(features: dict[str, Any]) -> tuple[str, float]:
     if defensive_total > 0 and defensive_signals == defensive_total:
         return "DEFENSIVE", valid_ratio * 1.0
 
-    # Default: CHOP
+    # ── Default: CHOP ──
     return "CHOP", valid_ratio * 0.5
 
 
