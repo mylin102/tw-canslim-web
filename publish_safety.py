@@ -27,6 +27,7 @@ SUPPORTED_ARTIFACT_KINDS = {
     "stock_index",
     "update_summary",
     "leaders",
+    "etf_regime",
 }
 
 REQUIRED_STOCK_PATHS = (
