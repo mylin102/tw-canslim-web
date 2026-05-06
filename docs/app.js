@@ -143,7 +143,7 @@ const app = createApp({
             try {
                 // Use data_light.json for much faster initial load and search
                 const [response, indexResponse] = await Promise.all([
-                    fetch('data_light.json?t=' + new Date().getTime()),
+                    fetch('data.json?t=' + new Date().getTime()),
                     fetch('stock_index.json?t=' + new Date().getTime())
                 ]);
                 
