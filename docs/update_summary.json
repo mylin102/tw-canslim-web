@@ -1,22 +1,22 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260521T124327Z",
-  "generated_at": "2026-05-21T12:43:45Z",
+  "run_id": "20260522T121544Z",
+  "generated_at": "2026-05-22T12:16:01Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 3,
     "retry_failures": 1,
     "resume_rejected": 0,
     "stock_failures": 0,
-    "provider_wait_seconds": 9.649310148000005
+    "provider_wait_seconds": 9.340284424000004
   },
-  "timestamp": "2026-05-21T12:43:45Z",
+  "timestamp": "2026-05-22T12:16:01Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 1,
-    "provider_wait_seconds": 9.649310148000005
+    "provider_wait_seconds": 9.340284424000004
   },
   "data_stats": {
     "total_stocks": 2173,
