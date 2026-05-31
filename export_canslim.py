@@ -405,6 +405,41 @@ class CanslimEngine:
             json_default=self._json_default,
         )
 
+    # 2026-05-31 Hermes Agent: Export revenue features and rankings via bundle publish.
+    # Previously the pipeline was never called from the main export path, so
+    # stock_features.json and ranking.json were always empty {} placeholders.
+    def _export_feature_pipeline(self) -> Dict:
+        """Export revenue stock_features and ranking through bundle publish."""
+        from feature_pipeline import FeaturePipeline
+        from publish_safety import publish_artifact_bundle
+
+        api_dir = os.path.join(SCRIPT_DIR, "docs", "api")
+        if not os.path.exists(api_dir):
+            os.makedirs(api_dir)
+
+        pipeline = FeaturePipeline()
+        pipeline.run()
+
+        features_file = os.path.join(api_dir, "stock_features.json")
+        ranking_file = os.path.join(api_dir, "ranking.json")
+
+        bundle = {
+            features_file: {
+                "artifact_kind": "stock_features",
+                "payload": json.load(open(features_file, "r", encoding="utf-8")),
+            },
+            ranking_file: {
+                "artifact_kind": "ranking",
+                "payload": json.load(open(ranking_file, "r", encoding="utf-8")),
+            },
+        }
+        logger.info("Exporting revenue features and rankings via bundle publish…")
+        return publish_artifact_bundle(
+            bundle,
+            logger=logger,
+            json_default=self._json_default,
+        )
+
     def _export_leaders_json(self, selection) -> Dict:
         """Export core leaders to data/leaders.json according to External Alpha contract."""
         self._ensure_runtime_state()
@@ -1656,6 +1691,14 @@ class CanslimEngine:
                     self._export_etf_regime()
                 except Exception as e:
                     logger.error(f"Failed to export ETF regime: {e}")
+
+                # 2026-05-31 Hermes Agent: Export revenue features and rankings.
+                # This was previously never called from the main export path, causing
+                # docs/api/stock_features.json and docs/api/ranking.json to always be empty {}.
+                try:
+                    self._export_feature_pipeline()
+                except Exception as e:
+                    logger.error(f"Failed to export revenue features: {e}")
             except (PublishValidationError, PublishTransactionError):
                 logger.exception("Failed to publish CANSLIM artifact bundle")
                 raise

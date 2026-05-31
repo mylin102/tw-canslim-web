@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "date": "2026-05-31",
+  "generated_at": "2026-05-31T03:10:48Z",
+  "universe": [
+    {
+      "symbol": "2330",
+      "name": "TSMC",
+      "rs_rating": 57,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.491,
+      "industry_rank": 1,
+      "tags": [
+        "leader"
+      ]
+    }
+  ]
+}

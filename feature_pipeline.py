@@ -16,7 +16,10 @@ from tej_processor import TEJProcessor
 logger = logging.getLogger(__name__)
 
 FEATURE_VERSION = "v1.0"
-OUTPUT_DIR = "api"
+# 2026-05-31 Hermes Agent: fix OUTPUT_DIR to docs/api/ so it matches
+# the path that export_canslim.py reads from (docs/api/stock_features.json).
+# Previously was "api" (repo root ./api/), causing writes to wrong directory.
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs", "api")
 
 class FeaturePipeline:
     def __init__(self, api_key: Optional[str] = None):

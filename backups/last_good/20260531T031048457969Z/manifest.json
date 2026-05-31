@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-05-31T03:10:48Z",
+  "run_id": null,
+  "artifacts": {
+    "/private/var/folders/lp/x1m0y1fj1nv338sh033943w40000gn/T/pytest-of-mylin/pytest-3/test_export_leaders_json_missi0/data/leaders.json": {
+      "artifact_kind": "leaders",
+      "backup_file": "leaders.json"
+    }
+  }
+}

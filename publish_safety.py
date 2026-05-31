@@ -28,6 +28,9 @@ SUPPORTED_ARTIFACT_KINDS = {
     "update_summary",
     "leaders",
     "etf_regime",
+    # 2026-05-31 Hermes Agent: register feature pipeline outputs
+    "stock_features",
+    "ranking",
 }
 
 REQUIRED_STOCK_PATHS = (
@@ -49,6 +52,9 @@ ARTIFACT_KIND_BY_NAME = {
     "stocks_leaders.json": "stocks_leaders",
     "etf_leaders.json": "etf_leaders",
     "etf_regime.json": "etf_regime",
+    # 2026-05-31 Hermes Agent: feature pipeline outputs
+    "stock_features.json": "stock_features",
+    "ranking.json": "ranking",
 }
 
 STOCK_ARTIFACT_KINDS = {

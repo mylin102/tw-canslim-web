@@ -1,0 +1,23 @@
+step 0 action: param: base_url=https://mylin102.github.io/tw-canslim-web/
+step 1 action: [OK] 首頁 index.html: 200, title='台股 CANSLIM 戰情室', 61674 bytes
+step 2 action: [OK] index.html explicit: 200, title='台股 CANSLIM 戰情室', 61674 bytes
+step 3 action: [OK] data.json: 200, 2541983 bytes, JSON keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'last_updated']
+step 4 action: [OK] data_light.json: 200, 2541989 bytes, JSON keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'last_updated']
+step 5 action: [OK] data_base.json: 200, 2188594 bytes, JSON keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'last_updated']
+step 6 action: [OK] etf_regime.json: 200, 322 bytes, JSON keys: ['schema_version', 'date', 'generated_at', 'regime', 'confidence']
+step 7 action: [OK] stock_index.json: 200, 644915 bytes, JSON keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'last_updated']
+step 8 action: [OK] update_summary.json: 200, 13203 bytes, JSON keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'status']
+step 9 action: [WARN] api/stock_features.json: 200, 2 bytes, but empty/trivial JSON: {}
+step 10 action: [WARN] api/ranking.json: 200, 2 bytes, but empty/trivial JSON: {}
+step 11 action: data.json stocks count: 2172
+step 12 action: data.json last_updated: 2026-05-30T05:45:39Z
+step 13 action: data_light.json stocks count: 2172
+step 14 action: stock_index.json top keys: ['schema_version', 'artifact_kind', 'run_id', 'generated_at', 'last_updated'], type=dict
+step 15 action: Total issues found: 2
+step 15 action:   API 檔案 (api/stock_features.json, api/ranking.json) 內容為空物件 {} — 永遠不會 return 200，但沒有有意義的資料
+step 15 action:   data.json last_updated 為 2026-05-30 — 最後一次資料更新是 3 天前（週末可能正常）
+step 15 action:   stock_index.json, etf_regime.json, update_summary.json 等副檔案均正常
+step 15 action:   所有 data.json, data_light.json, data_base.json 結構正常，含 2172 檔股票
+step 15 action:   首頁渲染正常 — Vue app 正確載入並顯示排行資料
+
+FINAL_RESPONSE: tw-canslim-web GitHub Pages 網站檢查完成。找到 2 個問題
