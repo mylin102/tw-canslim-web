@@ -220,7 +220,15 @@ class TEJProcessor:
                     paginate=True,
                 )
                 if df is not None and not df.empty:
-                    df = df.rename(columns={'mdate': 'date', 'val': 'revenue'})
+                    # 2026-05-31 Hermes Agent: handle TEJ API column schema drift.
+                    # TAIM1AQ may return {mdate, val} or {mdate, acc_value} + extra cols like coid, acc_code.
+                    if 'mdate' in df.columns and 'val' in df.columns:
+                        df = df.rename(columns={'mdate': 'date', 'val': 'revenue'})
+                    elif 'mdate' in df.columns and 'acc_value' in df.columns:
+                        df = df.rename(columns={'mdate': 'date', 'acc_value': 'revenue'})
+                    else:
+                        # Unknown schema — fall through to yfinance
+                        raise ValueError(f"Unrecognized TAIM1AQ columns: {list(df.columns)}")
                     df['date'] = pd.to_datetime(df['date'])
                     df = df.sort_values('date')
                     if df['date'].dt.tz is not None:
@@ -231,7 +239,14 @@ class TEJProcessor:
 
         # Fallback: use yfinance daily prices, resample monthly
         logger.info(f"Falling back to yfinance monthly approximation for {coid}")
-        price_df = self.get_daily_prices(coid, count=365)
+        from datetime import timedelta
+        end_dt = datetime.now()
+        start_dt = end_dt - timedelta(days=730)  # 2 years to get enough monthly data
+        price_df = self.get_daily_prices(
+            coid,
+            start_date=start_dt.strftime("%Y-%m-%d"),
+            end_date=end_dt.strftime("%Y-%m-%d"),
+        )
         if price_df is not None and not price_df.empty:
             price_df = price_df.set_index('date')
             monthly = price_df['close'].resample('ME').last()

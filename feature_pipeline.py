@@ -39,7 +39,10 @@ class FeaturePipeline:
             try:
                 # Fetch monthly revenue
                 rev_df = self.processor.get_monthly_revenue(symbol)
-                if rev_df is None or len(rev_df) < 15:
+                # 2026-05-31 Hermes Agent: reduce threshold from 15 to 4 months.
+                # TEJ TAIM1AQ now returns quarterly rows (4/year) so 15 is unreachable.
+                # 4 months is enough for current-vs-prior-vs-year-ago comparisons.
+                if rev_df is None or len(rev_df) < 4:
                     logger.warning(f"Insufficient revenue data for {symbol}")
                     continue
                 

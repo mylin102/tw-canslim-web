@@ -41,7 +41,8 @@ def test_calculate_revenue_features_valid():
     assert features['revenue_score'] == 6
 
 def test_calculate_revenue_features_insufficient_data():
-    df = create_mock_revenue_data([100] * 14)
+    # 2026-05-31 Hermes Agent: threshold reduced from 15 to 4, so test with 3 rows
+    df = create_mock_revenue_data([100] * 3)
     features = calculate_revenue_features(df)
     assert features is None
 

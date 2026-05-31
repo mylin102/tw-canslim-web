@@ -1,1 +1,26 @@
-{}
+{
+  "2330": {
+    "symbol": "2330",
+    "rev_yoy": 2.7845,
+    "rev_mom": -0.4133,
+    "rev_acc_1": 2.7845,
+    "rev_acc_2": 0.0,
+    "revenue_score": 3,
+    "rev_accelerating": false,
+    "rev_strong": false,
+    "updated_at": "2026-05-31",
+    "feature_version": "v1.0"
+  },
+  "2317": {
+    "symbol": "2317",
+    "rev_yoy": 3.9672,
+    "rev_mom": 1.1719,
+    "rev_acc_1": 3.9672,
+    "rev_acc_2": 0.0,
+    "revenue_score": 5,
+    "rev_accelerating": false,
+    "rev_strong": true,
+    "updated_at": "2026-05-31",
+    "feature_version": "v1.0"
+  }
+}
