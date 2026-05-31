@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台股 CANSLIM 戰情室</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 2026-05-31 Hermes Agent: Inline SVG icons (replaced font-awesome CDN) -->
+    <link rel="stylesheet" href="icons.svg">
+    <!-- 2026-05-31 Hermes Agent: Pre-compiled Tailwind CSS (replaced CDN runtime parser) -->
+    <link rel="stylesheet" href="tailwind.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- Vue.js -->
@@ -38,15 +38,15 @@
                     Taiwan Stock Market Alpha Intelligence
                 </div>
                 <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tighter">
-                    <i class="fas fa-chart-line mr-3 text-blue-600"></i>台股 CANSLIM 戰情室
+                    <svg class="icon icon-chart-line mr-3 text-blue-600"></svg>台股 CANSLIM 戰情室
                 </h1>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-base text-slate-500">
                     <div class="flex items-center bg-white shadow-md border border-slate-200 rounded-2xl px-5 py-2.5">
-                        <i class="far fa-clock mr-3 text-blue-500"></i>
+                        <svg class="icon icon-clock mr-3 text-blue-500"></svg>
                         最後更新: <span class="font-bold text-slate-800 ml-1">{{ lastUpdated || '載入中...' }}</span>
                     </div>
                     <div v-if="stockData" class="flex items-center bg-white shadow-md border border-slate-200 rounded-2xl px-5 py-2.5">
-                        <i class="fas fa-database mr-3 text-indigo-500"></i>
+                        <svg class="icon icon-database mr-3 text-indigo-500"></svg>
                         涵蓋標的: <span class="font-bold text-slate-800 ml-1">{{ Object.keys(stockData.stocks).length }} 檔</span>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
 
             <!-- Error State -->
             <div v-if="errorState && !isLoading" class="bg-red-50 border border-red-200 rounded-3xl p-12 text-center max-w-xl mx-auto shadow-xl">
-                <i class="fas fa-triangle-exclamation text-6xl text-red-500 mb-6"></i>
+                <svg class="icon icon-triangle-exclamation text-6xl text-red-500 mb-6"></svg>
                 <h3 class="text-2xl font-black text-red-900 mb-3">連線失敗</h3>
                 <p class="text-lg text-red-700">{{ errorState }}</p>
                 <button @click="fetchData" class="mt-8 px-8 py-3 bg-red-600 text-white font-black rounded-2xl hover:bg-red-700 transition shadow-lg">重試</button>
@@ -72,12 +72,12 @@
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
                         <div>
                             <h2 class="text-3xl font-black mb-2 flex items-center tracking-tight">
-                                <i class="fas fa-fire-flame-curved mr-4 text-yellow-400"></i>今日強勢領頭羊
+                                <svg class="icon icon-fire-flame-curved mr-4 text-yellow-400"></svg>今日強勢領頭羊
                             </h2>
                             <p class="text-lg text-blue-200 opacity-70">依據 CANSLIM 與營收加速度篩選出的 Top 10</p>
                         </div>
                         <button @click="activeTab = 'ranking'" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-2xl font-black transition backdrop-blur-md border border-white/10 flex items-center shadow-lg">
-                            <i class="fas fa-list-ol mr-3"></i>查看完整排行
+                            <svg class="icon icon-list-ol mr-3"></svg>查看完整排行
                         </button>
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
@@ -116,7 +116,7 @@
                     <button v-for="tab in [{id:'search', icon:'fa-search', label:'個股查詢'}, {id:'ranking', icon:'fa-trophy', label:'即時排行'}, {id:'screener', icon:'fa-filter', label:'條件篩選'}]" 
                             :key="tab.id" @click="activeTab = tab.id"
                             :class="['flex-1 flex items-center justify-center py-3.5 rounded-2xl font-black transition-all text-sm', activeTab === tab.id ? 'bg-blue-600 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:bg-slate-50']">
-                        <i :class="['fas', tab.icon, 'mr-2.5']"></i>{{ tab.label }}
+                        <i :class="['fas', tab.icon, 'mr-2.5']"></svg>{{ tab.label }}
                     </button>
                 </div>
 
@@ -125,12 +125,12 @@
                     <!-- Search Input -->
                     <div v-if="activeTab === 'search'" class="relative max-w-2xl mx-auto mb-12 group">
                         <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
-                            <i class="fas fa-search text-xl"></i>
+                            <svg class="icon icon-search text-xl"></svg>
                         </div>
                         <input v-model="searchQuery" @input="onSearchInput" placeholder="搜尋 2330, 台積電, 或營收成長股..." 
                                class="w-full pl-14 pr-14 py-5 bg-white border-2 border-slate-200 rounded-[2rem] focus:border-blue-500 focus:ring-8 focus:ring-blue-500/10 outline-none shadow-lg transition-all font-bold text-xl tracking-tight">
                         <button v-if="searchQuery" @click="clearSearch" class="absolute inset-y-0 right-0 pr-6 flex items-center text-slate-300 hover:text-slate-600 transition-colors">
-                            <i class="fas fa-times-circle text-xl"></i>
+                            <svg class="icon icon-times-circle text-xl"></svg>
                         </button>
                         
                         <!-- Suggestions Dropdown -->
@@ -156,7 +156,7 @@
                         <!-- Navigation Back Button -->
                         <div class="flex justify-start">
                             <button @click="closeDetail" class="flex items-center px-6 py-3 bg-white border border-slate-200 rounded-2xl font-black text-slate-600 hover:bg-slate-50 transition shadow-sm">
-                                <i class="fas fa-arrow-left mr-3 text-blue-500"></i> 返回搜尋列表
+                                <svg class="icon icon-arrow-left mr-3 text-blue-500"></svg> 返回搜尋列表
                             </button>
                         </div>
                         
@@ -177,9 +177,9 @@
                                             </span>
                                         </div>
                                         <div class="flex flex-wrap items-center gap-6 text-lg text-slate-400 font-bold">
-                                            <span class="flex items-center"><i class="fas fa-industry mr-3 text-blue-400"></i>{{ currentStock.industry || '一般產業' }}</span>
+                                            <span class="flex items-center"><svg class="icon icon-industry mr-3 text-blue-400"></svg>{{ currentStock.industry || '一般產業' }}</span>
                                             <span v-if="currentStock.has_full_detail !== false" class="flex items-center px-4 py-1 bg-white/5 rounded-xl border border-white/10">
-                                                <i class="fas fa-ranking-star mr-3 text-yellow-400"></i>
+                                                <svg class="icon icon-ranking-star mr-3 text-yellow-400"></svg>
                                                 {{ getScoreCategory(currentStock.canslim.score).label }}
                                             </span>
                                         </div>
@@ -244,10 +244,10 @@
                                     </div>
                                     <div class="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-center items-center text-center">
                                         <div v-if="currentStock.revenue_features.rev_strong" class="text-emerald-500 mb-2">
-                                            <i class="fas fa-circle-check text-4xl shadow-emerald-200 shadow-xl rounded-full"></i>
+                                            <svg class="icon icon-circle-check text-4xl shadow-emerald-200 shadow-xl rounded-full"></svg>
                                         </div>
                                         <div v-else class="text-slate-200 mb-2">
-                                            <i class="fas fa-circle-minus text-4xl"></i>
+                                            <svg class="icon icon-circle-minus text-4xl"></svg>
                                         </div>
                                         <div class="text-sm font-black text-slate-800 uppercase tracking-tighter">強力增長旗標</div>
                                         <div class="text-[10px] font-bold text-slate-400 mt-1 uppercase">YoY > 30% & MoM > 10%</div>
@@ -419,7 +419,7 @@
                     <div class="bg-white rounded-[3rem] shadow-2xl border border-slate-200 overflow-hidden">
                         <div class="bg-slate-950 text-white p-12">
                             <h2 class="text-4xl font-black mb-3 flex items-center tracking-tighter">
-                                <i class="fas fa-trophy mr-5 text-yellow-400"></i>全市場頂尖排行
+                                <svg class="icon icon-trophy mr-5 text-yellow-400"></svg>全市場頂尖排行
                             </h2>
                             <p class="text-xl text-slate-400 font-bold tracking-tight">綜合評分、相對強度與營收動能三合一篩選</p>
                         </div>
@@ -501,7 +501,7 @@
                         <div class="bg-white rounded-[3rem] shadow-2xl border border-slate-200 overflow-hidden">
                             <div class="bg-gradient-to-r from-indigo-900 to-blue-950 text-white p-10">
                                 <h2 class="text-3xl font-black mb-2 flex items-center tracking-tighter">
-                                    <i class="fas fa-chart-pie mr-4 text-blue-300"></i>ETF 強勢排行
+                                    <svg class="icon icon-chart-pie mr-4 text-blue-300"></svg>ETF 強勢排行
                                 </h2>
                                 <p class="text-base text-blue-200/70 font-bold">ETF 使用獨立評分規則（動能 + 流動性 + 大盤相對強度），不與個股 CANSLIM 混合比較</p>
                             </div>
@@ -558,7 +558,7 @@
                     <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
                         <div class="bg-slate-900 text-white p-8">
                             <h2 class="text-2xl font-black mb-1 flex items-center">
-                                <i class="fas fa-filter-circle-dollar mr-3 text-emerald-400"></i>進階條件選股
+                                <svg class="icon icon-filter-circle-dollar mr-3 text-emerald-400"></svg>進階條件選股
                             </h2>
                             <p class="text-slate-400 font-medium">自定義參數組合，精準定位投資目標</p>
                         </div>
@@ -601,7 +601,7 @@
                         </div>
                         <div class="p-8">
                             <div v-if="filteredStocks.length === 0" class="text-center py-10">
-                                <i class="fas fa-ghost text-4xl text-slate-200 mb-4"></i>
+                                <svg class="icon icon-ghost text-4xl text-slate-200 mb-4"></svg>
                                 <p class="text-slate-400 font-bold">沒有符合條件的股票，請調整篩選參數。</p>
                             </div>
                             <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -620,12 +620,12 @@
                                             {{ getStockTier(stock.symbol, stock).label }}
                                         </span>
                                         <span v-if="getNextUpdateDay(stock.symbol)" class="text-xs text-slate-500">
-                                            <i class="far fa-calendar-check mr-1"></i>
+                                            <svg class="icon icon-calendar-check mr-1"></svg>
                                             {{ getNextUpdateDay(stock.symbol) }}
                                         </span>
                                     </div>
                                     <div v-if="getStockTier(stock.symbol, stock).icon" class="mt-1.5 text-xs text-slate-400">
-                                        <i class="far fa-clock mr-1"></i>
+                                        <svg class="icon icon-clock mr-1"></svg>
                                         上次更新：{{ formatRelativeTime(stock.freshness?.last_succeeded_at || stock.last_succeeded_at) }}
                                     </div>
                                     <div class="text-[10px] font-bold text-slate-400 mb-4">{{ stock.industry }}</div>
@@ -652,8 +652,8 @@
             <!-- Footer -->
             <footer class="mt-20 pb-10 text-center space-y-4">
                 <div class="flex justify-center gap-6 text-slate-400">
-                    <a href="https://github.com/mylin102/tw-canslim-web" target="_blank" class="hover:text-slate-900 transition-colors"><i class="fab fa-github text-xl"></i></a>
-                    <a href="#" class="hover:text-slate-900 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                    <a href="https://github.com/mylin102/tw-canslim-web" target="_blank" class="hover:text-slate-900 transition-colors"><svg class="icon icon-github text-xl"></svg></a>
+                    <a href="#" class="hover:text-slate-900 transition-colors"><svg class="icon icon-envelope text-xl"></svg></a>
                 </div>
                 <div class="text-slate-400 text-xs font-bold uppercase tracking-widest">
                     &copy; 2026 TW CANSLIM WEB ANALYZER. POWERED BY GSTACK.

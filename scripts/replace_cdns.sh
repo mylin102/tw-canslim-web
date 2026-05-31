@@ -1,0 +1,572 @@
+#!/bin/bash
+# 2026-05-31 Hermes Agent: Replace font-awesome CDN with inline SVG icons + prepare tailwind.css placeholder
+# Usage: bash scripts/replace_cdns.sh
+
+set -e
+cd "$(dirname "$0")/../docs"
+
+echo "=== Step 0: Backup ==="
+cp index.html index.html.bak
+echo "Backup saved to docs/index.html.bak"
+
+echo "=== Step 1: Replace CDN links and icon tags ==="
+python3 << 'PYEOF'
+content = open('index.html', 'r', encoding='utf-8').read()
+
+# Replace CDN section
+old = '''    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Vue.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <style>'''
+
+new = '''    <!-- 2026-05-31 Hermes Agent: Inline SVG icons (replaced font-awesome CDN) -->
+    <link rel="stylesheet" href="icons.svg">
+    <!-- 2026-05-31 Hermes Agent: Pre-compiled Tailwind CSS (replaced CDN runtime parser) -->
+    <link rel="stylesheet" href="tailwind.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Vue.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <style>'''
+
+content = content.replace(old, new)
+
+# Replace all <i class="fas/far/fab fa-xxx"> with <svg class="icon icon-xxx">
+mappings = {
+    'fas fa-chart-line': 'icon-chart-line',
+    'fas fa-database': 'icon-database',
+    'fas fa-triangle-exclamation': 'icon-triangle-exclamation',
+    'fas fa-fire-flame-curved': 'icon-fire-flame-curved',
+    'fas fa-list-ol': 'icon-list-ol',
+    'fas fa-trophy': 'icon-trophy',
+    'fas fa-filter': 'icon-filter',
+    'fas fa-search': 'icon-search',
+    'fas fa-times-circle': 'icon-times-circle',
+    'fas fa-arrow-left': 'icon-arrow-left',
+    'fas fa-industry': 'icon-industry',
+    'fas fa-ranking-star': 'icon-ranking-star',
+    'fas fa-circle-check': 'icon-circle-check',
+    'fas fa-circle-minus': 'icon-circle-minus',
+    'fas fa-chart-pie': 'icon-chart-pie',
+    'fas fa-filter-circle-dollar': 'icon-filter-circle-dollar',
+    'fas fa-ghost': 'icon-ghost',
+    'fas fa-envelope': 'icon-envelope',
+    'far fa-clock': 'icon-clock',
+    'far fa-calendar-check': 'icon-calendar-check',
+    'fab fa-github': 'icon-github',
+}
+
+for fa_class, icon_id in mappings.items():
+    content = content.replace(f'<i class="{fa_class}', f'<svg class="icon {icon_id}')
+
+content = content.replace('</i>', '</svg>')
+
+# Verify
+fa_refs = [l.strip() for l in content.split('\n') if 'fa-' in l and 'icon-' not in l.split('fa-')[0] and not l.strip().startswith('<!--')]
+print(f'Unreplaced fa- references: {len(fa_refs)}')
+for l in fa_refs:
+    print(f'  {l[:120]}')
+
+svg_count = content.count('<svg class="icon ')
+print(f'SVG icon tags: {svg_count}')
+print(f'CDN tailwind remains: {"cdn.tailwind" in content}')
+print(f'CDN fontawesome remains: {"font-awesome" in content or "fontawesome" in content}')
+
+open('index.html', 'w', encoding='utf-8').write(content)
+print('index.html written OK')
+PYEOF
+
+echo ""
+echo "=== Step 2: Create tailwind.css placeholder ==="
+cat > tailwind.css << 'CSSEOF'
+/* 2026-05-31 Hermes Agent: Pre-compiled Tailwind CSS - replaces CDN runtime parser */
+/* Generated from docs/index.html used utility classes */
+
+/* Base */
+*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { line-height: 1.5; -webkit-text-size-adjust: 100%; }
+body { font-family: 'Noto Sans TC', sans-serif; font-size: 16px; }
+
+/* SVG icon base */
+.icon { display: inline-block; width: 1em; height: 1em; fill: currentColor; vertical-align: middle; }
+
+/* Flex & Grid */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1 1 0%; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-start { justify-content: flex-start; }
+.self-start { align-self: flex-start; }
+
+/* Sizing */
+.w-full { width: 100%; }
+.min-w-0 { min-width: 0; }
+.min-h-screen { min-height: 100vh; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-6xl { max-width: 72rem; }
+.max-w-lg { max-width: 32rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-xl { max-width: 36rem; }
+.h-full { height: 100%; }
+.h-2 { height: 0.5rem; }
+.h-3 { height: 0.75rem; }
+.h-4 { height: 1rem; }
+.h-5 { height: 1.25rem; }
+.h-8 { height: 2rem; }
+.h-10 { height: 2.5rem; }
+.h-16 { height: 4rem; }
+.h-20 { height: 5rem; }
+.h-56 { height: 14rem; }
+.w-3 { width: 0.75rem; }
+.w-4 { width: 1rem; }
+.w-5 { width: 1.25rem; }
+.w-8 { width: 2rem; }
+.w-10 { width: 2.5rem; }
+.w-20 { width: 5rem; }
+.w-64 { width: 16rem; }
+.w-96 { width: 24rem; }
+.w-px { width: 1px; }
+.min-w-\[600px\] { min-width: 600px; }
+.min-w-\[800px\] { min-width: 800px; }
+
+/* Spacing */
+.p-0 { padding: 0; }
+.p-1 { padding: 0.25rem; }
+.p-1\.5 { padding: 0.375rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.p-5 { padding: 1.25rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.p-10 { padding: 2.5rem; }
+.p-12 { padding: 3rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+.pt-3 { padding-top: 0.75rem; }
+.pt-4 { padding-top: 1rem; }
+.pt-6 { padding-top: 1.5rem; }
+.pb-10 { padding-bottom: 2.5rem; }
+.pb-6 { padding-bottom: 1.5rem; }
+.pl-8 { padding-left: 2rem; }
+.pl-14 { padding-left: 3.5rem; }
+.pr-8 { padding-right: 2rem; }
+.pr-14 { padding-right: 3.5rem; }
+.ml-1 { margin-left: 0.25rem; }
+.ml-0\.5 { margin-left: 0.125rem; }
+.ml-3 { margin-left: 0.75rem; }
+.ml-4 { margin-left: 1rem; }
+.mr-1 { margin-right: 0.25rem; }
+.mr-1\.5 { margin-right: 0.375rem; }
+.mr-2 { margin-right: 0.5rem; }
+.mr-2\.5 { margin-right: 0.625rem; }
+.mr-3 { margin-right: 0.75rem; }
+.mr-4 { margin-right: 1rem; }
+.mr-5 { margin-right: 1.25rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-0\.5 { margin-bottom: 0.125rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-1\.5 { margin-top: 0.375rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.mt-20 { margin-top: 5rem; }
+.gap-0 { gap: 0; }
+.gap-0\.5 { gap: 0.125rem; }
+.gap-1 { gap: 0.25rem; }
+.gap-1\.5 { gap: 0.375rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-5 { gap: 1.25rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
+.gap-12 { gap: 3rem; }
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-8 > * + * { margin-top: 2rem; }
+.space-y-10 > * + * { margin-top: 2.5rem; }
+.space-y-12 > * + * { margin-top: 3rem; }
+.space-x-2 > * + * { margin-left: 0.5rem; }
+
+/* Typography */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+.text-6xl { font-size: 3.75rem; }
+.text-7xl { font-size: 4.5rem; }
+.text-9xl { font-size: 8rem; }
+.text-\[9px\] { font-size: 9px; }
+.text-\[10px\] { font-size: 10px; }
+.text-\[11px\] { font-size: 11px; }
+.font-black { font-weight: 900; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.leading-none { line-height: 1; }
+.leading-relaxed { line-height: 1.625; }
+.leading-tight { line-height: 1.25; }
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-tighter { letter-spacing: -0.05em; }
+.tracking-widest { letter-spacing: 0.2em; }
+.tracking-\[0\.2em\] { letter-spacing: 0.2em; }
+.tracking-\[0\.3em\] { letter-spacing: 0.3em; }
+.uppercase { text-transform: uppercase; }
+.italic { font-style: italic; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.underline { text-decoration: underline; }
+.decoration-blue-500\/30 { text-decoration-color: rgba(59,130,246,0.3); }
+.underline-offset-8 { text-underline-offset: 8px; }
+.whitespace-nowrap { white-space: nowrap; }
+
+/* Colors - backgrounds */
+.bg-white { background-color: #fff; }
+.bg-black { background-color: #000; }
+.bg-transparent { background-color: transparent; }
+.bg-slate-50 { background-color: #f8fafc; }
+.bg-slate-50\/50 { background-color: rgba(248,250,252,0.5); }
+.bg-slate-100 { background-color: #f1f5f9; }
+.bg-slate-200 { background-color: #e2e8f0; }
+.bg-slate-300 { background-color: #cbd5e1; }
+.bg-slate-400 { background-color: #94a3b8; }
+.bg-slate-900 { background-color: #0f172a; }
+.bg-slate-950 { background-color: #020617; }
+.bg-blue-50\/30 { background-color: rgba(239,246,255,0.3); }
+.bg-blue-100 { background-color: #dbeafe; }
+.bg-blue-200 { background-color: #bfdbfe; }
+.bg-blue-500 { background-color: #3b82f6; }
+.bg-blue-600 { background-color: #2563eb; }
+.bg-blue-800 { background-color: #1e40af; }
+.bg-indigo-500 { background-color: #6366f1; }
+.bg-indigo-600 { background-color: #4f46e5; }
+.bg-indigo-900 { background-color: #312e81; }
+.bg-indigo-950 { background-color: #1e1b4b; }
+.bg-emerald-50 { background-color: #ecfdf5; }
+.bg-emerald-50\/50 { background-color: rgba(236,253,245,0.5); }
+.bg-emerald-100 { background-color: #d1fae5; }
+.bg-emerald-400 { background-color: #34d399; }
+.bg-emerald-500 { background-color: #10b981; }
+.bg-emerald-600 { background-color: #059669; }
+.bg-red-50 { background-color: #fef2f2; }
+.bg-red-100 { background-color: #fee2e2; }
+.bg-red-600 { background-color: #dc2626; }
+.bg-rose-50\/50 { background-color: rgba(255,241,242,0.5); }
+.bg-rose-100 { background-color: #ffe4e6; }
+.bg-rose-500 { background-color: #f43f5e; }
+.bg-rose-600 { background-color: #e11d48; }
+.bg-orange-500 { background-color: #f97316; }
+.bg-amber-100 { background-color: #fef3c7; }
+.bg-amber-200 { background-color: #fde68a; }
+.bg-amber-400 { background-color: #fbbf24; }
+.bg-teal-600 { background-color: #0d9488; }
+.bg-purple-100 { background-color: #f3e8ff; }
+.bg-sky-500 { background-color: #0ea5e9; }
+.bg-yellow-400 { background-color: #facc15; }
+.bg-white\/5 { background-color: rgba(255,255,255,0.05); }
+.bg-white\/10 { background-color: rgba(255,255,255,0.1); }
+.bg-white\/15 { background-color: rgba(255,255,255,0.15); }
+
+/* Colors - text */
+.text-white { color: #fff; }
+.text-black { color: #000; }
+.text-slate-100 { color: #f1f5f9; }
+.text-slate-200 { color: #e2e8f0; }
+.text-slate-300 { color: #cbd5e1; }
+.text-slate-400 { color: #94a3b8; }
+.text-slate-500 { color: #64748b; }
+.text-slate-600 { color: #475569; }
+.text-slate-700 { color: #334155; }
+.text-slate-800 { color: #1e293b; }
+.text-slate-900 { color: #0f172a; }
+.text-slate-950 { color: #020617; }
+.text-blue-100 { color: #dbeafe; }
+.text-blue-200 { color: #bfdbfe; }
+.text-blue-300 { color: #93c5fd; }
+.text-blue-400 { color: #60a5fa; }
+.text-blue-500 { color: #3b82f6; }
+.text-blue-600 { color: #2563eb; }
+.text-blue-700 { color: #1d4ed8; }
+.text-blue-900 { color: #1e3a5f; }
+.text-indigo-500 { color: #6366f1; }
+.text-indigo-600 { color: #4f46e5; }
+.text-emerald-400 { color: #34d399; }
+.text-emerald-500 { color: #10b981; }
+.text-emerald-600 { color: #059669; }
+.text-emerald-700 { color: #047857; }
+.text-red-500 { color: #ef4444; }
+.text-red-700 { color: #b91c1c; }
+.text-red-900 { color: #7f1d1d; }
+.text-rose-400 { color: #fb7185; }
+.text-rose-500 { color: #f43f5e; }
+.text-rose-600 { color: #e11d48; }
+.text-rose-700 { color: #be123c; }
+.text-orange-400 { color: #fb923c; }
+.text-orange-500 { color: #f97316; }
+.text-amber-600 { color: #d97706; }
+.text-amber-700 { color: #b45309; }
+.text-yellow-300 { color: #fcd34d; }
+.text-yellow-400 { color: #facc15; }
+.text-yellow-950 { color: #422006; }
+.text-purple-700 { color: #7e22ce; }
+.text-sky-500 { color: #0ea5e9; }
+.text-emerald-900 { color: #064e3b; }
+.text-blue-950 { color: #172554; }
+
+/* Colors - borders */
+.border-white { border-color: #fff; }
+.border-white\/5 { border-color: rgba(255,255,255,0.05); }
+.border-white\/10 { border-color: rgba(255,255,255,0.1); }
+.border-slate-50 { border-color: #f8fafc; }
+.border-slate-100 { border-color: #f1f5f9; }
+.border-slate-200 { border-color: #e2e8f0; }
+.border-blue-100 { border-color: #dbeafe; }
+.border-blue-200 { border-color: #bfdbfe; }
+.border-blue-300 { border-color: #93c5fd; }
+.border-blue-500 { border-color: #3b82f6; }
+.border-blue-600 { border-color: #2563eb; }
+.border-blue-700 { border-color: #1d4ed8; }
+.border-indigo-200 { border-color: #c7d2fe; }
+.border-indigo-600 { border-color: #4f46e5; }
+.border-emerald-100 { border-color: #d1fae5; }
+.border-emerald-200 { border-color: #a7f3d0; }
+.border-emerald-500 { border-color: #10b981; }
+.border-emerald-600 { border-color: #059669; }
+.border-emerald-700 { border-color: #047857; }
+.border-red-200 { border-color: #fecaca; }
+.border-rose-100 { border-color: #ffe4e6; }
+.border-rose-200 { border-color: #fecdd3; }
+.border-rose-500 { border-color: #f43f5e; }
+.border-rose-600 { border-color: #e11d48; }
+.border-orange-600 { border-color: #ea580c; }
+.border-amber-200 { border-color: #fde68a; }
+.border-purple-200 { border-color: #e9d5ff; }
+.border-slate-900 { border-color: #0f172a; }
+
+/* Border radius */
+.rounded-none { border-radius: 0; }
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+.rounded-\[2rem\] { border-radius: 2rem; }
+.rounded-\[2\.5rem\] { border-radius: 2.5rem; }
+.rounded-\[3rem\] { border-radius: 3rem; }
+.rounded-full { border-radius: 9999px; }
+.rounded-l-3xl { border-top-left-radius: 1.5rem; border-bottom-left-radius: 1.5rem; }
+.rounded-r-3xl { border-top-right-radius: 1.5rem; border-bottom-right-radius: 1.5rem; }
+.rounded-bl-2xl { border-bottom-left-radius: 1rem; }
+
+/* Border */
+.border { border: 1px solid; }
+.border-2 { border-width: 2px; }
+.border-8 { border-width: 8px; }
+.border-t { border-top: 1px solid; }
+.border-b { border-bottom: 1px solid; }
+.border-t-2 { border-top-width: 2px; }
+.border-dashed { border-style: dashed; }
+.divide-x-2 > * + * { border-left: 2px solid; }
+.divide-slate-100 > * + * { border-color: #f1f5f9; }
+.border-separate { border-collapse: separate; }
+.border-spacing-y-2 { border-spacing: 0 0.5rem; }
+
+/* Shadows */
+.shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+.shadow-inner { box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
+.shadow-emerald-200 { box-shadow: 0 0 0 0 rgba(167,243,208,0.5); }
+.shadow-emerald-900\/5 { box-shadow: 0 0 0 0 rgba(6,78,59,0.05); }
+.shadow-blue-500\/20 { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+.shadow-blue-900\/40 { box-shadow: 0 0 0 0 rgba(30,58,138,0.4); }
+.shadow-rose-200 { box-shadow: 0 0 0 0 rgba(254,205,211,0.5); }
+.shadow-indigo-200 { box-shadow: 0 0 0 0 rgba(199,210,254,0.5); }
+.shadow-teal-200 { box-shadow: 0 0 0 0 rgba(153,246,228,0.5); }
+.shadow-orange-200 { box-shadow: 0 0 0 0 rgba(254,215,170,0.5); }
+.drop-shadow-sm { filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05)); }
+.drop-shadow-xl { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+.static { position: static; }
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+.inset-y-0 { top: 0; bottom: 0; }
+.z-10 { z-index: 10; }
+.z-50 { z-index: 50; }
+.z-auto { z-index: auto; }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-x-auto { overflow-x: auto; }
+
+/* Display */
+.block { display: block; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+/* Transitions */
+.transition { transition: all 0.15s ease; }
+.transition-all { transition: all 0.3s ease; }
+.transition-colors { transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease; }
+.transition-transform { transition: transform 0.3s ease; }
+.duration-500 { transition-duration: 0.5s; }
+.duration-1000 { transition-duration: 1s; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+.pointer-events-none { pointer-events: none; }
+
+/* Opacity */
+.opacity-5 { opacity: 0.05; }
+.opacity-40 { opacity: 0.4; }
+.opacity-70 { opacity: 0.7; }
+
+/* Background */
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+.from-slate-900 { --tw-gradient-from: #0f172a; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(15,23,42,0)); }
+.from-indigo-900 { --tw-gradient-from: #312e81; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(49,46,129,0)); }
+.from-blue-400 { --tw-gradient-from: #60a5fa; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(96,165,250,0)); }
+.to-indigo-950 { --tw-gradient-to: #1e1b4b; }
+.to-blue-950 { --tw-gradient-to: #172554; }
+.to-blue-900 { --tw-gradient-to: #1e3a5f; }
+.via-indigo-600 { --tw-gradient-to: rgba(79,70,229,0); --tw-gradient-stops: var(--tw-gradient-from), #4f46e5, var(--tw-gradient-to); }
+
+/* Effects */
+.backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.backdrop-blur-xl { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+.backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.blur-3xl { filter: blur(64px); }
+.blur-xl { filter: blur(24px); }
+
+/* Animations */
+@keyframes spin { to { transform: rotate(360deg); } }
+.animate-spin { animation: spin 1s linear infinite; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* Transforms */
+.scale-\[1\.02\] { --tw-scale-x: 1.02; --tw-scale-y: 1.02; transform: var(--tw-transform); }
+.hover\:scale-105:hover { --tw-scale-x: 1.05; --tw-scale-y: 1.05; }
+.hover\:scale-\[1\.01\]:hover { --tw-scale-x: 1.01; --tw-scale-y: 1.01; }
+.hover\:scale-\[1\.03\]:hover { --tw-scale-x: 1.03; --tw-scale-y: 1.03; }
+.hover\:-translate-y-1:hover { --tw-translate-y: -0.25rem; }
+.group:hover .group-hover\:scale-125 { --tw-scale-x: 1.25; --tw-scale-y: 1.25; }
+.origin-left { transform-origin: left; }
+.translate-x-5 { --tw-translate-x: 1.25rem; }
+
+/* Outline */
+.outline-none { outline: none; }
+
+/* Appearance */
+.appearance-none { -webkit-appearance: none; appearance: none; }
+
+/* Accent */
+.accent-blue-600 { accent-color: #2563eb; }
+
+/* Table */
+table { border-collapse: collapse; }
+th, td { text-align: left; }
+th { font-weight: inherit; }
+
+/* Object fit */
+.object-cover { object-fit: cover; }
+
+/* Resize */
+.resize-none { resize: none; }
+
+/* Grid cols */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Custom app styles */
+[v-cloak] { display: none !important; }
+.tab-active { background: #3b82f6 !important; color: white !important; }
+.pass { color: #059669; font-weight: 700; }
+.fail { color: #dc2626; font-weight: 700; }
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.text-huge { font-size: 3.5rem; line-height: 1; }
+.card-title { font-size: 1.25rem; font-weight: 900; }
+.stat-value { font-size: 1.75rem; font-weight: 900; }
+.table-cell-lg { padding: 1.25rem 1rem; font-size: 1rem; }
+CSSEOF
+echo "tailwind.css created ($(wc -c < tailwind.css) bytes)"
+
+echo ""
+echo "=== Verify ==="
+python3 << 'PYEOF'
+content = open('index.html', 'r', encoding='utf-8').read()
+fa_refs = [l.strip() for l in content.split('\n') if 'fa-' in l and 'icon-' not in l.split('fa-')[0] and not l.strip().startswith('<!--')]
+svg_count = content.count('<svg class="icon ')
+print(f'Unreplaced fa- references: {len(fa_refs)}')
+for l in fa_refs:
+    print(f'  {l[:120]}')
+print(f'SVG icon tags: {svg_count}')
+print(f'CDN tailwind: {"cdn.tailwind" in content}')
+print(f'CDN fontawesome: {"font-awesome" in content}')
+PYEOF
+
+echo ""
+echo "Done! Open docs/index.html in a browser to test."
+echo "To restore: cp index.html.bak index.html"
