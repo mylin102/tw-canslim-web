@@ -65,6 +65,14 @@ const app = createApp({
 
         // 股票分級
         const getStockTier = (symbol, stock) => {
+            // 防禦性檢查：如果 stock 為 undefined/null，返回默認值
+            if (!stock) {
+                return {
+                    tier: 'unknown', label: '', icon: '',
+                    subtext: '', color: '', bg: '', border: '',
+                    nextUpdate: '未知'
+                };
+            }
             if (CORE_SYMBOLS.has(symbol)) {
                 const freshness = stock.freshness || {};
                 const isFresh = freshness.days_old <= 1;

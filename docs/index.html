@@ -116,7 +116,7 @@
                     <button v-for="tab in [{id:'search', icon:'fa-search', label:'個股查詢'}, {id:'ranking', icon:'fa-trophy', label:'即時排行'}, {id:'screener', icon:'fa-filter', label:'條件篩選'}]" 
                             :key="tab.id" @click="activeTab = tab.id"
                             :class="['flex-1 flex items-center justify-center py-3.5 rounded-2xl font-black transition-all text-sm', activeTab === tab.id ? 'bg-blue-600 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:bg-slate-50']">
-                        <i :class="['fas', tab.icon, 'mr-2.5']"></svg>{{ tab.label }}
+                        <i :class="['fas', tab.icon, 'mr-2.5']"></i>{{ tab.label }}
                     </button>
                 </div>
 
@@ -624,7 +624,7 @@
                                             {{ getNextUpdateDay(stock.symbol) }}
                                         </span>
                                     </div>
-                                    <div v-if="getStockTier(stock.symbol, stock).icon" class="mt-1.5 text-xs text-slate-400">
+                                    <div v-if="getStockTier(stock.symbol, stock)?.icon" class="mt-1.5 text-xs text-slate-400">
                                         <svg class="icon icon-clock mr-1"></svg>
                                         上次更新：{{ formatRelativeTime(stock.freshness?.last_succeeded_at || stock.last_succeeded_at) }}
                                     </div>
