@@ -175,7 +175,23 @@ const app = createApp({
                         
                         if (data.stocks) {
                             Object.keys(data.stocks).forEach(s => {
-                                if (featMap[s]) data.stocks[s].revenue_features = featMap[s];
+                                const stock = data.stocks[s];
+                                const inline = stock.canslim || {};
+                                if (featMap[s]) {
+                                    stock.revenue_features = featMap[s];
+                                } else if (Object.prototype.hasOwnProperty.call(inline, 'revenue_score')) {
+                                    // The primary publish bundle already contains the score flags.
+                                    // Keep the revenue UI useful when the optional TEJ feature export
+                                    // is temporarily unavailable.
+                                    stock.revenue_features = {
+                                        revenue_score: inline.revenue_score || 0,
+                                        rev_accelerating: !!inline.rev_accelerating,
+                                        rev_strong: !!inline.rev_strong,
+                                        rev_yoy: 0,
+                                        rev_mom: 0,
+                                        rev_acc_1: 0,
+                                    };
+                                }
                             });
                         }
                     }

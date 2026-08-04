@@ -81,15 +81,44 @@ class FeaturePipeline:
         }
 
     def export_results(self, data: Dict[str, List]):
-        """Export results to JSON files."""
+        """Export results without allowing a provider outage to erase live data."""
         features_path = os.path.join(OUTPUT_DIR, "stock_features.json")
         ranking_path = os.path.join(OUTPUT_DIR, "ranking.json")
-        
+
+        def preserve_existing_if_incomplete(path: str, records: Dict, label: str) -> Dict:
+            """Keep the last usable export when an upstream provider returns too little."""
+            try:
+                with open(path, "r", encoding="utf-8") as handle:
+                    existing = json.load(handle)
+            except (OSError, json.JSONDecodeError):
+                existing = {}
+
+            if not isinstance(existing, dict):
+                existing = {}
+
+            minimum_acceptable = max(1, (len(existing) + 4) // 5)
+            if existing and len(records) < minimum_acceptable:
+                logger.error(
+                    "Refusing to replace %s with %d records; keeping prior %d records.",
+                    label,
+                    len(records),
+                    len(existing),
+                )
+                return existing
+            return records
+
+        features = preserve_existing_if_incomplete(
+            features_path, data["stock_features"], "stock features"
+        )
+        rankings = preserve_existing_if_incomplete(
+            ranking_path, data["rankings"], "rankings"
+        )
+
         with open(features_path, 'w', encoding='utf-8') as f:
-            json.dump(data["stock_features"], f, indent=2, ensure_ascii=False)
-            
+            json.dump(features, f, indent=2, ensure_ascii=False)
+
         with open(ranking_path, 'w', encoding='utf-8') as f:
-            json.dump(data["rankings"], f, indent=2, ensure_ascii=False)
+            json.dump(rankings, f, indent=2, ensure_ascii=False)
             
         logger.info(f"Exported features to {features_path}")
         logger.info(f"Exported rankings to {ranking_path}")
