@@ -114,12 +114,12 @@ const app = createApp({
                 bg: isStale ? 'bg-slate-50' : 'bg-blue-50',
                 border: isStale ? 'border-slate-200' : 'border-blue-200',
                 nextUpdate: `週${info.day}`
-            };
+            } || {};
         };
 
         const getNextUpdateDay = (symbol) => {
             const tier = getStockTier(symbol, {});
-            return tier.nextUpdate || '未知';
+            return tier?.nextUpdate || '未知';
         };
 
         const formatRelativeTime = (timestamp) => {

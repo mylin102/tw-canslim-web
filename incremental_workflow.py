@@ -10,6 +10,7 @@ import os
 import sys
 import json
 import logging
+import subprocess
 from datetime import datetime
 
 # 設定日誌
@@ -109,6 +110,40 @@ def verify_results():
     
     return all_exist
 
+def run_ui_heartbeat():
+    """執行 UI 健康心跳檢查"""
+    logger.info("步驟 3: 執行 UI 健康心跳檢查...")
+    
+    script_path = "scripts/check_ui_health.py"
+    if not os.path.exists(script_path):
+        logger.error(f"❌ 找不到腳本: {script_path}")
+        return False
+    
+    try:
+        # We need to make sure playwright is installed
+        result = subprocess.run([sys.executable, script_path], 
+                               capture_output=True, text=True, timeout=60)
+        
+        # Log the output for transparency
+        for line in result.stdout.splitlines():
+            if "✅" in line or "🔍" in line or "📸" in line:
+                logger.info(f"  {line}")
+            elif "❌" in line or "⚠️" in line:
+                logger.error(f"  {line}")
+
+        if result.returncode == 0:
+            logger.info("✅ UI 健康心跳檢查通過")
+            return True
+        else:
+            logger.error("❌ UI 健康心跳檢查失敗")
+            return False
+    except subprocess.TimeoutExpired:
+        logger.error("❌ UI 健康心跳檢查超時 (60s)")
+        return False
+    except Exception as e:
+        logger.error(f"❌ 執行心跳檢查時發生錯誤: {e}")
+        return False
+
 def main():
     """主函數"""
     logger.info("🚀 開始增量交易系統工作流程")
@@ -121,7 +156,8 @@ def main():
     # 執行工作流程
     steps = [
         ("增量計算", run_incremental_calculation),
-        ("結果驗證", verify_results)
+        ("結果驗證", verify_results),
+        ("UI 心跳檢查", run_ui_heartbeat)
     ]
     
     all_success = True
@@ -148,6 +184,7 @@ def main():
         logger.info("  2. 交易訊號: ✅ 已產生")
         logger.info("  3. RS 排名: ✅ 已更新")
         logger.info("  4. Phase 4 發布輸出: ✅ 已驗證")
+        logger.info("  5. UI 健康心跳: ✅ 已通過")
         
     else:
         logger.error("⚠️  部分步驟失敗，請檢查日誌")

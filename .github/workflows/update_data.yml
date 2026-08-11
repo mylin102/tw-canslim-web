@@ -85,9 +85,10 @@ jobs:
           if missing:
               raise SystemExit(f"runtime_budget missing keys: {missing}")
           note = os.environ.get("RUNTIME_BUDGET_NOTE", "").strip()
-          if payload["elapsed_seconds"] > 1200 and not note:
+          # Add comment: increase runtime budget threshold from 1200s to 1800s (30m) to accommodate network variations during incremental updates
+          if payload["elapsed_seconds"] > 1800 and not note:
               raise SystemExit(
-                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 1200 without RUNTIME_BUDGET_NOTE"
+                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 1800 without RUNTIME_BUDGET_NOTE"
               )
           print(payload)
           PY

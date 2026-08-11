@@ -2,12 +2,24 @@
 
 ## Milestones
 
+- 🟢 **v1.2 UI Intelligence & Web-Native Verification** — Not Started
 - 🟢 **v1.1 Advanced Feature Engineering** — In Progress
 - ✅ **v1.0 Strategy-Driven Update Pipeline Upgrade** — Phases 1-4 shipped 2026-04-19 ([archive](./milestones/v1.0-ROADMAP.md))
 
 ## Current Status
 
-- **Phase 6: Revenue-Driven Selection Alpha** (Planned)
+- **Phase 7: Automated UI Resilience & Monitoring** (Not Started)
+
+### Phase 7: Automated UI Resilience & Monitoring
+**Goal:** Use webwright to implement automated UI health checks and CDN verification for the dashboard.
+**Plans:** 2 plans
+- [x] 07-01-PLAN.md — Build White-Screen Detection Heartbeat (Completed 2026-06-11)
+- [ ] 07-02-PLAN.md — Automated Visual Regression for Data Updates
+
+### Phase 8: Intelligent Web Data Sourcing
+**Goal:** Enhance core selection logic using webwright to scrape complementary market sentiment and news data.
+**Plans:** 1 plan (tentative)
+- [ ] 08-01-PLAN.md — Scrape non-API sentiment signals
 
 ### Phase 6: Revenue-Driven Selection Alpha
 **Goal:** Integrate revenue features into selection and ranking logic for alpha export.
