@@ -116,9 +116,67 @@ def get_trading_dates(end_date: str, days: int = 500) -> List[str]:
     return [], []
 
 class HistoricalGeneratorV2:
+    # Minimum average daily volume threshold: 500 lots × 1,000 shares/lot.
+    # Stocks below this are excluded to reduce scan time and avoid illiquid signals.
+    MIN_AVG_VOLUME_SHARES = 500_000
+
     def __init__(self):
-        self.tickers = get_all_tw_tickers()
+        raw_tickers = get_all_tw_tickers()
+        self.tickers = self._filter_by_volume(raw_tickers)
         self.inst_cache = {}
+
+    def _filter_by_volume(self, ticker_map: Dict[str, str], batch_size: int = 200) -> Dict[str, str]:
+        """
+        Filter ticker_map to remove stocks with avg 20-day volume < MIN_AVG_VOLUME_SHARES.
+        Tickers whose download fails are kept (fail-safe). Runs yfinance in batch for speed.
+        """
+        stock_codes = [c for c in ticker_map if len(c) == 4 and c.isdigit()]
+        yf_tickers  = [f"{c}{ticker_map[c]}" for c in stock_codes]
+
+        low_volume: set[str] = set()
+        for start in range(0, len(yf_tickers), batch_size):
+            batch = yf_tickers[start : start + batch_size]
+            try:
+                raw = yf.download(
+                    batch,
+                    period="1mo",
+                    interval="1d",
+                    group_by="ticker",
+                    auto_adjust=True,
+                    progress=False,
+                    threads=True,
+                )
+            except Exception as exc:
+                logger.warning("Volume pre-filter batch failed (offset %d): %s — keeping all", start, exc)
+                continue
+
+            for yf_ticker in batch:
+                # Derive 4-digit code: strip the suffix
+                suffix = ".TW" if yf_ticker.endswith(".TW") else ".TWO"
+                code = yf_ticker[: -len(suffix)]
+                try:
+                    if isinstance(raw.columns, pd.MultiIndex):
+                        if yf_ticker not in raw.columns.get_level_values(0):
+                            continue  # Download failed → keep
+                        vol = raw[yf_ticker]["Volume"].dropna()
+                    else:
+                        vol = raw["Volume"].dropna()
+                    if vol.empty:
+                        continue
+                    avg_vol = vol.tail(20).mean()
+                    if pd.isna(avg_vol) or avg_vol < self.MIN_AVG_VOLUME_SHARES:
+                        low_volume.add(code)
+                except Exception:
+                    continue  # Keep on unexpected error
+
+        filtered = {c: v for c, v in ticker_map.items() if c not in low_volume}
+        logger.info(
+            "Volume pre-filter: %d → %d tickers (removed %d with avg volume < %.0f lots)",
+            len(ticker_map), len(filtered), len(low_volume), self.MIN_AVG_VOLUME_SHARES / 1000,
+        )
+        return filtered
+
+
     
     def fetch_price_data(self, ticker: str, suffix: str, start_date: str, end_date: str) -> Optional[pd.DataFrame]:
         """Fetch price data via yfinance."""

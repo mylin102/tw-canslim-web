@@ -179,6 +179,111 @@ def get_all_tw_tickers(*, runtime_state: dict | None = None):
     
     return ticker_map
 
+
+# Minimum average daily volume threshold (in shares): 500 lots × 1,000 shares/lot
+# Stocks below this threshold are excluded from the scan universe to improve
+# signal reliability and reduce processing time for illiquid names.
+MIN_AVG_VOLUME_SHARES = 500_000  # = 500 lots/day
+
+_VOLUME_LOOKBACK_DAYS = 20  # trading days for avg volume calculation
+
+
+def filter_tickers_by_volume(
+    ticker_map: dict,
+    min_avg_volume: float = MIN_AVG_VOLUME_SHARES,
+    *,
+    batch_size: int = 200,
+) -> dict:
+    """
+    Filter ticker_map by average daily trading volume (shares).
+
+    Downloads 1-month OHLCV data from yfinance in batches and removes tickers
+    whose 20-day average volume is below min_avg_volume.
+
+    ETFs (codes that are not exactly 4 digits) are always kept.
+    Tickers that fail to download (rate-limit / delist) are also kept to avoid
+    accidentally removing newly-listed stocks.
+
+    Args:
+        ticker_map: dict of {code: {"name": ..., "suffix": ...}} from get_all_tw_tickers().
+        min_avg_volume: Minimum avg daily volume in shares (default 500,000 = 500 lots).
+        batch_size: Number of tickers to download per yfinance batch call.
+
+    Returns:
+        Filtered ticker_map with low-liquidity stocks removed.
+    """
+    all_codes = list(ticker_map.keys())
+
+    # Separate ETFs (non-4-digit codes) — always keep, skip volume check
+    stock_codes = [c for c in all_codes if len(c) == 4 and c.isdigit()]
+    etf_codes   = [c for c in all_codes if c not in stock_codes]
+
+    logger.info(
+        "Volume filter: checking %d stocks (keeping %d ETFs unconditionally), "
+        "threshold=%.0f shares (%.0f lots)",
+        len(stock_codes), len(etf_codes),
+        min_avg_volume, min_avg_volume / 1000,
+    )
+
+    # Build full yfinance ticker strings for batch download
+    yf_tickers = [f"{c}{ticker_map[c]['suffix']}" for c in stock_codes]
+
+    # Batch download 1-month daily data to get Volume
+    low_volume_codes: set[str] = set()
+    for start in range(0, len(yf_tickers), batch_size):
+        batch = yf_tickers[start : start + batch_size]
+        try:
+            raw = yf.download(
+                batch,
+                period="1mo",
+                interval="1d",
+                group_by="ticker",
+                auto_adjust=True,
+                progress=False,
+                threads=True,
+            )
+        except Exception as exc:
+            logger.warning("Volume batch download failed for batch starting %d: %s", start, exc)
+            continue  # Keep all tickers in this batch on error
+
+        for yf_ticker in batch:
+            code = yf_ticker[:-3]  # strip ".TW" or ".TWO"  (last 3 or 4 chars vary)
+            # Derive code back from yf_ticker
+            suffix = ticker_map.get(code, {}).get("suffix", "")
+            code = yf_ticker[: -len(suffix)] if suffix else yf_ticker[:4]
+
+            try:
+                if isinstance(raw.columns, pd.MultiIndex):
+                    if yf_ticker not in raw.columns.get_level_values(0):
+                        continue  # Download failed → keep
+                    vol = raw[yf_ticker]["Volume"].dropna()
+                else:
+                    vol = raw["Volume"].dropna()
+
+                if vol.empty:
+                    continue  # No data → keep
+
+                avg_vol = vol.tail(_VOLUME_LOOKBACK_DAYS).mean()
+                if pd.isna(avg_vol) or avg_vol < min_avg_volume:
+                    low_volume_codes.add(code)
+                    logger.debug(
+                        "Excluding %s (%s): avg volume %.0f < %.0f",
+                        yf_ticker, ticker_map.get(code, {}).get("name", ""),
+                        avg_vol, min_avg_volume,
+                    )
+            except Exception as exc:
+                logger.debug("Volume check failed for %s: %s — keeping", yf_ticker, exc)
+                continue  # Keep on any unexpected error
+
+    kept   = {c: v for c, v in ticker_map.items() if c not in low_volume_codes}
+    logger.info(
+        "Volume filter complete: %d → %d tickers (removed %d low-liquidity stocks, kept %d ETFs)",
+        len(all_codes), len(kept), len(low_volume_codes), len(etf_codes),
+    )
+    return kept
+
+
+
 class CanslimEngine:
     def __init__(self):
         self.inst_cache = {}  # Initialize early to avoid AttributeError if later steps fail
@@ -191,6 +296,10 @@ class CanslimEngine:
         }
         self.output_data = self._build_output_payload()
         self.ticker_info = get_all_tw_tickers(runtime_state=self.failure_stats)
+        # Filter out low-liquidity stocks from the universe (default: < 500 lots/day).
+        # This speeds up all subsequent operations (institutional batch fetch,
+        # core selector, scan loop) without affecting ETFs.
+        self.ticker_info = filter_tickers_by_volume(self.ticker_info)
         self.excel_processor = ExcelDataProcessor(SCRIPT_DIR)
         self.finmind_processor = FinMindProcessor()
         self.tej_processor = TEJProcessor()
