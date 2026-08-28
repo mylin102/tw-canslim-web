@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-08-27",
-  "generated_at": "2026-08-27T20:11:11Z",
+  "date": "2026-08-28",
+  "generated_at": "2026-08-28T21:06:34Z",
   "universe": [
     {
       "symbol": "1101",
@@ -1030,18 +1030,6 @@
       ]
     },
     {
-      "symbol": "3015",
-      "name": "全漢",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
       "symbol": "3016",
       "name": "嘉晶",
       "rs_rating": 0,
@@ -1310,18 +1298,6 @@
       "tags": [
         "leader",
         "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "3047",
-      "name": "訊舟",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
       ]
     },
     {
