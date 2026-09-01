@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-08-31",
-  "generated_at": "2026-08-31T17:28:59Z",
+  "date": "2026-09-01",
+  "generated_at": "2026-09-01T14:31:34Z",
   "universe": [
     {
       "symbol": "1101",
@@ -638,19 +638,6 @@
       "industry_rank": 999,
       "tags": [
         "leader"
-      ]
-    },
-    {
-      "symbol": "2867",
-      "name": "三商壽",
-      "rs_rating": 0,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
       ]
     },
     {
