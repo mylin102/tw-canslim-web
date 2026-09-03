@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-02",
-  "generated_at": "2026-09-02T14:06:28Z",
+  "date": "2026-09-03",
+  "generated_at": "2026-09-03T14:07:48Z",
   "universe": [
     {
       "symbol": "1101",
@@ -1079,18 +1079,6 @@
       "breakout_score": 0.5,
       "volume_score": 0.5,
       "composite_score": 0.02,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
-      "symbol": "3032",
-      "name": "偉訓",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
