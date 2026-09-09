@@ -1,22 +1,22 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260908T140525Z",
-  "generated_at": "2026-09-08T14:08:01Z",
+  "run_id": "20260909T140752Z",
+  "generated_at": "2026-09-09T14:09:52Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 9,
     "retry_failures": 3,
     "resume_rejected": 1,
     "stock_failures": 0,
-    "provider_wait_seconds": 27.99539284399998
+    "provider_wait_seconds": 27.808294065000013
   },
-  "timestamp": "2026-09-08T14:08:01Z",
+  "timestamp": "2026-09-09T14:09:52Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 3,
-    "provider_wait_seconds": 27.99539284399998
+    "provider_wait_seconds": 27.808294065000013
   },
   "data_stats": {
     "total_stocks": 2173,
@@ -24,13 +24,12 @@
   },
   "failures": [],
   "refreshed_symbols": [
-    "3011"
+    "3437"
   ],
   "failed_symbols": [],
   "next_rotation": {
     "batch_index": 1,
     "symbols": [
-      "1810",
       "1815",
       "1904",
       "1905",
@@ -65,6 +64,7 @@
       "2211",
       "2221",
       "2233",
+      "2254",
       "2301",
       "2302",
       "2305",
@@ -171,6 +171,7 @@
       "3081",
       "3088",
       "3105",
+      "3131",
       "3141",
       "3162",
       "3163",
@@ -232,7 +233,6 @@
       "3625",
       "3630",
       "3645",
-      "3652",
       "3653",
       "3661",
       "3665",
@@ -249,8 +249,6 @@
       "3704",
       "3706",
       "3707",
-      "3708",
-      "3709",
       "3711",
       "3712",
       "3714",
@@ -287,13 +285,13 @@
       "4716",
       "4720",
       "4722",
-      "4736",
       "4739",
       "4743",
       "4746",
       "4749",
       "4763",
       "4764",
+      "4770",
       "4772",
       "4903",
       "4904",
@@ -304,13 +302,15 @@
       "4916",
       "4919",
       "4927",
-      "4931"
+      "4931",
+      "4938",
+      "4939"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
     "today": 1,
-    "warning": 128,
-    "stale": 2044
+    "warning": 129,
+    "stale": 2043
   }
 }

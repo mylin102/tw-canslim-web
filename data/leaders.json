@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-08",
-  "generated_at": "2026-09-08T14:08:01Z",
+  "date": "2026-09-09",
+  "generated_at": "2026-09-09T14:09:52Z",
   "universe": [
     {
       "symbol": "1101",
@@ -1528,6 +1528,19 @@
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "3437",
+      "name": "榮創",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
