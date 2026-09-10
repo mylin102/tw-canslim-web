@@ -1,35 +1,37 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260909T140752Z",
-  "generated_at": "2026-09-09T14:09:52Z",
+  "run_id": "20260910T140225Z",
+  "generated_at": "2026-09-10T14:04:51Z",
   "status": "failed",
   "stats": {
-    "retry_attempts": 9,
-    "retry_failures": 3,
-    "resume_rejected": 1,
+    "retry_attempts": 6,
+    "retry_failures": 2,
+    "resume_rejected": 0,
     "stock_failures": 0,
-    "provider_wait_seconds": 27.808294065000013
+    "provider_wait_seconds": 18.89170399599999
   },
-  "timestamp": "2026-09-09T14:09:52Z",
+  "timestamp": "2026-09-10T14:04:51Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
-    "retry_failures": 3,
-    "provider_wait_seconds": 27.808294065000013
+    "retry_failures": 2,
+    "provider_wait_seconds": 18.89170399599999
   },
   "data_stats": {
     "total_stocks": 2173,
     "updated_stocks": 2173
   },
   "failures": [],
-  "refreshed_symbols": [
-    "3437"
-  ],
+  "refreshed_symbols": [],
   "failed_symbols": [],
   "next_rotation": {
     "batch_index": 1,
     "symbols": [
+      "1802",
+      "1808",
+      "1809",
+      "1810",
       "1815",
       "1904",
       "1905",
@@ -171,13 +173,11 @@
       "3081",
       "3088",
       "3105",
-      "3131",
       "3141",
       "3162",
       "3163",
       "3176",
       "3211",
-      "3217",
       "3219",
       "3221",
       "3227",
@@ -196,7 +196,6 @@
       "3339",
       "3354",
       "3357",
-      "3360",
       "3362",
       "3363",
       "3374",
@@ -214,7 +213,6 @@
       "3532",
       "3533",
       "3535",
-      "3537",
       "3540",
       "3543",
       "3545",
@@ -253,7 +251,6 @@
       "3712",
       "3714",
       "3715",
-      "3716",
       "3717",
       "3718",
       "4114",
@@ -275,7 +272,6 @@
       "4541",
       "4542",
       "4551",
-      "4561",
       "4564",
       "4566",
       "4576",
@@ -302,15 +298,13 @@
       "4916",
       "4919",
       "4927",
-      "4931",
-      "4938",
-      "4939"
+      "4931"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 1,
-    "warning": 129,
-    "stale": 2043
+    "today": 0,
+    "warning": 2,
+    "stale": 2171
   }
 }

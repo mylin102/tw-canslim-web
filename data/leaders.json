@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-09",
-  "generated_at": "2026-09-09T14:09:52Z",
+  "date": "2026-09-10",
+  "generated_at": "2026-09-10T14:04:52Z",
   "universe": [
     {
       "symbol": "1101",
@@ -966,18 +966,6 @@
       "tags": [
         "leader",
         "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "3011",
-      "name": "今皓",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.028,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
       ]
     },
     {
