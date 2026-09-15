@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-14",
-  "generated_at": "2026-09-14T16:15:14Z",
+  "date": "2026-09-15",
+  "generated_at": "2026-09-15T14:40:15Z",
   "universe": [
     {
       "symbol": "1101",
@@ -283,18 +283,6 @@
     {
       "symbol": "2606",
       "name": "裕民",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
-      "symbol": "2607",
-      "name": "榮運",
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
