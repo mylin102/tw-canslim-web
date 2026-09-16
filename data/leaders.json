@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-15",
-  "generated_at": "2026-09-15T14:40:15Z",
+  "date": "2026-09-16",
+  "generated_at": "2026-09-16T14:35:58Z",
   "universe": [
     {
       "symbol": "1101",
@@ -893,18 +893,6 @@
       ]
     },
     {
-      "symbol": "3010",
-      "name": "華立",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
       "symbol": "3011",
       "name": "今皓",
       "rs_rating": 0,
@@ -971,6 +959,18 @@
       "breakout_score": 0.5,
       "volume_score": 0.5,
       "composite_score": 0.0,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "3021",
+      "name": "鴻名",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1382,6 +1382,19 @@
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "3311",
+      "name": "閎暉",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
