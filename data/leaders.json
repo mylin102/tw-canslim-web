@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-17",
-  "generated_at": "2026-09-17T14:41:08Z",
+  "date": "2026-09-18",
+  "generated_at": "2026-09-18T14:06:34Z",
   "universe": [
     {
       "symbol": "1101",
@@ -167,6 +167,18 @@
       "breakout_score": 0.5,
       "volume_score": 0.5,
       "composite_score": 0.0,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2538",
+      "name": "基泰",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1202,6 +1214,19 @@
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "3051",
+      "name": "力特",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.042,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
