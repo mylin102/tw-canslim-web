@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-21",
-  "generated_at": "2026-09-21T16:18:17Z",
+  "date": "2026-09-22",
+  "generated_at": "2026-09-22T14:21:02Z",
   "universe": [
     {
       "symbol": "1101",
@@ -487,18 +487,6 @@
     {
       "symbol": "2646",
       "name": "星宇航空",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
-      "symbol": "2723",
-      "name": "美食-KY",
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
