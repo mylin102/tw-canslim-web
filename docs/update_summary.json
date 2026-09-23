@@ -1,22 +1,22 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260922T141853Z",
-  "generated_at": "2026-09-22T14:21:01Z",
+  "run_id": "20260923T143837Z",
+  "generated_at": "2026-09-23T14:40:35Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 6,
     "retry_failures": 2,
     "resume_rejected": 0,
     "stock_failures": 0,
-    "provider_wait_seconds": 18.843080235000002
+    "provider_wait_seconds": 19.128496959000017
   },
-  "timestamp": "2026-09-22T14:21:01Z",
+  "timestamp": "2026-09-23T14:40:35Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 2,
-    "provider_wait_seconds": 18.843080235000002
+    "provider_wait_seconds": 19.128496959000017
   },
   "data_stats": {
     "total_stocks": 2173,
@@ -28,7 +28,6 @@
   "next_rotation": {
     "batch_index": 1,
     "symbols": [
-      "1810",
       "1815",
       "1904",
       "1905",
@@ -216,6 +215,7 @@
       "3543",
       "3545",
       "3550",
+      "3563",
       "3576",
       "3580",
       "3583",
@@ -235,6 +235,7 @@
       "3680",
       "3685",
       "3689",
+      "3691",
       "3693",
       "3694",
       "3701",
@@ -263,6 +264,7 @@
       "4510",
       "4526",
       "4532",
+      "4533",
       "4534",
       "4540",
       "4541",
@@ -299,10 +301,9 @@
       "4938",
       "4939",
       "4949",
+      "4951",
       "4956",
-      "4958",
-      "4960",
-      "4961"
+      "4958"
     ],
     "retry_symbols": []
   },
