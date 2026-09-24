@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-23",
-  "generated_at": "2026-09-23T14:40:36Z",
+  "date": "2026-09-24",
+  "generated_at": "2026-09-24T14:39:16Z",
   "universe": [
     {
       "symbol": "1101",
@@ -319,18 +319,6 @@
     {
       "symbol": "2610",
       "name": "華航",
-      "rs_rating": 0,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
-      "symbol": "2611",
-      "name": "志信",
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
@@ -1286,6 +1274,19 @@
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "3138",
+      "name": "耀登",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.062,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
       ]
     },
     {

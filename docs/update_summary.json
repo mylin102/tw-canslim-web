@@ -1,29 +1,31 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20260923T143837Z",
-  "generated_at": "2026-09-23T14:40:35Z",
+  "run_id": "20260924T143624Z",
+  "generated_at": "2026-09-24T14:39:16Z",
   "status": "failed",
   "stats": {
-    "retry_attempts": 6,
-    "retry_failures": 2,
-    "resume_rejected": 0,
+    "retry_attempts": 9,
+    "retry_failures": 3,
+    "resume_rejected": 1,
     "stock_failures": 0,
-    "provider_wait_seconds": 19.128496959000017
+    "provider_wait_seconds": 27.472874614999995
   },
-  "timestamp": "2026-09-23T14:40:35Z",
+  "timestamp": "2026-09-24T14:39:16Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
-    "retry_failures": 2,
-    "provider_wait_seconds": 19.128496959000017
+    "retry_failures": 3,
+    "provider_wait_seconds": 27.472874614999995
   },
   "data_stats": {
     "total_stocks": 2173,
     "updated_stocks": 2173
   },
   "failures": [],
-  "refreshed_symbols": [],
+  "refreshed_symbols": [
+    "3138"
+  ],
   "failed_symbols": [],
   "next_rotation": {
     "batch_index": 1,
@@ -59,6 +61,7 @@
       "2204",
       "2206",
       "2208",
+      "2211",
       "2221",
       "2241",
       "2254",
@@ -121,7 +124,6 @@
       "2409",
       "2412",
       "2413",
-      "2417",
       "2419",
       "2421",
       "2425",
@@ -171,6 +173,7 @@
       "3088",
       "3105",
       "3141",
+      "3147",
       "3162",
       "3163",
       "3176",
@@ -188,6 +191,7 @@
       "3289",
       "3290",
       "3293",
+      "3294",
       "3317",
       "3324",
       "3339",
@@ -215,6 +219,7 @@
       "3543",
       "3545",
       "3550",
+      "3552",
       "3563",
       "3576",
       "3580",
@@ -296,20 +301,16 @@
       "4916",
       "4919",
       "4923",
+      "4924",
       "4927",
       "4931",
-      "4938",
-      "4939",
-      "4949",
-      "4951",
-      "4956",
-      "4958"
+      "4938"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 0,
-    "warning": 132,
-    "stale": 2041
+    "today": 1,
+    "warning": 0,
+    "stale": 2172
   }
 }
