@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-28",
-  "generated_at": "2026-09-28T18:03:27Z",
+  "date": "2026-09-29",
+  "generated_at": "2026-09-29T16:20:51Z",
   "universe": [
     {
       "symbol": "1101",
@@ -502,19 +502,6 @@
       "industry_rank": 999,
       "tags": [
         "leader"
-      ]
-    },
-    {
-      "symbol": "2816",
-      "name": "旺旺保",
-      "rs_rating": 0,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.042,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
       ]
     },
     {
