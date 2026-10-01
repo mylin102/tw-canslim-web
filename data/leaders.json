@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-09-30",
-  "generated_at": "2026-09-30T16:16:58Z",
+  "date": "2026-10-01",
+  "generated_at": "2026-10-01T16:54:10Z",
   "universe": [
     {
       "symbol": "1101",
@@ -203,19 +203,6 @@
       "industry_rank": 999,
       "tags": [
         "leader"
-      ]
-    },
-    {
-      "symbol": "2540",
-      "name": "愛山林",
-      "rs_rating": 0,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.042,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
       ]
     },
     {
