@@ -464,3 +464,39 @@ th { font-weight: inherit; }
 .card-title { font-size: 1.25rem; font-weight: 900; }
 .stat-value { font-size: 1.75rem; font-weight: 900; }
 .table-cell-lg { padding: 1.25rem 1rem; font-size: 1rem; }
+
+/* SVG icon sizing & alignment - matches original font-awesome rendering */
+.icon { width: 1em; height: 1em; vertical-align: -0.125em; fill: currentColor; overflow: hidden; }
+.icon-chart-line { width: 1em; }
+.icon-database { width: 0.875em; }
+.icon-triangle-exclamation { width: 1em; }
+.icon-fire-flame-curved { width: 0.75em; }
+.icon-list-ol { width: 1em; }
+.icon-trophy { width: 1.125em; }
+.icon-filter { width: 1em; }
+.icon-search { width: 1em; }
+.icon-times-circle { width: 1em; }
+.icon-arrow-left { width: 0.875em; }
+.icon-industry { width: 1.125em; }
+.icon-ranking-star { width: 1.25em; }
+.icon-circle-check { width: 1em; }
+.icon-circle-minus { width: 1em; }
+.icon-chart-pie { width: 1.125em; }
+.icon-filter-circle-dollar { width: 1.125em; }
+.icon-ghost { width: 0.75em; }
+.icon-clock { width: 1em; }
+.icon-calendar-check { width: 0.875em; }
+.icon-github { width: 0.875em; }
+.icon-envelope { width: 1em; }
+
+/* Icon color variants for use with fill=currentColor */
+.text-blue-500 .icon { color: #3b82f6; }
+.text-blue-600 .icon { color: #2563eb; }
+.text-indigo-500 .icon { color: #6366f1; }
+.text-yellow-400 .icon { color: #facc15; }
+.text-red-500 .icon { color: #ef4444; }
+.text-slate-200 .icon { color: #e2e8f0; }
+.text-slate-400 .icon { color: #94a3b8; }
+.text-emerald-400 .icon { color: #34d399; }
+.text-blue-300 .icon { color: #93c5fd; }
+.text-blue-400 .icon { color: #60a5fa; }
