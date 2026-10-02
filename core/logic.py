@@ -253,8 +253,16 @@ def calculate_percentile_ranks(scores: pd.Series) -> pd.Series:
 
 def compute_canslim_score(factors: dict, institutional_strength: float = 0) -> int:
     """Legacy wrapper for compute_canslim_score_v2."""
-    # Convert institutional_strength (percentage) to approximate abs score for v2 logic
-    i_score_abs = min(institutional_strength / 0.005 * 100, 100)
+    if institutional_strength:
+        # Convert institutional_strength (percentage) to approximate abs score for v2 logic
+        i_score_abs = min(institutional_strength / 0.005 * 100, 100)
+    else:
+        # Callers that only compute the boolean I factor (e.g. update_single_stock.py,
+        # verify_local.py) never pass institutional_strength, which previously left
+        # i_score_abs at 0 and silently zeroed the I factor's 15-point weight even
+        # when factors['I'] was True. Fall back to the boolean, mirroring
+        # compute_canslim_score_etf's existing behavior below.
+        i_score_abs = 100 if factors.get('I') else 0
     return compute_canslim_score_v2(factors, i_score_abs=i_score_abs)
 
 def compute_canslim_score_etf(factors: dict, institutional_strength: float = 0) -> int:

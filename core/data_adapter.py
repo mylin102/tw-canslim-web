@@ -44,6 +44,49 @@ def apply_announcement_lag(df_eps: pd.DataFrame) -> pd.DataFrame:
     
     return df.sort_values(['stock_id', 'effective_date'])
 
+def apply_dividend_adjustment(df_price: pd.DataFrame, df_dividend: pd.DataFrame) -> pd.DataFrame:
+    """
+    Back-adjusts OHLC columns for ex-dividend/ex-rights price drops, using the
+    same before/after ex-date reference prices TWSE itself publishes
+    (FinMind's TaiwanStockDividendResult). Without this, raw close prices
+    understate returns for dividend-paying stocks -- TWSE issuers average a
+    3-5%/year yield, which compounds to a 15-25% return gap over 5 years and
+    skews return-based ranking (e.g. the L/relative-strength factor).
+
+    Input df_price must have columns: ['date', 'open', 'max', 'min', 'close'].
+    Input df_dividend must have columns: ['date', 'before_price', 'after_price']
+    (one row per ex-dividend/ex-rights event, as returned by
+    DataLoader.taiwan_stock_dividend_result).
+    """
+    df = df_price.copy()
+    df['date'] = pd.to_datetime(df['date'])
+
+    if df_dividend is None or df_dividend.empty:
+        df['close_adj'] = df['close']
+        return df
+
+    events = df_dividend.copy()
+    events['date'] = pd.to_datetime(events['date'])
+    events = events.dropna(subset=['before_price', 'after_price'])
+    events = events[events['before_price'] != 0]
+    events = events.sort_values('date', ascending=False)
+
+    # Standard backward adjustment: for each ex-date event, scale every price
+    # strictly before that date by after_price/before_price, applied
+    # cumulatively from the most recent event back to the earliest.
+    factor = pd.Series(1.0, index=df.index)
+    for _, ev in events.iterrows():
+        ratio = ev['after_price'] / ev['before_price']
+        mask = df['date'] < ev['date']
+        factor.loc[mask] *= ratio
+
+    for col in ('open', 'max', 'min', 'close'):
+        if col in df.columns:
+            df[f'{col}_adj'] = df[col] * factor
+
+    return df
+
+
 def resample_to_daily(df_historical: pd.DataFrame, start_date: str, end_date: str) -> pd.DataFrame:
     """
     Resamples quarterly/intermittent data to daily frequency using forward fill.

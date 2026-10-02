@@ -35,7 +35,9 @@ def _build_engine(module, tickers: tuple[str, ...] = ("1101", "2330", "3565", "6
     engine.output_data = {"last_updated": "", "stocks": {}}
     engine.ticker_info = {ticker: {"name": f"Stock {ticker}", "suffix": ".TW"} for ticker in tickers}
     engine.excel_processor = None
-    engine.finmind_processor = None
+    # available=False short-circuits fetch_institutional_data_batch, routing every
+    # ticker to the per-ticker fetch_institutional_data_finmind stub below instead.
+    engine.finmind_processor = SimpleNamespace(available=False)
     engine.tej_processor = SimpleNamespace(
         initialized=False,
         calculate_canslim_c_and_a=lambda ticker: {},
@@ -46,6 +48,10 @@ def _build_engine(module, tickers: tuple[str, ...] = ("1101", "2330", "3565", "6
     engine.fund_holdings = None
     engine.industry_data = None
     engine.industry_strength = None
+    # Option Skew Perception (core/derivatives) -- stub as "disabled", matching
+    # production behavior when no FinMind token is configured.
+    engine.skew_provider = SimpleNamespace(fetch_txo_market_snapshot=lambda: None)
+    engine.skew_analyzer = SimpleNamespace(calculate_skew_metrics=lambda snapshot: {"status": "no_data"})
     return engine
 
 
@@ -73,8 +79,12 @@ def _stub_engine_dependencies(monkeypatch: pytest.MonkeyPatch, module, engine, *
     monkeypatch.setattr(module, "calculate_accumulation_strength", lambda chip_df, total_shares, days=20: 0.0)
     monkeypatch.setattr(module, "calculate_mansfield_rs", lambda stock_hist, market_hist: 88.1)
     monkeypatch.setattr(module, "calculate_l_factor", lambda mansfield_rs: True)
-    monkeypatch.setattr(module, "compute_canslim_score", lambda factors, institutional_strength=0.0: 90)
-    monkeypatch.setattr(module, "compute_canslim_score_etf", lambda factors, institutional_strength=0.0: 90)
+    monkeypatch.setattr(module, "compute_canslim_score_v2", lambda factors, i_score_abs=0.0, momentum_bonus=0.0: 90)
+    # _export_feature_pipeline() builds its own real FeaturePipeline/TEJProcessor,
+    # independent of the engine.tej_processor stub above, and would otherwise make
+    # a real TEJ API call that hangs forever waiting on provider_policies' rate
+    # limiter in this sandboxed test environment.
+    monkeypatch.setattr(module.CanslimEngine, "_export_feature_pipeline", lambda self: {})
 
 
 def _stub_selector(
@@ -137,8 +147,10 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
         }
 
     def fake_validate_resume_stock_entry(stock_id: str, stock_entry: dict, **kwargs):
+        # Real validate_resume_stock_entry (publish_safety.py) returns bool -- False
+        # triggers re-fetch -- it never raises. Simulate "missing mansfield_rs" that way.
         validated.append(stock_id)
-        raise module.PublishValidationError(f"{stock_id} missing mansfield_rs")
+        return False
 
     def fake_publish_artifact_bundle(bundle: dict[str, dict], **kwargs):
         published.setdefault("bundle", bundle)

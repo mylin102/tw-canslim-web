@@ -169,7 +169,7 @@ def test_process_ticker_includes_latest_volume_from_trading_volume(monkeypatch):
     monkeypatch.setattr(
         generator,
         "fetch_raw_data",
-        lambda stock_id, start_date, end_date: (pd.DataFrame(), pd.DataFrame(), price_rows.copy()),
+        lambda stock_id, start_date, end_date: (pd.DataFrame(), pd.DataFrame(), price_rows.copy(), pd.DataFrame()),
     )
 
     result = generator.process_ticker("2330", "2026-04-01", "2026-04-02")

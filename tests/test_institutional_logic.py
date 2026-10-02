@@ -46,20 +46,23 @@ class TestInstitutionalLogic(unittest.TestCase):
         self.assertFalse(calculate_i_factor(self.sample_df, days=3, total_shares=large_shares))
 
     def test_canslim_score_bonus(self):
+        # v2 weights: C=25, A=20, N=15, S=10, L=15, I=15 (M is a 1.0x/0.7x multiplier, not additive)
         factors = {'C': True, 'A': True, 'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
-        # Base score should be 100 (including C+A bonus)
+        # All factors pass -> full 100, regardless of institutional_strength, since the
+        # boolean I factor alone grants full I weight (see compute_canslim_score).
         base_score = compute_canslim_score(factors, institutional_strength=0.0)
         self.assertEqual(base_score, 100)
-        
-        # Test with 80 points base (missing C and A)
+
+        # Missing C and A: N(15) + S(10) + L(15) + I(15) = 55, M multiplier is 1.0
         factors_80 = {'C': False, 'A': False, 'N': True, 'S': True, 'L': True, 'I': True, 'M': True}
-        # Weights: N(10), S(10), L(15), I(15), M(10) = 60
-        score_60 = compute_canslim_score(factors_80, institutional_strength=0.0)
-        self.assertEqual(score_60, 60)
-        
-        # Add high conviction bonus (>= 0.5%)
-        score_65 = compute_canslim_score(factors_80, institutional_strength=0.006)
-        self.assertEqual(score_65, 65)
+        score_55 = compute_canslim_score(factors_80, institutional_strength=0.0)
+        self.assertEqual(score_55, 55)
+
+        # institutional_strength only matters once it's explicitly passed; here 0.006
+        # saturates i_score_abs at the same 100% the boolean fallback already gave,
+        # so the score is unchanged.
+        score_55_explicit = compute_canslim_score(factors_80, institutional_strength=0.006)
+        self.assertEqual(score_55_explicit, 55)
 
     def test_edge_cases(self):
         # Zero shares

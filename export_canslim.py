@@ -1416,6 +1416,7 @@ class CanslimEngine:
         try:
             # 1. Try to load existing data for resuming
             existing_count = 0
+            old_data = {}
             if os.path.exists(DATA_FILE):
                 try:
                     old_data = load_artifact_json(DATA_FILE, artifact_kind="data", logger=logger)
