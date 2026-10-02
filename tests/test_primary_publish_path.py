@@ -120,7 +120,11 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
 
     engine = _build_engine(module)
     _stub_engine_dependencies(monkeypatch, module, engine)
-    _stub_selector(monkeypatch, module)
+    # 2330 must be a non-core (worklist) symbol here: core symbols now always
+    # bypass the resume-validation check (see export_canslim.py run()), so
+    # testing "resume rejected -> rebuild" requires a symbol that still goes
+    # through validate_resume_stock_entry.
+    _stub_selector(monkeypatch, module, core_symbols=("1101", "3565"))
 
     load_calls = []
     validated = []
@@ -188,7 +192,7 @@ def test_export_canslim_resume_rebuilds_incompatible_records_and_publishes_summa
                 "remaining_symbols": [],
                 "is_resume": False,
             },
-            "worklist": [],
+            "worklist": ["2330"],
             "daily_budget": 0,
         },
         raising=False,

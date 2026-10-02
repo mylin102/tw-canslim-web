@@ -1484,6 +1484,7 @@ class CanslimEngine:
             scheduled_batch = daily_plan["scheduled_batch"]
             scheduled_symbols = set(scheduled_batch["symbols"])
             retry_symbols = set(daily_plan["retry_symbols"])
+            core_symbols_set = set(selection.core_symbols)
 
             logger.info(
                 "Dynamic core selector produced %s core symbols with bucket counts %s",
@@ -1521,7 +1522,14 @@ class CanslimEngine:
                 is_retry_symbol = t in retry_symbols
                 source = "rotation" if is_scheduled_symbol else ("retry" if is_retry_symbol else "core")
 
-                if t in self.output_data["stocks"]:
+                # Core symbols must be refreshed every run -- the resume check below is
+                # meant to skip re-fetching work already done earlier in *this* run
+                # (e.g. after a crash/restart), but output_data["stocks"] is seeded from
+                # *yesterday's* full data.json at the top of run(). Without this guard,
+                # any core symbol whose cached entry still passes schema validation gets
+                # silently skipped forever, freezing its freshness indefinitely (observed:
+                # 2330 stuck at 2026-04-27 after 150+ daily runs).
+                if t in self.output_data["stocks"] and t not in core_symbols_set:
                     stock_entry = self.output_data["stocks"][t]
                     if validate_resume_stock_entry(t, stock_entry, schema_version=SCHEMA_VERSION):
                         continue
