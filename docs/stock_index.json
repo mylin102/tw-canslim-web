@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20261004T035005Z",
-  "generated_at": "2026-10-04T03:52:13Z",
-  "last_updated": "2026-10-04T03:52:13Z",
+  "run_id": "20261004T040259Z",
+  "generated_at": "2026-10-04T04:05:01Z",
+  "last_updated": "2026-10-04T04:05:01Z",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -12386,7 +12386,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-04T03:52:11Z",
+      "last_succeeded_at": "2026-10-04T04:04:59Z",
       "in_snapshot": true
     },
     "3567": {
@@ -21626,7 +21626,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-04T03:52:12Z",
+      "last_succeeded_at": "2026-10-04T04:05:01Z",
       "in_snapshot": true
     },
     "6771": {

@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "data",
-  "run_id": "20261004T035005Z",
-  "generated_at": "2026-10-04T03:52:13Z",
-  "last_updated": "2026-10-04T03:52:13Z",
+  "run_id": "20261004T040259Z",
+  "generated_at": "2026-10-04T04:05:01Z",
+  "last_updated": "2026-10-04T04:05:01Z",
   "stocks": {
     "00400A": {
       "schema_version": "1.0",
@@ -61666,13 +61666,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-04T03:51:57Z",
+      "last_updated": "2026-10-04T04:04:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-04T03:52:11Z"
+      "last_succeeded_at": "2026-10-04T04:04:59Z"
     },
     "3567": {
       "symbol": "3567",
@@ -93510,7 +93510,7 @@
         "rs_rating": 1.06,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -21,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.0,
@@ -93547,13 +93547,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-04T03:52:11Z",
+      "last_updated": "2026-10-04T04:04:59Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-04T03:52:12Z"
+      "last_succeeded_at": "2026-10-04T04:05:01Z"
     },
     "6771": {
       "symbol": "6771",
