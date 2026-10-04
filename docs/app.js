@@ -254,19 +254,35 @@ const app = createApp({
                 .sort((a, b) => (b.canslim?.score || 0) - (a.canslim?.score || 0));
         });
 
+        // Freshness tier for leader ranking: a stock whose score hasn't been
+        // recomputed in weeks/months (stuck in the rotation queue) must not
+        // outrank a genuinely fresh score just because the frozen number is
+        // numerically higher -- "今日強勢領頭羊" should mean today's, not
+        // "whatever score happened to stick months ago".
+        const freshnessTier = (s) => {
+            const level = s && s.freshness && s.freshness.level;
+            return (level === 'today' || level === 'warning') ? 0 : 1;
+        };
+
+        const byFreshnessThenScore = (a, b) => {
+            const tierDiff = freshnessTier(a) - freshnessTier(b);
+            if (tierDiff !== 0) return tierDiff;
+            return ((b && b.canslim && b.canslim.score) || 0) - ((a && a.canslim && a.canslim.score) || 0);
+        };
+
         // Separate stock leaders and ETF leaders at the data layer
         const stockLeaders = computed(() => {
             const stocks = stockData.value ? Object.values(stockData.value.stocks) : [];
             return stocks
                 .filter(s => s && !s.is_etf)
-                .sort((a, b) => ((b && b.canslim && b.canslim.score) || 0) - ((a && a.canslim && a.canslim.score) || 0));
+                .sort(byFreshnessThenScore);
         });
 
         const etfLeaders = computed(() => {
             const stocks = stockData.value ? Object.values(stockData.value.stocks) : [];
             return stocks
                 .filter(s => s && s.is_etf)
-                .sort((a, b) => ((b && b.canslim && b.canslim.score) || 0) - ((a && a.canslim && a.canslim.score) || 0));
+                .sort(byFreshnessThenScore);
         });
 
         const selectStock = (symbol) => {
