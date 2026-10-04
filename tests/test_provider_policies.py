@@ -112,8 +112,9 @@ def test_export_canslim_routes_requests_fetch_retry_through_shared_policy(monkey
     assert observed == [("requests", engine.failure_stats)]
 
 
-def test_export_canslim_ticker_loader_decodes_bom_prefixed_utf8_csv_from_bytes(monkeypatch):
+def test_export_canslim_ticker_loader_decodes_bom_prefixed_utf8_csv_from_bytes(monkeypatch, tmp_path):
     module = import_module("export_canslim")
+    monkeypatch.setattr(module, "TICKER_CACHE_FILE", str(tmp_path / "ticker_cache.json"))
 
     class DummyResponse:
         status_code = 200
@@ -138,6 +139,43 @@ def test_export_canslim_ticker_loader_decodes_bom_prefixed_utf8_csv_from_bytes(m
     )
     monkeypatch.setattr(module.requests, "get", lambda url, timeout=15: DummyResponse(csv_by_url[url]))
     monkeypatch.setattr(module.os.path, "exists", lambda path: False)
+
+    ticker_map = module.get_all_tw_tickers(runtime_state={})
+
+    assert ticker_map["1101"] == {"name": "台泥", "suffix": ".TW"}
+    assert ticker_map["1240"] == {"name": "茂生農經", "suffix": ".TWO"}
+
+
+def test_export_canslim_ticker_loader_falls_back_to_cache_when_live_fetch_fails(monkeypatch, tmp_path):
+    """2026-10-04: TWSE/TPEx both ReadTimeout'd, dropping the scan universe from
+    ~2000 to ~10 known stocks. get_all_tw_tickers() must fall back to the last
+    successfully-fetched ticker list instead of silently returning almost nothing."""
+    module = import_module("export_canslim")
+    cache_file = tmp_path / "ticker_cache.json"
+    monkeypatch.setattr(module, "TICKER_CACHE_FILE", str(cache_file))
+
+    import json as _json
+
+    cache_file.write_text(
+        _json.dumps(
+            {
+                "twse": {"1101": {"name": "台泥", "suffix": ".TW"}},
+                "twse_updated_at": "2026-10-01T00:00:00Z",
+                "tpex": {"1240": {"name": "茂生農經", "suffix": ".TWO"}},
+                "tpex_updated_at": "2026-10-01T00:00:00Z",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        module,
+        "call_with_provider_policy",
+        lambda provider_name, operation, **kwargs: (_ for _ in ()).throw(
+            module.ProviderRetryExhaustedError("ReadTimeout")
+        ),
+        raising=False,
+    )
 
     ticker_map = module.get_all_tw_tickers(runtime_state={})
 

@@ -91,6 +91,33 @@ KNOWN_STOCK_NAMES = {
     "6770": "力智",
 }
 
+# Local fallback for the full TWSE/TPEx ticker list, used when the live fetch
+# (mopsfin.twse.com.tw) times out or errors -- e.g. 2026-10-04, both endpoints
+# ReadTimeout'd after 3 retries, leaving the scan universe at ~10 known stocks
+# instead of ~2000. Written on every successful live fetch; read as a
+# per-source fallback so a transient outage in one source doesn't also lose
+# the other, still-working source's data.
+TICKER_CACHE_FILE = os.path.join(SCRIPT_DIR, "ticker_cache.json")
+
+
+def _load_ticker_cache() -> dict:
+    if os.path.exists(TICKER_CACHE_FILE):
+        try:
+            with open(TICKER_CACHE_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Failed to load ticker cache: {e}")
+    return {}
+
+
+def _save_ticker_cache(cache: dict) -> None:
+    try:
+        with open(TICKER_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(cache, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        logger.error(f"Failed to save ticker cache: {e}")
+
+
 def get_all_tw_tickers(*, runtime_state: dict | None = None):
     """Fetch both TWSE and TPEx tickers with correct metadata."""
     logger.info("Fetching full TWSE and TPEx ticker lists...")
@@ -124,32 +151,62 @@ def get_all_tw_tickers(*, runtime_state: dict | None = None):
             logger.error(f"Ticker CSV response failed for {url}: {exc}")
             return None
         return pd.read_csv(BytesIO(response.content), encoding="utf-8-sig")
-    
+
+    ticker_cache = _load_ticker_cache()
+    cache_dirty = False
+
     # 1. Listed (上市)
     try:
         df_l = fetch_csv(TWSE_TICKER_URL)
         if df_l is None:
             raise ValueError("TWSE ticker response unavailable")
+        twse_tickers = {}
         for _, row in df_l.iterrows():
             tid = str(row['公司代號']).strip()
             if len(tid) == 4:
-                ticker_map[tid] = {"name": str(row['公司簡稱']), "suffix": ".TW"}
+                twse_tickers[tid] = {"name": str(row['公司簡稱']), "suffix": ".TW"}
+        ticker_map.update(twse_tickers)
+        ticker_cache["twse"] = twse_tickers
+        ticker_cache["twse_updated_at"] = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+        cache_dirty = True
         logger.info(f"Fetched {len(ticker_map)} TWSE tickers")
     except Exception as e:
         logger.error(f"Failed to fetch TWSE tickers: {e}")
-    
+        cached_twse = ticker_cache.get("twse", {})
+        if cached_twse:
+            ticker_map.update(cached_twse)
+            logger.warning(
+                f"Falling back to cached TWSE ticker list ({len(cached_twse)} tickers, "
+                f"as of {ticker_cache.get('twse_updated_at', 'unknown')})"
+            )
+
     # 2. OTC (上櫃)
     try:
         df_o = fetch_csv(TPEx_TICKER_URL)
         if df_o is None:
             raise ValueError("TPEx ticker response unavailable")
+        tpex_tickers = {}
         for _, row in df_o.iterrows():
             tid = str(row['公司代號']).strip()
             if len(tid) == 4:
-                ticker_map[tid] = {"name": str(row['公司簡稱']), "suffix": ".TWO"}
+                tpex_tickers[tid] = {"name": str(row['公司簡稱']), "suffix": ".TWO"}
+        ticker_map.update(tpex_tickers)
+        ticker_cache["tpex"] = tpex_tickers
+        ticker_cache["tpex_updated_at"] = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+        cache_dirty = True
         logger.info(f"Fetched {len(ticker_map)} total tickers")
     except Exception as e:
         logger.error(f"Failed to fetch TPEx tickers: {e}")
+        cached_tpex = ticker_cache.get("tpex", {})
+        if cached_tpex:
+            ticker_map.update(cached_tpex)
+            logger.warning(
+                f"Falling back to cached TPEx ticker list ({len(cached_tpex)} tickers, "
+                f"as of {ticker_cache.get('tpex_updated_at', 'unknown')})"
+            )
+
+    if cache_dirty:
+        _save_ticker_cache(ticker_cache)
     
     # 3. Add ETFs from cache
     cache_file = os.path.join(SCRIPT_DIR, "etf_cache.json")
