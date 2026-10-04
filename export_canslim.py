@@ -1451,7 +1451,18 @@ class CanslimEngine:
                 self.output_data["market_perception"] = skew_metrics
             
             all_t = sorted(list(self.ticker_info.keys()))
-            
+            # ETFs already have a dedicated weekly pipeline (update_etf_backfill.py /
+            # .github/workflows/etf_backfill.yml via SingleStockUpdater) and don't need
+            # to also go through CANSLIM core/rotation selection here. Mixing them into
+            # the rotation universe left batch 0 permanently stuck: ~211 ETF tickers sat
+            # in rotation_state.in_progress.remaining_symbols for 5+ months, never
+            # completing or failing out to the retry queue -- which blocked batches 1/2
+            # (the other 2/3 of the non-core universe) from ever being reached at all.
+            # NOTE: Taiwan ETFs (e.g. 0050, 0051) are often 4-digit numeric too, so
+            # length/isdigit() alone can't distinguish them -- use the same self.etf_list
+            # membership check already used for per-stock ETF classification below.
+            all_t = [t for t in all_t if t not in self.etf_list and len(t) < 5]
+
             # 2b. Batch fetch institutional data for all tickers to save API calls
             self.fetch_institutional_data_batch(all_t, days=5)
 
