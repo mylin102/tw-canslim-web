@@ -23,18 +23,30 @@ class ExcelDataProcessor:
         self._find_excel_files()
     
     def _find_excel_files(self):
-        """Find Excel files in the base directory."""
+        """Find Excel files in the base directory, preferring the most
+        recently modified match when several candidates exist (e.g. old
+        dated 股票健診*.xlsm downloads left alongside a new one)."""
+        fundamental_candidates = []
+        health_check_candidates = []
         for file in os.listdir(self.base_dir):
+            if file.startswith('~$'):
+                continue  # Excel/Office lock file, not a real workbook
             if file.endswith('.xlsm') or file.endswith('.xlsx'):
+                full_path = os.path.join(self.base_dir, file)
                 if '基本面數據' in file or '基本面' in file:
-                    self.fundamental_data_file = os.path.join(self.base_dir, file)
-                    logger.info(f"Found fundamental data file: {file}")
+                    fundamental_candidates.append(full_path)
                 elif '健診' in file or '健诊' in file:
-                    self.health_check_file = os.path.join(self.base_dir, file)
-                    logger.info(f"Found health check file: {file}")
-        
-        # If multiple health check files exist, use the newest one
-        if self.health_check_file:
+                    health_check_candidates.append(full_path)
+
+        if fundamental_candidates:
+            self.fundamental_data_file = max(fundamental_candidates, key=os.path.getmtime)
+            logger.info(f"Found fundamental data file: {os.path.basename(self.fundamental_data_file)}")
+
+        # If multiple health check files exist, use the newest one (by mtime,
+        # not filename -- the embedded date suffix isn't reliably sortable
+        # across naming eras, e.g. "60709" vs "61002").
+        if health_check_candidates:
+            self.health_check_file = max(health_check_candidates, key=os.path.getmtime)
             logger.info(f"Using health check file: {os.path.basename(self.health_check_file)}")
 
     def _normalize_stock_code(self, raw_code) -> Optional[str]:

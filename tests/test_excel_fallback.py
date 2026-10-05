@@ -1,8 +1,36 @@
+import os
+import time
 from importlib import import_module
 
 import pandas as pd
 
 from excel_processor import ExcelDataProcessor
+
+
+def test_find_excel_files_prefers_newest_health_check_and_skips_lock_files(tmp_path):
+    """_find_excel_files()'s own comment promised "use the newest one" but
+    never actually compared anything -- it just kept whichever file
+    os.listdir() happened to enumerate last (arbitrary OS-dependent order).
+    A real workflow leaves several dated 股票健診*.xlsm downloads sitting in
+    the same folder, so this must reliably pick the most recently modified
+    one, and must not mistake an open Excel file's "~$"-prefixed lock file
+    for a real workbook."""
+    old_file = tmp_path / "股票健診60803.xlsm"
+    new_file = tmp_path / "股票健診61002.xlsm"
+    lock_file = tmp_path / "~$股票健診61002.xlsm"
+    old_file.write_bytes(b"old")
+    lock_file.write_bytes(b"lock")
+    time.sleep(0.01)
+    new_file.write_bytes(b"new")
+
+    now = time.time()
+    os.utime(old_file, (now - 100, now - 100))
+    os.utime(lock_file, (now, now))  # newest mtime, but must be ignored
+    os.utime(new_file, (now - 10, now - 10))
+
+    processor = ExcelDataProcessor(str(tmp_path))
+
+    assert processor.health_check_file == str(new_file)
 
 
 def test_health_check_loader_merges_summary_and_rating_sheets(tmp_path):
