@@ -16,13 +16,19 @@ permissions:
 jobs:
   incremental-update:
     runs-on: ubuntu-latest
-    # 2026-10-05: the revenue feature pipeline alone takes ~30-36min across
-    # ~1958 stocks (most fall through the full TEJ -> FinMind -> yfinance
-    # fallback chain, ~1-1.3s each), on top of ~15min for everything else in
-    # run() -- the previous 30min budget was sized for when FinMind's login
-    # bug (fixed in 3a15d12) made every FinMind call fail instantly instead
-    # of actually trying.
-    timeout-minutes: 75
+    # 2026-10-05: measured directly (run 37276258903, cut off at exactly
+    # 75min): the revenue feature pipeline processes ~1962 stocks at ~2s each
+    # (most fall through the full TEJ -> FinMind -> yfinance fallback chain --
+    # FinMind has real coverage gaps for plenty of non-ETF stocks too, not
+    # just ETFs) = ~65min for that step alone, on top of ~22min for
+    # everything else in run(). ~90min needed; 110min gives headroom. This is
+    # a stopgap, not a fix -- the previous 30min budget was sized for when
+    # FinMind's login bug (fixed in 3a15d12) made every FinMind call fail
+    # instantly instead of actually trying. Revenue-pipeline throughput
+    # itself (e.g. rotating it across days like the CANSLIM core/rotation
+    # split, or dropping the now-mostly-redundant yfinance proxy tier) is a
+    # separate follow-up.
+    timeout-minutes: 110
     
     steps:
       - name: 🛠️ 檢查程式碼
@@ -91,12 +97,13 @@ jobs:
           if missing:
               raise SystemExit(f"runtime_budget missing keys: {missing}")
           note = os.environ.get("RUNTIME_BUDGET_NOTE", "").strip()
-          # 2026-10-05: raised 1800s -> 4200s alongside the job's 30min -> 75min
-          # timeout-minutes bump (see that field's comment for why), keeping a
-          # ~5min buffer under the hard job timeout.
-          if payload["elapsed_seconds"] > 4200 and not note:
+          # 2026-10-05: raised again, 4200s -> 6300s, alongside the job's
+          # 75min -> 110min timeout-minutes bump (see that field's comment
+          # for the measured numbers), keeping a ~5min buffer under the hard
+          # job timeout.
+          if payload["elapsed_seconds"] > 6300 and not note:
               raise SystemExit(
-                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 4200 without RUNTIME_BUDGET_NOTE"
+                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 6300 without RUNTIME_BUDGET_NOTE"
               )
           print(payload)
           PY
