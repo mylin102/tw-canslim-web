@@ -1326,8 +1326,21 @@ class CanslimEngine:
                 self.tej_processor.provider_runtime_state = self.failure_stats
                 # Get correct suffix from metadata
                 actual_suffix = self.ticker_info.get(ticker, {}).get("suffix", ".TW")
-                df_tej = self.tej_processor.get_daily_prices(tej_sym, count=500, suffix=actual_suffix)
-                if df_tej is not None and not df_tej.empty:
+                # 2026-10-05: get_daily_prices() silently ignores `count` -- its
+                # own internal yfinance fallback uses start_date/end_date
+                # verbatim (via yf.download(start=..., end=...)), and with
+                # both left None it defaulted to yfinance's own short recent
+                # window (~1mo, 19 rows). That passed the "not empty" check
+                # below and got returned as if it were real 2y TEJ data, so
+                # calculate_mansfield_rs's `len(df) < 60: return 0.0` guard
+                # fired for every single stock -- mansfield_rs read 0.0
+                # universe-wide even after TEJ/FinMind auth was fixed.
+                tej_start = (datetime.now() - timedelta(days=365 * max(1, int(period.rstrip("y")) if period.rstrip("y").isdigit() else 2))).strftime("%Y-%m-%d")
+                tej_end = datetime.now().strftime("%Y-%m-%d")
+                df_tej = self.tej_processor.get_daily_prices(
+                    tej_sym, start_date=tej_start, end_date=tej_end, suffix=actual_suffix
+                )
+                if df_tej is not None and len(df_tej) >= 60:
                     # Ensure tz-naive for consistent pandas joins
                     idx = pd.to_datetime(df_tej['date']).dt.tz_localize(None)
                     return pd.Series(df_tej['close'].values, index=idx)
