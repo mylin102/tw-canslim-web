@@ -32,6 +32,8 @@ This contract defines the data exchange format for Canslim-based alpha signals. 
       "symbol": "2330",
       "name": "台積電",
       "rs_rating": 92,
+      "ad_rating": "A-",
+      "sales_rating": 85,
       "i_rating": 88,
       "breakout_score": 0.81,
       "volume_score": 0.73,
@@ -53,6 +55,8 @@ This contract defines the data exchange format for Canslim-based alpha signals. 
 | `universe` | list | Yes | List of stock objects in the high-alpha universe. |
 | `symbol` | str | Yes | Taiwan stock symbol (e.g., "2330"). Suffixes like ".TW" are stripped by consumer. |
 | `rs_rating` | int | Yes | Relative Strength rating (1-99). |
+| `ad_rating` | str \| null | No | **Added 2026-10-06.** IBD-style Accumulation/Distribution grade (`"A+"`...`"E-"`), from the 股票健診 Excel source. `null` when unavailable for a symbol. Not currently factored into `composite_score` -- raw signal only. |
+| `sales_rating` | int \| null | No | **Added 2026-10-06.** IBD-style revenue-growth percentile (1-99), same scale as `rs_rating`. `null` when unavailable. Not currently factored into `composite_score` -- raw signal only. |
 | `composite_score` | float | Yes | Normalized score (0.0 - 1.0) used for position scaling. |
 | `tags` | list[str]| Yes | Classification. Presence of `"leader"` enables the Universe Filter. |
 

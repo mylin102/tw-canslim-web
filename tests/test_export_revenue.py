@@ -110,6 +110,62 @@ def test_export_leaders_json_missing_revenue(engine, tmp_path):
         assert tsmc["composite_score"] == 0.491
         assert "rev_acc" not in tsmc["tags"]
         assert "rev_strong" not in tsmc["tags"]
-        
+
+    finally:
+        export_canslim.SCRIPT_DIR = original_script_dir
+
+
+def test_export_leaders_json_includes_ad_and_sales_rating(tmp_path):
+    """2026-10-06: ad_rating (IBD Accumulation/Distribution grade) and
+    sales_rating (IBD revenue-growth percentile) added as non-breaking
+    External Alpha Contract fields, sourced from the same 股票健診 Excel
+    ratings rs_rating already uses. Uses object.__new__ (not CanslimEngine())
+    to avoid the real constructor's network calls."""
+    from export_canslim import CanslimEngine
+
+    engine = object.__new__(CanslimEngine)
+    engine.ticker_info = {"2330": {"name": "TSMC", "suffix": ".TW"}}
+    engine.excel_processor = MagicMock()
+    engine.excel_ratings = {}
+    engine.fund_holdings = {}
+    engine.industry_data = {}
+    engine.industry_strength = []
+    engine.output_data = {
+        "stocks": {
+            "2330": {
+                "symbol": "2330",
+                "name": "TSMC",
+                "industry": "Semiconductors",
+                "canslim": {
+                    "score": 80,
+                    "revenue_score": 6.0,
+                    "rev_accelerating": True,
+                    "rev_strong": True,
+                    "N": True,
+                    "mansfield_rs": 1.5,
+                    "excel_ratings": {"rs_rating": 90, "ad_rating": "A-", "sales_rating": 85},
+                },
+            }
+        },
+        "industry_strength": [{"industry": "Semiconductors", "avg_score": 80}],
+    }
+
+    selection = MagicMock()
+    selection.core_symbols = ["2330"]
+
+    import export_canslim
+    original_script_dir = export_canslim.SCRIPT_DIR
+    export_canslim.SCRIPT_DIR = str(tmp_path)
+
+    try:
+        engine._export_leaders_json(selection)
+
+        leaders_file = tmp_path / "data" / "leaders.json"
+        with open(leaders_file, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+
+        tsmc = payload["universe"][0]
+        assert tsmc["ad_rating"] == "A-"
+        assert tsmc["sales_rating"] == 85
     finally:
         export_canslim.SCRIPT_DIR = original_script_dir

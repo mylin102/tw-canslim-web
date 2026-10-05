@@ -661,6 +661,8 @@ class CanslimEngine:
                     "symbol": symbol,
                     "name": info["name"],
                     "rs_rating": int(excel_ratings.get("rs_rating") or 0),
+                    "ad_rating": excel_ratings.get("ad_rating"),
+                    "sales_rating": excel_ratings.get("sales_rating"),
                     "breakout_score": 0.5, # Default since no price data
                     "volume_score": 0.5,
                     "composite_score": round((excel_ratings.get("composite_rating") or 0) / 100.0, 3),
@@ -709,6 +711,8 @@ class CanslimEngine:
                     "symbol": symbol,
                     "name": stock_data["name"],
                     "rs_rating": rs_rating,
+                    "ad_rating": (excel_ratings or {}).get("ad_rating"),
+                    "sales_rating": (excel_ratings or {}).get("sales_rating"),
                     "breakout_score": breakout_score,
                     "volume_score": volume_score,
                     "composite_score": round(blended_score, 3),

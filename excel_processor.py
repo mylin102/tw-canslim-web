@@ -82,6 +82,8 @@ class ExcelDataProcessor:
             "institutional_holding_change_pct": None,
             "sponsorship_score": None,
             "sponsorship_rating": None,
+            "ad_rating": None,
+            "sales_rating": None,
         }
 
     def _ensure_health_record(self, result: Dict[str, Dict], stock_code: str, stock_name: str = "") -> Dict:
@@ -387,6 +389,74 @@ class ExcelDataProcessor:
                             continue
                 except Exception as e:
                     logger.warning(f"Failed to read SMR Rating sheet: {e}")
+
+            # Read AD Rating sheet (IBD-style Accumulation/Distribution grade,
+            # A+ through E-). Directly supports the CANSLIM "I" factor
+            # (institutional buying/selling pressure) with a source that
+            # isn't subject to the TEJ/FinMind/yfinance chain's outages.
+            if 'AD Rating' in excel_file.sheet_names:
+                try:
+                    df_ad = pd.read_excel(
+                        self.health_check_file,
+                        sheet_name='AD Rating',
+                        header=None,
+                    )
+                    valid_grades = {
+                        'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-',
+                        'D+', 'D', 'D-', 'E+', 'E', 'E-',
+                    }
+                    for _, row in df_ad.iterrows():
+                        try:
+                            stock_code = self._normalize_stock_code(row.iloc[0])
+                            if not stock_code:
+                                continue
+                            rating = None
+                            for col_idx in range(1, min(4, len(row))):
+                                val = str(row.iloc[col_idx]).strip()
+                                if val in valid_grades:
+                                    rating = val
+                                    break
+                            if rating is None:
+                                continue
+                            record = self._ensure_health_record(result, stock_code)
+                            record['ad_rating'] = rating
+                        except Exception as e:
+                            logger.debug(f"Skipping AD Rating row: {e}")
+                            continue
+                except Exception as e:
+                    logger.warning(f"Failed to read AD Rating sheet: {e}")
+
+            # Read Sales Rating sheet (IBD-style revenue-growth percentile,
+            # 1-99 -- same scale as EPS Rating). Supports the CANSLIM "C"/"A"
+            # factors alongside the revenue feature pipeline's rev_score.
+            if 'Sales Rating' in excel_file.sheet_names:
+                try:
+                    df_sales = pd.read_excel(
+                        self.health_check_file,
+                        sheet_name='Sales Rating',
+                        header=None,
+                    )
+                    for _, row in df_sales.iterrows():
+                        try:
+                            stock_code = self._normalize_stock_code(row.iloc[0])
+                            if not stock_code:
+                                continue
+                            rating = None
+                            for col_idx in range(1, min(5, len(row))):
+                                if pd.notna(row.iloc[col_idx]):
+                                    val = self._coerce_number(row.iloc[col_idx])
+                                    if val is not None and 0 <= val <= 100:
+                                        rating = val
+                                        break
+                            if rating is None:
+                                continue
+                            record = self._ensure_health_record(result, stock_code)
+                            record['sales_rating'] = rating
+                        except Exception as e:
+                            logger.debug(f"Skipping Sales Rating row: {e}")
+                            continue
+                except Exception as e:
+                    logger.warning(f"Failed to read Sales Rating sheet: {e}")
 
             if 'Sponsorship Rating' in excel_file.sheet_names:
                 try:

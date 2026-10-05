@@ -73,6 +73,12 @@ def test_health_check_loader_merges_summary_and_rating_sheets(tmp_path):
         pd.DataFrame([[2454, 86]]).to_excel(writer, sheet_name="EPS Rating", header=False, index=False)
         pd.DataFrame([[2454, 99]]).to_excel(writer, sheet_name="RS Rating", header=False, index=False)
         pd.DataFrame(
+            [["\t商品", None], [2454, "A-"]]
+        ).to_excel(writer, sheet_name="AD Rating", header=False, index=False)
+        pd.DataFrame(
+            [["\t代碼", None, "\t商品", "Sales Rating"], [2454, None, "聯發科", 92]]
+        ).to_excel(writer, sheet_name="Sales Rating", header=False, index=False)
+        pd.DataFrame(
             [
                 {"代碼": 2454, "商品": "聯發科", "SMR Rating": "A"},
             ]
@@ -110,6 +116,8 @@ def test_health_check_loader_merges_summary_and_rating_sheets(tmp_path):
     assert health["2454"]["rs_rating"] == 99.0
     assert health["2454"]["smr_rating"] == "A"
     assert health["2454"]["sponsorship_rating"] == "A-"
+    assert health["2454"]["ad_rating"] == "A-"
+    assert health["2454"]["sales_rating"] == 92.0
 
     assert funds["2454"]["current_month"] == 267
     assert funds["2454"]["previous_month"] == 167
