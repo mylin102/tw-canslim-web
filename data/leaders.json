@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-05",
-  "generated_at": "2026-10-05T02:01:16Z",
+  "generated_at": "2026-10-05T08:40:46Z",
   "universe": [
     {
       "symbol": "1101",
@@ -9,7 +9,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.055,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -34,11 +34,26 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.167,
       "industry_rank": 999,
       "tags": [
         "leader",
         "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "1459",
+      "name": "聯發",
+      "rs_rating": 0,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.294,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate",
+        "rev_acc",
+        "rev_strong"
       ]
     },
     {
@@ -47,10 +62,11 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.16,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "rev_acc"
       ]
     },
     {
@@ -72,7 +88,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.097,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -98,7 +114,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -111,7 +127,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -123,7 +139,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.147,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -135,8 +151,8 @@
       "name": "宏璟",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.119,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -149,7 +165,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -161,7 +177,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.0,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -172,8 +188,8 @@
       "name": "聯上發",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.0,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -197,7 +213,19 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2540",
+      "name": "愛山林",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -209,7 +237,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -221,7 +249,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -231,13 +259,12 @@
       "symbol": "2547",
       "name": "日勝生",
       "rs_rating": 0,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
       ]
     },
     {
@@ -246,7 +273,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -257,8 +284,8 @@
       "name": "益航",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -270,7 +297,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -283,7 +310,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -295,7 +322,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -308,7 +335,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -321,7 +348,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.055,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -332,12 +359,13 @@
       "name": "東森",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.154,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate"
+        "breakout_candidate",
+        "rev_acc"
       ]
     },
     {
@@ -346,7 +374,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -371,7 +399,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -384,7 +412,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -396,7 +424,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -409,7 +437,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -421,7 +449,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -434,7 +462,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.035,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -446,7 +474,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -458,7 +486,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -470,8 +498,8 @@
       "name": "台中銀",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.063,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -483,7 +511,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -496,7 +524,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -509,7 +537,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -522,7 +550,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -534,7 +562,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -547,7 +575,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -560,7 +588,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.147,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -573,7 +601,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -599,7 +627,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.097,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -612,7 +640,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -625,7 +653,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -638,7 +666,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.097,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -651,7 +679,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -677,7 +705,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -690,7 +718,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -703,7 +731,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -716,7 +744,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -729,7 +757,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -742,7 +770,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.077,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -755,7 +783,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -768,7 +796,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -780,7 +808,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -792,7 +820,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -805,7 +833,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -817,7 +845,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -827,12 +855,13 @@
       "symbol": "3006",
       "name": "晶豪科",
       "rs_rating": 0,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
@@ -841,7 +870,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -853,7 +882,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -864,8 +893,8 @@
       "name": "晟銘電",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -876,8 +905,8 @@
       "name": "聯陽",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -890,7 +919,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -916,7 +945,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -940,7 +969,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -952,7 +981,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -965,7 +994,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -977,7 +1006,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -989,7 +1018,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1001,7 +1030,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1013,8 +1042,8 @@
       "name": "德律",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1026,8 +1055,8 @@
       "name": "佰鴻",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1040,7 +1069,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1052,7 +1081,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1065,7 +1094,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1090,7 +1119,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1103,7 +1132,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1113,13 +1142,12 @@
       "symbol": "3042",
       "name": "晶技",
       "rs_rating": 0,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
       ]
     },
     {
@@ -1128,7 +1156,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1141,7 +1169,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1154,7 +1182,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1178,7 +1206,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1189,8 +1217,8 @@
       "name": "力特",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1202,7 +1230,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1215,7 +1243,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1227,7 +1255,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1239,7 +1267,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1251,7 +1279,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1274,8 +1302,8 @@
       "name": "聯傑",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1288,7 +1316,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1299,8 +1327,8 @@
       "name": "耀登",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1311,8 +1339,8 @@
       "name": "正達",
       "rs_rating": 0,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.02,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1336,8 +1364,8 @@
       "name": "景碩",
       "rs_rating": 0,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "volume_score": 1.0,
+      "composite_score": 0.084,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1387,7 +1415,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1412,7 +1440,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1436,7 +1464,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1448,7 +1476,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1460,7 +1488,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1473,7 +1501,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1483,13 +1511,12 @@
       "symbol": "3437",
       "name": "榮創",
       "rs_rating": 0,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.062,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.028,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
       ]
     },
     {
@@ -1498,7 +1525,7 @@
       "rs_rating": 0,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.062,
+      "composite_score": 0.042,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1523,7 +1550,7 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.0,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1584,10 +1611,24 @@
       "rs_rating": 0,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.02,
+      "composite_score": 0.055,
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "8182",
+      "name": "加高",
+      "rs_rating": 0,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.238,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "rev_acc",
+        "rev_strong"
       ]
     }
   ]
