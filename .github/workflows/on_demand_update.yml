@@ -65,7 +65,12 @@ jobs:
           python3 update_single_stock.py ${{ steps.extract.outputs.ticker }}
 
       - name: Upload rotation state artifact
-        if: always()
+        # 2026-10-06: if: always() let a killed/canceled run's in-memory
+        # rotation_state.json (marking symbols "done" that were never
+        # actually committed) get restored by the next run and silently
+        # freeze those symbols' real data -- see update_data.yml for the
+        # confirmed incident. Only upload after a successful run.
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: rotation-state-${{ github.event.repository.default_branch }}

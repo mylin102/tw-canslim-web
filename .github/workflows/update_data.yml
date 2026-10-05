@@ -128,7 +128,19 @@ jobs:
           PY
 
       - name: 📦 上傳 rotation state artifact
-        if: always()
+        # 2026-10-06: was if: always(), which let a killed/canceled run (e.g.
+        # a timeout-minutes kill) upload rotation_state.json reflecting
+        # symbols it marked complete in memory but never actually committed
+        # to docs/data.json (the "📤 提交更新" step never runs on a killed
+        # job -- no step can, after a hard job-level timeout). The next run's
+        # "♻️ 還原 rotation state" step would then restore that artifact and
+        # skip those symbols as "already done this batch", permanently
+        # freezing their real data (confirmed: 6139/6153 showed 🟢今日
+        # freshness while 三大法人買賣超 was still from April) until rotation
+        # happened to cycle back around to them. Only upload after a
+        # successful run, so the artifact never gets ahead of what's
+        # actually committed.
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: rotation-state-${{ github.ref_name }}
