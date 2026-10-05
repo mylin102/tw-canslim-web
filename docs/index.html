@@ -210,7 +210,7 @@
                             <div class="pt-4 border-t border-white/10 flex justify-between items-center">
                                 <div class="flex flex-col">
                                     <span class="text-[10px] font-black opacity-40 uppercase">RS</span>
-                                    <span class="text-sm font-black text-emerald-400">{{ stock.canslim.mansfield_rs?.toFixed(1) }}</span>
+                                    <span class="text-sm font-black text-emerald-400">{{ getEffectiveRs(stock) ?? '-' }}</span>
                                 </div>
                                 <div v-if="stock.revenue_features" class="flex flex-col items-end">
                                     <span class="text-[10px] font-black opacity-40 uppercase">Rev Score</span>
@@ -402,6 +402,9 @@
                                                     {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs?.toFixed(2) }}
                                                 </div>
                                                 <div class="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest">相比大盤基準線</div>
+                                                <div v-if="currentStock.canslim.excel_ratings?.rs_rating != null" class="mt-2 text-xs font-bold text-indigo-500">
+                                                    IBD RS Rating: {{ currentStock.canslim.excel_ratings.rs_rating }}
+                                                </div>
                                             </div>
                                             <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner group hover:bg-white hover:border-indigo-200 transition-all">
                                                 <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3">年化波動率</div>
@@ -577,8 +580,8 @@
                                             </div>
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
-                                            <div :class="['font-mono font-black text-lg group-hover:text-white', stock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-500']">
-                                                {{ stock.canslim.mansfield_rs?.toFixed(2) || '0.00' }}
+                                            <div :class="['font-mono font-black text-lg group-hover:text-white', (getEffectiveRs(stock) || 0) > 50 ? 'text-emerald-600' : 'text-rose-500']">
+                                                {{ getEffectiveRs(stock) ?? '-' }}
                                             </div>
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
@@ -645,8 +648,8 @@
                                                 </div>
                                             </td>
                                             <td class="table-cell-lg bg-slate-50 group-hover:bg-indigo-600 transition-colors text-center">
-                                                <div class="font-mono font-black text-lg group-hover:text-white" :class="etf.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-500'">
-                                                    {{ etf.canslim.mansfield_rs?.toFixed(2) || '0.00' }}
+                                                <div class="font-mono font-black text-lg group-hover:text-white" :class="(getEffectiveRs(etf) || 0) > 50 ? 'text-emerald-600' : 'text-rose-500'">
+                                                    {{ getEffectiveRs(etf) ?? '-' }}
                                                 </div>
                                             </td>
                                             <td class="table-cell-lg bg-slate-50 group-hover:bg-indigo-600 transition-colors text-center pr-8 rounded-r-3xl">
@@ -746,8 +749,8 @@
                                         </div>
                                         <div class="flex flex-col items-end">
                                             <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest text-right">RS 指標</span>
-                                            <span :class="['text-xs font-black font-mono', stock.canslim.mansfield_rs > 0 ? 'text-emerald-500' : 'text-rose-500']">
-                                                {{ stock.canslim.mansfield_rs?.toFixed(1) }}
+                                            <span :class="['text-xs font-black font-mono', (getEffectiveRs(stock) || 0) > 50 ? 'text-emerald-500' : 'text-rose-500']">
+                                                {{ getEffectiveRs(stock) ?? '-' }}
                                             </span>
                                         </div>
                                     </div>

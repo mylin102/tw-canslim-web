@@ -63,6 +63,26 @@ const app = createApp({
             return `group${group + 1}`;
         };
 
+        // RS (相對強度): prefer the IBD-style 1-99 percentile rating from the
+        // 股票健診 Excel health-check file (canslim.excel_ratings.rs_rating) --
+        // reliable, locally-sourced, not subject to the TEJ/FinMind/yfinance
+        // chain's rate limits/outages. Falls back to an approximate percentile
+        // derived from the raw Mansfield RS ratio using the same formula
+        // export_canslim.py's _export_leaders_json() already uses for
+        // data/leaders.json, so "RS" means the same thing everywhere in this
+        // app regardless of which source actually supplied it. Every "RS"
+        // label in this UI (leader cards, tables, screener, RS_LEADER_THRESHOLD
+        // comparisons) means *this* value -- it was already being compared
+        // against a percentile-scale threshold (80) even when fed the raw
+        // ratio, which a Mansfield RS value realistically never reaches.
+        const getEffectiveRs = (stock) => {
+            const excelRs = stock?.canslim?.excel_ratings?.rs_rating;
+            if (excelRs !== undefined && excelRs !== null) return excelRs;
+            const mansfield = stock?.canslim?.mansfield_rs;
+            if (!mansfield) return null;
+            return Math.min(99, Math.max(1, 50 + Math.round(mansfield * 5)));
+        };
+
         // 股票分級
         const getStockTier = (symbol, stock) => {
             // 防禦性檢查：如果 stock 為 undefined/null，返回默認值
@@ -86,7 +106,7 @@ const app = createApp({
                 };
             }
             const score = stock.canslim?.score || 0;
-            const rs = stock.canslim?.mansfield_rs || 0;
+            const rs = getEffectiveRs(stock) || 0;
             if (score >= SIGNAL_SCORE_THRESHOLD || rs >= RS_LEADER_THRESHOLD) {
                 let leaderType = 'Signal';
                 if (rs >= RS_LEADER_THRESHOLD) leaderType = 'RS';
@@ -365,7 +385,7 @@ const app = createApp({
             getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber,
             recentInstitutionalDays, institutionalBarStyle, institutionalBarClass, institutionalValueClass, totalInstitutionalNet,
             financialLabels, canslimDefinitions,
-            formatRelativeTime, getStockTier, getNextUpdateDay,
+            formatRelativeTime, getStockTier, getNextUpdateDay, getEffectiveRs,
         };
     }
 });
