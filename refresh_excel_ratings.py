@@ -19,6 +19,7 @@ import argparse
 import json
 import logging
 import os
+import subprocess
 
 from excel_processor import ExcelDataProcessor
 
@@ -29,7 +30,29 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(SCRIPT_DIR, "docs", "data.json")
 
 
-def refresh(excel_dir: str, data_file: str = DATA_FILE) -> None:
+def _git(*args: str) -> str:
+    result = subprocess.run(
+        ["git", "-C", SCRIPT_DIR, *args],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip()
+
+
+def _current_branch() -> str:
+    return _git("rev-parse", "--abbrev-ref", "HEAD")
+
+
+def refresh(excel_dir: str, data_file: str = DATA_FILE, push: bool = True) -> None:
+    if push:
+        # Sync up first so we enrich the latest committed data.json, not a
+        # stale local copy -- the daily automated workflow commits often.
+        branch = _current_branch()
+        logger.info(f"Pulling latest {branch} before refreshing...")
+        _git("fetch", "origin", branch)
+        _git("pull", "--ff-only", "origin", branch)
+
     processor = ExcelDataProcessor(excel_dir)
     if not processor.health_check_file:
         logger.error(f"No 股票健診*.xlsm file found in {excel_dir}")
@@ -59,6 +82,28 @@ def refresh(excel_dir: str, data_file: str = DATA_FILE) -> None:
 
     logger.info(f"✅ Refreshed excel_ratings for {updated}/{len(data.get('stocks', {}))} stocks in {data_file}")
 
+    if not push:
+        logger.info("--no-push set: left the change staged locally, uncommitted.")
+        return
+
+    rel_path = os.path.relpath(data_file, SCRIPT_DIR)
+    status = _git("status", "--porcelain", "--", rel_path)
+    if not status:
+        logger.info("No changes to commit (ratings were already up to date).")
+        return
+
+    branch = _current_branch()
+    _git("add", rel_path)
+    _git(
+        "commit",
+        "-m",
+        f"chore: refresh excel_ratings from {os.path.basename(processor.health_check_file)}\n\n"
+        f"Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>",
+    )
+    logger.info(f"Pushing to origin/{branch}...")
+    _git("push", "origin", branch)
+    logger.info("✅ Pushed. GitHub Pages will pick this up within a minute or two.")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
@@ -68,5 +113,10 @@ if __name__ == "__main__":
         help="Directory to search for a 股票健診*.xlsm file (default: ~/Downloads)",
     )
     parser.add_argument("--data-file", default=DATA_FILE, help="Target data.json to update")
+    parser.add_argument(
+        "--no-push",
+        action="store_true",
+        help="Only update the local file; skip git pull/commit/push.",
+    )
     args = parser.parse_args()
-    refresh(args.excel_dir, args.data_file)
+    refresh(args.excel_dir, args.data_file, push=not args.no_push)
