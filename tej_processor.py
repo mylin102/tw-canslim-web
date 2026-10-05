@@ -37,6 +37,7 @@ class TEJProcessor:
     def __init__(self, api_key: str = None):
         self.error_count = 0
         self.max_errors = 3
+        self._finmind_processor = None  # lazily created; see _get_finmind_processor()
         self.provider_runtime_state = {
             "retry_attempts": 0,
             "retry_failures": 0,
@@ -203,7 +204,9 @@ class TEJProcessor:
         """Fetch monthly revenue data for CANSLIM C (Current Earnings) analysis.
 
         Uses TEJ table TRAIL/TAIM1AQ with acc_code='0100' (revenue).
-        Falls back to yfinance if TEJ unavailable.
+        Falls back to FinMind's real TaiwanStockMonthRevenue dataset (free tier)
+        if TEJ is unavailable, and to a crude yfinance price-based approximation
+        only if both fail.
 
         Args:
             coid: Taiwan stock symbol (e.g., '2330')
@@ -237,7 +240,15 @@ class TEJProcessor:
             except Exception as e:
                 logger.warning(f"TEJ monthly revenue failed for {coid}: {e}")
 
-        # Fallback: use yfinance daily prices, resample monthly
+        # Fallback 1: FinMind's real monthly revenue dataset (free tier -- no
+        # token required). Preferred over the yfinance proxy below since it's
+        # actual reported revenue, not a price-derived approximation.
+        finmind_df = self._get_finmind_monthly_revenue(coid)
+        if finmind_df is not None and not finmind_df.empty:
+            return finmind_df
+
+        # Fallback 2: yfinance daily prices, resample monthly. Last resort only --
+        # this is a rough proxy (price delta), not actual revenue data.
         logger.info(f"Falling back to yfinance monthly approximation for {coid}")
         from datetime import timedelta
         end_dt = datetime.now()
@@ -249,7 +260,11 @@ class TEJProcessor:
         )
         if price_df is not None and not price_df.empty:
             price_df = price_df.set_index('date')
-            monthly = price_df['close'].resample('ME').last()
+            # NOTE: 'M' (not the pandas>=2.2 'ME' alias) -- this repo's pinned
+            # pandas (1.5.3 as of 2026-10) doesn't recognize 'ME' and raises
+            # ValueError: Invalid frequency: ME, silently killing this fallback
+            # for every single caller.
+            monthly = price_df['close'].resample('M').last()
             # Revenue approximation: monthly price change × previous close
             # This is a rough proxy, not actual TEJ revenue data
             revenue_df = monthly.to_frame(name='revenue')
@@ -258,3 +273,39 @@ class TEJProcessor:
             return revenue_df
 
         return None
+
+    def _get_finmind_processor(self):
+        """Lazily create a shared FinMindProcessor instance for fallback use."""
+        if self._finmind_processor is None:
+            from finmind_processor import FinMindProcessor
+            self._finmind_processor = FinMindProcessor()
+        return self._finmind_processor
+
+    def _get_finmind_monthly_revenue(self, coid: str) -> Optional[pd.DataFrame]:
+        """Fetch real monthly revenue from FinMind's TaiwanStockMonthRevenue dataset."""
+        processor = self._get_finmind_processor()
+        if processor is None or not processor.available or processor.dl is None:
+            return None
+        try:
+            from datetime import timedelta
+            end_dt = datetime.now()
+            start_dt = end_dt - timedelta(days=730)
+            df = call_with_provider_policy(
+                "finmind",
+                lambda: processor.dl.taiwan_stock_month_revenue(
+                    stock_id=coid,
+                    start_date=start_dt.strftime("%Y-%m-%d"),
+                    end_date=end_dt.strftime("%Y-%m-%d"),
+                ),
+                runtime_state=processor.provider_runtime_state,
+            )
+            if df is None or df.empty or 'revenue' not in df.columns:
+                return None
+            df = df[['date', 'revenue']].copy()
+            df['date'] = pd.to_datetime(df['date'])
+            df = df.sort_values('date')
+            logger.info(f"Using FinMind monthly revenue for {coid} ({len(df)} rows)")
+            return df
+        except Exception as e:
+            logger.debug(f"FinMind monthly revenue fallback failed for {coid}: {e}")
+            return None
