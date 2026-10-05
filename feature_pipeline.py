@@ -130,7 +130,15 @@ class FeaturePipeline:
             try:
                 with open('docs/data.json', 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    symbols = list(data.get("stocks", {}).keys())
+                    stocks = data.get("stocks", {})
+                    # ETFs have no monthly revenue concept -- every ETF symbol
+                    # guaranteed "Insufficient revenue data", wasting a full
+                    # TEJ/FinMind/yfinance fallback chain attempt per symbol.
+                    # 2026-10-05: this was ~216 wasted iterations (~1-1.3s each
+                    # once FinMind's login bug was fixed and calls stopped
+                    # failing instantly) contributing to the pipeline blowing
+                    # past the workflow's 30-minute budget.
+                    symbols = [sym for sym, entry in stocks.items() if not entry.get("is_etf")]
             except Exception as e:
                 logger.error(f"Could not load symbols from docs/data.json: {e}")
                 return
