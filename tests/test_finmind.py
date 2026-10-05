@@ -33,6 +33,29 @@ class TestFinMindProcessor:
         assert hasattr(processor, 'dl')
         assert hasattr(processor, 'investor_name_map')
     
+    def test_token_login_uses_correct_finmind_sdk_method_name(self):
+        """2026-04-20 regression, live until 2026-10-05: __init__ called
+        self.dl.loginbyToken(...), which doesn't exist on the installed
+        FinMind SDK (it's login_by_token). That raised inside the try/except,
+        silently setting available=False for every token-bearing
+        FinMindProcessor for ~5.5 months -- degrading institutional-data (I
+        factor) batch fetches the whole time, not just during the 2026-10-04
+        TEJ outage that surfaced it."""
+        from unittest.mock import MagicMock
+
+        with patch('finmind_processor.DataLoader') as mock_loader:
+            # spec=[...] makes any attribute access outside this list raise
+            # AttributeError, same as the real SDK -- so calling the wrong
+            # method name fails the same way it did in production.
+            mock_dl = MagicMock(spec=["login_by_token"])
+            mock_loader.return_value = mock_dl
+
+            from finmind_processor import FinMindProcessor
+            processor = FinMindProcessor(token="test-token")
+
+            mock_dl.login_by_token.assert_called_once_with("test-token")
+            assert processor.available is True
+
     def test_fetch_institutional_investors(self, mock_institutional_data):
         """Test fetching institutional investors data."""
         try:

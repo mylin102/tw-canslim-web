@@ -48,7 +48,7 @@ class FinMindProcessor:
         try:
             self.dl = DataLoader()
             if self.token:
-                self.dl.loginbyToken(self.token)
+                self.dl.login_by_token(self.token)
                 logger.info("FinMind logged in with token")
         except Exception as exc:
             logger.warning(f"FinMind DataLoader initialization failed: {exc}")
