@@ -1,22 +1,22 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20261005T082932Z",
-  "generated_at": "2026-10-05T08:40:45Z",
+  "run_id": "20261005T095327Z",
+  "generated_at": "2026-10-05T10:07:23Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 9,
     "retry_failures": 3,
     "resume_rejected": 0,
     "stock_failures": 0,
-    "provider_wait_seconds": 417.6416126480017
+    "provider_wait_seconds": 540.8871915100003
   },
-  "timestamp": "2026-10-05T08:40:45Z",
+  "timestamp": "2026-10-05T10:07:23Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 3,
-    "provider_wait_seconds": 417.6416126480017
+    "provider_wait_seconds": 540.8871915100003
   },
   "data_stats": {
     "total_stocks": 2174,
@@ -49,7 +49,37 @@
     "3048",
     "3167",
     "3229",
-    "1459",
+    "5321",
+    "5386",
+    "5475",
+    "6127",
+    "6141",
+    "6173",
+    "6206",
+    "6207",
+    "6209",
+    "6213",
+    "6218",
+    "6223",
+    "6274",
+    "6416",
+    "6438",
+    "6442",
+    "6505",
+    "6510",
+    "6547",
+    "6588",
+    "6643",
+    "6669",
+    "6672",
+    "6691",
+    "6693",
+    "6706",
+    "6715",
+    "6716",
+    "6834",
+    "7610",
+    "7795",
     "8182",
     "3481",
     "3049",
@@ -352,23 +382,13 @@
       "2483",
       "2484",
       "2485",
-      "2486",
-      "2489",
-      "2491",
-      "2492",
-      "2493",
-      "2495",
-      "2498",
-      "2501",
-      "2504",
-      "2505",
-      "2641"
+      "2486"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 730,
+    "today": 731,
     "warning": 215,
-    "stale": 1229
+    "stale": 1228
   }
 }
