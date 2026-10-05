@@ -1334,7 +1334,27 @@ class CanslimEngine:
             except Exception as e:
                 logger.debug(f"TEJ history failed for {ticker}: {e}")
 
-        # 2. Fallback to yfinance with candidate tickers
+        # 2. Fallback to FinMind (free tier, no token needed) before yfinance.
+        # 2026-10-04: TEJ auth expired mid-run, pushing ~2000 stocks' worth of
+        # price-history calls onto yfinance alone, which has no official rate-
+        # limit headroom for that volume -- every per-stock call started
+        # failing with YFRateLimitError ("Too Many Requests"), silently
+        # zeroing out mansfield_rs (RS) for the entire universe. Spreading
+        # this load across FinMind first reduces how hard yfinance gets hit.
+        # NOTE: unlike the yfinance path below (auto_adjust=True), this is raw
+        # (not dividend-adjusted) close price.
+        if ticker not in ["TAIEX", "TWII", "^TWII"]:
+            try:
+                finmind_years = max(1, int(period.rstrip("y"))) if period.rstrip("y").isdigit() else 2
+                finmind_start = (datetime.now() - timedelta(days=365 * finmind_years)).strftime("%Y-%m-%d")
+                finmind_end = datetime.now().strftime("%Y-%m-%d")
+                res = self.finmind_processor.fetch_price_history(ticker, finmind_start, finmind_end)
+                if res is not None and not res.empty:
+                    return res
+            except Exception as e:
+                logger.debug(f"FinMind history failed for {ticker}: {e}")
+
+        # 3. Fallback to yfinance with candidate tickers
         yf_candidates = []
         if ticker in ["TAIEX", "TWII", "^TWII"]:
             yf_candidates = ["^TWII", "006208.TW", "0050.TW"]

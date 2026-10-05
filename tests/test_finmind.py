@@ -55,6 +55,53 @@ class TestFinMindProcessor:
         except ImportError:
             pytest.skip("FinMindProcessor not implemented yet")
     
+    def test_fetch_price_history(self):
+        """2026-10-04 incident: TEJ expired, dumping ~2000 stocks' worth of
+        price-history calls onto yfinance alone and triggering Yahoo's rate
+        limiter, silently zeroing mansfield_rs for the whole universe.
+        fetch_price_history() is the FinMind middle tier added to absorb that
+        load before it reaches yfinance."""
+        import pandas as pd
+        from finmind_processor import FinMindProcessor
+
+        mock_price_data = pd.DataFrame({
+            'date': ['2026-09-30', '2026-10-01', '2026-10-02'],
+            'stock_id': ['1313'] * 3,
+            'close': [12.30, 12.40, 12.65],
+        })
+
+        with patch('finmind_processor.DataLoader') as mock_loader:
+            mock_loader.return_value.taiwan_stock_daily.return_value = mock_price_data
+
+            processor = FinMindProcessor()
+            result = processor.fetch_price_history(
+                stock_id="1313",
+                start_date="2026-09-01",
+                end_date="2026-10-05",
+            )
+
+            assert result is not None
+            assert len(result) == 3
+            assert list(result.values) == [12.30, 12.40, 12.65]
+            assert pd.api.types.is_datetime64_any_dtype(result.index)
+
+    def test_fetch_price_history_handles_empty_response(self):
+        """No silent crash when FinMind returns nothing for a ticker."""
+        import pandas as pd
+        from finmind_processor import FinMindProcessor
+
+        with patch('finmind_processor.DataLoader') as mock_loader:
+            mock_loader.return_value.taiwan_stock_daily.return_value = pd.DataFrame()
+
+            processor = FinMindProcessor()
+            result = processor.fetch_price_history(
+                stock_id="9999",
+                start_date="2026-09-01",
+                end_date="2026-10-05",
+            )
+
+            assert result is None
+
     def test_parse_institutional_data(self, mock_institutional_data):
         """Test parsing and aggregating institutional data."""
         try:

@@ -106,6 +106,48 @@ class FinMindProcessor:
                 logger.error(f"Failed to fetch market institutional data: {e}")
             return None
 
+    def fetch_price_history(
+        self,
+        stock_id: str,
+        start_date: str,
+        end_date: str,
+    ) -> Optional[pd.Series]:
+        """
+        Fetch daily close-price history (raw, not dividend-adjusted -- unlike
+        the yfinance fallback this sits alongside, which uses auto_adjust=True).
+        Used as a FinMind-backed middle tier between TEJ and yfinance in
+        export_canslim.py's get_price_history(), so a single run of ~2000
+        stocks doesn't dump its entire price-history load onto yfinance (which
+        has no official rate-limit headroom for that) whenever TEJ is down.
+        """
+        if not self.available or self.dl is None:
+            return None
+
+        try:
+            df = call_with_provider_policy(
+                "finmind",
+                lambda: self.dl.taiwan_stock_daily(
+                    stock_id=stock_id,
+                    start_date=start_date,
+                    end_date=end_date,
+                ),
+                runtime_state=self.provider_runtime_state,
+            )
+
+            if df is None or len(df) == 0 or "close" not in df.columns:
+                return None
+
+            idx = pd.to_datetime(df["date"])
+            return pd.Series(df["close"].values, index=idx).sort_index()
+        except Exception as e:
+            err_str = str(e)
+            if "ForbiddenError" in err_str or "403" in err_str:
+                logger.warning(f"🚀 FinMind Permission Denied for {stock_id}: Disabling FinMind for this run. {err_str}")
+                self.available = False
+            else:
+                logger.debug(f"FinMind price history failed for {stock_id}: {e}")
+            return None
+
     def fetch_institutional_investors(
         self,
         stock_id: str,
