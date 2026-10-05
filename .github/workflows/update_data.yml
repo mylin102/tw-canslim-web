@@ -16,7 +16,13 @@ permissions:
 jobs:
   incremental-update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 2026-10-05: the revenue feature pipeline alone takes ~30-36min across
+    # ~1958 stocks (most fall through the full TEJ -> FinMind -> yfinance
+    # fallback chain, ~1-1.3s each), on top of ~15min for everything else in
+    # run() -- the previous 30min budget was sized for when FinMind's login
+    # bug (fixed in 3a15d12) made every FinMind call fail instantly instead
+    # of actually trying.
+    timeout-minutes: 75
     
     steps:
       - name: 🛠️ 檢查程式碼
@@ -85,10 +91,12 @@ jobs:
           if missing:
               raise SystemExit(f"runtime_budget missing keys: {missing}")
           note = os.environ.get("RUNTIME_BUDGET_NOTE", "").strip()
-          # Add comment: increase runtime budget threshold from 1200s to 1800s (30m) to accommodate network variations during incremental updates
-          if payload["elapsed_seconds"] > 1800 and not note:
+          # 2026-10-05: raised 1800s -> 4200s alongside the job's 30min -> 75min
+          # timeout-minutes bump (see that field's comment for why), keeping a
+          # ~5min buffer under the hard job timeout.
+          if payload["elapsed_seconds"] > 4200 and not note:
               raise SystemExit(
-                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 1800 without RUNTIME_BUDGET_NOTE"
+                  f"elapsed_seconds {payload['elapsed_seconds']} exceeds 4200 without RUNTIME_BUDGET_NOTE"
               )
           print(payload)
           PY
