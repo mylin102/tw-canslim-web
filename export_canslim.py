@@ -615,6 +615,13 @@ class CanslimEngine:
 
         pipeline = FeaturePipeline()
         pipeline.run()
+        # The weekly gate should track whether this (expensive) computation
+        # ran, not whether the separate bundle-publish validation below
+        # succeeds -- that validation has an independent, pre-existing bug
+        # (validate_artifact_payload has no branch for "stock_features"/
+        # "ranking" kinds, so it always raises) that would otherwise prevent
+        # the gate from ever engaging and defeat the point of this method.
+        self._mark_feature_pipeline_run()
 
         features_file = os.path.join(api_dir, "stock_features.json")
         ranking_file = os.path.join(api_dir, "ranking.json")
@@ -635,7 +642,6 @@ class CanslimEngine:
             logger=logger,
             json_default=self._json_default,
         )
-        self._mark_feature_pipeline_run()
         return result
 
     def _export_leaders_json(self, selection) -> Dict:
