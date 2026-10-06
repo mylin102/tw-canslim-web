@@ -1,28 +1,33 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20261006T045214Z",
-  "generated_at": "2026-10-06T05:05:29Z",
+  "run_id": "20261006T162822Z",
+  "generated_at": "2026-10-06T16:41:23Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 9,
     "retry_failures": 3,
     "resume_rejected": 0,
-    "stock_failures": 0,
-    "provider_wait_seconds": 489.3190085249992
+    "stock_failures": 1,
+    "provider_wait_seconds": 468.47881212200105
   },
-  "timestamp": "2026-10-06T05:05:29Z",
+  "timestamp": "2026-10-06T16:41:23Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 3,
-    "provider_wait_seconds": 489.3190085249992
+    "provider_wait_seconds": 468.47881212200105
   },
   "data_stats": {
     "total_stocks": 2174,
     "updated_stocks": 2174
   },
-  "failures": [],
+  "failures": [
+    {
+      "ticker": "8054",
+      "message": "Missing financial data"
+    }
+  ],
   "refreshed_symbols": [
     "1101",
     "1301",
@@ -65,7 +70,6 @@
     "7610",
     "7795",
     "8040",
-    "8054",
     "8084",
     "8358",
     "8422",
@@ -91,6 +95,7 @@
     "3026",
     "3028",
     "2527",
+    "3338",
     "3406",
     "3023",
     "3443",
@@ -174,11 +179,12 @@
     "3311",
     "3021"
   ],
-  "failed_symbols": [],
+  "failed_symbols": [
+    "8054"
+  ],
   "next_rotation": {
     "batch_index": 1,
     "symbols": [
-      "2504",
       "2505",
       "2641",
       "3066",
@@ -351,6 +357,7 @@
       "5388",
       "5392",
       "5425",
+      "5426",
       "5434",
       "5439",
       "5443",
@@ -376,13 +383,14 @@
       "5876",
       "5880",
       "5904",
-      "6005"
+      "6005",
+      "6015"
     ],
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 155,
+    "today": 156,
     "warning": 580,
-    "stale": 1439
+    "stale": 1438
   }
 }
