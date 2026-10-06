@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-06",
-  "generated_at": "2026-10-06T02:19:25Z",
+  "generated_at": "2026-10-06T03:44:29Z",
   "universe": [
     {
       "symbol": "1101",
@@ -116,23 +116,6 @@
       ]
     },
     {
-      "symbol": "2302",
-      "name": "麗正",
-      "rs_rating": 69,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.663,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate",
-        "rev_acc",
-        "rev_strong"
-      ]
-    },
-    {
       "symbol": "2303",
       "name": "聯電",
       "rs_rating": 66,
@@ -140,25 +123,10 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.444,
+      "composite_score": 0.344,
       "industry_rank": 999,
       "tags": [
         "leader"
-      ]
-    },
-    {
-      "symbol": "2305",
-      "name": "全友",
-      "rs_rating": 99,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.651,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "rev_acc"
       ]
     },
     {
@@ -169,7 +137,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.211,
+      "composite_score": 0.311,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -184,7 +152,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.358,
+      "composite_score": 0.408,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -478,6 +446,20 @@
       ]
     },
     {
+      "symbol": "2611",
+      "name": "志信",
+      "rs_rating": 37,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.143,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
       "symbol": "2614",
       "name": "東森",
       "rs_rating": 34,
@@ -515,7 +497,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.218,
+      "composite_score": 0.318,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -587,7 +569,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.298,
+      "composite_score": 0.248,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1288,8 +1270,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.258,
+      "volume_score": 1.0,
+      "composite_score": 0.318,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1575,8 +1557,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.402,
+      "volume_score": 1.0,
+      "composite_score": 0.462,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1662,8 +1644,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.114,
+      "volume_score": 1.0,
+      "composite_score": 0.154,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1739,6 +1721,22 @@
       "industry_rank": 999,
       "tags": [
         "leader"
+      ]
+    },
+    {
+      "symbol": "3317",
+      "name": "尼克森",
+      "rs_rating": 45,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.479,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "rev_acc",
+        "rev_strong"
       ]
     },
     {

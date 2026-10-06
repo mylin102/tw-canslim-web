@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "stock_index",
-  "run_id": "20261006T020539Z",
-  "generated_at": "2026-10-06T02:19:25Z",
-  "last_updated": "2026-10-06T02:19:25Z",
+  "run_id": "20261006T033157Z",
+  "generated_at": "2026-10-06T03:44:29Z",
+  "last_updated": "2026-10-06T03:44:29Z",
   "stocks": {
     "00400A": {
       "symbol": "00400A",
@@ -2606,7 +2606,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:21Z",
+      "last_succeeded_at": "2026-10-06T03:35:33Z",
       "in_snapshot": true
     },
     "1102": {
@@ -3002,7 +3002,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:22Z",
+      "last_succeeded_at": "2026-10-06T03:35:34Z",
       "in_snapshot": true
     },
     "1303": {
@@ -3014,7 +3014,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:24Z",
+      "last_succeeded_at": "2026-10-06T03:35:36Z",
       "in_snapshot": true
     },
     "1304": {
@@ -5270,7 +5270,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:59Z",
+      "last_succeeded_at": "2026-10-06T03:37:11Z",
       "in_snapshot": true
     },
     "1817": {
@@ -5594,7 +5594,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:00Z",
+      "last_succeeded_at": "2026-10-06T03:37:13Z",
       "in_snapshot": true
     },
     "2031": {
@@ -6014,7 +6014,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:19Z",
+      "last_succeeded_at": "2026-10-06T03:37:15Z",
       "in_snapshot": true
     },
     "2211": {
@@ -6038,7 +6038,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:20Z",
+      "last_succeeded_at": "2026-10-06T03:37:17Z",
       "in_snapshot": true
     },
     "2227": {
@@ -6254,7 +6254,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:26Z",
+      "last_succeeded_at": "2026-10-06T03:35:38Z",
       "in_snapshot": true
     },
     "2305": {
@@ -6422,7 +6422,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:28Z",
+      "last_succeeded_at": "2026-10-06T03:35:45Z",
       "in_snapshot": true
     },
     "2331": {
@@ -6638,7 +6638,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:30Z",
+      "last_succeeded_at": "2026-10-06T03:35:47Z",
       "in_snapshot": true
     },
     "2359": {
@@ -6950,7 +6950,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:32Z",
+      "last_succeeded_at": "2026-10-06T03:35:49Z",
       "in_snapshot": true
     },
     "2397": {
@@ -7922,7 +7922,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:01Z",
+      "last_succeeded_at": "2026-10-06T03:43:11Z",
       "in_snapshot": true
     },
     "2514": {
@@ -7946,7 +7946,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:01Z",
+      "last_succeeded_at": "2026-10-06T03:40:11Z",
       "in_snapshot": true
     },
     "2516": {
@@ -7970,7 +7970,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:24Z",
+      "last_succeeded_at": "2026-10-06T03:42:33Z",
       "in_snapshot": true
     },
     "2524": {
@@ -7994,7 +7994,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:05Z",
+      "last_succeeded_at": "2026-10-06T03:39:15Z",
       "in_snapshot": true
     },
     "2528": {
@@ -8018,7 +8018,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:16Z",
+      "last_succeeded_at": "2026-10-06T03:43:27Z",
       "in_snapshot": true
     },
     "2534": {
@@ -8054,7 +8054,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:20Z",
+      "last_succeeded_at": "2026-10-06T03:43:31Z",
       "in_snapshot": true
     },
     "2537": {
@@ -8066,7 +8066,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:09Z",
+      "last_succeeded_at": "2026-10-06T03:44:19Z",
       "in_snapshot": true
     },
     "2538": {
@@ -8078,7 +8078,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:10Z",
+      "last_succeeded_at": "2026-10-06T03:44:23Z",
       "in_snapshot": true
     },
     "2539": {
@@ -8090,7 +8090,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:29Z",
+      "last_succeeded_at": "2026-10-06T03:43:35Z",
       "in_snapshot": true
     },
     "2540": {
@@ -8114,7 +8114,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:27Z",
+      "last_succeeded_at": "2026-10-06T03:40:40Z",
       "in_snapshot": true
     },
     "2543": {
@@ -8126,7 +8126,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:14Z",
+      "last_succeeded_at": "2026-10-06T03:43:25Z",
       "in_snapshot": true
     },
     "2545": {
@@ -8162,7 +8162,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:17Z",
+      "last_succeeded_at": "2026-10-06T03:42:27Z",
       "in_snapshot": true
     },
     "2548": {
@@ -8174,7 +8174,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:18Z",
+      "last_succeeded_at": "2026-10-06T03:43:29Z",
       "in_snapshot": true
     },
     "2596": {
@@ -8210,7 +8210,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:05Z",
+      "last_succeeded_at": "2026-10-06T03:43:15Z",
       "in_snapshot": true
     },
     "2603": {
@@ -8222,7 +8222,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:07Z",
+      "last_succeeded_at": "2026-10-06T03:40:20Z",
       "in_snapshot": true
     },
     "2605": {
@@ -8234,7 +8234,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:11Z",
+      "last_succeeded_at": "2026-10-06T03:38:21Z",
       "in_snapshot": true
     },
     "2606": {
@@ -8246,7 +8246,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:21Z",
+      "last_succeeded_at": "2026-10-06T03:40:34Z",
       "in_snapshot": true
     },
     "2607": {
@@ -8282,7 +8282,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:11Z",
+      "last_succeeded_at": "2026-10-06T03:40:24Z",
       "in_snapshot": true
     },
     "2610": {
@@ -8294,7 +8294,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:17Z",
+      "last_succeeded_at": "2026-10-06T03:39:27Z",
       "in_snapshot": true
     },
     "2611": {
@@ -8302,11 +8302,11 @@
       "name": "志信",
       "industry": "航運業",
       "freshness": {
-        "days_old": 22,
-        "level": "stale",
-        "label": "🔴 逾3天"
+        "days_old": 0,
+        "level": "today",
+        "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-09-14T16:15:07Z",
+      "last_succeeded_at": "2026-10-06T03:44:21Z",
       "in_snapshot": true
     },
     "2612": {
@@ -8342,7 +8342,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:12Z",
+      "last_succeeded_at": "2026-10-06T03:43:21Z",
       "in_snapshot": true
     },
     "2615": {
@@ -8354,7 +8354,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:13Z",
+      "last_succeeded_at": "2026-10-06T03:40:26Z",
       "in_snapshot": true
     },
     "2616": {
@@ -8378,7 +8378,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:07Z",
+      "last_succeeded_at": "2026-10-06T03:43:23Z",
       "in_snapshot": true
     },
     "2618": {
@@ -8390,7 +8390,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:25Z",
+      "last_succeeded_at": "2026-10-06T03:39:35Z",
       "in_snapshot": true
     },
     "2630": {
@@ -8402,7 +8402,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:28Z",
+      "last_succeeded_at": "2026-10-06T03:42:37Z",
       "in_snapshot": true
     },
     "2633": {
@@ -8414,7 +8414,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:07Z",
+      "last_succeeded_at": "2026-10-06T03:41:17Z",
       "in_snapshot": true
     },
     "2634": {
@@ -8426,7 +8426,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:19Z",
+      "last_succeeded_at": "2026-10-06T03:40:32Z",
       "in_snapshot": true
     },
     "2636": {
@@ -8450,7 +8450,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:23Z",
+      "last_succeeded_at": "2026-10-06T03:40:36Z",
       "in_snapshot": true
     },
     "2640": {
@@ -8510,7 +8510,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:12Z",
+      "last_succeeded_at": "2026-10-06T03:42:21Z",
       "in_snapshot": true
     },
     "2646": {
@@ -8522,7 +8522,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:05Z",
+      "last_succeeded_at": "2026-10-06T03:41:15Z",
       "in_snapshot": true
     },
     "2701": {
@@ -8906,7 +8906,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:59Z",
+      "last_succeeded_at": "2026-10-06T03:39:39Z",
       "in_snapshot": true
     },
     "2812": {
@@ -8918,7 +8918,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:05Z",
+      "last_succeeded_at": "2026-10-06T03:40:18Z",
       "in_snapshot": true
     },
     "2816": {
@@ -8942,7 +8942,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:03Z",
+      "last_succeeded_at": "2026-10-06T03:43:13Z",
       "in_snapshot": true
     },
     "2832": {
@@ -8966,7 +8966,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:15Z",
+      "last_succeeded_at": "2026-10-06T03:39:25Z",
       "in_snapshot": true
     },
     "2836": {
@@ -8978,7 +8978,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:27Z",
+      "last_succeeded_at": "2026-10-06T03:41:37Z",
       "in_snapshot": true
     },
     "2838": {
@@ -8990,7 +8990,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:26Z",
+      "last_succeeded_at": "2026-10-06T03:42:35Z",
       "in_snapshot": true
     },
     "2845": {
@@ -9002,7 +9002,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:00Z",
+      "last_succeeded_at": "2026-10-06T03:41:11Z",
       "in_snapshot": true
     },
     "2849": {
@@ -9038,7 +9038,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:11Z",
+      "last_succeeded_at": "2026-10-06T03:41:21Z",
       "in_snapshot": true
     },
     "2852": {
@@ -9062,7 +9062,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:17Z",
+      "last_succeeded_at": "2026-10-06T03:38:28Z",
       "in_snapshot": true
     },
     "2867": {
@@ -9086,7 +9086,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:03Z",
+      "last_succeeded_at": "2026-10-06T03:40:13Z",
       "in_snapshot": true
     },
     "2881": {
@@ -9098,7 +9098,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:34Z",
+      "last_succeeded_at": "2026-10-06T03:35:52Z",
       "in_snapshot": true
     },
     "2882": {
@@ -9110,7 +9110,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:36Z",
+      "last_succeeded_at": "2026-10-06T03:35:53Z",
       "in_snapshot": true
     },
     "2883": {
@@ -9122,7 +9122,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:59Z",
+      "last_succeeded_at": "2026-10-06T03:37:39Z",
       "in_snapshot": true
     },
     "2884": {
@@ -9134,7 +9134,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:19Z",
+      "last_succeeded_at": "2026-10-06T03:39:29Z",
       "in_snapshot": true
     },
     "2885": {
@@ -9146,7 +9146,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:15Z",
+      "last_succeeded_at": "2026-10-06T03:36:27Z",
       "in_snapshot": true
     },
     "2886": {
@@ -9158,7 +9158,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:23Z",
+      "last_succeeded_at": "2026-10-06T03:39:33Z",
       "in_snapshot": true
     },
     "2887": {
@@ -9170,7 +9170,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:11Z",
+      "last_succeeded_at": "2026-10-06T03:36:23Z",
       "in_snapshot": true
     },
     "2889": {
@@ -9182,7 +9182,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:17Z",
+      "last_succeeded_at": "2026-10-06T03:41:27Z",
       "in_snapshot": true
     },
     "2890": {
@@ -9194,7 +9194,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:21Z",
+      "last_succeeded_at": "2026-10-06T03:39:31Z",
       "in_snapshot": true
     },
     "2891": {
@@ -9206,7 +9206,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:13Z",
+      "last_succeeded_at": "2026-10-06T03:39:23Z",
       "in_snapshot": true
     },
     "2892": {
@@ -9218,7 +9218,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:09Z",
+      "last_succeeded_at": "2026-10-06T03:40:22Z",
       "in_snapshot": true
     },
     "2897": {
@@ -9230,7 +9230,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:21Z",
+      "last_succeeded_at": "2026-10-06T03:41:31Z",
       "in_snapshot": true
     },
     "2901": {
@@ -9254,7 +9254,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:09Z",
+      "last_succeeded_at": "2026-10-06T03:42:19Z",
       "in_snapshot": true
     },
     "2904": {
@@ -9278,7 +9278,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:07Z",
+      "last_succeeded_at": "2026-10-06T03:43:17Z",
       "in_snapshot": true
     },
     "2906": {
@@ -9338,7 +9338,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:13Z",
+      "last_succeeded_at": "2026-10-06T03:41:23Z",
       "in_snapshot": true
     },
     "2913": {
@@ -9350,7 +9350,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:20Z",
+      "last_succeeded_at": "2026-10-06T03:42:29Z",
       "in_snapshot": true
     },
     "2915": {
@@ -9362,7 +9362,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:19Z",
+      "last_succeeded_at": "2026-10-06T03:41:29Z",
       "in_snapshot": true
     },
     "2916": {
@@ -9530,7 +9530,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:33Z",
+      "last_succeeded_at": "2026-10-06T03:43:39Z",
       "in_snapshot": true
     },
     "3004": {
@@ -9554,7 +9554,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:25Z",
+      "last_succeeded_at": "2026-10-06T03:40:38Z",
       "in_snapshot": true
     },
     "3006": {
@@ -9566,7 +9566,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:06Z",
+      "last_succeeded_at": "2026-10-06T03:38:15Z",
       "in_snapshot": true
     },
     "3008": {
@@ -9578,7 +9578,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:09Z",
+      "last_succeeded_at": "2026-10-06T03:41:19Z",
       "in_snapshot": true
     },
     "3010": {
@@ -9602,7 +9602,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:07Z",
+      "last_succeeded_at": "2026-10-06T03:42:17Z",
       "in_snapshot": true
     },
     "3013": {
@@ -9614,7 +9614,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:17Z",
+      "last_succeeded_at": "2026-10-06T03:40:30Z",
       "in_snapshot": true
     },
     "3014": {
@@ -9626,7 +9626,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:22Z",
+      "last_succeeded_at": "2026-10-06T03:43:33Z",
       "in_snapshot": true
     },
     "3015": {
@@ -9650,7 +9650,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:59Z",
+      "last_succeeded_at": "2026-10-06T03:38:39Z",
       "in_snapshot": true
     },
     "3017": {
@@ -9662,7 +9662,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:19Z",
+      "last_succeeded_at": "2026-10-06T03:36:31Z",
       "in_snapshot": true
     },
     "3018": {
@@ -9686,7 +9686,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:05Z",
+      "last_succeeded_at": "2026-10-06T03:42:15Z",
       "in_snapshot": true
     },
     "3021": {
@@ -9698,7 +9698,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:17Z",
+      "last_succeeded_at": "2026-10-06T03:44:29Z",
       "in_snapshot": true
     },
     "3022": {
@@ -9710,7 +9710,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:05Z",
+      "last_succeeded_at": "2026-10-06T03:44:17Z",
       "in_snapshot": true
     },
     "3023": {
@@ -9722,7 +9722,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:09Z",
+      "last_succeeded_at": "2026-10-06T03:39:19Z",
       "in_snapshot": true
     },
     "3024": {
@@ -9734,7 +9734,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:15Z",
+      "last_succeeded_at": "2026-10-06T03:41:25Z",
       "in_snapshot": true
     },
     "3025": {
@@ -9758,7 +9758,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:01Z",
+      "last_succeeded_at": "2026-10-06T03:39:11Z",
       "in_snapshot": true
     },
     "3027": {
@@ -9782,7 +9782,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:03Z",
+      "last_succeeded_at": "2026-10-06T03:39:13Z",
       "in_snapshot": true
     },
     "3029": {
@@ -9794,7 +9794,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:31Z",
+      "last_succeeded_at": "2026-10-06T03:43:37Z",
       "in_snapshot": true
     },
     "3030": {
@@ -9806,7 +9806,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:15Z",
+      "last_succeeded_at": "2026-10-06T03:38:25Z",
       "in_snapshot": true
     },
     "3031": {
@@ -9818,7 +9818,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:09Z",
+      "last_succeeded_at": "2026-10-06T03:38:19Z",
       "in_snapshot": true
     },
     "3032": {
@@ -9842,7 +9842,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:59Z",
+      "last_succeeded_at": "2026-10-06T03:40:42Z",
       "in_snapshot": true
     },
     "3034": {
@@ -9854,7 +9854,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:23Z",
+      "last_succeeded_at": "2026-10-06T03:41:33Z",
       "in_snapshot": true
     },
     "3035": {
@@ -9866,7 +9866,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:03Z",
+      "last_succeeded_at": "2026-10-06T03:41:13Z",
       "in_snapshot": true
     },
     "3036": {
@@ -9878,7 +9878,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:07Z",
+      "last_succeeded_at": "2026-10-06T03:36:19Z",
       "in_snapshot": true
     },
     "3037": {
@@ -9890,7 +9890,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:19Z",
+      "last_succeeded_at": "2026-10-06T03:38:30Z",
       "in_snapshot": true
     },
     "3038": {
@@ -9926,7 +9926,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:03Z",
+      "last_succeeded_at": "2026-10-06T03:44:15Z",
       "in_snapshot": true
     },
     "3042": {
@@ -9938,7 +9938,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:07Z",
+      "last_succeeded_at": "2026-10-06T03:38:17Z",
       "in_snapshot": true
     },
     "3043": {
@@ -9962,7 +9962,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:27Z",
+      "last_succeeded_at": "2026-10-06T03:38:37Z",
       "in_snapshot": true
     },
     "3045": {
@@ -9974,7 +9974,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:27Z",
+      "last_succeeded_at": "2026-10-06T03:39:37Z",
       "in_snapshot": true
     },
     "3046": {
@@ -9998,7 +9998,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:01Z",
+      "last_succeeded_at": "2026-10-06T03:44:13Z",
       "in_snapshot": true
     },
     "3048": {
@@ -10010,7 +10010,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:23Z",
+      "last_succeeded_at": "2026-10-06T03:36:35Z",
       "in_snapshot": true
     },
     "3049": {
@@ -10022,7 +10022,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:27Z",
+      "last_succeeded_at": "2026-10-06T03:37:37Z",
       "in_snapshot": true
     },
     "3050": {
@@ -10046,7 +10046,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:59Z",
+      "last_succeeded_at": "2026-10-06T03:44:11Z",
       "in_snapshot": true
     },
     "3052": {
@@ -10082,7 +10082,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:18:10Z",
+      "last_succeeded_at": "2026-10-06T03:43:19Z",
       "in_snapshot": true
     },
     "3056": {
@@ -10094,7 +10094,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:16Z",
+      "last_succeeded_at": "2026-10-06T03:42:25Z",
       "in_snapshot": true
     },
     "3057": {
@@ -10130,7 +10130,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:01Z",
+      "last_succeeded_at": "2026-10-06T03:42:11Z",
       "in_snapshot": true
     },
     "3060": {
@@ -10142,7 +10142,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:22Z",
+      "last_succeeded_at": "2026-10-06T03:42:31Z",
       "in_snapshot": true
     },
     "3062": {
@@ -10154,7 +10154,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:15:15Z",
+      "last_succeeded_at": "2026-10-06T03:40:28Z",
       "in_snapshot": true
     },
     "3064": {
@@ -10298,7 +10298,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:17Z",
+      "last_succeeded_at": "2026-10-06T03:36:29Z",
       "in_snapshot": true
     },
     "3092": {
@@ -10334,7 +10334,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:59Z",
+      "last_succeeded_at": "2026-10-06T03:41:39Z",
       "in_snapshot": true
     },
     "3095": {
@@ -10454,7 +10454,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:21Z",
+      "last_succeeded_at": "2026-10-06T03:38:31Z",
       "in_snapshot": true
     },
     "3138": {
@@ -10466,7 +10466,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:23Z",
+      "last_succeeded_at": "2026-10-06T03:38:34Z",
       "in_snapshot": true
     },
     "3141": {
@@ -10502,7 +10502,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:03Z",
+      "last_succeeded_at": "2026-10-06T03:42:13Z",
       "in_snapshot": true
     },
     "3150": {
@@ -10586,7 +10586,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:25Z",
+      "last_succeeded_at": "2026-10-06T03:36:37Z",
       "in_snapshot": true
     },
     "3168": {
@@ -10670,7 +10670,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:01Z",
+      "last_succeeded_at": "2026-10-06T03:38:11Z",
       "in_snapshot": true
     },
     "3191": {
@@ -10730,7 +10730,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:09Z",
+      "last_succeeded_at": "2026-10-06T03:36:21Z",
       "in_snapshot": true
     },
     "3211": {
@@ -10862,7 +10862,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:27Z",
+      "last_succeeded_at": "2026-10-06T03:36:39Z",
       "in_snapshot": true
     },
     "3230": {
@@ -10886,7 +10886,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:13Z",
+      "last_succeeded_at": "2026-10-06T03:36:25Z",
       "in_snapshot": true
     },
     "3232": {
@@ -11186,7 +11186,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:25Z",
+      "last_succeeded_at": "2026-10-06T03:38:35Z",
       "in_snapshot": true
     },
     "3306": {
@@ -11234,7 +11234,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:15Z",
+      "last_succeeded_at": "2026-10-06T03:44:27Z",
       "in_snapshot": true
     },
     "3312": {
@@ -11246,7 +11246,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:14Z",
+      "last_succeeded_at": "2026-10-06T03:42:23Z",
       "in_snapshot": true
     },
     "3313": {
@@ -11266,11 +11266,11 @@
       "name": "尼克森",
       "industry": "半導體業",
       "freshness": {
-        "days_old": 1,
-        "level": "warning",
-        "label": "🟡 1天前"
+        "days_old": 0,
+        "level": "today",
+        "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T01:55:56Z",
+      "last_succeeded_at": "2026-10-06T03:37:19Z",
       "in_snapshot": true
     },
     "3321": {
@@ -11378,7 +11378,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:19:13Z",
+      "last_succeeded_at": "2026-10-06T03:44:25Z",
       "in_snapshot": true
     },
     "3349": {
@@ -11510,7 +11510,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:16:25Z",
+      "last_succeeded_at": "2026-10-06T03:41:35Z",
       "in_snapshot": true
     },
     "3379": {
@@ -11534,7 +11534,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:13Z",
+      "last_succeeded_at": "2026-10-06T03:38:23Z",
       "in_snapshot": true
     },
     "3388": {
@@ -11582,7 +11582,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:07Z",
+      "last_succeeded_at": "2026-10-06T03:39:17Z",
       "in_snapshot": true
     },
     "3413": {
@@ -11594,7 +11594,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:17:59Z",
+      "last_succeeded_at": "2026-10-06T03:42:39Z",
       "in_snapshot": true
     },
     "3416": {
@@ -11678,7 +11678,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:13:03Z",
+      "last_succeeded_at": "2026-10-06T03:38:13Z",
       "in_snapshot": true
     },
     "3438": {
@@ -11714,7 +11714,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:14:11Z",
+      "last_succeeded_at": "2026-10-06T03:39:21Z",
       "in_snapshot": true
     },
     "3444": {
@@ -11750,7 +11750,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:05Z",
+      "last_succeeded_at": "2026-10-06T03:36:17Z",
       "in_snapshot": true
     },
     "3455": {
@@ -11822,7 +11822,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:25Z",
+      "last_succeeded_at": "2026-10-06T03:37:35Z",
       "in_snapshot": true
     },
     "3483": {
@@ -11954,7 +11954,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:21Z",
+      "last_succeeded_at": "2026-10-06T03:36:33Z",
       "in_snapshot": true
     },
     "3508": {
@@ -12386,7 +12386,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:39Z",
+      "last_succeeded_at": "2026-10-06T03:35:56Z",
       "in_snapshot": true
     },
     "3567": {
@@ -21638,7 +21638,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:10:59Z",
+      "last_succeeded_at": "2026-10-06T03:36:11Z",
       "in_snapshot": true
     },
     "6771": {
@@ -21830,7 +21830,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:01Z",
+      "last_succeeded_at": "2026-10-06T03:36:13Z",
       "in_snapshot": true
     },
     "6806": {
@@ -23498,7 +23498,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:11Z",
+      "last_succeeded_at": "2026-10-06T03:37:21Z",
       "in_snapshot": true
     },
     "7799": {
@@ -23774,7 +23774,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:13Z",
+      "last_succeeded_at": "2026-10-06T03:37:23Z",
       "in_snapshot": true
     },
     "8042": {
@@ -23894,7 +23894,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:15Z",
+      "last_succeeded_at": "2026-10-06T03:37:25Z",
       "in_snapshot": true
     },
     "8059": {
@@ -23966,7 +23966,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:11:03Z",
+      "last_succeeded_at": "2026-10-06T03:36:15Z",
       "in_snapshot": true
     },
     "8070": {
@@ -24086,7 +24086,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:17Z",
+      "last_succeeded_at": "2026-10-06T03:37:27Z",
       "in_snapshot": true
     },
     "8085": {
@@ -24770,7 +24770,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:19Z",
+      "last_succeeded_at": "2026-10-06T03:37:29Z",
       "in_snapshot": true
     },
     "8367": {
@@ -24938,7 +24938,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:21Z",
+      "last_succeeded_at": "2026-10-06T03:37:31Z",
       "in_snapshot": true
     },
     "8423": {
@@ -25646,7 +25646,7 @@
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-06T02:12:23Z",
+      "last_succeeded_at": "2026-10-06T03:37:33Z",
       "in_snapshot": true
     },
     "9103": {

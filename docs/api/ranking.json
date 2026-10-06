@@ -361,32 +361,32 @@
   },
   "1409": {
     "symbol": "1409",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1410": {
     "symbol": "1410",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1413": {
     "symbol": "1413",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1414": {
     "symbol": "1414",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1416": {
     "symbol": "1416",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1417": {
@@ -403,20 +403,20 @@
   },
   "1419": {
     "symbol": "1419",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1423": {
     "symbol": "1423",
-    "total_score": 6,
-    "revenue_score": 6,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1432": {
     "symbol": "1432",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1434": {
@@ -427,14 +427,14 @@
   },
   "1435": {
     "symbol": "1435",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1436": {
     "symbol": "1436",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1437": {
@@ -445,44 +445,44 @@
   },
   "1438": {
     "symbol": "1438",
-    "total_score": 5,
-    "revenue_score": 5,
-    "updated_at": "2026-10-06"
-  },
-  "1439": {
-    "symbol": "1439",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1440": {
-    "symbol": "1440",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
+  "1439": {
+    "symbol": "1439",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "1440": {
+    "symbol": "1440",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
   "1441": {
     "symbol": "1441",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1442": {
     "symbol": "1442",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1443": {
     "symbol": "1443",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1444": {
     "symbol": "1444",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1445": {
@@ -493,86 +493,86 @@
   },
   "1446": {
     "symbol": "1446",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1447": {
-    "symbol": "1447",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1449": {
-    "symbol": "1449",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1451": {
-    "symbol": "1451",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1452": {
-    "symbol": "1452",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
+  "1447": {
+    "symbol": "1447",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "1449": {
+    "symbol": "1449",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "1451": {
+    "symbol": "1451",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "1452": {
+    "symbol": "1452",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "1453": {
     "symbol": "1453",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1454": {
     "symbol": "1454",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1455": {
     "symbol": "1455",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1456": {
     "symbol": "1456",
-    "total_score": 6,
-    "revenue_score": 6,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1457": {
     "symbol": "1457",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1459": {
     "symbol": "1459",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "1460": {
     "symbol": "1460",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1463": {
     "symbol": "1463",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1464": {
     "symbol": "1464",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1465": {
@@ -589,8 +589,8 @@
   },
   "1467": {
     "symbol": "1467",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1468": {
@@ -607,14 +607,14 @@
   },
   "1471": {
     "symbol": "1471",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1472": {
     "symbol": "1472",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1473": {
@@ -625,14 +625,14 @@
   },
   "1474": {
     "symbol": "1474",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1475": {
     "symbol": "1475",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1476": {
@@ -643,8 +643,8 @@
   },
   "1477": {
     "symbol": "1477",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1503": {
@@ -655,38 +655,38 @@
   },
   "1504": {
     "symbol": "1504",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1506": {
     "symbol": "1506",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1512": {
     "symbol": "1512",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1513": {
     "symbol": "1513",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1514": {
     "symbol": "1514",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1515": {
     "symbol": "1515",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1516": {
@@ -703,20 +703,20 @@
   },
   "1519": {
     "symbol": "1519",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1521": {
     "symbol": "1521",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1522": {
     "symbol": "1522",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1524": {
@@ -727,50 +727,50 @@
   },
   "1525": {
     "symbol": "1525",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1526": {
     "symbol": "1526",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1527": {
     "symbol": "1527",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "1528": {
     "symbol": "1528",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1529": {
     "symbol": "1529",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1530": {
     "symbol": "1530",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1531": {
     "symbol": "1531",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1532": {
     "symbol": "1532",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1533": {
@@ -781,14 +781,14 @@
   },
   "1535": {
     "symbol": "1535",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1536": {
     "symbol": "1536",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1537": {
@@ -799,20 +799,20 @@
   },
   "1538": {
     "symbol": "1538",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1539": {
     "symbol": "1539",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1540": {
     "symbol": "1540",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1541": {
@@ -823,14 +823,14 @@
   },
   "1558": {
     "symbol": "1558",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1560": {
     "symbol": "1560",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1563": {
@@ -839,56 +839,20 @@
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "1565": {
-    "symbol": "1565",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
   "1568": {
     "symbol": "1568",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "1569": {
-    "symbol": "1569",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "1570": {
-    "symbol": "1570",
+  "1582": {
+    "symbol": "1582",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "1580": {
-    "symbol": "1580",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "1582": {
-    "symbol": "1582",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
   "1583": {
     "symbol": "1583",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "1584": {
-    "symbol": "1584",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1586": {
-    "symbol": "1586",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
@@ -907,44 +871,20 @@
   },
   "1590": {
     "symbol": "1590",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1591": {
-    "symbol": "1591",
-    "total_score": 5,
-    "revenue_score": 5,
-    "updated_at": "2026-10-06"
-  },
-  "1593": {
-    "symbol": "1593",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1595": {
-    "symbol": "1595",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1597": {
     "symbol": "1597",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1598": {
     "symbol": "1598",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1599": {
-    "symbol": "1599",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1603": {
@@ -973,8 +913,8 @@
   },
   "1609": {
     "symbol": "1609",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1611": {
@@ -985,38 +925,38 @@
   },
   "1612": {
     "symbol": "1612",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1614": {
-    "symbol": "1614",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1615": {
-    "symbol": "1615",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "1616": {
-    "symbol": "1616",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
+  "1614": {
+    "symbol": "1614",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "1615": {
+    "symbol": "1615",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "1616": {
+    "symbol": "1616",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "1617": {
     "symbol": "1617",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1618": {
     "symbol": "1618",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1623": {
@@ -1033,8 +973,8 @@
   },
   "1702": {
     "symbol": "1702",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1707": {
@@ -1045,8 +985,8 @@
   },
   "1708": {
     "symbol": "1708",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1709": {
@@ -1057,14 +997,14 @@
   },
   "1710": {
     "symbol": "1710",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "1711": {
     "symbol": "1711",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1712": {
@@ -1075,8 +1015,8 @@
   },
   "1713": {
     "symbol": "1713",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1714": {
@@ -1087,26 +1027,26 @@
   },
   "1717": {
     "symbol": "1717",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "1718": {
     "symbol": "1718",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1720": {
     "symbol": "1720",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1721": {
     "symbol": "1721",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1722": {
@@ -1117,14 +1057,14 @@
   },
   "1723": {
     "symbol": "1723",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1725": {
     "symbol": "1725",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1726": {
@@ -1135,50 +1075,50 @@
   },
   "1727": {
     "symbol": "1727",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1730": {
     "symbol": "1730",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1731": {
     "symbol": "1731",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1732": {
     "symbol": "1732",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1733": {
     "symbol": "1733",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1734": {
     "symbol": "1734",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1735": {
     "symbol": "1735",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1736": {
     "symbol": "1736",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1737": {
@@ -1187,184 +1127,124 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "1742": {
-    "symbol": "1742",
-    "total_score": 5,
-    "revenue_score": 5,
-    "updated_at": "2026-10-06"
-  },
   "1752": {
     "symbol": "1752",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1760": {
-    "symbol": "1760",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1762": {
-    "symbol": "1762",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1773": {
-    "symbol": "1773",
-    "total_score": 4,
-    "revenue_score": 4,
-    "updated_at": "2026-10-06"
-  },
-  "1776": {
-    "symbol": "1776",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "1777": {
-    "symbol": "1777",
-    "total_score": 2,
-    "revenue_score": 2,
+  "1760": {
+    "symbol": "1760",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "1781": {
-    "symbol": "1781",
-    "total_score": 4,
-    "revenue_score": 4,
+  "1762": {
+    "symbol": "1762",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "1773": {
+    "symbol": "1773",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "1776": {
+    "symbol": "1776",
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1783": {
     "symbol": "1783",
-    "total_score": 5,
-    "revenue_score": 5,
-    "updated_at": "2026-10-06"
-  },
-  "1784": {
-    "symbol": "1784",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1785": {
-    "symbol": "1785",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1786": {
     "symbol": "1786",
-    "total_score": 0,
-    "revenue_score": 0,
-    "updated_at": "2026-10-06"
-  },
-  "1788": {
-    "symbol": "1788",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1789": {
     "symbol": "1789",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "1795": {
     "symbol": "1795",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "1796": {
-    "symbol": "1796",
     "total_score": 1,
     "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "1799": {
-    "symbol": "1799",
-    "total_score": 6,
-    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "1802": {
     "symbol": "1802",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1805": {
     "symbol": "1805",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1806": {
     "symbol": "1806",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1808": {
     "symbol": "1808",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1809": {
     "symbol": "1809",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1810": {
     "symbol": "1810",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1813": {
-    "symbol": "1813",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "1815": {
-    "symbol": "1815",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1817": {
     "symbol": "1817",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1903": {
     "symbol": "1903",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1904": {
     "symbol": "1904",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1905": {
     "symbol": "1905",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "1906": {
     "symbol": "1906",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "1907": {
@@ -1375,8 +1255,8 @@
   },
   "1909": {
     "symbol": "1909",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2002": {
@@ -1387,8 +1267,8 @@
   },
   "2006": {
     "symbol": "2006",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2007": {
@@ -1399,14 +1279,14 @@
   },
   "2008": {
     "symbol": "2008",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2009": {
     "symbol": "2009",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2010": {
@@ -1417,32 +1297,32 @@
   },
   "2012": {
     "symbol": "2012",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "2013": {
-    "symbol": "2013",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "2014": {
-    "symbol": "2014",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
+  "2013": {
+    "symbol": "2013",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "2014": {
+    "symbol": "2014",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "2015": {
     "symbol": "2015",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2017": {
     "symbol": "2017",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2020": {
@@ -1453,8 +1333,8 @@
   },
   "2022": {
     "symbol": "2022",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2023": {
@@ -1465,68 +1345,62 @@
   },
   "2024": {
     "symbol": "2024",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2025": {
     "symbol": "2025",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2027": {
     "symbol": "2027",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2028": {
     "symbol": "2028",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2029": {
     "symbol": "2029",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2030": {
     "symbol": "2030",
-    "total_score": 5,
-    "revenue_score": 5,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2031": {
     "symbol": "2031",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2032": {
     "symbol": "2032",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2033": {
     "symbol": "2033",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2034": {
     "symbol": "2034",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2035": {
-    "symbol": "2035",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2038": {
@@ -1537,92 +1411,44 @@
   },
   "2049": {
     "symbol": "2049",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "2059": {
     "symbol": "2059",
-    "total_score": 4,
-    "revenue_score": 4,
-    "updated_at": "2026-10-06"
-  },
-  "2061": {
-    "symbol": "2061",
     "total_score": 3,
     "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "2062": {
     "symbol": "2062",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2063": {
-    "symbol": "2063",
     "total_score": 1,
     "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "2064": {
-    "symbol": "2064",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "2065": {
-    "symbol": "2065",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2066": {
-    "symbol": "2066",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2067": {
-    "symbol": "2067",
-    "total_score": 3,
-    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "2069": {
     "symbol": "2069",
-    "total_score": 3,
-    "revenue_score": 3,
-    "updated_at": "2026-10-06"
-  },
-  "2070": {
-    "symbol": "2070",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "2072": {
-    "symbol": "2072",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "2073": {
-    "symbol": "2073",
-    "total_score": 5,
-    "revenue_score": 5,
+  "2072": {
+    "symbol": "2072",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2101": {
     "symbol": "2101",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2102": {
     "symbol": "2102",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2103": {
@@ -1633,8 +1459,8 @@
   },
   "2104": {
     "symbol": "2104",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2105": {
@@ -1645,44 +1471,44 @@
   },
   "2106": {
     "symbol": "2106",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2107": {
     "symbol": "2107",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2108": {
     "symbol": "2108",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2109": {
     "symbol": "2109",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2114": {
     "symbol": "2114",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2115": {
     "symbol": "2115",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "2201": {
     "symbol": "2201",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2204": {
@@ -1693,110 +1519,92 @@
   },
   "2206": {
     "symbol": "2206",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2207": {
-    "symbol": "2207",
-    "total_score": 0,
-    "revenue_score": 0,
-    "updated_at": "2026-10-06"
-  },
-  "2208": {
-    "symbol": "2208",
-    "total_score": 6,
-    "revenue_score": 6,
-    "updated_at": "2026-10-06"
-  },
-  "2211": {
-    "symbol": "2211",
-    "total_score": 0,
-    "revenue_score": 0,
-    "updated_at": "2026-10-06"
-  },
-  "2221": {
-    "symbol": "2221",
-    "total_score": 6,
-    "revenue_score": 6,
-    "updated_at": "2026-10-06"
-  },
-  "2227": {
-    "symbol": "2227",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "2228": {
-    "symbol": "2228",
+  "2207": {
+    "symbol": "2207",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "2208": {
+    "symbol": "2208",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "2211": {
+    "symbol": "2211",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "2227": {
+    "symbol": "2227",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "2230": {
-    "symbol": "2230",
+  "2228": {
+    "symbol": "2228",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2231": {
     "symbol": "2231",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "2233": {
     "symbol": "2233",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2235": {
-    "symbol": "2235",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2236": {
     "symbol": "2236",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "2239": {
     "symbol": "2239",
-    "total_score": 0,
-    "revenue_score": 0,
-    "updated_at": "2026-10-06"
-  },
-  "2241": {
-    "symbol": "2241",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
+  "2241": {
+    "symbol": "2241",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
   "2243": {
     "symbol": "2243",
-    "total_score": 6,
-    "revenue_score": 6,
-    "updated_at": "2026-10-06"
-  },
-  "2247": {
-    "symbol": "2247",
-    "total_score": 2,
-    "revenue_score": 2,
-    "updated_at": "2026-10-06"
-  },
-  "2248": {
-    "symbol": "2248",
     "total_score": 4,
     "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
+  "2247": {
+    "symbol": "2247",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "2248": {
+    "symbol": "2248",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
   "2250": {
     "symbol": "2250",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "2254": {
@@ -6545,74 +6353,116 @@
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
+  "6533": {
+    "symbol": "6533",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "6534": {
+    "symbol": "6534",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
   "6535": {
     "symbol": "6535",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6538": {
     "symbol": "6538",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6541": {
+    "symbol": "6541",
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6542": {
     "symbol": "6542",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6546": {
     "symbol": "6546",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6547": {
     "symbol": "6547",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "6548": {
     "symbol": "6548",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6550": {
+    "symbol": "6550",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6552": {
+    "symbol": "6552",
     "total_score": 2,
     "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6556": {
     "symbol": "6556",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6558": {
+    "symbol": "6558",
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6560": {
     "symbol": "6560",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6561": {
     "symbol": "6561",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6568": {
     "symbol": "6568",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6569": {
     "symbol": "6569",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6570": {
     "symbol": "6570",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6573": {
+    "symbol": "6573",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
@@ -6631,50 +6481,98 @@
   },
   "6577": {
     "symbol": "6577",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6578": {
     "symbol": "6578",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6579": {
+    "symbol": "6579",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6581": {
+    "symbol": "6581",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6582": {
+    "symbol": "6582",
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6584": {
     "symbol": "6584",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6585": {
+    "symbol": "6585",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "6588": {
     "symbol": "6588",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6589": {
+    "symbol": "6589",
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6590": {
     "symbol": "6590",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6591": {
+    "symbol": "6591",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6592": {
+    "symbol": "6592",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6593": {
     "symbol": "6593",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "6596": {
     "symbol": "6596",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6597": {
     "symbol": "6597",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6598": {
+    "symbol": "6598",
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6603": {
@@ -6683,22 +6581,40 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
+  "6605": {
+    "symbol": "6605",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6606": {
+    "symbol": "6606",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "6609": {
     "symbol": "6609",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6612": {
     "symbol": "6612",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6613": {
     "symbol": "6613",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6614": {
+    "symbol": "6614",
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "6615": {
@@ -6709,26 +6625,32 @@
   },
   "6616": {
     "symbol": "6616",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6617": {
     "symbol": "6617",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6620": {
     "symbol": "6620",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6624": {
     "symbol": "6624",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6625": {
+    "symbol": "6625",
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6629": {
@@ -6739,8 +6661,8 @@
   },
   "6637": {
     "symbol": "6637",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6640": {
@@ -6749,16 +6671,28 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
+  "6641": {
+    "symbol": "6641",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "6642": {
     "symbol": "6642",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6643": {
     "symbol": "6643",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6645": {
+    "symbol": "6645",
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6649": {
@@ -6769,44 +6703,104 @@
   },
   "6651": {
     "symbol": "6651",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6654": {
     "symbol": "6654",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6655": {
+    "symbol": "6655",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6657": {
+    "symbol": "6657",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
+  "6658": {
+    "symbol": "6658",
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6661": {
     "symbol": "6661",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "6662": {
     "symbol": "6662",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6664": {
     "symbol": "6664",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6666": {
+    "symbol": "6666",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6667": {
     "symbol": "6667",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6668": {
+    "symbol": "6668",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6669": {
+    "symbol": "6669",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
+  "6670": {
+    "symbol": "6670",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6671": {
+    "symbol": "6671",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6672": {
+    "symbol": "6672",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
+  "6674": {
+    "symbol": "6674",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6679": {
     "symbol": "6679",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "6680": {
@@ -6817,8 +6811,8 @@
   },
   "6683": {
     "symbol": "6683",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6684": {
@@ -6827,10 +6821,22 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6690": {
-    "symbol": "6690",
+  "6689": {
+    "symbol": "6689",
     "total_score": 1,
     "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6690": {
+    "symbol": "6690",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6691": {
+    "symbol": "6691",
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "6692": {
@@ -6841,6 +6847,12 @@
   },
   "6693": {
     "symbol": "6693",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6695": {
+    "symbol": "6695",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
@@ -6851,40 +6863,70 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6703": {
-    "symbol": "6703",
+  "6698": {
+    "symbol": "6698",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6708": {
-    "symbol": "6708",
+  "6703": {
+    "symbol": "6703",
     "total_score": 2,
     "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
-  "6712": {
-    "symbol": "6712",
-    "total_score": 1,
-    "revenue_score": 1,
+  "6706": {
+    "symbol": "6706",
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
-  "6716": {
-    "symbol": "6716",
+  "6708": {
+    "symbol": "6708",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6712": {
+    "symbol": "6712",
     "total_score": 3,
     "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
+  "6715": {
+    "symbol": "6715",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6716": {
+    "symbol": "6716",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6719": {
+    "symbol": "6719",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
   "6720": {
     "symbol": "6720",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6721": {
     "symbol": "6721",
     "total_score": 1,
     "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6722": {
+    "symbol": "6722",
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6725": {
@@ -6895,14 +6937,14 @@
   },
   "6727": {
     "symbol": "6727",
-    "total_score": 3,
-    "revenue_score": 3,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6728": {
     "symbol": "6728",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6730": {
@@ -6913,8 +6955,8 @@
   },
   "6732": {
     "symbol": "6732",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6733": {
@@ -6925,68 +6967,152 @@
   },
   "6735": {
     "symbol": "6735",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6739": {
     "symbol": "6739",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6741": {
     "symbol": "6741",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6742": {
+    "symbol": "6742",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6743": {
+    "symbol": "6743",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6751": {
     "symbol": "6751",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6752": {
     "symbol": "6752",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6753": {
+    "symbol": "6753",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6754": {
+    "symbol": "6754",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6756": {
+    "symbol": "6756",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6757": {
+    "symbol": "6757",
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6761": {
     "symbol": "6761",
-    "total_score": 4,
-    "revenue_score": 4,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6762": {
     "symbol": "6762",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6763": {
     "symbol": "6763",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6767": {
     "symbol": "6767",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6768": {
+    "symbol": "6768",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6770": {
+    "symbol": "6770",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6771": {
+    "symbol": "6771",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6776": {
+    "symbol": "6776",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6781": {
+    "symbol": "6781",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6782": {
+    "symbol": "6782",
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6785": {
     "symbol": "6785",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
   "6788": {
     "symbol": "6788",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6789": {
+    "symbol": "6789",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6790": {
+    "symbol": "6790",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6791": {
@@ -6995,38 +7121,110 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
+  "6792": {
+    "symbol": "6792",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6794": {
+    "symbol": "6794",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6796": {
+    "symbol": "6796",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6799": {
+    "symbol": "6799",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
   "6803": {
     "symbol": "6803",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6804": {
     "symbol": "6804",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6805": {
+    "symbol": "6805",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6806": {
+    "symbol": "6806",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6807": {
+    "symbol": "6807",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6811": {
     "symbol": "6811",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6821": {
     "symbol": "6821",
-    "total_score": 2,
-    "revenue_score": 2,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6823": {
     "symbol": "6823",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6829": {
     "symbol": "6829",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6830": {
+    "symbol": "6830",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6831": {
+    "symbol": "6831",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6834": {
+    "symbol": "6834",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6835": {
+    "symbol": "6835",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6838": {
+    "symbol": "6838",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
@@ -7039,8 +7237,8 @@
   },
   "6841": {
     "symbol": "6841",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 5,
+    "revenue_score": 5,
     "updated_at": "2026-10-06"
   },
   "6843": {
@@ -7051,8 +7249,8 @@
   },
   "6844": {
     "symbol": "6844",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6846": {
@@ -7061,22 +7259,46 @@
     "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
+  "6854": {
+    "symbol": "6854",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
   "6855": {
     "symbol": "6855",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6856": {
     "symbol": "6856",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6859": {
     "symbol": "6859",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6861": {
+    "symbol": "6861",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6862": {
+    "symbol": "6862",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6863": {
+    "symbol": "6863",
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6865": {
@@ -7085,22 +7307,34 @@
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
+  "6869": {
+    "symbol": "6869",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
   "6870": {
     "symbol": "6870",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6872": {
     "symbol": "6872",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6873": {
+    "symbol": "6873",
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "6874": {
     "symbol": "6874",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6875": {
@@ -7117,110 +7351,296 @@
   },
   "6881": {
     "symbol": "6881",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 4,
+    "revenue_score": 4,
     "updated_at": "2026-10-06"
   },
   "6884": {
     "symbol": "6884",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6885": {
+    "symbol": "6885",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6887": {
+    "symbol": "6887",
     "total_score": 0,
     "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "6890": {
+    "symbol": "6890",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6894": {
     "symbol": "6894",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6895": {
     "symbol": "6895",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6899": {
     "symbol": "6899",
-    "total_score": 1,
-    "revenue_score": 1,
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "6903": {
-    "symbol": "6903",
-    "total_score": 6,
-    "revenue_score": 6,
+  "6901": {
+    "symbol": "6901",
+    "total_score": 0,
+    "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "6904": {
-    "symbol": "6904",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "6907": {
-    "symbol": "6907",
+  "6902": {
+    "symbol": "6902",
     "total_score": 2,
     "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
-  "6910": {
-    "symbol": "6910",
+  "6903": {
+    "symbol": "6903",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6904": {
+    "symbol": "6904",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "6906": {
+    "symbol": "6906",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6907": {
+    "symbol": "6907",
     "total_score": 1,
     "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6908": {
+    "symbol": "6908",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6909": {
+    "symbol": "6909",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6910": {
+    "symbol": "6910",
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6913": {
     "symbol": "6913",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6914": {
+    "symbol": "6914",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6922": {
-    "symbol": "6922",
+  "6916": {
+    "symbol": "6916",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6918": {
+    "symbol": "6918",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6919": {
+    "symbol": "6919",
     "total_score": 0,
     "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "6921": {
+    "symbol": "6921",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
+  "6922": {
+    "symbol": "6922",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6923": {
+    "symbol": "6923",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6924": {
+    "symbol": "6924",
+    "total_score": 6,
+    "revenue_score": 6,
     "updated_at": "2026-10-06"
   },
   "6925": {
     "symbol": "6925",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6928": {
+    "symbol": "6928",
+    "total_score": 1,
+    "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6929": {
     "symbol": "6929",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6931": {
+    "symbol": "6931",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6933": {
+    "symbol": "6933",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6934": {
+    "symbol": "6934",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "6936": {
+    "symbol": "6936",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6937": {
+    "symbol": "6937",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6944": {
+    "symbol": "6944",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "6949": {
+    "symbol": "6949",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "6951": {
+    "symbol": "6951",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6952": {
+    "symbol": "6952",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6953": {
     "symbol": "6953",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6955": {
+    "symbol": "6955",
     "total_score": 3,
     "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
+  "6957": {
+    "symbol": "6957",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "6958": {
+    "symbol": "6958",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
   "6961": {
     "symbol": "6961",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "6962": {
+    "symbol": "6962",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6965": {
+    "symbol": "6965",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "6967": {
     "symbol": "6967",
-    "total_score": 1,
-    "revenue_score": 1,
-    "updated_at": "2026-10-06"
-  },
-  "6968": {
-    "symbol": "6968",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "6971": {
-    "symbol": "6971",
+  "6968": {
+    "symbol": "6968",
     "total_score": 1,
     "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6969": {
+    "symbol": "6969",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6971": {
+    "symbol": "6971",
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
   "6982": {
@@ -7229,46 +7649,154 @@
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6996": {
-    "symbol": "6996",
+  "6988": {
+    "symbol": "6988",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
-  "6997": {
-    "symbol": "6997",
+  "6994": {
+    "symbol": "6994",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "6996": {
+    "symbol": "6996",
     "total_score": 0,
     "revenue_score": 0,
     "updated_at": "2026-10-06"
   },
-  "7610": {
-    "symbol": "7610",
+  "6997": {
+    "symbol": "6997",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "7402": {
+    "symbol": "7402",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "7547": {
+    "symbol": "7547",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "7556": {
+    "symbol": "7556",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "7584": {
+    "symbol": "7584",
     "total_score": 3,
     "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
+  "7610": {
+    "symbol": "7610",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
   "7631": {
     "symbol": "7631",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "7642": {
+    "symbol": "7642",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "7703": {
+    "symbol": "7703",
+    "total_score": 6,
+    "revenue_score": 6,
+    "updated_at": "2026-10-06"
+  },
+  "7704": {
+    "symbol": "7704",
     "total_score": 1,
     "revenue_score": 1,
     "updated_at": "2026-10-06"
   },
   "7705": {
     "symbol": "7705",
-    "total_score": 0,
-    "revenue_score": 0,
+    "total_score": 3,
+    "revenue_score": 3,
     "updated_at": "2026-10-06"
   },
-  "7711": {
-    "symbol": "7711",
+  "7708": {
+    "symbol": "7708",
     "total_score": 2,
     "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
-  "7721": {
-    "symbol": "7721",
+  "7709": {
+    "symbol": "7709",
+    "total_score": 2,
+    "revenue_score": 2,
+    "updated_at": "2026-10-06"
+  },
+  "7711": {
+    "symbol": "7711",
     "total_score": 0,
     "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "7712": {
+    "symbol": "7712",
+    "total_score": 4,
+    "revenue_score": 4,
+    "updated_at": "2026-10-06"
+  },
+  "7713": {
+    "symbol": "7713",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "7714": {
+    "symbol": "7714",
+    "total_score": 0,
+    "revenue_score": 0,
+    "updated_at": "2026-10-06"
+  },
+  "7715": {
+    "symbol": "7715",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "7716": {
+    "symbol": "7716",
+    "total_score": 3,
+    "revenue_score": 3,
+    "updated_at": "2026-10-06"
+  },
+  "7717": {
+    "symbol": "7717",
+    "total_score": 5,
+    "revenue_score": 5,
+    "updated_at": "2026-10-06"
+  },
+  "7718": {
+    "symbol": "7718",
+    "total_score": 1,
+    "revenue_score": 1,
+    "updated_at": "2026-10-06"
+  },
+  "7721": {
+    "symbol": "7721",
+    "total_score": 2,
+    "revenue_score": 2,
     "updated_at": "2026-10-06"
   },
   "7722": {
