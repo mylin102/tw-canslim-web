@@ -61,6 +61,8 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "docs")
 DATA_FILE = os.path.join(OUTPUT_DIR, "data.json")
 ROTATION_STATE_FILE = str(DEFAULT_STATE_PATH)
 RUNTIME_BUDGET_FILE = os.path.join(SCRIPT_DIR, ".orchestration", "runtime_budget.json")
+FEATURE_PIPELINE_STATE_FILE = os.path.join(SCRIPT_DIR, ".orchestration", "feature_pipeline_state.json")
+FEATURE_PIPELINE_MIN_INTERVAL_DAYS = 7
 SCHEMA_VERSION = "1.0"
 
 # Setup logging
@@ -574,6 +576,34 @@ class CanslimEngine:
     # 2026-05-31 Hermes Agent: Export revenue features and rankings via bundle publish.
     # Previously the pipeline was never called from the main export path, so
     # stock_features.json and ranking.json were always empty {} placeholders.
+    def _feature_pipeline_due(self) -> bool:
+        """Revenue data changes monthly at most (companies report ~10th of
+        the month), so a weekly refresh is already more than sufficient --
+        but 2026-10: running it on *every* daily invocation (~1958 stocks at
+        ~1-1.3s each once FinMind's login bug stopped making every call fail
+        instantly, ~65min total) was starving the main CANSLIM rotation loop
+        of its time budget. Confirmed: rotation batch 0 (193 symbols) only
+        got through 5 of them in one full ~90min run, because the feature
+        pipeline alone consumed most of it. Symbols in batches 1/2 hadn't
+        been touched in days as a result."""
+        if not os.path.exists(FEATURE_PIPELINE_STATE_FILE):
+            return True
+        try:
+            with open(FEATURE_PIPELINE_STATE_FILE, "r", encoding="utf-8") as f:
+                state = json.load(f)
+            last_run_at = datetime.fromisoformat(state["last_run_at"].replace("Z", "+00:00"))
+        except Exception as e:
+            logger.warning(f"Could not read {FEATURE_PIPELINE_STATE_FILE}, treating as due: {e}")
+            return True
+        age_days = (datetime.now(UTC) - last_run_at).total_seconds() / 86400
+        return age_days >= FEATURE_PIPELINE_MIN_INTERVAL_DAYS
+
+    def _mark_feature_pipeline_run(self) -> None:
+        os.makedirs(os.path.dirname(FEATURE_PIPELINE_STATE_FILE), exist_ok=True)
+        with open(FEATURE_PIPELINE_STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump({"last_run_at": self._utc_timestamp()}, f)
+            f.write("\n")
+
     def _export_feature_pipeline(self) -> Dict:
         """Export revenue stock_features and ranking through bundle publish."""
         from feature_pipeline import FeaturePipeline
@@ -600,11 +630,13 @@ class CanslimEngine:
             },
         }
         logger.info("Exporting revenue features and rankings via bundle publish…")
-        return publish_artifact_bundle(
+        result = publish_artifact_bundle(
             bundle,
             logger=logger,
             json_default=self._json_default,
         )
+        self._mark_feature_pipeline_run()
+        return result
 
     def _export_leaders_json(self, selection) -> Dict:
         """Export core leaders to data/leaders.json according to External Alpha contract."""
@@ -1918,10 +1950,16 @@ class CanslimEngine:
                 # 2026-05-31 Hermes Agent: Export revenue features and rankings.
                 # This was previously never called from the main export path, causing
                 # docs/api/stock_features.json and docs/api/ranking.json to always be empty {}.
-                try:
-                    self._export_feature_pipeline()
-                except Exception as e:
-                    logger.error(f"Failed to export revenue features: {e}")
+                # 2026-10-06: gated to once every FEATURE_PIPELINE_MIN_INTERVAL_DAYS --
+                # see _feature_pipeline_due() for why running it daily starved the
+                # CANSLIM rotation loop of its time budget.
+                if self._feature_pipeline_due():
+                    try:
+                        self._export_feature_pipeline()
+                    except Exception as e:
+                        logger.error(f"Failed to export revenue features: {e}")
+                else:
+                    logger.info("Revenue feature pipeline not due yet (runs weekly); skipping.")
             except (PublishValidationError, PublishTransactionError):
                 logger.exception("Failed to publish CANSLIM artifact bundle")
                 raise

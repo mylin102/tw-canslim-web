@@ -159,6 +159,7 @@ jobs:
           git add docs/api/*.json
           git add data/leaders.json
           git add .orchestration/rotation_state.json
+          git add .orchestration/feature_pipeline_state.json 2>/dev/null || true
           git add docs/incremental_dashboard.html docs/test_github_pages.html 2>/dev/null || true
           
           # 提交
