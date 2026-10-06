@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "data",
-  "run_id": "20261005T190214Z",
-  "generated_at": "2026-10-05T19:16:07Z",
-  "last_updated": "2026-10-05T19:16:07Z",
+  "run_id": "20261005T225302Z",
+  "generated_at": "2026-10-05T23:04:50Z",
+  "last_updated": "2026-10-05T23:04:50Z",
   "stocks": {
     "00400A": {
       "schema_version": "1.0",
@@ -14038,7 +14038,7 @@
         "rs_rating": 0.68,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -2.1,
@@ -14188,13 +14188,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:10Z",
+      "last_updated": "2026-10-05T22:55:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:22Z"
+      "last_succeeded_at": "2026-10-05T22:55:56Z"
     },
     "1102": {
       "symbol": "1102",
@@ -16781,12 +16781,12 @@
         "rs_rating": 1.74,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.437,
-        "revenue_score": 0.0,
-        "rev_accelerating": false,
+        "revenue_score": 2.0,
+        "rev_accelerating": true,
         "rev_strong": false,
         "grid_strategy": {
           "volatility_daily": 0.0,
@@ -16931,13 +16931,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:22Z",
+      "last_updated": "2026-10-05T22:55:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:24Z"
+      "last_succeeded_at": "2026-10-05T22:55:57Z"
     },
     "1303": {
       "symbol": "1303",
@@ -16955,12 +16955,12 @@
         "rs_rating": 1.64,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 9.32,
-        "revenue_score": 3.0,
-        "rev_accelerating": false,
+        "revenue_score": 4.0,
+        "rev_accelerating": true,
         "rev_strong": false,
         "grid_strategy": {
           "volatility_daily": 0.0,
@@ -17105,13 +17105,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:24Z",
+      "last_updated": "2026-10-05T22:55:57Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:26Z"
+      "last_succeeded_at": "2026-10-05T22:55:59Z"
     },
     "1304": {
       "symbol": "1304",
@@ -33164,46 +33164,24 @@
         "C": false,
         "A": false,
         "N": true,
-        "S": false,
+        "S": true,
         "L": false,
         "I": false,
         "M": true,
-        "score": 15,
+        "score": 32,
         "rs_rating": 1.76,
-        "excel_ratings": {
-          "name": "富喬",
-          "composite_rating": 99.0,
-          "eps_rating": 99.0,
-          "rs_rating": 88.0,
-          "smr_rating": "A",
-          "quarterly_eps_growth_pct": 200.0,
-          "three_quarter_eps_growth_pct": 173.13,
-          "annual_eps_growth_pct": 1161.54,
-          "three_year_eps_growth_pct": 186.14,
-          "eps_growth_years": 2.0,
-          "quarterly_revenue_growth_pct": 49.83,
-          "three_quarter_revenue_growth_pct": 37.71,
-          "fund_holding_count_q0": 446.0,
-          "fund_holding_count_q1": 22.0,
-          "fund_holding_increase_quarters": 0.0,
-          "institutional_holding_pct": 30.84,
-          "institutional_holding_change_pct": -2.73,
-          "sponsorship_score": 81.38686131386861,
-          "sponsorship_rating": "A-",
-          "ad_rating": "A",
-          "sales_rating": 97.0
-        },
+        "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -41,
-        "i_score_abs": 0.0,
+        "score_delta": 10,
+        "i_score_abs": 15.73,
         "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.0,
-          "weighted_net": 0.0
+          "streak": 2,
+          "ratio_20d": -2.6544,
+          "weighted_net": -6146.34
         },
-        "mansfield_rs": 0.0,
-        "revenue_score": 0.0,
-        "rev_accelerating": false,
+        "mansfield_rs": -0.623,
+        "revenue_score": 5.0,
+        "rev_accelerating": true,
         "rev_strong": false,
         "grid_strategy": {
           "volatility_daily": 0.0,
@@ -33216,32 +33194,145 @@
       "institutional": [
         {
           "date": "20261005",
-          "no_data": true,
-          "foreign_net": 0,
+          "foreign_net": 11227,
           "trust_net": 0,
-          "dealer_net": 0
+          "dealer_net": 489
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 9453,
+          "trust_net": 12,
+          "dealer_net": 154
+        },
+        {
+          "date": "20261001",
+          "foreign_net": -5141,
+          "trust_net": -5,
+          "dealer_net": -69
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -3172,
+          "trust_net": -46,
+          "dealer_net": -196
+        },
+        {
+          "date": "20260929",
+          "foreign_net": -3002,
+          "trust_net": -5,
+          "dealer_net": 76
+        },
+        {
+          "date": "20260924",
+          "foreign_net": -9056,
+          "trust_net": -265,
+          "dealer_net": -625
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -3264,
+          "trust_net": 0,
+          "dealer_net": 38
+        },
+        {
+          "date": "20260922",
+          "foreign_net": -7828,
+          "trust_net": 0,
+          "dealer_net": 301
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -654,
+          "trust_net": 1185,
+          "dealer_net": 88
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 11647,
+          "trust_net": -827,
+          "dealer_net": 920
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -14837,
+          "trust_net": -1505,
+          "dealer_net": -652
+        },
+        {
+          "date": "20260916",
+          "foreign_net": -4510,
+          "trust_net": -1274,
+          "dealer_net": 520
+        },
+        {
+          "date": "20260915",
+          "foreign_net": -2934,
+          "trust_net": 3611,
+          "dealer_net": -350
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -10447,
+          "trust_net": -1521,
+          "dealer_net": -654
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -5552,
+          "trust_net": 7612,
+          "dealer_net": -93
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -11540,
+          "trust_net": 11431,
+          "dealer_net": 24
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -29929,
+          "trust_net": 10982,
+          "dealer_net": -698
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 725,
+          "trust_net": 10541,
+          "dealer_net": 329
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 18325,
+          "trust_net": 4741,
+          "dealer_net": 713
+        },
+        {
+          "date": "20260904",
+          "foreign_net": 1670,
+          "trust_net": -1982,
+          "dealer_net": -482
         }
       ],
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 3.43,
-        "pe_ratio": 35.276966,
-        "price": 121.0,
+        "eps": 3.64,
+        "pe_ratio": 35.302197,
+        "price": 128.5,
         "high_52w": 135.0,
         "low_52w": 56.28562,
-        "volume": 43203369,
+        "volume": 73315298,
         "avg_volume": 43295342,
-        "market_cap": 74306519040
+        "market_cap": 78912299008
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T00:50:30Z",
+      "last_updated": "2026-10-05T23:04:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T00:50:31Z"
+      "last_succeeded_at": "2026-10-05T23:04:48Z"
     },
     "1817": {
       "symbol": "1817",
@@ -35560,45 +35651,23 @@
         "A": false,
         "N": true,
         "S": true,
-        "L": false,
-        "I": false,
+        "L": true,
+        "I": true,
         "M": true,
-        "score": 30,
+        "score": 57,
         "rs_rating": 1.08,
-        "excel_ratings": {
-          "name": "彰源",
-          "composite_rating": 96.0,
-          "eps_rating": 79.0,
-          "rs_rating": 98.0,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": 200.0,
-          "three_quarter_eps_growth_pct": 108.52,
-          "annual_eps_growth_pct": -58.33,
-          "three_year_eps_growth_pct": -49.01,
-          "eps_growth_years": 0.0,
-          "quarterly_revenue_growth_pct": 26.19,
-          "three_quarter_revenue_growth_pct": 2.39,
-          "fund_holding_count_q0": 1.0,
-          "fund_holding_count_q1": 0.0,
-          "fund_holding_increase_quarters": 1.0,
-          "institutional_holding_pct": 13.03,
-          "institutional_holding_change_pct": 3.43,
-          "sponsorship_score": null,
-          "sponsorship_rating": null,
-          "ad_rating": "A+",
-          "sales_rating": 86.0
-        },
+        "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -26,
-        "i_score_abs": 0.0,
+        "score_delta": 20,
+        "i_score_abs": 84.0,
         "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.0,
-          "weighted_net": 0.0
+          "streak": 3,
+          "ratio_20d": 2.7942,
+          "weighted_net": 3968.12
         },
-        "mansfield_rs": 0.0,
-        "revenue_score": 0.0,
-        "rev_accelerating": false,
+        "mansfield_rs": 6.66,
+        "revenue_score": 5.0,
+        "rev_accelerating": true,
         "rev_strong": false,
         "grid_strategy": {
           "volatility_daily": 0.0,
@@ -35611,8 +35680,121 @@
       "institutional": [
         {
           "date": "20261005",
-          "no_data": true,
-          "foreign_net": 0,
+          "foreign_net": 437,
+          "trust_net": 0,
+          "dealer_net": -45
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 684,
+          "trust_net": 0,
+          "dealer_net": 31
+        },
+        {
+          "date": "20261001",
+          "foreign_net": 2363,
+          "trust_net": 0,
+          "dealer_net": 34
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -670,
+          "trust_net": 0,
+          "dealer_net": -37
+        },
+        {
+          "date": "20260929",
+          "foreign_net": -336,
+          "trust_net": 0,
+          "dealer_net": -66
+        },
+        {
+          "date": "20260924",
+          "foreign_net": 2496,
+          "trust_net": 0,
+          "dealer_net": 54
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -2206,
+          "trust_net": 0,
+          "dealer_net": 171
+        },
+        {
+          "date": "20260922",
+          "foreign_net": 3266,
+          "trust_net": 0,
+          "dealer_net": 20
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -1196,
+          "trust_net": 0,
+          "dealer_net": -62
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 424,
+          "trust_net": 0,
+          "dealer_net": -9
+        },
+        {
+          "date": "20260917",
+          "foreign_net": 953,
+          "trust_net": 0,
+          "dealer_net": 9
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 592,
+          "trust_net": 0,
+          "dealer_net": 132
+        },
+        {
+          "date": "20260915",
+          "foreign_net": 180,
+          "trust_net": 0,
+          "dealer_net": 22
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -219,
+          "trust_net": 0,
+          "dealer_net": 67
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -12,
+          "trust_net": 0,
+          "dealer_net": 16
+        },
+        {
+          "date": "20260910",
+          "foreign_net": 568,
+          "trust_net": 0,
+          "dealer_net": 12
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -575,
+          "trust_net": 0,
+          "dealer_net": -2
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 1778,
+          "trust_net": 0,
+          "dealer_net": -46
+        },
+        {
+          "date": "20260907",
+          "foreign_net": -891,
+          "trust_net": 0,
+          "dealer_net": -35
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -191,
           "trust_net": 0,
           "dealer_net": 0
         }
@@ -35620,23 +35802,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.95,
-        "pe_ratio": 19.692308,
-        "price": 38.4,
+        "eps": 1.87,
+        "pe_ratio": 19.73262,
+        "price": 36.9,
         "high_52w": 40.0,
         "low_52w": 13.65,
-        "volume": 10265128,
+        "volume": 10362965,
         "avg_volume": 4623041,
-        "market_cap": 10597095424
+        "market_cap": 10183146496
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T00:50:44Z",
+      "last_updated": "2026-10-05T23:04:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T00:51:15Z"
+      "last_succeeded_at": "2026-10-05T23:04:50Z"
     },
     "2031": {
       "symbol": "2031",
@@ -40220,7 +40402,7 @@
         "rs_rating": 0.8,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -3,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 4.58,
@@ -40370,13 +40552,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:26Z",
+      "last_updated": "2026-10-05T22:55:59Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:28Z"
+      "last_succeeded_at": "2026-10-05T22:56:01Z"
     },
     "2305": {
       "symbol": "2305",
@@ -41530,7 +41712,7 @@
           "change": 83,
           "change_pct": 10.98
         },
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "revenue_score": 0.0,
@@ -41671,13 +41853,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:28Z",
+      "last_updated": "2026-10-05T22:56:01Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:30Z"
+      "last_succeeded_at": "2026-10-05T22:56:04Z"
     },
     "2331": {
       "symbol": "2331",
@@ -43178,7 +43360,7 @@
         "rs_rating": 0.4,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.475,
@@ -43328,13 +43510,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:30Z",
+      "last_updated": "2026-10-05T22:56:04Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:32Z"
+      "last_succeeded_at": "2026-10-05T22:56:06Z"
     },
     "2359": {
       "symbol": "2359",
@@ -45535,7 +45717,7 @@
         "rs_rating": 1.15,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 3.062,
@@ -45685,13 +45867,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:32Z",
+      "last_updated": "2026-10-05T22:56:06Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:36Z"
+      "last_succeeded_at": "2026-10-05T22:56:08Z"
     },
     "2397": {
       "symbol": "2397",
@@ -52933,13 +53115,13 @@
         "market_cap": 13387035648
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:16Z",
+      "last_updated": "2026-10-05T23:02:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:17Z"
+      "last_succeeded_at": "2026-10-05T23:02:59Z"
     },
     "2514": {
       "symbol": "2514",
@@ -53044,17 +53226,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 0.51,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.2326,
-          "weighted_net": -1359.99
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -3.542,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -53192,23 +53370,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.45,
-        "pe_ratio": 26.222223,
-        "price": 11.8,
-        "high_52w": 17.760214,
-        "low_52w": 9.429514,
-        "volume": 4644539,
-        "avg_volume": 6775429,
-        "market_cap": 19923814400
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:11Z",
+      "last_updated": "2026-10-05T22:59:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:13Z"
+      "last_succeeded_at": "2026-10-05T22:59:58Z"
     },
     "2516": {
       "symbol": "2516",
@@ -53461,8 +53639,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 3.33,
-        "pe_ratio": 11.006006,
+        "eps": 3.3,
+        "pe_ratio": 11.106061,
         "price": 36.65,
         "high_52w": 39.6,
         "low_52w": 28.5,
@@ -53471,13 +53649,13 @@
         "market_cap": 22081153024
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:08Z",
+      "last_updated": "2026-10-05T23:02:49Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:09Z"
+      "last_succeeded_at": "2026-10-05T23:02:51Z"
     },
     "2524": {
       "symbol": "2524",
@@ -53578,21 +53756,17 @@
         "C": false,
         "A": false,
         "N": true,
-        "S": true,
+        "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 56,
+        "score": 37,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 11,
-        "i_score_abs": 76.0,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.8447,
-          "weighted_net": 799.38
-        },
+        "score_delta": -19,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 0.956,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -53730,23 +53904,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.67,
-        "pe_ratio": 9.135802,
-        "price": 51.8,
-        "high_52w": 53.3,
-        "low_52w": 22.05,
-        "volume": 1779924,
-        "avg_volume": 1111189,
-        "market_cap": 13559079936
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:15Z",
+      "last_updated": "2026-10-05T22:59:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:17Z"
+      "last_succeeded_at": "2026-10-05T22:59:31Z"
     },
     "2528": {
       "symbol": "2528",
@@ -53999,8 +54173,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.63,
-        "pe_ratio": 31.507936,
+        "eps": 0.62,
+        "pe_ratio": 32.01613,
         "price": 19.85,
         "high_52w": 31.5,
         "low_52w": 17.7,
@@ -54009,13 +54183,13 @@
         "market_cap": 16698927104
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:30Z",
+      "last_updated": "2026-10-05T23:03:41Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:31Z"
+      "last_succeeded_at": "2026-10-05T23:03:43Z"
     },
     "2534": {
       "symbol": "2534",
@@ -54359,8 +54533,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.13,
-        "pe_ratio": 4.443099,
+        "eps": 4.03,
+        "pe_ratio": 4.55335,
         "price": 18.35,
         "high_52w": 28.0,
         "low_52w": 17.6,
@@ -54369,13 +54543,13 @@
         "market_cap": 5853460992
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:01Z",
+      "last_updated": "2026-10-05T23:03:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:03Z"
+      "last_succeeded_at": "2026-10-05T23:03:47Z"
     },
     "2537": {
       "symbol": "2537",
@@ -54537,8 +54711,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.41,
-        "pe_ratio": 26.585365,
+        "eps": 0.4,
+        "pe_ratio": 27.249998,
         "price": 10.9,
         "high_52w": 12.75,
         "low_52w": 9.38,
@@ -54547,13 +54721,13 @@
         "market_cap": 3276080896
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:23Z",
+      "last_updated": "2026-10-05T23:04:35Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:25Z"
+      "last_succeeded_at": "2026-10-05T23:04:37Z"
     },
     "2538": {
       "symbol": "2538",
@@ -54715,8 +54889,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.59,
-        "pe_ratio": 14.694916,
+        "eps": 0.58,
+        "pe_ratio": 14.9482765,
         "price": 8.67,
         "high_52w": 11.55,
         "low_52w": 8.46,
@@ -54725,13 +54899,13 @@
         "market_cap": 3858371072
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:25Z",
+      "last_updated": "2026-10-05T23:04:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:26Z"
+      "last_succeeded_at": "2026-10-05T23:04:39Z"
     },
     "2539": {
       "symbol": "2539",
@@ -54903,13 +55077,13 @@
         "market_cap": 48762101760
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:05Z",
+      "last_updated": "2026-10-05T23:03:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:07Z"
+      "last_succeeded_at": "2026-10-05T23:03:52Z"
     },
     "2540": {
       "symbol": "2540",
@@ -54927,7 +55101,7 @@
         "rs_rating": 0.12,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
+        "score_delta": 0,
         "i_score_abs": 27.42,
         "inst_details": {
           "streak": 0,
@@ -55081,13 +55255,13 @@
         "market_cap": 44834271232
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:06Z",
+      "last_updated": "2026-10-05T23:02:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:08Z"
+      "last_succeeded_at": "2026-10-05T23:02:49Z"
     },
     "2542": {
       "symbol": "2542",
@@ -55249,8 +55423,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.31,
-        "pe_ratio": 8.828306,
+        "eps": 4.23,
+        "pe_ratio": 8.995272,
         "price": 38.05,
         "high_52w": 49.0,
         "low_52w": 33.7,
@@ -55259,13 +55433,13 @@
         "market_cap": 80359260160
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:07Z",
+      "last_updated": "2026-10-05T23:00:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:09Z"
+      "last_succeeded_at": "2026-10-05T23:00:54Z"
     },
     "2543": {
       "symbol": "2543",
@@ -55283,7 +55457,7 @@
         "rs_rating": -0.63,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 8,
+        "score_delta": 0,
         "i_score_abs": 54.97,
         "inst_details": {
           "streak": 2,
@@ -55427,8 +55601,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.8,
-        "pe_ratio": 13.589286,
+        "eps": 2.78,
+        "pe_ratio": 13.68705,
         "price": 38.05,
         "high_52w": 81.6,
         "low_52w": 35.45,
@@ -55437,13 +55611,13 @@
         "market_cap": 19569379328
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:28Z",
+      "last_updated": "2026-10-05T23:03:39Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:29Z"
+      "last_succeeded_at": "2026-10-05T23:03:41Z"
     },
     "2545": {
       "symbol": "2545",
@@ -55797,13 +55971,13 @@
         "market_cap": 9999013888
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:27Z",
+      "last_updated": "2026-10-05T23:02:41Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:29Z"
+      "last_succeeded_at": "2026-10-05T23:02:43Z"
     },
     "2548": {
       "symbol": "2548",
@@ -55965,8 +56139,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 10.21,
-        "pe_ratio": 8.9618025,
+        "eps": 10.1,
+        "pe_ratio": 9.059405,
         "price": 91.5,
         "high_52w": 126.190475,
         "low_52w": 90.190475,
@@ -55975,13 +56149,13 @@
         "market_cap": 30697662464
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:32Z",
+      "last_updated": "2026-10-05T23:03:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:01Z"
+      "last_succeeded_at": "2026-10-05T23:03:45Z"
     },
     "2596": {
       "symbol": "2596",
@@ -56282,8 +56456,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.67,
-        "pe_ratio": 9.626865,
+        "eps": 0.61,
+        "pe_ratio": 10.57377,
         "price": 6.45,
         "high_52w": 9.891879,
         "low_52w": 5.614955,
@@ -56292,13 +56466,13 @@
         "market_cap": 3727338240
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:20Z",
+      "last_updated": "2026-10-05T23:03:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:21Z"
+      "last_succeeded_at": "2026-10-05T23:03:33Z"
     },
     "2603": {
       "symbol": "2603",
@@ -56312,17 +56486,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 17,
+        "score": 22,
         "rs_rating": 0.67,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 2,
-        "i_score_abs": 13.97,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.1164,
-          "weighted_net": 626.54
-        },
+        "score_delta": 5,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.279,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -56460,23 +56630,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 25.2,
-        "pe_ratio": 9.305555,
-        "price": 234.5,
-        "high_52w": 256.5,
-        "low_52w": 175.0,
-        "volume": 8981180,
-        "avg_volume": 11514920,
-        "market_cap": 507702575104
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:17Z",
+      "last_updated": "2026-10-05T23:00:32Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:19Z"
+      "last_succeeded_at": "2026-10-05T23:00:33Z"
     },
     "2605": {
       "symbol": "2605",
@@ -56490,17 +56660,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 1.62,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.0048,
-          "weighted_net": 3144.21
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.432,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -56638,23 +56804,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.89,
-        "pe_ratio": 7.1881394,
-        "price": 35.15,
-        "high_52w": 46.25,
-        "low_52w": 21.95,
-        "volume": 5664320,
-        "avg_volume": 10787538,
-        "market_cap": 20575168512
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:21Z",
+      "last_updated": "2026-10-05T22:58:35Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:23Z"
+      "last_succeeded_at": "2026-10-05T22:58:37Z"
     },
     "2606": {
       "symbol": "2606",
@@ -56668,17 +56834,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 17,
+        "score": 22,
         "rs_rating": 0.91,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 2,
-        "i_score_abs": 17.28,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.144,
-          "weighted_net": 875.36
-        },
+        "score_delta": 5,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.187,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -56816,23 +56978,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 6.77,
-        "pe_ratio": 10.97489,
-        "price": 74.3,
-        "high_52w": 81.7,
-        "low_52w": 53.0,
-        "volume": 2325712,
-        "avg_volume": 5783741,
-        "market_cap": 62787645440
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:01Z",
+      "last_updated": "2026-10-05T23:00:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:03Z"
+      "last_succeeded_at": "2026-10-05T23:00:48Z"
     },
     "2607": {
       "symbol": "2607",
@@ -57026,19 +57188,15 @@
         "N": false,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 9,
+        "score": 7,
         "rs_rating": -0.65,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -6,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 2.0594,
-          "weighted_net": 47685.92
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.972,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -57176,23 +57334,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.44,
-        "pe_ratio": 13.22072,
-        "price": 58.7,
-        "high_52w": 69.9,
-        "low_52w": 47.25,
-        "volume": 13550842,
-        "avg_volume": 42240317,
-        "market_cap": 204986515456
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:21Z",
+      "last_updated": "2026-10-05T23:00:36Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:23Z"
+      "last_succeeded_at": "2026-10-05T23:00:37Z"
     },
     "2610": {
       "symbol": "2610",
@@ -57206,17 +57364,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 5,
+        "score": 7,
         "rs_rating": -0.53,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -2,
-        "i_score_abs": 39.89,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.3324,
-          "weighted_net": 14063.26
-        },
+        "score_delta": 2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -2.683,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -57354,23 +57508,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.15,
-        "pe_ratio": 9.348837,
-        "price": 20.1,
-        "high_52w": 24.75,
-        "low_52w": 17.7,
-        "volume": 13648202,
-        "avg_volume": 31046869,
-        "market_cap": 122245152768
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:27Z",
+      "last_updated": "2026-10-05T22:59:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:29Z"
+      "last_succeeded_at": "2026-10-05T22:59:43Z"
     },
     "2611": {
       "symbol": "2611",
@@ -57657,7 +57811,7 @@
         "rs_rating": 1.09,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 15,
+        "score_delta": 0,
         "i_score_abs": 100.0,
         "inst_details": {
           "streak": 5,
@@ -57801,8 +57955,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.04,
-        "pe_ratio": 9.362745,
+        "eps": 1.87,
+        "pe_ratio": 10.213904,
         "price": 19.1,
         "high_52w": 24.2,
         "low_52w": 17.65,
@@ -57811,13 +57965,13 @@
         "market_cap": 6250760704
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:26Z",
+      "last_updated": "2026-10-05T23:03:37Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:27Z"
+      "last_succeeded_at": "2026-10-05T23:03:39Z"
     },
     "2615": {
       "symbol": "2615",
@@ -57831,17 +57985,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": -0.49,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -15,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.1134,
-          "weighted_net": -3524.61
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.097,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -57979,23 +58129,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 14.55,
-        "pe_ratio": 7.5945015,
-        "price": 110.5,
-        "high_52w": 134.5,
-        "low_52w": 73.1,
-        "volume": 7825094,
-        "avg_volume": 21408121,
-        "market_cap": 310079160320
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:23Z",
+      "last_updated": "2026-10-05T23:00:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:25Z"
+      "last_succeeded_at": "2026-10-05T23:00:39Z"
     },
     "2616": {
       "symbol": "2616",
@@ -58104,7 +58254,7 @@
         "rs_rating": 0.94,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 11,
+        "score_delta": 0,
         "i_score_abs": 76.0,
         "inst_details": {
           "streak": 2,
@@ -58248,8 +58398,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 3.71,
-        "pe_ratio": 8.65229,
+        "eps": 3.77,
+        "pe_ratio": 8.514588,
         "price": 32.1,
         "high_52w": 35.05,
         "low_52w": 26.45,
@@ -58258,13 +58408,13 @@
         "market_cap": 13395137536
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:21Z",
+      "last_updated": "2026-10-05T23:04:33Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:23Z"
+      "last_succeeded_at": "2026-10-05T23:04:35Z"
     },
     "2618": {
       "symbol": "2618",
@@ -58276,19 +58426,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 24,
+        "score": 22,
         "rs_rating": 0.14,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.7824,
-          "weighted_net": 23560.0
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.834,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -58426,23 +58572,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.71,
-        "pe_ratio": 8.895967,
-        "price": 41.9,
-        "high_52w": 45.65,
-        "low_52w": 32.15,
-        "volume": 9537700,
-        "avg_volume": 32935667,
-        "market_cap": 226278621184
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:05Z",
+      "last_updated": "2026-10-05T22:59:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:07Z"
+      "last_succeeded_at": "2026-10-05T22:59:52Z"
     },
     "2630": {
       "symbol": "2630",
@@ -58614,13 +58760,13 @@
         "market_cap": 9665563648
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:12Z",
+      "last_updated": "2026-10-05T23:02:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:14Z"
+      "last_succeeded_at": "2026-10-05T23:02:55Z"
     },
     "2633": {
       "symbol": "2633",
@@ -58638,7 +58784,7 @@
         "rs_rating": 0.61,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -15,
+        "score_delta": 0,
         "i_score_abs": 0.0,
         "inst_details": {
           "streak": 0,
@@ -58792,13 +58938,13 @@
         "market_cap": 144365715456
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:17Z",
+      "last_updated": "2026-10-05T23:01:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:19Z"
+      "last_succeeded_at": "2026-10-05T23:01:33Z"
     },
     "2634": {
       "symbol": "2634",
@@ -58812,17 +58958,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 0.01,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.8615,
-          "weighted_net": -7903.59
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.197,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -58960,23 +59102,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.07,
-        "pe_ratio": 31.20773,
-        "price": 64.6,
-        "high_52w": 76.5,
-        "low_52w": 43.0,
-        "volume": 10238788,
-        "avg_volume": 38077158,
-        "market_cap": 60844605440
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:29Z",
+      "last_updated": "2026-10-05T23:00:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:01Z"
+      "last_succeeded_at": "2026-10-05T23:00:45Z"
     },
     "2636": {
       "symbol": "2636",
@@ -59079,19 +59221,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 26,
+        "score": 22,
         "rs_rating": 1.36,
         "excel_ratings": null,
         "fund_holdings": null,
         "score_delta": -4,
-        "i_score_abs": 76.0,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.9402,
-          "weighted_net": 5039.35
-        },
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.18,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -59229,23 +59367,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 9.0,
-        "pe_ratio": 10.855556,
-        "price": 97.7,
-        "high_52w": 108.0,
-        "low_52w": 56.5,
-        "volume": 1186022,
-        "avg_volume": 4562715,
-        "market_cap": 72924160000
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:03Z",
+      "last_updated": "2026-10-05T23:00:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:05Z"
+      "last_succeeded_at": "2026-10-05T23:00:50Z"
     },
     "2640": {
       "symbol": "2640",
@@ -59691,13 +59829,13 @@
         "market_cap": 64426209280
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:21Z",
+      "last_updated": "2026-10-05T23:02:35Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:23Z"
+      "last_succeeded_at": "2026-10-05T23:02:37Z"
     },
     "2646": {
       "symbol": "2646",
@@ -59869,13 +60007,13 @@
         "market_cap": 60325134336
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:15Z",
+      "last_updated": "2026-10-05T23:01:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:17Z"
+      "last_succeeded_at": "2026-10-05T23:01:31Z"
     },
     "2701": {
       "symbol": "2701",
@@ -62022,17 +62160,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 15,
+        "score": 22,
         "rs_rating": 1.66,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.1636,
-          "weighted_net": -13350.66
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.73,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -62170,23 +62304,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.52,
-        "pe_ratio": 17.894737,
-        "price": 27.2,
-        "high_52w": 29.75,
-        "low_52w": 19.268291,
-        "volume": 17695454,
-        "avg_volume": 27538237,
-        "market_cap": 328037400576
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:09Z",
+      "last_updated": "2026-10-05T22:59:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:11Z"
+      "last_succeeded_at": "2026-10-05T22:59:56Z"
     },
     "2812": {
       "symbol": "2812",
@@ -62196,21 +62330,17 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": false,
         "I": false,
         "M": true,
-        "score": 10,
+        "score": 7,
         "rs_rating": 0.94,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.669,
-          "weighted_net": -14762.74
-        },
+        "score_delta": -3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -3.406,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -62348,23 +62478,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.59,
-        "pe_ratio": 11.666666,
-        "price": 18.55,
-        "high_52w": 21.14459,
-        "low_52w": 16.963448,
-        "volume": 30192225,
-        "avg_volume": 17268194,
-        "market_cap": 119185129472
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:15Z",
+      "last_updated": "2026-10-05T23:00:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:17Z"
+      "last_succeeded_at": "2026-10-05T23:00:31Z"
     },
     "2816": {
       "symbol": "2816",
@@ -62473,7 +62603,7 @@
         "rs_rating": 1.62,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -62627,13 +62757,13 @@
         "market_cap": 22293137408
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:18Z",
+      "last_updated": "2026-10-05T23:02:59Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:19Z"
+      "last_succeeded_at": "2026-10-05T23:03:31Z"
     },
     "2832": {
       "symbol": "2832",
@@ -62738,17 +62868,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 15,
+        "score": 22,
         "rs_rating": 1.15,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.1765,
-          "weighted_net": 9148.09
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -2.187,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -62886,23 +63012,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.21,
-        "pe_ratio": 14.29752,
-        "price": 17.3,
-        "high_52w": 18.8,
-        "low_52w": 13.831775,
-        "volume": 33474572,
-        "avg_volume": 51190594,
-        "market_cap": 179891044352
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:25Z",
+      "last_updated": "2026-10-05T22:59:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:27Z"
+      "last_succeeded_at": "2026-10-05T22:59:41Z"
     },
     "2836": {
       "symbol": "2836",
@@ -63074,13 +63200,13 @@
         "market_cap": 22207426560
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:07Z",
+      "last_updated": "2026-10-05T23:01:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:09Z"
+      "last_succeeded_at": "2026-10-05T23:01:53Z"
     },
     "2838": {
       "symbol": "2838",
@@ -63242,8 +63368,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.27,
-        "pe_ratio": 15.905513,
+        "eps": 1.26,
+        "pe_ratio": 16.031746,
         "price": 20.2,
         "high_52w": 23.490566,
         "low_52w": 17.216982,
@@ -63252,13 +63378,13 @@
         "market_cap": 93078151168
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:10Z",
+      "last_updated": "2026-10-05T23:02:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:11Z"
+      "last_succeeded_at": "2026-10-05T23:02:53Z"
     },
     "2845": {
       "symbol": "2845",
@@ -63430,13 +63556,13 @@
         "market_cap": 63019843584
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:11Z",
+      "last_updated": "2026-10-05T23:00:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:13Z"
+      "last_succeeded_at": "2026-10-05T23:00:58Z"
     },
     "2849": {
       "symbol": "2849",
@@ -63636,7 +63762,7 @@
         "rs_rating": 1.99,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 11,
+        "score_delta": 0,
         "i_score_abs": 76.0,
         "inst_details": {
           "streak": 2,
@@ -63780,8 +63906,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 3.65,
-        "pe_ratio": 12.49315,
+        "eps": 3.62,
+        "pe_ratio": 12.596685,
         "price": 45.6,
         "high_52w": 48.5,
         "low_52w": 23.35,
@@ -63790,13 +63916,13 @@
         "market_cap": 36497723392
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:21Z",
+      "last_updated": "2026-10-05T23:01:35Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:23Z"
+      "last_succeeded_at": "2026-10-05T23:01:37Z"
     },
     "2852": {
       "symbol": "2852",
@@ -63899,19 +64025,15 @@
         "N": true,
         "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 41,
+        "score": 37,
         "rs_rating": 1.49,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 11,
-        "i_score_abs": 76.0,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 1.307,
-          "weighted_net": 13074.21
-        },
+        "score_delta": -4,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 2.285,
         "revenue_score": 3.0,
         "rev_accelerating": false,
@@ -64049,23 +64171,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 9.6,
-        "pe_ratio": 6.0625,
-        "price": 58.2,
-        "high_52w": 59.8,
-        "low_52w": 23.0,
-        "volume": 3166496,
-        "avg_volume": 4770943,
-        "market_cap": 93202358272
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:29Z",
+      "last_updated": "2026-10-05T22:58:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:30Z"
+      "last_succeeded_at": "2026-10-05T22:58:43Z"
     },
     "2867": {
       "symbol": "2867",
@@ -64170,17 +64292,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 21,
+        "score": 22,
         "rs_rating": 1.18,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 6,
-        "i_score_abs": 44.02,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.2335,
-          "weighted_net": 26532.97
-        },
+        "score_delta": 1,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.501,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -64318,23 +64436,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.88,
-        "pe_ratio": 23.723404,
-        "price": 44.6,
-        "high_52w": 48.3,
-        "low_52w": 28.069305,
-        "volume": 8521604,
-        "avg_volume": 22247933,
-        "market_cap": 620696633344
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:13Z",
+      "last_updated": "2026-10-05T22:59:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:15Z"
+      "last_succeeded_at": "2026-10-05T23:00:00Z"
     },
     "2881": {
       "symbol": "2881",
@@ -64352,7 +64470,7 @@
         "rs_rating": 0.84,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.576,
@@ -64502,13 +64620,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:36Z",
+      "last_updated": "2026-10-05T22:56:08Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:37Z"
+      "last_succeeded_at": "2026-10-05T22:56:10Z"
     },
     "2882": {
       "symbol": "2882",
@@ -64526,7 +64644,7 @@
         "rs_rating": 1.31,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.114,
@@ -64676,13 +64794,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:37Z",
+      "last_updated": "2026-10-05T22:56:10Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:39Z"
+      "last_succeeded_at": "2026-10-05T22:56:12Z"
     },
     "2883": {
       "symbol": "2883",
@@ -64700,13 +64818,9 @@
         "rs_rating": 1.68,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
-        "i_score_abs": 46.89,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.2574,
-          "weighted_net": 32870.76
-        },
+        "score_delta": 0,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 2.469,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -64844,23 +64958,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.74,
-        "pe_ratio": 21.43678,
-        "price": 37.3,
-        "high_52w": 40.8,
-        "low_52w": 14.8,
-        "volume": 33583516,
-        "avg_volume": 48389881,
-        "market_cap": 633153060864
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:09Z",
+      "last_updated": "2026-10-05T22:57:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:11Z"
+      "last_succeeded_at": "2026-10-05T22:57:56Z"
     },
     "2884": {
       "symbol": "2884",
@@ -64874,17 +64988,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 23,
+        "score": 22,
         "rs_rating": 1.11,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -7,
-        "i_score_abs": 54.78,
-        "inst_details": {
-          "streak": 3,
-          "ratio_20d": 0.2565,
-          "weighted_net": 35094.73
-        },
+        "score_delta": -1,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.263,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -65022,23 +65132,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.12,
-        "pe_ratio": 21.132076,
-        "price": 44.8,
-        "high_52w": 47.35,
-        "low_52w": 29.4,
-        "volume": 19553903,
-        "avg_volume": 42851455,
-        "market_cap": 795289583616
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:29Z",
+      "last_updated": "2026-10-05T22:59:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:01Z"
+      "last_succeeded_at": "2026-10-05T22:59:46Z"
     },
     "2885": {
       "symbol": "2885",
@@ -65056,7 +65166,7 @@
         "rs_rating": 1.79,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.027,
@@ -65206,13 +65316,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:19Z",
+      "last_updated": "2026-10-05T22:56:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:20Z"
+      "last_succeeded_at": "2026-10-05T22:56:48Z"
     },
     "2886": {
       "symbol": "2886",
@@ -65224,19 +65334,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 24,
+        "score": 22,
         "rs_rating": 0.64,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.7279,
-          "weighted_net": 75788.37
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.623,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -65374,23 +65480,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.36,
-        "pe_ratio": 20.572035,
-        "price": 48.55,
-        "high_52w": 53.7,
-        "low_52w": 37.85,
-        "volume": 13935780,
-        "avg_volume": 29880226,
-        "market_cap": 720160489472
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:03Z",
+      "last_updated": "2026-10-05T22:59:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:05Z"
+      "last_succeeded_at": "2026-10-05T22:59:50Z"
     },
     "2887": {
       "symbol": "2887",
@@ -65408,7 +65514,7 @@
         "rs_rating": 1.65,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 1.62,
@@ -65558,13 +65664,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:15Z",
+      "last_updated": "2026-10-05T22:56:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:16Z"
+      "last_succeeded_at": "2026-10-05T22:56:44Z"
     },
     "2889": {
       "symbol": "2889",
@@ -65736,13 +65842,13 @@
         "market_cap": 58654433280
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:27Z",
+      "last_updated": "2026-10-05T23:01:41Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:29Z"
+      "last_succeeded_at": "2026-10-05T23:01:43Z"
     },
     "2890": {
       "symbol": "2890",
@@ -65756,17 +65862,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 31,
+        "score": 37,
         "rs_rating": 1.91,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 1,
-        "i_score_abs": 11.53,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.0961,
-          "weighted_net": 11995.49
-        },
+        "score_delta": 6,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 0.051,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -65904,23 +66006,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.93,
-        "pe_ratio": 22.823835,
-        "price": 44.05,
-        "high_52w": 46.35,
-        "low_52w": 24.607843,
-        "volume": 17563661,
-        "avg_volume": 29407760,
-        "market_cap": 651154554880
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:01Z",
+      "last_updated": "2026-10-05T22:59:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:03Z"
+      "last_succeeded_at": "2026-10-05T22:59:48Z"
     },
     "2891": {
       "symbol": "2891",
@@ -65934,17 +66036,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 21,
+        "score": 22,
         "rs_rating": 1.62,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 6,
-        "i_score_abs": 40.0,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.2,
-          "weighted_net": 30112.53
-        },
+        "score_delta": 1,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.892,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -66082,23 +66180,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 4.06,
-        "pe_ratio": 16.600986,
-        "price": 67.4,
-        "high_52w": 73.6,
-        "low_52w": 41.75,
-        "volume": 16393908,
-        "avg_volume": 37222317,
-        "market_cap": 1326157922304
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:23Z",
+      "last_updated": "2026-10-05T22:59:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:25Z"
+      "last_succeeded_at": "2026-10-05T22:59:39Z"
     },
     "2892": {
       "symbol": "2892",
@@ -66110,19 +66208,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 24,
+        "score": 22,
         "rs_rating": 1.35,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.9894,
-          "weighted_net": 106159.82
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.812,
         "revenue_score": 1.0,
         "rev_accelerating": false,
@@ -66260,23 +66354,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.87,
-        "pe_ratio": 20.347593,
-        "price": 38.05,
-        "high_52w": 40.95,
-        "low_52w": 27.2,
-        "volume": 13081452,
-        "avg_volume": 35930085,
-        "market_cap": 547138732032
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:19Z",
+      "last_updated": "2026-10-05T23:00:34Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:21Z"
+      "last_succeeded_at": "2026-10-05T23:00:35Z"
     },
     "2897": {
       "symbol": "2897",
@@ -66438,8 +66532,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.64,
-        "pe_ratio": 16.562502,
+        "eps": 0.63,
+        "pe_ratio": 16.825397,
         "price": 10.6,
         "high_52w": 11.35,
         "low_52w": 8.93,
@@ -66448,13 +66542,13 @@
         "market_cap": 29493641216
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:01Z",
+      "last_updated": "2026-10-05T23:01:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:03Z"
+      "last_succeeded_at": "2026-10-05T23:01:47Z"
     },
     "2901": {
       "symbol": "2901",
@@ -66563,7 +66657,7 @@
         "rs_rating": 0.83,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -15,
+        "score_delta": 0,
         "i_score_abs": 0.0,
         "inst_details": {
           "streak": 0,
@@ -66717,13 +66811,13 @@
         "market_cap": 30639964160
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:19Z",
+      "last_updated": "2026-10-05T23:02:34Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:21Z"
+      "last_succeeded_at": "2026-10-05T23:02:35Z"
     },
     "2904": {
       "symbol": "2904",
@@ -66832,7 +66926,7 @@
         "rs_rating": 0.65,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
+        "score_delta": 0,
         "i_score_abs": 27.54,
         "inst_details": {
           "streak": 0,
@@ -66976,8 +67070,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.71,
-        "pe_ratio": 24.859156,
+        "eps": 0.7,
+        "pe_ratio": 25.214285,
         "price": 17.65,
         "high_52w": 19.0,
         "low_52w": 11.9,
@@ -66986,13 +67080,13 @@
         "market_cap": 18590369792
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:22Z",
+      "last_updated": "2026-10-05T23:03:34Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:23Z"
+      "last_succeeded_at": "2026-10-05T23:03:35Z"
     },
     "2906": {
       "symbol": "2906",
@@ -67362,7 +67456,7 @@
         "rs_rating": 0.19,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 1,
+        "score_delta": 0,
         "i_score_abs": 7.98,
         "inst_details": {
           "streak": 1,
@@ -67506,8 +67600,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 11.06,
-        "pe_ratio": 19.077757,
+        "eps": 11.09,
+        "pe_ratio": 19.02615,
         "price": 211.0,
         "high_52w": 250.0,
         "low_52w": 203.5,
@@ -67516,13 +67610,13 @@
         "market_cap": 219360296960
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:23Z",
+      "last_updated": "2026-10-05T23:01:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:25Z"
+      "last_succeeded_at": "2026-10-05T23:01:39Z"
     },
     "2913": {
       "symbol": "2913",
@@ -67694,13 +67788,13 @@
         "market_cap": 8610999296
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:29Z",
+      "last_updated": "2026-10-05T23:02:43Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:04Z"
+      "last_succeeded_at": "2026-10-05T23:02:45Z"
     },
     "2915": {
       "symbol": "2915",
@@ -67718,7 +67812,7 @@
         "rs_rating": -0.67,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 3,
+        "score_delta": 0,
         "i_score_abs": 21.84,
         "inst_details": {
           "streak": 0,
@@ -67862,8 +67956,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 14.21,
-        "pe_ratio": 4.0042224,
+        "eps": 14.06,
+        "pe_ratio": 4.0469418,
         "price": 56.9,
         "high_52w": 62.5,
         "low_52w": 42.5,
@@ -67872,13 +67966,13 @@
         "market_cap": 60753588224
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:29Z",
+      "last_updated": "2026-10-05T23:01:43Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:01Z"
+      "last_succeeded_at": "2026-10-05T23:01:45Z"
     },
     "2916": {
       "symbol": "2916",
@@ -68735,7 +68829,7 @@
         "rs_rating": 1.07,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 2,
+        "score_delta": 0,
         "i_score_abs": 15.86,
         "inst_details": {
           "streak": 2,
@@ -68879,8 +68973,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.47,
-        "pe_ratio": 24.210526,
+        "eps": 2.46,
+        "pe_ratio": 24.308943,
         "price": 59.8,
         "high_52w": 74.0,
         "low_52w": 45.3,
@@ -68889,13 +68983,13 @@
         "market_cap": 9308163072
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:09Z",
+      "last_updated": "2026-10-05T23:03:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:11Z"
+      "last_succeeded_at": "2026-10-05T23:03:56Z"
     },
     "3004": {
       "symbol": "3004",
@@ -68998,19 +69092,15 @@
         "N": false,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 9,
+        "score": 7,
         "rs_rating": -0.2,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.862,
-          "weighted_net": 3697.19
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -2.864,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -69148,23 +69238,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 8.31,
-        "pe_ratio": 14.079422,
-        "price": 117.0,
-        "high_52w": 151.5,
-        "low_52w": 95.1,
-        "volume": 1210483,
-        "avg_volume": 3349526,
-        "market_cap": 73074688000
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:05Z",
+      "last_updated": "2026-10-05T23:00:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:07Z"
+      "last_succeeded_at": "2026-10-05T23:00:51Z"
     },
     "3006": {
       "symbol": "3006",
@@ -69178,17 +69268,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 30,
+        "score": 37,
         "rs_rating": 1.09,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -3.4481,
-          "weighted_net": -5360.93
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 2.875,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -69326,23 +69412,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 30.97,
-        "pe_ratio": 9.105586,
-        "price": 282.0,
-        "high_52w": 319.0,
-        "low_52w": 76.1,
-        "volume": 14340475,
-        "avg_volume": 12629572,
-        "market_cap": 80222797824
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:15Z",
+      "last_updated": "2026-10-05T22:58:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:17Z"
+      "last_succeeded_at": "2026-10-05T22:58:31Z"
     },
     "3008": {
       "symbol": "3008",
@@ -69504,8 +69590,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 183.78,
-        "pe_ratio": 36.619873,
+        "eps": 196.64,
+        "pe_ratio": 34.22498,
         "price": 6730.0,
         "high_52w": 7995.0,
         "low_52w": 2020.0,
@@ -69514,13 +69600,13 @@
         "market_cap": 880271884288
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:19Z",
+      "last_updated": "2026-10-05T23:01:33Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:21Z"
+      "last_succeeded_at": "2026-10-05T23:01:35Z"
     },
     "3010": {
       "symbol": "3010",
@@ -69629,11 +69715,11 @@
         "rs_rating": 0.01,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 10,
+        "score_delta": 0,
         "i_score_abs": 68.0,
         "inst_details": {
           "streak": 1,
-          "ratio_20d": 0.9433,
+          "ratio_20d": 0.9437,
           "weighted_net": 857.39
         },
         "mansfield_rs": -4.59,
@@ -69773,23 +69859,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -3.41,
+        "eps": -3.39,
         "pe_ratio": null,
         "price": 9.8,
         "high_52w": 16.05,
         "low_52w": 9.2,
         "volume": 348326,
         "avg_volume": 564494,
-        "market_cap": 1270540672
+        "market_cap": 1270088320
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:17Z",
+      "last_updated": "2026-10-05T23:02:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:19Z"
+      "last_succeeded_at": "2026-10-05T23:02:34Z"
     },
     "3013": {
       "symbol": "3013",
@@ -69799,21 +69885,17 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": false,
         "I": false,
         "M": true,
-        "score": 10,
+        "score": 7,
         "rs_rating": 0.46,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -1.4098,
-          "weighted_net": -1499.35
-        },
+        "score_delta": -3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -3.981,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -69951,23 +70033,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.18,
-        "pe_ratio": 17.953669,
-        "price": 93.0,
-        "high_52w": 142.3077,
-        "low_52w": 67.78846,
-        "volume": 2845297,
-        "avg_volume": 1394773,
-        "market_cap": 19077926912
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:27Z",
+      "last_updated": "2026-10-05T23:00:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:29Z"
+      "last_succeeded_at": "2026-10-05T23:00:43Z"
     },
     "3014": {
       "symbol": "3014",
@@ -69985,7 +70067,7 @@
         "rs_rating": 0.12,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -70129,8 +70211,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 9.92,
-        "pe_ratio": 14.768145,
+        "eps": 10.2,
+        "pe_ratio": 14.362745,
         "price": 146.5,
         "high_52w": 171.0,
         "low_52w": 110.5,
@@ -70139,13 +70221,13 @@
         "market_cap": 24312279040
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:03Z",
+      "last_updated": "2026-10-05T23:03:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:05Z"
+      "last_succeeded_at": "2026-10-05T23:03:50Z"
     },
     "3015": {
       "symbol": "3015",
@@ -70248,19 +70330,15 @@
         "N": true,
         "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 42,
+        "score": 37,
         "rs_rating": 1.02,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 12,
-        "i_score_abs": 84.0,
-        "inst_details": {
-          "streak": 3,
-          "ratio_20d": 7.8852,
-          "weighted_net": 11227.13
-        },
+        "score_delta": -5,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 7.138,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -70398,23 +70476,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.2,
-        "pe_ratio": 151.25,
-        "price": 181.5,
-        "high_52w": 189.5,
-        "low_52w": 46.6,
-        "volume": 5275580,
-        "avg_volume": 11460147,
-        "market_cap": 53226143744
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:10Z",
+      "last_updated": "2026-10-05T22:58:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:11Z"
+      "last_succeeded_at": "2026-10-05T22:58:55Z"
     },
     "3017": {
       "symbol": "3017",
@@ -70432,7 +70510,7 @@
         "rs_rating": 1.89,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 2.758,
@@ -70582,13 +70660,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:23Z",
+      "last_updated": "2026-10-05T22:56:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:25Z"
+      "last_succeeded_at": "2026-10-05T22:56:52Z"
     },
     "3018": {
       "symbol": "3018",
@@ -70661,7 +70739,7 @@
         "rs_rating": -0.38,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 5,
+        "score_delta": 0,
         "i_score_abs": 39.76,
         "inst_details": {
           "streak": 5,
@@ -70805,8 +70883,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.82,
-        "pe_ratio": 24.312714,
+        "eps": 5.92,
+        "pe_ratio": 23.902027,
         "price": 141.5,
         "high_52w": 172.0,
         "low_52w": 118.0,
@@ -70815,13 +70893,13 @@
         "market_cap": 39513014272
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:15Z",
+      "last_updated": "2026-10-05T23:02:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:17Z"
+      "last_succeeded_at": "2026-10-05T23:02:31Z"
     },
     "3021": {
       "symbol": "3021",
@@ -70993,13 +71071,13 @@
         "market_cap": 2627453184
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:31Z",
+      "last_updated": "2026-10-05T23:04:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:16:01Z"
+      "last_succeeded_at": "2026-10-05T23:04:46Z"
     },
     "3022": {
       "symbol": "3022",
@@ -71017,7 +71095,7 @@
         "rs_rating": 0.54,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 12,
+        "score_delta": 0,
         "i_score_abs": 84.0,
         "inst_details": {
           "streak": 3,
@@ -71171,13 +71249,13 @@
         "market_cap": 16246996992
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:19Z",
+      "last_updated": "2026-10-05T23:04:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:21Z"
+      "last_succeeded_at": "2026-10-05T23:04:33Z"
     },
     "3023": {
       "symbol": "3023",
@@ -71189,19 +71267,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 28,
+        "score": 22,
         "rs_rating": 1.97,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 13,
-        "i_score_abs": 92.0,
-        "inst_details": {
-          "streak": 4,
-          "ratio_20d": 0.5049,
-          "weighted_net": 501.07
-        },
+        "score_delta": -6,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.166,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -71339,23 +71413,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 13.38,
-        "pe_ratio": 24.103138,
-        "price": 322.5,
-        "high_52w": 353.5,
-        "low_52w": 185.0,
-        "volume": 1520740,
-        "avg_volume": 1198371,
-        "market_cap": 77422256128
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:19Z",
+      "last_updated": "2026-10-05T22:59:33Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:21Z"
+      "last_succeeded_at": "2026-10-05T22:59:36Z"
     },
     "3024": {
       "symbol": "3024",
@@ -71527,13 +71601,13 @@
         "market_cap": 3810915584
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:25Z",
+      "last_updated": "2026-10-05T23:01:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:27Z"
+      "last_succeeded_at": "2026-10-05T23:01:41Z"
     },
     "3025": {
       "symbol": "3025",
@@ -71638,17 +71712,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 15,
+        "score": 22,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -1.469,
-          "weighted_net": -659.76
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 10.336,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -71786,23 +71856,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 10.17,
-        "pe_ratio": 80.33431,
-        "price": 817.0,
-        "high_52w": 1045.0,
-        "low_52w": 97.6,
-        "volume": 9651637,
-        "avg_volume": 9045616,
-        "market_cap": 135532388352
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:11Z",
+      "last_updated": "2026-10-05T22:58:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:13Z"
+      "last_succeeded_at": "2026-10-05T22:58:57Z"
     },
     "3027": {
       "symbol": "3027",
@@ -71907,17 +71977,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 1.97,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.5468,
-          "weighted_net": -1191.25
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.201,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -72055,23 +72121,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 7.04,
-        "pe_ratio": 9.005682,
-        "price": 63.4,
-        "high_52w": 88.3,
-        "low_52w": 31.4,
-        "volume": 1323299,
-        "avg_volume": 1325147,
-        "market_cap": 16545193984
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:13Z",
+      "last_updated": "2026-10-05T22:58:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:15Z"
+      "last_succeeded_at": "2026-10-05T22:58:59Z"
     },
     "3029": {
       "symbol": "3029",
@@ -72089,7 +72155,7 @@
         "rs_rating": -0.39,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 10,
+        "score_delta": 0,
         "i_score_abs": 67.01,
         "inst_details": {
           "streak": 4,
@@ -72233,8 +72299,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 6.93,
-        "pe_ratio": 16.955267,
+        "eps": 6.9,
+        "pe_ratio": 17.028986,
         "price": 117.5,
         "high_52w": 126.0,
         "low_52w": 92.1,
@@ -72243,13 +72309,13 @@
         "market_cap": 19411587072
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:07Z",
+      "last_updated": "2026-10-05T23:03:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:09Z"
+      "last_succeeded_at": "2026-10-05T23:03:54Z"
     },
     "3030": {
       "symbol": "3030",
@@ -72259,21 +72325,17 @@
         "C": false,
         "A": false,
         "N": true,
-        "S": true,
+        "S": false,
         "L": false,
         "I": false,
         "M": true,
-        "score": 30,
+        "score": 22,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.2557,
-          "weighted_net": -1253.33
-        },
+        "score_delta": -8,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.874,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -72411,23 +72473,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 13.18,
-        "pe_ratio": 23.179058,
-        "price": 305.5,
-        "high_52w": 457.5,
-        "low_52w": 139.5,
-        "volume": 3457740,
-        "avg_volume": 1289810,
-        "market_cap": 72163991552
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:25Z",
+      "last_updated": "2026-10-05T22:58:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:29Z"
+      "last_succeeded_at": "2026-10-05T22:58:41Z"
     },
     "3031": {
       "symbol": "3031",
@@ -72437,21 +72499,17 @@
         "C": false,
         "A": false,
         "N": true,
-        "S": true,
+        "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 57,
+        "score": 37,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 12,
-        "i_score_abs": 84.0,
-        "inst_details": {
-          "streak": 3,
-          "ratio_20d": 0.7246,
-          "weighted_net": 412.17
-        },
+        "score_delta": -20,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 0.13,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -72589,23 +72647,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.91,
-        "pe_ratio": 36.153847,
-        "price": 32.9,
-        "high_52w": 36.85,
-        "low_52w": 18.25,
-        "volume": 7702027,
-        "avg_volume": 1782712,
-        "market_cap": 5698386432
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:20Z",
+      "last_updated": "2026-10-05T22:58:33Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:21Z"
+      "last_succeeded_at": "2026-10-05T22:58:35Z"
     },
     "3032": {
       "symbol": "3032",
@@ -72718,7 +72776,7 @@
         "i_score_abs": 0.0,
         "inst_details": {
           "streak": 0,
-          "ratio_20d": -2.2311,
+          "ratio_20d": -2.0677,
           "weighted_net": -8615.05
         },
         "mansfield_rs": -1.528,
@@ -72865,16 +72923,16 @@
         "low_52w": 28.0,
         "volume": 2237699,
         "avg_volume": 6925976,
-        "market_cap": 20467539968
+        "market_cap": 22084988928
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:09Z",
+      "last_updated": "2026-10-05T23:00:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:11Z"
+      "last_succeeded_at": "2026-10-05T23:00:56Z"
     },
     "3034": {
       "symbol": "3034",
@@ -72892,7 +72950,7 @@
         "rs_rating": -0.1,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 10,
+        "score_delta": 0,
         "i_score_abs": 68.0,
         "inst_details": {
           "streak": 1,
@@ -73036,8 +73094,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 28.63,
-        "pe_ratio": 18.96612,
+        "eps": 28.95,
+        "pe_ratio": 18.756475,
         "price": 543.0,
         "high_52w": 606.0,
         "low_52w": 352.0,
@@ -73046,13 +73104,13 @@
         "market_cap": 332051021824
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:03Z",
+      "last_updated": "2026-10-05T23:01:47Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:05Z"
+      "last_succeeded_at": "2026-10-05T23:01:49Z"
     },
     "3035": {
       "symbol": "3035",
@@ -73070,7 +73128,7 @@
         "rs_rating": -0.32,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 12,
+        "score_delta": 0,
         "i_score_abs": 84.0,
         "inst_details": {
           "streak": 3,
@@ -73214,8 +73272,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.53,
-        "pe_ratio": 85.375496,
+        "eps": 2.54,
+        "pe_ratio": 85.03937,
         "price": 216.0,
         "high_52w": 245.0,
         "low_52w": 139.0,
@@ -73224,13 +73282,13 @@
         "market_cap": 56278867968
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:12:13Z",
+      "last_updated": "2026-10-05T23:00:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:12:15Z"
+      "last_succeeded_at": "2026-10-05T23:01:00Z"
     },
     "3036": {
       "symbol": "3036",
@@ -73248,7 +73306,7 @@
         "rs_rating": 1.55,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -1.629,
@@ -73398,13 +73456,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:09Z",
+      "last_updated": "2026-10-05T22:56:37Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:12Z"
+      "last_succeeded_at": "2026-10-05T22:56:39Z"
     },
     "3037": {
       "symbol": "3037",
@@ -73416,19 +73474,15 @@
         "N": true,
         "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 43,
+        "score": 37,
         "rs_rating": 1.94,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 13,
-        "i_score_abs": 92.0,
-        "inst_details": {
-          "streak": 4,
-          "ratio_20d": 2.0485,
-          "weighted_net": 18127.42
-        },
+        "score_delta": -6,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 7.946,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -73566,23 +73620,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 15.31,
-        "pe_ratio": 86.54474,
-        "price": 1325.0,
-        "high_52w": 1420.0,
-        "low_52w": 146.0,
-        "volume": 27061801,
-        "avg_volume": 22207281,
-        "market_cap": 2173516251136
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:31Z",
+      "last_updated": "2026-10-05T22:58:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:01Z"
+      "last_succeeded_at": "2026-10-05T22:58:45Z"
     },
     "3038": {
       "symbol": "3038",
@@ -73782,7 +73836,7 @@
         "rs_rating": -0.51,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -73926,7 +73980,7 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -3.04,
+        "eps": -2.96,
         "pe_ratio": null,
         "price": 24.15,
         "high_52w": 32.5,
@@ -73936,13 +73990,13 @@
         "market_cap": 3431633920
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:15Z",
+      "last_updated": "2026-10-05T23:04:00Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:19Z"
+      "last_succeeded_at": "2026-10-05T23:04:31Z"
     },
     "3042": {
       "symbol": "3042",
@@ -73952,21 +74006,17 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 34,
+        "score": 22,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 2.7168,
-          "weighted_net": 4735.89
-        },
+        "score_delta": -12,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 3.525,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -74104,23 +74154,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.75,
-        "pe_ratio": 38.608696,
-        "price": 222.0,
-        "high_52w": 250.0,
-        "low_52w": 79.0,
-        "volume": 35414276,
-        "avg_volume": 17316306,
-        "market_cap": 75478441984
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:17Z",
+      "last_updated": "2026-10-05T22:58:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:19Z"
+      "last_succeeded_at": "2026-10-05T22:58:33Z"
     },
     "3043": {
       "symbol": "3043",
@@ -74223,19 +74273,15 @@
         "N": true,
         "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 40,
+        "score": 37,
         "rs_rating": 1.55,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 10,
-        "i_score_abs": 71.7,
-        "inst_details": {
-          "streak": 4,
-          "ratio_20d": 0.3309,
-          "weighted_net": 599.86
-        },
+        "score_delta": -3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 0.165,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -74373,23 +74419,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 23.26,
-        "pe_ratio": 23.94669,
-        "price": 557.0,
-        "high_52w": 598.0,
-        "low_52w": 293.0,
-        "volume": 2995555,
-        "avg_volume": 3209429,
-        "market_cap": 292762550272
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:07Z",
+      "last_updated": "2026-10-05T22:58:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:09Z"
+      "last_succeeded_at": "2026-10-05T22:58:53Z"
     },
     "3045": {
       "symbol": "3045",
@@ -74401,19 +74447,15 @@
         "N": true,
         "S": false,
         "L": false,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 24,
+        "score": 22,
         "rs_rating": 0.91,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
-        "i_score_abs": 60.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 1.143,
-          "weighted_net": 24079.11
-        },
+        "score_delta": -2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -2.016,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -74551,23 +74593,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.23,
-        "pe_ratio": 23.422562,
-        "price": 122.5,
-        "high_52w": 125.5,
-        "low_52w": 104.0,
-        "volume": 7128906,
-        "avg_volume": 11723465,
-        "market_cap": 374853337088
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:07Z",
+      "last_updated": "2026-10-05T22:59:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:09Z"
+      "last_succeeded_at": "2026-10-05T22:59:54Z"
     },
     "3046": {
       "symbol": "3046",
@@ -74676,7 +74718,7 @@
         "rs_rating": -0.57,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -74820,7 +74862,7 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -0.97,
+        "eps": -0.95,
         "pe_ratio": null,
         "price": 14.4,
         "high_52w": 21.35,
@@ -74830,13 +74872,13 @@
         "market_cap": 3216700672
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:13Z",
+      "last_updated": "2026-10-05T23:03:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:15Z"
+      "last_succeeded_at": "2026-10-05T23:04:00Z"
     },
     "3048": {
       "symbol": "3048",
@@ -74854,7 +74896,7 @@
         "rs_rating": 1.18,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -1.403,
@@ -75004,13 +75046,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:27Z",
+      "last_updated": "2026-10-05T22:56:54Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:30Z"
+      "last_succeeded_at": "2026-10-05T22:56:56Z"
     },
     "3049": {
       "symbol": "3049",
@@ -75024,17 +75066,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 0.65,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.2064,
-          "weighted_net": -516.34
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.99,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -75172,23 +75210,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.41,
-        "pe_ratio": 29.87805,
-        "price": 12.25,
-        "high_52w": 18.0,
-        "low_52w": 5.38,
-        "volume": 6300120,
-        "avg_volume": 6509959,
-        "market_cap": 9824629760
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:07Z",
+      "last_updated": "2026-10-05T22:57:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:09Z"
+      "last_succeeded_at": "2026-10-05T22:57:54Z"
     },
     "3050": {
       "symbol": "3050",
@@ -75297,7 +75335,7 @@
         "rs_rating": -0.18,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -75441,8 +75479,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.77,
-        "pe_ratio": 12.937853,
+        "eps": 1.72,
+        "pe_ratio": 13.313953,
         "price": 22.9,
         "high_52w": 31.4,
         "low_52w": 17.8,
@@ -75451,13 +75489,13 @@
         "market_cap": 3778499840
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:11Z",
+      "last_updated": "2026-10-05T23:03:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:13Z"
+      "last_succeeded_at": "2026-10-05T23:03:58Z"
     },
     "3052": {
       "symbol": "3052",
@@ -75657,7 +75695,7 @@
         "rs_rating": 0.63,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 3,
+        "score_delta": 0,
         "i_score_abs": 23.94,
         "inst_details": {
           "streak": 3,
@@ -75811,13 +75849,13 @@
         "market_cap": 24406460416
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:24Z",
+      "last_updated": "2026-10-05T23:03:35Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:26Z"
+      "last_succeeded_at": "2026-10-05T23:03:37Z"
     },
     "3056": {
       "symbol": "3056",
@@ -75835,7 +75873,7 @@
         "rs_rating": -0.59,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 5,
+        "score_delta": 0,
         "i_score_abs": 35.5,
         "inst_details": {
           "streak": 0,
@@ -75989,13 +76027,13 @@
         "market_cap": 6467548672
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:25Z",
+      "last_updated": "2026-10-05T23:02:39Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:27Z"
+      "last_succeeded_at": "2026-10-05T23:02:41Z"
     },
     "3057": {
       "symbol": "3057",
@@ -76195,7 +76233,7 @@
         "rs_rating": -0.25,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
+        "score_delta": 0,
         "i_score_abs": 31.37,
         "inst_details": {
           "streak": 2,
@@ -76339,8 +76377,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.26,
-        "pe_ratio": 30.357143,
+        "eps": 1.25,
+        "pe_ratio": 30.6,
         "price": 38.25,
         "high_52w": 54.5,
         "low_52w": 35.0,
@@ -76349,13 +76387,13 @@
         "market_cap": 11764476928
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:11Z",
+      "last_updated": "2026-10-05T23:01:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:13Z"
+      "last_succeeded_at": "2026-10-05T23:01:58Z"
     },
     "3060": {
       "symbol": "3060",
@@ -76373,7 +76411,7 @@
         "rs_rating": 0.84,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
+        "score_delta": 0,
         "i_score_abs": 31.97,
         "inst_details": {
           "streak": 4,
@@ -76517,8 +76555,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.67,
-        "pe_ratio": 42.53731,
+        "eps": 0.66,
+        "pe_ratio": 43.181816,
         "price": 28.5,
         "high_52w": 42.2,
         "low_52w": 20.95,
@@ -76527,13 +76565,13 @@
         "market_cap": 3920551168
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:04Z",
+      "last_updated": "2026-10-05T23:02:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:05Z"
+      "last_succeeded_at": "2026-10-05T23:02:47Z"
     },
     "3062": {
       "symbol": "3062",
@@ -76547,17 +76585,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 4,
+        "score": 7,
         "rs_rating": 1.84,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
-        "i_score_abs": 28.47,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": 0.104,
-          "weighted_net": 368.91
-        },
+        "score_delta": 3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -3.38,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -76695,23 +76729,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -1.99,
+        "eps": null,
         "pe_ratio": null,
-        "price": 22.7,
-        "high_52w": 34.1,
-        "low_52w": 18.15,
-        "volume": 2037444,
-        "avg_volume": 1648045,
-        "market_cap": 7446549504
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:11:25Z",
+      "last_updated": "2026-10-05T23:00:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:11:27Z"
+      "last_succeeded_at": "2026-10-05T23:00:42Z"
     },
     "3064": {
       "symbol": "3064",
@@ -77413,7 +77447,7 @@
         "rs_rating": 1.77,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -8,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -0.021,
@@ -77563,13 +77597,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:21Z",
+      "last_updated": "2026-10-05T22:56:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:22Z"
+      "last_succeeded_at": "2026-10-05T22:56:50Z"
     },
     "3092": {
       "symbol": "3092",
@@ -77726,7 +77760,7 @@
         "rs_rating": -0.14,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 9,
+        "score_delta": 0,
         "i_score_abs": 60.0,
         "inst_details": {
           "streak": 0,
@@ -77870,8 +77904,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.62,
-        "pe_ratio": 111.29032,
+        "eps": 0.61,
+        "pe_ratio": 113.11475,
         "price": 69.0,
         "high_52w": 73.5,
         "low_52w": 21.8,
@@ -77880,13 +77914,13 @@
         "market_cap": 5735079936
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:09Z",
+      "last_updated": "2026-10-05T23:01:53Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:11Z"
+      "last_succeeded_at": "2026-10-05T23:01:55Z"
     },
     "3095": {
       "symbol": "3095",
@@ -78453,17 +78487,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 1.16,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -15,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.8765,
-          "weighted_net": -652.8
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -0.032,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -78601,23 +78631,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 22.92,
-        "pe_ratio": 6.8499126,
-        "price": 157.0,
-        "high_52w": 253.89272,
-        "low_52w": 36.50901,
-        "volume": 580948,
-        "avg_volume": 1631974,
-        "market_cap": 15923794944
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:01Z",
+      "last_updated": "2026-10-05T22:58:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:03Z"
+      "last_succeeded_at": "2026-10-05T22:58:48Z"
     },
     "3138": {
       "symbol": "3138",
@@ -78627,21 +78657,17 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": false,
         "I": false,
         "M": true,
-        "score": 12,
+        "score": 7,
         "rs_rating": 1.27,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 2,
-        "i_score_abs": 15.66,
-        "inst_details": {
-          "streak": 2,
-          "ratio_20d": -3.3573,
-          "weighted_net": -1047.82
-        },
+        "score_delta": -5,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -4.306,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -78779,23 +78805,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.68,
-        "pe_ratio": 39.179104,
-        "price": 105.0,
-        "high_52w": 239.0,
-        "low_52w": 78.8,
-        "volume": 1018393,
-        "avg_volume": 385512,
-        "market_cap": 5704577536
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:03Z",
+      "last_updated": "2026-10-05T22:58:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:05Z"
+      "last_succeeded_at": "2026-10-05T22:58:49Z"
     },
     "3141": {
       "symbol": "3141",
@@ -78987,7 +79013,7 @@
         "rs_rating": 0.41,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 1,
+        "score_delta": 0,
         "i_score_abs": 7.92,
         "inst_details": {
           "streak": 1,
@@ -79131,7 +79157,7 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -2.01,
+        "eps": -2.07,
         "pe_ratio": null,
         "price": 79.5,
         "high_52w": 109.0,
@@ -79141,13 +79167,13 @@
         "market_cap": 22755571712
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:13Z",
+      "last_updated": "2026-10-05T23:01:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:15Z"
+      "last_succeeded_at": "2026-10-05T23:02:00Z"
     },
     "3150": {
       "symbol": "3150",
@@ -79617,7 +79643,7 @@
         "rs_rating": 1.91,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 6.073,
@@ -79767,13 +79793,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:30Z",
+      "last_updated": "2026-10-05T22:56:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:32Z"
+      "last_succeeded_at": "2026-10-05T22:56:58Z"
     },
     "3168": {
       "symbol": "3168",
@@ -80153,56 +80179,26 @@
         "C": false,
         "A": false,
         "N": true,
-        "S": true,
+        "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 60,
+        "score": 37,
         "rs_rating": 1.78,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 15,
-        "i_score_abs": 100.0,
-        "inst_details": {
-          "streak": 8,
-          "ratio_20d": 5.8184,
-          "weighted_net": 14332.86
-        },
+        "score_delta": -23,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 9.476,
         "revenue_score": 0.0,
         "rev_accelerating": false,
         "rev_strong": false,
         "grid_strategy": {
-          "volatility_daily": 5.3,
-          "volatility_annual": 84.14,
-          "spacing_pct": 7.95,
-          "levels": [
-            {
-              "label": "Sell 2 (強勢減碼)",
-              "price": 1269.11,
-              "type": "sell-strong"
-            },
-            {
-              "label": "Sell 1 (分批獲利)",
-              "price": 1182.06,
-              "type": "sell"
-            },
-            {
-              "label": "Pivot (基準位)",
-              "price": 1095.0,
-              "type": "neutral"
-            },
-            {
-              "label": "Buy 1 (支撐加碼)",
-              "price": 1007.94,
-              "type": "buy"
-            },
-            {
-              "label": "Buy 2 (強力支撐)",
-              "price": 920.89,
-              "type": "buy-strong"
-            }
-          ],
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
           "is_etf": false
         }
       },
@@ -80331,23 +80327,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.8,
-        "pe_ratio": 188.79309,
-        "price": 1095.0,
-        "high_52w": 1150.0,
-        "low_52w": 114.0,
-        "volume": 30051755,
-        "avg_volume": 15202830,
-        "market_cap": 576966885376
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:11Z",
+      "last_updated": "2026-10-05T22:57:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:13Z"
+      "last_succeeded_at": "2026-10-05T22:57:58Z"
     },
     "3191": {
       "symbol": "3191",
@@ -80557,7 +80553,7 @@
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -2.219,
@@ -80707,13 +80703,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:13Z",
+      "last_updated": "2026-10-05T22:56:39Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:14Z"
+      "last_succeeded_at": "2026-10-05T22:56:42Z"
     },
     "3211": {
       "symbol": "3211",
@@ -81367,7 +81363,7 @@
         "rs_rating": 0.98,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 4.44,
@@ -81517,13 +81513,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:32Z",
+      "last_updated": "2026-10-05T22:56:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:34Z"
+      "last_succeeded_at": "2026-10-05T22:57:00Z"
     },
     "3230": {
       "symbol": "3230",
@@ -81589,7 +81585,7 @@
         "rs_rating": 1.01,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -0.887,
@@ -81739,13 +81735,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:17Z",
+      "last_updated": "2026-10-05T22:56:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:18Z"
+      "last_succeeded_at": "2026-10-05T22:56:46Z"
     },
     "3232": {
       "symbol": "3232",
@@ -83430,17 +83426,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 5,
+        "score": 7,
         "rs_rating": 1.12,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 5,
-        "i_score_abs": 39.95,
-        "inst_details": {
-          "streak": 6,
-          "ratio_20d": -0.5464,
-          "weighted_net": -925.44
-        },
+        "score_delta": 2,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -3.073,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -83578,23 +83570,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 5.51,
-        "pe_ratio": 19.782213,
-        "price": 109.0,
-        "high_52w": 169.5,
-        "low_52w": 89.9,
-        "volume": 1044319,
-        "avg_volume": 1615524,
-        "market_cap": 15439595520
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:05Z",
+      "last_updated": "2026-10-05T22:58:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:07Z"
+      "last_succeeded_at": "2026-10-05T22:58:52Z"
     },
     "3306": {
       "symbol": "3306",
@@ -83799,7 +83791,7 @@
         "rs_rating": 0.14,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 15,
+        "score_delta": 0,
         "i_score_abs": 100.0,
         "inst_details": {
           "streak": 8,
@@ -83979,13 +83971,13 @@
         "market_cap": 4950000128
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:29Z",
+      "last_updated": "2026-10-05T23:04:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:31Z"
+      "last_succeeded_at": "2026-10-05T23:04:44Z"
     },
     "3312": {
       "symbol": "3312",
@@ -84003,7 +83995,7 @@
         "rs_rating": 0.32,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 5,
+        "score_delta": 0,
         "i_score_abs": 36.63,
         "inst_details": {
           "streak": 2,
@@ -84147,8 +84139,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 3.88,
-        "pe_ratio": 13.324742,
+        "eps": 3.85,
+        "pe_ratio": 13.428572,
         "price": 51.7,
         "high_52w": 73.2,
         "low_52w": 31.5,
@@ -84157,13 +84149,13 @@
         "market_cap": 9441736704
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:23Z",
+      "last_updated": "2026-10-05T23:02:37Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:25Z"
+      "last_succeeded_at": "2026-10-05T23:02:39Z"
     },
     "3313": {
       "symbol": "3313",
@@ -85018,13 +85010,13 @@
         "market_cap": 2873408768
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:15:27Z",
+      "last_updated": "2026-10-05T23:04:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:15:29Z"
+      "last_succeeded_at": "2026-10-05T23:04:42Z"
     },
     "3349": {
       "symbol": "3349",
@@ -85943,8 +85935,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 1.44,
-        "pe_ratio": 119.09721,
+        "eps": 1.42,
+        "pe_ratio": 120.77465,
         "price": 171.5,
         "high_52w": 256.5,
         "low_52w": 159.0,
@@ -85953,13 +85945,13 @@
         "market_cap": 33576306688
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:13:05Z",
+      "last_updated": "2026-10-05T23:01:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:13:07Z"
+      "last_succeeded_at": "2026-10-05T23:01:51Z"
     },
     "3379": {
       "symbol": "3379",
@@ -86021,17 +86013,13 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 0,
+        "score": 7,
         "rs_rating": 1.66,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.6814,
-          "weighted_net": -1782.89
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -2.874,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -86169,23 +86157,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.14,
-        "pe_ratio": 223.57143,
-        "price": 31.3,
-        "high_52w": 43.95,
-        "low_52w": 25.55,
-        "volume": 2504254,
-        "avg_volume": 2548794,
-        "market_cap": 16955789312
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:23Z",
+      "last_updated": "2026-10-05T22:58:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:25Z"
+      "last_succeeded_at": "2026-10-05T22:58:40Z"
     },
     "3388": {
       "symbol": "3388",
@@ -86343,17 +86331,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 30,
+        "score": 37,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -3.0849,
-          "weighted_net": -1749.48
-        },
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 3.3,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -86491,23 +86475,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 36.91,
-        "pe_ratio": 28.58304,
-        "price": 1055.0,
-        "high_52w": 1140.0,
-        "low_52w": 386.0,
-        "volume": 5363599,
-        "avg_volume": 4057006,
-        "market_cap": 118943932416
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:17Z",
+      "last_updated": "2026-10-05T22:59:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:19Z"
+      "last_succeeded_at": "2026-10-05T22:59:33Z"
     },
     "3413": {
       "symbol": "3413",
@@ -86525,7 +86509,7 @@
         "rs_rating": 0.98,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 5,
+        "score_delta": 0,
         "i_score_abs": 39.99,
         "inst_details": {
           "streak": 8,
@@ -86669,8 +86653,8 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 20.21,
-        "pe_ratio": 14.596735,
+        "eps": 20.42,
+        "pe_ratio": 14.446621,
         "price": 295.0,
         "high_52w": 383.5,
         "low_52w": 271.5,
@@ -86679,13 +86663,13 @@
         "market_cap": 32675084288
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:14:14Z",
+      "last_updated": "2026-10-05T23:02:56Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:14:15Z"
+      "last_succeeded_at": "2026-10-05T23:02:57Z"
     },
     "3416": {
       "symbol": "3416",
@@ -87112,21 +87096,17 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": false,
         "I": false,
         "M": true,
-        "score": 10,
+        "score": 7,
         "rs_rating": 1.57,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 0,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": -0.3507,
-          "weighted_net": -343.49
-        },
+        "score_delta": -3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": -1.09,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -87264,23 +87244,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": -2.7,
+        "eps": null,
         "pe_ratio": null,
-        "price": 21.9,
-        "high_52w": 31.3,
-        "low_52w": 12.95,
-        "volume": 2718309,
-        "avg_volume": 1175543,
-        "market_cap": 3165601024
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:13Z",
+      "last_updated": "2026-10-05T22:57:58Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:15Z"
+      "last_succeeded_at": "2026-10-05T22:58:00Z"
     },
     "3438": {
       "symbol": "3438",
@@ -87429,17 +87409,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 33,
+        "score": 37,
         "rs_rating": 2.0,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 3,
-        "i_score_abs": 21.43,
-        "inst_details": {
-          "streak": 1,
-          "ratio_20d": 0.1119,
-          "weighted_net": 86.27
-        },
+        "score_delta": 4,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 7.95,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -87577,23 +87553,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 38.93,
-        "pe_ratio": 220.90932,
-        "price": 8600.0,
-        "high_52w": 8690.0,
-        "low_52w": 1370.0,
-        "volume": 750087,
-        "avg_volume": 1860014,
-        "market_cap": 1152494600192
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:10:21Z",
+      "last_updated": "2026-10-05T22:59:36Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:10:23Z"
+      "last_succeeded_at": "2026-10-05T22:59:37Z"
     },
     "3444": {
       "symbol": "3444",
@@ -87750,7 +87726,7 @@
         "rs_rating": 1.58,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 1.465,
@@ -87900,13 +87876,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:07Z",
+      "last_updated": "2026-10-05T22:56:36Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:09Z"
+      "last_succeeded_at": "2026-10-05T22:56:37Z"
     },
     "3455": {
       "symbol": "3455",
@@ -88277,17 +88253,13 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 19,
+        "score": 22,
         "rs_rating": 1.19,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 4,
-        "i_score_abs": 32.79,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.2733,
-          "weighted_net": 25105.38
-        },
+        "score_delta": 3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
         "mansfield_rs": 3.079,
         "revenue_score": 0.0,
         "rev_accelerating": false,
@@ -88425,23 +88397,23 @@
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 0.77,
-        "pe_ratio": 67.92208,
-        "price": 52.3,
-        "high_52w": 72.6,
-        "low_52w": 12.1,
-        "volume": 360476931,
-        "avg_volume": 270982269,
-        "market_cap": 417409073152
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:09:06Z",
+      "last_updated": "2026-10-05T22:57:50Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:09:07Z"
+      "last_succeeded_at": "2026-10-05T22:57:52Z"
     },
     "3483": {
       "symbol": "3483",
@@ -89142,7 +89114,7 @@
         "rs_rating": 1.18,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -0.758,
@@ -89292,13 +89264,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:25Z",
+      "last_updated": "2026-10-05T22:56:52Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:27Z"
+      "last_succeeded_at": "2026-10-05T22:56:54Z"
     },
     "3508": {
       "symbol": "3508",
@@ -91633,13 +91605,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:39Z",
+      "last_updated": "2026-10-05T22:56:12Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:05:43Z"
+      "last_succeeded_at": "2026-10-05T22:56:14Z"
     },
     "3567": {
       "symbol": "3567",
@@ -146176,12 +146148,12 @@
         "rs_rating": 1.06,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.416,
-        "revenue_score": 5.0,
-        "rev_accelerating": true,
+        "revenue_score": 0.0,
+        "rev_accelerating": false,
         "rev_strong": false,
         "grid_strategy": {
           "volatility_daily": 0.0,
@@ -146326,13 +146298,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:05:43Z",
+      "last_updated": "2026-10-05T22:56:15Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:03Z"
+      "last_succeeded_at": "2026-10-05T22:56:31Z"
     },
     "6771": {
       "symbol": "6771",
@@ -147500,11 +147472,11 @@
         "rs_rating": 1.61,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -8,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": 0.315,
-        "revenue_score": 4.0,
+        "revenue_score": 0.0,
         "rev_accelerating": false,
         "rev_strong": false,
         "grid_strategy": {
@@ -147650,13 +147622,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:03Z",
+      "last_updated": "2026-10-05T22:56:31Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:06Z"
+      "last_succeeded_at": "2026-10-05T22:56:33Z"
     },
     "6806": {
       "symbol": "6806",
@@ -153969,44 +153941,18 @@
         "C": false,
         "A": false,
         "N": false,
-        "S": true,
+        "S": false,
         "L": true,
         "I": false,
         "M": true,
-        "score": 25,
+        "score": 22,
         "rs_rating": 2.0,
-        "excel_ratings": {
-          "name": "聯友金屬-",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": 81.0,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": null,
-          "three_quarter_eps_growth_pct": null,
-          "annual_eps_growth_pct": null,
-          "three_year_eps_growth_pct": null,
-          "eps_growth_years": null,
-          "quarterly_revenue_growth_pct": null,
-          "three_quarter_revenue_growth_pct": null,
-          "fund_holding_count_q0": null,
-          "fund_holding_count_q1": null,
-          "fund_holding_increase_quarters": null,
-          "institutional_holding_pct": null,
-          "institutional_holding_change_pct": null,
-          "sponsorship_score": null,
-          "sponsorship_rating": null,
-          "ad_rating": null,
-          "sales_rating": null
-        },
+        "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -45,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.0,
-          "weighted_net": 0.0
-        },
-        "mansfield_rs": 9.455,
+        "score_delta": -3,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": 7.671,
         "revenue_score": 6.0,
         "rev_accelerating": true,
         "rev_strong": true,
@@ -154021,32 +153967,145 @@
       "institutional": [
         {
           "date": "20261005",
-          "no_data": true,
-          "foreign_net": 0,
+          "foreign_net": 125,
+          "trust_net": 0,
+          "dealer_net": 12
+        },
+        {
+          "date": "20261002",
+          "foreign_net": -138,
+          "trust_net": 0,
+          "dealer_net": 11
+        },
+        {
+          "date": "20261001",
+          "foreign_net": 27,
+          "trust_net": 0,
+          "dealer_net": -7
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -152,
+          "trust_net": 0,
+          "dealer_net": 4
+        },
+        {
+          "date": "20260929",
+          "foreign_net": -37,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260924",
+          "foreign_net": 79,
           "trust_net": 0,
           "dealer_net": 0
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -41,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260922",
+          "foreign_net": 78,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -54,
+          "trust_net": 0,
+          "dealer_net": -2
+        },
+        {
+          "date": "20260918",
+          "foreign_net": -281,
+          "trust_net": 11,
+          "dealer_net": 2
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -129,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260916",
+          "foreign_net": -388,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260915",
+          "foreign_net": 28,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -154,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260911",
+          "foreign_net": 11,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -267,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260909",
+          "foreign_net": 58,
+          "trust_net": 0,
+          "dealer_net": 1
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 424,
+          "trust_net": 0,
+          "dealer_net": -93
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 22,
+          "trust_net": 0,
+          "dealer_net": 42
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -4,
+          "trust_net": 0,
+          "dealer_net": 32
         }
       ],
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 24.84,
-        "pe_ratio": 72.46377,
-        "price": 1800.0,
-        "high_52w": 2640.0,
-        "low_52w": 77.91278,
-        "volume": 1256003,
-        "avg_volume": 625340,
-        "market_cap": 104949817344
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T09:59:48Z",
+      "last_updated": "2026-10-05T22:57:34Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T09:59:50Z"
+      "last_succeeded_at": "2026-10-05T22:57:36Z"
     },
     "7631": {
       "symbol": "7631",
@@ -156875,40 +156934,14 @@
         "L": true,
         "I": false,
         "M": true,
-        "score": 15,
+        "score": 22,
         "rs_rating": 1.43,
-        "excel_ratings": {
-          "name": "",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": 69.0,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": null,
-          "three_quarter_eps_growth_pct": null,
-          "annual_eps_growth_pct": null,
-          "three_year_eps_growth_pct": null,
-          "eps_growth_years": null,
-          "quarterly_revenue_growth_pct": null,
-          "three_quarter_revenue_growth_pct": null,
-          "fund_holding_count_q0": null,
-          "fund_holding_count_q1": null,
-          "fund_holding_increase_quarters": null,
-          "institutional_holding_pct": null,
-          "institutional_holding_change_pct": null,
-          "sponsorship_score": null,
-          "sponsorship_rating": null,
-          "ad_rating": "B",
-          "sales_rating": null
-        },
+        "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": -41,
-        "i_score_abs": 0.0,
-        "inst_details": {
-          "streak": 0,
-          "ratio_20d": 0.0,
-          "weighted_net": 0.0
-        },
-        "mansfield_rs": 1.54,
+        "score_delta": 7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": 1.505,
         "revenue_score": 6.0,
         "rev_accelerating": true,
         "rev_strong": true,
@@ -156923,32 +156956,145 @@
       "institutional": [
         {
           "date": "20261005",
-          "no_data": true,
-          "foreign_net": 0,
+          "foreign_net": 245,
+          "trust_net": 0,
+          "dealer_net": 10
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 26,
+          "trust_net": 17,
+          "dealer_net": -20
+        },
+        {
+          "date": "20261001",
+          "foreign_net": 443,
+          "trust_net": 0,
+          "dealer_net": 31
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -71,
           "trust_net": 0,
           "dealer_net": 0
+        },
+        {
+          "date": "20260929",
+          "foreign_net": 123,
+          "trust_net": 0,
+          "dealer_net": -6
+        },
+        {
+          "date": "20260924",
+          "foreign_net": -146,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -230,
+          "trust_net": 0,
+          "dealer_net": 12
+        },
+        {
+          "date": "20260922",
+          "foreign_net": -16,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -118,
+          "trust_net": 0,
+          "dealer_net": -5
+        },
+        {
+          "date": "20260918",
+          "foreign_net": -285,
+          "trust_net": 6,
+          "dealer_net": -7
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -182,
+          "trust_net": 0,
+          "dealer_net": 35
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 22,
+          "trust_net": -4,
+          "dealer_net": -14
+        },
+        {
+          "date": "20260915",
+          "foreign_net": -127,
+          "trust_net": -10,
+          "dealer_net": -66
+        },
+        {
+          "date": "20260914",
+          "foreign_net": 202,
+          "trust_net": 1,
+          "dealer_net": 10
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -225,
+          "trust_net": 28,
+          "dealer_net": -2
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -67,
+          "trust_net": 3,
+          "dealer_net": -4
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -336,
+          "trust_net": 2,
+          "dealer_net": -10
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 73,
+          "trust_net": 9,
+          "dealer_net": 2
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 269,
+          "trust_net": 9,
+          "dealer_net": -43
+        },
+        {
+          "date": "20260904",
+          "foreign_net": 190,
+          "trust_net": -1,
+          "dealer_net": 1
         }
       ],
       "schema_version": "1.0",
       "is_etf": false,
       "financials": {
-        "eps": 2.42,
-        "pe_ratio": 230.99173,
-        "price": 559.0,
-        "high_52w": 666.0,
-        "low_52w": 192.0,
-        "volume": 1353841,
-        "avg_volume": 1110280,
-        "market_cap": 44065128448
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T09:59:50Z",
+      "last_updated": "2026-10-05T22:57:36Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T10:00:22Z"
+      "last_succeeded_at": "2026-10-05T22:57:38Z"
     },
     "7799": {
       "symbol": "7799",
@@ -158156,44 +158302,170 @@
         "A": false,
         "N": false,
         "S": false,
-        "L": false,
+        "L": true,
         "I": false,
         "M": true,
-        "score": 14,
+        "score": 22,
         "rs_rating": 0.25,
-        "excel_ratings": {
-          "name": "九暘",
-          "composite_rating": 64.0,
-          "eps_rating": 68.0,
-          "rs_rating": 69.0,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": 200.0,
-          "three_quarter_eps_growth_pct": 153.15,
-          "annual_eps_growth_pct": 56.52,
-          "three_year_eps_growth_pct": -66.67,
-          "eps_growth_years": 2.0,
-          "quarterly_revenue_growth_pct": 39.47,
-          "three_quarter_revenue_growth_pct": 16.88,
-          "fund_holding_count_q0": 1.0,
-          "fund_holding_count_q1": 0.0,
-          "fund_holding_increase_quarters": 1.0,
-          "institutional_holding_pct": 4.43,
-          "institutional_holding_change_pct": -1.96,
-          "sponsorship_score": null,
-          "sponsorship_rating": null,
-          "ad_rating": "B+",
-          "sales_rating": 43.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": 8,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": 0.97,
+        "revenue_score": 5.0,
+        "rev_accelerating": true,
+        "rev_strong": false,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
-      "institutional": [],
+      "institutional": [
+        {
+          "date": "20261005",
+          "foreign_net": 271,
+          "trust_net": 0,
+          "dealer_net": -6
+        },
+        {
+          "date": "20261002",
+          "foreign_net": -162,
+          "trust_net": 0,
+          "dealer_net": -8
+        },
+        {
+          "date": "20261001",
+          "foreign_net": -2,
+          "trust_net": 0,
+          "dealer_net": -39
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -200,
+          "trust_net": 0,
+          "dealer_net": -43
+        },
+        {
+          "date": "20260929",
+          "foreign_net": 119,
+          "trust_net": 0,
+          "dealer_net": 33
+        },
+        {
+          "date": "20260924",
+          "foreign_net": -1057,
+          "trust_net": 0,
+          "dealer_net": 13
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -92,
+          "trust_net": 0,
+          "dealer_net": 30
+        },
+        {
+          "date": "20260922",
+          "foreign_net": 27,
+          "trust_net": 0,
+          "dealer_net": 6
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -364,
+          "trust_net": 0,
+          "dealer_net": 7
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 443,
+          "trust_net": 0,
+          "dealer_net": 19
+        },
+        {
+          "date": "20260917",
+          "foreign_net": 50,
+          "trust_net": 0,
+          "dealer_net": 5
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 57,
+          "trust_net": 0,
+          "dealer_net": 2
+        },
+        {
+          "date": "20260915",
+          "foreign_net": 25,
+          "trust_net": 0,
+          "dealer_net": -4
+        },
+        {
+          "date": "20260914",
+          "foreign_net": 198,
+          "trust_net": 0,
+          "dealer_net": 2
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -330,
+          "trust_net": 0,
+          "dealer_net": 7
+        },
+        {
+          "date": "20260910",
+          "foreign_net": 38,
+          "trust_net": 0,
+          "dealer_net": 7
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -363,
+          "trust_net": 0,
+          "dealer_net": 9
+        },
+        {
+          "date": "20260908",
+          "foreign_net": -673,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 267,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -237,
+          "trust_net": 0,
+          "dealer_net": 9
+        }
+      ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:38Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:32:22Z"
+      "last_succeeded_at": "2026-10-05T22:57:40Z"
     },
     "8042": {
       "symbol": "8042",
@@ -158725,41 +158997,167 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 14,
+        "score": 7,
         "rs_rating": 0.3,
-        "excel_ratings": {
-          "name": "安國",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": null,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": 96.63,
-          "three_quarter_eps_growth_pct": 109.53,
-          "annual_eps_growth_pct": -39.3,
-          "three_year_eps_growth_pct": -66.67,
-          "eps_growth_years": 0.0,
-          "quarterly_revenue_growth_pct": 88.42,
-          "three_quarter_revenue_growth_pct": 160.8,
-          "fund_holding_count_q0": 50.0,
-          "fund_holding_count_q1": 1.0,
-          "fund_holding_increase_quarters": 0.0,
-          "institutional_holding_pct": 6.31,
-          "institutional_holding_change_pct": 1.29,
-          "sponsorship_score": 18.0,
-          "sponsorship_rating": "E",
-          "ad_rating": "C+",
-          "sales_rating": 61.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": -7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": -4.23,
+        "revenue_score": 5.0,
+        "rev_accelerating": true,
+        "rev_strong": false,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
-      "institutional": [],
+      "institutional": [
+        {
+          "date": "20261005",
+          "foreign_net": -189,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 44,
+          "trust_net": 0,
+          "dealer_net": -2
+        },
+        {
+          "date": "20261001",
+          "foreign_net": -451,
+          "trust_net": 0,
+          "dealer_net": 9
+        },
+        {
+          "date": "20260930",
+          "foreign_net": 90,
+          "trust_net": 30,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260929",
+          "foreign_net": 164,
+          "trust_net": 20,
+          "dealer_net": 4
+        },
+        {
+          "date": "20260924",
+          "foreign_net": -19,
+          "trust_net": 30,
+          "dealer_net": -4
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -215,
+          "trust_net": 0,
+          "dealer_net": -3
+        },
+        {
+          "date": "20260922",
+          "foreign_net": -837,
+          "trust_net": 0,
+          "dealer_net": 10
+        },
+        {
+          "date": "20260921",
+          "foreign_net": 256,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 262,
+          "trust_net": 0,
+          "dealer_net": -3
+        },
+        {
+          "date": "20260917",
+          "foreign_net": 326,
+          "trust_net": 0,
+          "dealer_net": 10
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 155,
+          "trust_net": 0,
+          "dealer_net": -6
+        },
+        {
+          "date": "20260915",
+          "foreign_net": -29,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260914",
+          "foreign_net": 218,
+          "trust_net": 0,
+          "dealer_net": 25
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -341,
+          "trust_net": 0,
+          "dealer_net": -13
+        },
+        {
+          "date": "20260910",
+          "foreign_net": 8,
+          "trust_net": 0,
+          "dealer_net": -2
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -130,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260908",
+          "foreign_net": -133,
+          "trust_net": 0,
+          "dealer_net": 3
+        },
+        {
+          "date": "20260907",
+          "foreign_net": -5,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260904",
+          "foreign_net": 123,
+          "trust_net": 0,
+          "dealer_net": 5
+        }
+      ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:40Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:33:02Z"
+      "last_succeeded_at": "2026-10-05T22:57:42Z"
     },
     "8059": {
       "symbol": "8059",
@@ -159017,11 +159415,11 @@
         "rs_rating": -0.44,
         "excel_ratings": null,
         "fund_holdings": null,
-        "score_delta": 7,
+        "score_delta": 0,
         "i_score_abs": 50.0,
         "inst_details": {},
         "mansfield_rs": -4.371,
-        "revenue_score": 1.0,
+        "revenue_score": 3.0,
         "rev_accelerating": false,
         "rev_strong": false,
         "grid_strategy": {
@@ -159167,13 +159565,13 @@
         "market_cap": null
       },
       "tej_quarterly": null,
-      "last_updated": "2026-10-05T19:06:06Z",
+      "last_updated": "2026-10-05T22:56:33Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T19:06:07Z"
+      "last_succeeded_at": "2026-10-05T22:56:36Z"
     },
     "8070": {
       "symbol": "8070",
@@ -159748,41 +160146,167 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 14,
+        "score": 7,
         "rs_rating": 0.49,
-        "excel_ratings": {
-          "name": "巨虹",
-          "composite_rating": null,
-          "eps_rating": 22.0,
-          "rs_rating": null,
-          "smr_rating": null,
-          "quarterly_eps_growth_pct": 16.87,
-          "three_quarter_eps_growth_pct": 34.31,
-          "annual_eps_growth_pct": -280.2,
-          "three_year_eps_growth_pct": -66.67,
-          "eps_growth_years": 0.0,
-          "quarterly_revenue_growth_pct": -9.91,
-          "three_quarter_revenue_growth_pct": -16.9,
-          "fund_holding_count_q0": 3.0,
-          "fund_holding_count_q1": 1.0,
-          "fund_holding_increase_quarters": 1.0,
-          "institutional_holding_pct": 1.6,
-          "institutional_holding_change_pct": 1.16,
-          "sponsorship_score": null,
-          "sponsorship_rating": null,
-          "ad_rating": "E-",
-          "sales_rating": 6.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": -7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": -6.772,
+        "revenue_score": 6.0,
+        "rev_accelerating": true,
+        "rev_strong": true,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
-      "institutional": [],
+      "institutional": [
+        {
+          "date": "20261005",
+          "foreign_net": 27,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 42,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20261001",
+          "foreign_net": 234,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260930",
+          "foreign_net": 198,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260929",
+          "foreign_net": 8,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260924",
+          "foreign_net": 15,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260923",
+          "foreign_net": 93,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260922",
+          "foreign_net": 109,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260921",
+          "foreign_net": 7,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 38,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -1,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 29,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260915",
+          "foreign_net": 15,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -11,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -173,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -10,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -94,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 179,
+          "trust_net": 0,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 153,
+          "trust_net": 0,
+          "dealer_net": 0
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -8,
+          "trust_net": 0,
+          "dealer_net": -1
+        }
+      ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:42Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:33:10Z"
+      "last_succeeded_at": "2026-10-05T22:57:44Z"
     },
     "8085": {
       "symbol": "8085",
@@ -163432,47 +163956,173 @@
       "industry": "電子零組件業",
       "canslim": {
         "C": false,
-        "A": true,
+        "A": false,
         "N": true,
         "S": false,
         "L": true,
         "I": false,
         "M": true,
-        "score": 56,
+        "score": 37,
         "rs_rating": 1.86,
-        "excel_ratings": {
-          "name": "金居",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": 74.0,
-          "smr_rating": "A",
-          "quarterly_eps_growth_pct": 227.27,
-          "three_quarter_eps_growth_pct": 138.99,
-          "annual_eps_growth_pct": 15.34,
-          "three_year_eps_growth_pct": 3.2,
-          "eps_growth_years": 2.0,
-          "quarterly_revenue_growth_pct": 40.09,
-          "three_quarter_revenue_growth_pct": 37.81,
-          "fund_holding_count_q0": 32.0,
-          "fund_holding_count_q1": 51.0,
-          "fund_holding_increase_quarters": 0.0,
-          "institutional_holding_pct": 31.69,
-          "institutional_holding_change_pct": -0.68,
-          "sponsorship_score": 10.0,
-          "sponsorship_rating": null,
-          "ad_rating": "C+",
-          "sales_rating": 45.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": -19,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": 1.312,
+        "revenue_score": 5.0,
+        "rev_accelerating": true,
+        "rev_strong": false,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
-      "institutional": [],
+      "institutional": [
+        {
+          "date": "20261005",
+          "foreign_net": 5007,
+          "trust_net": 96,
+          "dealer_net": 996
+        },
+        {
+          "date": "20261002",
+          "foreign_net": 517,
+          "trust_net": -11,
+          "dealer_net": 145
+        },
+        {
+          "date": "20261001",
+          "foreign_net": 1152,
+          "trust_net": -126,
+          "dealer_net": -35
+        },
+        {
+          "date": "20260930",
+          "foreign_net": -850,
+          "trust_net": -57,
+          "dealer_net": -251
+        },
+        {
+          "date": "20260929",
+          "foreign_net": -2709,
+          "trust_net": -4,
+          "dealer_net": -1133
+        },
+        {
+          "date": "20260924",
+          "foreign_net": 108,
+          "trust_net": -76,
+          "dealer_net": 646
+        },
+        {
+          "date": "20260923",
+          "foreign_net": 223,
+          "trust_net": -116,
+          "dealer_net": 248
+        },
+        {
+          "date": "20260922",
+          "foreign_net": 482,
+          "trust_net": -100,
+          "dealer_net": 183
+        },
+        {
+          "date": "20260921",
+          "foreign_net": 63,
+          "trust_net": 0,
+          "dealer_net": 345
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 1462,
+          "trust_net": -15,
+          "dealer_net": 438
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -6583,
+          "trust_net": 12,
+          "dealer_net": -1027
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 1262,
+          "trust_net": 5,
+          "dealer_net": 223
+        },
+        {
+          "date": "20260915",
+          "foreign_net": -5037,
+          "trust_net": 1,
+          "dealer_net": -43
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -454,
+          "trust_net": 51,
+          "dealer_net": 185
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -2089,
+          "trust_net": 23,
+          "dealer_net": -503
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -655,
+          "trust_net": -83,
+          "dealer_net": -119
+        },
+        {
+          "date": "20260909",
+          "foreign_net": 637,
+          "trust_net": -186,
+          "dealer_net": -96
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 714,
+          "trust_net": 11,
+          "dealer_net": -48
+        },
+        {
+          "date": "20260907",
+          "foreign_net": 44,
+          "trust_net": 26,
+          "dealer_net": -19
+        },
+        {
+          "date": "20260904",
+          "foreign_net": 908,
+          "trust_net": -20,
+          "dealer_net": -342
+        }
+      ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:44Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:34:22Z"
+      "last_succeeded_at": "2026-10-05T22:57:46Z"
     },
     "8367": {
       "symbol": "8367",
@@ -164282,84 +164932,167 @@
         "L": false,
         "I": false,
         "M": true,
-        "score": 14,
+        "score": 7,
         "rs_rating": 0.25,
-        "excel_ratings": {
-          "name": "寧衛",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": 42.0,
-          "smr_rating": "A",
-          "quarterly_eps_growth_pct": -91.56,
-          "three_quarter_eps_growth_pct": -92.94,
-          "annual_eps_growth_pct": -87.94,
-          "three_year_eps_growth_pct": -52.88,
-          "eps_growth_years": 0.0,
-          "quarterly_revenue_growth_pct": 78.77,
-          "three_quarter_revenue_growth_pct": 10.56,
-          "fund_holding_count_q0": 30.0,
-          "fund_holding_count_q1": 11.0,
-          "fund_holding_increase_quarters": 0.0,
-          "institutional_holding_pct": 9.49,
-          "institutional_holding_change_pct": -0.14,
-          "sponsorship_score": 10.0,
-          "sponsorship_rating": null,
-          "ad_rating": "D-",
-          "sales_rating": 16.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": -7,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": -7.151,
+        "revenue_score": 6.0,
+        "rev_accelerating": true,
+        "rev_strong": true,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
       "institutional": [
         {
-          "date": "20260413",
-          "foreign_net": 597,
-          "trust_net": -92,
-          "dealer_net": -54
-        },
-        {
-          "date": "20260410",
-          "foreign_net": -1072,
-          "trust_net": -171,
-          "dealer_net": -87
-        },
-        {
-          "date": "20260409",
-          "foreign_net": -5257,
-          "trust_net": -211,
-          "dealer_net": -266
-        },
-        {
-          "date": "20260408",
-          "foreign_net": 5681,
-          "trust_net": -2,
-          "dealer_net": 547
-        },
-        {
-          "date": "20260402",
-          "foreign_net": -1629,
-          "trust_net": -17,
-          "dealer_net": -172
-        },
-        {
-          "date": "20260401",
-          "foreign_net": -1046,
-          "trust_net": -15,
-          "dealer_net": 51
-        },
-        {
-          "date": "20260331",
-          "foreign_net": 1529,
+          "date": "20261005",
+          "foreign_net": -2095,
           "trust_net": 0,
-          "dealer_net": 35
+          "dealer_net": -12
+        },
+        {
+          "date": "20261002",
+          "foreign_net": -764,
+          "trust_net": 0,
+          "dealer_net": 1
+        },
+        {
+          "date": "20261001",
+          "foreign_net": -864,
+          "trust_net": 0,
+          "dealer_net": -2
+        },
+        {
+          "date": "20260930",
+          "foreign_net": 1355,
+          "trust_net": 0,
+          "dealer_net": 6
+        },
+        {
+          "date": "20260929",
+          "foreign_net": 63,
+          "trust_net": 1,
+          "dealer_net": -51
+        },
+        {
+          "date": "20260924",
+          "foreign_net": -1089,
+          "trust_net": 0,
+          "dealer_net": -35
+        },
+        {
+          "date": "20260923",
+          "foreign_net": -748,
+          "trust_net": 2,
+          "dealer_net": 19
+        },
+        {
+          "date": "20260922",
+          "foreign_net": -2968,
+          "trust_net": 0,
+          "dealer_net": -12
+        },
+        {
+          "date": "20260921",
+          "foreign_net": -2538,
+          "trust_net": 0,
+          "dealer_net": 14
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 3430,
+          "trust_net": -909,
+          "dealer_net": -271
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -733,
+          "trust_net": -1015,
+          "dealer_net": 16
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 84,
+          "trust_net": -870,
+          "dealer_net": -10
+        },
+        {
+          "date": "20260915",
+          "foreign_net": -1092,
+          "trust_net": 806,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260914",
+          "foreign_net": 970,
+          "trust_net": 9,
+          "dealer_net": -83
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -214,
+          "trust_net": 0,
+          "dealer_net": -49
+        },
+        {
+          "date": "20260910",
+          "foreign_net": 817,
+          "trust_net": -1,
+          "dealer_net": -38
+        },
+        {
+          "date": "20260909",
+          "foreign_net": -732,
+          "trust_net": 2,
+          "dealer_net": 7
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 1575,
+          "trust_net": -3,
+          "dealer_net": -24
+        },
+        {
+          "date": "20260907",
+          "foreign_net": -599,
+          "trust_net": -4,
+          "dealer_net": -104
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -444,
+          "trust_net": 160,
+          "dealer_net": 17
         }
       ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:46Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:34:58Z"
+      "last_succeeded_at": "2026-10-05T22:57:48Z"
     },
     "8423": {
       "symbol": "8423",
@@ -168005,90 +168738,173 @@
       "industry": "電機機械",
       "canslim": {
         "C": false,
-        "A": true,
+        "A": false,
         "N": true,
         "S": false,
         "L": true,
-        "I": true,
+        "I": false,
         "M": true,
-        "score": 70,
+        "score": 37,
         "rs_rating": 2.0,
-        "excel_ratings": {
-          "name": "高力",
-          "composite_rating": null,
-          "eps_rating": null,
-          "rs_rating": 86.0,
-          "smr_rating": "A",
-          "quarterly_eps_growth_pct": 61.19,
-          "three_quarter_eps_growth_pct": 216.91,
-          "annual_eps_growth_pct": 38.26,
-          "three_year_eps_growth_pct": 39.1,
-          "eps_growth_years": 5.0,
-          "quarterly_revenue_growth_pct": 54.92,
-          "three_quarter_revenue_growth_pct": 140.93,
-          "fund_holding_count_q0": 17.0,
-          "fund_holding_count_q1": 82.0,
-          "fund_holding_increase_quarters": 5.0,
-          "institutional_holding_pct": 44.27,
-          "institutional_holding_change_pct": -3.3,
-          "sponsorship_score": 6.0,
-          "sponsorship_rating": null,
-          "ad_rating": "C-",
-          "sales_rating": 2.0
-        },
-        "fund_holdings": null
+        "excel_ratings": null,
+        "fund_holdings": null,
+        "score_delta": -33,
+        "i_score_abs": 50.0,
+        "inst_details": {},
+        "mansfield_rs": 2.86,
+        "revenue_score": 6.0,
+        "rev_accelerating": true,
+        "rev_strong": true,
+        "grid_strategy": {
+          "volatility_daily": 0.0,
+          "volatility_annual": 0.0,
+          "spacing_pct": 0.0,
+          "levels": [],
+          "is_etf": false
+        }
       },
       "institutional": [
         {
-          "date": "20260413",
-          "foreign_net": 831,
-          "trust_net": 34,
+          "date": "20261005",
+          "foreign_net": 601,
+          "trust_net": -18,
+          "dealer_net": 94
+        },
+        {
+          "date": "20261002",
+          "foreign_net": -421,
+          "trust_net": -81,
+          "dealer_net": 42
+        },
+        {
+          "date": "20261001",
+          "foreign_net": -76,
+          "trust_net": 101,
           "dealer_net": 30
         },
         {
-          "date": "20260410",
-          "foreign_net": 816,
-          "trust_net": 57,
-          "dealer_net": -14
+          "date": "20260930",
+          "foreign_net": -787,
+          "trust_net": 136,
+          "dealer_net": 53
         },
         {
-          "date": "20260409",
-          "foreign_net": 1262,
-          "trust_net": -40,
-          "dealer_net": 92
+          "date": "20260929",
+          "foreign_net": -728,
+          "trust_net": 189,
+          "dealer_net": 11
         },
         {
-          "date": "20260408",
-          "foreign_net": -1486,
-          "trust_net": -179,
-          "dealer_net": 33
+          "date": "20260924",
+          "foreign_net": -331,
+          "trust_net": -54,
+          "dealer_net": 6
         },
         {
-          "date": "20260402",
-          "foreign_net": -430,
-          "trust_net": 17,
-          "dealer_net": -17
+          "date": "20260923",
+          "foreign_net": -20,
+          "trust_net": 203,
+          "dealer_net": -140
         },
         {
-          "date": "20260401",
-          "foreign_net": 123,
-          "trust_net": 115,
-          "dealer_net": 61
+          "date": "20260922",
+          "foreign_net": -313,
+          "trust_net": 497,
+          "dealer_net": 57
         },
         {
-          "date": "20260331",
-          "foreign_net": 118,
-          "trust_net": 98,
-          "dealer_net": -68
+          "date": "20260921",
+          "foreign_net": 278,
+          "trust_net": -10,
+          "dealer_net": -72
+        },
+        {
+          "date": "20260918",
+          "foreign_net": 589,
+          "trust_net": -21,
+          "dealer_net": 36
+        },
+        {
+          "date": "20260917",
+          "foreign_net": -103,
+          "trust_net": -16,
+          "dealer_net": 25
+        },
+        {
+          "date": "20260916",
+          "foreign_net": 290,
+          "trust_net": -5,
+          "dealer_net": -11
+        },
+        {
+          "date": "20260915",
+          "foreign_net": 60,
+          "trust_net": 1,
+          "dealer_net": -23
+        },
+        {
+          "date": "20260914",
+          "foreign_net": -1478,
+          "trust_net": -267,
+          "dealer_net": 84
+        },
+        {
+          "date": "20260911",
+          "foreign_net": -263,
+          "trust_net": 762,
+          "dealer_net": 29
+        },
+        {
+          "date": "20260910",
+          "foreign_net": -318,
+          "trust_net": -49,
+          "dealer_net": -10
+        },
+        {
+          "date": "20260909",
+          "foreign_net": 1094,
+          "trust_net": 242,
+          "dealer_net": -58
+        },
+        {
+          "date": "20260908",
+          "foreign_net": 39,
+          "trust_net": -568,
+          "dealer_net": -1
+        },
+        {
+          "date": "20260907",
+          "foreign_net": -890,
+          "trust_net": -1139,
+          "dealer_net": -62
+        },
+        {
+          "date": "20260904",
+          "foreign_net": -313,
+          "trust_net": 33,
+          "dealer_net": 203
         }
       ],
       "schema_version": "1.0",
+      "is_etf": false,
+      "financials": {
+        "eps": null,
+        "pe_ratio": null,
+        "price": null,
+        "high_52w": null,
+        "low_52w": null,
+        "volume": null,
+        "avg_volume": null,
+        "market_cap": null
+      },
+      "tej_quarterly": null,
+      "last_updated": "2026-10-05T22:57:48Z",
       "freshness": {
         "days_old": 0,
         "level": "today",
         "label": "🟢 今日"
       },
-      "last_succeeded_at": "2026-10-05T07:35:12Z"
+      "last_succeeded_at": "2026-10-05T22:57:50Z"
     },
     "9103": {
       "symbol": "9103",
