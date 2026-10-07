@@ -1,33 +1,28 @@
 {
   "schema_version": "1.0",
   "artifact_kind": "update_summary",
-  "run_id": "20261006T162822Z",
-  "generated_at": "2026-10-06T16:41:23Z",
+  "run_id": "20261007T171215Z",
+  "generated_at": "2026-10-07T17:24:52Z",
   "status": "failed",
   "stats": {
     "retry_attempts": 9,
     "retry_failures": 3,
     "resume_rejected": 0,
-    "stock_failures": 1,
-    "provider_wait_seconds": 468.47881212200105
+    "stock_failures": 0,
+    "provider_wait_seconds": 498.83904729000056
   },
-  "timestamp": "2026-10-06T16:41:23Z",
+  "timestamp": "2026-10-07T17:24:52Z",
   "update_type": "canslim_export",
   "description": "Primary CANSLIM export publish summary",
   "api_status": {
     "retry_failures": 3,
-    "provider_wait_seconds": 468.47881212200105
+    "provider_wait_seconds": 498.83904729000056
   },
   "data_stats": {
     "total_stocks": 2174,
     "updated_stocks": 2174
   },
-  "failures": [
-    {
-      "ticker": "8054",
-      "message": "Missing financial data"
-    }
-  ],
+  "failures": [],
   "refreshed_symbols": [
     "1101",
     "1301",
@@ -70,6 +65,7 @@
     "7610",
     "7795",
     "8040",
+    "8054",
     "8084",
     "8358",
     "8422",
@@ -167,7 +163,6 @@
     "3014",
     "2539",
     "3029",
-    "3003",
     "3051",
     "3047",
     "3041",
@@ -179,9 +174,7 @@
     "3311",
     "3021"
   ],
-  "failed_symbols": [
-    "8054"
-  ],
+  "failed_symbols": [],
   "next_rotation": {
     "batch_index": 1,
     "symbols": [
@@ -221,7 +214,6 @@
       "3363",
       "3372",
       "3374",
-      "3388",
       "3441",
       "3455",
       "3467",
@@ -240,6 +232,7 @@
       "3551",
       "3552",
       "3563",
+      "3564",
       "3576",
       "3580",
       "3583",
@@ -323,6 +316,7 @@
       "4924",
       "4927",
       "4931",
+      "4934",
       "4938",
       "4939",
       "4949",
@@ -340,13 +334,13 @@
       "4989",
       "4991",
       "5009",
+      "5011",
       "5202",
       "5228",
       "5230",
       "5243",
       "5285",
       "5289",
-      "5291",
       "5309",
       "5314",
       "5328",
@@ -389,8 +383,8 @@
     "retry_symbols": []
   },
   "freshness_counts": {
-    "today": 156,
-    "warning": 580,
+    "today": 149,
+    "warning": 587,
     "stale": 1438
   }
 }
