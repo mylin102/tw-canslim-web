@@ -16,7 +16,21 @@ const app = createApp({
         const loadingProgress = ref(0);
         const errorState = ref(null);
         const searchSuggestions = ref([]);
-        const activeTab = ref('search'); // 'search', 'ranking', 'screener'
+        const activeTab = ref('search'); // 'search', 'ranking', 'screener', 'institutional'
+
+        // Institutional Traders Data
+        const institutionalData = ref({
+            records: [
+                { date: '10/07', foreign: -1164, trust: 66, proprietary: 447 },
+                { date: '10/06', foreign: -1673, trust: 154, proprietary: 395 },
+                { date: '10/05', foreign: 9770, trust: 589, proprietary: 491 },
+                { date: '10/02', foreign: -5914, trust: 253, proprietary: 316 },
+                { date: '10/01', foreign: 3090, trust: 596, proprietary: 602 }
+            ],
+            totalForeign: computed(() => institutionalData.value.records.reduce((sum, r) => sum + r.foreign, 0)),
+            totalTrust: computed(() => institutionalData.value.records.reduce((sum, r) => sum + r.trust, 0)),
+            totalProprietary: computed(() => institutionalData.value.records.reduce((sum, r) => sum + r.proprietary, 0))
+        });
 
         // Screener Filters
         const screenerMinScore = ref(70);
@@ -375,14 +389,64 @@ const app = createApp({
         const institutionalValueClass = (v, p, n) => v > 0 ? p : (v < 0 ? n : 'text-slate-300');
         const totalInstitutionalNet = (day) => safeNumber(day?.foreign_net) + safeNumber(day?.trust_net) + safeNumber(day?.dealer_net);
 
-        onMounted(() => fetchData());
+        const formatNumber = (num) => {
+            const sign = num > 0 ? '+' : '';
+            return sign + num.toLocaleString();
+        };
+
+        const initInstitutionalChart = () => {
+            this.$nextTick(() => {
+                const canvas = document.getElementById('institutionalChart');
+                if (!canvas || !window.Chart) return;
+
+                const data = institutionalData.value.records;
+                const dates = data.map(d => d.date);
+                const foreign = data.map(d => d.foreign);
+                const trust = data.map(d => d.trust);
+                const proprietary = data.map(d => d.proprietary);
+
+                new window.Chart(canvas, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: '外資', data: foreign, borderColor: '#1a73e8', backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                                borderWidth: 2.5, fill: true, tension: 0.4, pointRadius: 5, pointBackgroundColor: '#1a73e8', pointBorderColor: 'white', pointBorderWidth: 2
+                            },
+                            {
+                                label: '投信', data: trust, borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                                borderWidth: 2.5, fill: false, tension: 0.4, pointRadius: 5, pointBackgroundColor: '#f59e0b', pointBorderColor: 'white', pointBorderWidth: 2
+                            },
+                            {
+                                label: '自營商', data: proprietary, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                borderWidth: 2.5, fill: false, tension: 0.4, pointRadius: 5, pointBackgroundColor: '#10b981', pointBorderColor: 'white', pointBorderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { grid: { color: 'rgba(0, 0, 0, 0.05)' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            });
+        };
+
+        onMounted(() => {
+            fetchData();
+            if (activeTab.value === 'institutional') initInstitutionalChart();
+        });
 
         return {
             stockData, stockIndexData, currentStock, searchQuery, lastUpdated, isLoading, loadingProgress, errorState, searchSuggestions,
-            activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry,
+            activeTab, screenerMinScore, screenerMinRs, screenerFundOnly, screenerIndustry, institutionalData,
             stockLeaders, etfLeaders, filteredStocks, searchUniverse, availableIndustries,
             selectStock, closeDetail, onSearchInput, clearSearch, updateSuggestions,
-            getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber,
+            getScoreCategory, getFreshnessBadge, getStockFreshness, formatNumber, initInstitutionalChart,
             recentInstitutionalDays, institutionalBarStyle, institutionalBarClass, institutionalValueClass, totalInstitutionalNet,
             financialLabels, canslimDefinitions,
             formatRelativeTime, getStockTier, getNextUpdateDay, getEffectiveRs,

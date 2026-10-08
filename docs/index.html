@@ -186,6 +186,14 @@
         /* 佈局 */
         .max-w-7xl { max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
 
+        /* 表格和數字 */
+        .table-wrapper { overflow-x: auto; border-radius: 12px; }
+        .number { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+        .number.positive { color: #10b981; }
+        .number.negative { color: #e94560; }
+        .buy { color: #10b981; }
+        .sell { color: #e94560; }
+
         /* 響應式 */
         @media(max-width: 640px) {
             .stat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -278,10 +286,10 @@
                 </div>
 
                 <!-- Tabs Navigation -->
-                <div class="flex space-x-2 bg-white p-1.5 rounded-3xl shadow-md border border-slate-200 mb-10 max-w-md mx-auto md:mx-0">
-                    <button v-for="tab in [{id:'search', icon:'icon-search', label:'個股查詢'}, {id:'ranking', icon:'icon-ranking-star', label:'即時排行'}, {id:'screener', icon:'icon-filter', label:'條件篩選'}]" 
+                <div class="flex space-x-2 bg-white p-1.5 rounded-3xl shadow-md border border-slate-200 mb-10 flex-wrap justify-center md:justify-start">
+                    <button v-for="tab in [{id:'search', icon:'icon-search', label:'個股查詢'}, {id:'ranking', icon:'icon-ranking-star', label:'即時排行'}, {id:'screener', icon:'icon-filter', label:'條件篩選'}, {id:'institutional', icon:'icon-industry', label:'三大法人'}]"
                             :key="tab.id" @click="activeTab = tab.id"
-                            :class="['flex-1 flex items-center justify-center py-3.5 rounded-2xl font-black transition-all text-sm', activeTab === tab.id ? 'bg-blue-600 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:bg-slate-50']">
+                            :class="['flex items-center justify-center py-3.5 px-4 rounded-2xl font-black transition-all text-sm', activeTab === tab.id ? 'bg-blue-600 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:bg-slate-50']">
                         <svg :class="['icon', tab.icon, 'mr-2.5']"><use :href="'#' + tab.icon"></use></svg>{{ tab.label }}
                     </button>
                 </div>
@@ -813,6 +821,85 @@
                                 </div>
                             </div>
                             <p class="text-xs text-slate-400 mt-6 font-bold uppercase tracking-widest">符合條件標的共計: {{ filteredStocks.length }} 檔</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Institutional Traders Tab -->
+                <div v-if="activeTab === 'institutional'" class="animate-fade-in">
+                    <!-- 統計卡片 -->
+                    <div class="stat-grid mb-8">
+                        <div class="stat-card">
+                            <div class="label">外資 5 日合計</div>
+                            <div class="value" :class="institutionalData.totalForeign > 0 ? 'buy' : 'sell'">
+                                {{ formatNumber(institutionalData.totalForeign) }}
+                            </div>
+                            <div style="font-size:13px;color:#666;margin-top:8px;">張</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">投信 5 日合計</div>
+                            <div class="value" :class="institutionalData.totalTrust > 0 ? 'buy' : 'sell'">
+                                {{ formatNumber(institutionalData.totalTrust) }}
+                            </div>
+                            <div style="font-size:13px;color:#666;margin-top:8px;">張</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">自營商 5 日合計</div>
+                            <div class="value" :class="institutionalData.totalProprietary > 0 ? 'buy' : 'sell'">
+                                {{ formatNumber(institutionalData.totalProprietary) }}
+                            </div>
+                            <div style="font-size:13px;color:#666;margin-top:8px;">張</div>
+                        </div>
+                    </div>
+
+                    <!-- 圖表 -->
+                    <div class="card mb-8">
+                        <h3 class="mb-4" style="font-size:18px;font-weight:900;">近 5 日趨勢</h3>
+                        <div style="position:relative;height:300px;margin:16px 0;">
+                            <canvas id="institutionalChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 詳細表格 -->
+                    <div class="card">
+                        <h3 class="mb-4" style="font-size:18px;font-weight:900;">每日詳情</h3>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>外資<br><span style="font-size:11px;font-weight:400;">(張)</span></th>
+                                        <th>投信<br><span style="font-size:11px;font-weight:400;">(張)</span></th>
+                                        <th>自營商<br><span style="font-size:11px;font-weight:400;">(張)</span></th>
+                                        <th>合計<br><span style="font-size:11px;font-weight:400;">(張)</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(row, idx) in institutionalData.records" :key="idx">
+                                        <td class="font-mono" style="font-weight:600;">{{ row.date }}</td>
+                                        <td>
+                                            <span class="number" :class="row.foreign > 0 ? 'positive' : 'negative'">
+                                                {{ formatNumber(row.foreign) }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="number" :class="row.trust > 0 ? 'positive' : 'negative'">
+                                                {{ formatNumber(row.trust) }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="number" :class="row.proprietary > 0 ? 'positive' : 'negative'">
+                                                {{ formatNumber(row.proprietary) }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="number" :class="row.total > 0 ? 'positive' : 'negative'" style="font-weight:700;">
+                                                {{ formatNumber(row.total) }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
