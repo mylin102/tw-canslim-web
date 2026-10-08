@@ -123,20 +123,76 @@
     <!-- Vue.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <style>
-        body { font-family: 'Noto Sans TC', sans-serif; font-size: 16px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* 統一字體系統 */
+        body { font-family: 'Noto Sans TC', sans-serif; font-size: 15px; line-height: 1.5; background: #f0f2f5; color: #1a1a2e; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         [v-cloak] { display: none !important; }
-        .tab-active { background: #3b82f6 !important; color: white !important; }
-        .pass { color: #059669; font-weight: 700; }
-        .fail { color: #dc2626; font-weight: 700; }
+
+        /* 標題 */
+        h1 { font-size: 28px; font-weight: 900; letter-spacing: -0.02em; }
+        h2 { font-size: 22px; font-weight: 900; letter-spacing: -0.01em; }
+        h3 { font-size: 18px; font-weight: 700; }
+        h4 { font-size: 16px; font-weight: 700; }
+
+        /* 數據展示 */
+        .stat-value { font-size: 24px; font-weight: 900; }
+        .stat-label { font-size: 12px; color: #666; }
+        .score-badge { font-size: 13px; font-weight: 700; }
+
+        /* 表格 */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 12px 8px; font-size: 12px; color: #666; border-bottom: 2px solid #eee; cursor: pointer; user-select: none; white-space: nowrap; font-weight: 400; }
+        td { padding: 10px 8px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        tr:hover td { background: #f8f9ff; }
+
+        /* 卡片 */
+        .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 1px 8px rgba(0,0,0,0.06); margin-bottom: 16px; }
+
+        /* 按鈕 */
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; transition: all 0.2s; }
+        .btn-primary { background: #1a73e8; color: white; }
+        .btn-primary:hover { background: #1557b0; transform: translateY(-1px); }
+        .btn-sm { padding: 6px 14px; font-size: 12px; }
+
+        /* 搜尋框 */
+        .search-box { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .search-box input { flex: 1; min-width: 200px; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 15px; outline: none; }
+        .search-box input:focus { border-color: #1a73e8; }
+
+        /* 篩選 */
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .filter-chip { padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #ddd; background: white; transition: all 0.2s; }
+        .filter-chip.active { background: #1a73e8; color: white; border-color: #1a73e8; }
+
+        /* 統計卡片 */
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 16px 0; }
+        .stat-card { background: #f8f9fa; border-radius: 12px; padding: 16px; text-align: center; }
+        .stat-card .label { font-size: 12px; color: #666; margin-bottom: 4px; }
+        .stat-card .value { font-size: 24px; font-weight: 900; }
+
+        /* 顏色標準 */
+        .sqz-on { color: #e94560; font-weight: 700; }
+        .sqz-off { color: #10b981; font-weight: 700; }
+        .sqz-fired { color: #f59e0b; font-weight: 700; }
+        .pass { color: #10b981; font-weight: 700; }
+        .fail { color: #e94560; font-weight: 700; }
+
+        /* 動畫 */
         .animate-fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Readability improvements */
-        .text-huge { font-size: 3.5rem; line-height: 1; }
-        .card-title { font-size: 1.25rem; font-weight: 900; }
-        .stat-value { font-size: 1.75rem; font-weight: 900; }
-        .table-cell-lg { padding: 1.25rem 1rem; font-size: 1rem; }
+
+        /* 佈局 */
+        .max-w-7xl { max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
+
+        /* 響應式 */
+        @media(max-width: 640px) {
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            table { font-size: 13px; }
+            td, th { padding: 8px 4px; }
+            h1 { font-size: 24px; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 min-h-screen">
