@@ -3,7 +3,7 @@
  * High-performance CANSLIM analyzer for Taiwan Stock Market
  */
 
-const { createApp, ref, shallowRef, computed, onMounted } = Vue;
+const { createApp, ref, shallowRef, computed, onMounted, nextTick, watch } = Vue;
 
 const app = createApp({
     setup() {
@@ -395,7 +395,7 @@ const app = createApp({
         };
 
         const initInstitutionalChart = () => {
-            this.$nextTick(() => {
+            nextTick(() => {
                 const canvas = document.getElementById('institutionalChart');
                 if (!canvas || !window.Chart) return;
 
@@ -439,6 +439,12 @@ const app = createApp({
         onMounted(() => {
             fetchData();
             if (activeTab.value === 'institutional') initInstitutionalChart();
+        });
+
+        watch(() => activeTab.value, (newTab) => {
+            if (newTab === 'institutional') {
+                initInstitutionalChart();
+            }
         });
 
         return {
