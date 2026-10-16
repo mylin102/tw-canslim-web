@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "date": "2026-10-15",
-  "generated_at": "2026-10-15T14:51:09Z",
+  "date": "2026-10-16",
+  "generated_at": "2026-10-16T14:42:14Z",
   "universe": [
     {
       "symbol": "1101",
       "name": "台泥",
-      "rs_rating": 43,
+      "rs_rating": 44,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.275,
+      "composite_score": 0.282,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -21,12 +21,12 @@
     {
       "symbol": "1301",
       "name": "台塑",
-      "rs_rating": 67,
+      "rs_rating": 64,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.517,
+      "composite_score": 0.508,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -39,25 +39,24 @@
       "rs_rating": 99,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.683,
+      "composite_score": 0.623,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_strong"
       ]
     },
     {
       "symbol": "1459",
       "name": "聯發",
-      "rs_rating": 53,
+      "rs_rating": 55,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.519,
+      "composite_score": 0.525,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -68,12 +67,12 @@
     {
       "symbol": "2303",
       "name": "聯電",
-      "rs_rating": 62,
+      "rs_rating": 61,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.296,
+      "composite_score": 0.293,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -82,12 +81,12 @@
     {
       "symbol": "2330",
       "name": "台積電",
-      "rs_rating": 48,
+      "rs_rating": 49,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.264,
+      "composite_score": 0.267,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -97,12 +96,12 @@
     {
       "symbol": "2357",
       "name": "華碩",
-      "rs_rating": 54,
+      "rs_rating": 55,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.418,
+      "composite_score": 0.437,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -112,12 +111,12 @@
     {
       "symbol": "2395",
       "name": "研華",
-      "rs_rating": 64,
+      "rs_rating": 65,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.348,
+      "composite_score": 0.347,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -127,12 +126,12 @@
     {
       "symbol": "2511",
       "name": "太子",
-      "rs_rating": 37,
+      "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.165,
+      "composite_score": 0.172,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -141,12 +140,12 @@
     {
       "symbol": "2515",
       "name": "中工",
-      "rs_rating": 33,
+      "rs_rating": 34,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.099,
+      "composite_score": 0.122,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -155,12 +154,12 @@
     {
       "symbol": "2520",
       "name": "冠德",
-      "rs_rating": 42,
+      "rs_rating": 44,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.38,
+      "composite_score": 0.378,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -185,27 +184,12 @@
     {
       "symbol": "2530",
       "name": "華建",
-      "rs_rating": 32,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.23,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2536",
-      "name": "宏普",
-      "rs_rating": 30,
+      "rs_rating": 33,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.144,
+      "composite_score": 0.153,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -214,12 +198,12 @@
     {
       "symbol": "2537",
       "name": "聯上發",
-      "rs_rating": 38,
+      "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.114,
+      "composite_score": 0.117,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -228,12 +212,12 @@
     {
       "symbol": "2538",
       "name": "基泰",
-      "rs_rating": 32,
+      "rs_rating": 33,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.096,
+      "composite_score": 0.099,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -242,12 +226,12 @@
     {
       "symbol": "2539",
       "name": "櫻花建",
-      "rs_rating": 29,
+      "rs_rating": 30,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.111,
+      "composite_score": 0.122,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -256,12 +240,12 @@
     {
       "symbol": "2542",
       "name": "興富發",
-      "rs_rating": 37,
+      "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.217,
+      "composite_score": 0.224,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -284,12 +268,12 @@
     {
       "symbol": "2547",
       "name": "日勝生",
-      "rs_rating": 35,
+      "rs_rating": 36,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.113,
+      "composite_score": 0.128,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -298,12 +282,12 @@
     {
       "symbol": "2548",
       "name": "華固",
-      "rs_rating": 32,
+      "rs_rating": 33,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.15,
+      "composite_score": 0.157,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -312,12 +296,12 @@
     {
       "symbol": "2601",
       "name": "益航",
-      "rs_rating": 38,
+      "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.114,
+      "composite_score": 0.117,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -331,7 +315,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.243,
+      "composite_score": 0.247,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -355,12 +339,12 @@
     {
       "symbol": "2606",
       "name": "裕民",
-      "rs_rating": 46,
+      "rs_rating": 47,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.308,
+      "composite_score": 0.287,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -370,12 +354,12 @@
     {
       "symbol": "2607",
       "name": "榮運",
-      "rs_rating": 41,
+      "rs_rating": 42,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.433,
+      "composite_score": 0.44,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -400,12 +384,12 @@
     {
       "symbol": "2610",
       "name": "華航",
-      "rs_rating": 38,
+      "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.192,
+      "volume_score": 1.0,
+      "composite_score": 0.235,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -414,12 +398,12 @@
     {
       "symbol": "2611",
       "name": "志信",
-      "rs_rating": 42,
+      "rs_rating": 43,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.222,
+      "composite_score": 0.225,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -429,12 +413,12 @@
     {
       "symbol": "2614",
       "name": "東森",
-      "rs_rating": 28,
+      "rs_rating": 29,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.184,
+      "composite_score": 0.187,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -444,12 +428,12 @@
     {
       "symbol": "2615",
       "name": "萬海",
-      "rs_rating": 55,
+      "rs_rating": 54,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.321,
+      "composite_score": 0.302,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -459,12 +443,12 @@
     {
       "symbol": "2617",
       "name": "台航",
-      "rs_rating": 40,
+      "rs_rating": 41,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.34,
+      "composite_score": 0.343,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -474,12 +458,12 @@
     {
       "symbol": "2618",
       "name": "長榮航",
-      "rs_rating": 43,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.291,
+      "composite_score": 0.305,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -494,7 +478,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.164,
+      "composite_score": 0.18,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -503,12 +487,12 @@
     {
       "symbol": "2633",
       "name": "台灣高鐵",
-      "rs_rating": 36,
+      "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.282,
+      "composite_score": 0.292,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -523,7 +507,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.187,
+      "composite_score": 0.219,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -552,7 +536,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.17,
+      "composite_score": 0.174,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -561,12 +545,12 @@
     {
       "symbol": "2646",
       "name": "星宇航空",
-      "rs_rating": 34,
+      "rs_rating": 35,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.122,
+      "composite_score": 0.129,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -575,12 +559,12 @@
     {
       "symbol": "2801",
       "name": "彰銀",
-      "rs_rating": 49,
+      "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.389,
+      "composite_score": 0.475,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -590,12 +574,12 @@
     {
       "symbol": "2812",
       "name": "台中銀",
-      "rs_rating": 34,
+      "rs_rating": 35,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.16,
+      "composite_score": 0.167,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -604,12 +588,12 @@
     {
       "symbol": "2820",
       "name": "華票",
-      "rs_rating": 37,
+      "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.321,
+      "composite_score": 0.331,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -619,12 +603,12 @@
     {
       "symbol": "2834",
       "name": "臺企銀",
-      "rs_rating": 41,
+      "rs_rating": 42,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.183,
+      "composite_score": 0.19,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -634,12 +618,12 @@
     {
       "symbol": "2836",
       "name": "高雄銀",
-      "rs_rating": 37,
+      "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.175,
+      "composite_score": 0.182,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -649,12 +633,12 @@
     {
       "symbol": "2838",
       "name": "聯邦銀",
-      "rs_rating": 38,
+      "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.118,
+      "composite_score": 0.125,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -663,12 +647,12 @@
     {
       "symbol": "2845",
       "name": "遠東銀",
-      "rs_rating": 39,
+      "rs_rating": 40,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.243,
+      "composite_score": 0.25,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -678,12 +662,12 @@
     {
       "symbol": "2851",
       "name": "中再保",
-      "rs_rating": 60,
+      "rs_rating": 64,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.46,
+      "volume_score": 1.0,
+      "composite_score": 0.508,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -693,12 +677,12 @@
     {
       "symbol": "2855",
       "name": "統一證",
-      "rs_rating": 63,
+      "rs_rating": 64,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.503,
+      "composite_score": 0.498,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -708,12 +692,12 @@
     {
       "symbol": "2880",
       "name": "華南金",
-      "rs_rating": 51,
+      "rs_rating": 54,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.355,
+      "composite_score": 0.344,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -723,12 +707,12 @@
     {
       "symbol": "2881",
       "name": "富邦金",
-      "rs_rating": 56,
+      "rs_rating": 57,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.316,
+      "composite_score": 0.327,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -738,12 +722,12 @@
     {
       "symbol": "2882",
       "name": "國泰金",
-      "rs_rating": 51,
+      "rs_rating": 53,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.335,
+      "composite_score": 0.353,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -753,7 +737,97 @@
     {
       "symbol": "2883",
       "name": "凱基金",
-      "rs_rating": 63,
+      "rs_rating": 65,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.359,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2884",
+      "name": "玉山金",
+      "rs_rating": 54,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.392,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2885",
+      "name": "元大金",
+      "rs_rating": 56,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.398,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2886",
+      "name": "兆豐金",
+      "rs_rating": 48,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.314,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2887",
+      "name": "台新新光金",
+      "rs_rating": 61,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.311,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2889",
+      "name": "國票金",
+      "rs_rating": 41,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.245,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2890",
+      "name": "永豐金",
+      "rs_rating": 53,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
@@ -766,104 +840,14 @@
       ]
     },
     {
-      "symbol": "2884",
-      "name": "玉山金",
+      "symbol": "2891",
+      "name": "中信金",
       "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.435,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2885",
-      "name": "元大金",
-      "rs_rating": 53,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.381,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2886",
-      "name": "兆豐金",
-      "rs_rating": 45,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.365,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2887",
-      "name": "台新新光金",
-      "rs_rating": 60,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.3,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2889",
-      "name": "國票金",
-      "rs_rating": 39,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.231,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2890",
-      "name": "永豐金",
-      "rs_rating": 50,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.392,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2891",
-      "name": "中信金",
-      "rs_rating": 49,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.357,
+      "composite_score": 0.363,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -873,12 +857,12 @@
     {
       "symbol": "2892",
       "name": "第一金",
-      "rs_rating": 49,
+      "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.317,
+      "composite_score": 0.383,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -888,12 +872,12 @@
     {
       "symbol": "2897",
       "name": "王道銀行",
-      "rs_rating": 41,
+      "rs_rating": 43,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.237,
+      "composite_score": 0.247,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -903,12 +887,12 @@
     {
       "symbol": "2903",
       "name": "遠百",
-      "rs_rating": 37,
+      "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.241,
+      "composite_score": 0.248,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -918,12 +902,12 @@
     {
       "symbol": "2905",
       "name": "三商",
-      "rs_rating": 43,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.213,
+      "composite_score": 0.223,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -933,51 +917,6 @@
     {
       "symbol": "2912",
       "name": "統一超",
-      "rs_rating": 36,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.288,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2913",
-      "name": "農林",
-      "rs_rating": 34,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.254,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2915",
-      "name": "潤泰全",
-      "rs_rating": 42,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.23,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "3005",
-      "name": "神基",
       "rs_rating": 38,
       "ad_rating": null,
       "sales_rating": null,
@@ -991,14 +930,59 @@
       ]
     },
     {
+      "symbol": "2913",
+      "name": "農林",
+      "rs_rating": 35,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.273,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "2915",
+      "name": "潤泰全",
+      "rs_rating": 44,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.244,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
+      "symbol": "3005",
+      "name": "神基",
+      "rs_rating": 40,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 0.5,
+      "composite_score": 0.24,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate"
+      ]
+    },
+    {
       "symbol": "3006",
       "name": "晶豪科",
-      "rs_rating": 54,
+      "rs_rating": 52,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.222,
+      "composite_score": 0.22,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1011,8 +995,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.298,
+      "volume_score": 1.0,
+      "composite_score": 0.334,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1021,12 +1005,12 @@
     {
       "symbol": "3010",
       "name": "華立",
-      "rs_rating": 44,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.312,
+      "composite_score": 0.315,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1041,7 +1025,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.139,
+      "composite_score": 0.143,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1050,12 +1034,12 @@
     {
       "symbol": "3014",
       "name": "聯陽",
-      "rs_rating": 42,
+      "rs_rating": 44,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.286,
+      "volume_score": 0.5,
+      "composite_score": 0.236,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1065,12 +1049,12 @@
     {
       "symbol": "3016",
       "name": "嘉晶",
-      "rs_rating": 78,
+      "rs_rating": 75,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.334,
+      "composite_score": 0.321,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1079,12 +1063,12 @@
     {
       "symbol": "3017",
       "name": "奇鋐",
-      "rs_rating": 60,
+      "rs_rating": 58,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.24,
+      "composite_score": 0.234,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1098,7 +1082,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.108,
+      "composite_score": 0.112,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1112,7 +1096,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.154,
+      "composite_score": 0.15,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1121,12 +1105,12 @@
     {
       "symbol": "3022",
       "name": "威強電",
-      "rs_rating": 46,
+      "rs_rating": 47,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.174,
+      "composite_score": 0.181,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1135,12 +1119,12 @@
     {
       "symbol": "3023",
       "name": "信邦",
-      "rs_rating": 46,
+      "rs_rating": 48,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.234,
+      "composite_score": 0.24,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1150,12 +1134,12 @@
     {
       "symbol": "3024",
       "name": "憶聲",
-      "rs_rating": 43,
+      "rs_rating": 44,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.149,
+      "composite_score": 0.16,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1164,12 +1148,12 @@
     {
       "symbol": "3026",
       "name": "禾伸堂",
-      "rs_rating": 99,
+      "rs_rating": 97,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.397,
+      "volume_score": 0.5,
+      "composite_score": 0.351,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1178,12 +1162,12 @@
     {
       "symbol": "3028",
       "name": "增你強",
-      "rs_rating": 44,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.14,
+      "composite_score": 0.135,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1192,12 +1176,12 @@
     {
       "symbol": "3029",
       "name": "零壹",
-      "rs_rating": 41,
+      "rs_rating": 42,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.243,
+      "composite_score": 0.246,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1207,12 +1191,12 @@
     {
       "symbol": "3030",
       "name": "德律",
-      "rs_rating": 47,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.165,
+      "composite_score": 0.155,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1224,23 +1208,24 @@
       "rs_rating": 50,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.218,
+      "composite_score": 0.222,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
       "symbol": "3033",
       "name": "威健",
-      "rs_rating": 44,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.14,
+      "composite_score": 0.147,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1249,12 +1234,12 @@
     {
       "symbol": "3034",
       "name": "聯詠",
-      "rs_rating": 48,
+      "rs_rating": 50,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.312,
+      "volume_score": 0.5,
+      "composite_score": 0.262,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1264,12 +1249,12 @@
     {
       "symbol": "3035",
       "name": "智原",
-      "rs_rating": 45,
+      "rs_rating": 43,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.211,
+      "volume_score": 0.5,
+      "composite_score": 0.165,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1292,12 +1277,12 @@
     {
       "symbol": "3037",
       "name": "欣興",
-      "rs_rating": 78,
+      "rs_rating": 73,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.33,
+      "composite_score": 0.315,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1306,12 +1291,12 @@
     {
       "symbol": "3041",
       "name": "揚智",
-      "rs_rating": 38,
+      "rs_rating": 37,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.194,
+      "volume_score": 0.5,
+      "composite_score": 0.155,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1320,12 +1305,12 @@
     {
       "symbol": "3042",
       "name": "晶技",
-      "rs_rating": 59,
+      "rs_rating": 57,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.273,
+      "composite_score": 0.267,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1339,7 +1324,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.324,
+      "composite_score": 0.328,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1349,12 +1334,12 @@
     {
       "symbol": "3045",
       "name": "台灣大",
-      "rs_rating": 42,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.294,
+      "volume_score": 0.5,
+      "composite_score": 0.247,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1397,7 +1382,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.14,
+      "composite_score": 0.144,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1406,12 +1391,12 @@
     {
       "symbol": "3051",
       "name": "力特",
-      "rs_rating": 36,
+      "rs_rating": 37,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.144,
+      "composite_score": 0.151,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1420,12 +1405,12 @@
     {
       "symbol": "3055",
       "name": "蔚華科",
-      "rs_rating": 67,
+      "rs_rating": 62,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.301,
+      "volume_score": 1.0,
+      "composite_score": 0.322,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1434,12 +1419,12 @@
     {
       "symbol": "3056",
       "name": "富華新",
-      "rs_rating": 31,
+      "rs_rating": 32,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.141,
+      "composite_score": 0.148,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1453,7 +1438,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.107,
+      "composite_score": 0.115,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1467,7 +1452,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.137,
+      "composite_score": 0.145,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1481,7 +1466,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.136,
+      "composite_score": 0.156,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1493,23 +1478,24 @@
       "rs_rating": 34,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.142,
+      "composite_score": 0.238,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
       "symbol": "3090",
       "name": "日電貿",
-      "rs_rating": 52,
+      "rs_rating": 50,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.256,
+      "volume_score": 0.5,
+      "composite_score": 0.21,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1518,12 +1504,12 @@
     {
       "symbol": "3094",
       "name": "聯傑",
-      "rs_rating": 79,
+      "rs_rating": 74,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.357,
+      "composite_score": 0.318,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1537,7 +1523,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.09,
+      "composite_score": 0.094,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1546,12 +1532,12 @@
     {
       "symbol": "3149",
       "name": "正達",
-      "rs_rating": 54,
+      "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.222,
+      "composite_score": 0.217,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1560,40 +1546,42 @@
     {
       "symbol": "3167",
       "name": "大量",
-      "rs_rating": 76,
+      "rs_rating": 78,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.368,
+      "composite_score": 0.458,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
       "symbol": "3189",
       "name": "景碩",
-      "rs_rating": 92,
+      "rs_rating": 89,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.372,
+      "composite_score": 0.427,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
       "symbol": "3209",
       "name": "全科",
-      "rs_rating": 41,
+      "rs_rating": 42,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.131,
+      "composite_score": 0.126,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1602,12 +1590,12 @@
     {
       "symbol": "3229",
       "name": "晟鈦",
-      "rs_rating": 64,
+      "rs_rating": 62,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.252,
+      "composite_score": 0.246,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1616,26 +1604,27 @@
     {
       "symbol": "3231",
       "name": "緯創",
-      "rs_rating": 46,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.138,
+      "composite_score": 0.199,
       "industry_rank": 999,
       "tags": [
-        "leader"
+        "leader",
+        "breakout_candidate"
       ]
     },
     {
       "symbol": "3305",
       "name": "昇貿",
-      "rs_rating": 36,
+      "rs_rating": 35,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.132,
+      "volume_score": 1.0,
+      "composite_score": 0.185,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1644,12 +1633,12 @@
     {
       "symbol": "3311",
       "name": "閎暉",
-      "rs_rating": 60,
+      "rs_rating": 57,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.332,
+      "composite_score": 0.307,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1663,7 +1652,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.157,
+      "composite_score": 0.165,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1688,12 +1677,12 @@
     {
       "symbol": "3346",
       "name": "麗清",
-      "rs_rating": 40,
+      "rs_rating": 41,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.12,
+      "composite_score": 0.123,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1702,12 +1691,12 @@
     {
       "symbol": "3356",
       "name": "奇偶",
-      "rs_rating": 52,
+      "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.336,
+      "volume_score": 0.5,
+      "composite_score": 0.273,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1717,12 +1706,12 @@
     {
       "symbol": "3376",
       "name": "新日興",
-      "rs_rating": 33,
+      "rs_rating": 34,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.107,
+      "composite_score": 0.102,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1731,12 +1720,12 @@
     {
       "symbol": "3380",
       "name": "明泰",
-      "rs_rating": 36,
+      "rs_rating": 37,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.116,
+      "composite_score": 0.123,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1745,12 +1734,12 @@
     {
       "symbol": "3406",
       "name": "玉晶光",
-      "rs_rating": 72,
+      "rs_rating": 78,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.396,
+      "composite_score": 0.414,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1765,7 +1754,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.125,
+      "composite_score": 0.137,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1779,7 +1768,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.126,
+      "composite_score": 0.146,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1788,12 +1777,12 @@
     {
       "symbol": "3443",
       "name": "創意",
-      "rs_rating": 90,
+      "rs_rating": 86,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.39,
+      "composite_score": 0.354,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1802,12 +1791,12 @@
     {
       "symbol": "3450",
       "name": "聯鈞",
-      "rs_rating": 52,
+      "rs_rating": 50,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.216,
+      "composite_score": 0.21,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1816,12 +1805,12 @@
     {
       "symbol": "3481",
       "name": "群創",
-      "rs_rating": 61,
+      "rs_rating": 60,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.243,
+      "composite_score": 0.24,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1830,12 +1819,12 @@
     {
       "symbol": "3504",
       "name": "揚明光",
-      "rs_rating": 48,
+      "rs_rating": 49,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.172,
+      "composite_score": 0.155,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1858,12 +1847,12 @@
     {
       "symbol": "3597",
       "name": "映興",
-      "rs_rating": 73,
+      "rs_rating": 68,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.739,
+      "composite_score": 0.728,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1880,7 +1869,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.432,
+      "composite_score": 0.436,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1895,7 +1884,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.408,
+      "composite_score": 0.4,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1905,12 +1894,12 @@
     {
       "symbol": "6187",
       "name": "萬潤",
-      "rs_rating": 75,
+      "rs_rating": 70,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.543,
+      "composite_score": 0.548,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1925,7 +1914,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.392,
+      "composite_score": 0.396,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1941,7 +1930,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.753,
+      "composite_score": 0.757,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1956,12 +1945,13 @@
       "rs_rating": 44,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.422,
+      "composite_score": 0.506,
       "industry_rank": 999,
       "tags": [
         "leader",
+        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -1969,12 +1959,12 @@
     {
       "symbol": "6261",
       "name": "久元",
-      "rs_rating": 41,
+      "rs_rating": 40,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.413,
+      "volume_score": 0.5,
+      "composite_score": 0.37,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1990,7 +1980,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.42,
+      "composite_score": 0.424,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2001,12 +1991,12 @@
     {
       "symbol": "6438",
       "name": "迅得",
-      "rs_rating": 44,
+      "rs_rating": 45,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.538,
+      "composite_score": 0.545,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2018,12 +2008,12 @@
     {
       "symbol": "6505",
       "name": "台塑化",
-      "rs_rating": 76,
+      "rs_rating": 73,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.686,
+      "volume_score": 0.5,
+      "composite_score": 0.629,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2034,12 +2024,12 @@
     {
       "symbol": "6510",
       "name": "精測",
-      "rs_rating": 43,
+      "rs_rating": 40,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.379,
+      "volume_score": 1.0,
+      "composite_score": 0.414,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2049,16 +2039,15 @@
     {
       "symbol": "6667",
       "name": "信紘科",
-      "rs_rating": 40,
+      "rs_rating": 41,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.58,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.467,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -2066,12 +2055,12 @@
     {
       "symbol": "6669",
       "name": "緯穎",
-      "rs_rating": 19,
+      "rs_rating": 17,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.397,
+      "composite_score": 0.395,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2087,7 +2076,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.761,
+      "composite_score": 0.765,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2099,12 +2088,12 @@
     {
       "symbol": "6706",
       "name": "惠特",
-      "rs_rating": 47,
+      "rs_rating": 46,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.441,
+      "composite_score": 0.442,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2115,12 +2104,12 @@
     {
       "symbol": "6770",
       "name": "力積電",
-      "rs_rating": 48,
+      "rs_rating": 46,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.394,
+      "composite_score": 0.392,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2135,7 +2124,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.375,
+      "composite_score": 0.347,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2149,8 +2138,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.555,
+      "volume_score": 1.0,
+      "composite_score": 0.619,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2165,25 +2154,24 @@
       "rs_rating": 99,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.763,
+      "composite_score": 0.683,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc"
       ]
     },
     {
       "symbol": "6885",
       "name": "全福生技",
-      "rs_rating": 45,
+      "rs_rating": 49,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.591,
+      "composite_score": 0.607,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2198,12 +2186,13 @@
       "rs_rating": 40,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.46,
+      "composite_score": 0.556,
       "industry_rank": 999,
       "tags": [
         "leader",
+        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -2211,12 +2200,12 @@
     {
       "symbol": "6957",
       "name": "裕慶-KY",
-      "rs_rating": 86,
+      "rs_rating": 87,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.668,
+      "volume_score": 1.0,
+      "composite_score": 0.735,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2228,12 +2217,12 @@
     {
       "symbol": "7788",
       "name": "松川精密",
-      "rs_rating": 62,
+      "rs_rating": 60,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.5,
+      "composite_score": 0.49,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2243,12 +2232,12 @@
     {
       "symbol": "7795",
       "name": "長廣",
-      "rs_rating": 55,
+      "rs_rating": 52,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.475,
+      "composite_score": 0.466,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2279,8 +2268,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.243,
+      "volume_score": 1.0,
+      "composite_score": 0.287,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2290,12 +2279,12 @@
     {
       "symbol": "8084",
       "name": "巨虹",
-      "rs_rating": 12,
+      "rs_rating": 11,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.38,
+      "composite_score": 0.381,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2306,12 +2295,12 @@
     {
       "symbol": "8358",
       "name": "金居",
-      "rs_rating": 54,
+      "rs_rating": 51,
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.472,
+      "composite_score": 0.463,
       "industry_rank": 999,
       "tags": [
         "leader",
