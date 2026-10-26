@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-10-23",
-  "generated_at": "2026-10-23T14:51:31Z",
+  "date": "2026-10-26",
+  "generated_at": "2026-10-26T16:39:10Z",
   "universe": [
     {
       "symbol": "1101",
@@ -10,8 +10,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.282,
+      "volume_score": 1.0,
+      "composite_score": 0.362,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -26,7 +26,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.362,
+      "composite_score": 0.37,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -40,7 +40,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.635,
+      "composite_score": 0.611,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -55,7 +55,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.312,
+      "composite_score": 0.284,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -86,7 +86,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.235,
+      "composite_score": 0.207,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -101,7 +101,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.363,
+      "composite_score": 0.371,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -116,7 +116,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.337,
+      "composite_score": 0.329,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -179,20 +179,6 @@
       "tags": [
         "leader",
         "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2537",
-      "name": "聯上發",
-      "rs_rating": 40,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.12,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
       ]
     },
     {
@@ -687,7 +673,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.322,
+      "composite_score": 0.314,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -702,7 +688,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.36,
+      "composite_score": 0.356,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2100,23 +2086,6 @@
       "tags": [
         "leader",
         "rev_acc"
-      ]
-    },
-    {
-      "symbol": "6811",
-      "name": "宏碁資訊",
-      "rs_rating": 51,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.693,
-      "industry_rank": 999,
-      "tags": [
-        "leader",
-        "breakout_candidate",
-        "rev_acc",
-        "rev_strong"
       ]
     },
     {
