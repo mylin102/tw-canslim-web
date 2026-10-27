@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "date": "2026-10-26",
-  "generated_at": "2026-10-26T16:39:10Z",
+  "date": "2026-10-27",
+  "generated_at": "2026-10-27T16:08:52Z",
   "universe": [
     {
       "symbol": "1101",
@@ -10,8 +10,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.362,
+      "volume_score": 0.5,
+      "composite_score": 0.29,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -26,7 +26,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.37,
+      "composite_score": 0.374,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -40,7 +40,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.611,
+      "composite_score": 0.623,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -69,7 +69,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.609,
+      "composite_score": 0.585,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -85,8 +85,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.207,
+      "volume_score": 1.0,
+      "composite_score": 0.271,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -101,7 +101,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.371,
+      "composite_score": 0.375,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -116,7 +116,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.329,
+      "composite_score": 0.333,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -131,7 +131,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.171,
+      "composite_score": 0.167,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -158,8 +158,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.385,
+      "volume_score": 1.0,
+      "composite_score": 0.449,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -172,13 +172,54 @@
       "rs_rating": 55,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.371,
+      "composite_score": 0.311,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2528",
+      "name": "皇普",
+      "rs_rating": 27,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.171,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2534",
+      "name": "宏盛",
+      "rs_rating": 33,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.189,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
+      ]
+    },
+    {
+      "symbol": "2537",
+      "name": "聯上發",
+      "rs_rating": 40,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 0.5,
+      "volume_score": 0.5,
+      "composite_score": 0.12,
+      "industry_rank": 999,
+      "tags": [
+        "leader"
       ]
     },
     {
@@ -189,7 +230,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.094,
+      "composite_score": 0.102,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -202,8 +243,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.23,
+      "volume_score": 1.0,
+      "composite_score": 0.27,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -217,7 +258,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.163,
+      "composite_score": 0.159,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -230,8 +271,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.143,
+      "volume_score": 1.0,
+      "composite_score": 0.159,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -245,7 +286,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.156,
+      "composite_score": 0.152,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -289,7 +330,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.139,
+      "composite_score": 0.135,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -303,7 +344,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.276,
+      "composite_score": 0.272,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -317,8 +358,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.373,
+      "volume_score": 1.0,
+      "composite_score": 0.429,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -333,7 +374,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.235,
+      "composite_score": 0.239,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -362,7 +403,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.239,
+      "composite_score": 0.243,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -377,7 +418,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.227,
+      "composite_score": 0.231,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -392,7 +433,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.293,
+      "composite_score": 0.285,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -407,7 +448,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.223,
+      "composite_score": 0.227,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -422,25 +463,11 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.285,
+      "composite_score": 0.289,
       "industry_rank": 999,
       "tags": [
         "leader",
         "breakout_candidate"
-      ]
-    },
-    {
-      "symbol": "2630",
-      "name": "亞航",
-      "rs_rating": 34,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.176,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
       ]
     },
     {
@@ -450,8 +477,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.251,
+      "volume_score": 1.0,
+      "composite_score": 0.315,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -466,7 +493,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.23,
+      "composite_score": 0.234,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -480,7 +507,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.42,
+      "composite_score": 0.424,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -495,7 +522,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.185,
+      "composite_score": 0.197,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -509,7 +536,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.116,
+      "composite_score": 0.124,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -539,7 +566,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.162,
+      "composite_score": 0.166,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -552,8 +579,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.231,
+      "volume_score": 1.0,
+      "composite_score": 0.295,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -568,7 +595,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.2,
+      "composite_score": 0.192,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -583,7 +610,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.177,
+      "composite_score": 0.181,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -598,7 +625,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.131,
+      "composite_score": 0.135,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -612,7 +639,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.237,
+      "composite_score": 0.241,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -627,7 +654,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.6,
+      "composite_score": 0.604,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -643,7 +670,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.344,
+      "composite_score": 0.348,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -658,7 +685,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.374,
+      "composite_score": 0.382,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -673,7 +700,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.314,
+      "composite_score": 0.318,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -687,8 +714,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.356,
+      "volume_score": 1.0,
+      "composite_score": 0.424,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -703,7 +730,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.331,
+      "composite_score": 0.351,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -718,7 +745,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.385,
+      "composite_score": 0.389,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -733,7 +760,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.382,
+      "composite_score": 0.386,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -748,7 +775,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.48,
+      "composite_score": 0.456,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -763,7 +790,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.322,
+      "composite_score": 0.334,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -778,7 +805,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.26,
+      "composite_score": 0.248,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -792,8 +819,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.351,
+      "volume_score": 1.0,
+      "composite_score": 0.399,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -807,8 +834,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.365,
+      "volume_score": 1.0,
+      "composite_score": 0.433,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -823,7 +850,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.392,
+      "composite_score": 0.388,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -838,7 +865,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.25,
+      "composite_score": 0.254,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -851,13 +878,12 @@
       "rs_rating": 39,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.227,
+      "composite_score": 0.167,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
       ]
     },
     {
@@ -868,7 +894,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.222,
+      "composite_score": 0.23,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -898,7 +924,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.152,
+      "composite_score": 0.14,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -912,7 +938,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.22,
+      "composite_score": 0.212,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -942,7 +968,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.222,
+      "composite_score": 0.226,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -956,7 +982,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.279,
+      "composite_score": 0.283,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -969,8 +995,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.299,
+      "volume_score": 0.5,
+      "composite_score": 0.243,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -999,7 +1025,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.18,
+      "composite_score": 0.148,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1013,7 +1039,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.31,
+      "composite_score": 0.314,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1027,7 +1053,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.241,
+      "composite_score": 0.245,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1041,7 +1067,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.111,
+      "composite_score": 0.123,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1055,7 +1081,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.214,
+      "composite_score": 0.218,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1069,7 +1095,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.172,
+      "composite_score": 0.188,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1082,8 +1108,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.158,
+      "volume_score": 1.0,
+      "composite_score": 0.178,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1097,7 +1123,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.157,
+      "composite_score": 0.169,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1111,7 +1137,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.355,
+      "composite_score": 0.351,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1124,8 +1150,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.132,
+      "volume_score": 1.0,
+      "composite_score": 0.176,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1138,8 +1164,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.243,
+      "volume_score": 1.0,
+      "composite_score": 0.291,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1154,7 +1180,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.137,
+      "composite_score": 0.129,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1167,8 +1193,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 1.0,
-      "composite_score": 0.352,
+      "volume_score": 0.5,
+      "composite_score": 0.276,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1196,8 +1222,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.312,
+      "volume_score": 1.0,
+      "composite_score": 0.376,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1226,7 +1252,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.135,
+      "composite_score": 0.139,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1240,7 +1266,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.319,
+      "composite_score": 0.315,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1254,7 +1280,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.147,
+      "composite_score": 0.135,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1268,7 +1294,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.213,
+      "composite_score": 0.217,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1280,13 +1306,12 @@
       "rs_rating": 54,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.318,
+      "composite_score": 0.258,
       "industry_rank": 999,
       "tags": [
-        "leader",
-        "breakout_candidate"
+        "leader"
       ]
     },
     {
@@ -1312,7 +1337,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.153,
+      "composite_score": 0.141,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1326,7 +1351,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.138,
+      "composite_score": 0.142,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1340,7 +1365,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.136,
+      "composite_score": 0.144,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1367,22 +1392,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.1,
-      "industry_rank": 999,
-      "tags": [
-        "leader"
-      ]
-    },
-    {
-      "symbol": "3058",
-      "name": "立德",
-      "rs_rating": 33,
-      "ad_rating": null,
-      "sales_rating": null,
-      "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.099,
+      "volume_score": 1.0,
+      "composite_score": 0.136,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1396,7 +1407,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.147,
+      "composite_score": 0.151,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1410,7 +1421,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.132,
+      "composite_score": 0.136,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1424,7 +1435,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.14,
+      "composite_score": 0.132,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1452,7 +1463,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.266,
+      "composite_score": 0.27,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1494,7 +1505,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.321,
+      "composite_score": 0.325,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1508,7 +1519,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.371,
+      "composite_score": 0.363,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1522,7 +1533,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.123,
+      "composite_score": 0.127,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1550,7 +1561,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.258,
+      "composite_score": 0.246,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1564,8 +1575,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.151,
+      "volume_score": 0.5,
+      "composite_score": 0.111,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1579,7 +1590,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.25,
+      "composite_score": 0.254,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1592,8 +1603,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.178,
+      "volume_score": 0.5,
+      "composite_score": 0.138,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1607,7 +1618,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.324,
+      "composite_score": 0.312,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1621,8 +1632,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 0.5,
-      "composite_score": 0.102,
+      "volume_score": 1.0,
+      "composite_score": 0.142,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1636,7 +1647,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.144,
+      "composite_score": 0.152,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1650,7 +1661,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.43,
+      "composite_score": 0.426,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1665,7 +1676,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.128,
+      "composite_score": 0.12,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1693,7 +1704,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.367,
+      "composite_score": 0.375,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1721,7 +1732,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.245,
+      "composite_score": 0.237,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1751,7 +1762,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.129,
+      "composite_score": 0.133,
       "industry_rank": 999,
       "tags": [
         "leader"
@@ -1779,7 +1790,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.604,
+      "composite_score": 0.6,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1793,13 +1804,12 @@
       "rs_rating": 63,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.705,
+      "composite_score": 0.625,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -1812,7 +1822,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.484,
+      "composite_score": 0.488,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1828,7 +1838,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.386,
+      "composite_score": 0.39,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1843,7 +1853,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.398,
+      "composite_score": 0.402,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1858,7 +1868,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.542,
+      "composite_score": 0.538,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1887,13 +1897,12 @@
       "rs_rating": 99,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.813,
+      "composite_score": 0.697,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -1906,7 +1915,7 @@
       "sales_rating": null,
       "breakout_score": 1.0,
       "volume_score": 1.0,
-      "composite_score": 0.525,
+      "composite_score": 0.545,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1923,7 +1932,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.364,
+      "composite_score": 0.368,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1939,7 +1948,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.437,
+      "composite_score": 0.429,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1954,8 +1963,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.479,
+      "volume_score": 0.5,
+      "composite_score": 0.439,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -1971,7 +1980,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.571,
+      "composite_score": 0.575,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2001,7 +2010,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.453,
+      "composite_score": 0.457,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2017,7 +2026,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.355,
+      "composite_score": 0.359,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2031,13 +2040,12 @@
       "rs_rating": 99,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
+      "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.813,
+      "composite_score": 0.733,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -2050,7 +2058,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.435,
+      "composite_score": 0.475,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2066,7 +2074,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.399,
+      "composite_score": 0.403,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2081,11 +2089,28 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.422,
+      "composite_score": 0.426,
       "industry_rank": 999,
       "tags": [
         "leader",
         "rev_acc"
+      ]
+    },
+    {
+      "symbol": "6811",
+      "name": "宏碁資訊",
+      "rs_rating": 51,
+      "ad_rating": null,
+      "sales_rating": null,
+      "breakout_score": 1.0,
+      "volume_score": 1.0,
+      "composite_score": 0.669,
+      "industry_rank": 999,
+      "tags": [
+        "leader",
+        "breakout_candidate",
+        "rev_acc",
+        "rev_strong"
       ]
     },
     {
@@ -2095,8 +2120,8 @@
       "ad_rating": null,
       "sales_rating": null,
       "breakout_score": 0.5,
-      "volume_score": 1.0,
-      "composite_score": 0.626,
+      "volume_score": 0.5,
+      "composite_score": 0.606,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2127,7 +2152,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 1.0,
-      "composite_score": 0.472,
+      "composite_score": 0.476,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2141,13 +2166,12 @@
       "rs_rating": 86,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 1.0,
-      "volume_score": 0.5,
-      "composite_score": 0.644,
+      "breakout_score": 0.5,
+      "volume_score": 1.0,
+      "composite_score": 0.608,
       "industry_rank": 999,
       "tags": [
         "leader",
-        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -2188,12 +2212,13 @@
       "rs_rating": 50,
       "ad_rating": null,
       "sales_rating": null,
-      "breakout_score": 0.5,
+      "breakout_score": 1.0,
       "volume_score": 0.5,
-      "composite_score": 0.486,
+      "composite_score": 0.55,
       "industry_rank": 999,
       "tags": [
         "leader",
+        "breakout_candidate",
         "rev_acc",
         "rev_strong"
       ]
@@ -2206,7 +2231,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.256,
+      "composite_score": 0.26,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2221,7 +2246,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.372,
+      "composite_score": 0.376,
       "industry_rank": 999,
       "tags": [
         "leader",
@@ -2237,7 +2262,7 @@
       "sales_rating": null,
       "breakout_score": 0.5,
       "volume_score": 0.5,
-      "composite_score": 0.4,
+      "composite_score": 0.404,
       "industry_rank": 999,
       "tags": [
         "leader",
