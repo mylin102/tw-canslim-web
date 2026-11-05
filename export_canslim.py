@@ -40,6 +40,7 @@ from core.logic import (
     get_market_sentiment,
     calculate_l_factor, 
     calculate_mansfield_rs, 
+    calculate_rs_trend,
     calculate_volatility_grid, 
     check_n_factor
 )
@@ -1609,6 +1610,25 @@ class CanslimEngine:
                 except Exception as e:
                     logger.warning(f"Failed to load revenue features: {e}")
 
+            # 2d. Load ETF regime gate
+            market_regime = "UNKNOWN"
+            market_regime_confidence = 0.0
+            REGIME_GATE_PATH = os.path.join(OUTPUT_DIR, "etf_regime.json")
+            if os.path.exists(REGIME_GATE_PATH):
+                try:
+                    with open(REGIME_GATE_PATH, "r", encoding="utf-8") as f:
+                        regime_data = json.load(f)
+                    market_regime = regime_data.get("regime", "UNKNOWN")
+                    market_regime_confidence = float(regime_data.get("confidence", 0.0))
+                    logger.info(f"Market regime: {market_regime} (confidence={market_regime_confidence:.2f})")
+                except Exception as e:
+                    logger.warning(f"Failed to load ETF regime: {e}")
+
+            # Gate: RISK_OFF or DEFENSIVE stops new entries
+            regime_allow_new_entries = market_regime not in ("RISK_OFF", "DEFENSIVE")
+            if not regime_allow_new_entries:
+                logger.warning(f"⚠️  Regime gate CLOSED ({market_regime}): no new entries will be added this run")
+
             selection = build_core_universe(
                 all_symbols=all_t,
                 config_path=os.path.join(SCRIPT_DIR, "core_selection_config.json"),
@@ -1742,6 +1762,22 @@ class CanslimEngine:
                     if not a_pass:
                         a_pass = self._excel_a_fallback(t)
 
+                    # Turnaround detection: if EPS went from negative/zero to positive, pass C factor
+                    # This catches early-stage leaders that both TEJ and Excel fallback miss
+                    c_turnaround = False
+                    if not c_pass:
+                        try:
+                            eps_list = self.fetch_quarterly_eps(t)
+                            if eps_list is not None and len(eps_list) >= 5:
+                                curr_eps = eps_list[-1]['eps']
+                                prev_year_eps = eps_list[-5]['eps']
+                                if prev_year_eps <= 0 and curr_eps > 0:
+                                    c_pass = True
+                                    c_turnaround = True
+                                    logger.debug(f"{t}: C factor via turnaround (EPS {prev_year_eps:.2f} → {curr_eps:.2f})")
+                        except Exception as e:
+                            logger.debug(f"{t}: turnaround check failed: {e}")
+
                     i_score_abs, excel_i_details = self._excel_i_fallback(t, i_score_abs)
                     if excel_i_details:
                         inst_result["details"] = {**inst_result.get("details", {}), **excel_i_details}
@@ -1750,7 +1786,10 @@ class CanslimEngine:
 
                     n_pass = check_n_factor(stock_hist)
                     s_pass = self.check_s_volume(financial_data.get("volume", 0), financial_data.get("avg_volume", 0))
-                    l_pass = calculate_l_factor(m_rs)
+                    # L factor: require RS > 0 AND RS trend is up (not just better than market)
+                    rs_trend_result = calculate_rs_trend(stock_hist, market_hist) if stock_hist is not None and market_hist is not None else {"trend": "neutral", "delta": 0}
+                    rs_trend = rs_trend_result.get("trend", "neutral")
+                    l_pass = (m_rs > 0) and (rs_trend == "up")
 
                     industry_info = self.industry_data.get(t) if self.industry_data else None
                     industry_name = industry_info.get('industry', '') if industry_info else ''
@@ -1788,6 +1827,7 @@ class CanslimEngine:
                         "is_etf": is_etf,
                         "canslim": {
                             "C": bool(factors["C"]),
+                            "c_turnaround": bool(c_turnaround),
                             "A": bool(factors["A"]),
                             "N": bool(factors["N"]),
                             "S": bool(factors["S"]),
@@ -1799,6 +1839,8 @@ class CanslimEngine:
                             "i_score_abs": float(i_score_abs),
                             "inst_details": inst_result.get("details", {}),
                             "mansfield_rs": float(m_rs),
+                            "rs_trend": rs_trend,
+                            "rs_trend_delta": float(rs_trend_result.get("delta", 0.0)),
                             "revenue_score": float(revenue_score),
                             "rev_accelerating": bool(rev_accelerating),
                             "rev_strong": bool(rev_strong),
@@ -1811,7 +1853,14 @@ class CanslimEngine:
                     }
 
                     if self.validate_stock_data(stock_data):
-                        self.output_data["stocks"][t] = stock_data
+                        # Regime gate: skip new entries when market is RISK_OFF or DEFENSIVE
+                        old_stocks = old_data.get("stocks", {})
+                        if not regime_allow_new_entries and t not in old_stocks:
+                            logger.debug(
+                                "Regime gate skip: %s is a new entry and regime=%s", t, market_regime
+                            )
+                        else:
+                            self.output_data["stocks"][t] = stock_data
 
                     succeeded_at = self._rotation_timestamp()
                     if t not in self.refreshed_symbols:
@@ -1879,6 +1928,11 @@ class CanslimEngine:
             self.output_data["artifact_kind"] = "data"
             self.output_data["last_updated"] = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
             self.output_data["generated_at"] = self._utc_timestamp()
+            self.output_data["market_gate"] = {
+                "regime": market_regime,
+                "confidence": market_regime_confidence,
+                "allow_new_entries": regime_allow_new_entries,
+            }
 
             # Calculate industry strength using CANSLIM data
             if self.industry_data:
