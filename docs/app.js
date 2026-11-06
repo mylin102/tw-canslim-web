@@ -93,7 +93,7 @@ const app = createApp({
             const excelRs = stock?.canslim?.excel_ratings?.rs_rating;
             if (excelRs !== undefined && excelRs !== null) return excelRs;
             const mansfield = stock?.canslim?.mansfield_rs;
-            if (!mansfield) return null;
+            if (mansfield === undefined || mansfield === null || isNaN(mansfield)) return null;
             return Math.min(99, Math.max(1, 50 + Math.round(mansfield * 5)));
         };
 

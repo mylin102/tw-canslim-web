@@ -211,7 +211,7 @@
                 <div class="inline-block px-6 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-black mb-6 tracking-widest uppercase text-center shadow-sm">
                     Taiwan Stock Market Alpha Intelligence
                 </div>
-                <h1 class="text-5xl font-black text-slate-900 mb-6 tracking-tighter">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter sm:whitespace-nowrap">
                     <svg class="icon icon-chart-line mr-3 text-blue-600"><use href="#icon-chart-line" xlink:href="#icon-chart-line"></use></svg>台股 CANSLIM 戰情室
                 </h1>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-base text-slate-500">
@@ -258,7 +258,7 @@
                         <div v-for="(stock, idx) in stockLeaders.slice(0, 10)" :key="stock.symbol"
                              @click="selectStock(stock.symbol); activeTab = 'search'"
                              class="bg-white/5 hover:bg-white/15 p-6 rounded-3xl cursor-pointer transition-all group relative overflow-hidden border border-white/5 backdrop-blur-sm hover:scale-[1.03] hover:shadow-2xl">
-                            <div v-if="stock.canslim.score_delta && stock.canslim.score_delta !== 0" 
+                            <div v-if="stock.canslim.score_delta && !isNaN(stock.canslim.score_delta) && stock.canslim.score_delta !== 0" 
                                  :class="['absolute top-0 right-0 px-3 py-1 text-xs font-black rounded-bl-2xl shadow-inner', 
                                           stock.canslim.score_delta > 0 ? 'bg-emerald-500' : 'bg-rose-500']">
                                 {{ stock.canslim.score_delta > 0 ? '↑' : '↓' }}{{ Math.abs(stock.canslim.score_delta) }}
@@ -274,7 +274,7 @@
                             <div class="pt-4 border-t border-white/10 flex justify-between items-center">
                                 <div class="flex flex-col">
                                     <span class="text-[10px] font-black opacity-40 uppercase">RS</span>
-                                    <span class="text-sm font-black text-emerald-400">{{ getEffectiveRs(stock) ?? '-' }}</span>
+                                    <span class="text-sm font-black text-emerald-400">{{ getEffectiveRs(stock) ?? '—' }}</span>
                                 </div>
                                 <div v-if="stock.revenue_features" class="flex flex-col items-end">
                                     <span class="text-[10px] font-black opacity-40 uppercase">Rev Score</span>
@@ -363,8 +363,8 @@
                                             <div class="text-7xl font-black text-blue-400 tracking-tighter leading-none">{{ currentStock.has_full_detail === false ? '—' : currentStock.canslim.score }}</div>
                                             <div class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mt-3">{{ currentStock.has_full_detail === false ? '索引模式' : 'CANSLIM 總分' }}</div>
                                         </div>
-                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="h-16 w-px bg-white/10"></div>
-                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0" class="text-center px-4">
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0 && !isNaN(currentStock.canslim.score_delta)" class="h-16 w-px bg-white/10"></div>
+                                        <div v-if="currentStock.has_full_detail !== false && currentStock.canslim.score_delta !== 0 && !isNaN(currentStock.canslim.score_delta)" class="text-center px-4">
                                             <div :class="['text-3xl font-black leading-none', currentStock.canslim.score_delta > 0 ? 'text-emerald-400' : 'text-rose-400']">
                                                 {{ currentStock.canslim.score_delta > 0 ? '↑' : '↓' }}{{ Math.abs(currentStock.canslim.score_delta) }}
                                             </div>
@@ -462,8 +462,8 @@
                                         <div class="grid grid-cols-2 gap-6">
                                             <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 shadow-inner group hover:bg-white hover:border-indigo-200 transition-all">
                                                 <div class="text-sm font-black text-slate-400 uppercase tracking-widest mb-3">Mansfield RS (半年)</div>
-                                                <div :class="['text-5xl font-black font-mono tracking-tighter', currentStock.canslim.mansfield_rs > 0 ? 'text-emerald-600' : 'text-rose-600']">
-                                                    {{ currentStock.canslim.mansfield_rs > 0 ? '+' : '' }}{{ currentStock.canslim.mansfield_rs?.toFixed(2) }}
+                                                <div :class="['text-5xl font-black font-mono tracking-tighter', (currentStock.canslim.mansfield_rs ?? 0) > 0 ? 'text-emerald-600' : 'text-rose-600']">
+                                                    {{ (currentStock.canslim.mansfield_rs == null || isNaN(currentStock.canslim.mansfield_rs)) ? '—' : (currentStock.canslim.mansfield_rs > 0 ? '+' : '') + Number(currentStock.canslim.mansfield_rs).toFixed(2) }}
                                                 </div>
                                                 <div class="mt-4 text-xs font-bold text-slate-400 uppercase tracking-widest">相比大盤基準線</div>
                                                 <div v-if="currentStock.canslim.excel_ratings?.rs_rating != null" class="mt-2 text-xs font-bold text-indigo-500">
@@ -515,8 +515,8 @@
                                         </h3>
                                         <div class="p-10 bg-white rounded-[2.5rem] border-2 border-slate-100 shadow-2xl relative overflow-hidden group">
                                             <div class="absolute top-0 right-0 p-8">
-                                                <div :class="['text-6xl font-black tracking-tighter', currentStock.canslim.i_score_abs >= 60 ? 'text-blue-600 drop-shadow-xl' : 'text-slate-200']">
-                                                    {{ Math.round(currentStock.canslim.i_score_abs) }}
+                                                <div :class="['text-6xl font-black tracking-tighter', (currentStock.canslim.i_score_abs ?? 0) >= 60 ? 'text-blue-600 drop-shadow-xl' : 'text-slate-200']">
+                                                    {{ (currentStock.canslim.i_score_abs == null || isNaN(currentStock.canslim.i_score_abs)) ? '—' : Math.round(currentStock.canslim.i_score_abs) }}
                                                 </div>
                                                 <div class="text-xs font-black text-slate-400 text-right uppercase tracking-widest mt-2">I Score</div>
                                             </div>
@@ -525,7 +525,7 @@
                                                 <div class="flex items-center gap-12">
                                                     <div>
                                                         <div class="text-xs font-black text-slate-400 mb-3 uppercase tracking-[0.2em]">20日吸籌率</div>
-                                                        <div class="text-5xl font-black font-mono text-blue-700 tracking-tighter">{{ currentStock.canslim.inst_details?.ratio_20d }}%</div>
+                                                        <div class="text-5xl font-black font-mono text-blue-700 tracking-tighter">{{ currentStock.canslim.inst_details?.ratio_20d != null ? currentStock.canslim.inst_details.ratio_20d + '%' : '—' }}</div>
                                                     </div>
                                                     <div>
                                                         <div class="text-xs font-black text-slate-400 mb-3 uppercase tracking-[0.2em]">連買天數</div>
@@ -628,7 +628,7 @@
                                             <div class="font-mono text-sm font-black text-slate-400 group-hover:text-blue-200 tracking-tighter">{{ stock.symbol }}</div>
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
-                                            <div v-if="stock.canslim.score_delta != null && stock.canslim.score_delta !== 0" 
+                                            <div v-if="stock.canslim.score_delta != null && !isNaN(stock.canslim.score_delta) && stock.canslim.score_delta !== 0" 
                                                  :class="['text-xs font-black inline-flex items-center px-3 py-1 rounded-xl shadow-sm border-2', 
                                                           stock.canslim.score_delta > 0 ? 'bg-emerald-500 text-white border-emerald-600' : 'bg-rose-500 text-white border-rose-600']">
                                                 {{ stock.canslim.score_delta > 0 ? '↑' : '↓' }} {{ Math.abs(stock.canslim.score_delta) }}
@@ -645,7 +645,7 @@
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
                                             <div :class="['font-mono font-black text-lg group-hover:text-white', (getEffectiveRs(stock) || 0) > 50 ? 'text-emerald-600' : 'text-rose-500']">
-                                                {{ getEffectiveRs(stock) ?? '-' }}
+                                                {{ getEffectiveRs(stock) ?? '—' }}
                                             </div>
                                         </td>
                                         <td class="table-cell-lg bg-slate-50 group-hover:bg-blue-600 transition-colors text-center">
@@ -713,7 +713,7 @@
                                             </td>
                                             <td class="table-cell-lg bg-slate-50 group-hover:bg-indigo-600 transition-colors text-center">
                                                 <div class="font-mono font-black text-lg group-hover:text-white" :class="(getEffectiveRs(etf) || 0) > 50 ? 'text-emerald-600' : 'text-rose-500'">
-                                                    {{ getEffectiveRs(etf) ?? '-' }}
+                                                    {{ getEffectiveRs(etf) ?? '—' }}
                                                 </div>
                                             </td>
                                             <td class="table-cell-lg bg-slate-50 group-hover:bg-indigo-600 transition-colors text-center pr-8 rounded-r-3xl">
@@ -814,7 +814,7 @@
                                         <div class="flex flex-col items-end">
                                             <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest text-right">RS 指標</span>
                                             <span :class="['text-xs font-black font-mono', (getEffectiveRs(stock) || 0) > 50 ? 'text-emerald-500' : 'text-rose-500']">
-                                                {{ getEffectiveRs(stock) ?? '-' }}
+                                                {{ getEffectiveRs(stock) ?? '—' }}
                                             </span>
                                         </div>
                                     </div>
